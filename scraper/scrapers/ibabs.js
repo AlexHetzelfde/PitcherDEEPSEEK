@@ -16,7 +16,12 @@
 // berichten die al weken geleden al eens verwerkt zijn — dat duurde in de
 // praktijk 30+ minuten voor niets.
 
-const MAX_DOCUMENT_TEKST_LENGTE = 3000; // cap zodat de Gemini-prompt niet buitensporig groot wordt
+// De maximale lengte van de tekst die uit een PDF wordt gehaald. Was 3000,
+// maar dat is te kort voor echte raadsstukken (vaak 5-10 pagina's): dan ziet
+// Gemini minder dan 20% van de inhoud. 15.000 tekens is ongeveer 7-8 A4'tjes,
+// genoeg voor vrijwel elk raadsvoorstel, en past ruim binnen het contextvenster
+// van Gemini.
+const MAX_DOCUMENT_TEKST_LENGTE = 15000;
 const REQUEST_TIMEOUT_MS = 15_000; // voorkomt dat één tragere/hangende iBabs-pagina de hele run ophoudt
 
 const { binnenLeeftijdsgrens, MAX_LEEFTIJD_DAGEN, oorzaakTekst } = require("../hulpmiddelen");
@@ -265,7 +270,11 @@ async function voegDocumentInhoudToe(bericht, cookie) {
     }
 
     const data = await pdfParse(buffer);
-    const documentTekst = (data.text || "").replace(/\s+/g, " ").trim().slice(0, MAX_DOCUMENT_TEKST_LENGTE);
+    const volledigeTekst = (data.text || "").replace(/\s+/g, " ").trim();
+    const documentTekst = volledigeTekst.slice(0, MAX_DOCUMENT_TEKST_LENGTE);
+    if (volledigeTekst.length > MAX_DOCUMENT_TEKST_LENGTE) {
+      console.log(`[${bericht.bronId}] PDF-tekst ingekort van ${volledigeTekst.length} naar ${MAX_DOCUMENT_TEKST_LENGTE} tekens voor "${bericht.titel}".`);
+    }
 
     return {
       ...bericht,
