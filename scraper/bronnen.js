@@ -29,8 +29,8 @@ module.exports = [
     id: "ovo-zaanstad",
     naam: "OVO Zaanstad (koepel 7 vo-scholen)",
     categorie: "lokaal",
-    type: "generieke-lijst",
-    url: "https://www.ovo-zaanstad.nl/nieuws/",
+    type: "rss",
+    url: "https://ovo-zaanstad.nl/feed/",
   },
   {
     id: "blaise-pascal-college",
