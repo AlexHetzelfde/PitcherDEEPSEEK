@@ -1,0 +1,459 @@
+// bron-ontdekking.js
+//
+// Zoekt uit HOE een nieuwe bron het beste automatisch opgehaald kan worden,
+// en bewijst dat het werkt voordat het als bron wordt teruggegeven.
+//
+// Stap 0 draait ALTIJD als eerste: Gemini leest de volledige paginacode
+// (zie geminiAnalyse in gemini-recept-lus.js). Zijn lijst van berichten is de
+// referentie voor ELKE methode hieronder: de gekozen methode moet minstens
+// MIN_DEKKING (bron-poort.js) van die lijst terugvinden. De lijst wordt eerst
+// gecontroleerd tegen de echte links op de pagina, dus Gemini kan geen berichten
+// verzinnen. Zonder GEMINI_API_KEY begint deze ontdekking niet eens.
+//
+// Volgorde voor gewoon nieuws (elke stap alleen als de vorige niets bruikbaars opleverde):
+//   1. RSS/Atom-feeds        (link-tags in de pagina + gangbare paden)
+//   2. WordPress REST API    (ook eigen berichttypes, zoals een agenda)
+//   3. JSON-LD               (schema.org Event/Article in de pagina zelf)
+//   4. Generieke patronen    (bekende CSS-patronen, geen AI)
+//   5. Gemini-recept         (het recept uit stap 0 testen, zo nodig bijgestuurd)
+//
+// Voor AGENDA'S (soort agenda, of een url die daar op lijkt) gaat het anders:
+//   JSON-LD, patronen en Gemini eerst, feed en REST als laatste redmiddel.
+//   Reden: een feed en de REST API geven de PUBLICATIEDATUM van een bericht,
+//   een agenda-bron heeft de datum van het EVENEMENT nodig (het agenda-venster
+//   in hulpmiddelen.js kijkt van gisteren tot 14 dagen vooruit). Een agenda die
+//   via een feed binnenkomt, valt terug op gewoon nieuws (publicatiedatum),
+//   met een waarschuwing.
+//
+// Elke kandidaat gaat door de poort uit bron-poort.js: de echte scraper
+// draait erop, en het resultaat moet kloppen (kwaliteit, en bij Gemini ook
+// volledigheid). Faalt een kandidaat, dan volgt de volgende stap.
+//
+// Dit bestand wordt gebruikt door voeg-bron-toe.js (nieuwe bron) en door
+// herstel-bronnen.js (een bron die niets meer oplevert opnieuw uitzoeken).
+// Er is dus één ontdekkingslogica, geen twee die uit elkaar kunnen lopen.
+
+const cheerio = require("cheerio");
+const { haalOp, oorzaakTekst, startResponsCache, stopResponsCache } = require("./hulpmiddelen");
+const { testBron, normaliseerUrl, voorbeeldRegels, SELECTOR_TYPES, MIN_DEKKING } = require("./bron-poort");
+const { probeerGeneriekePatronen } = require("./scrapers/generieke-lijst");
+
+// Zonder Gemini is er geen referentielijst en dus geen bewijs dat een methode alles vindt.
+const GEMINI_VERPLICHT_MELDING =
+  "GEMINI_API_KEY ontbreekt. Een bron toevoegen of herstellen heeft Gemini altijd nodig: Gemini leest de hele pagina en geeft de lijst van berichten waartegen elke methode wordt gecontroleerd. Zet het secret GEMINI_API_KEY in de repo-instellingen (Settings > Secrets and variables > Actions).";
+
+const MAX_KANDIDATEN_REST = 6;
+const STANDAARD_FEED_PADEN = ["feed/", "rss", "feed.xml", "rss.xml", "atom.xml"];
+const WP_NEGEER_TYPES = new Set([
+  "attachment", "page", "nav_menu_item", "wp_block", "wp_template", "wp_template_part",
+  "wp_navigation", "wp_global_styles", "wp_font_family", "wp_font_face", "revision",
+]);
+
+/** Ziet deze url eruit als een agenda of evenementenpagina? Alleen een hint, nooit een harde regel. */
+function agendaAchtig(url) {
+  try {
+    const u = new URL(url);
+    return /agenda|evenement|activiteit|kalender|uitagenda|\bevents?\b/i.test(`${u.hostname}${u.pathname}`);
+  } catch {
+    return false;
+  }
+}
+
+/** Alle links op de pagina, genormaliseerd, voor de "hoort dit bij de pagina"-check en het valideren van Gemini's lijst. */
+function verzamelPaginaLinks($, paginaUrl) {
+  const set = new Set();
+  $("a[href]").each((_, el) => {
+    const genormaliseerd = normaliseerUrl($(el).attr("href"), paginaUrl);
+    if (genormaliseerd) set.add(genormaliseerd);
+  });
+  return set;
+}
+
+/**
+ * Welke "soort"-varianten testen we voor een kandidaat? De soort bepaalt hoe
+ * datums zonder jaar ("30 sep") gelezen worden, en dat speelt alleen bij
+ * recepten die datums uit HTML-tekst halen. Feeds, REST en JSON-LD leveren
+ * volledige datums en hebben één variant nodig.
+ */
+function soortVarianten(type, soortKeuze, url, geminiSoort) {
+  if (soortKeuze === "agenda") return ["agenda"];
+  if (soortKeuze === "nieuws") return [undefined];
+  if (!SELECTOR_TYPES.includes(type)) return [undefined];
+  return agendaAchtig(url) || geminiSoort === "agenda" ? ["agenda", undefined] : [undefined, "agenda"];
+}
+
+function noteer(verslag, log, stap, kandidaat, oordeel) {
+  const label = `${stap}: ${kandidaat.type}${kandidaat.url ? ` ${kandidaat.url}` : ""}`;
+  const uitkomst = oordeel.geslaagd ? (oordeel.twijfel ? "twijfel" : "geslaagd") : "afgekeurd";
+  verslag.push({ stap, kandidaat: label, uitkomst, redenen: oordeel.redenen, waarschuwingen: oordeel.waarschuwingen, aantal: oordeel.aantal, tekst: oordeel.tekstTekst || null });
+  if (oordeel.geslaagd) {
+    log.log(`  ${oordeel.twijfel ? "?" : "✓"} ${label}: ${oordeel.aantal} bericht(en)${oordeel.tekstTekst ? `, ${oordeel.tekstTekst}` : ""}${oordeel.twijfel ? " (twijfel: hoort mogelijk niet bij deze pagina)" : ""}`);
+    voorbeeldRegels(oordeel).forEach((r) => log.log(r));
+    oordeel.waarschuwingen.forEach((w) => log.log(`    ⚠️  ${w}`));
+  } else {
+    log.log(`  ✗ ${label}${oordeel.tekstTekst ? ` (${oordeel.tekstTekst})` : ""}`);
+    oordeel.redenen.forEach((r) => log.log(`      - ${r}`));
+  }
+}
+
+/** Kandidaat-feeds: alle feed-links in de pagina zelf, daarna gangbare paden. */
+function feedKandidaten($, url) {
+  const uit = [];
+  $('link[rel~="alternate"][type*="rss"], link[rel~="alternate"][type*="atom"]').each((_, el) => {
+    try {
+      uit.push(new URL($(el).attr("href"), url).toString());
+    } catch {
+      /* ongeldige href overslaan */
+    }
+  });
+  const origin = new URL(url).origin;
+  const paginaMetSlash = url.replace(/[?#].*$/, "").replace(/\/?$/, "/");
+  for (const pad of STANDAARD_FEED_PADEN) {
+    uit.push(new URL(pad, paginaMetSlash).toString());
+    uit.push(new URL(`/${pad}`, origin).toString());
+  }
+  return [...new Set(uit)];
+}
+
+const pauze = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
+
+async function probeerTekst(url) {
+  // Een korte pauze tussen proefverzoeken: ruim tien gokjes op feed-paden achter elkaar
+  // lijkt voor een firewall al snel op een aanval.
+  await pauze(300);
+  try {
+    return await haalOp(url, 1, { stil: true });
+  } catch {
+    return null;
+  }
+}
+
+/** WordPress REST-kandidaten: eerst de berichttypes waarvan de naam in de pagina-url voorkomt (agenda, nieuws), dan de rest. */
+async function restKandidaten($, url) {
+  const apiHref = $('link[rel="https://api.w.org/"]').attr("href");
+  let apiRoot;
+  try {
+    apiRoot = new URL(apiHref || "/wp-json/", url).toString();
+  } catch {
+    return [];
+  }
+  if (!apiRoot.endsWith("/")) apiRoot += "/";
+  if (/[?]/.test(apiRoot)) return []; // ?rest_route=-variant: niet ondersteund, feeds/patronen nemen het over
+
+  const typesTekst = await probeerTekst(new URL("wp/v2/types", apiRoot).toString());
+  let types = [];
+  if (typesTekst) {
+    try {
+      const json = JSON.parse(typesTekst);
+      types = Object.entries(json)
+        .filter(([slug, t]) => t && t.rest_base && !WP_NEGEER_TYPES.has(slug))
+        .map(([slug, t]) => ({ slug, restBase: t.rest_base }));
+    } catch {
+      /* geen JSON: geen REST API (of geblokkeerd) */
+    }
+  }
+  // Geen enkele aanwijzing dat dit WordPress met een REST API is (geen link in de pagina, en de
+  // typelijst is niet op te halen)? Dan niet blind endpoints gaan raden.
+  if (types.length === 0 && !apiHref) return [];
+  if (!types.some((t) => t.restBase === "posts")) types.push({ slug: "post", restBase: "posts" });
+
+  const pad = new URL(url).pathname.toLowerCase();
+  const rang = (t) => (pad.includes(t.slug.toLowerCase()) || pad.includes(t.restBase.toLowerCase()) ? 0 : t.slug === "post" ? 2 : 1);
+  types.sort((a, b) => rang(a) - rang(b));
+
+  return types.slice(0, MAX_KANDIDATEN_REST).map(
+    (t) => new URL(`wp/v2/${t.restBase}?per_page=20&orderby=date&order=desc&_fields=date_gmt,date,link,title,excerpt`, apiRoot).toString()
+  );
+}
+
+/**
+ * Bouwt de definitieve bron-config voor bronnen.js. Volgorde van velden is
+ * vast, zodat het bestand leesbaar blijft.
+ */
+function bouwEindBron(basis, kandidaat, oordeel, soort) {
+  const bron = { id: basis.id, naam: basis.naam, categorie: basis.categorie, type: kandidaat.type, url: kandidaat.url };
+  if (soort) bron.soort = soort;
+  if (oordeel.rustig) bron.rustig = true;
+  if (kandidaat.selectors) bron.selectors = kandidaat.selectors;
+  if (kandidaat.paginering) bron.paginering = kandidaat.paginering;
+  if (kandidaat.json) bron.json = kandidaat.json;
+  return bron;
+}
+
+/**
+ * Bepaalt of de bron een agenda is. Een expliciete keuze wint altijd; anders
+ * wint agenda als de bron de agenda-datumlezing nodig had, als de url naar
+ * een agenda wijst, of als een groot deel van de datums in de toekomst ligt.
+ */
+function kiesSoort(soortKeuze, gebruiktSoort, url, oordeel, geminiSoort) {
+  return bepaalSoort(soortKeuze, gebruiktSoort, url, oordeel, geminiSoort).soort;
+}
+
+/**
+ * Bepaalt het soort bron uit alle aanwijzingen en zegt erbij waaraan het is
+ * herkend. Geeft { soort: "agenda" | undefined, redenen: [...], waarschuwing }.
+ *
+ * Aanwijzingen voor "agenda" (één is genoeg):
+ *   - de keuze van de eigenaar (soort agenda),
+ *   - de agenda-variant van de test slaagde,
+ *   - de url wijst erop (agenda, evenement, ...),
+ *   - Gemini oordeelde dat het een agenda is (vraag 1 in gemini-recept-lus.js),
+ *   - de datums wijzen erop (agendaUitDatums in hulpmiddelen.js).
+ * Koos de eigenaar uitdrukkelijk "nieuws" terwijl de datums of de url op een
+ * agenda wijzen, dan blijft het nieuws, maar er komt een waarschuwing bij.
+ */
+function bepaalSoort(soortKeuze, gebruiktSoort, url, oordeel, geminiSoort) {
+  const redenen = [];
+  if (gebruiktSoort === "agenda") redenen.push("de test met het agenda-venster slaagde");
+  if (agendaAchtig(url)) redenen.push("de url wijst op een agenda");
+  if (geminiSoort === "agenda") redenen.push("Gemini ziet de pagina als een agenda");
+  if (oordeel.statistieken.agendaUitDatums) redenen.push(oordeel.statistieken.agendaUitDatums);
+
+  if (soortKeuze === "agenda") return { soort: "agenda", redenen: ["op jouw keuze"], waarschuwing: null };
+  if (soortKeuze === "nieuws") {
+    const waarschuwing = redenen.length
+      ? `Je koos soort "nieuws", maar ${redenen.slice(0, 2).join(" en ")}. Als dit toch een agenda is, voeg de bron dan opnieuw toe met soort "agenda" of "auto"; anders worden toekomstige evenementen als nieuws behandeld.`
+      : null;
+    return { soort: undefined, redenen: ["op jouw keuze"], waarschuwing };
+  }
+  return { soort: redenen.length ? "agenda" : undefined, redenen, waarschuwing: null };
+}
+
+/**
+ * Hoofdfunctie.
+ *
+ * opties: { url, id, naam, categorie, soort: "auto"|"nieuws"|"agenda",
+ *           apiKey, vraagGemini (voor tests), log }
+ * Geeft terug: { bron, oordeel, verslag, twijfelachtig, fout }
+ *   bron === null als niets de poort haalde. twijfelachtig === true als er
+ *   alleen een kandidaat is die slaagde maar mogelijk niet bij de pagina hoort.
+ */
+async function ontdekBron(opties) {
+  // Elke url gaat in deze run maar één keer over het netwerk (zie startResponsCache in hulpmiddelen.js).
+  startResponsCache();
+  try {
+    return await ontdekBronIntern(opties);
+  } finally {
+    stopResponsCache();
+  }
+}
+
+async function ontdekBronIntern(opties) {
+  const { url, id, categorie = "lokaal", soort: soortKeuze = "auto", apiKey, vraagGemini, log = console } = opties;
+  const naam = opties.naam || id;
+  const basis = { id, naam, categorie };
+  const verslag = [];
+
+  // Gemini is verplicht: zonder Gemini is er geen referentielijst om een methode aan te toetsen.
+  if (!apiKey && !vraagGemini) {
+    verslag.push({ stap: "gemini", kandidaat: "gemini", uitkomst: "afgekeurd", redenen: [GEMINI_VERPLICHT_MELDING], waarschuwingen: [], aantal: 0 });
+    return { bron: null, oordeel: null, verslag, fout: GEMINI_VERPLICHT_MELDING };
+  }
+
+  log.log(`Bron ophalen: ${url}`);
+  let html;
+  try {
+    html = await haalOp(url);
+  } catch (fout) {
+    return { bron: null, oordeel: null, verslag, fout: `Kon de pagina niet ophalen: ${fout.message}${oorzaakTekst(fout)}` };
+  }
+  const $ = cheerio.load(html);
+  const paginaLinks = verzamelPaginaLinks($, url);
+
+  let infraGezien = false; // minstens één test mislukte door het netwerk, niet door het recept
+  let reserve = null; // geslaagde maar twijfelachtige kandidaat, alleen te gebruiken als niets anders lukt
+
+  // --- Stap 0: Gemini leest de hele pagina. Dit gebeurt altijd als eerste. ---
+  log.log("\nStap 0: Gemini laat de volledige paginacode lezen (referentie voor alle methodes)");
+  const { geminiAnalyse, geminiPad } = require("./gemini-recept-lus");
+  let analyse = null;
+  try {
+    analyse = await geminiAnalyse({ $, html, url, paginaLinks, apiKey, vraagGemini, verslag, log });
+  } catch (fout) {
+    log.log(`  Gemini-analyse mislukte onverwacht: ${fout.message}`);
+    verslag.push({ stap: "gemini-analyse", kandidaat: "gemini: analyse van de pagina", uitkomst: "afgekeurd", redenen: [`Onverwachte fout: ${fout.message}`], waarschuwingen: [], aantal: 0 });
+  }
+  const referentie = analyse ? analyse.referentie : [];
+  const geminiSoort = analyse ? analyse.soort : null;
+  if (referentie.length > 0) {
+    log.log(`  Referentie: Gemini ziet ${referentie.length} bericht(en) op de pagina. Elke methode moet er minstens ${Math.round(MIN_DEKKING * 100)}% van terugvinden.`);
+    verslag.push({ stap: "gemini-analyse", kandidaat: "gemini: lijst van berichten op de pagina", uitkomst: "geslaagd", redenen: [], waarschuwingen: [], aantal: referentie.length });
+  } else {
+    const w = "Gemini gaf geen (gecontroleerde) lijst van berichten op de pagina. Elke methode kan nu alleen als twijfel slagen, omdat de volledigheid niet te bewijzen is.";
+    log.log(`  ⚠️  ${w}`);
+    verslag.push({ stap: "gemini-analyse", kandidaat: "gemini: lijst van berichten op de pagina", uitkomst: "afgekeurd", redenen: [w], waarschuwingen: [], aantal: 0 });
+  }
+  const refExtra = { verwacht: referentie, zonderReferentie: referentie.length === 0 };
+  const padKandidaten = analyse ? analyse.padKandidaten : [];
+
+  const agendaVoorkeur = soortKeuze === "agenda" || (soortKeuze === "auto" && (agendaAchtig(url) || geminiSoort === "agenda"));
+
+  /**
+   * Test een kandidaat via de poort, met de juiste soort-varianten. Geeft
+   * { bron, oordeel } van de eerste variant die slaagt, anders van de eerste.
+   */
+  async function testKandidaat(kandidaat, extra = {}) {
+    let eerste = null;
+    // Gemini's paginering hoort bij de pagina, dus bij elke methode die de pagina zelf leest.
+    if (SELECTOR_TYPES.includes(kandidaat.type) && analyse && analyse.paginering && !kandidaat.paginering) {
+      kandidaat = { ...kandidaat, paginering: analyse.paginering };
+    }
+    for (const variant of soortVarianten(kandidaat.type, soortKeuze, url, geminiSoort)) {
+      const testBronConfig = { ...basis, ...kandidaat, ...(variant ? { soort: variant } : {}) };
+      const oordeel = await testBron(testBronConfig, { siteUrl: url, ...extra });
+      const resultaat = { kandidaat, oordeel, gebruiktSoort: variant };
+      if (oordeel.geslaagd) return resultaat;
+      if (!eerste) eerste = resultaat;
+    }
+    return eerste;
+  }
+
+  /**
+   * Verwerkt een uitkomst: geeft het eindresultaat terug als de kandidaat goed is, anders null.
+   * datumSoort: "publicatie" voor methodes die de publicatiedatum leveren (feed, REST, JSON-API),
+   * "gebeurtenis" voor methodes die de datum uit de pagina lezen (patronen, Gemini, JSON-LD).
+   * Een publicatiedatum past niet bij het agenda-venster, dus zulke bronnen krijgen nooit soort agenda.
+   */
+  function verwerk(stap, resultaat, datumSoort = "gebeurtenis") {
+    noteer(verslag, log, stap, resultaat.kandidaat, resultaat.oordeel);
+    if (resultaat.oordeel.infra) infraGezien = true;
+    if (!resultaat.oordeel.geslaagd) return null;
+    let soort;
+    if (datumSoort === "publicatie") {
+      soort = undefined;
+      if (soortKeuze === "agenda" || agendaVoorkeur) {
+        const w = "Deze methode levert de publicatiedatum van berichten, niet de datum van het evenement. De bron wordt daarom als gewoon nieuws opgeslagen: nieuw geplaatste evenementen verschijnen, evenementen die al lang op de site staan niet.";
+        resultaat.oordeel.waarschuwingen.push(w);
+        log.log(`    ⚠️  ${w}`);
+      }
+    } else {
+      const keuze = bepaalSoort(soortKeuze, resultaat.gebruiktSoort, url, resultaat.oordeel, geminiSoort);
+      soort = keuze.soort;
+      if (soort === "agenda" && soortKeuze === "auto") {
+        // Automatisch herkend: altijd melden, zodat de eigenaar kan zien waarom (en kan ingrijpen).
+        const m = `Soort automatisch herkend als agenda: ${keuze.redenen.join("; ")}.`;
+        resultaat.oordeel.soortReden = m; // informatie, geen waarschuwing: voeg-bron-toe.js toont hem apart
+        log.log(`    ℹ️  ${m}`);
+      }
+      if (keuze.waarschuwing) {
+        resultaat.oordeel.waarschuwingen.push(keuze.waarschuwing);
+        log.log(`    ⚠️  ${keuze.waarschuwing}`);
+      }
+    }
+    const bron = bouwEindBron(basis, resultaat.kandidaat, resultaat.oordeel, soort);
+    if (resultaat.oordeel.twijfel) {
+      if (!reserve) reserve = { bron, oordeel: resultaat.oordeel };
+      return null;
+    }
+    return { bron, oordeel: resultaat.oordeel, verslag };
+  }
+
+  const stappen = {
+    feed: async () => {
+      const feeds = feedKandidaten($, url);
+      log.log(`RSS/Atom-feeds proberen (${feeds.length} kandidaten)...`);
+      for (const feedUrl of feeds) {
+        const tekst = await probeerTekst(feedUrl);
+        // Veel sites geven bij een onbestaand feed-pad gewoon een HTML-pagina terug (soft 404): dat is geen feed.
+        if (!tekst || !/<(rss|feed|rdf:RDF)[\s>]/i.test(tekst.slice(0, 2000))) continue;
+        const klaar = verwerk("feed", await testKandidaat({ type: "rss", url: feedUrl }, { paginaLinks, ...refExtra }), "publicatie");
+        if (klaar) return klaar;
+      }
+      return null;
+    },
+
+    "wp-rest": async () => {
+      log.log("WordPress REST API proberen...");
+      const rest = await restKandidaten($, url);
+      if (rest.length === 0) log.log("  (geen REST API gevonden)");
+      for (const endpoint of rest) {
+        const klaar = verwerk("wp-rest", await testKandidaat({ type: "wp-rest", url: endpoint }, { paginaLinks, ...refExtra }), "publicatie");
+        if (klaar) return klaar;
+      }
+      return null;
+    },
+
+    "json-ld": async () => {
+      log.log("JSON-LD (schema.org) proberen...");
+      if ($('script[type="application/ld+json"]').length === 0) {
+        log.log("  (geen JSON-LD in de pagina)");
+        return null;
+      }
+      return verwerk("json-ld", await testKandidaat({ type: "json-ld", url }, { paginaLinks, ...refExtra }));
+    },
+
+    generiek: async () => {
+      log.log("Generieke patronen proberen...");
+      const generiek = probeerGeneriekePatronen($, { ...basis, url, ...(agendaVoorkeur ? { soort: "agenda" } : {}) });
+      if (!generiek) {
+        log.log("  (geen enkel generiek patroon leverde 3 bruikbare berichten)");
+        return null;
+      }
+      log.log(`  Patroon "${generiek.selector}" vond ${generiek.berichten.length} bericht(en), nu testen met de echte scraper...`);
+      return verwerk("generieke-lijst", await testKandidaat({ type: "generieke-lijst", url }, { ...refExtra, padKandidaten }));
+    },
+
+    gemini: async () => {
+      if (!analyse) {
+        log.log("  (overgeslagen: de Gemini-analyse van stap 0 is mislukt)");
+        return null;
+      }
+      log.log("Het recept van Gemini testen (en zo nodig laten bijsturen)...");
+      const uitkomst = await geminiPad({ $, url, paginaLinks, analyse, testKandidaat, verwerk, verslag, log });
+      return uitkomst.klaar || null;
+    },
+  };
+
+  const volgorde = agendaVoorkeur ? ["json-ld", "generiek", "gemini", "feed", "wp-rest"] : ["feed", "wp-rest", "json-ld", "generiek", "gemini"];
+  if (agendaVoorkeur) {
+    log.log("\nDit lijkt een agenda: eerst methodes die de datum van het evenement geven, feed en REST (publicatiedatum) als laatste redmiddel.");
+  }
+  let stapNummer = 0;
+  for (const naamStap of volgorde) {
+    stapNummer++;
+    log.log(`\nStap ${stapNummer}/${volgorde.length}: ${naamStap}`);
+    const klaar = await stappen[naamStap]();
+    if (klaar) return klaar;
+  }
+
+  // --- Reserve: slaagde wel, maar hoort mogelijk niet bij de pagina ---
+  if (reserve) {
+    log.log("\nAlleen een twijfelachtige kandidaat gevonden (slaagt de poort, maar staat niet als link op de pagina).");
+    return { bron: reserve.bron, oordeel: reserve.oordeel, verslag, twijfelachtig: true };
+  }
+
+  if (infraGezien) {
+    return {
+      bron: null,
+      oordeel: null,
+      verslag,
+      fout: "De site was tijdens het testen (deels) niet bereikbaar vanaf GitHub, dus niet alle methodes konden eerlijk worden beoordeeld. Probeer het over een paar minuten opnieuw.",
+    };
+  }
+  return { bron: null, oordeel: null, verslag, fout: "Geen enkele methode haalde de poort." };
+}
+
+/** Maakt een leesbaar rapport (markdown) van wat er geprobeerd is. Voor de log, de Actions-samenvatting en issues. */
+function maakRapport({ url, id, verslag, fout }) {
+  const regels = [`## Bron ${id}: wat er geprobeerd is`, "", `Pagina: ${url}`, ""];
+  if (fout) regels.push(`**Uitkomst:** ${fout}`, "");
+  for (const v of verslag) {
+    regels.push(`- **${v.uitkomst}** ${v.kandidaat}${v.aantal ? ` (${v.aantal} bericht(en)${v.tekst ? `, ${v.tekst}` : ""})` : ""}`);
+    for (const r of v.redenen || []) regels.push(`  - ${r}`);
+    for (const w of v.waarschuwingen || []) regels.push(`  - waarschuwing: ${w}`);
+  }
+  regels.push("");
+  return regels.join("\n");
+}
+
+/** Zet tekst op de samenvattingspagina van een GitHub Actions-run (als we in Actions draaien). Voor andere omgevingen een no-op. */
+function schrijfStapSamenvatting(markdown) {
+  if (!process.env.GITHUB_STEP_SUMMARY) return;
+  try {
+    require("fs").appendFileSync(process.env.GITHUB_STEP_SUMMARY, `${markdown}\n`);
+  } catch {
+    /* de samenvatting is een extraatje, nooit een reden om te falen */
+  }
+}
+
+module.exports = { ontdekBron, maakRapport, agendaAchtig, verzamelPaginaLinks, soortVarianten, schrijfStapSamenvatting, bepaalSoort, GEMINI_VERPLICHT_MELDING };
