@@ -11,29 +11,52 @@ const { Agent } = require("undici");
 const GEBRUIKERSAGENT =
   "NieuwsaggregatorZaanstreekBot/1.0 (+journalistiek studentenproject; contact via github repo)";
 
-// Centrale leeftijdsgrens: berichten ouder dan dit worden nergens meegenomen.
+// Aantal kalenderdagen terug dat een nieuwsbericht nog mag worden meegenomen.
+//   0 = alleen vandaag
+//   1 = gisteren + vandaag  ← dit is de gewenste stand
+//   2 = eergisteren + gisteren + vandaag
+// De grens wordt berekend vanaf middernacht van vandaag, NIET als "X keer 24
+// uur geleden". Dat verschil is belangrijk: bij een run om 01:00 's nachts
+// zou een artikel van gisterenochtend anders net buiten het venster vallen,
+// terwijl we het juist wel willen meenemen.
+//
 // Dit staat hier, op ÉÉN plek, en wordt door zowel index.js (als centrale,
 // gezaghebbende filter voor ALLE bronnen) als door ibabs.js (als vroege
 // filter, vóór het dure documentinhoud-ophalen) gebruikt — nooit los
 // gedupliceerd per scraper.
-const MAX_LEEFTIJD_DAGEN = 7;
+const MAX_LEEFTIJD_DAGEN = 1;
 
 /**
- * True als een datum binnen de leeftijdsgrens valt. Een bericht ZONDER
- * betrouwbaar herkende datum telt hier bewust als "te oud"/niet toegestaan —
- * niet als "onbekend dus maar meenemen". Dat laatste zorgde er in de praktijk
- * voor dat een kapotte datumherkenning van een bron (zoals gebeurde bij de
- * WordPress-fallback en bij één van de iBabs-rapporten) onopgemerkt bleef en
- * alle historische berichten liet doorsijpelen in plaats van alleen recente.
- * Een bron waarvan structureel geen datum wordt herkend, levert nu dus 0
- * berichten op — zichtbaar fout, in plaats van onzichtbaar fout.
+ * Het begintijdstip van het nieuwsvenster: middernacht van (MAX_LEEFTIJD_DAGEN
+ * + 1) kalenderdagen geleden, in lokale tijd. Bij MAX_LEEFTIJD_DAGEN = 1 is
+ * dat middernacht van gisteren. Alles vanaf dat moment hoort bij "nieuws van
+ * gisteren en vandaag".
+ *
+ * Wordt ook door paginaVoorbij (hieronder) gebruikt, zodat de paginering
+ * stopt op precies dezelfde grens als de leeftijdsfilter: geen pagina extra
+ * lezen, geen bericht missen.
+ */
+function beginNieuwsVenster(nu = new Date()) {
+  const beginVandaag = new Date(nu.getFullYear(), nu.getMonth(), nu.getDate()).getTime();
+  return beginVandaag - MAX_LEEFTIJD_DAGEN * 24 * 60 * 60 * 1000;
+}
+
+/**
+ * True als een datum binnen het nieuwsvenster valt (vanaf middernacht
+ * gisteren, tot nu). Een bericht ZONDER betrouwbaar herkende datum telt hier
+ * bewust als "te oud"/niet toegestaan — niet als "onbekend dus maar
+ * meenemen". Dat laatste zorgde er in de praktijk voor dat een kapotte
+ * datumherkenning van een bron (zoals gebeurde bij de WordPress-fallback en
+ * bij één van de iBabs-rapporten) onopgemerkt bleef en alle historische
+ * berichten liet doorsijpelen in plaats van alleen recente. Een bron waarvan
+ * structureel geen datum wordt herkend, levert nu dus 0 berichten op —
+ * zichtbaar fout, in plaats van onzichtbaar fout.
  */
 function binnenLeeftijdsgrens(gepubliceerdOpIso) {
   if (!gepubliceerdOpIso) return false;
   const datum = new Date(gepubliceerdOpIso);
   if (isNaN(datum.getTime())) return false;
-  const grens = Date.now() - MAX_LEEFTIJD_DAGEN * 24 * 60 * 60 * 1000;
-  return datum.getTime() >= grens;
+  return datum.getTime() >= beginNieuwsVenster();
 }
 
 // Agenda-bronnen (bron.soort === "agenda") tonen vooral evenementen die nog moeten
@@ -622,7 +645,8 @@ function schoonmakenSamenvatting(tekst) {
 //     vandaag ligt (bij een oplopende lijst) of al voorbij is (bij een
 //     aflopende lijst);
 //   - nieuws: zodra het laatste bericht met datum van een pagina ouder is dan
-//     MAX_LEEFTIJD_DAGEN (bij een lijst met de nieuwste bovenaan);
+//     het nieuwsvenster (middernacht gisteren; zie beginNieuwsVenster) bij een
+//     lijst met de nieuwste bovenaan;
 //   - of als er geen volgende pagina is, de pagina niets nieuws bevat, geen
 //     enkel bericht een datum heeft, of de harde bovengrens MAX_PAGINAS bereikt is.
 // Er wordt hier NIET gefilterd: de centrale filter in index.js blijft bepalen
@@ -655,6 +679,10 @@ function lijstRichting(berichten, standaard) {
  * paginavolgorde: bij een gesorteerde lijst is dat gelijk aan "het eerste
  * bericht buiten het venster", maar één afwijkend bericht bovenaan (een
  * vastgepinned bericht) zet de teller niet op slot.
+ *
+ * Voor nieuws gebruiken we dezelfde kalenderdag-grens als binnenLeeftijdsgrens
+ * (middernacht gisteren): pagina's met alleen berichten van vóór die grens
+ * voegen niets meer toe.
  */
 function paginaVoorbij(bron, paginaBerichten, nu = Date.now()) {
   const metDatum = paginaBerichten.filter((b) => tijdVan(b.gepubliceerdOp) !== null);
@@ -678,8 +706,8 @@ function paginaVoorbij(bron, paginaBerichten, nu = Date.now()) {
     }
     return null;
   }
-  if (lijstRichting(metDatum, "aflopend") === "aflopend" && start < nu - MAX_LEEFTIJD_DAGEN * dag) {
-    return `berichten zijn ouder dan ${MAX_LEEFTIJD_DAGEN} dagen (laatste op deze pagina: ${datumTekst})`;
+  if (lijstRichting(metDatum, "aflopend") === "aflopend" && start < beginNieuwsVenster()) {
+    return `berichten zijn ouder dan het nieuwsvenster (laatste op deze pagina: ${datumTekst})`;
   }
   return null;
 }
@@ -1080,6 +1108,7 @@ module.exports = {
   binnenLeeftijdsgrens,
   binnenAgendaVenster,
   binnenVenster,
+  beginNieuwsVenster,
   leeftijdInDagen,
   volgPaginas,
   paginaVoorbij,
