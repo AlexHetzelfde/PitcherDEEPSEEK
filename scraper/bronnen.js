@@ -91,7 +91,18 @@ module.exports = [
     categorie: "lokaal",
     type: "gemini-recept",
     url: "https://loket.zaanstad.nl/mozard/!suite16.scherm1168?mGmr=2168",
-    selectors: {"itemSelector":".zaakregel","titelSelector":"h3","linkSelector":"a.zaakregel__verwijzing","datumSelector":null,"datumAttribuut":null},
+    selectors: {
+      itemSelector: ".zaakregel",
+      titelSelector: "h3",
+      linkSelector: "a.zaakregel__verwijzing",
+      datumSelector: null,
+      datumAttribuut: null,
+      // De samenvatting staat op de detailpagina in een div met id me_CBCzqv
+      // (Mozard-suite). Deze selector pakt hem als de lijstpagina zelf ook
+      // een omschrijving toont; anders vult de tekststap in index.js hem aan
+      // via de fallback in haalTekstUitHtml (zie hulpmiddelen.js).
+      samenvattingSelector: "#me_CBCzqv, .aandachtstekst__tekst, .zaakregel__omschrijving, .zaakregel p",
+    },
   },
   {
     id: "zaandijk-leeft",
