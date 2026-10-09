@@ -67,6 +67,30 @@ function telPerBron(ruweBerichten, recenteBerichten) {
 }
 
 /**
+ * Korte, leesbare beschrijving van een datum: "2026-10-05 (4 dagen oud)"
+ * of "2026-11-02 (over 24 dagen)". Voor vandaag/gisteren/morgen een
+ * expliciet woord in plaats van een getal.
+ */
+function beschrijfDatum(iso) {
+  if (!iso) return "geen datum";
+  const d = new Date(iso);
+  if (isNaN(d.getTime())) return "ongeldige datum";
+  const datumTekst = d.toISOString().slice(0, 10);
+  const dagen = Math.floor((Date.now() - d.getTime()) / (24 * 60 * 60 * 1000));
+  if (dagen === 0) return `${datumTekst} (vandaag)`;
+  if (dagen === 1) return `${datumTekst} (gisteren)`;
+  if (dagen === -1) return `${datumTekst} (morgen)`;
+  if (dagen > 0) return `${datumTekst} (${dagen} dagen oud)`;
+  return `${datumTekst} (over ${-dagen} dagen)`;
+}
+
+/** Titel inkorten voor in het bronoverzicht, zodat één regel niet te lang wordt. */
+function kortTitel(titel) {
+  const t = (titel || "(geen titel)").replace(/\s+/g, " ").trim();
+  return t.length > 80 ? `${t.slice(0, 77)}…` : t;
+}
+
+/**
  * Drukt een duidelijk per-bron statusoverzicht af: hoeveel berichten een
  * bron opleverde, hoeveel daarvan het venster overleefden, en een
  * status-label — zodat een kapotte of stilvallende bron in één oogopslag
@@ -77,8 +101,20 @@ function telPerBron(ruweBerichten, recenteBerichten) {
  * weinig berichten toont. Daar is "0 na leeftijdsfilter" normaal en geen
  * reden voor de datum-waarschuwing. "0 gevonden" blijft voor elke bron rood:
  * dat betekent dat de scraper niets meer ziet.
+ *
+ * Bij een waarschuwing (0 binnen het venster, maar wel berichten gevonden)
+ * tonen we het meest recente bericht met zijn datum en leeftijd, plus het
+ * aantal berichten zonder leesbare datum. Zo kan de eigenaar zelf zien of
+ * de datumherkenning klopt of dat de bron gewoon niets nieuws heeft.
  */
-function logBronOverzicht({ gevondenPerBron, overPerBron }) {
+function logBronOverzicht({ gevondenPerBron, overPerBron, ruweBerichten = [] }) {
+  // Berichten per bron groeperen, zodat we per bron het meest recente kunnen tonen.
+  const perBron = new Map();
+  for (const b of ruweBerichten) {
+    if (!perBron.has(b.bronId)) perBron.set(b.bronId, []);
+    perBron.get(b.bronId).push(b);
+  }
+
   console.log("\n--- Bronoverzicht (gevonden → binnen venster) ---");
   for (const bronConfig of bronnen) {
     const bron = effectieveBron(bronConfig);
@@ -100,6 +136,36 @@ function logBronOverzicht({ gevondenPerBron, overPerBron }) {
 
     const soort = bron.soort === "agenda" ? (afgeleideAgenda.has(bron.id) ? " [agenda!]" : " [agenda]") : "";
     console.log(`  ${(bron.id + soort).padEnd(28)} ${String(gevonden).padStart(3)} → ${String(over).padStart(3)}   ${status}`);
+
+    // Bij een waarschuwing: toon het meest recente bericht zodat de eigenaar
+    // zelf kan checken of de datumherkenning klopt, of dat de bron gewoon
+    // niets nieuws heeft. Bij een rustige bron is "0" verwacht gedrag; daar
+    // tonen we geen detail om het overzicht kort te houden.
+    if (over === 0 && gevonden > 0 && !bron.rustig) {
+      const berichten = perBron.get(bron.id) || [];
+      let recentste = null;
+      let recentsteTijd = -Infinity;
+      let aantalZonderDatum = 0;
+      for (const b of berichten) {
+        if (!b.gepubliceerdOp) {
+          aantalZonderDatum++;
+          continue;
+        }
+        const t = new Date(b.gepubliceerdOp).getTime();
+        if (!isNaN(t) && t > recentsteTijd) {
+          recentsteTijd = t;
+          recentste = b;
+        }
+      }
+      if (recentste) {
+        console.log(`      meest recent: ${beschrijfDatum(recentste.gepubliceerdOp)} — "${kortTitel(recentste.titel)}"`);
+      } else {
+        console.log(`      geen enkel bericht heeft een leesbare datum`);
+      }
+      if (aantalZonderDatum > 0) {
+        console.log(`      ${aantalZonderDatum} van de ${gevonden} berichten zonder leesbare datum (tellen niet mee)`);
+      }
+    }
   }
   console.log("---\n");
 }
@@ -304,7 +370,7 @@ async function main() {
     console.warn(`[${bronId}] ${aantal} bericht(en) geweerd door leeftijdsfilter (te oud, buiten het venster, of geen betrouwbare datum).`);
   }
   const tellingen = telPerBron(ruweBerichten, recenteBerichten);
-  logBronOverzicht(tellingen);
+  logBronOverzicht({ ...tellingen, ruweBerichten });
   await werkBronGezondheidBij(tellingen);
 
   // Stap 1b: dubbele url's binnen deze run eruit.
