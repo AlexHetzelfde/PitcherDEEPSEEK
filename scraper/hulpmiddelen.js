@@ -37,35 +37,43 @@ function binnenLeeftijdsgrens(gepubliceerdOpIso) {
 }
 
 // Agenda-bronnen (bron.soort === "agenda") tonen vooral evenementen die nog moeten
-// komen. Daar geldt een ander venster: niet "maximaal 7 dagen oud", maar "van
-// gisteren tot een aantal dagen vooruit". De datum is de datum van het
-// evenement, niet van publicatie. Een evenement over drie maanden is geen
-// tip voor vandaag; het verschijnt vanzelf zodra het binnen het venster valt
-// (de dagelijkse run onthoudt alleen berichten die het venster gepasseerd zijn).
+// komen. Daar geldt een eigen venster: niet "maximaal 7 dagen oud", maar "alleen
+// evenementen die VANDAAG beginnen". De datum is de datum van het evenement, niet
+// van publicatie.
 //
-// Een meerdaags evenement heeft een startdatum (gepubliceerdOp) en een
-// einddatum (eindDatum). Het valt binnen het venster als het niet vóór het
-// venster is afgelopen (einde >= nu min AGENDA_MAX_VERLEDEN_DAGEN) én niet pas
-// na het venster begint (start <= nu plus AGENDA_MAX_VOORUIT_DAGEN). Zonder
-// (geldige) einddatum is het einde gelijk aan de start, zoals vroeger.
-const AGENDA_MAX_VERLEDEN_DAGEN = Number(process.env.AGENDA_MAX_VERLEDEN_DAGEN || 1);
-const AGENDA_MAX_VOORUIT_DAGEN = Number(process.env.AGENDA_MAX_VOORUIT_DAGEN || 14);
+// Waarom alleen vandaag: de agenda is vooral bedoeld om unieke, eenmalige
+// evenementen op te vangen die op de dag zelf relevant zijn. Langlopende
+// evenementen (met een eindDatum) tellen alleen mee als ze vandaag beginnen,
+// niet als ze gisteren begonnen zijn en vandaag nog lopen.
+//
+// De eindDatumIso-parameter wordt niet meer gebruikt in de logica (we kijken
+// alleen naar de startdatum), maar blijft in de signatuur staan zodat
+// bestaande aanroepen (zoals in bron-poort.js) ongewijzigd blijven werken.
+//
+// De constanten staan op 0 en zijn alleen nog voor compatibiliteit in de
+// export gehouden; de logica hieronder gebruikt ze niet meer.
+const AGENDA_MAX_VERLEDEN_DAGEN = 0;
+const AGENDA_MAX_VOORUIT_DAGEN = 0;
 
 function binnenAgendaVenster(gepubliceerdOpIso, eindDatumIso) {
   if (!gepubliceerdOpIso) return false;
   const start = new Date(gepubliceerdOpIso).getTime();
   if (isNaN(start)) return false;
-  let eind = eindDatumIso ? new Date(eindDatumIso).getTime() : start;
-  if (isNaN(eind) || eind < start) eind = start; // onbruikbare einddatum: negeren
   const dag = 24 * 60 * 60 * 1000;
-  const nu = Date.now();
-  return eind >= nu - AGENDA_MAX_VERLEDEN_DAGEN * dag && start <= nu + AGENDA_MAX_VOORUIT_DAGEN * dag;
+  const nu = new Date();
+  const beginVandaag = new Date(nu.getFullYear(), nu.getMonth(), nu.getDate()).getTime();
+  const eindVandaag = beginVandaag + dag;
+  return start >= beginVandaag && start < eindVandaag;
 }
 
 /**
  * Het venster voor één bron: het agenda-venster voor agenda-bronnen, de
  * gewone leeftijdsgrens voor alle andere. index.js gebruikt deze functie voor
  * de centrale filter, zodat elke bron precies één regel krijgt.
+ *
+ * De derde parameter (eindDatumIso) wordt doorgegeven aan binnenAgendaVenster
+ * voor compatibiliteit met bestaande aanroepen; de agenda-logica gebruikt hem
+ * niet meer.
  */
 function binnenVenster(gepubliceerdOpIso, bron, eindDatumIso) {
   return bron && bron.soort === "agenda" ? binnenAgendaVenster(gepubliceerdOpIso, eindDatumIso) : binnenLeeftijdsgrens(gepubliceerdOpIso);
@@ -482,12 +490,12 @@ async function haalOpEcht(url, pogingen = 3, opties = {}) {
     try {
       const controller = new AbortController();
       const timeoutId = setTimeout(() => controller.abort(), timeoutMs);
-      const opties = {
+      const fetchOpties = {
         headers: { "User-Agent": GEBRUIKERSAGENT },
         signal: controller.signal,
       };
-      if (dispatcher) opties.dispatcher = dispatcher;
-      const response = await fetch(url, opties);
+      if (dispatcher) fetchOpties.dispatcher = dispatcher;
+      const response = await fetch(url, fetchOpties);
       clearTimeout(timeoutId);
 
       if (!response.ok) {
@@ -610,9 +618,9 @@ function schoonmakenSamenvatting(tekst) {
 // waarheen.deorkaan.nl/agenda/ met 39 pagina's op /agenda/page/2/, /page/3/,
 // ...). volgPaginas() leest pagina na pagina en stopt zodra verder lezen geen
 // bruikbare berichten meer kan opleveren:
-//   - agenda's: zodra het laatste bericht met datum van een pagina voorbij het
-//     venster ligt (bij een oplopende lijst: verder dan AGENDA_MAX_VOORUIT_DAGEN
-//     vooruit; bij een aflopende lijst: al voorbij het verleden-venster);
+//   - agenda's: zodra het laatste bericht met datum van een pagina voorbij
+//     vandaag ligt (bij een oplopende lijst) of al voorbij is (bij een
+//     aflopende lijst);
 //   - nieuws: zodra het laatste bericht met datum van een pagina ouder is dan
 //     MAX_LEEFTIJD_DAGEN (bij een lijst met de nieuwste bovenaan);
 //   - of als er geen volgende pagina is, de pagina niets nieuws bevat, geen
@@ -659,10 +667,13 @@ function paginaVoorbij(bron, paginaBerichten, nu = Date.now()) {
 
   if (bron.soort === "agenda") {
     const richting = lijstRichting(metDatum, "oplopend");
-    if (richting === "oplopend" && start > nu + AGENDA_MAX_VOORUIT_DAGEN * dag) {
-      return `agenda is voorbij het venster (laatste evenement op deze pagina: ${datumTekst}, meer dan ${AGENDA_MAX_VOORUIT_DAGEN} dagen vooruit)`;
+    const nuDatum = new Date();
+    const beginVandaag = new Date(nuDatum.getFullYear(), nuDatum.getMonth(), nuDatum.getDate()).getTime();
+    const eindVandaag = beginVandaag + dag;
+    if (richting === "oplopend" && start >= eindVandaag) {
+      return `agenda is voorbij het venster (laatste evenement op deze pagina: ${datumTekst}, na vandaag)`;
     }
-    if (richting === "aflopend" && eind < nu - AGENDA_MAX_VERLEDEN_DAGEN * dag) {
+    if (richting === "aflopend" && eind < beginVandaag) {
       return `agenda is voorbij het venster (laatste evenement op deze pagina: ${datumTekst}, al voorbij)`;
     }
     return null;
@@ -830,10 +841,14 @@ const ARTIKEL_WEG =
   '[role="navigation"], [role="banner"], [role="contentinfo"], ' +
   ".breadcrumb, .breadcrumbs, .share, .social, .cookie, .cookies, #cookie, .related, .comments";
 
-// Waar de inhoud meestal staat, van specifiek naar breed.
+// Waar de inhoud meestal staat, van specifiek naar breed. De laatste twee
+// selectors zijn specifiek voor de Mozard-suite (loket.zaanstad.nl): daar
+// staat de inhoud in een div met id me_CBCzqv en class aandachttekst__tekst.
+// Zonder die toevoeging blijft de samenvatting van hoorzittingen leeg.
 const ARTIKEL_INHOUD_SELECTORS = [
   "article", "main", '[role="main"]', ".entry-content", ".post-content", ".article-content",
   ".article-body", ".node__content", ".content-main", "#content", ".content",
+  "#me_CBCzqv", ".aandachtstekst__tekst",
 ];
 
 function maakSchoneTekst(tekst) {
@@ -899,15 +914,30 @@ function metTijdslimiet(belofte, ms, melding) {
  * de pagina geen bruikbare tekst bevat (bijvoorbeeld een pdf of een pagina
  * die alleen met JavaScript gevuld wordt). Gooit een fout als de pagina niet
  * op te halen was; de aanroeper beslist wat dan gebeurt.
+ *
+ * Extra logging: als de pagina wel is opgehaald maar geen bruikbare tekst
+ * bevat, wordt dat gelogd met de URL en de HTML-lengte. Dat helpt om te
+ * onderscheiden of het een fetch-probleem is (lege pagina) of een
+ * selector-probleem (de tekst staat er wel, maar niet op een plek die we
+ * herkennen). Zonder deze logging is een lege samenvatting niet te debuggen.
  */
 async function haalArtikelTekst(url) {
   if (!url || /\.(pdf|docx?|xlsx?|pptx?|zip|jpe?g|png|gif)(\?|#|$)/i.test(url)) return null;
-  const html = await metTijdslimiet(
-    haalOp(url, 2, { stil: true, timeoutMs: ARTIKEL_TIMEOUT_MS }),
-    ARTIKEL_TOTAAL_TIMEOUT_MS,
-    `timeout na ${ARTIKEL_TOTAAL_TIMEOUT_MS / 1000}s bij het ophalen van ${url}`
-  );
-  return haalTekstUitHtml(html);
+  try {
+    const html = await metTijdslimiet(
+      haalOp(url, 2, { stil: true, timeoutMs: ARTIKEL_TIMEOUT_MS }),
+      ARTIKEL_TOTAAL_TIMEOUT_MS,
+      `timeout na ${ARTIKEL_TOTAAL_TIMEOUT_MS / 1000}s bij het ophalen van ${url}`
+    );
+    const resultaat = haalTekstUitHtml(html);
+    if (!resultaat) {
+      console.log(`[tekst] Geen bruikbare tekst op ${url} (HTML: ${html.length} tekens).`);
+    }
+    return resultaat;
+  } catch (fout) {
+    console.log(`[tekst] Kon ${url} niet ophalen: ${fout.message}${oorzaakTekst(fout)}`);
+    throw fout;
+  }
 }
 
 function hostVan(url) {

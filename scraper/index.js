@@ -5,10 +5,10 @@
 // 2. Tellen hoeveel berichten er zijn, VOORDAT Gemini wordt aangeroepen
 //    en van elk bericht de tekst ophalen (hulpmiddelen.js), zodat
 //    Gemini meer ziet dan alleen een titel
-// 3. Splitsen in lokaal/landelijk en sorteren op datum (nieuwste, bij een
-//    agenda het dichtstbijzijnde evenement, eerst) — dat bepaalt wie binnen
-//    de dagcap valt
-// 4. Per bericht een Gemini-call met de juiste prompt (met dagcap)
+// 3. Splitsen in lokaal/landelijk en sorteren (nieuws eerst, dan agenda) —
+//    dat bepaalt wie binnen de dagcap valt
+// 4. Per bericht twee Gemini-calls: eerst filteren of het oppakbaar is, dan
+//    (alleen voor oppakbare berichten) de pitch en de score
 // 5. Pitches rangschikken op de prioriteit (1-10) die Gemini zelf geeft, en
 //    wegschrijven naar /data
 
@@ -21,8 +21,6 @@ const { beoordeelBerichten } = require("./gemini");
 const {
   binnenVenster,
   MAX_LEEFTIJD_DAGEN,
-  AGENDA_MAX_VERLEDEN_DAGEN,
-  AGENDA_MAX_VOORUIT_DAGEN,
   oorzaakTekst,
   vulBerichtenAanMetTekst,
   tekstStatistiekRegel,
@@ -209,23 +207,39 @@ function prioriteitVan(bericht) {
 }
 
 /**
- * Sorteert berichten op hoe dicht hun datum bij nu ligt, dichtstbijzijnde
- * eerst. Voor gewoon nieuws is dat "nieuwste eerst"; voor een agenda is het
- * "het evenement dat het dichtst bij vandaag ligt eerst" (de datum van een
- * agenda-bericht is de datum van het evenement). Eén regel voor beide, zodat
- * lokale berichten uit nieuws en agenda's in één lijst vergelijkbaar blijven.
- * Dit bepaalt alleen wie binnen de dagcap valt; er verdwijnt niets.
+ * Sorteert berichten zodat nieuwsberichten vóór agenda-items komen. Binnen
+ * nieuws: nieuwste eerst. Binnen agenda: dichtstbijzijnde datum eerst.
+ * Dit bepaalt wie binnen de dagcap valt; er verdwijnt niets.
+ *
+ * bronPerId is nodig om te weten welke berichten van een agenda-bron komen.
  */
-function sorteerOpDatum(berichten) {
+function sorteerOpDatum(berichten, bronPerId) {
+  const isAgenda = (b) => bronPerId[b.bronId] && bronPerId[b.bronId].soort === "agenda";
+  const nieuws = berichten.filter((b) => !isAgenda(b));
+  const agenda = berichten.filter((b) => isAgenda(b));
   const nu = Date.now();
-  const afstand = (b) => {
-    const tijd = new Date(b.gepubliceerdOp).getTime();
-    return isNaN(tijd) ? Infinity : Math.abs(tijd - nu);
-  };
-  return berichten
-    .map((bericht) => ({ bericht, afstand: afstand(bericht) }))
-    .sort((a, b) => (a.afstand === b.afstand ? 0 : a.afstand < b.afstand ? -1 : 1))
-    .map((x) => x.bericht);
+
+  const sorteerNieuws = (lijst) =>
+    lijst.slice().sort((a, b) => {
+      const ta = new Date(a.gepubliceerdOp).getTime();
+      const tb = new Date(b.gepubliceerdOp).getTime();
+      if (isNaN(ta) && isNaN(tb)) return 0;
+      if (isNaN(ta)) return 1;
+      if (isNaN(tb)) return -1;
+      return tb - ta;
+    });
+
+  const sorteerAgenda = (lijst) =>
+    lijst.slice().sort((a, b) => {
+      const ta = new Date(a.gepubliceerdOp).getTime();
+      const tb = new Date(b.gepubliceerdOp).getTime();
+      if (isNaN(ta) && isNaN(tb)) return 0;
+      if (isNaN(ta)) return 1;
+      if (isNaN(tb)) return -1;
+      return Math.abs(ta - nu) - Math.abs(tb - nu);
+    });
+
+  return [...sorteerNieuws(nieuws), ...sorteerAgenda(agenda)];
 }
 
 /**
@@ -273,10 +287,9 @@ async function main() {
   // meegenomen — zie de toelichting bij binnenLeeftijdsgrens() in
   // hulpmiddelen.js voor waarom dat bewust zo is.
   //
-  // Agenda-bronnen (soort: "agenda") krijgen een eigen venster, omdat hun
-  // datum de datum van het evenement is: van gisteren tot een aantal dagen
-  // vooruit, in plaats van "maximaal 7 dagen oud". Een meerdaags evenement
-  // (met eindDatum) valt erin zolang het nog loopt en binnen het venster begint.
+  // Agenda-bronnen (soort: "agenda") krijgen een eigen venster: alleen
+  // evenementen die VANDAAG beginnen. Langlopende evenementen (met eindDatum)
+  // tellen alleen mee als ze vandaag beginnen.
   const bronPerId = Object.fromEntries(bronnen.map((b) => [b.id, effectieveBron(b)]));
   const binnen = (b) => binnenVenster(b.gepubliceerdOp, bronPerId[b.bronId], b.eindDatum);
   const recenteBerichten = ruweBerichten.filter(binnen);
@@ -286,7 +299,7 @@ async function main() {
       perBronZonderDatum[b.bronId] = (perBronZonderDatum[b.bronId] || 0) + 1;
     }
   }
-  console.log(`Na leeftijdsfilter (max ${MAX_LEEFTIJD_DAGEN} dagen; agenda-bronnen: ${AGENDA_MAX_VERLEDEN_DAGEN} dag terug tot ${AGENDA_MAX_VOORUIT_DAGEN} dagen vooruit): ${recenteBerichten.length} van ${ruweBerichten.length} berichten.`);
+  console.log(`Na leeftijdsfilter (max ${MAX_LEEFTIJD_DAGEN} dagen; agenda-bronnen: alleen vandaag): ${recenteBerichten.length} van ${ruweBerichten.length} berichten.`);
   for (const [bronId, aantal] of Object.entries(perBronZonderDatum)) {
     console.warn(`[${bronId}] ${aantal} bericht(en) geweerd door leeftijdsfilter (te oud, buiten het venster, of geen betrouwbare datum).`);
   }
@@ -324,11 +337,11 @@ async function main() {
   }
   logDuur(startTekst, "Tekst ophalen");
 
-  // Stap 3: splitsen + sorteren op datum (dichtstbijzijnde eerst). Dit bepaalt
+  // Stap 3: splitsen + sorteren (nieuws eerst, dan agenda). Dit bepaalt
   // wie binnen de dagcap valt als er meer berichten zijn dan de cap.
   logFase("STAP 3 — Splitsen en sorteren op datum");
-  const lokaal = sorteerOpDatum(berichtenVanVandaag.filter((b) => b.categorie === "lokaal"));
-  const landelijk = sorteerOpDatum(berichtenVanVandaag.filter((b) => b.categorie === "landelijk"));
+  const lokaal = sorteerOpDatum(berichtenVanVandaag.filter((b) => b.categorie === "lokaal"), bronPerId);
+  const landelijk = sorteerOpDatum(berichtenVanVandaag.filter((b) => b.categorie === "landelijk"), bronPerId);
 
   const datumKort = (b) => (b ? String(b.gepubliceerdOp).slice(0, 10) : "-");
   console.log(`Lokaal: ${lokaal.length} berichten (dichtstbijzijnde datum: ${datumKort(lokaal[0])}).`);
@@ -342,7 +355,9 @@ async function main() {
     return;
   }
 
-  // Stap 5: Gemini-beoordeling, met dagcap per lijst
+  // Stap 4: Gemini-beoordeling, met dagcap per lijst. Twee calls per bericht:
+  // eerst filteren of het oppakbaar is, dan (alleen voor oppakbare berichten)
+  // de pitch en de score.
   logFase("STAP 4 — Gemini-beoordeling");
   const startGemini = Date.now();
 
@@ -357,7 +372,7 @@ async function main() {
   await schrijfJson("nieuws-lokaal.json", lokaalBeoordeeld);
   await schrijfJson("nieuws-landelijk.json", landelijkBeoordeeld);
 
-  // Stap 6: pitches samenstellen, gerangschikt op Gemini's prioriteit.
+  // Stap 5: pitches samenstellen, gerangschikt op Gemini's prioriteit.
   logFase("STAP 5 — Pitches samenstellen");
   const kansrijkeLokaal = lokaalBeoordeeld.filter((b) => b.aiBeoordeling?.oppakbaar === "ja");
   const kansrijkLandelijk = landelijkBeoordeeld.filter((b) => b.aiBeoordeling?.lokaleInvalshoek === "ja");
