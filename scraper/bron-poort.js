@@ -24,6 +24,19 @@
 //      minstens MIN_TEKST_DEKKING van de steekproef), dan valt de bron af:
 //      Gemini zou dan alleen titels zien en kan het gevolg voor mensen niet beoordelen.
 //
+// Sinds de "robuust"-ronde:
+//   - MIN_DEKKING van 0.8 naar 0.85 (strenger, maar niet zo streng dat
+//     kleine afwijkingen door URL-redirects direct afkeuren).
+//   - TEKST_STEEKPROEF van 5 naar 10 (minder toeval bij de tekstcontrole).
+//   - Padkandidaten: bij 20+ links onder hetzelfde pad en minder dan 50%
+//     dekking door het recept volgt een AFKEURING (tenzij het aantal
+//     padkandidaten duidelijk groter is dan wat Gemini ziet — dan zijn het
+//     waarschijnlijk categorie- en filterlinks).
+//   - totaalGezien (indien beschikbaar): Gemini's eigen schatting van het
+//     totale aantal berichten op de pagina. Als die veel hoger is dan zijn
+//     eigen titellijst, komt er een expliciete waarschuwing.
+//   - Datum-diversiteit: 5+ identieke datums keurt af (was 4).
+//
 // Bewust GEEN vast minimum van "3 berichten": een rustige bron met 2 berichten
 // op de pagina mag prima. Dan telt de volledigheid (vindt het recept alles
 // wat er staat?) en krijgt de bron in bronnen.js het vlaggetje rustig: true.
@@ -48,14 +61,20 @@ const {
 // dus zonder referentielijst van Gemini eisen we minstens 3 berichten.
 const SELECTOR_TYPES = ["generieke-lijst", "gemini-recept"];
 
-const MIN_DEKKING = 0.8; // recept moet minstens 80% van Gemini's lijst terugvinden
+const MIN_DEKKING = 0.85; // recept moet minstens 85% van Gemini's lijst terugvinden
 const MIN_DATUMDEKKING = 0.5; // minstens de helft van de berichten moet een leesbare datum hebben
 const MIN_ZELFDE_SITE = 0.5; // minstens de helft van de links moet op dezelfde site blijven
 const WEINIG_BERICHTEN = 3; // onder dit aantal krijgt een geslaagde bron rustig: true
 const MIN_TITEL_TEKENS = 4;
-const TEKST_STEEKPROEF = 5; // zoveel berichten (gelijk verdeeld over de lijst) gaan door de tekststap
+const TEKST_STEEKPROEF = 10; // zoveel berichten (gelijk verdeeld over de lijst) gaan door de tekststap
 const MIN_TEKST_TEKENS = 100; // korter dan dit telt niet als "met tekst"
-const MIN_TEKST_DEKKING = 0.6; // minstens 60% van de steekproef moet bruikbare tekst opleveren (3 van 5)
+const MIN_TEKST_DEKKING = 0.6; // minstens 60% van de steekproef moet bruikbare tekst opleveren (6 van 10)
+
+// Drempels voor de padkandidaten-check: als er zo veel links onder hetzelfde
+// pad staan die het recept niet vindt, is er echt iets mis (niet zomaar een
+// categorie- of filterlink).
+const PADKANDIDATEN_MIN_AANTAL = 20;
+const PADKANDIDATEN_MAX_DEKKING = 0.5;
 
 // Linkteksten die geen titel zijn. Als een recept deze als "titel" pakt, heeft
 // het de "lees meer"-knop te pakken in plaats van de kop van het bericht.
@@ -108,13 +127,17 @@ function dagSleutel(iso) {
  *   siteUrl     de pagina waar de bron bij hoort (voor de zelfde-site-check)
  *   verwacht    [{ titel, url }] referentielijst van Gemini (al gecontroleerd
  *               tegen de echte links op de pagina); zet de volledigheidscheck aan
+ *   totaalGezien  Gemini's eigen schatting van het TOTALE aantal berichten op de
+ *               pagina (kan hoger zijn dan verwacht.length). Alleen gebruikt
+ *               voor een waarschuwing; de harde volledigheidscheck blijft tegen
+ *               verwacht lopen, want alleen die URLs zijn echt gecontroleerd.
  *   zonderReferentie  true als Gemini geen lijst kon geven: de volledigheid is dan
  *               niet te bewijzen, en het resultaat wordt "twijfel"
  *   paginaLinks Set met genormaliseerde links op de pagina; alleen voor
  *               feed/API-kandidaten, om te zien of ze bij deze pagina horen
  *   padKandidaten  genormaliseerde links onder hetzelfde pad als de lijstpagina
- *               (zonder query, zonder paginering); geeft een waarschuwing als
- *               het recept er veel minder van vindt dan er staan
+ *               (zonder query, zonder paginering); geeft een harde afkeuring
+ *               als er veel van zijn die het recept niet vindt
  *
  * Geeft terug: { geslaagd, twijfel, rustig, aantal, redenen, waarschuwingen,
  *                dekking, ontbrekend, geldig, statistieken }
@@ -181,7 +204,7 @@ function beoordeelResultaat(bron, berichten, opties = {}) {
     waarschuwingen.push(`${aantal - metDatum.length} van ${aantal} berichten hebben geen leesbare datum; die worden 's nachts als "te oud" geweerd.`);
   }
   const uniekeDagen = new Set(metDatum.map((b) => dagSleutel(b.gepubliceerdOp)));
-  if (metDatum.length >= 4 && uniekeDagen.size === 1) {
+  if (metDatum.length >= 5 && uniekeDagen.size === 1) {
     redenen.push(`Alle ${metDatum.length} berichten hebben dezelfde datum (${[...uniekeDagen][0]}); waarschijnlijk wordt de datum van de pagina gepakt in plaats van die van elk bericht.`);
   } else if (metDatum.length >= 2 && uniekeDagen.size === 1) {
     waarschuwingen.push(`Alle ${metDatum.length} berichten met datum hebben dezelfde dag (${[...uniekeDagen][0]}); controleer of dat klopt.`);
@@ -195,6 +218,9 @@ function beoordeelResultaat(bron, berichten, opties = {}) {
   let dekking = null;
   let ontbrekend = [];
   const verwacht = opties.verwacht || [];
+  const totaalGezien = Number.isFinite(opties.totaalGezien) && opties.totaalGezien > 0 ? Math.floor(opties.totaalGezien) : null;
+  if (totaalGezien) statistieken.totaalGezien = totaalGezien;
+
   if (verwacht.length > 0) {
     const gevondenSet = new Set(geldig.map((b) => normaliseerUrl(b.url)));
     const gevonden = verwacht.filter((v) => gevondenSet.has(normaliseerUrl(v.url)));
@@ -210,16 +236,36 @@ function beoordeelResultaat(bron, berichten, opties = {}) {
     if (SELECTOR_TYPES.includes(bron.type) && !bron.paginering && verwacht.length < 50 && aantal > verwacht.length * 2 + 3) {
       waarschuwingen.push(`Het recept vindt ${aantal} items, Gemini ziet er maar ${verwacht.length}. Mogelijk worden ook menu- of zijbalk-items meegenomen.`);
     }
+    // Padkandidaten: veel links onder hetzelfde pad die het recept niet vindt.
+    // Alleen streng als het aantal padkandidaten niet duidelijk groter is dan
+    // wat Gemini ziet (in dat geval zitten er waarschijnlijk categorie- en
+    // filterlinks tussen, en is een lage dekking normaal).
     const padKandidaten = opties.padKandidaten || [];
     if (padKandidaten.length >= 6) {
-      const dekkingPad = padKandidaten.filter((u) => gevondenSet.has(u)).length / padKandidaten.length;
+      const padGevonden = padKandidaten.filter((u) => gevondenSet.has(u)).length;
+      const dekkingPad = padGevonden / padKandidaten.length;
       statistieken.padKandidaten = padKandidaten.length;
       statistieken.padDekking = dekkingPad;
-      if (dekkingPad < 0.5) {
+      const padLijktOpBerichten = padKandidaten.length <= verwacht.length * 1.5 + 3;
+      if (dekkingPad < PADKANDIDATEN_MAX_DEKKING && padKandidaten.length >= PADKANDIDATEN_MIN_AANTAL && padLijktOpBerichten) {
+        redenen.push(
+          `Het recept vindt maar ${padGevonden} van de ${padKandidaten.length} links onder hetzelfde pad als de lijstpagina (${Math.round(dekkingPad * 100)}%). Dat zijn er bijna net zoveel als Gemini ziet, dus dit lijken echte berichtlinks: het recept mist waarschijnlijk een groot deel van de lijst.`
+        );
+      } else if (dekkingPad < PADKANDIDATEN_MAX_DEKKING) {
         waarschuwingen.push(
-          `Op de pagina staan ${padKandidaten.length} links onder hetzelfde pad, het recept vindt er ${Math.round(dekkingPad * padKandidaten.length)}. Mogelijk mist het recept een deel van de lijst (of het zijn categorie- en filterlinks).`
+          `Op de pagina staan ${padKandidaten.length} links onder hetzelfde pad, het recept vindt er ${padGevonden}. Mogelijk mist het recept een deel van de lijst (of het zijn categorie- en filterlinks).`
         );
       }
+    }
+    // totaalGezien: als Gemini zelf zegt dat er veel meer berichten op de
+    // pagina staan dan hij in zijn lijst noemde, weten we dat het recept
+    // alleen tegen die (kleinere) lijst is getest. Geen afkeuring — Gemini's
+    // titellijst is de enige referentie die we echt tegen echte links hebben
+    // gecontroleerd — maar wel een expliciete waarschuwing.
+    if (totaalGezien && totaalGezien > verwacht.length * 1.5) {
+      waarschuwingen.push(
+        `Gemini zegt ${totaalGezien} berichten op de pagina te zien, maar noemde er ${verwacht.length} bij naam. Het recept is getest tegen die ${verwacht.length}; of het de andere ${totaalGezien - verwacht.length} ook vindt, is niet bewezen.`
+      );
     }
   } else if (SELECTOR_TYPES.includes(bron.type) && aantal < WEINIG_BERICHTEN) {
     redenen.push(
@@ -265,7 +311,7 @@ function telBinnenVenster(oordeel, bron) {
   const binnen = geldig.filter((b) => binnenVenster(b.gepubliceerdOp, bron, b.eindDatum)).length;
   const vensterTekst =
     bron.soort === "agenda"
-      ? `het agenda-venster (van ${AGENDA_MAX_VERLEDEN_DAGEN} dag terug tot ${AGENDA_MAX_VOORUIT_DAGEN} dagen vooruit)`
+      ? `het agenda-venster (alleen evenementen die vandaag beginnen)`
       : `het leeftijdsvenster (maximaal ${MAX_LEEFTIJD_DAGEN} dagen oud)`;
   return { binnen, totaal: geldig.length, vensterTekst };
 }
@@ -290,7 +336,7 @@ function isVerbindingsFout(fout) {
  * verbindingsfouten, dan is dat een infra-probleem en geen kwaliteit van de bron.
  *
  * Voegt toe aan het oordeel: tekstDekking (aandeel 0-1), tekstTekst
- * ("4 van 5 met tekst"), statistieken.tekst, en tekstTekens op de gebruikte
+ * ("8 van 10 met tekst"), statistieken.tekst, en tekstTekens op de gebruikte
  * berichten in oordeel.geldig (voor de voorbeeldregels).
  */
 async function controleerTekst(oordeel, bron, opties = {}) {

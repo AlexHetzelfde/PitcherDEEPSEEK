@@ -21,17 +21,23 @@
 //   JSON-LD, patronen en Gemini eerst, feed en REST als laatste redmiddel.
 //   Reden: een feed en de REST API geven de PUBLICATIEDATUM van een bericht,
 //   een agenda-bron heeft de datum van het EVENEMENT nodig (het agenda-venster
-//   in hulpmiddelen.js kijkt van gisteren tot 14 dagen vooruit). Een agenda die
-//   via een feed binnenkomt, valt terug op gewoon nieuws (publicatiedatum),
-//   met een waarschuwing.
+//   in hulpmiddelen.js kijkt nu alleen naar evenementen die vandaag beginnen).
+//   Een agenda die via een feed binnenkomt, valt terug op gewoon nieuws
+//   (publicatiedatum), met een waarschuwing.
 //
 // Elke kandidaat gaat door de poort uit bron-poort.js: de echte scraper
-// draait erop, en het resultaat moet kloppen (kwaliteit, en bij Gemini ook
-// volledigheid). Faalt een kandidaat, dan volgt de volgende stap.
+// draait erop, en het resultaat moet kloppen (kwaliteit, volledigheid, tekst).
+// Faalt een kandidaat, dan volgt de volgende stap.
 //
 // Dit bestand wordt gebruikt door voeg-bron-toe.js (nieuwe bron) en door
 // herstel-bronnen.js (een bron die niets meer oplevert opnieuw uitzoeken).
 // Er is dus één ontdekkingslogica, geen twee die uit elkaar kunnen lopen.
+//
+// Sinds de "robuust"-ronde geeft dit bestand ook totaalGezien (Gemini's eigen
+// schatting van het totale aantal berichten op de pagina) door aan de poort.
+// Dat levert een extra waarschuwing als de titellijst van Gemini veel kleiner
+// is dan wat hij zegt te zien — een signaal dat onze test zwakker is dan we
+// zouden willen.
 
 const cheerio = require("cheerio");
 const { haalOp, oorzaakTekst, startResponsCache, stopResponsCache } = require("./hulpmiddelen");
@@ -275,15 +281,17 @@ async function ontdekBronIntern(opties) {
   }
   const referentie = analyse ? analyse.referentie : [];
   const geminiSoort = analyse ? analyse.soort : null;
+  const totaalGezien = analyse ? analyse.totaalGezien : null;
   if (referentie.length > 0) {
-    log.log(`  Referentie: Gemini ziet ${referentie.length} bericht(en) op de pagina. Elke methode moet er minstens ${Math.round(MIN_DEKKING * 100)}% van terugvinden.`);
+    const totaalTekst = totaalGezien && totaalGezien > referentie.length ? ` (Gemini zegt ${totaalGezien} berichten te zien; ${referentie.length} titels worden als referentie gebruikt)` : "";
+    log.log(`  Referentie: Gemini ziet ${referentie.length} bericht(en) op de pagina${totaalTekst}. Elke methode moet er minstens ${Math.round(MIN_DEKKING * 100)}% van terugvinden.`);
     verslag.push({ stap: "gemini-analyse", kandidaat: "gemini: lijst van berichten op de pagina", uitkomst: "geslaagd", redenen: [], waarschuwingen: [], aantal: referentie.length });
   } else {
     const w = "Gemini gaf geen (gecontroleerde) lijst van berichten op de pagina. Elke methode kan nu alleen als twijfel slagen, omdat de volledigheid niet te bewijzen is.";
     log.log(`  ⚠️  ${w}`);
     verslag.push({ stap: "gemini-analyse", kandidaat: "gemini: lijst van berichten op de pagina", uitkomst: "afgekeurd", redenen: [w], waarschuwingen: [], aantal: 0 });
   }
-  const refExtra = { verwacht: referentie, zonderReferentie: referentie.length === 0 };
+  const refExtra = { verwacht: referentie, zonderReferentie: referentie.length === 0, totaalGezien };
   const padKandidaten = analyse ? analyse.padKandidaten : [];
 
   const agendaVoorkeur = soortKeuze === "agenda" || (soortKeuze === "auto" && (agendaAchtig(url) || geminiSoort === "agenda"));

@@ -5,10 +5,12 @@
 // automatisch opgehaald kunnen worden (een "recept"). Daarna doet gewone code
 // dat elke nacht gratis en vast; Gemini is dus alleen het uitzoekwerk.
 //
-// Die eerste vraag levert drie dingen op die voor ELKE methode gelden (feed,
+// Die eerste vraag levert vier dingen op die voor ELKE methode gelden (feed,
 // REST, JSON-LD, patronen en het recept zelf):
 //   - de lijst van berichten die Gemini op de pagina ziet: de referentie
 //     waartegen elke methode wordt gecontroleerd;
+//   - het TOTALE aantal berichten dat Gemini denkt te zien (totaalGezien): als
+//     dat hoger is dan zijn titellijst, weten we dat onze test zwakker is;
 //   - of de pagina een agenda is (soort);
 //   - hoe de paginering werkt, en waar de tekst van elk bericht staat.
 // Is de eerste vraag gesteld, dan test geminiPad (als laatste redmiddel, na de
@@ -23,7 +25,7 @@
 //   2. Gemini geeft naast het recept ook een lijst van ALLE berichten die hij
 //      zelf op de pagina ziet. De code controleert eerst of die links echt in
 //      de pagina staan (tegen verzinsels), en de poort eist daarna dat het
-//      recept die lijst voor minstens 80% terugvindt. Vindt het recept 3 van
+//      recept die lijst voor minstens 85% terugvindt. Vindt het recept 3 van
 //      de 12, dan wordt het afgekeurd.
 //
 //   3. Afgekeurd? Dan probeert Gemini het opnieuw, met CONCRETE feedback:
@@ -47,6 +49,7 @@ const MODELLEN = (process.env.GEMINI_MODELLEN || "gemini-flash-lite-latest,gemin
   .filter(Boolean);
 const MAX_GEZIEN = 50;
 const MAX_HTML_VOORBEELD = 1200;
+const MAX_TOTAAL_GEZIEN = 10000; // onzin-filter: groter dan dit negeren we
 
 const ATTRIBUTEN_WEG = new Set(["style", "srcset", "sizes", "loading", "decoding", "fetchpriority", "tabindex", "integrity", "crossorigin", "nonce"]);
 
@@ -142,6 +145,7 @@ function formatteerFeedback(f) {
     regels.push(`Het recept leverde ${f.aantalGevonden} bruikbare bericht(en) op.`);
   }
   if (f.aantalVerwacht != null) regels.push(`In jouw eigen lijst stonden ${f.aantalVerwacht} berichten.`);
+  if (f.totaalGezien != null) regels.push(`Jij zei eerder ${f.totaalGezien} berichten op de pagina te zien.`);
   if (f.padHint) regels.push(f.padHint);
   if (f.voorbeeldGevonden && f.voorbeeldGevonden.length) {
     regels.push("Voorbeelden van wat het recept WEL vond:");
@@ -183,7 +187,9 @@ Kies precies EEN route:
 3. "json-api": de berichten worden via een JSON-endpoint geladen dat in de aanwijzingen of de HTML zichtbaar is. Geef de url en welke velden titel, link en datum bevatten.
 4. "geen": de berichten staan niet in deze HTML (bijvoorbeeld een lege pagina met "Loading..." omdat alles met JavaScript wordt opgebouwd, of een inlogscherm).
 
-Geef daarnaast ALTIJD "gezienBerichten": alle berichten die je in de HTML ziet staan (maximaal ${MAX_GEZIEN}, in volgorde van de pagina), met titel, url (exact zoals in de href, ook als die relatief is) en datum (zoals zichtbaar, of null). Laat menu-items, filters, paginering en zijbalklinks weg. De code controleert of jouw recept deze berichten terugvindt; een recept dat er maar een deel van vindt wordt afgekeurd.
+Geef daarnaast ALTIJD:
+- "totaalGezien": een geheel getal — het TOTALE aantal berichten dat je op deze pagina ziet, ook als dat er meer zijn dan ${MAX_GEZIEN}. Geef het werkelijke totaal (bijvoorbeeld 180), niet het maximum.
+- "gezienBerichten": de titels van maximaal ${MAX_GEZIEN} berichten, met titel, url (exact zoals in de href, ook als die relatief is) en datum (zoals zichtbaar, of null). Als er meer dan ${MAX_GEZIEN} berichten zijn, geef dan een representatieve selectie verspreid over de pagina (niet alleen de bovenste ${MAX_GEZIEN}). Laat menu-items, filters, paginering en zijbalklinks weg. De code controleert of jouw recept deze berichten terugvindt; een recept dat er maar een deel van vindt wordt afgekeurd.
 
 Regels voor selectors:
 - titelSelector: relatief aan het item-blok. Leeg-string alleen als het hele blok de titel is.
@@ -202,6 +208,7 @@ Geef ALLEEN geldige JSON terug, exact dit formaat, geen markdown-fences en geen 
   "route": "selectors" | "feed" | "json-api" | "geen",
   "toelichting": "een of twee zinnen over je keuze",
   "soort": "agenda" | "nieuws",
+  "totaalGezien": 0,
   "selectors": { "itemSelector": "...", "titelSelector": "...", "linkSelector": "...", "datumSelector": "... of null", "datumAttribuut": "... of null", "samenvattingSelector": "... of null" } of null,
   "paginering": { "soort": "patroon" | "volgende-link" | "geen", "patroon": "https://... met {n}, of null", "volgendeSelector": "css-selector, of null" },
   "feedUrl": "https://... of null",
@@ -312,12 +319,6 @@ function absoluut(href, basis) {
 }
 
 /**
- * Controleert Gemini's antwoord en zet het om in een kandidaat-bron voor de
- * poort. De lijst gezienBerichten wordt gefilterd op links die echt in de
- * pagina staan: Gemini mag niets verzinnen dat we vervolgens als waarheid
- * gebruiken om het recept mee te controleren.
- */
-/**
  * Controleert Gemini's beschrijving van de paginering tegen de echte pagina.
  * Een patroon wordt alleen geaccepteerd als de pagina zelf naar pagina 2 linkt
  * volgens dat patroon; een "volgende"-selector alleen als hij een link vindt.
@@ -369,10 +370,19 @@ function valideerAntwoord(antwoord, { url, paginaLinks, $ }) {
     probleem: null,
     gezien: [],
     verzonnen: 0,
+    totaalGezien: null,
     soort: antwoord.soort === "agenda" || antwoord.soort === "nieuws" ? antwoord.soort : null,
     paginering: null,
     pagineringProbleem: null,
   };
+
+  // totaalGezien: Gemini's eigen schatting. Afronden op geheel getal, en
+  // onzin-waarden negeren (negatief, niet-numeriek, of belachelijk groot).
+  const tg = Number(antwoord.totaalGezien);
+  if (Number.isFinite(tg) && tg > 0 && tg <= MAX_TOTAAL_GEZIEN) {
+    uit.totaalGezien = Math.floor(tg);
+  }
+
   if ($) {
     const { paginering, probleem } = valideerPaginering(antwoord.paginering, { url, paginaLinks, $ });
     uit.paginering = paginering;
@@ -555,6 +565,7 @@ function bouwFeedback({ poging, model, v, resultaat, $, url, verwacht, padKandid
     redenen: oordeel ? oordeel.redenen : [],
     aantalGevonden: oordeel ? oordeel.aantal : null,
     aantalVerwacht: verwacht.length || null,
+    totaalGezien: v.totaalGezien || null,
     voorbeeldGevonden: oordeel ? oordeel.geldig.slice(0, 3).map((b) => ({ titel: b.titel, url: b.url, datum: b.gepubliceerdOp ? String(b.gepubliceerdOp).slice(0, 10) : null })) : [],
     ontbrekend: [],
   };
@@ -605,7 +616,8 @@ async function vraagVoorstel({ poging, model, modelIndex, vraag, schoon, geschie
   }
 
   const v = valideerAntwoord(antwoord, { url, paginaLinks, $ });
-  log.log(`  Gemini koos route "${v.route}"; ziet ${v.gezien.length} bericht(en) op de pagina${v.verzonnen ? ` (${v.verzonnen} verzonnen link(s) genegeerd)` : ""}.`);
+  const extra = v.totaalGezien ? `, zegt ${v.totaalGezien} berichten op de pagina te zien` : "";
+  log.log(`  Gemini koos route "${v.route}"; ziet ${v.gezien.length} bericht(en) op de pagina${extra}${v.verzonnen ? ` (${v.verzonnen} verzonnen link(s) genegeerd)` : ""}.`);
   if (v.soort) log.log(`  Gemini ziet dit als: ${v.soort === "agenda" ? "een agenda (de datum is de datum van het evenement)" : "nieuws (de datum is de publicatiedatum)"}.`);
   if (v.paginering) log.log(`  Paginering: ${v.paginering.soort === "patroon" ? `patroon ${v.paginering.patroon}` : `volgende-link ${v.paginering.selector}`}.`);
   if (v.pagineringProbleem) log.log(`  ⚠️  ${v.pagineringProbleem}`);
@@ -614,9 +626,9 @@ async function vraagVoorstel({ poging, model, modelIndex, vraag, schoon, geschie
 
 /**
  * De eerste vraag aan Gemini, die ALTIJD als eerste gesteld wordt (nog voor
- * feed, REST, JSON-LD en patronen). Geeft de referentielijst, het soort en de
- * paginering terug, en onthoudt het voorstel van poging 1 voor geminiPad.
- * Faalt Gemini, dan is referentie leeg; de aanroeper meldt dat.
+ * feed, REST, JSON-LD en patronen). Geeft de referentielijst, het soort, de
+ * paginering en totaalGezien terug, en onthoudt het voorstel van poging 1 voor
+ * geminiPad. Faalt Gemini, dan is referentie leeg; de aanroeper meldt dat.
  *
  * ctx komt uit bron-ontdekking.js: $, html, url, paginaLinks, apiKey,
  * vraagGemini (optioneel, voor tests), verslag, log
@@ -640,6 +652,7 @@ async function geminiAnalyse(ctx) {
     padKandidaten,
     poging1,
     referentie: v ? v.gezien : [],
+    totaalGezien: v ? v.totaalGezien : null,
     soort: v ? v.soort : null,
     paginering: v ? v.paginering : null,
   };
@@ -657,7 +670,7 @@ async function geminiAnalyse(ctx) {
  */
 async function geminiPad(ctx) {
   const { $, url, paginaLinks, analyse, testKandidaat, verwerk, verslag, log } = ctx;
-  const { vraag, schoon, padKandidaten, referentie } = analyse;
+  const { vraag, schoon, padKandidaten, referentie, totaalGezien } = analyse;
 
   const geschiedenis = [];
   let laatsteGezien = referentie;
@@ -712,7 +725,15 @@ async function geminiPad(ctx) {
     }
 
     // Elke route wordt getest tegen de referentielijst; selector-recepten krijgen ook de pad-controle.
-    const extra = { verwacht, paginaLinks, zonderReferentie: verwacht.length === 0, ...(v.kandidaat.type === "gemini-recept" ? { padKandidaten } : {}) };
+    // totaalGezien gaat mee als waarschuwing (niet als eis) — alleen de URLs in `verwacht` zijn
+    // tegen echte links gecontroleerd.
+    const extra = {
+      verwacht,
+      paginaLinks,
+      zonderReferentie: verwacht.length === 0,
+      totaalGezien,
+      ...(v.kandidaat.type === "gemini-recept" ? { padKandidaten } : {}),
+    };
     const resultaat = await testKandidaat(v.kandidaat, extra);
     const klaar = verwerk(`gemini-poging-${poging}`, resultaat);
     if (klaar) return { klaar };
