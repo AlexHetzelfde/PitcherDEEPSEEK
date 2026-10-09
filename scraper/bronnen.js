@@ -8,8 +8,16 @@ module.exports = [
     id: "zaansche-molen",
     naam: "De Zaansche Molen — Nieuws",
     categorie: "lokaal",
-    type: "wordpress-html", // scraapt de HTML van een WordPress-nieuwsoverzicht
+    type: "gemini-recept",
     url: "https://www.zaanschemolen.nl/nieuws/",
+    selectors: {
+      itemSelector: "article.post",
+      titelSelector: "h3.entry-title a",
+      linkSelector: "h3.entry-title a",
+      datumSelector: "time.entry-date",
+      datumAttribuut: "datetime",
+      samenvattingSelector: null,
+    },
   },
   {
     id: "ibabs-collegeberichten",
