@@ -36,8 +36,8 @@ module.exports = [
     id: "blaise-pascal-college",
     naam: "Blaise Pascal College",
     categorie: "lokaal",
-    type: "generieke-lijst",
-    url: "https://www.blaisepascalcollege.nl/",
+    type: "rss",
+    url: "https://www.blaisepascalcollege.nl/feed/",
   },
   {
     id: "pascal-zuid",
