@@ -15,6 +15,11 @@
 // Dat vangt evidente typefouten af (zoals de oude ".../nieuws/"-url die niet
 // eens bestond) vóórdat er een hele nacht overheen gaat.
 //
+// Sinds Deel D van de foto-uitbreiding: "fotoSelector" en "fotoAttribuut"
+// zijn nu ook toegestane selectors-velden (optioneel). Nog geen scraper
+// gebruikt ze al (dat komt in een latere stap), maar de validator staat ze
+// vast toe zodat een nieuwe bron ze meteen mag bevatten.
+//
 // Gebruik:
 //   node valideer-bronnen.js          — print bevindingen, exit 1 bij fouten
 // Wordt aangeroepen als eerste stap in zowel bron-toevoegen.yml als
@@ -93,8 +98,11 @@ function valideerBronnen(lijst) {
       if (!sel || typeof sel !== "object" || Array.isArray(sel)) {
         fouten.push(`${label}: "selectors" moet een object zijn.`);
       } else {
-        // samenvattingSelector is optioneel (null of een geldige CSS-selector); de andere selectors worden door de scraper zelf gebruikt.
-        for (const sleutel of ["itemSelector", "titelSelector", "linkSelector", "datumSelector", "samenvattingSelector"]) {
+        // fotoSelector is optioneel (net als samenvattingSelector): hij mag
+        // ontbreken, maar als hij er staat, moet het een geldige CSS-selector
+        // zijn. Nog geen scraper gebruikt hem al — zie Deel B van de
+        // foto-uitbreiding — maar de validator staat hem vast toe.
+        for (const sleutel of ["itemSelector", "titelSelector", "linkSelector", "datumSelector", "samenvattingSelector", "fotoSelector"]) {
           const waarde = sel[sleutel];
           if (waarde === undefined || waarde === null || (sleutel === "linkSelector" && waarde === "self")) continue;
           if (typeof waarde !== "string" || !geldigeCssSelector(waarde)) fouten.push(`${label}: selectors.${sleutel} is geen geldige CSS-selector (${JSON.stringify(waarde)}).`);

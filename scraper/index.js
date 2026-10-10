@@ -2,13 +2,17 @@
 //
 // Volgorde:
 // 1. Alles scrapen (per bron, met eigen scraper-type)
-// 2. Tellen hoeveel berichten er zijn, VOORDAT Gemini wordt aangeroepen
-//    en van elk bericht de tekst + foto ophalen (hulpmiddelen.js)
-// 3. De nieuwsfeed bijwerken (data/feed.json): alle berichten binnen het
-//    venster, gededupliceerd op url, gesorteerd op datum, cap 200
-// 4. Splitsen in lokaal/landelijk en sorteren (nieuws eerst, dan agenda)
-// 5. Per bericht twee Gemini-calls: filter, dan pitch + score
-// 6. Pitches rangschikken op prioriteit en wegschrijven naar /data
+// 2. Tekst + foto per bericht ophalen voor ALLE unieke berichten
+//    (nodig voor de feed; zie Deel B voor "altijd foto ophalen")
+// 3. De nieuwsfeed bijwerken (data/feed.json): alles wat deze run gevonden
+//    heeft, ontdubbeld op url, gesorteerd op datum (nieuwste eerst), cap 200.
+//    De feed is RUIM: ook evenementen in de toekomst en ouder nieuws komen
+//    erin, zodat niets verloren gaat.
+// 4. Voor de pitches: alleen berichten binnen het venster. Dit is STRIKT:
+//    agenda-bronnen alleen vandaag, nieuws max 1 kalenderdag oud.
+// 5. Splitsen in lokaal/landelijk en sorteren (nieuws eerst, dan agenda)
+// 6. Per bericht twee Gemini-calls: filter, dan pitch + score
+// 7. Pitches rangschikken op prioriteit en wegschrijven naar /data
 
 const fs = require("fs/promises");
 const path = require("path");
@@ -83,7 +87,7 @@ function logBronOverzicht({ gevondenPerBron, overPerBron, ruweBerichten = [] }) 
     perBron.get(b.bronId).push(b);
   }
 
-  console.log("\n--- Bronoverzicht (gevonden → binnen venster) ---");
+  console.log("\n--- Bronoverzicht (gevonden → binnen pitch-venster) ---");
   for (const bronConfig of bronnen) {
     const bron = effectieveBron(bronConfig);
     const gevonden = gevondenPerBron[bron.id] || 0;
@@ -97,7 +101,7 @@ function logBronOverzicht({ gevondenPerBron, overPerBron, ruweBerichten = [] }) 
     } else if (over === 0 && bron.soort === "agenda") {
       status = "⚠️  0 binnen het agenda-venster — check datumherkenning (datums zonder jaar?) of de agenda is leeg";
     } else if (over === 0) {
-      status = "⚠️  0 na leeftijdsfilter — check datumherkenning voor deze bron";
+      status = "ℹ️  0 binnen het pitch-venster — komt wel in de feed";
     } else {
       status = "✅ OK";
     }
@@ -220,8 +224,9 @@ function kortAfTekst(tekst, max) {
 /**
  * Werkt data/feed.json bij: voegt alle berichten uit deze run toe die nog
  * niet in de feed staan (dedup op url), sorteert op publicatiedatum (nieuwste
- * eerst), en capt op FEED_MAX_ITEMS. De feed is onafhankelijk van Gemini: ook
- * berichten die door Gemini als "nee" zijn beoordeeld horen erin.
+ * eerst), en capt op FEED_MAX_ITEMS. De feed is onafhankelijk van Gemini en
+ * van het pitch-venster: ook berichten die door Gemini als "nee" zijn
+ * beoordeeld, en ook evenementen in de toekomst of ouder nieuws, horen erin.
  */
 async function werkFeedBij(berichten, bronPerId) {
   const feedPad = path.join(DATA_MAP, "feed.json");
@@ -332,10 +337,12 @@ async function main() {
   const startScrapen = Date.now();
   const ruweBerichten = await scrapeAlleBronnen();
   logDuur(startScrapen, `Scrapen van ${bronnen.length} bronnen`);
-  console.log(`Ruw aantal berichten (vóór leeftijdsfilter/dedup): ${ruweBerichten.length}`);
+  console.log(`Ruw aantal berichten (vóór ontdubbeling): ${ruweBerichten.length}`);
 
   const bronPerId = Object.fromEntries(bronnen.map((b) => [b.id, effectieveBron(b)]));
   const binnen = (b) => binnenVenster(b.gepubliceerdOp, bronPerId[b.bronId], b.eindDatum);
+
+  // Voor het bronoverzicht: hoeveel berichten vallen binnen het pitch-venster?
   const recenteBerichten = ruweBerichten.filter(binnen);
   const perBronZonderDatum = {};
   for (const b of ruweBerichten) {
@@ -343,22 +350,29 @@ async function main() {
       perBronZonderDatum[b.bronId] = (perBronZonderDatum[b.bronId] || 0) + 1;
     }
   }
-  console.log(`Na leeftijdsfilter (max ${MAX_LEEFTIJD_DAGEN} kalenderdag(en); agenda-bronnen: alleen vandaag): ${recenteBerichten.length} van ${ruweBerichten.length} berichten.`);
+  console.log(
+    `Binnen het pitch-venster (max ${MAX_LEEFTIJD_DAGEN} kalenderdag(en); agenda-bronnen: alleen vandaag): ${recenteBerichten.length} van ${ruweBerichten.length} berichten.`
+  );
   for (const [bronId, aantal] of Object.entries(perBronZonderDatum)) {
-    console.warn(`[${bronId}] ${aantal} bericht(en) geweerd door leeftijdsfilter (te oud, buiten het venster, of geen betrouwbare datum).`);
+    console.warn(`[${bronId}] ${aantal} bericht(en) buiten het pitch-venster (blijven wel in de feed staan).`);
   }
   const tellingen = telPerBron(ruweBerichten, recenteBerichten);
   logBronOverzicht({ ...tellingen, ruweBerichten });
   await werkBronGezondheidBij(tellingen);
 
-  const berichtenVanVandaag = verwijderDubbelen(recenteBerichten);
-  console.log(`Totaal aantal berichten binnen het venster (na ontdubbeling): ${berichtenVanVandaag.length}`);
+  // Twee lijsten: één RUIME voor de feed (alles wat deze run gevonden is,
+  // ontdubbeld op url), en één STRIKTE voor de pitches (alleen binnen het
+  // venster, zie stap 4 hieronder).
+  const alleBerichten = verwijderDubbelen(ruweBerichten);
+  console.log(`Totaal aantal unieke berichten (voor de feed): ${alleBerichten.length}`);
 
-  // STAP 2 — Tekst én foto per bericht ophalen
+  // STAP 2 — Tekst én foto per bericht ophalen (op alle unieke berichten,
+  // zodat de feed een foto en tekst kan tonen en Gemini de volledige tekst
+  // van elk bericht binnen het venster heeft).
   logFase("STAP 2 — Tekst en foto per bericht ophalen");
   const startTekst = Date.now();
   try {
-    const { perBron } = await vulBerichtenAanMetTekst(berichtenVanVandaag, {
+    const { perBron } = await vulBerichtenAanMetTekst(alleBerichten, {
       nietOphalen: (b) => GEEN_TEKSTOPHAAL_TYPES.has(bronPerId[b.bronId] && bronPerId[b.bronId].type),
     });
     for (const bron of bronnen) {
@@ -374,16 +388,23 @@ async function main() {
   }
   logDuur(startTekst, "Tekst en foto ophalen");
 
-  // STAP 2b — De nieuwsfeed bijwerken
+  // STAP 3 — De nieuwsfeed bijwerken (ruim: alles wat deze run gevonden
+  // heeft, alleen ontdubbeld op url en gesorteerd op datum).
   logFase("STAP 3 — Nieuwsfeed bijwerken");
   try {
-    await werkFeedBij(berichtenVanVandaag, bronPerId);
+    await werkFeedBij(alleBerichten, bronPerId);
   } catch (fout) {
     console.error(`Nieuwsfeed bijwerken mislukte onverwacht (de rest van de run gaat door): ${fout.message}${oorzaakTekst(fout)}`);
   }
 
-  // STAP 3 — Splitsen en sorteren
-  logFase("STAP 4 — Splitsen en sorteren op datum");
+  // STAP 4 — Voor de pitches: alleen berichten binnen het venster. De feed
+  // hierboven is bewust ruimer; deze filter bepaalt wat Gemini beoordeelt.
+  logFase("STAP 4 — Berichten voor de pitches filteren");
+  const berichtenVanVandaag = alleBerichten.filter(binnen);
+  console.log(`Voor de pitches: ${berichtenVanVandaag.length} van ${alleBerichten.length} unieke bericht(en) vallen binnen het venster.`);
+
+  // STAP 5 — Splitsen en sorteren
+  logFase("STAP 5 — Splitsen en sorteren op datum");
   const lokaal = sorteerOpDatum(berichtenVanVandaag.filter((b) => b.categorie === "lokaal"), bronPerId);
   const landelijk = sorteerOpDatum(berichtenVanVandaag.filter((b) => b.categorie === "landelijk"), bronPerId);
 
@@ -399,7 +420,7 @@ async function main() {
     return;
   }
 
-  logFase("STAP 5 — Gemini-beoordeling");
+  logFase("STAP 6 — Gemini-beoordeling");
   const startGemini = Date.now();
 
   console.log(`Lokaal: ${Math.min(lokaal.length, DAGCAP_GEMINI)} van ${lokaal.length} berichten gaan naar Gemini.`);
@@ -413,7 +434,7 @@ async function main() {
   await schrijfJson("nieuws-lokaal.json", lokaalBeoordeeld);
   await schrijfJson("nieuws-landelijk.json", landelijkBeoordeeld);
 
-  logFase("STAP 6 — Pitches samenstellen");
+  logFase("STAP 7 — Pitches samenstellen");
   const kansrijkeLokaal = lokaalBeoordeeld.filter((b) => b.aiBeoordeling?.oppakbaar === "ja");
   const kansrijkLandelijk = landelijkBeoordeeld.filter((b) => b.aiBeoordeling?.lokaleInvalshoek === "ja");
 
