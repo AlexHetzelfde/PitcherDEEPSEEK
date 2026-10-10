@@ -15,10 +15,12 @@
 // Dat vangt evidente typefouten af (zoals de oude ".../nieuws/"-url die niet
 // eens bestond) vóórdat er een hele nacht overheen gaat.
 //
-// Sinds Deel D van de foto-uitbreiding: "fotoSelector" en "fotoAttribuut"
-// zijn nu ook toegestane selectors-velden (optioneel). Nog geen scraper
-// gebruikt ze al (dat komt in een latere stap), maar de validator staat ze
-// vast toe zodat een nieuwe bron ze meteen mag bevatten.
+// Sinds Deel B: "fotoSelector" en "fotoAttribuut" zijn nu ook toegestane
+// selectors-velden. fotoSelector is een CSS-selector (wordt gevalideerd),
+// fotoAttribuut is de naam van een HTML-attribuut (src, data-src, ...) en
+// wordt alleen op "niet-lege string" gecontroleerd — een attribuutnaam als
+// "data-src" is geen geldige CSS-selector en zou ten onrechte afgekeurd worden
+// als we hem in de selector-lijst stopten.
 //
 // Gebruik:
 //   node valideer-bronnen.js          — print bevindingen, exit 1 bij fouten
@@ -98,14 +100,21 @@ function valideerBronnen(lijst) {
       if (!sel || typeof sel !== "object" || Array.isArray(sel)) {
         fouten.push(`${label}: "selectors" moet een object zijn.`);
       } else {
-        // fotoSelector is optioneel (net als samenvattingSelector): hij mag
-        // ontbreken, maar als hij er staat, moet het een geldige CSS-selector
-        // zijn. Nog geen scraper gebruikt hem al — zie Deel B van de
-        // foto-uitbreiding — maar de validator staat hem vast toe.
+        // CSS-selectors: moeten geldig zijn (of null/leeg/self).
+        // fotoSelector is optioneel: hij mag ontbreken, maar als hij er
+        // staat, moet het een geldige CSS-selector zijn.
         for (const sleutel of ["itemSelector", "titelSelector", "linkSelector", "datumSelector", "samenvattingSelector", "fotoSelector"]) {
           const waarde = sel[sleutel];
           if (waarde === undefined || waarde === null || (sleutel === "linkSelector" && waarde === "self")) continue;
           if (typeof waarde !== "string" || !geldigeCssSelector(waarde)) fouten.push(`${label}: selectors.${sleutel} is geen geldige CSS-selector (${JSON.stringify(waarde)}).`);
+        }
+        // Attribuutnamen: geen CSS-selectors (data-src begint met een
+        // streepje en zou als selector onterecht afgekeurd worden), wel
+        // moeten ze een niet-lege string zijn.
+        for (const sleutel of ["datumAttribuut", "fotoAttribuut"]) {
+          const waarde = sel[sleutel];
+          if (waarde === undefined || waarde === null) continue;
+          if (typeof waarde !== "string" || !waarde.trim()) fouten.push(`${label}: selectors.${sleutel} moet een niet-lege attribuutnaam zijn (${JSON.stringify(waarde)}).`);
         }
         if (bron.type === "gemini-recept" && (typeof sel.itemSelector !== "string" || !sel.itemSelector.trim())) {
           fouten.push(`${label}: type "gemini-recept" mist selectors.itemSelector — deze bron zou 0 berichten opleveren.`);

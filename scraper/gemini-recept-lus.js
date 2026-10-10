@@ -36,6 +36,11 @@
 //
 // Gemini kiest ook de ROUTE: selectors (CSS), een feed-url, of een JSON-API.
 // Elke route gaat daarna door dezelfde poort als alle andere methodes.
+//
+// Sinds Deel B: de prompt vraagt ook naar fotoSelector en fotoAttribuut,
+// zodat een nieuwe bron meteen het juiste element voor de afbeelding vindt
+// (als de pagina er een toont). Staat er geen foto op de pagina, dan mag
+// Gemini dat gewoon zeggen: fotoSelector = null is een geldig antwoord.
 
 const cheerio = require("cheerio");
 const { normaliseerUrl, registreerbaarDomein } = require("./bron-poort");
@@ -139,7 +144,7 @@ function formatteerFeedback(f) {
   for (const r of f.redenen || []) regels.push(`Afgekeurd omdat: ${r}`);
   if (f.matchStats) {
     regels.push(
-      `De itemSelector matchte ${f.matchStats.matches} element(en) op de pagina; daarvan hadden er ${f.matchStats.metTitel} een titel en ${f.matchStats.metLink} een link. Na controle bleven ${f.aantalGevonden} bruikbare berichten over.`
+      `De itemSelector matchte ${f.matchStats.matches} element(en) op de pagina; daarvan hadden er ${f.matchStats.metTitel} een titel, ${f.matchStats.metLink} een link en ${f.matchStats.metFoto} een foto. Na controle bleven ${f.aantalGevonden} bruikbare berichten over.`
     );
   } else if (f.aantalGevonden != null) {
     regels.push(`Het recept leverde ${f.aantalGevonden} bruikbare bericht(en) op.`);
@@ -182,7 +187,7 @@ function bouwPrompt({ url, schoon, geschiedenis, kandidaatBlokken }) {
 Bepaal hoe die berichten voortaan automatisch opgehaald kunnen worden. Een script haalt de pagina elke nacht opnieuw op en past jouw recept toe, dus het recept moet ook werken voor berichten die er nu nog niet staan.
 
 Kies precies EEN route:
-1. "selectors": de berichten staan in de HTML zelf. Geef CSS-selectors (cheerio) voor het herhalende blok en voor titel, link en datum daarbinnen. Dit is de gebruikelijke route.
+1. "selectors": de berichten staan in de HTML zelf. Geef CSS-selectors (cheerio) voor het herhalende blok en voor titel, link, datum en (als die er is) foto daarbinnen. Dit is de gebruikelijke route.
 2. "feed": een RSS/Atom-feed die de berichten van DEZE pagina bevat (dus geen lege of algemene blog-feed). Alleen kiezen als de aanwijzingen zo'n feed noemen.
 3. "json-api": de berichten worden via een JSON-endpoint geladen dat in de aanwijzingen of de HTML zichtbaar is. Geef de url en welke velden titel, link en datum bevatten.
 4. "geen": de berichten staan niet in deze HTML (bijvoorbeeld een lege pagina met "Loading..." omdat alles met JavaScript wordt opgebouwd, of een inlogscherm).
@@ -196,6 +201,8 @@ Regels voor selectors:
 - linkSelector: relatief aan het item-blok. Is het item-blok zelf een <a>-element (de hele kaart is aanklikbaar, dat komt vaak voor), of zit de titel in een link, gebruik dan het woord self. Dat is ook prima: dan mag itemSelector gewoon dat <a>-element zijn.
 - datumSelector: relatief aan het item-blok, of null als er geen apart datum-element is. Staat de datum in de titeltekst (bijvoorbeeld "2026-09-22 Dinsdag 22 september 2026 om 17.15 uur - ..."), zet datumSelector dan op null: de titeltekst wordt daarna automatisch op een datum doorzocht. Staat de datum zonder jaar ("30 sep"), laat die dan gewoon zo staan; het jaar wordt door de code aangevuld.
 - datumAttribuut: naam van het attribuut waar de datum in staat (bijvoorbeeld datetime), of null om de zichtbare tekst te gebruiken.
+- fotoSelector: relatief aan het item-blok: het element met de afbeelding (meestal een <img>), of null als de lijst geen afbeelding bij het bericht toont. Als de pagina helemaal geen foto's toont, zet fotoSelector op null en fotoAttribuut op null: dat is geen fout.
+- fotoAttribuut: naam van het attribuut waar de foto-url in staat (meestal src, soms data-src of data-lazy-src), of null om de standaard volgorde te gebruiken (src, data-src, data-lazy-src, data-original, srcset).
 - samenvattingSelector: relatief aan het item-blok: het element met de korte tekst of intro van het bericht zoals de lijst die toont, of null als de lijst alleen titels toont.
 - Kies selectors die specifiek genoeg zijn om geen menu-items mee te nemen, maar breed genoeg om alle berichten te vangen.
 
@@ -209,7 +216,7 @@ Geef ALLEEN geldige JSON terug, exact dit formaat, geen markdown-fences en geen 
   "toelichting": "een of twee zinnen over je keuze",
   "soort": "agenda" | "nieuws",
   "totaalGezien": 0,
-  "selectors": { "itemSelector": "...", "titelSelector": "...", "linkSelector": "...", "datumSelector": "... of null", "datumAttribuut": "... of null", "samenvattingSelector": "... of null" } of null,
+  "selectors": { "itemSelector": "...", "titelSelector": "...", "linkSelector": "...", "datumSelector": "... of null", "datumAttribuut": "... of null", "samenvattingSelector": "... of null", "fotoSelector": "... of null", "fotoAttribuut": "... of null" } of null,
   "paginering": { "soort": "patroon" | "volgende-link" | "geen", "patroon": "https://... met {n}, of null", "volgendeSelector": "css-selector, of null" },
   "feedUrl": "https://... of null",
   "jsonApi": { "url": "https://...", "itemsPad": "pad naar de lijst, bijvoorbeeld data.items, of leeg als de JSON zelf de lijst is", "titelVeld": "...", "linkVeld": "...", "datumVeld": "... of null", "samenvattingVeld": "... of null" } of null,
@@ -417,7 +424,7 @@ function valideerAntwoord(antwoord, { url, paginaLinks, $ }) {
         uit.probleem = 'Er staat geen linkSelector in het antwoord (gebruik het woord "self" als de titel zelf de link is).';
         break;
       }
-      const alle = [s.itemSelector, s.titelSelector, s.datumSelector, s.samenvattingSelector].filter((x) => typeof x === "string" && x.trim());
+      const alle = [s.itemSelector, s.titelSelector, s.datumSelector, s.samenvattingSelector, s.fotoSelector].filter((x) => typeof x === "string" && x.trim());
       if (s.linkSelector !== "self") alle.push(s.linkSelector);
       const kapot = alle.find((sel) => !geldigeSelector(sel));
       if (kapot) {
@@ -434,6 +441,8 @@ function valideerAntwoord(antwoord, { url, paginaLinks, $ }) {
           datumSelector: typeof s.datumSelector === "string" && s.datumSelector.trim() ? s.datumSelector.trim() : null,
           datumAttribuut: typeof s.datumAttribuut === "string" && s.datumAttribuut.trim() ? s.datumAttribuut.trim() : null,
           samenvattingSelector: typeof s.samenvattingSelector === "string" && s.samenvattingSelector.trim() ? s.samenvattingSelector.trim() : null,
+          fotoSelector: typeof s.fotoSelector === "string" && s.fotoSelector.trim() ? s.fotoSelector.trim() : null,
+          fotoAttribuut: typeof s.fotoAttribuut === "string" && s.fotoAttribuut.trim() ? s.fotoAttribuut.trim() : null,
         },
         ...(uit.paginering ? { paginering: uit.paginering } : {}),
       };
@@ -473,17 +482,18 @@ function valideerAntwoord(antwoord, { url, paginaLinks, $ }) {
 
 /**
  * Diagnose van een selector-recept op de echte pagina: hoeveel elementen de
- * itemSelector matcht en hoeveel daarvan een titel en een link opleveren.
+ * itemSelector matcht en hoeveel daarvan een titel, link en foto opleveren.
  * Gebruikt leesItem uit de scraper zelf, dus de uitkomst is gegarandeerd
  * hetzelfde als wat de dagelijkse run met dit recept zou zien.
  */
-function analyseerSelectors($, selectors) {
-  const stats = { matches: 0, metTitel: 0, metLink: 0 };
+function analyseerSelectors($, selectors, paginaUrl) {
+  const stats = { matches: 0, metTitel: 0, metLink: 0, metFoto: 0 };
   $(selectors.itemSelector).each((_, el) => {
     stats.matches++;
-    const { titel, link } = leesItem($, el, selectors);
+    const { titel, link, foto } = leesItem($, el, selectors, paginaUrl);
     if (titel) stats.metTitel++;
     if (link) stats.metLink++;
+    if (foto) stats.metFoto++;
   });
   return stats;
 }
@@ -571,7 +581,7 @@ function bouwFeedback({ poging, model, v, resultaat, $, url, verwacht, padKandid
   };
   if (v.kandidaat && v.kandidaat.selectors) {
     try {
-      f.matchStats = analyseerSelectors($, v.kandidaat.selectors);
+      f.matchStats = analyseerSelectors($, v.kandidaat.selectors, url);
     } catch {
       /* ongeldige selector is al als probleem gemeld */
     }
@@ -717,9 +727,9 @@ async function geminiPad(ctx) {
     }
 
     if (v.kandidaat.selectors) {
-      const st = analyseerSelectors($, v.kandidaat.selectors);
+      const st = analyseerSelectors($, v.kandidaat.selectors, url);
       log.log(`  Recept: ${JSON.stringify(v.kandidaat.selectors)}`);
-      log.log(`  De itemSelector matcht ${st.matches} element(en) op de pagina: ${st.metTitel} met titel, ${st.metLink} met link.`);
+      log.log(`  De itemSelector matcht ${st.matches} element(en) op de pagina: ${st.metTitel} met titel, ${st.metLink} met link, ${st.metFoto} met foto.`);
     } else {
       log.log(`  Voorgesteld: ${v.kandidaat.type} ${v.kandidaat.url}${v.kandidaat.json ? ` ${JSON.stringify(v.kandidaat.json)}` : ""}`);
     }
