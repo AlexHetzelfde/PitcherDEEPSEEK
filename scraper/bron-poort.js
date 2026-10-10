@@ -24,18 +24,11 @@
 //      minstens MIN_TEKST_DEKKING van de steekproef), dan valt de bron af:
 //      Gemini zou dan alleen titels zien en kan het gevolg voor mensen niet beoordelen.
 //
-// Sinds de "robuust"-ronde:
-//   - MIN_DEKKING van 0.8 naar 0.85 (strenger, maar niet zo streng dat
-//     kleine afwijkingen door URL-redirects direct afkeuren).
-//   - TEKST_STEEKPROEF van 5 naar 10 (minder toeval bij de tekstcontrole).
-//   - Padkandidaten: bij 20+ links onder hetzelfde pad en minder dan 50%
-//     dekking door het recept volgt een AFKEURING (tenzij het aantal
-//     padkandidaten duidelijk groter is dan wat Gemini ziet — dan zijn het
-//     waarschijnlijk categorie- en filterlinks).
-//   - totaalGezien (indien beschikbaar): Gemini's eigen schatting van het
-//     totale aantal berichten op de pagina. Als die veel hoger is dan zijn
-//     eigen titellijst, komt er een expliciete waarschuwing.
-//   - Datum-diversiteit: 5+ identieke datums keurt af (was 4).
+// Sinds Deel B van de foto-uitbreiding:
+//   - Foto-dekking wordt gerapporteerd (oordeel.fotoDekking, oordeel.fotoTekst)
+//     maar is NOOIT een reden tot afkeuring. Wel een waarschuwing als de
+//     steekproef helemaal geen foto's oplevert, of minder dan de helft.
+//   - De voorbeeldregels tonen nu ook of een bericht een foto heeft.
 //
 // Bewust GEEN vast minimum van "3 berichten": een rustige bron met 2 berichten
 // op de pagina mag prima. Dan telt de volledigheid (vindt het recept alles
@@ -338,6 +331,10 @@ function isVerbindingsFout(fout) {
  * Voegt toe aan het oordeel: tekstDekking (aandeel 0-1), tekstTekst
  * ("8 van 10 met tekst"), statistieken.tekst, en tekstTekens op de gebruikte
  * berichten in oordeel.geldig (voor de voorbeeldregels).
+ *
+ * Sinds Deel B: ook foto-dekking wordt gerapporteerd (oordeel.fotoDekking,
+ * oordeel.fotoTekst, statistieken.foto) met een waarschuwing als er geen of
+ * weinig foto's zijn. Foto's zijn NOOIT een reden tot afkeuring.
  */
 async function controleerTekst(oordeel, bron, opties = {}) {
   const indexen = kiesSteekproef(oordeel.geldig, TEKST_STEEKPROEF);
@@ -357,12 +354,15 @@ async function controleerTekst(oordeel, bron, opties = {}) {
     parallel: 1,
     pauzeMs: opties.tekstPauzeMs ?? 300,
   });
-  const s = perBron[bron.id] || { totaal: monsters.length, metTekst: 0, opgehaald: 0, geenTekst: 0, fouten: 0, overgeslagen: 0 };
+  const s = perBron[bron.id] || { totaal: monsters.length, metTekst: 0, metFoto: 0, opgehaald: 0, geenTekst: 0, fouten: 0, overgeslagen: 0 };
 
   let metTekst = 0;
   monsters.forEach((m, i) => {
     const tekens = (m.samenvatting || "").length;
     oordeel.geldig[indexen[i]].tekstTekens = tekens;
+    // Foto-status van het monster overnemen op het origineel. Als het
+    // origineel al een foto had, blijft die staan; anders vullen we aan.
+    oordeel.geldig[indexen[i]].foto = m.foto || oordeel.geldig[indexen[i]].foto || null;
     if (tekens >= MIN_TEKST_TEKENS) metTekst++;
   });
   const steekproef = monsters.length;
@@ -370,6 +370,20 @@ async function controleerTekst(oordeel, bron, opties = {}) {
   oordeel.tekstDekking = dekking;
   oordeel.tekstTekst = `${metTekst} van ${steekproef} met tekst (steekproef)`;
   oordeel.statistieken.tekst = { steekproef, metTekst, opgehaald: s.opgehaald, geenTekst: s.geenTekst, fouten: s.fouten, overgeslagen: s.overgeslagen };
+
+  // Foto-dekking: apart gerapporteerd, nooit een reden tot afkeuring. We
+  // tellen hoeveel van de steekproef een foto heeft (uit de scraper of uit
+  // de tekststap hierboven). Vóór de vroege return, zodat het ook bij een
+  // geslaagde tekst-dekking wordt gemeld.
+  const fotoDekking = steekproef ? s.metFoto / steekproef : 0;
+  oordeel.fotoDekking = fotoDekking;
+  oordeel.fotoTekst = `${s.metFoto} van ${steekproef} met foto (steekproef)`;
+  oordeel.statistieken.foto = { steekproef, metFoto: s.metFoto };
+  if (steekproef > 0 && s.metFoto === 0) {
+    oordeel.waarschuwingen.push(`Geen enkele foto in de steekproef van ${steekproef} bericht(en). De feed toont voor deze bron dan een grijs vak met een fotootje-icoon; dat is geen fout, maar wel een gemis.`);
+  } else if (steekproef > 0 && fotoDekking < 0.5) {
+    oordeel.waarschuwingen.push(`Slechts ${s.metFoto} van de ${steekproef} berichten in de steekproef hebben een foto; de rest krijgt een grijs vak in de feed.`);
+  }
 
   if (dekking >= MIN_TEKST_DEKKING) return oordeel;
 
@@ -435,11 +449,16 @@ async function testBron(bron, opties = {}) {
   return oordeel;
 }
 
-/** Korte, controleerbare voorproef voor in de log: de eerste berichten met hun datum. */
+/** Korte, controleerbare voorproef voor in de log: de eerste berichten met hun datum, tekstlengte en foto-status. */
 function voorbeeldRegels(oordeel, aantal = 3) {
   return oordeel.geldig
     .slice(0, aantal)
-    .map((b, i) => `  ${i + 1}. "${b.titel}" (datum: ${b.gepubliceerdOp ? String(b.gepubliceerdOp).slice(0, 10) : "geen"}${b.tekstTekens !== undefined ? `, tekst: ${b.tekstTekens} tekens` : ""}) ${b.url}`);
+    .map((b, i) => {
+      const delen = [`datum: ${b.gepubliceerdOp ? String(b.gepubliceerdOp).slice(0, 10) : "geen"}`];
+      if (b.tekstTekens !== undefined) delen.push(`tekst: ${b.tekstTekens} tekens`);
+      delen.push(`foto: ${b.foto ? "ja" : "nee"}`);
+      return `  ${i + 1}. "${b.titel}" (${delen.join(", ")}) ${b.url}`;
+    });
 }
 
 module.exports = {

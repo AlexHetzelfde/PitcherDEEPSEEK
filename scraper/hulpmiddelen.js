@@ -514,6 +514,63 @@ function haalFotoUitHtml($) {
   return null;
 }
 
+/** Maakt een url absoluut tegen een basis; geeft de url onveranderd terug als er geen basis is of de url ongeldig is. */
+function maakAbsoluut(url, basis) {
+  if (!url || typeof url !== "string") return null;
+  const schoon = url.trim();
+  if (!schoon) return null;
+  if (!basis) return schoon;
+  try {
+    return new URL(schoon, basis).toString();
+  } catch {
+    return schoon;
+  }
+}
+
+/**
+ * Foto uit één lijst-item halen (cheerio-element). Volgorde van proberen:
+ *   1. fotoSelector (als opgegeven): het element met de afbeelding.
+ *   2. Anders: de eerste <img> binnen het item.
+ * Voor het attribuut: fotoAttribuut als opgegeven, anders de standaard
+ * volgorde src, data-src, data-lazy-src, data-original, en als laatste de
+ * eerste url uit srcset. Data-urls (base64) worden overgeslagen.
+ * De url wordt absoluut gemaakt tegen baseUrl (meestal de pagina-url).
+ * Geeft null als er geen bruikbare foto te vinden is.
+ */
+function haalFotoUitItem($, el, fotoSelector, fotoAttribuut, baseUrl) {
+  if (!el) return null;
+
+  let imgEl;
+  if (fotoSelector && typeof fotoSelector === "string" && fotoSelector.trim()) {
+    const selector = fotoSelector.trim();
+    imgEl = $(el).is(selector) ? $(el) : $(el).find(selector).first();
+  } else {
+    imgEl = $(el).find("img").first();
+  }
+  if (!imgEl || imgEl.length === 0) return null;
+
+  const attributen =
+    fotoAttribuut && typeof fotoAttribuut === "string" && fotoAttribuut.trim()
+      ? [fotoAttribuut.trim()]
+      : ["src", "data-src", "data-lazy-src", "data-original"];
+
+  const bruikbaar = (waarde) => typeof waarde === "string" && waarde.trim() && !/^data:/i.test(waarde.trim());
+
+  for (const naam of attributen) {
+    const waarde = imgEl.attr(naam);
+    if (bruikbaar(waarde)) return maakAbsoluut(waarde, baseUrl);
+  }
+
+  // srcset als laatste redmiddel: de eerste url vóór de eerste komma/spatie.
+  const srcset = imgEl.attr("srcset");
+  if (typeof srcset === "string" && srcset.trim()) {
+    const eerste = srcset.split(",")[0].trim().split(/\s+/)[0];
+    if (bruikbaar(eerste)) return maakAbsoluut(eerste, baseUrl);
+  }
+
+  return null;
+}
+
 // ---------------------------------------------------------------------------
 // RSS parsen
 // ---------------------------------------------------------------------------
@@ -832,10 +889,16 @@ function hostVan(url) {
 
 /**
  * Vult samenvatting én foto van berichten aan met de gegevens van de
- * berichtpagina, voor berichten waarvan de lijsttekst korter is dan
- * `lijsttekstGenoeg`. De berichten worden ter plekke aangepast. Lukt het
- * ophalen niet, dan blijven de lijstgegevens staan; het bericht gaat gewoon
- * door. Fouten worden geteld en gelogd.
+ * berichtpagina. Sinds Deel B: de pagina wordt ook opgehaald als de
+ * samenvatting al lang genoeg is, maar er nog geen foto is — de pagina
+ * levert dan alleen de foto (de bestaande, langere tekst wordt niet
+ * overschreven). Lukt het ophalen niet, dan blijven de lijstgegevens staan;
+ * het bericht gaat gewoon door. Fouten worden geteld en gelogd.
+ *
+ * De foto-telling gebeurt aan het einde in één keer (s.metFoto++ in de
+ * eind-lus). Tijdens het ophalen wordt de teller NIET opgehoogd, anders zou
+ * een foto dubbel geteld worden (één keer bij het zetten, één keer in de
+ * eind-lus).
  */
 async function vulBerichtenAanMetTekst(berichten, opties = {}) {
   const {
@@ -853,10 +916,14 @@ async function vulBerichtenAanMetTekst(berichten, opties = {}) {
 
   const perHost = new Map();
   for (const b of berichten) {
-    // We halen ook op als er geen samenvatting is maar wel een foto nodig zou
-    // kunnen zijn: dat is juist bij agenda-items vaak het geval. De drempel
-    // blijft dezelfde: alleen als de lijsttekst kort is.
-    if ((b.samenvatting || "").length >= lijsttekstGenoeg || nietOphalen(b)) continue;
+    // Sla een bericht alleen over als de tekst AL lang genoeg is EN er al een
+    // foto is. Is de tekst lang genoeg maar ontbreekt de foto nog, dan halen
+    // we de pagina alsnog op — alleen voor de foto (de tekst wordt dan niet
+    // overschreven, want de bestaande is al langer).
+    const tekstGenoeg = (b.samenvatting || "").length >= lijsttekstGenoeg;
+    const heeftFoto = Boolean(b.foto);
+    if (tekstGenoeg && heeftFoto) continue;
+    if (nietOphalen(b)) continue;
     const host = hostVan(b.url);
     if (!perHost.has(host)) perHost.set(host, []);
     perHost.get(host).push(b);
@@ -885,7 +952,9 @@ async function vulBerichtenAanMetTekst(berichten, opties = {}) {
         netwerkFoutenAchtereen = 0;
         if (uit && uit.foto && !b.foto) {
           b.foto = uit.foto;
-          s.metFoto++;
+          // De teller s.metFoto wordt NIET hier opgehoogd; dat gebeurt aan
+          // het einde van deze functie, in de eind-lus. Anders zou een foto
+          // dubbel geteld worden en zou de log "20 van 10 met foto" zeggen.
         }
         if (uit && uit.tekst && uit.tekst.length > (b.samenvatting || "").length) {
           b.samenvatting = uit.tekst;
@@ -971,6 +1040,10 @@ module.exports = {
   vulBerichtenAanMetTekst,
   tekstDekkingTekst,
   tekstStatistiekRegel,
+  haalFotoUitRssItem,
+  haalFotoUitHtml,
+  haalFotoUitItem,
+  maakAbsoluut,
   ARTIKEL_MAX_TEKENS,
   LIJSTTEKST_GENOEG_TEKENS,
   MIN_BRUIKBARE_TEKST_TEKENS,
