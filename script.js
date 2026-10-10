@@ -1,9 +1,9 @@
 // script.js — front-end logica
 //
-// Deze pagina leest drie statische JSON-bestanden die de GitHub Actions-
-// workflow elke avond ververst: data/pitches.json, data/nieuws-lokaal.json
-// en data/nieuws-landelijk.json. Geen backend nodig — alles is een simpele
-// fetch() naar bestanden in dezelfde repo.
+// Deze pagina leest vier statische JSON-bestanden die de GitHub Actions-
+// workflow elke avond ververst: data/pitches.json, data/feed.json,
+// data/nieuws-lokaal.json en data/nieuws-landelijk.json. Geen backend nodig —
+// alles is een simpele fetch() naar bestanden in dezelfde repo.
 
 async function laadJson(pad) {
   const response = await fetch(pad, { cache: "no-store" });
@@ -61,6 +61,47 @@ function renderPitchKaart(bericht) {
   `;
 }
 
+/**
+ * De nieuwsfeed: alle binnengekomen berichten op datum, nieuwste eerst.
+ * Elk item heeft een foto (of een grijs vlak), een titel en een stukje tekst.
+ * Nieuws krijgt een rood accent, agenda/evenement een geel accent.
+ */
+function renderFeed(items) {
+  const container = document.getElementById("feed-lijst");
+  if (!items || items.length === 0) {
+    container.innerHTML = '<p class="leeg">Nog geen berichten in de feed.</p>';
+    return;
+  }
+  container.innerHTML = items.map(renderFeedItem).join("");
+}
+
+function renderFeedItem(item) {
+  const heeftFoto = typeof item.foto === "string" && item.foto.length > 0;
+  // Voor background-image gebruiken we single quotes; eventuele single quotes
+  // in de URL zelf moeten we eerst escapen, anders breekt het style-attribuut.
+  const veiligeFoto = heeftFoto ? item.foto.replace(/'/g, "%27").replace(/\)/g, "%29") : "";
+  const stijl = heeftFoto ? ` style="background-image: url('${veiligeFoto}')"` : "";
+  const soort = item.soort === "agenda" ? "agenda" : "nieuws";
+  const soortLabel = soort === "agenda" ? "agenda" : "nieuws";
+
+  return `
+    <article class="feed-item feed-${soort}">
+      <div class="feed-foto${heeftFoto ? " heeft-foto" : ""}"${stijl} role="img" aria-label="${heeftFoto ? "afbeelding bij het bericht" : "geen afbeelding beschikbaar"}">
+        ${heeftFoto ? "" : '<span class="geen-foto-tekst">geen foto beschikbaar</span>'}
+      </div>
+      <div class="feed-tekst">
+        <div class="feed-meta">
+          <span class="feed-soort feed-soort-${soort}">${soortLabel}</span>
+          <span class="feed-bron">${escapeHtml(item.bronNaam || "")}</span>
+          <span class="feed-datum">${formatteerDatum(item.gepubliceerdOp)}</span>
+        </div>
+        <h3 class="feed-titel"><a href="${escapeHtml(item.url)}" target="_blank" rel="noopener">${escapeHtml(item.titel || "")}</a></h3>
+        ${item.samenvatting ? `<p class="feed-samenvatting">${escapeHtml(item.samenvatting)}</p>` : ""}
+      </div>
+    </article>
+  `;
+}
+
 function renderBerichtenLijst(containerId, berichten) {
   const container = document.getElementById(containerId);
   if (!berichten || berichten.length === 0) {
@@ -92,6 +133,13 @@ async function initialiseer() {
     renderPitches(pitches);
   } catch (fout) {
     document.getElementById("pitches-lijst").innerHTML = `<p class="foutmelding">Pitches konden niet geladen worden: ${fout.message}</p>`;
+  }
+
+  try {
+    const feed = await laadJson("data/feed.json");
+    renderFeed(feed);
+  } catch (fout) {
+    document.getElementById("feed-lijst").innerHTML = `<p class="foutmelding">Feed kon niet geladen worden: ${fout.message}</p>`;
   }
 
   try {

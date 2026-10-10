@@ -6,6 +6,10 @@
   --kleur-rand: #d8d3c8;
   --kleur-lokaal: #2f6b4f;
   --kleur-landelijk: #4a5b8c;
+  --kleur-nieuws: #b83a3a;
+  --kleur-nieuws-licht: #f7e4e4;
+  --kleur-agenda: #b8860b;
+  --kleur-agenda-licht: #faf0d4;
   --font: "Segoe UI", system-ui, -apple-system, sans-serif;
 }
 
@@ -157,6 +161,142 @@ h2 {
   margin-top: 0.5rem;
 }
 
+/* --- Nieuwsfeed --------------------------------------------------------- */
+
+.feed-legenda {
+  display: inline-block;
+  font-weight: 600;
+  padding: 0 0.35rem;
+  border-radius: 3px;
+}
+.feed-legenda-nieuws {
+  color: var(--kleur-nieuws);
+  background: var(--kleur-nieuws-licht);
+}
+.feed-legenda-agenda {
+  color: var(--kleur-agenda);
+  background: var(--kleur-agenda-licht);
+}
+
+.feed-lijst {
+  margin-top: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.feed-item {
+  display: flex;
+  gap: 1rem;
+  background: white;
+  border: 1px solid var(--kleur-rand);
+  border-left: 4px solid var(--kleur-rand);
+  border-radius: 6px;
+  overflow: hidden;
+  padding: 0.75rem;
+  align-items: stretch;
+}
+
+.feed-item.feed-nieuws {
+  border-left-color: var(--kleur-nieuws);
+}
+.feed-item.feed-agenda {
+  border-left-color: var(--kleur-agenda);
+}
+
+.feed-foto {
+  flex: 0 0 140px;
+  width: 140px;
+  min-height: 95px;
+  background-color: #dcdcdc;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  color: #7a7a7a;
+  font-size: 0.7rem;
+  line-height: 1.1;
+  padding: 0.25rem;
+}
+
+.geen-foto-tekst {
+  font-style: italic;
+  opacity: 0.85;
+}
+
+.feed-tekst {
+  flex: 1 1 auto;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.feed-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  align-items: center;
+  font-size: 0.75rem;
+  color: #777;
+}
+
+.feed-soort {
+  font-size: 0.65rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  padding: 0.1rem 0.45rem;
+  border-radius: 999px;
+}
+
+.feed-soort-nieuws {
+  background: var(--kleur-nieuws-licht);
+  color: var(--kleur-nieuws);
+}
+
+.feed-soort-agenda {
+  background: var(--kleur-agenda-licht);
+  color: var(--kleur-agenda);
+}
+
+.feed-bron {
+  color: #555;
+}
+
+.feed-datum {
+  margin-left: auto;
+  color: #999;
+}
+
+.feed-titel {
+  margin: 0;
+  font-size: 1rem;
+  line-height: 1.3;
+}
+
+.feed-titel a {
+  color: var(--kleur-tekst);
+  text-decoration: none;
+}
+
+.feed-titel a:hover {
+  text-decoration: underline;
+}
+
+.feed-samenvatting {
+  margin: 0;
+  font-size: 0.85rem;
+  color: #444;
+  overflow: hidden;
+}
+
+/* --- Alle berichten (bestaand) ----------------------------------------- */
+
 .berichten-lijst {
   margin-top: 1rem;
 }
@@ -197,4 +337,18 @@ h2 {
   font-size: 0.8rem;
   color: #777;
   border-top: 1px solid var(--kleur-rand);
+}
+
+@media (max-width: 520px) {
+  .feed-item {
+    flex-direction: column;
+  }
+  .feed-foto {
+    width: 100%;
+    flex: 0 0 auto;
+    min-height: 150px;
+  }
+  .feed-datum {
+    margin-left: 0;
+  }
 }
