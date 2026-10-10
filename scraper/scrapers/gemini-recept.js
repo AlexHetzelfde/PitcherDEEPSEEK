@@ -4,8 +4,13 @@
 // Gebruikt het eenmalig door Gemini gegenereerde "recept" (CSS-selectors,
 // opgeslagen in bronnen.js bij bron.selectors) om dagelijks te scrapen —
 // puur met cheerio, geen Gemini-aanroep per dag nodig.
+//
+// Sinds Deel B: leesItem haalt ook de foto op, via fotoSelector (als Gemini
+// die heeft gegeven) met fallback naar de eerste <img> in het item. Dat werkt
+// naast de tekststap in index.js: heeft de scraper al een foto, dan hoeft de
+// tekststap de pagina niet meer op te halen voor de foto.
 
-const { haalDatumUitTekst, leesDatumEnEinde, volgPaginas } = require("../hulpmiddelen");
+const { haalDatumUitTekst, leesDatumEnEinde, volgPaginas, haalFotoUitItem } = require("../hulpmiddelen");
 
 /**
  * Zoekt een element BINNEN een item, maar ook het item zelf. cheerio's find()
@@ -25,10 +30,10 @@ function bruikbareHref(href) {
 }
 
 /**
- * Leest titel, link en datumtekst uit één item. Wordt door de scraper EN door
- * de diagnose in gemini-recept-lus.js gebruikt, zodat wat Gemini te horen krijgt
- * ("de selector matchte 12 elementen, 0 hadden een link") altijd hetzelfde
- * is als wat de scraper werkelijk doet.
+ * Leest titel, link, datumtekst, samenvatting en foto uit één item. Wordt
+ * door de scraper EN door de diagnose in gemini-recept-lus.js gebruikt,
+ * zodat wat Gemini te horen krijgt ("de selector matchte 12 elementen, 0
+ * hadden een link") altijd hetzelfde is als wat de scraper werkelijk doet.
  *
  * De link wordt in deze volgorde gezocht, en de eerste die bestaat wint:
  *   1. linkSelector, binnen het item (of het item zelf)
@@ -38,9 +43,13 @@ function bruikbareHref(href) {
  * Stap 2 tot 4 vangen de gangbare variant op waarbij een hele kaart één
  * aanklikbare <a> is (zoals bij evenementenagenda's): daar is het item zelf de
  * link, en "self" of "a" als linkSelector vond die eerder niet.
+ *
+ * De foto komt uit fotoSelector (relatief aan het item) of, als die er niet
+ * is, uit de eerste <img> binnen het item. De url wordt absoluut gemaakt
+ * tegen paginaUrl (optioneel — alleen als de scraper hem heeft).
  */
-function leesItem($, el, selectors) {
-  const { titelSelector, linkSelector, datumSelector, datumAttribuut, samenvattingSelector } = selectors;
+function leesItem($, el, selectors, paginaUrl) {
+  const { titelSelector, linkSelector, datumSelector, datumAttribuut, samenvattingSelector, fotoSelector, fotoAttribuut } = selectors;
 
   const titelEl = titelSelector ? vindInItem($, el, titelSelector) : $(el);
   const titel = titelEl.text().replace(/\s+/g, " ").trim();
@@ -68,14 +77,19 @@ function leesItem($, el, selectors) {
   if (samenvattingSelector) {
     samenvatting = vindInItem($, el, samenvattingSelector).text().replace(/\s+/g, " ").trim().slice(0, 600);
   }
-  return { titel, link, datumTekst, samenvatting };
+
+  // Foto: via fotoSelector als Gemini die heeft gegeven, anders via de
+  // ingebouwde fallback (eerste <img> in het item).
+  const foto = haalFotoUitItem($, el, fotoSelector || null, fotoAttribuut || null, paginaUrl);
+
+  return { titel, link, datumTekst, samenvatting, foto };
 }
 
 /** Leest de berichten van één lijstpagina (al geladen als cheerio-document). */
 function leesPagina($, bron, paginaUrl) {
   const berichten = [];
   $(bron.selectors.itemSelector).each((_, el) => {
-    const { titel, link, datumTekst, samenvatting } = leesItem($, el, bron.selectors);
+    const { titel, link, datumTekst, samenvatting, foto } = leesItem($, el, bron.selectors, paginaUrl);
     if (!titel || !link) return;
 
     // Val terug op de titel/item-tekst zelf als er geen los datum-element is
@@ -104,6 +118,7 @@ function leesPagina($, bron, paginaUrl) {
       titel,
       url: nieuweUrl,
       samenvatting, // leeg als er geen samenvattingSelector is; de tekststap in index.js vult dan aan
+      ...(foto ? { foto } : {}),
       gepubliceerdOp,
       ...(eindDatum ? { eindDatum } : {}),
       opgehaaldOp: new Date().toISOString(),
@@ -125,6 +140,10 @@ async function scrapeGeminiRecept(bron) {
   const zonderDatum = berichten.filter((b) => !b.gepubliceerdOp).length;
   if (zonderDatum > 0) {
     console.warn(`[${bron.id}] ${zonderDatum} van ${berichten.length} berichten (gemini-recept) hadden geen herkenbare datum.`);
+  }
+  const zonderFoto = berichten.filter((b) => !b.foto).length;
+  if (zonderFoto === berichten.length && berichten.length > 0) {
+    console.warn(`[${bron.id}] Geen enkel bericht heeft een foto in de lijst; de tekststap in index.js probeert het nog via de berichtpagina's.`);
   }
 
   return berichten;

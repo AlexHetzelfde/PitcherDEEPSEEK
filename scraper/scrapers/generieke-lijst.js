@@ -16,9 +16,12 @@
 // er na de eerste run bijgesteld moeten worden — check de bericht-aantallen
 // in de logs per bron; 0 berichten van een bron die duidelijk wel nieuws
 // heeft is het signaal om deze scraper voor die specifieke bron te verfijnen.
+//
+// Sinds Deel B: de HTML-scrape probeert per item ook een foto te vinden (via
+// de eerste <img> in het item, met de standaard attribuut-fallbacks).
 
 const cheerio = require("cheerio");
-const { haalOp, parseerRssTekst, oorzaakTekst, haalDatumUitTekst, leesDatumEnEinde, volgPaginas } = require("../hulpmiddelen");
+const { haalOp, parseerRssTekst, oorzaakTekst, leesDatumEnEinde, volgPaginas, haalFotoUitItem } = require("../hulpmiddelen");
 const { feedKandidaten } = require("../feed-varianten");
 
 // Volgorde van kandidaat-selectors voor één nieuwsitem-blok, breed naar smal.
@@ -104,6 +107,11 @@ function probeerGeneriekePatronen($, bron, opties = {}) {
       // bereik zijn, dan bewaren we ook de eindDatum.
       const datum = leesDatumEnEinde([[datumTekst, "streng"], [titel, "zoek"], [$(el).text(), "zoek"]], datumOpties);
 
+      // Foto: eerste <img> in het item, met de standaard attribuut-fallbacks
+      // (src, data-src, data-lazy-src, data-original, srcset). Als er niets
+      // bruikbaars staat, blijft het veld leeg; de tekststap vult later aan.
+      const foto = haalFotoUitItem($, el, null, null, paginaUrl);
+
       berichten.push({
         bronId: bron.id,
         bronNaam: bron.naam,
@@ -111,6 +119,7 @@ function probeerGeneriekePatronen($, bron, opties = {}) {
         titel,
         url: new URL(link, paginaUrl).toString(),
         samenvatting: $(el).find("p").first().text().trim().slice(0, 400),
+        ...(foto ? { foto } : {}),
         gepubliceerdOp: datum.start,
         ...(datum.start && datum.eind ? { eindDatum: datum.eind } : {}),
         opgehaaldOp: new Date().toISOString(),
@@ -147,6 +156,10 @@ async function scrapeHtml($, bron, eersteHtml) {
   const zonderDatum = berichten.filter((b) => !b.gepubliceerdOp).length;
   if (zonderDatum > 0) {
     console.warn(`[${bron.id}] ${zonderDatum} van ${berichten.length} berichten (selector "${resultaat.selector}") hadden geen herkenbare datum — die tellen nu mee als "te oud" bij de leeftijdsfilter.`);
+  }
+  const zonderFoto = berichten.filter((b) => !b.foto).length;
+  if (zonderFoto === berichten.length && berichten.length > 0) {
+    console.warn(`[${bron.id}] Geen enkel bericht heeft een foto in de lijst; de tekststap in index.js probeert het nog via de berichtpagina's.`);
   }
   return berichten;
 }

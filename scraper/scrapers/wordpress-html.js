@@ -10,9 +10,12 @@
 // (zie feed-varianten.js). De pagina wordt één keer opgehaald zodat we ook de
 // <link rel="alternate">-tags kunnen lezen die de pagina zelf over zijn feed
 // geeft; die HTML wordt daarna hergebruikt voor de fallback.
+//
+// Sinds Deel B probeert de HTML-fallback per item ook een foto te vinden (via
+// de eerste <img> in het item, met de standaard attribuut-fallbacks).
 
 const cheerio = require("cheerio");
-const { haalOp, parseerRssTekst, oorzaakTekst, volgPaginas } = require("../hulpmiddelen");
+const { haalOp, parseerRssTekst, oorzaakTekst, volgPaginas, haalFotoUitItem } = require("../hulpmiddelen");
 const { feedKandidaten } = require("../feed-varianten");
 
 async function scrapeWordpress(bron) {
@@ -50,18 +53,22 @@ async function scrapeWordpress(bron) {
 
   // Stap 3: HTML-fallback. De HTML hebben we al, geef hem mee zodat
   // volgPaginas hem niet nog een keer ophaalt.
-  const { berichten } = await volgPaginas(bron, ($pagina) => leesWordpressPagina($pagina, bron), { eersteHtml: html });
+  const { berichten } = await volgPaginas(bron, ($pagina, paginaUrl) => leesWordpressPagina($pagina, bron, paginaUrl), { eersteHtml: html });
 
   const zonderDatum = berichten.filter((b) => !b.gepubliceerdOp).length;
   if (zonderDatum > 0) {
     console.warn(`[${bron.id}] ${zonderDatum} van ${berichten.length} berichten (HTML-fallback) hadden geen herkenbare datum — deze site heeft waarschijnlijk maatwerk-selectors nodig voor de datum.`);
+  }
+  const zonderFoto = berichten.filter((b) => !b.foto).length;
+  if (zonderFoto === berichten.length && berichten.length > 0) {
+    console.warn(`[${bron.id}] Geen enkel bericht heeft een foto in de HTML-lijst; de tekststap in index.js probeert het nog via de berichtpagina's.`);
   }
 
   return berichten;
 }
 
 /** Leest de berichten van één WordPress-lijstpagina (al geladen als cheerio-document). */
-function leesWordpressPagina($, bron) {
+function leesWordpressPagina($, bron, paginaUrl) {
   const berichten = [];
 
   // WordPress-thema's verschillen, dus we proberen een paar veelvoorkomende
@@ -71,6 +78,9 @@ function leesWordpressPagina($, bron) {
   // intro aan (relatief aan het blok). Zonder die selector blijft de
   // samenvatting leeg en vult de tekststap in index.js hem aan.
   const samenvattingSelector = bron.selectors && bron.selectors.samenvattingSelector;
+  const fotoSelector = bron.selectors && bron.selectors.fotoSelector;
+  const fotoAttribuut = bron.selectors && bron.selectors.fotoAttribuut;
+  const basisUrl = paginaUrl || bron.url;
 
   $("article, .post, .news-item").each((_, el) => {
     const titelEl = $(el).find("h1, h2, h3").first();
@@ -81,6 +91,10 @@ function leesWordpressPagina($, bron) {
     const datumTekst = $(el).find("time").attr("datetime") || $(el).find("time").text().trim();
     const gepubliceerdOp = parseerDatum(datumTekst) || datumUitPermalink($, el);
 
+    // Foto: via fotoSelector (als gegeven in bronnen.js) of de eerste <img>
+    // in het item, met de standaard attribuut-fallbacks.
+    const foto = haalFotoUitItem($, el, fotoSelector || null, fotoAttribuut || null, basisUrl);
+
     berichten.push({
       bronId: bron.id,
       bronNaam: bron.naam,
@@ -88,6 +102,7 @@ function leesWordpressPagina($, bron) {
       titel,
       url: link,
       samenvatting: samenvattingSelector ? $(el).find(samenvattingSelector).first().text().replace(/\s+/g, " ").trim().slice(0, 600) : "",
+      ...(foto ? { foto } : {}),
       gepubliceerdOp,
       opgehaaldOp: new Date().toISOString(),
     });

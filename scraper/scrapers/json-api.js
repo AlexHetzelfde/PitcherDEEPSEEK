@@ -8,15 +8,21 @@
 //     id: "voorbeeld", type: "json-api",
 //     url: "https://voorbeeld.nl/api/nieuws?limit=20",
 //     json: { itemsPad: "data.items", titelVeld: "title", linkVeld: "url",
-//             datumVeld: "published_at", samenvattingVeld: "intro" },
+//             datumVeld: "published_at", samenvattingVeld: "intro",
+//             fotoVeld: "image.url" },
 //   }
 //
 // Paden gebruiken punten voor diepte ("data.items", "meta.0.titel"). Een lege
 // itemsPad betekent: de JSON zelf is de lijst. Relatieve links worden
 // opgelost tegen bron.url. Deze koppeling wordt meestal door Gemini bedacht
 // bij het toevoegen van de bron (zie bron-ontdekking.js) en daar getest.
+//
+// Sinds Deel B: als bron.json een fotoVeld heeft, wordt dat veld gelezen en
+// als foto meegenomen (absoluut gemaakt tegen bron.url). Zonder fotoVeld
+// blijft het foto-veld leeg; de tekststap in index.js probeert het dan nog
+// via de og:image op de berichtpagina.
 
-const { haalOp } = require("../hulpmiddelen");
+const { haalOp, maakAbsoluut } = require("../hulpmiddelen");
 
 function haalOpPad(object, pad) {
   if (!pad) return object;
@@ -65,6 +71,17 @@ async function scrapeJsonApi(bron) {
     } catch {
       continue;
     }
+
+    // Foto: alleen als bron.json een fotoVeld heeft. Het veld mag een string
+    // zijn, of (via een pad als "image.url") een genest veld aanwijzen.
+    let foto = null;
+    if (cfg.fotoVeld) {
+      const waarde = haalOpPad(item, cfg.fotoVeld);
+      if (typeof waarde === "string" && waarde.trim() && !/^data:/i.test(waarde.trim())) {
+        foto = maakAbsoluut(waarde, bron.url);
+      }
+    }
+
     berichten.push({
       bronId: bron.id,
       bronNaam: bron.naam,
@@ -72,6 +89,7 @@ async function scrapeJsonApi(bron) {
       titel,
       url,
       samenvatting: cfg.samenvattingVeld ? String(haalOpPad(item, cfg.samenvattingVeld) ?? "").replace(/\s+/g, " ").trim().slice(0, 600) : "",
+      ...(foto ? { foto } : {}),
       gepubliceerdOp: cfg.datumVeld ? parseerJsonDatum(haalOpPad(item, cfg.datumVeld)) : null,
       opgehaaldOp: new Date().toISOString(),
     });
