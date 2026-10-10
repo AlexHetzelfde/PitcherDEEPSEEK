@@ -10,9 +10,13 @@
 // Ondersteunde types: NewsArticle, Article, BlogPosting, Event (en subtypes
 // zoals MusicEvent, TheaterEvent, ...). Voor artikelen is de datum
 // datePublished, voor evenementen startDate (de datum van het evenement).
+//
+// Sinds Deel B: ook het image-veld wordt gelezen. Schema.org's image kan een
+// string zijn, een array van strings, of een object met een url-veld
+// (ImageObject). We pakken de eerste die bruikbaar is.
 
 const cheerio = require("cheerio");
-const { haalOp } = require("../hulpmiddelen");
+const { haalOp, maakAbsoluut } = require("../hulpmiddelen");
 
 const ARTIKEL_TYPES = /^(NewsArticle|Article|BlogPosting|Report|ScholarlyArticle|.*Event)$/;
 
@@ -38,6 +42,27 @@ function verzamelKnopen(waarde, uit) {
 function linkVan(knoop) {
   const kandidaten = [knoop.url, knoop.mainEntityOfPage && (knoop.mainEntityOfPage["@id"] || knoop.mainEntityOfPage), knoop["@id"]];
   return kandidaten.find((k) => typeof k === "string" && /^(https?:\/\/|\/)/.test(k)) || null;
+}
+
+/**
+ * Foto uit het image-veld van een schema.org-knoop halen. Drie vormen komen
+ * voor:
+ *   "https://..."
+ *   ["https://...", "https://..."]
+ *   { "@type": "ImageObject", "url": "https://..." }
+ * (soms ook met "contentUrl" in plaats van "url"). De eerste bruikbare
+ * string wint, en wordt absoluut gemaakt tegen basisUrl.
+ */
+function haalFotoUitSchemaImage(image, basisUrl) {
+  const kandidaten = alsLijst(image);
+  for (const k of kandidaten) {
+    if (typeof k === "string" && k.trim()) return maakAbsoluut(k, basisUrl);
+    if (k && typeof k === "object") {
+      const url = k.url || k.contentUrl;
+      if (typeof url === "string" && url.trim()) return maakAbsoluut(url, basisUrl);
+    }
+  }
+  return null;
 }
 
 /** Puur: haalt berichten uit een al geladen cheerio-document. Ook los te gebruiken voor tests. */
@@ -72,6 +97,8 @@ function haalJsonLdBerichten($, basisUrl, bron) {
     // Een evenement met een endDate (meerdaags) bewaart die als eindDatum; zie binnenAgendaVenster in hulpmiddelen.js.
     const eind = new Date(knoop.endDate || "");
     const heeftEind = !isNaN(datum.getTime()) && !isNaN(eind.getTime()) && eind.getTime() > datum.getTime();
+    const foto = haalFotoUitSchemaImage(knoop.image, basisUrl);
+
     berichten.push({
       bronId: bron.id,
       bronNaam: bron.naam,
@@ -79,6 +106,7 @@ function haalJsonLdBerichten($, basisUrl, bron) {
       titel,
       url,
       samenvatting: String(knoop.description || "").replace(/\s+/g, " ").trim().slice(0, 600),
+      ...(foto ? { foto } : {}),
       gepubliceerdOp: isNaN(datum.getTime()) ? null : datum.toISOString(),
       ...(heeftEind ? { eindDatum: eind.toISOString() } : {}),
       opgehaaldOp: new Date().toISOString(),
@@ -92,4 +120,4 @@ async function scrapeJsonLd(bron) {
   return haalJsonLdBerichten(cheerio.load(html), bron.url, bron);
 }
 
-module.exports = { scrapeJsonLd, haalJsonLdBerichten };
+module.exports = { scrapeJsonLd, haalJsonLdBerichten, haalFotoUitSchemaImage };
