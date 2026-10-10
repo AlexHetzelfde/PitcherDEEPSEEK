@@ -415,4 +415,23 @@ async function main() {
 
   logFase("STAP 6 — Pitches samenstellen");
   const kansrijkeLokaal = lokaalBeoordeeld.filter((b) => b.aiBeoordeling?.oppakbaar === "ja");
-  const kansrijkLandelijk = landelijkBeoordeeld.filter((b) => b.aiBeo
+  const kansrijkLandelijk = landelijkBeoordeeld.filter((b) => b.aiBeoordeling?.lokaleInvalshoek === "ja");
+
+  const topPitches = stelPitchesSamen(kansrijkeLokaal, kansrijkLandelijk, AANTAL_PITCHES);
+
+  await schrijfJson("pitches.json", {
+    gegenereerdOp: new Date().toISOString(),
+    aantalBerichtenTotaal: berichtenVanVandaag.length,
+    topPitches,
+  });
+
+  console.log(`Pitches: ${topPitches.length} van ${kansrijkeLokaal.length + kansrijkLandelijk.length} kansrijke bericht(en) opgenomen (top ${AANTAL_PITCHES}).`);
+
+  logDuur(startRun, "Dagelijkse run");
+  console.log(`Klaar: ${topPitches.length} pitches gegenereerd.`);
+}
+
+main().catch((fout) => {
+  console.error(`Dagelijkse run stopte met een fout: ${fout.stack || fout.message}`);
+  process.exit(1);
+});
