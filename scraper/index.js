@@ -3,14 +3,12 @@
 // Volgorde:
 // 1. Alles scrapen (per bron, met eigen scraper-type)
 // 2. Tellen hoeveel berichten er zijn, VOORDAT Gemini wordt aangeroepen
-//    en van elk bericht de tekst ophalen (hulpmiddelen.js), zodat
-//    Gemini meer ziet dan alleen een titel
-// 3. Splitsen in lokaal/landelijk en sorteren (nieuws eerst, dan agenda) —
-//    dat bepaalt wie binnen de dagcap valt
-// 4. Per bericht twee Gemini-calls: eerst filteren of het oppakbaar is, dan
-//    (alleen voor oppakbare berichten) de pitch en de score
-// 5. Pitches rangschikken op de prioriteit (1-10) die Gemini zelf geeft, en
-//    wegschrijven naar /data
+//    en van elk bericht de tekst + foto ophalen (hulpmiddelen.js)
+// 3. De nieuwsfeed bijwerken (data/feed.json): alle berichten binnen het
+//    venster, gededupliceerd op url, gesorteerd op datum, cap 200
+// 4. Splitsen in lokaal/landelijk en sorteren (nieuws eerst, dan agenda)
+// 5. Per bericht twee Gemini-calls: filter, dan pitch + score
+// 6. Pitches rangschikken op prioriteit en wegschrijven naar /data
 
 const fs = require("fs/promises");
 const path = require("path");
@@ -30,21 +28,19 @@ const {
 const DATA_MAP = path.join(__dirname, "..", "data");
 const DAGCAP_GEMINI = Number(process.env.DAGCAP_GEMINI || 100);
 const AANTAL_PITCHES = Number(process.env.AANTAL_PITCHES || 10);
-// Brontypes die hun eigen tekst meebrengen (iBabs leest de documenten zelf uit):
-// daar halen we geen berichtpagina op, want die URL is een document, geen webpagina.
+// Hoeveel items blijven er in de feed bewaard. Nieuwe items komen bovenaan,
+// de oudste vallen eraf als de lijst voller wordt dan dit.
+const FEED_MAX_ITEMS = Number(process.env.FEED_MAX_ITEMS || 200);
+// Hoeveel tekens van de samenvatting per feed-item bewaard blijven.
+const FEED_SAMENVATTING_TEKENS = 250;
+
 const GEEN_TEKSTOPHAAL_TYPES = new Set(["ibabs"]);
-// Brontypes die de datum uit de pagina zelf lezen. Alleen daar kan een agenda ten onrechte
-// als nieuws staan (rss, wp-rest en json-api leveren publicatiedatums).
 const PAGINADATUM_TYPES = new Set(["gemini-recept", "generieke-lijst", "wordpress-html", "json-ld"]);
-// Bronnen zonder soort "agenda" waarvan de datums er toch op wijzen (id -> melding). Voor deze
-// run behandelen we ze als agenda; bronnen.js zelf wijzigt de dagelijkse run nooit.
 const afgeleideAgenda = new Map();
 function effectieveBron(bron) {
   return afgeleideAgenda.has(bron.id) ? { ...bron, soort: "agenda" } : bron;
 }
 
-// --- Kleine logging-helpers, zodat elke fase duidelijk zichtbaar is in de
-// Actions-log: een kopregel, en aan het eind hoelang die fase duurde. ---
 function logFase(titel) {
   console.log(`\n=== ${titel} — ${new Date().toISOString()} ===`);
 }
@@ -54,10 +50,6 @@ function logDuur(startMs, label) {
   console.log(`${label} klaar in ${duurSec}s`);
 }
 
-/**
- * Telt per bron hoeveel berichten er gevonden zijn en hoeveel daarvan het
- * venster (leeftijdsfilter, of het agenda-venster) overleefden.
- */
 function telPerBron(ruweBerichten, recenteBerichten) {
   const gevondenPerBron = {};
   const overPerBron = {};
@@ -66,11 +58,6 @@ function telPerBron(ruweBerichten, recenteBerichten) {
   return { gevondenPerBron, overPerBron };
 }
 
-/**
- * Korte, leesbare beschrijving van een datum: "2026-10-05 (4 dagen oud)"
- * of "2026-11-02 (over 24 dagen)". Voor vandaag/gisteren/morgen een
- * expliciet woord in plaats van een getal.
- */
 function beschrijfDatum(iso) {
   if (!iso) return "geen datum";
   const d = new Date(iso);
@@ -84,31 +71,12 @@ function beschrijfDatum(iso) {
   return `${datumTekst} (over ${-dagen} dagen)`;
 }
 
-/** Titel inkorten voor in het bronoverzicht, zodat één regel niet te lang wordt. */
 function kortTitel(titel) {
   const t = (titel || "(geen titel)").replace(/\s+/g, " ").trim();
   return t.length > 80 ? `${t.slice(0, 77)}…` : t;
 }
 
-/**
- * Drukt een duidelijk per-bron statusoverzicht af: hoeveel berichten een
- * bron opleverde, hoeveel daarvan het venster overleefden, en een
- * status-label — zodat een kapotte of stilvallende bron in één oogopslag
- * opvalt tussen de rest van de run-log, zonder dat je de losse regels per
- * bron hoeft na te lopen.
- *
- * Een bron met rustig: true (zie bron-poort.js) is een bron die maar heel
- * weinig berichten toont. Daar is "0 na leeftijdsfilter" normaal en geen
- * reden voor de datum-waarschuwing. "0 gevonden" blijft voor elke bron rood:
- * dat betekent dat de scraper niets meer ziet.
- *
- * Bij een waarschuwing (0 binnen het venster, maar wel berichten gevonden)
- * tonen we het meest recente bericht met zijn datum en leeftijd, plus het
- * aantal berichten zonder leesbare datum. Zo kan de eigenaar zelf zien of
- * de datumherkenning klopt of dat de bron gewoon niets nieuws heeft.
- */
 function logBronOverzicht({ gevondenPerBron, overPerBron, ruweBerichten = [] }) {
-  // Berichten per bron groeperen, zodat we per bron het meest recente kunnen tonen.
   const perBron = new Map();
   for (const b of ruweBerichten) {
     if (!perBron.has(b.bronId)) perBron.set(b.bronId, []);
@@ -137,10 +105,6 @@ function logBronOverzicht({ gevondenPerBron, overPerBron, ruweBerichten = [] }) 
     const soort = bron.soort === "agenda" ? (afgeleideAgenda.has(bron.id) ? " [agenda!]" : " [agenda]") : "";
     console.log(`  ${(bron.id + soort).padEnd(28)} ${String(gevonden).padStart(3)} → ${String(over).padStart(3)}   ${status}`);
 
-    // Bij een waarschuwing: toon het meest recente bericht zodat de eigenaar
-    // zelf kan checken of de datumherkenning klopt, of dat de bron gewoon
-    // niets nieuws heeft. Bij een rustige bron is "0" verwacht gedrag; daar
-    // tonen we geen detail om het overzicht kort te houden.
     if (over === 0 && gevonden > 0 && !bron.rustig) {
       const berichten = perBron.get(bron.id) || [];
       let recentste = null;
@@ -172,26 +136,12 @@ function logBronOverzicht({ gevondenPerBron, overPerBron, ruweBerichten = [] }) 
 
 const GEZONDHEID_BESTAND = path.join(DATA_MAP, "bron-gezondheid.json");
 
-/**
- * Houdt per bron twee tellers bij. Dat bestand wordt met de rest van
- * data/*.json teruggecommit. herstel-bronnen.js gebruikt ze om pas in actie te
- * komen als het probleem meerdere runs aanhoudt, zodat een tijdelijke storing
- * van een website geen herstelpoging (en geen pull request) uitlokt.
- *   - opeenvolgendGeenBerichten: runs achter elkaar waarin de scraper NIETS
- *     vond (gevonden = 0): de scraper is blind.
- *   - opeenvolgendGeenBinnenVenster: runs achter elkaar waarin niets binnen
- *     het venster viel (binnenVenster = 0). Dat vangt ook een bron die nog wel
- *     berichten vindt, maar waarvan alles door het filter valt (bijvoorbeeld
- *     omdat de datums verkeerd worden gelezen). Telt dus ook de runs mee waarin
- *     niets gevonden werd. Een rustige bron (rustig: true) heeft hier een
- *     ruimere drempel (zie herstel-bronnen.js).
- */
 async function werkBronGezondheidBij({ gevondenPerBron, overPerBron }) {
   let vorige = {};
   try {
     vorige = JSON.parse(await fs.readFile(GEZONDHEID_BESTAND, "utf-8"));
   } catch {
-    /* eerste run, of bestand nog niet aanwezig */
+    /* eerste run */
   }
   const nieuw = {};
   for (const bron of bronnen) {
@@ -226,9 +176,6 @@ async function scrapeAlleBronnen() {
       const duurSec = ((Date.now() - startBron) / 1000).toFixed(1);
       console.log(`[${bron.id}] ${berichten.length} bericht(en) gevonden (${duurSec}s).`);
 
-      // Vangnet: staat deze bron als nieuws, maar zijn de datums die van een agenda? Dan zou
-      // elk toekomstig evenement als nieuws tellen. Voor deze run behandelen we hem als agenda
-      // en we zeggen er luid bij wat er in bronnen.js moet veranderen.
       if (bron.soort !== "agenda" && PAGINADATUM_TYPES.has(bron.type)) {
         const afleiding = agendaUitDatums(berichten);
         if (afleiding.lijktOpAgenda) {
@@ -239,7 +186,6 @@ async function scrapeAlleBronnen() {
       }
       alleBerichten.push(...berichten);
     } catch (fout) {
-      // Eén kapotte bron mag de hele dagelijkse run niet laten crashen.
       const duurSec = ((Date.now() - startBron) / 1000).toFixed(1);
       console.error(`[${bron.id}] Scrapen mislukt na ${duurSec}s: ${fout.message}${oorzaakTekst(fout)}`);
     }
@@ -262,23 +208,75 @@ async function schrijfJson(bestandsnaam, data) {
   await fs.writeFile(path.join(DATA_MAP, bestandsnaam), JSON.stringify(data, null, 2), "utf-8");
 }
 
+/** Kapt een tekst af op een woordgrens, met een ellips erachter. */
+function kortAfTekst(tekst, max) {
+  const t = (tekst || "").replace(/\s+/g, " ").trim();
+  if (t.length <= max) return t;
+  const stuk = t.slice(0, max);
+  const laatsteSpatie = stuk.lastIndexOf(" ");
+  return `${(laatsteSpatie > max - 40 ? stuk.slice(0, laatsteSpatie) : stuk).trim()}…`;
+}
+
 /**
- * De prioriteit (1-10) die Gemini aan een bericht gaf, of 0 als die ontbreekt
- * of ongeldig is (zie maakPrioriteit in gemini.js). Er is geen eigen
- * puntensysteem meer: dit is het enige cijfer in het hele systeem.
+ * Werkt data/feed.json bij: voegt alle berichten uit deze run toe die nog
+ * niet in de feed staan (dedup op url), sorteert op publicatiedatum (nieuwste
+ * eerst), en capt op FEED_MAX_ITEMS. De feed is onafhankelijk van Gemini: ook
+ * berichten die door Gemini als "nee" zijn beoordeeld horen erin.
  */
+async function werkFeedBij(berichten, bronPerId) {
+  const feedPad = path.join(DATA_MAP, "feed.json");
+  let bestaand = [];
+  try {
+    const inhoud = JSON.parse(await fs.readFile(feedPad, "utf-8"));
+    if (Array.isArray(inhoud)) bestaand = inhoud;
+  } catch {
+    /* eerste run, of ongeldig bestand: begin met leeg */
+  }
+
+  const bestaandeUrls = new Set(bestaand.map((b) => b.url).filter(Boolean));
+  const nieuw = [];
+  for (const b of berichten) {
+    if (!b.url || bestaandeUrls.has(b.url)) continue;
+    const bron = bronPerId[b.bronId];
+    nieuw.push({
+      url: b.url,
+      titel: b.titel,
+      samenvatting: kortAfTekst(b.samenvatting || "", FEED_SAMENVATTING_TEKENS),
+      foto: b.foto || null,
+      gepubliceerdOp: b.gepubliceerdOp,
+      bronNaam: b.bronNaam,
+      categorie: b.categorie,
+      soort: bron && bron.soort === "agenda" ? "agenda" : "nieuws",
+    });
+    bestaandeUrls.add(b.url);
+  }
+
+  const samen = [...nieuw, ...bestaand];
+  samen.sort((a, b) => {
+    const ta = new Date(a.gepubliceerdOp).getTime();
+    const tb = new Date(b.gepubliceerdOp).getTime();
+    if (isNaN(ta) && isNaN(tb)) return 0;
+    if (isNaN(ta)) return 1;
+    if (isNaN(tb)) return -1;
+    return tb - ta;
+  });
+  const gecapt = samen.slice(0, FEED_MAX_ITEMS);
+  const verwijderd = samen.length - gecapt.length;
+  const metFoto = gecapt.filter((b) => b.foto).length;
+
+  await schrijfJson("feed.json", gecapt);
+  console.log(
+    `Feed bijgewerkt: ${nieuw.length} nieuw, ${gecapt.length} in de feed` +
+      `${verwijderd > 0 ? `, ${verwijderd} oudste verwijderd (cap = ${FEED_MAX_ITEMS})` : ""}` +
+      `, ${metFoto} met foto.`
+  );
+}
+
 function prioriteitVan(bericht) {
   const p = bericht.aiBeoordeling && bericht.aiBeoordeling.prioriteit;
   return Number.isInteger(p) && p >= 1 && p <= 10 ? p : 0;
 }
 
-/**
- * Sorteert berichten zodat nieuwsberichten vóór agenda-items komen. Binnen
- * nieuws: nieuwste eerst. Binnen agenda: dichtstbijzijnde datum eerst.
- * Dit bepaalt wie binnen de dagcap valt; er verdwijnt niets.
- *
- * bronPerId is nodig om te weten welke berichten van een agenda-bron komen.
- */
 function sorteerOpDatum(berichten, bronPerId) {
   const isAgenda = (b) => bronPerId[b.bronId] && bronPerId[b.bronId].soort === "agenda";
   const nieuws = berichten.filter((b) => !isAgenda(b));
@@ -308,13 +306,6 @@ function sorteerOpDatum(berichten, bronPerId) {
   return [...sorteerNieuws(nieuws), ...sorteerAgenda(agenda)];
 }
 
-/**
- * Combineert kansrijke lokale en landelijke berichten tot de uiteindelijke
- * pitchlijst, gerangschikt op de prioriteit die Gemini gaf (hoog naar laag).
- * Bij gelijke prioriteit gaat lokaal voor landelijk (de lokale berichten staan
- * vooraan en sort() is stabiel), en blijft de datumvolgorde binnen een lijst
- * behouden.
- */
 function stelPitchesSamen(kansrijkeLokaal, kansrijkLandelijk, aantal) {
   const gecombineerd = [...kansrijkeLokaal, ...kansrijkLandelijk];
   const zonderPrioriteit = gecombineerd.filter((b) => prioriteitVan(b) === 0);
@@ -327,7 +318,7 @@ function stelPitchesSamen(kansrijkeLokaal, kansrijkLandelijk, aantal) {
 async function main() {
   const startRun = Date.now();
   console.log(`Start dagelijkse run: ${new Date().toISOString()}`);
-  console.log(`Instellingen: dagcap=${DAGCAP_GEMINI}/lijst, pitches=${AANTAL_PITCHES}`);
+  console.log(`Instellingen: dagcap=${DAGCAP_GEMINI}/lijst, pitches=${AANTAL_PITCHES}, feedcap=${FEED_MAX_ITEMS}`);
 
   const apiKey = process.env.GEMINI_API_KEY;
   if (!apiKey) {
@@ -337,25 +328,12 @@ async function main() {
     );
   }
 
-  // Stap 1: scrapen. Elke run begint opnieuw: alles ophalen, filteren op het
-  // venster van vandaag, en de uitvoerbestanden overschrijven. Er is geen
-  // geheugen van eerdere runs, dus een run kan altijd opnieuw gedraaid worden.
   logFase("STAP 1 — Scrapen");
   const startScrapen = Date.now();
   const ruweBerichten = await scrapeAlleBronnen();
   logDuur(startScrapen, `Scrapen van ${bronnen.length} bronnen`);
   console.log(`Ruw aantal berichten (vóór leeftijdsfilter/dedup): ${ruweBerichten.length}`);
 
-  // Centrale leeftijdsgrens — geldt voor ALLE bronnen tegelijk, hier op één
-  // plek, in plaats van los per scraper (dat leidde er eerder toe dat de
-  // grens alleen bij iBabs was toegepast en nergens anders). Een bericht
-  // zonder betrouwbare datum wordt hier ook geweerd, niet uit voorzichtigheid
-  // meegenomen — zie de toelichting bij binnenLeeftijdsgrens() in
-  // hulpmiddelen.js voor waarom dat bewust zo is.
-  //
-  // Agenda-bronnen (soort: "agenda") krijgen een eigen venster: alleen
-  // evenementen die VANDAAG beginnen. Langlopende evenementen (met eindDatum)
-  // tellen alleen mee als ze vandaag beginnen.
   const bronPerId = Object.fromEntries(bronnen.map((b) => [b.id, effectieveBron(b)]));
   const binnen = (b) => binnenVenster(b.gepubliceerdOp, bronPerId[b.bronId], b.eindDatum);
   const recenteBerichten = ruweBerichten.filter(binnen);
@@ -365,7 +343,7 @@ async function main() {
       perBronZonderDatum[b.bronId] = (perBronZonderDatum[b.bronId] || 0) + 1;
     }
   }
-  console.log(`Na leeftijdsfilter (max ${MAX_LEEFTIJD_DAGEN} dagen; agenda-bronnen: alleen vandaag): ${recenteBerichten.length} van ${ruweBerichten.length} berichten.`);
+  console.log(`Na leeftijdsfilter (max ${MAX_LEEFTIJD_DAGEN} kalenderdag(en); agenda-bronnen: alleen vandaag): ${recenteBerichten.length} van ${ruweBerichten.length} berichten.`);
   for (const [bronId, aantal] of Object.entries(perBronZonderDatum)) {
     console.warn(`[${bronId}] ${aantal} bericht(en) geweerd door leeftijdsfilter (te oud, buiten het venster, of geen betrouwbare datum).`);
   }
@@ -373,18 +351,11 @@ async function main() {
   logBronOverzicht({ ...tellingen, ruweBerichten });
   await werkBronGezondheidBij(tellingen);
 
-  // Stap 1b: dubbele url's binnen deze run eruit.
   const berichtenVanVandaag = verwijderDubbelen(recenteBerichten);
-
-  // Stap 2: tellen, vóórdat de AI wordt aangeroepen
   console.log(`Totaal aantal berichten binnen het venster (na ontdubbeling): ${berichtenVanVandaag.length}`);
 
-  // Stap 2b: de tekst van elk bericht ophalen. De lijstpagina geeft
-  // meestal alleen een titel; Gemini heeft de tekst nodig om het gevolg voor
-  // mensen te kunnen beoordelen. Het resultaat komt in het bestaande veld
-  // samenvatting. Mislukt het ophalen, dan gaat het bericht door met de
-  // lijsttekst; deze stap mag de run nooit laten crashen.
-  logFase("STAP 2 — Tekst per bericht ophalen");
+  // STAP 2 — Tekst én foto per bericht ophalen
+  logFase("STAP 2 — Tekst en foto per bericht ophalen");
   const startTekst = Date.now();
   try {
     const { perBron } = await vulBerichtenAanMetTekst(berichtenVanVandaag, {
@@ -399,13 +370,20 @@ async function main() {
       }
     }
   } catch (fout) {
-    console.error(`Tekst ophalen mislukte onverwacht (de berichten gaan door met de lijsttekst): ${fout.message}${oorzaakTekst(fout)}`);
+    console.error(`Tekst/foto ophalen mislukte onverwacht (de berichten gaan door met de lijstgegevens): ${fout.message}${oorzaakTekst(fout)}`);
   }
-  logDuur(startTekst, "Tekst ophalen");
+  logDuur(startTekst, "Tekst en foto ophalen");
 
-  // Stap 3: splitsen + sorteren (nieuws eerst, dan agenda). Dit bepaalt
-  // wie binnen de dagcap valt als er meer berichten zijn dan de cap.
-  logFase("STAP 3 — Splitsen en sorteren op datum");
+  // STAP 2b — De nieuwsfeed bijwerken
+  logFase("STAP 3 — Nieuwsfeed bijwerken");
+  try {
+    await werkFeedBij(berichtenVanVandaag, bronPerId);
+  } catch (fout) {
+    console.error(`Nieuwsfeed bijwerken mislukte onverwacht (de rest van de run gaat door): ${fout.message}${oorzaakTekst(fout)}`);
+  }
+
+  // STAP 3 — Splitsen en sorteren
+  logFase("STAP 4 — Splitsen en sorteren op datum");
   const lokaal = sorteerOpDatum(berichtenVanVandaag.filter((b) => b.categorie === "lokaal"), bronPerId);
   const landelijk = sorteerOpDatum(berichtenVanVandaag.filter((b) => b.categorie === "landelijk"), bronPerId);
 
@@ -421,10 +399,7 @@ async function main() {
     return;
   }
 
-  // Stap 4: Gemini-beoordeling, met dagcap per lijst. Twee calls per bericht:
-  // eerst filteren of het oppakbaar is, dan (alleen voor oppakbare berichten)
-  // de pitch en de score.
-  logFase("STAP 4 — Gemini-beoordeling");
+  logFase("STAP 5 — Gemini-beoordeling");
   const startGemini = Date.now();
 
   console.log(`Lokaal: ${Math.min(lokaal.length, DAGCAP_GEMINI)} van ${lokaal.length} berichten gaan naar Gemini.`);
@@ -438,27 +413,6 @@ async function main() {
   await schrijfJson("nieuws-lokaal.json", lokaalBeoordeeld);
   await schrijfJson("nieuws-landelijk.json", landelijkBeoordeeld);
 
-  // Stap 5: pitches samenstellen, gerangschikt op Gemini's prioriteit.
-  logFase("STAP 5 — Pitches samenstellen");
+  logFase("STAP 6 — Pitches samenstellen");
   const kansrijkeLokaal = lokaalBeoordeeld.filter((b) => b.aiBeoordeling?.oppakbaar === "ja");
-  const kansrijkLandelijk = landelijkBeoordeeld.filter((b) => b.aiBeoordeling?.lokaleInvalshoek === "ja");
-  console.log(`Kansrijk: ${kansrijkeLokaal.length} lokaal, ${kansrijkLandelijk.length} landelijk (vóór rangschikking op prioriteit).`);
-
-  const pitches = stelPitchesSamen(kansrijkeLokaal, kansrijkLandelijk, AANTAL_PITCHES);
-  const aantalLokaalInPitches = pitches.filter((p) => p.categorie === "lokaal").length;
-  console.log(`Pitches samengesteld: ${aantalLokaalInPitches} lokaal, ${pitches.length - aantalLokaalInPitches} landelijk.`);
-
-  await schrijfJson("pitches.json", {
-    gegenereerdOp: new Date().toISOString(),
-    aantalBerichtenTotaal: berichtenVanVandaag.length,
-    topPitches: pitches,
-  });
-
-  logDuur(startRun, "\nVolledige run");
-  console.log(`Klaar. ${pitches.length} pitch(es) klaargezet.`);
-}
-
-main().catch((fout) => {
-  console.error("Onverwachte fout in de dagelijkse run:", fout);
-  process.exit(1);
-});
+  const kansrijkLandelijk = landelijkBeoordeeld.filter((b) => b.aiBeo
