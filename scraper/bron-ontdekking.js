@@ -11,7 +11,8 @@
 // verzinnen. Zonder GEMINI_API_KEY begint deze ontdekking niet eens.
 //
 // Volgorde voor gewoon nieuws (elke stap alleen als de vorige niets bruikbaars opleverde):
-//   1. RSS/Atom-feeds        (link-tags in de pagina + gangbare paden)
+//   1. RSS/Atom-feeds        (link-tags in de pagina + de uitgebreide lijst
+//                             uit feed-varianten.js)
 //   2. WordPress REST API    (ook eigen berichttypes, zoals een agenda)
 //   3. JSON-LD               (schema.org Event/Article in de pagina zelf)
 //   4. Generieke patronen    (bekende CSS-patronen, geen AI)
@@ -38,18 +39,21 @@
 // Dat levert een extra waarschuwing als de titellijst van Gemini veel kleiner
 // is dan wat hij zegt te zien — een signaal dat onze test zwakker is dan we
 // zouden willen.
+//
+// Sinds Deel C van de foto-uitbreiding: de feed-stap gebruikt feedKandidaten
+// uit feed-varianten.js (40+ kandidaten in plaats van 5).
 
 const cheerio = require("cheerio");
 const { haalOp, oorzaakTekst, startResponsCache, stopResponsCache } = require("./hulpmiddelen");
 const { testBron, normaliseerUrl, voorbeeldRegels, SELECTOR_TYPES, MIN_DEKKING } = require("./bron-poort");
 const { probeerGeneriekePatronen } = require("./scrapers/generieke-lijst");
+const { feedKandidaten } = require("./feed-varianten");
 
 // Zonder Gemini is er geen referentielijst en dus geen bewijs dat een methode alles vindt.
 const GEMINI_VERPLICHT_MELDING =
   "GEMINI_API_KEY ontbreekt. Een bron toevoegen of herstellen heeft Gemini altijd nodig: Gemini leest de hele pagina en geeft de lijst van berichten waartegen elke methode wordt gecontroleerd. Zet het secret GEMINI_API_KEY in de repo-instellingen (Settings > Secrets and variables > Actions).";
 
 const MAX_KANDIDATEN_REST = 6;
-const STANDAARD_FEED_PADEN = ["feed/", "rss", "feed.xml", "rss.xml", "atom.xml"];
 const WP_NEGEER_TYPES = new Set([
   "attachment", "page", "nav_menu_item", "wp_block", "wp_template", "wp_template_part",
   "wp_navigation", "wp_global_styles", "wp_font_family", "wp_font_face", "revision",
@@ -102,31 +106,12 @@ function noteer(verslag, log, stap, kandidaat, oordeel) {
   }
 }
 
-/** Kandidaat-feeds: alle feed-links in de pagina zelf, daarna gangbare paden. */
-function feedKandidaten($, url) {
-  const uit = [];
-  $('link[rel~="alternate"][type*="rss"], link[rel~="alternate"][type*="atom"]').each((_, el) => {
-    try {
-      uit.push(new URL($(el).attr("href"), url).toString());
-    } catch {
-      /* ongeldige href overslaan */
-    }
-  });
-  const origin = new URL(url).origin;
-  const paginaMetSlash = url.replace(/[?#].*$/, "").replace(/\/?$/, "/");
-  for (const pad of STANDAARD_FEED_PADEN) {
-    uit.push(new URL(pad, paginaMetSlash).toString());
-    uit.push(new URL(`/${pad}`, origin).toString());
-  }
-  return [...new Set(uit)];
-}
-
 const pauze = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
 
 async function probeerTekst(url) {
-  // Een korte pauze tussen proefverzoeken: ruim tien gokjes op feed-paden achter elkaar
+  // Een korte pauze tussen proefverzoeken: tientallen gokjes op feed-paden achter elkaar
   // lijkt voor een firewall al snel op een aanval.
-  await pauze(300);
+  await pauze(150);
   try {
     return await haalOp(url, 1, { stil: true });
   } catch {
@@ -358,7 +343,7 @@ async function ontdekBronIntern(opties) {
 
   const stappen = {
     feed: async () => {
-      const feeds = feedKandidaten($, url);
+      const feeds = feedKandidaten(url, $);
       log.log(`RSS/Atom-feeds proberen (${feeds.length} kandidaten)...`);
       for (const feedUrl of feeds) {
         const tekst = await probeerTekst(feedUrl);
