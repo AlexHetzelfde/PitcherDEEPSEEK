@@ -2,11 +2,12 @@
 //
 // Voor institutionele/overheidssites (musea, waterschap, provincie, scholen)
 // die geen WordPress draaien en dus geen voorspelbare /feed/ hebben. We
-// proberen eerst alsnog een RSS/Atom-feed te vinden via een <link>-tag in de
-// <head> — sommige custom CMS'en hebben die wel, ook zonder dat de URL
-// voorspelbaar is. Lukt dat niet, dan scrapen we de HTML met een bredere set
-// patronen dan de WordPress-scraper, omdat deze sites onderling veel meer
-// van elkaar verschillen.
+// proberen eerst alsnog een RSS/Atom-feed te vinden — niet alleen via een
+// <link>-tag in de <head>, maar sinds Deel C ook via de uitgebreide lijst
+// standaardpaden uit feed-varianten.js (feed/, rss, index.xml, blog/feed/,
+// ?feed=rss2, enzovoort). Lukt dat niet, dan scrapen we de HTML met een
+// bredere set patronen dan de WordPress-scraper, omdat deze sites onderling
+// veel meer van elkaar verschillen.
 //
 // LET OP: dit is bewust een brede, algemene aanpak — geen scraper die precies
 // op de HTML van elke individuele site is afgestemd (dat vereist inzage in
@@ -18,6 +19,7 @@
 
 const cheerio = require("cheerio");
 const { haalOp, parseerRssTekst, oorzaakTekst, haalDatumUitTekst, leesDatumEnEinde, volgPaginas } = require("../hulpmiddelen");
+const { feedKandidaten } = require("../feed-varianten");
 
 // Volgorde van kandidaat-selectors voor één nieuwsitem-blok, breed naar smal.
 const ITEM_SELECTORS = [
@@ -32,28 +34,31 @@ const ITEM_SELECTORS = [
 ];
 
 async function scrapeGeneriekeLijst(bron) {
-  // Stap 1: kijk of de pagina zelf naar een RSS/Atom-feed linkt.
   try {
     const html = await haalOp(bron.url);
     const $ = cheerio.load(html);
-    const feedHref = $('link[type="application/rss+xml"], link[type="application/atom+xml"]').attr("href");
 
-    if (feedHref) {
-      const feedUrl = new URL(feedHref, bron.url).toString();
+    // Stap 1: alle bekende feed-plekken proberen (link-tags uit de pagina +
+    // de standaardpaden op pagina en origin + query-varianten). De eerste
+    // die een geldige feed teruggeeft wint.
+    const kandidaten = feedKandidaten(bron.url, $);
+    for (const feedUrl of kandidaten) {
       try {
-        const feedTekst = await haalOp(feedUrl);
+        const feedTekst = await haalOp(feedUrl, 1, { stil: true });
+        // Soft 404-bescherming: HTML terugkrijgen waar een feed verwacht werd.
+        if (!/<(rss|feed|rdf:RDF)[\s>]/i.test(feedTekst.slice(0, 2000))) continue;
         const items = await parseerRssTekst(feedTekst, bron);
         if (items.length > 0) {
           console.log(`[${bron.id}] Feed gevonden en gebruikt (${feedUrl}), ${items.length} bericht(en).`);
           return items;
         }
-      } catch (fout) {
-        console.warn(`[${bron.id}] Gevonden feed (${feedUrl}) kon niet geladen worden: ${fout.message}${oorzaakTekst(fout)}.`);
+      } catch {
+        /* deze variant werkt niet, probeer de volgende */
       }
     }
 
     // Stap 2: HTML-scrape met de bredere patronenset, over alle pagina's (zie volgPaginas).
-    console.log(`[${bron.id}] Geen feed gevonden/bruikbaar, generieke HTML-scrape gebruikt.`);
+    console.log(`[${bron.id}] Geen bruikbare feed in ${kandidaten.length} varianten, generieke HTML-scrape gebruikt.`);
     return await scrapeHtml($, bron, html);
   } catch (fout) {
     console.error(`[${bron.id}] Generieke lijst-scraper mislukt: ${fout.message}${oorzaakTekst(fout)}`);
@@ -154,6 +159,5 @@ function dedupliceerOpUrl(berichten) {
     return true;
   });
 }
-
 
 module.exports = { scrapeGeneriekeLijst, probeerGeneriekePatronen };

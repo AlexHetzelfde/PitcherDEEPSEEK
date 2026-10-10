@@ -5,28 +5,52 @@
 // we eerst, want dat is veel robuuster dan HTML-scrapen (minder kans op breken
 // bij een theme-update). Lukt dat niet, dan valt de functie terug op het
 // scrapen van de HTML-lijst zelf.
+//
+// Sinds Deel C proberen we niet alleen /feed/ maar ALLE bekende feed-plekken
+// (zie feed-varianten.js). De pagina wordt één keer opgehaald zodat we ook de
+// <link rel="alternate">-tags kunnen lezen die de pagina zelf over zijn feed
+// geeft; die HTML wordt daarna hergebruikt voor de fallback.
 
 const cheerio = require("cheerio");
 const { haalOp, parseerRssTekst, oorzaakTekst, volgPaginas } = require("../hulpmiddelen");
+const { feedKandidaten } = require("../feed-varianten");
 
 async function scrapeWordpress(bron) {
-  // Stap 1: probeer de standaard WordPress RSS-feed.
-  const feedUrl = bron.url.replace(/\/?$/, "/feed/");
+  // Stap 1: haal de pagina op. Die hebben we hoe dan ook nodig voor de
+  // HTML-fallback, en met de HTML erbij kunnen we ook de <link>-tags lezen
+  // die de pagina zelf over zijn feed geeft.
+  let html;
   try {
-    const feedTekst = await haalOp(feedUrl);
-    const items = await parseerRssTekst(feedTekst, bron);
-    if (items.length > 0) {
-      console.log(`[${bron.id}] RSS-feed gebruikt (${feedUrl}), ${items.length} bericht(en).`);
-      return items;
-    }
+    html = await haalOp(bron.url);
   } catch (fout) {
-    console.warn(`[${bron.id}] RSS-feed niet bruikbaar (${feedUrl}): ${fout.message}${oorzaakTekst(fout)}. Val terug op HTML-scrape.`);
+    console.error(`[${bron.id}] Kon de pagina niet ophalen: ${fout.message}${oorzaakTekst(fout)}`);
+    return [];
   }
+  const $ = cheerio.load(html);
 
-  // Stap 2: fallback — scrape de HTML van de nieuwsoverzichtspagina zelf,
-  // over alle pagina's (zie volgPaginas in hulpmiddelen.js).
-  console.log(`[${bron.id}] Geen bruikbare RSS-feed, HTML-fallback gebruikt.`);
-  const { berichten } = await volgPaginas(bron, ($) => leesWordpressPagina($, bron));
+  // Stap 2: alle bekende feed-plekken proberen. De eerste die een geldige
+  // feed teruggeeft wint.
+  const kandidaten = feedKandidaten(bron.url, $);
+  for (const feedUrl of kandidaten) {
+    try {
+      const feedTekst = await haalOp(feedUrl, 1, { stil: true });
+      // Veel sites geven bij een onbestaand feed-pad gewoon de HTML-pagina
+      // terug (soft 404): dat is geen feed.
+      if (!/<(rss|feed|rdf:RDF)[\s>]/i.test(feedTekst.slice(0, 2000))) continue;
+      const items = await parseerRssTekst(feedTekst, bron);
+      if (items.length > 0) {
+        console.log(`[${bron.id}] RSS-feed gebruikt (${feedUrl}), ${items.length} bericht(en).`);
+        return items;
+      }
+    } catch {
+      /* deze variant werkt niet, probeer de volgende */
+    }
+  }
+  console.log(`[${bron.id}] Geen bruikbare feed in ${kandidaten.length} varianten, HTML-fallback gebruikt.`);
+
+  // Stap 3: HTML-fallback. De HTML hebben we al, geef hem mee zodat
+  // volgPaginas hem niet nog een keer ophaalt.
+  const { berichten } = await volgPaginas(bron, ($pagina) => leesWordpressPagina($pagina, bron), { eersteHtml: html });
 
   const zonderDatum = berichten.filter((b) => !b.gepubliceerdOp).length;
   if (zonderDatum > 0) {
