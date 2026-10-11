@@ -1,5 +1,15 @@
 // hulpmiddelen.js
 // Gedeelde functies die door meerdere scrapers gebruikt worden.
+//
+// Sinds de "geduldiger"-ronde zijn de wachttijden voor het ophalen van
+// berichtpagina's flink verhoogd. Reden: sommige overheidssites (met name
+// loket.zaanstad.nl, een Mozard-suite) reageren traag of helemaal niet als er
+// veel verzoeken snel achter elkaar komen. Voorheen gaven we na 15 seconden
+// op en stopten we na 3 netwerkfouten met de hele site; nu wachten we langer
+// per pagina en tolereren we meer fouten. De totale run duurt daardoor langer
+// (tot ~30 minuten voor de tekststap in het slechtste geval), maar dat is de
+// prijs voor meer geslaagde pagina's. Alle waarden zijn nog steeds met een
+// omgevingsvariabele te overrulen.
 
 const cheerio = require("cheerio");
 const Parser = require("rss-parser");
@@ -24,33 +34,13 @@ const { Agent } = require("undici");
 const GEBRUIKERSAGENT =
   "NieuwsaggregatorZaanstreekBot/1.0 (+journalistiek studentenproject; contact via github repo)";
 
-// Aantal kalenderdagen terug dat een nieuwsbericht nog mag worden meegenomen.
-//   0 = alleen vandaag
-//   1 = gisteren + vandaag  ← dit is de gewenste stand
-//   2 = eergisteren + gisteren + vandaag
-// De grens wordt berekend vanaf middernacht van vandaag, NIET als "X keer 24
-// uur geleden". Dat verschil is belangrijk: bij een run om 01:00 's nachts
-// zou een artikel van gisterenochtend anders net buiten het venster vallen,
-// terwijl we het juist wel willen meenemen.
 const MAX_LEEFTIJD_DAGEN = 1;
 
-/**
- * Het begintijdstip van het nieuwsvenster: middernacht van (MAX_LEEFTIJD_DAGEN
- * + 1) kalenderdagen geleden, in lokale tijd. Bij MAX_LEEFTIJD_DAGEN = 1 is
- * dat middernacht van gisteren. Alles vanaf dat moment hoort bij "nieuws van
- * gisteren en vandaag".
- */
 function beginNieuwsVenster(nu = new Date()) {
   const beginVandaag = new Date(nu.getFullYear(), nu.getMonth(), nu.getDate()).getTime();
   return beginVandaag - MAX_LEEFTIJD_DAGEN * 24 * 60 * 60 * 1000;
 }
 
-/**
- * True als een datum binnen het nieuwsvenster valt (vanaf middernacht
- * gisteren, tot nu). Een bericht ZONDER betrouwbaar herkende datum telt hier
- * bewust als "te oud": een bron waarvan structureel geen datum wordt herkend,
- * levert 0 berichten op — zichtbaar fout, in plaats van onzichtbaar fout.
- */
 function binnenLeeftijdsgrens(gepubliceerdOpIso) {
   if (!gepubliceerdOpIso) return false;
   const datum = new Date(gepubliceerdOpIso);
@@ -58,8 +48,6 @@ function binnenLeeftijdsgrens(gepubliceerdOpIso) {
   return datum.getTime() >= beginNieuwsVenster();
 }
 
-// Agenda-bronnen (bron.soort === "agenda") tonen vooral evenementen die nog moeten
-// komen. Daar geldt een eigen venster: alleen evenementen die VANDAAG beginnen.
 const AGENDA_MAX_VERLEDEN_DAGEN = 0;
 const AGENDA_MAX_VOORUIT_DAGEN = 0;
 
@@ -74,18 +62,10 @@ function binnenAgendaVenster(gepubliceerdOpIso, eindDatumIso) {
   return start >= beginVandaag && start < eindVandaag;
 }
 
-/**
- * Het venster voor één bron: het agenda-venster voor agenda-bronnen, de
- * gewone leeftijdsgrens voor alle andere.
- */
 function binnenVenster(gepubliceerdOpIso, bron, eindDatumIso) {
   return bron && bron.soort === "agenda" ? binnenAgendaVenster(gepubliceerdOpIso, eindDatumIso) : binnenLeeftijdsgrens(gepubliceerdOpIso);
 }
 
-/**
- * Leeftijd van een bericht in dagen (kan een fractie zijn), of null als er
- * geen betrouwbare datum is.
- */
 function leeftijdInDagen(gepubliceerdOpIso) {
   if (!gepubliceerdOpIso) return null;
   const datum = new Date(gepubliceerdOpIso);
@@ -93,12 +73,6 @@ function leeftijdInDagen(gepubliceerdOpIso) {
   return (Date.now() - datum.getTime()) / (24 * 60 * 60 * 1000);
 }
 
-/**
- * Node's fetch (undici) gooit bij netwerkproblemen bijna altijd alleen de
- * generieke `TypeError: fetch failed` als `.message`; de échte reden zit dan
- * in `.cause`, die Node zelf NIET mee-print. Deze helper haalt die oorzaak
- * eruit zodat we hem overal kunnen loggen.
- */
 function oorzaakTekst(fout) {
   const oorzaak = fout && fout.cause;
   if (!oorzaak) return "";
@@ -107,14 +81,6 @@ function oorzaakTekst(fout) {
   return ` — oorzaak: ${tekst}${code}`;
 }
 
-/**
- * Sommige servers sturen bij het TLS-handshaken niet hun volledige
- * certificaatketen mee (loket.zaanstad.nl bijvoorbeeld). Een browser haalt het
- * ontbrekende tussencertificaat stilzwijgend op via de "CA Issuers"-link in
- * het certificaat zelf (AIA-fetching); Node doet dat niet. Deze functie doet
- * hetzelfde: lees het certificaat, volg de CA-link, en geef een fetch-optie
- * terug die het extra certificaat aan de vertrouwde roots toevoegt.
- */
 async function probeerKetenTeRepareren(url) {
   const { hostname, port, protocol } = new URL(url);
   const tlsPoort = Number(port) || (protocol === "http:" ? 80 : 443);
@@ -195,13 +161,6 @@ async function probeerKetenTeRepareren(url) {
   return { dispatcher: agent, issuerUrl: gebruikteUrls.join(" -> ") };
 }
 
-/**
- * Sommige sites sturen bij het eerste bezoek een sessie-cookie mee en blijven
- * doorverwijzen totdat die cookie wordt teruggestuurd. Een browser doet dat
- * automatisch; Node's fetch() heeft geen cookie-jar. Deze functie volgt
- * redirects zelf, houdt cookies bij tussen de hops in, en geeft de
- * uiteindelijke pagina-inhoud terug.
- */
 async function haalOpMetCookies(url, opties = {}, maxHops = 20) {
   const cookieJar = new Map();
   let huidigeUrl = url;
@@ -371,7 +330,6 @@ function parseerDatumTekst(tekst, opties = {}) {
   }
   return haalDatumUitTekst(t, opties);
 }
-
 async function haalOpEcht(url, pogingen = 3, opties = {}) {
   let laatsteFout;
   let dispatcher;
@@ -460,12 +418,9 @@ function nieuweWacht(ms) {
 // Foto's
 // ---------------------------------------------------------------------------
 
-/** Kleine helper: haalt een url uit een media:content-achtige structuur. */
 function urlUitMediaKnoop(knoop) {
   if (!knoop) return null;
   if (typeof knoop === "string") return knoop;
-  // rss-parser levert { $: { url }, ... } bij keepArray, of direct .url bij
-  // enkelvoudige waarden, of een array van knopen.
   if (Array.isArray(knoop)) {
     for (const k of knoop) {
       const u = urlUitMediaKnoop(k);
@@ -478,14 +433,6 @@ function urlUitMediaKnoop(knoop) {
   return null;
 }
 
-/**
- * Foto uit één RSS-item halen, in volgorde van betrouwbaarheid:
- *   1. <enclosure url="...">  (standaard RSS)
- *   2. <media:content url="...">  (Media RSS)
- *   3. <media:thumbnail url="...">
- *   4. <img src="..."> in content:encoded of content
- * Geeft null als niets gevonden is.
- */
 function haalFotoUitRssItem(item) {
   if (!item) return null;
   if (item.enclosure && typeof item.enclosure.url === "string") return item.enclosure.url;
@@ -499,11 +446,6 @@ function haalFotoUitRssItem(item) {
   return null;
 }
 
-/**
- * Foto uit een al geladen cheerio-document halen. Eerst de Open Graph- en
- * Twitter-meta-tags (die zijn bedoeld voor dit doel), dan het klassieke
- * rel="image_src". Geeft null als er niets staat.
- */
 function haalFotoUitHtml($) {
   const og = $('meta[property="og:image"]').attr("content") || $('meta[property="og:image:secure_url"]').attr("content");
   if (og) return og.trim();
@@ -514,7 +456,6 @@ function haalFotoUitHtml($) {
   return null;
 }
 
-/** Maakt een url absoluut tegen een basis; geeft de url onveranderd terug als er geen basis is of de url ongeldig is. */
 function maakAbsoluut(url, basis) {
   if (!url || typeof url !== "string") return null;
   const schoon = url.trim();
@@ -527,16 +468,6 @@ function maakAbsoluut(url, basis) {
   }
 }
 
-/**
- * Foto uit één lijst-item halen (cheerio-element). Volgorde van proberen:
- *   1. fotoSelector (als opgegeven): het element met de afbeelding.
- *   2. Anders: de eerste <img> binnen het item.
- * Voor het attribuut: fotoAttribuut als opgegeven, anders de standaard
- * volgorde src, data-src, data-lazy-src, data-original, en als laatste de
- * eerste url uit srcset. Data-urls (base64) worden overgeslagen.
- * De url wordt absoluut gemaakt tegen baseUrl (meestal de pagina-url).
- * Geeft null als er geen bruikbare foto te vinden is.
- */
 function haalFotoUitItem($, el, fotoSelector, fotoAttribuut, baseUrl) {
   if (!el) return null;
 
@@ -561,7 +492,6 @@ function haalFotoUitItem($, el, fotoSelector, fotoAttribuut, baseUrl) {
     if (bruikbaar(waarde)) return maakAbsoluut(waarde, baseUrl);
   }
 
-  // srcset als laatste redmiddel: de eerste url vóór de eerste komma/spatie.
   const srcset = imgEl.attr("srcset");
   if (typeof srcset === "string" && srcset.trim()) {
     const eerste = srcset.split(",")[0].trim().split(/\s+/)[0];
@@ -767,16 +697,23 @@ async function volgPaginas(bron, leesPagina, opties = {}) {
 // ---------------------------------------------------------------------------
 // Tekst (en foto) per bericht ophalen
 // ---------------------------------------------------------------------------
+//
+// De wachttijden hieronder zijn flink verhoogd ("geduldiger"-ronde) omdat
+// sommige overheidssites (loket.zaanstad.nl, een Mozard-suite) traag reageren
+// als er veel verzoeken snel achter elkaar komen. Ze mogen allemaal via een
+// omgevingsvariabele worden overschreven, zodat je ze in de workflow kunt
+// bijstellen zonder deze code aan te raken.
+
+const ARTIKEL_TIMEOUT_MS = Number(process.env.ARTIKELTEKST_TIMEOUT_MS || 30_000);
+const ARTIKEL_TOTAAL_TIMEOUT_MS = Number(process.env.ARTIKELTEKST_TOTAAL_TIMEOUT_MS || 90_000);
+const ARTIKEL_PARALLEL = Number(process.env.ARTIKELTEKST_PARALLEL || 4);
+const ARTIKEL_PAUZE_MS = Number(process.env.ARTIKELTEKST_PAUZE_MS || 2_500);
+const ARTIKEL_MAX_SECONDEN = Number(process.env.ARTIKELTEKST_MAX_SECONDEN || 1_800);
+const MAX_NETWERKFOUTEN_ACHTEREEN = Number(process.env.ARTIKELTEKST_MAX_NETWERKFOUTEN || 5);
 
 const ARTIKEL_MAX_TEKENS = 3000;
 const LIJSTTEKST_GENOEG_TEKENS = 600;
 const MIN_BRUIKBARE_TEKST_TEKENS = 100;
-const ARTIKEL_TIMEOUT_MS = 15_000;
-const ARTIKEL_TOTAAL_TIMEOUT_MS = 40_000;
-const ARTIKEL_PARALLEL = Number(process.env.ARTIKELTEKST_PARALLEL || 4);
-const ARTIKEL_PAUZE_MS = Number(process.env.ARTIKELTEKST_PAUZE_MS || 400);
-const ARTIKEL_MAX_SECONDEN = Number(process.env.ARTIKELTEKST_MAX_SECONDEN || 900);
-const MAX_NETWERKFOUTEN_ACHTEREEN = 3;
 
 const ARTIKEL_WEG =
   'script, style, noscript, svg, iframe, nav, footer, header, aside, form, button, select, ' +
@@ -800,19 +737,10 @@ function kortAf(tekst, max) {
   return `${(laatsteSpatie > max - 150 ? stuk.slice(0, laatsteSpatie) : stuk).trim()}…`;
 }
 
-/**
- * Haalt de tekst én de foto uit de HTML van de berichtpagina. Puur: geen
- * netwerk. Geeft { tekst, methode, foto } terug of null als er helemaal niets
- * bruikbaars staat. `foto` kan ook gevuld zijn als `tekst` leeg is — een
- * pagina met alleen een afbeelding en geen tekst levert nog steeds een foto
- * voor de feed.
- */
 function haalTekstUitHtml(html) {
   if (!html || String(html).startsWith("%PDF-")) return null;
   const $ = cheerio.load(html);
 
-  // Foto eerst ophalen: de meta-tags staan in de <head>, die we hieronder niet
-  // aanraken, maar het is netter om hem vóór alle andere operaties te lezen.
   const foto = haalFotoUitHtml($);
 
   const metaTeksten = [$('meta[property="og:description"]').attr("content"), $('meta[name="description"]').attr("content")]
@@ -855,11 +783,6 @@ function metTijdslimiet(belofte, ms, melding) {
   return Promise.race([belofte, limiet]).finally(() => clearTimeout(timer));
 }
 
-/**
- * Haalt de pagina van één bericht op en geeft { tekst, methode, foto } of null
- * als de pagina niets bruikbaars bevat. Gooit een fout als de pagina niet op
- * te halen was.
- */
 async function haalArtikelTekst(url) {
   if (!url || /\.(pdf|docx?|xlsx?|pptx?|zip|jpe?g|png|gif)(\?|#|$)/i.test(url)) return null;
   try {
@@ -887,19 +810,6 @@ function hostVan(url) {
   }
 }
 
-/**
- * Vult samenvatting én foto van berichten aan met de gegevens van de
- * berichtpagina. Sinds Deel B: de pagina wordt ook opgehaald als de
- * samenvatting al lang genoeg is, maar er nog geen foto is — de pagina
- * levert dan alleen de foto (de bestaande, langere tekst wordt niet
- * overschreven). Lukt het ophalen niet, dan blijven de lijstgegevens staan;
- * het bericht gaat gewoon door. Fouten worden geteld en gelogd.
- *
- * De foto-telling gebeurt aan het einde in één keer (s.metFoto++ in de
- * eind-lus). Tijdens het ophalen wordt de teller NIET opgehoogd, anders zou
- * een foto dubbel geteld worden (één keer bij het zetten, één keer in de
- * eind-lus).
- */
 async function vulBerichtenAanMetTekst(berichten, opties = {}) {
   const {
     nietOphalen = () => false,
@@ -916,10 +826,6 @@ async function vulBerichtenAanMetTekst(berichten, opties = {}) {
 
   const perHost = new Map();
   for (const b of berichten) {
-    // Sla een bericht alleen over als de tekst AL lang genoeg is EN er al een
-    // foto is. Is de tekst lang genoeg maar ontbreekt de foto nog, dan halen
-    // we de pagina alsnog op — alleen voor de foto (de tekst wordt dan niet
-    // overschreven, want de bestaande is al langer).
     const tekstGenoeg = (b.samenvatting || "").length >= lijsttekstGenoeg;
     const heeftFoto = Boolean(b.foto);
     if (tekstGenoeg && heeftFoto) continue;
@@ -952,9 +858,6 @@ async function vulBerichtenAanMetTekst(berichten, opties = {}) {
         netwerkFoutenAchtereen = 0;
         if (uit && uit.foto && !b.foto) {
           b.foto = uit.foto;
-          // De teller s.metFoto wordt NIET hier opgehoogd; dat gebeurt aan
-          // het einde van deze functie, in de eind-lus. Anders zou een foto
-          // dubbel geteld worden en zou de log "20 van 10 met foto" zeggen.
         }
         if (uit && uit.tekst && uit.tekst.length > (b.samenvatting || "").length) {
           b.samenvatting = uit.tekst;
@@ -964,7 +867,7 @@ async function vulBerichtenAanMetTekst(berichten, opties = {}) {
         }
       } catch (fout) {
         s.fouten++;
-        if (s.fouten <= 3) log.warn(`[${b.bronId}] Tekst/foto ophalen mislukt voor ${b.url}: ${fout.message}${oorzaakTekst(fout)} — het bericht gaat door met de lijstgegevens.`);
+        if (s.fouten <= 5) log.warn(`[${b.bronId}] Tekst/foto ophalen mislukt voor ${b.url}: ${fout.message}${oorzaakTekst(fout)} — het bericht gaat door met de lijstgegevens.`);
         netwerkFoutenAchtereen = isNetwerkFout(fout) ? netwerkFoutenAchtereen + 1 : 0;
         if (netwerkFoutenAchtereen >= MAX_NETWERKFOUTEN_ACHTEREEN) {
           hostGestopt = true;
