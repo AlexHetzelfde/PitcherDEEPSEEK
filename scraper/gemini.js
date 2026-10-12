@@ -1,35 +1,30 @@
 // gemini.js
 //
-// Roept de Gemini API aan in TWEE stappen per bericht:
+// Roept de Gemini API aan in DRIE stappen:
 //
-//   Call 1 (filter): bepaalt of het bericht oppakbaar is. Voor lokale
-//     berichten heet dat "oppakbaar" (ja/twijfel/nee), voor landelijke
-//     "lokaleInvalshoek". Een simpele classificatie: heeft dit bericht een
-//     concreet gevolg voor mensen in hun dagelijks leven?
+//   Call 1 (filter): bepaalt of het bericht nieuws is. Gebaseerd op de
+//     nieuwscriteria uit het Basisboek journalistiek schrijven (pagina 153-155):
+//     actualiteit, afwijking, voor het eerst, belang, nabijheid, omvang,
+//     primeur, nieuws van morgen, wie, inzicht.
 //
-//   Call 2 (pitch): alleen voor berichten die door de filter komen. Maakt de
-//     pitch (wie wordt geraakt, wat is het gevolg, wat is een goede invalshoek)
-//     en geeft de prioriteit (1-10).
+//   Call 2 (pitch): alleen voor berichten die door de filter komen. Maakt
+//     een korte pitch met invalshoek, researchvraag en bronnen. GEEN
+//     prioriteit — die komt uit call 3.
 //
-// Waarom twee calls: één call die vier dingen tegelijk moet doen (filteren,
-// gevolg beschrijven, pitch maken, prioriteit geven) geeft elk van die taken
-// minder aandacht. Door te splitsen krijgt elke taak een gerichte prompt. De
-// filter is bovendien een stuk goedkoper dan de pitch, en de meeste berichten
-// vallen in de filter af: die kosten dan maar één call in plaats van twee.
+//   Call 3 (ranking): één keer per run, voor ALLE pitches gezamenlijk. Geeft
+//     elke pitch een score van 1 tot 10 op basis van hoe groot of belangrijk
+//     het nieuws is (opnieuw de nieuwscriteria uit het boek).
 //
-// Sinds de "evenementen-van-vandaag"-ronde: de lokale filter-prompt wijst
-// evenementen niet meer automatisch af. Een evenement dat VANDAAG plaatsvindt
-// mag oppakbaar zijn als het een concreet gevolg heeft voor mensen.
+// Waarom drie calls:
+//   - Filter en pitch zijn twee verschillende taken. Splitsen geeft elke
+//     prompt gerichte aandacht.
+//   - Ranking in één call ziet alle pitches naast elkaar. Dat geeft een
+//     betere rangschikking dan per bericht een cijfer geven.
 //
-// Sinds de "kennisgeving"-ronde: "mededeling" is niet meer automatisch "nee".
-// Een kennisgeving, besluit of uitslag MET concrete inhoud (een bedrag, een
-// datum, een sluiting, een tarief, een beslissing) wordt op zijn gevolgen
-// beoordeeld, net als elk ander bericht. Alleen aankondigingen ZONDER
-// concrete inhoud blijven "nee".
+// De landelijke filter en pitch staan er nog, maar worden alleen gebruikt
+// als er ook landelijke bronnen in bronnen.js staan. Voor nu zijn die leeg.
 //
-// Verwacht de API-key in de omgevingsvariabele GEMINI_API_KEY (zie README
-// voor hoe je die als GitHub Secret instelt — nooit hardcoded in dit bestand
-// of ergens anders in de repo!).
+// Verwacht de API-key in de omgevingsvariabele GEMINI_API_KEY.
 
 const { oorzaakTekst } = require("./hulpmiddelen");
 
@@ -38,47 +33,47 @@ const GEMINI_URL = (apiKey) =>
   `https://generativelanguage.googleapis.com/v1beta/models/${GEMINI_MODEL}:generateContent?key=${apiKey}`;
 
 const PAUZE_TUSSEN_CALLS_MS = 4500;
+const MAX_PITCHES_VOOR_RANKING = 50;
 
-const PROMPT_LOKAAL_FILTER = `Je bent een redactionele assistent voor een lokale journalist in Zaanstreek-Waterland.
-Je krijgt één bericht uit een lokale bron (buurtwebsite, schoolwebsite, gemeentelijk
-raadsinformatiesysteem, waterschap, provincie, agenda, enzovoort), met de titel en de
-tekst van het bericht.
+// ---------------------------------------------------------------------------
+// FILTER-PROMPT (lokaal) — nieuwscriteria uit het boek
+// ---------------------------------------------------------------------------
 
-Jouw enige taak: bepaal of dit bericht interessant genoeg is om op te pakken. Een
-bericht is oppakbaar als het een concreet gevolg heeft voor mensen in hun dagelijks
-leven. Denk aan bezuinigingen, uitvallende bussen, hogere of lagere tarieven,
-sluitingen, werkzaamheden en omleidingen, nieuwe regels, geld, tijd, veiligheid of
-gezondheid.
+const PROMPT_LOKAAL_FILTER = `Je bent redactioneel assistent voor een lokale journalist in Zaanstreek-Waterland.
+Je krijgt één bericht uit een Zaanse bron, maximaal 1 dag oud. Bepaal of dit nieuws is.
 
-Voor evenementen geldt een aparte regel. Een evenement dat VANDAAG plaatsvindt (zie
-de datum onderaan het bericht) mag je oppakbaar noemen als het een concreet gevolg
-heeft voor mensen die er niet bij zijn of er juist mee te maken krijgen: een
-afsluiting, overlast, drukte op de weg, parkeerproblemen, een prijswijziging,
-toegankelijkheid of veiligheid. Is het alleen een aankondiging zonder zulke gevolgen
-— bijvoorbeeld een concert, een markt, een tentoonstelling of een familiedag — dan
-is het antwoord "nee". Een evenement dat in de toekomst of in het verleden
-plaatsvindt krijgt altijd "nee", ook als het gevolg interessant zou kunnen zijn.
+Een bericht is nieuws als het aan minstens één van deze criteria voldoet:
 
-Let op het woord "mededeling": dat betekent NIET automatisch "nee". Een kennisgeving,
-besluit of uitslag MET concrete inhoud — een bedrag, een datum, een sluiting, een
-tarief, een beslissing, een aanwijzing — is géén aankondiging zonder inhoud en
-beoordeel je op zijn gevolgen, net als elk ander bericht. Pas als er geen enkel
-concreet gegeven in staat ("we hebben vergaderd", "we zijn blij met..."), is het
-antwoord "nee".
+AFWIJKING — het wijkt af van het alledaagse, is bijzonder of opvallend
+AMUSEMENT — het is grappig of opvallend luchtig
+BELANG — het raakt mensen in de regio, ook wie er niet direct bij betrokken is
+BETEKENIS — het heeft consequenties voor het dagelijks leven van mensen
+GROOTTE — de omvang maakt het belangrijk: veel mensen, veel geld, veel impact
+VOOR HET EERST — een debuut, eerste editie, opening, jubileum, primeur.
+  Signaalwoorden: "eerste", "debuut", "nieuw", "voor het eerst", "jubileum", "opening"
+PRIMEUR — het is exclusief, als eerste naar buiten gebracht
+NIEUWS VAN MORGEN — het kondigt iets aan dat nog gaat komen
+BEKENDE — het gaat over een bekend persoon in de regio
+INZICHT — het maakt een maatschappelijk probleem begrijpelijker
 
-Een uitnodiging, een aankondiging zonder concrete inhoud, een bestuurlijke procedure,
-een terugblik, een prijs of een persbericht over een organisatie krijgt "nee", ook als
-het onderwerp interessant is. Een gevolg telt alleen als het in de tekst staat of er
-rechtstreeks uit volgt.
+Actualiteit (max 1 dag oud) en nabijheid (Zaanse bron) gelden al voor elk bericht in deze stap. Ze zijn daarom alleen geen reden voor "ja".
 
-Geef ALLEEN geldig JSON terug, in dit exacte formaat, zonder markdown-fences of andere tekst:
+Kies "ja" als minstens één criterium geldt en letterlijk in de tekst staat.
+Kies "twijfel" als een criterium lijkt te gelden, maar de tekst te vaag is om het zeker te weten.
+Kies "nee" als geen enkel criterium geldt.
+
+Output (alleen geldige JSON, geen tekst eromheen):
 {
   "oppakbaar": "ja" | "twijfel" | "nee",
-  "onderbouwing": "max 2 zinnen: welk feit in het bericht het gevolg draagt, of waarom er geen duidelijk gevolg voor mensen is"
+  "onderbouwing": "max 2 zinnen: welk criterium wel of niet geldt"
 }
 
-Blijf strikt bij wat feitelijk in het bericht staat. Doe geen aannames over motieven,
-gevolgen of context die niet genoemd worden.`;
+Blijf strikt bij wat feitelijk in het bericht staat. Doe geen aannames over motieven, gevolgen of context die niet genoemd worden.`;
+
+// ---------------------------------------------------------------------------
+// FILTER-PROMPT (landelijk) — ongewijzigd, alleen gebruikt als er landelijke
+// bronnen zijn. Voor nu staan die niet in bronnen.js.
+// ---------------------------------------------------------------------------
 
 const PROMPT_LANDELIJK_FILTER = `Je bent een redactionele assistent voor een lokale journalist in Zaanstreek-Waterland.
 Je krijgt één landelijk nieuwsbericht, met de titel en de tekst van het bericht.
@@ -108,33 +103,47 @@ Geef ALLEEN geldig JSON terug, in dit exacte formaat, zonder markdown-fences of 
 Blijf strikt bij wat feitelijk in het bericht staat. Doe geen aannames over motieven,
 gevolgen of context die niet genoemd worden.`;
 
-const PROMPT_LOKAAL_PITCH = `Je bent een redactionele assistent voor een lokale journalist in Zaanstreek-Waterland.
-Je krijgt één bericht uit een lokale bron dat al als oppakbaar is beoordeeld. Maak nu
-de pitch: wie wordt er geraakt, wat is het concrete gevolg, en wat is een goede
-invalshoek?
+// ---------------------------------------------------------------------------
+// PITCH-PROMPT (lokaal) — kort, met invalshoek + researchvraag + bronnen,
+// GEEN prioriteit (die komt uit de ranking-call).
+// ---------------------------------------------------------------------------
 
-Geef ALLEEN geldig JSON terug, in dit exacte formaat, zonder markdown-fences of andere tekst:
+const PROMPT_LOKAAL_PITCH = `Je bent redactioneel assistent voor een lokale journalist in Zaanstreek-Waterland.
+Je krijgt één bericht dat al als nieuws is beoordeeld. Maak een korte pitch voor
+de dagelijkse nieuwsvergadering.
+
+Een goede pitch is kort, concreet, en heeft drie dingen:
+- een invalshoek: vanuit welk perspectief wordt het bekeken?
+- een simpele researchvraag: wat gaat de journalist uitzoeken?
+- bronnen: wie kan de journalist bellen?
+
+Geef:
+
+1. INVALSHEEK — vanuit welke hoek wordt het bekeken? Eén zin.
+   Bijvoorbeeld: "vanuit gehandicapten in de Zaanstreek" of
+   "vanuit de ondernemers in Zaandam die er last van hebben".
+
+2. RESEARCHVRAAG — één simpele vraag in de vorm "Wat betekent dit voor [wie]?"
+   Bijvoorbeeld: "Wat betekent dit voor gehandicapten in de Zaanstreek?"
+
+3. BRONNEN — namen van personen, organisaties of bedrijven uit de tekst die
+   de journalist kan bellen. Laat de lijst leeg als er geen namen in staan.
+   Verzin geen namen.
+
+Geef ALLEEN geldige JSON terug, in dit exacte formaat, zonder
+markdown-fences of andere tekst:
 {
-  "gevolgenVoor": "wie wordt er geraakt, zo concreet als het bericht toelaat, anders leeg",
-  "gevolg": "het concrete gevolg voor die persoon of groep, 1-2 zinnen, alleen wat in het bericht staat of er direct uit volgt, anders leeg",
-  "invalshoek": "één zin in de vorm 'Wat betekent dit voor [wie]: ...', alleen als die direct uit de feiten volgt, anders leeg",
-  "teCheckenBronnen": ["bron 1", "bron 2"],
-  "prioriteit": 1
+  "invalshoek": "...",
+  "researchvraag": "...",
+  "bronnen": ["..."]
 }
 
-Geef daarnaast een prioriteit als geheel getal van 1 tot en met 10. Hoger betekent: meer
-mensen worden geraakt, het gevolg grijpt dieper in (geld, vervoer, zorg, onderwijs,
-wonen, veiligheid), het gaat sneller in en het speelt dichter bij Zaanstreek-Waterland.
+Laat velden leeg als ze niet uit de tekst volgen. Verzin niets.
+Blijf strikt bij wat er staat.`;
 
-De datum van vandaag staat onder het bericht. Hoe dichterbij in de tijd het gevolg of de
-gebeurtenis ligt, hoe hoger de prioriteit: iets dat vandaag of de komende dagen speelt
-weegt zwaarder dan iets dat al voorbij is of pas over weken speelt. Let op: een bericht
-dat een paar dagen geleden is geplaatst maar iets aankondigt dat vandaag of binnenkort
-plaatsvindt, is nu juist heel relevant. Haal de datum van het gevolg alleen uit de tekst;
-verzin er geen.
-
-Blijf strikt bij wat feitelijk in het bericht staat. Doe geen aannames over motieven,
-gevolgen of context die niet genoemd worden.`;
+// ---------------------------------------------------------------------------
+// PITCH-PROMPT (landelijk) — ongewijzigd.
+// ---------------------------------------------------------------------------
 
 const PROMPT_LANDELIJK_PITCH = `Je bent een redactionele assistent voor een lokale journalist in Zaanstreek-Waterland.
 Je krijgt één landelijk bericht dat al een lokale invalshoek heeft. Maak nu de pitch:
@@ -148,21 +157,53 @@ Geef ALLEEN geldig JSON terug, in dit exacte formaat, zonder markdown-fences of 
   "aanleiding": "concrete, controleerbare aanleiding die logisch uit het bericht volgt, anders leeg",
   "voorgesteldeKop": "een pakkende, feitelijk onderbouwde kop voor het lokale artikel, anders leeg",
   "pitchUitleg": "2-4 zinnen die het gevolg voor de betrokken mensen uitwerken tot een bruikbare pitch, anders leeg",
-  "vervolgstappen": ["concrete actie 1, bijv. wie te interviewen", "concrete actie 2, bijv. welk feit te checken"],
-  "prioriteit": 1
+  "vervolgstappen": ["concrete actie 1, bijv. wie te interviewen", "concrete actie 2, bijv. welk feit te checken"]
 }
-
-Geef daarnaast een prioriteit als geheel getal van 1 tot en met 10. Hoger betekent: meer
-mensen in de regio worden geraakt, het gevolg grijpt dieper in, het gaat sneller in en
-het is concreter te maken voor Zaanstreek-Waterland.
-
-De datum van vandaag staat onder het bericht. Hoe dichterbij in de tijd het gevolg of de
-gebeurtenis ligt, hoe hoger de prioriteit: iets dat vandaag of de komende dagen speelt
-weegt zwaarder dan iets dat al voorbij is of pas over weken speelt. Haal de datum van het
-gevolg alleen uit de tekst; verzin er geen.
 
 Blijf strikt bij wat feitelijk in het bericht staat. Doe geen aannames over motieven,
 gevolgen of context die niet genoemd worden.`;
+
+// ---------------------------------------------------------------------------
+// RANKING-PROMPT — één keer per run, voor alle pitches gezamenlijk.
+// Scoort op basis van de nieuwscriteria uit het boek.
+// ---------------------------------------------------------------------------
+
+const PROMPT_RANKING = `Je bent redactioneel assistent voor een lokale journalist in Zaanstreek-Waterland.
+Je krijgt een lijst met pitches voor de dagelijkse nieuwsvergadering. Geef elke pitch
+een score van 1 tot 10 op basis van hoe groot of belangrijk het nieuws is.
+
+Gebruik de nieuwscriteria (hoe meer en hoe sterker, hoe hoger de score):
+
+OMVANG — hoe meer mensen, geld of impact, hoe belangrijker
+AFWIJKING — hoe ongewoner, hoe belangrijker
+ACTUALITEIT — hoe verser, hoe belangrijker
+NABIJHEID — hoe dichter bij Zaanstreek-Waterland
+PRIMEUR — als eerste naar buiten gebracht
+VOOR HET EERST — debuut, eerste editie, opening, jubileum
+NIEUWS VAN MORGEN — aankondiging van iets belangrijks dat komt
+BEKENDE — bekende personen in de regio krijgen eerder aandacht
+INZICHT — maakt een maatschappelijk probleem begrijpelijker
+
+Schaal:
+9-10 = groot nieuws (hoge omvang + meerdere andere criteria)
+7-8  = duidelijk belangrijk (omvang of impact + 1 ander criterium)
+4-6  = bescheiden nieuws (1 criterium of meerdere zwakke)
+1-3  = klein nieuws (niche, kleine groep, geringe impact)
+
+Geef ALLEEN geldige JSON terug, in dit exacte formaat, zonder
+markdown-fences of andere tekst:
+{
+  "scores": [
+    { "nr": 1, "score": 5 }
+  ]
+}
+
+Geef één score per pitch. Gebruik het nummer ("nr") dat bij elke pitch staat.
+Verzin geen nummers die er niet zijn, sla geen nummers over.`;
+
+// ---------------------------------------------------------------------------
+// Gemini aanroepen
+// ---------------------------------------------------------------------------
 
 function maakPrioriteit(waarde) {
   const getal = Math.round(Number(waarde));
@@ -174,6 +215,10 @@ async function roepGeminiAan(prompt, bericht, apiKey, pogingen) {
   const vandaagIso = new Date().toLocaleDateString("sv-SE", { timeZone: "Europe/Amsterdam" });
   const volledigePrompt = `${prompt}\n\n---\nVandaag: ${vandaag} (${vandaagIso})\n\nBERICHT\nTitel: ${bericht.titel}\nTekst: ${bericht.samenvatting || "(geen tekst beschikbaar, alleen de titel)"}\nBron: ${bericht.bronNaam}\nURL: ${bericht.url}\nDatum (publicatie, of bij een agenda de datum van het evenement): ${bericht.gepubliceerdOp || "onbekend"}`;
 
+  return roepGeminiAanRuw(volledigePrompt, bericht.bronId, apiKey, pogingen);
+}
+
+async function roepGeminiAanRuw(volledigePrompt, bronIdVoorLog, apiKey, pogingen) {
   let laatsteFout;
   for (let poging = 1; poging <= pogingen; poging++) {
     try {
@@ -195,7 +240,7 @@ async function roepGeminiAan(prompt, bericht, apiKey, pogingen) {
         const is503 = response.status === 503;
         if ((is429 || is503) && poging < pogingen) {
           const wachttijd = is429 ? 20_000 * poging : 1500 * poging;
-          console.warn(`[${bericht.bronId}] Gemini HTTP ${response.status} (poging ${poging}/${pogingen}), ${wachttijd / 1000}s wachten...`);
+          console.warn(`[${bronIdVoorLog}] Gemini HTTP ${response.status} (poging ${poging}/${pogingen}), ${wachttijd / 1000}s wachten...`);
           await nieuweWacht(wachttijd);
           continue;
         }
@@ -216,9 +261,13 @@ async function roepGeminiAan(prompt, bericht, apiKey, pogingen) {
     }
   }
 
-  console.warn(`[${bericht.bronId}] Gemini-aanroep overgeslagen: ${laatsteFout.message}${oorzaakTekst(laatsteFout)}`);
+  console.warn(`[${bronIdVoorLog}] Gemini-aanroep overgeslagen: ${laatsteFout.message}${oorzaakTekst(laatsteFout)}`);
   return null;
 }
+
+// ---------------------------------------------------------------------------
+// Twee-staps: filter + pitch per bericht
+// ---------------------------------------------------------------------------
 
 async function beoordeelMetGemini(bericht, apiKey, pogingen = 3) {
   const isLokaal = bericht.categorie === "lokaal";
@@ -239,12 +288,10 @@ async function beoordeelMetGemini(bericht, apiKey, pogingen = 3) {
   const pitchPrompt = isLokaal ? PROMPT_LOKAAL_PITCH : PROMPT_LANDELIJK_PITCH;
   const pitchResultaat = await roepGeminiAan(pitchPrompt, bericht, apiKey, pogingen);
   if (!pitchResultaat) {
-    return { ...bericht, aiBeoordeling: { ...filterResultaat, prioriteit: null }, aiFout: "pitch-call mislukt" };
+    return { ...bericht, aiBeoordeling: filterResultaat, aiFout: "pitch-call mislukt" };
   }
 
-  const gecombineerd = { ...filterResultaat, ...pitchResultaat };
-  gecombineerd.prioriteit = maakPrioriteit(gecombineerd.prioriteit);
-  return { ...bericht, aiBeoordeling: gecombineerd, aiFout: null };
+  return { ...bericht, aiBeoordeling: { ...filterResultaat, ...pitchResultaat }, aiFout: null };
 }
 
 function nieuweWacht(ms) {
@@ -270,6 +317,73 @@ async function beoordeelBerichten(berichten, apiKey, maxAantal = 18, label = "")
   return [...resultaten, ...overgeslagen];
 }
 
+// ---------------------------------------------------------------------------
+// Derde stap: ranking (één call voor alle pitches samen)
+// ---------------------------------------------------------------------------
+
+/**
+ * Geeft elke pitch een prioriteit (1-10) op basis van de nieuwscriteria.
+ * Doet één Gemini-call voor de hele lijst, zodat de AI de pitches naast
+ * elkaar kan zien en onderling kan vergelijken.
+ *
+ * De pitches krijgen tijdelijk een nummer ("nr") mee. De AI geeft per nummer
+ * een score terug. De code koppelt dat nummer terug aan het juiste bericht,
+ * zodat titels niet verward kunnen worden.
+ *
+ * Geeft dezelfde berichten terug, met aiBeoordeling.prioriteit ingevuld.
+ * Bij een mislukte call krijgen alle pitches prioriteit null.
+ */
+async function rangschikPitches(berichten, apiKey, pogingen = 3) {
+  if (berichten.length === 0) return berichten;
+
+  const teRangschikken = berichten.slice(0, MAX_PITCHES_VOOR_RANKING);
+  const buitenBereik = berichten.slice(MAX_PITCHES_VOOR_RANKING);
+
+  const lijst = teRangschikken.map((b, i) => ({
+    nr: i + 1,
+    titel: b.titel,
+    tekst: (b.samenvatting || "").slice(0, 600),
+  }));
+
+  const vandaag = new Date().toLocaleDateString("nl-NL", { weekday: "long", day: "numeric", month: "long", year: "numeric", timeZone: "Europe/Amsterdam" });
+  const volledigePrompt = `${PROMPT_RANKING}\n\n---\nVandaag: ${vandaag}\n\nPITCHES\n${JSON.stringify(lijst, null, 2)}`;
+
+  console.log(`[gemini ranking] ${teRangschikken.length} pitch(es) rangschikken in één call...`);
+  const resultaat = await roepGeminiAanRuw(volledigePrompt, "ranking", apiKey, pogingen);
+
+  const scoresPerNr = new Map();
+  if (resultaat && Array.isArray(resultaat.scores)) {
+    for (const item of resultaat.scores) {
+      const nr = Number(item && item.nr);
+      const score = maakPrioriteit(item && item.score);
+      if (Number.isFinite(nr) && score !== null) scoresPerNr.set(nr, score);
+    }
+  }
+
+  if (scoresPerNr.size === 0) {
+    console.warn(`[gemini ranking] Geen bruikbare scores ontvangen; alle pitches krijgen prioriteit null.`);
+  }
+
+  const metScore = teRangschikken.map((b, i) => {
+    const nr = i + 1;
+    const score = scoresPerNr.get(nr) || null;
+    return {
+      ...b,
+      aiBeoordeling: { ...(b.aiBeoordeling || {}), prioriteit: score },
+    };
+  });
+
+  const zonderScore = buitenBereik.map((b) => ({
+    ...b,
+    aiBeoordeling: { ...(b.aiBeoordeling || {}), prioriteit: null },
+  }));
+
+  console.log(`[gemini ranking] ${scoresPerNr.size} van ${teRangschikken.length} pitch(es) kregen een score.`);
+  return [...metScore, ...zonderScore];
+}
+
+// ---------------------------------------------------------------------------
+
 async function fetchMetTimeout(url, opties, timeoutMs) {
   const controller = new AbortController();
   const timeoutId = setTimeout(() => controller.abort(), timeoutMs);
@@ -280,4 +394,4 @@ async function fetchMetTimeout(url, opties, timeoutMs) {
   }
 }
 
-module.exports = { beoordeelBerichten, beoordeelMetGemini };
+module.exports = { beoordeelBerichten, beoordeelMetGemini, rangschikPitches };

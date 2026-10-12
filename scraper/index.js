@@ -4,23 +4,22 @@
 // 1. Scrapen — alle bronnen, alle berichten
 // 2. Bepaal welke berichten tekst/foto nodig hebben: alleen die binnen het
 //    pitch-venster (voor Gemini) of die nieuw zijn voor de feed (datum ≤
-//    vandaag, nog niet in feed.json). De rest heeft zijn tekst al uit een
-//    eerdere run, of wordt nergens meer gebruikt.
+//    vandaag, nog niet in feed.json).
 // 3. Tekst en foto ophalen — alleen voor die kleinere groep
 // 4. De nieuwsfeed bijwerken (alles ≤ vandaag, ontdubbeld op url, gesorteerd
 //    op datum, cap 200). Toekomst wordt eruit gefilterd.
-// 5. Voor de pitches: filter op het pitch-venster (nieuws van gisteren/
-//    vandaag, agenda's alleen vandaag).
+// 5. Voor de pitches: filter op het pitch-venster.
 // 6. Splitsen in lokaal/landelijk en sorteren.
 // 7. Gemini-beoordeling (filter + pitch per bericht).
-// 8. Pitches rangschikken op prioriteit en wegschrijven.
+// 8. Gemini-ranking (één call voor alle pitches samen) → prioriteit 1-10.
+// 9. Pitches rangschikken op prioriteit en wegschrijven.
 
 const fs = require("fs/promises");
 const path = require("path");
 
 const bronnen = require("./bronnen");
 const { scraperVoorType } = require("./scraper-register");
-const { beoordeelBerichten } = require("./gemini");
+const { beoordeelBerichten, rangschikPitches } = require("./gemini");
 const {
   binnenVenster,
   MAX_LEEFTIJD_DAGEN,
@@ -239,8 +238,6 @@ function binnenFeedVenster(iso) {
  * feed staan (en dus hun tekst al hebben). Die hoeven niet nóg een keer door
  * de tekststap — behalve als ze ook in het pitch-venster vallen, want dan
  * heeft Gemini de tekst nodig.
- *
- * Geeft een Set van urls. Bij een ontbrekend of ongeldig bestand: lege Set.
  */
 async function leesFeedUrls() {
   try {
@@ -318,6 +315,7 @@ function prioriteitVan(bericht) {
   const p = bericht.aiBeoordeling && bericht.aiBeoordeling.prioriteit;
   return Number.isInteger(p) && p >= 1 && p <= 10 ? p : 0;
 }
+
 function sorteerOpDatum(berichten, bronPerId) {
   const isAgenda = (b) => bronPerId[b.bronId] && bronPerId[b.bronId].soort === "agenda";
   const nieuws = berichten.filter((b) => !isAgenda(b));
@@ -351,7 +349,7 @@ function stelPitchesSamen(kansrijkeLokaal, kansrijkLandelijk, aantal) {
   const gecombineerd = [...kansrijkeLokaal, ...kansrijkLandelijk];
   const zonderPrioriteit = gecombineerd.filter((b) => prioriteitVan(b) === 0);
   if (zonderPrioriteit.length > 0) {
-    console.warn(`${zonderPrioriteit.length} kansrijk(e) bericht(en) zonder geldige prioriteit van Gemini; die komen onderaan de pitchlijst.`);
+    console.warn(`${zonderPrioriteit.length} kansrijk(e) bericht(en) zonder geldige prioriteit; die komen onderaan de pitchlijst.`);
   }
   return gecombineerd.sort((a, b) => prioriteitVan(b) - prioriteitVan(a)).slice(0, aantal);
 }
@@ -400,15 +398,6 @@ async function main() {
   console.log(`Totaal aantal unieke berichten: ${alleBerichten.length}`);
 
   // STAP 2 — Bepaal welke berichten tekst/foto nodig hebben.
-  //
-  // Twee groepen:
-  //   (a) alles binnen het pitch-venster (voor Gemini)
-  //   (b) alles wat nieuw is voor de feed (datum ≤ vandaag, nog niet in feed.json)
-  //
-  // De rest heeft zijn tekst al (uit een eerdere run, staat in feed.json) of
-  // wordt nergens meer gebruikt (bijvoorbeeld hoorzittingen in de toekomst,
-  // die vallen buiten het pitch-venster en worden door werkFeedBij uit de
-  // feed gefilterd).
   logFase("STAP 2 — Bepalen welke berichten tekst en foto nodig hebben");
   const feedUrls = await leesFeedUrls();
   const teVerrijken = alleBerichten.filter((b) => {
@@ -419,7 +408,7 @@ async function main() {
   console.log(`Tekst/foto nodig voor ${teVerrijken.length} van ${alleBerichten.length} unieke bericht(en).`);
   console.log(`(${recenteBerichten.length} voor Gemini, ${teVerrijken.length - recenteBerichten.length} nieuw voor de feed.)`);
 
-  // STAP 3 — Tekst en foto ophalen (alleen voor de zojuist bepaalde groep).
+  // STAP 3 — Tekst en foto ophalen.
   logFase("STAP 3 — Tekst en foto ophalen");
   const startTekst = Date.now();
   try {
@@ -469,7 +458,7 @@ async function main() {
     return;
   }
 
-  // STAP 7 — Gemini-beoordeling
+  // STAP 7 — Gemini-beoordeling (filter + pitch per bericht)
   logFase("STAP 7 — Gemini-beoordeling");
   const startGemini = Date.now();
 
@@ -484,12 +473,34 @@ async function main() {
   await schrijfJson("nieuws-lokaal.json", lokaalBeoordeeld);
   await schrijfJson("nieuws-landelijk.json", landelijkBeoordeeld);
 
-  // STAP 8 — Pitches samenstellen
-  logFase("STAP 8 — Pitches samenstellen");
+  // STAP 8 — Pitches samenstellen en rangschikken
+  logFase("STAP 8 — Pitches rangschikken");
   const kansrijkeLokaal = lokaalBeoordeeld.filter((b) => b.aiBeoordeling?.oppakbaar === "ja");
   const kansrijkLandelijk = landelijkBeoordeeld.filter((b) => b.aiBeoordeling?.lokaleInvalshoek === "ja");
+  const alleKansrijke = [...kansrijkeLokaal, ...kansrijkLandelijk];
+  console.log(`Kansrijke berichten: ${kansrijkeLokaal.length} lokaal, ${kansrijkLandelijk.length} landelijk (${alleKansrijke.length} totaal).`);
 
-  const topPitches = stelPitchesSamen(kansrijkeLokaal, kansrijkLandelijk, AANTAL_PITCHES);
+  let alleKansrijkeMetScore = alleKansrijke;
+  try {
+    alleKansrijkeMetScore = await rangschikPitches(alleKansrijke, apiKey);
+  } catch (fout) {
+    console.error(`Rangschikken mislukte onverwacht (pitches houden prioriteit null): ${fout.message}${oorzaakTekst(fout)}`);
+  }
+
+  // Zet de scores terug in de lokaal/landelijk-lijsten (zodat nieuws-lokaal.json en
+  // nieuws-landelijk.json ook de prioriteiten bevatten).
+  const scorePerUrl = new Map(alleKansrijkeMetScore.map((b) => [b.url, b.aiBeoordeling?.prioriteit ?? null]));
+  const metScoreTerug = (lijst) => lijst.map((b) => scorePerUrl.has(b.url) ? { ...b, aiBeoordeling: { ...(b.aiBeoordeling || {}), prioriteit: scorePerUrl.get(b.url) } } : b);
+  await schrijfJson("nieuws-lokaal.json", metScoreTerug(lokaalBeoordeeld));
+  await schrijfJson("nieuws-landelijk.json", metScoreTerug(landelijkBeoordeeld));
+
+  // STAP 9 — Pitches samenstellen voor de frontend
+  logFase("STAP 9 — Top pitches samenstellen");
+  const topPitches = stelPitchesSamen(
+    alleKansrijkeMetScore.filter((b) => b.categorie === "lokaal"),
+    alleKansrijkeMetScore.filter((b) => b.categorie === "landelijk"),
+    AANTAL_PITCHES
+  );
 
   await schrijfJson("pitches.json", {
     gegenereerdOp: new Date().toISOString(),
@@ -497,7 +508,13 @@ async function main() {
     topPitches,
   });
 
-  console.log(`Pitches: ${topPitches.length} van ${kansrijkeLokaal.length + kansrijkLandelijk.length} kansrijke bericht(en) opgenomen (top ${AANTAL_PITCHES}).`);
+  console.log(`Pitches: ${topPitches.length} van ${alleKansrijke.length} kansrijke bericht(en) opgenomen (top ${AANTAL_PITCHES}).`);
+  if (topPitches.length > 0) {
+    const scores = topPitches.map((p) => prioriteitVan(p)).filter((s) => s > 0);
+    if (scores.length > 0) {
+      console.log(`Scores in top ${topPitches.length}: min ${Math.min(...scores)}, max ${Math.max(...scores)}, gemiddeld ${(scores.reduce((a, b) => a + b, 0) / scores.length).toFixed(1)}.`);
+    }
+  }
 
   logDuur(startRun, "Dagelijkse run");
   console.log(`Klaar: ${topPitches.length} pitches gegenereerd.`);
