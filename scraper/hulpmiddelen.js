@@ -352,23 +352,22 @@ async function haalOpEcht(url, pogingen = 3, opties = {}) {
   const timeoutMs = opties.timeoutMs || 20_000;
   const { hostname } = new URL(url);
 
-  // Als we eerder voor deze host al een gerepareerd certificaat hebben
-  // opgehaald, gebruiken we dat meteen. Zonder deze cache deden we hetzelfde
-  // werk 21 keer in één run (21 hoorzittingen op loket.zaanstad.nl).
+  // Standaard headers één keer, buiten de loop: de cookie-fallback in de
+  // catch-block heeft ze ook nodig, en daar is de lokale fetchOpties-variabele
+  // niet meer in scope.
+  const standaardHeaders = {
+    "User-Agent": GEBRUIKERSAGENT,
+    "Accept": "*/*",
+    "Accept-Language": "nl-NL,nl;q=0.9,en;q=0.8",
+  };
+
   dispatcher = dispatcherCache.get(hostname) || undefined;
 
   for (let poging = 1; poging <= pogingen; poging++) {
     try {
       const controller = new AbortController();
       const timeoutId = setTimeout(() => controller.abort(), timeoutMs);
-      const fetchOpties = {
-        headers: {
-          "User-Agent": GEBRUIKERSAGENT,
-          "Accept": "*/*",
-          "Accept-Language": "nl-NL,nl;q=0.9,en;q=0.8",
-        },
-        signal: controller.signal,
-      };
+      const fetchOpties = { headers: standaardHeaders, signal: controller.signal };
       if (dispatcher) fetchOpties.dispatcher = dispatcher;
       const response = await fetch(url, fetchOpties);
       clearTimeout(timeoutId);
@@ -380,8 +379,6 @@ async function haalOpEcht(url, pogingen = 3, opties = {}) {
     } catch (fout) {
       laatsteFout = fout;
 
-      // TLS-keten repareren als dat nodig is (en nog niet eerder gedaan voor
-      // deze host). De cache wordt binnen haalDispatcherVoorHost gevuld.
       if (
         fout.cause &&
         fout.cause.code === "UNABLE_TO_VERIFY_LEAF_SIGNATURE" &&
@@ -399,7 +396,7 @@ async function haalOpEcht(url, pogingen = 3, opties = {}) {
       if (fout.cause && fout.cause.message === "redirect count exceeded") {
         console.warn(`${url} stuurt eindeloos door (waarschijnlijk is een sessie-cookie vereist) — probeer met cookie-ondersteuning...`);
         try {
-          const cookieOpties = { headers: fetchOpties.headers };
+          const cookieOpties = { headers: standaardHeaders };
           if (dispatcher) cookieOpties.dispatcher = dispatcher;
           return await haalOpMetCookies(url, cookieOpties);
         } catch (cookieFout) {
