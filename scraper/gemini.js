@@ -19,10 +19,13 @@
 //
 // Sinds de "evenementen-van-vandaag"-ronde: de lokale filter-prompt wijst
 // evenementen niet meer automatisch af. Een evenement dat VANDAAG plaatsvindt
-// mag oppakbaar zijn als het een concreet gevolg heeft voor mensen (afsluiting,
-// overlast, drukte, prijswijziging, toegankelijkheid, veiligheid). Evenementen
-// in de toekomst of in het verleden blijven "nee". De rest van de prompt is
-// ongewijzigd.
+// mag oppakbaar zijn als het een concreet gevolg heeft voor mensen.
+//
+// Sinds de "kennisgeving"-ronde: "mededeling" is niet meer automatisch "nee".
+// Een kennisgeving, besluit of uitslag MET concrete inhoud (een bedrag, een
+// datum, een sluiting, een tarief, een beslissing) wordt op zijn gevolgen
+// beoordeeld, net als elk ander bericht. Alleen aankondigingen ZONDER
+// concrete inhoud blijven "nee".
 //
 // Verwacht de API-key in de omgevingsvariabele GEMINI_API_KEY (zie README
 // voor hoe je die als GitHub Secret instelt — nooit hardcoded in dit bestand
@@ -56,9 +59,16 @@ toegankelijkheid of veiligheid. Is het alleen een aankondiging zonder zulke gevo
 is het antwoord "nee". Een evenement dat in de toekomst of in het verleden
 plaatsvindt krijgt altijd "nee", ook als het gevolg interessant zou kunnen zijn.
 
-Een uitnodiging, een algemene mededeling, een bestuurlijke procedure, een terugblik,
-een prijs of een persbericht over een organisatie krijgt "nee", ook als het
-onderwerp interessant is. Een gevolg telt alleen als het in de tekst staat of er
+Let op het woord "mededeling": dat betekent NIET automatisch "nee". Een kennisgeving,
+besluit of uitslag MET concrete inhoud — een bedrag, een datum, een sluiting, een
+tarief, een beslissing, een aanwijzing — is géén aankondiging zonder inhoud en
+beoordeel je op zijn gevolgen, net als elk ander bericht. Pas als er geen enkel
+concreet gegeven in staat ("we hebben vergaderd", "we zijn blij met..."), is het
+antwoord "nee".
+
+Een uitnodiging, een aankondiging zonder concrete inhoud, een bestuurlijke procedure,
+een terugblik, een prijs of een persbericht over een organisatie krijgt "nee", ook als
+het onderwerp interessant is. Een gevolg telt alleen als het in de tekst staat of er
 rechtstreeks uit volgt.
 
 Geef ALLEEN geldig JSON terug, in dit exacte formaat, zonder markdown-fences of andere tekst:
