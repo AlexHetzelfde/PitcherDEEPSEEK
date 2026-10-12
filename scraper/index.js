@@ -3,13 +3,12 @@
 // Volgorde:
 // 1. Alles scrapen (per bron, met eigen scraper-type)
 // 2. Tekst + foto per bericht ophalen voor ALLE unieke berichten
-//    (nodig voor de feed; zie Deel B voor "altijd foto ophalen")
-// 3. De nieuwsfeed bijwerken (data/feed.json): alles wat deze run gevonden
-//    heeft, ontdubbeld op url, gesorteerd op datum (nieuwste eerst), cap 200.
-//    De feed is RUIM: ook evenementen in de toekomst en ouder nieuws komen
-//    erin, zodat niets verloren gaat.
-// 4. Voor de pitches: alleen berichten binnen het venster. Dit is STRIKT:
-//    agenda-bronnen alleen vandaag, nieuws max 1 kalenderdag oud.
+// 3. De nieuwsfeed bijwerken (data/feed.json): alles tot en met vandaag,
+//    ontdubbeld op url, gesorteerd op datum (nieuwste eerst), cap 200.
+//    Berichten met een datum in de TOEKOMST worden eruit gefilterd, zodat
+//    de feed niet vooruitloopt op de dag van draaien. Sinds deze ronde.
+// 4. Voor de pitches: alleen berichten binnen het venster (nieuws van
+//    gisteren/vandaag, agenda's alleen vandaag).
 // 5. Splitsen in lokaal/landelijk en sorteren (nieuws eerst, dan agenda)
 // 6. Per bericht twee Gemini-calls: filter, dan pitch + score
 // 7. Pitches rangschikken op prioriteit en wegschrijven naar /data
@@ -222,11 +221,35 @@ function kortAfTekst(tekst, max) {
 }
 
 /**
+ * Het venster voor de feed: alles tot en met vandaag. Berichten met een datum
+ * in de TOEKOMST (na middernacht van morgen) worden eruit gefilterd, zodat de
+ * feed in de frontend niet vooruitloopt op de dag van draaien. Berichten uit
+ * het verleden en van vandaag blijven staan — dat is de geschiedenis en het
+ * nieuws van nu.
+ *
+ * Zonder datum = eruit (zelfde regel als in de rest van het systeem).
+ */
+function binnenFeedVenster(iso) {
+  if (!iso) return false;
+  const d = new Date(iso).getTime();
+  if (isNaN(d)) return false;
+  const nu = new Date();
+  const eindVandaag = new Date(nu.getFullYear(), nu.getMonth(), nu.getDate() + 1).getTime();
+  return d < eindVandaag;
+}
+
+/**
  * Werkt data/feed.json bij: voegt alle berichten uit deze run toe die nog
  * niet in de feed staan (dedup op url), sorteert op publicatiedatum (nieuwste
  * eerst), en capt op FEED_MAX_ITEMS. De feed is onafhankelijk van Gemini en
  * van het pitch-venster: ook berichten die door Gemini als "nee" zijn
- * beoordeeld, en ook evenementen in de toekomst of ouder nieuws, horen erin.
+ * beoordeeld, en ook ouder nieuws, horen erin. Maar alles met een datum in de
+ * TOEKOMST valt eruit — de feed toont alleen wat tot en met vandaag speelt.
+ *
+ * Twee plekken waar het toekomst-filter wordt toegepast:
+ *   1. Op het bestaande feed.json bij het inlezen (anders blijven events van
+ *      volgende weken er voor altijd in staan).
+ *   2. Op de nieuwe berichten uit deze run.
  */
 async function werkFeedBij(berichten, bronPerId) {
   const feedPad = path.join(DATA_MAP, "feed.json");
@@ -238,10 +261,16 @@ async function werkFeedBij(berichten, bronPerId) {
     /* eerste run, of ongeldig bestand: begin met leeg */
   }
 
+  // Filter toekomst-events uit het bestaande bestand.
+  const voorToekomst = bestaand.length;
+  bestaand = bestaand.filter((b) => binnenFeedVenster(b.gepubliceerdOp));
+  const uitToekomst = voorToekomst - bestaand.length;
+
   const bestaandeUrls = new Set(bestaand.map((b) => b.url).filter(Boolean));
   const nieuw = [];
   for (const b of berichten) {
     if (!b.url || bestaandeUrls.has(b.url)) continue;
+    if (!binnenFeedVenster(b.gepubliceerdOp)) continue; // toekomst eruit
     const bron = bronPerId[b.bronId];
     nieuw.push({
       url: b.url,
@@ -271,7 +300,9 @@ async function werkFeedBij(berichten, bronPerId) {
 
   await schrijfJson("feed.json", gecapt);
   console.log(
-    `Feed bijgewerkt: ${nieuw.length} nieuw, ${gecapt.length} in de feed` +
+    `Feed bijgewerkt: ${nieuw.length} nieuw, ` +
+      `${uitToekomst > 0 ? `${uitToekomst} uit de toekomst gefilterd, ` : ""}` +
+      `${gecapt.length} in de feed` +
       `${verwijderd > 0 ? `, ${verwijderd} oudste verwijderd (cap = ${FEED_MAX_ITEMS})` : ""}` +
       `, ${metFoto} met foto.`
   );
@@ -281,7 +312,6 @@ function prioriteitVan(bericht) {
   const p = bericht.aiBeoordeling && bericht.aiBeoordeling.prioriteit;
   return Number.isInteger(p) && p >= 1 && p <= 10 ? p : 0;
 }
-
 function sorteerOpDatum(berichten, bronPerId) {
   const isAgenda = (b) => bronPerId[b.bronId] && bronPerId[b.bronId].soort === "agenda";
   const nieuws = berichten.filter((b) => !isAgenda(b));
@@ -360,15 +390,12 @@ async function main() {
   logBronOverzicht({ ...tellingen, ruweBerichten });
   await werkBronGezondheidBij(tellingen);
 
-  // Twee lijsten: één RUIME voor de feed (alles wat deze run gevonden is,
-  // ontdubbeld op url), en één STRIKTE voor de pitches (alleen binnen het
-  // venster, zie stap 4 hieronder).
+  // Twee lijsten: één RUIME voor de feed (alles tot en met vandaag, ontdubbeld
+  // op url), en één STRIKTE voor de pitches (alleen binnen het venster).
   const alleBerichten = verwijderDubbelen(ruweBerichten);
   console.log(`Totaal aantal unieke berichten (voor de feed): ${alleBerichten.length}`);
 
-  // STAP 2 — Tekst én foto per bericht ophalen (op alle unieke berichten,
-  // zodat de feed een foto en tekst kan tonen en Gemini de volledige tekst
-  // van elk bericht binnen het venster heeft).
+  // STAP 2 — Tekst én foto per bericht ophalen.
   logFase("STAP 2 — Tekst en foto per bericht ophalen");
   const startTekst = Date.now();
   try {
@@ -388,8 +415,8 @@ async function main() {
   }
   logDuur(startTekst, "Tekst en foto ophalen");
 
-  // STAP 3 — De nieuwsfeed bijwerken (ruim: alles wat deze run gevonden
-  // heeft, alleen ontdubbeld op url en gesorteerd op datum).
+  // STAP 3 — De nieuwsfeed bijwerken (ruim: alles tot en met vandaag, alleen
+  // ontdubbeld op url en gesorteerd op datum; toekomst eruit).
   logFase("STAP 3 — Nieuwsfeed bijwerken");
   try {
     await werkFeedBij(alleBerichten, bronPerId);
@@ -397,8 +424,7 @@ async function main() {
     console.error(`Nieuwsfeed bijwerken mislukte onverwacht (de rest van de run gaat door): ${fout.message}${oorzaakTekst(fout)}`);
   }
 
-  // STAP 4 — Voor de pitches: alleen berichten binnen het venster. De feed
-  // hierboven is bewust ruimer; deze filter bepaalt wat Gemini beoordeelt.
+  // STAP 4 — Voor de pitches: alleen berichten binnen het venster.
   logFase("STAP 4 — Berichten voor de pitches filteren");
   const berichtenVanVandaag = alleBerichten.filter(binnen);
   console.log(`Voor de pitches: ${berichtenVanVandaag.length} van ${alleBerichten.length} unieke bericht(en) vallen binnen het venster.`);
