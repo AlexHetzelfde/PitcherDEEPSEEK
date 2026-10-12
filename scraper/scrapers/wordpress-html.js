@@ -1,27 +1,24 @@
 // scrapers/wordpress-html.js
 //
-// Scraapt een WordPress-nieuwsoverzichtspagina (zoals zaanschemolen.nl/nieuws/).
-// WordPress-sites hebben bijna altijd ook een RSS-feed op /feed/ — die proberen
-// we eerst, want dat is veel robuuster dan HTML-scrapen (minder kans op breken
-// bij een theme-update). Lukt dat niet, dan valt de functie terug op het
+// Scraapt een WordPress-nieuwsoverzichtspagina. WordPress-sites hebben bijna
+// altijd ook een RSS-feed op /feed/ — die proberen we eerst, want dat is veel
+// robuuster dan HTML-scrapen. Lukt dat niet, dan valt de functie terug op het
 // scrapen van de HTML-lijst zelf.
 //
-// Sinds Deel C proberen we niet alleen /feed/ maar ALLE bekende feed-plekken
-// (zie feed-varianten.js). De pagina wordt één keer opgehaald zodat we ook de
-// <link rel="alternate">-tags kunnen lezen die de pagina zelf over zijn feed
-// geeft; die HTML wordt daarna hergebruikt voor de fallback.
+// Sinds de "feed-retry"-ronde: de eerste 5 feed-kandidaten (uit de pagina zelf
+// én de standaardpaden) krijgen 2 pogingen in plaats van 1. Zoals bij
+// generieke-lijst: één time-out op een goede URL mag niet betekenen dat we
+// "geen feed" melden en op HTML terugvallen.
 //
-// Sinds Deel B probeert de HTML-fallback per item ook een foto te vinden (via
-// de eerste <img> in het item, met de standaard attribuut-fallbacks).
+// Sinds Deel B probeert de HTML-fallback per item ook een foto te vinden.
 
 const cheerio = require("cheerio");
 const { haalOp, parseerRssTekst, oorzaakTekst, volgPaginas, haalFotoUitItem } = require("../hulpmiddelen");
 const { feedKandidaten } = require("../feed-varianten");
 
+const MAX_KANDIDATEN_MET_RETRY = 5;
+
 async function scrapeWordpress(bron) {
-  // Stap 1: haal de pagina op. Die hebben we hoe dan ook nodig voor de
-  // HTML-fallback, en met de HTML erbij kunnen we ook de <link>-tags lezen
-  // die de pagina zelf over zijn feed geeft.
   let html;
   try {
     html = await haalOp(bron.url);
@@ -31,52 +28,42 @@ async function scrapeWordpress(bron) {
   }
   const $ = cheerio.load(html);
 
-  // Stap 2: alle bekende feed-plekken proberen. De eerste die een geldige
-  // feed teruggeeft wint.
   const kandidaten = feedKandidaten(bron.url, $);
-  for (const feedUrl of kandidaten) {
+  for (let i = 0; i < kandidaten.length; i++) {
+    const feedUrl = kandidaten[i];
+    const pogingen = i < MAX_KANDIDATEN_MET_RETRY ? 2 : 1;
     try {
-      const feedTekst = await haalOp(feedUrl, 1, { stil: true });
-      // Veel sites geven bij een onbestaand feed-pad gewoon de HTML-pagina
-      // terug (soft 404): dat is geen feed.
+      const feedTekst = await haalOp(feedUrl, pogingen, { stil: true });
       if (!/<(rss|feed|rdf:RDF)[\s>]/i.test(feedTekst.slice(0, 2000))) continue;
       const items = await parseerRssTekst(feedTekst, bron);
       if (items.length > 0) {
         console.log(`[${bron.id}] RSS-feed gebruikt (${feedUrl}), ${items.length} bericht(en).`);
         return items;
       }
-    } catch {
-      /* deze variant werkt niet, probeer de volgende */
+    } catch (fout) {
+      if (!/HTTP 404/.test(fout.message)) {
+        console.log(`[${bron.id}] Feed-kandidaat ${feedUrl} faalde: ${fout.message}`);
+      }
     }
   }
   console.log(`[${bron.id}] Geen bruikbare feed in ${kandidaten.length} varianten, HTML-fallback gebruikt.`);
 
-  // Stap 3: HTML-fallback. De HTML hebben we al, geef hem mee zodat
-  // volgPaginas hem niet nog een keer ophaalt.
   const { berichten } = await volgPaginas(bron, ($pagina, paginaUrl) => leesWordpressPagina($pagina, bron, paginaUrl), { eersteHtml: html });
 
   const zonderDatum = berichten.filter((b) => !b.gepubliceerdOp).length;
   if (zonderDatum > 0) {
-    console.warn(`[${bron.id}] ${zonderDatum} van ${berichten.length} berichten (HTML-fallback) hadden geen herkenbare datum — deze site heeft waarschijnlijk maatwerk-selectors nodig voor de datum.`);
+    console.warn(`[${bron.id}] ${zonderDatum} van ${berichten.length} berichten (HTML-fallback) hadden geen herkenbare datum.`);
   }
   const zonderFoto = berichten.filter((b) => !b.foto).length;
   if (zonderFoto === berichten.length && berichten.length > 0) {
-    console.warn(`[${bron.id}] Geen enkel bericht heeft een foto in de HTML-lijst; de tekststap in index.js probeert het nog via de berichtpagina's.`);
+    console.warn(`[${bron.id}] Geen enkel bericht heeft een foto in de HTML-lijst; de tekststap probeert het nog via de berichtpagina's.`);
   }
 
   return berichten;
 }
 
-/** Leest de berichten van één WordPress-lijstpagina (al geladen als cheerio-document). */
 function leesWordpressPagina($, bron, paginaUrl) {
   const berichten = [];
-
-  // WordPress-thema's verschillen, dus we proberen een paar veelvoorkomende
-  // patronen: een <article>, of een blok met een <h2>/<h3> die naar een los
-  // artikel linkt, gevolgd door een datum in de buurt.
-  // Optioneel: bron.selectors.samenvattingSelector wijst het element met de
-  // intro aan (relatief aan het blok). Zonder die selector blijft de
-  // samenvatting leeg en vult de tekststap in index.js hem aan.
   const samenvattingSelector = bron.selectors && bron.selectors.samenvattingSelector;
   const fotoSelector = bron.selectors && bron.selectors.fotoSelector;
   const fotoAttribuut = bron.selectors && bron.selectors.fotoAttribuut;
@@ -91,8 +78,6 @@ function leesWordpressPagina($, bron, paginaUrl) {
     const datumTekst = $(el).find("time").attr("datetime") || $(el).find("time").text().trim();
     const gepubliceerdOp = parseerDatum(datumTekst) || datumUitPermalink($, el);
 
-    // Foto: via fotoSelector (als gegeven in bronnen.js) of de eerste <img>
-    // in het item, met de standaard attribuut-fallbacks.
     const foto = haalFotoUitItem($, el, fotoSelector || null, fotoAttribuut || null, basisUrl);
 
     berichten.push({
@@ -111,14 +96,6 @@ function leesWordpressPagina($, bron, paginaUrl) {
   return berichten;
 }
 
-/**
- * WordPress zet de publicatiedatum vaak ook gewoon in de permalink-URL zelf
- * (bv. .../2025/04/23/artikel-titel/), soms als een los datum-linkje met de
- * tijd in het title-attribuut (zoals bij zaanschemolen.nl: <a
- * href=".../2025/04/23/" title="10:22 am">apr232025</a>) in plaats van in een
- * <time>-element. Dit is een betrouwbare extra bron voor de datum die geen
- * enkele aanname doet over het thema — puur de standaard WordPress-URL-opbouw.
- */
 function datumUitPermalink($, el) {
   let gevonden = null;
   $(el)
