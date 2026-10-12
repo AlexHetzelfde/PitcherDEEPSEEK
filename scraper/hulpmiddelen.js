@@ -1,23 +1,20 @@
 // hulpmiddelen.js
 // Gedeelde functies die door meerdere scrapers gebruikt worden.
 //
+// Sinds de "browser-UA"-ronde:
+//  - De User-Agent is browser-achtig (was: "NieuwsaggregatorZaanstreekBot/1.0",
+//    wat sommige overheidssites direct blokkeren met HTTP 403).
+//  - Accept en Accept-Language worden meegestuurd.
+//  - Het TLS-tussencertificaat dat we voor loket.zaanstad.nl ophalen, wordt
+//    per hostname gecached. Zonder die cache deden we hetzelfde werk 21 keer
+//    in één run (21 hoorzittingen) en dat viel de server op.
+//
 // Sinds de "geduldiger"-ronde zijn de wachttijden voor het ophalen van
-// berichtpagina's flink verhoogd. Reden: sommige overheidssites (met name
-// loket.zaanstad.nl, een Mozard-suite) reageren traag of helemaal niet als er
-// veel verzoeken snel achter elkaar komen. Voorheen gaven we na 15 seconden
-// op en stopten we na 3 netwerkfouten met de hele site; nu wachten we langer
-// per pagina en tolereren we meer fouten. De totale run duurt daardoor langer
-// (tot ~30 minuten voor de tekststap in het slechtste geval), maar dat is de
-// prijs voor meer geslaagde pagina's. Alle waarden zijn nog steeds met een
-// omgevingsvariabele te overrulen.
+// berichtpagina's flink verhoogd. Alle waarden zijn met een omgevingsvariabele
+// te overrulen.
 
 const cheerio = require("cheerio");
 const Parser = require("rss-parser");
-// rss-parser parset standaard alleen <enclosure> voor afbeeldingen. Veel
-// Nederlandse feeds gebruiken echter de Media RSS-namespace (media:content,
-// media:thumbnail) en content:encoded. Met customFields levert de parser die
-// ook mee, zodat we een foto kunnen meenemen zonder de berichtpagina op te
-// hoeven halen.
 const rssParser = new Parser({
   customFields: {
     item: [
@@ -31,8 +28,11 @@ const tls = require("tls");
 const crypto = require("crypto");
 const { Agent } = require("undici");
 
+// Browser-achtige UA. Eerlijk genoeg (geen bekende browser claimen), maar wel
+// herkenbaar als "gewoon verkeer" voor sites die bot-UAs blokkeren. De
+// ibabs-scraper gebruikte al zo'n UA en dat werkt.
 const GEBRUIKERSAGENT =
-  "NieuwsaggregatorZaanstreekBot/1.0 (+journalistiek studentenproject; contact via github repo)";
+  "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/128.0.0.0 Safari/537.36";
 
 const MAX_LEEFTIJD_DAGEN = 1;
 
@@ -79,6 +79,22 @@ function oorzaakTekst(fout) {
   const code = oorzaak.code ? ` [${oorzaak.code}]` : "";
   const tekst = oorzaak.message || String(oorzaak);
   return ` — oorzaak: ${tekst}${code}`;
+}
+
+/**
+ * Cache voor de TLS-dispatcher per hostname. We halen het ontbrekende
+ * tussencertificaat (via de AIA-link) één keer per hostname op en hergebruiken
+ * het daarna voor de hele run. Zonder deze cache deden we hetzelfde werk
+ * tientallen keren achter elkaar — traag en het valt de server op.
+ */
+const dispatcherCache = new Map();
+
+async function haalDispatcherVoorHost(hostname, url) {
+  if (dispatcherCache.has(hostname)) return dispatcherCache.get(hostname);
+  const reparatie = await probeerKetenTeRepareren(url).catch(() => null);
+  const dispatcher = reparatie ? reparatie.dispatcher : null;
+  dispatcherCache.set(hostname, dispatcher);
+  return dispatcher;
 }
 
 async function probeerKetenTeRepareren(url) {
@@ -334,12 +350,23 @@ async function haalOpEcht(url, pogingen = 3, opties = {}) {
   let laatsteFout;
   let dispatcher;
   const timeoutMs = opties.timeoutMs || 20_000;
+  const { hostname } = new URL(url);
+
+  // Als we eerder voor deze host al een gerepareerd certificaat hebben
+  // opgehaald, gebruiken we dat meteen. Zonder deze cache deden we hetzelfde
+  // werk 21 keer in één run (21 hoorzittingen op loket.zaanstad.nl).
+  dispatcher = dispatcherCache.get(hostname) || undefined;
+
   for (let poging = 1; poging <= pogingen; poging++) {
     try {
       const controller = new AbortController();
       const timeoutId = setTimeout(() => controller.abort(), timeoutMs);
       const fetchOpties = {
-        headers: { "User-Agent": GEBRUIKERSAGENT },
+        headers: {
+          "User-Agent": GEBRUIKERSAGENT,
+          "Accept": "*/*",
+          "Accept-Language": "nl-NL,nl;q=0.9,en;q=0.8",
+        },
         signal: controller.signal,
       };
       if (dispatcher) fetchOpties.dispatcher = dispatcher;
@@ -353,12 +380,18 @@ async function haalOpEcht(url, pogingen = 3, opties = {}) {
     } catch (fout) {
       laatsteFout = fout;
 
-      if (fout.cause && fout.cause.code === "UNABLE_TO_VERIFY_LEAF_SIGNATURE" && !dispatcher) {
+      // TLS-keten repareren als dat nodig is (en nog niet eerder gedaan voor
+      // deze host). De cache wordt binnen haalDispatcherVoorHost gevuld.
+      if (
+        fout.cause &&
+        fout.cause.code === "UNABLE_TO_VERIFY_LEAF_SIGNATURE" &&
+        !dispatcherCache.get(hostname)
+      ) {
         console.warn(`Certificaatketen van ${url} is onvolledig — probeer het ontbrekende tussencertificaat zelf op te halen...`);
-        const reparatie = await probeerKetenTeRepareren(url).catch(() => null);
-        if (reparatie) {
-          console.warn(`Ontbrekend tussencertificaat gevonden via ${reparatie.issuerUrl}, opnieuw proberen.`);
-          dispatcher = reparatie.dispatcher;
+        const nieuweDispatcher = await haalDispatcherVoorHost(hostname, url);
+        if (nieuweDispatcher) {
+          console.warn(`Ontbrekend tussencertificaat gevonden voor ${hostname}; deze wordt voor de rest van de run hergebruikt.`);
+          dispatcher = nieuweDispatcher;
           continue;
         }
       }
@@ -366,7 +399,7 @@ async function haalOpEcht(url, pogingen = 3, opties = {}) {
       if (fout.cause && fout.cause.message === "redirect count exceeded") {
         console.warn(`${url} stuurt eindeloos door (waarschijnlijk is een sessie-cookie vereist) — probeer met cookie-ondersteuning...`);
         try {
-          const cookieOpties = { headers: { "User-Agent": GEBRUIKERSAGENT } };
+          const cookieOpties = { headers: fetchOpties.headers };
           if (dispatcher) cookieOpties.dispatcher = dispatcher;
           return await haalOpMetCookies(url, cookieOpties);
         } catch (cookieFout) {
@@ -697,12 +730,6 @@ async function volgPaginas(bron, leesPagina, opties = {}) {
 // ---------------------------------------------------------------------------
 // Tekst (en foto) per bericht ophalen
 // ---------------------------------------------------------------------------
-//
-// De wachttijden hieronder zijn flink verhoogd ("geduldiger"-ronde) omdat
-// sommige overheidssites (loket.zaanstad.nl, een Mozard-suite) traag reageren
-// als er veel verzoeken snel achter elkaar komen. Ze mogen allemaal via een
-// omgevingsvariabele worden overschreven, zodat je ze in de workflow kunt
-// bijstellen zonder deze code aan te raken.
 
 const ARTIKEL_TIMEOUT_MS = Number(process.env.ARTIKELTEKST_TIMEOUT_MS || 30_000);
 const ARTIKEL_TOTAAL_TIMEOUT_MS = Number(process.env.ARTIKELTEKST_TOTAAL_TIMEOUT_MS || 90_000);
