@@ -4,6 +4,11 @@
 // workflow elke avond ververst: data/pitches.json, data/feed.json,
 // data/nieuws-lokaal.json en data/nieuws-landelijk.json. Geen backend nodig —
 // alles is een simpele fetch() naar bestanden in dezelfde repo.
+//
+// Sinds de nieuwe pitch-structuur (op basis van het Basisboek journalistiek
+// schrijven) toont een pitch-kaart nu: invalshoek, researchvraag, bronnen en
+// prioriteit. De oude velden (gevolgenVoor, gevolg, vervolgstappen) zijn
+// vervangen.
 
 async function laadJson(pad) {
   const response = await fetch(pad, { cache: "no-store" });
@@ -41,22 +46,19 @@ function renderPitches(data) {
 
 function renderPitchKaart(bericht) {
   const beoordeling = bericht.aiBeoordeling || {};
-  const isLandelijk = bericht.categorie === "landelijk";
-  const kop = isLandelijk ? beoordeling.voorgesteldeKop : null;
-  const invalshoek = isLandelijk ? beoordeling.pitchUitleg || beoordeling.aanleiding : beoordeling.invalshoek;
-  const stappen = isLandelijk && Array.isArray(beoordeling.vervolgstappen) ? beoordeling.vervolgstappen : [];
   const prioriteit = Number.isInteger(beoordeling.prioriteit) ? beoordeling.prioriteit : null;
+  const bronnen = Array.isArray(beoordeling.bronnen) ? beoordeling.bronnen.filter((b) => typeof b === "string" && b.trim()) : [];
 
   return `
     <article class="pitch-kaart">
       <span class="badge ${bericht.categorie}">${bericht.categorie}</span>
-      ${kop ? `<h3>${escapeHtml(kop)}</h3><p class="bron-titel">Origineel: <a href="${escapeHtml(bericht.url)}" target="_blank" rel="noopener">${escapeHtml(bericht.titel)}</a></p>` : `<h3><a href="${escapeHtml(bericht.url)}" target="_blank" rel="noopener">${escapeHtml(bericht.titel)}</a></h3>`}
+      ${prioriteit !== null ? `<span class="badge prioriteit-badge">prioriteit ${prioriteit}/10</span>` : ""}
+      <h3><a href="${escapeHtml(bericht.url)}" target="_blank" rel="noopener">${escapeHtml(bericht.titel)}</a></h3>
       <div class="bericht-meta">${escapeHtml(bericht.bronNaam)} · ${formatteerDatum(bericht.gepubliceerdOp)}</div>
-      ${invalshoek ? `<p class="invalshoek">${escapeHtml(invalshoek)}</p>` : ""}
-      ${beoordeling.gevolgenVoor ? `<p class="gevolg"><strong>Wie het raakt:</strong> ${escapeHtml(beoordeling.gevolgenVoor)}</p>` : ""}
-      ${beoordeling.gevolg ? `<p class="gevolg"><strong>Gevolg:</strong> ${escapeHtml(beoordeling.gevolg)}</p>` : ""}
-      ${stappen.length > 0 ? `<ul class="vervolgstappen">${stappen.map((s) => `<li>${escapeHtml(s)}</li>`).join("")}</ul>` : ""}
-      ${prioriteit !== null ? `<div class="prioriteit">prioriteit: ${prioriteit}/10</div>` : ""}
+      ${beoordeling.invalshoek ? `<p class="invalshoek"><strong>Invalshoek:</strong> ${escapeHtml(beoordeling.invalshoek)}</p>` : ""}
+      ${beoordeling.researchvraag ? `<p class="researchvraag"><strong>Researchvraag:</strong> ${escapeHtml(beoordeling.researchvraag)}</p>` : ""}
+      ${bronnen.length > 0 ? `<p class="bronnen"><strong>Bronnen:</strong> ${bronnen.map((b) => escapeHtml(b)).join(", ")}</p>` : ""}
+      ${beoordeling.onderbouwing ? `<p class="onderbouwing"><em>${escapeHtml(beoordeling.onderbouwing)}</em></p>` : ""}
     </article>
   `;
 }
@@ -77,8 +79,6 @@ function renderFeed(items) {
 
 function renderFeedItem(item) {
   const heeftFoto = typeof item.foto === "string" && item.foto.length > 0;
-  // Voor background-image gebruiken we single quotes; eventuele single quotes
-  // in de URL zelf moeten we eerst escapen, anders breekt het style-attribuut.
   const veiligeFoto = heeftFoto ? item.foto.replace(/'/g, "%27").replace(/\)/g, "%29") : "";
   const stijl = heeftFoto ? ` style="background-image: url('${veiligeFoto}')"` : "";
   const soort = item.soort === "agenda" ? "agenda" : "nieuws";
@@ -113,8 +113,12 @@ function renderBerichtenLijst(containerId, berichten) {
 }
 
 function renderBerichtRij(bericht) {
+  const beoordeling = bericht.aiBeoordeling || {};
+  const oppakbaar = beoordeling.oppakbaar || beoordeling.lokaleInvalshoek || "";
+  const stippen = oppakbaar === "ja" ? "●●" : oppakbaar === "twijfel" ? "●○" : "○○";
   return `
     <div class="bericht-rij">
+      <span class="bericht-stip" title="${escapeHtml(oppakbaar)}">${stippen}</span>
       <a href="${escapeHtml(bericht.url)}" target="_blank" rel="noopener">${escapeHtml(bericht.titel)}</a>
       <span class="bericht-meta">${escapeHtml(bericht.bronNaam)}</span>
     </div>
