@@ -17,6 +17,13 @@
 // filter is bovendien een stuk goedkoper dan de pitch, en de meeste berichten
 // vallen in de filter af: die kosten dan maar één call in plaats van twee.
 //
+// Sinds de "evenementen-van-vandaag"-ronde: de lokale filter-prompt wijst
+// evenementen niet meer automatisch af. Een evenement dat VANDAAG plaatsvindt
+// mag oppakbaar zijn als het een concreet gevolg heeft voor mensen (afsluiting,
+// overlast, drukte, prijswijziging, toegankelijkheid, veiligheid). Evenementen
+// in de toekomst of in het verleden blijven "nee". De rest van de prompt is
+// ongewijzigd.
+//
 // Verwacht de API-key in de omgevingsvariabele GEMINI_API_KEY (zie README
 // voor hoe je die als GitHub Secret instelt — nooit hardcoded in dit bestand
 // of ergens anders in de repo!).
@@ -40,9 +47,18 @@ leven. Denk aan bezuinigingen, uitvallende bussen, hogere of lagere tarieven,
 sluitingen, werkzaamheden en omleidingen, nieuwe regels, geld, tijd, veiligheid of
 gezondheid.
 
-Een evenement, een uitnodiging, een algemene mededeling, een bestuurlijke procedure,
-een terugblik, een prijs of een persbericht over een organisatie krijgt "nee", ook als
-het onderwerp interessant is. Een gevolg telt alleen als het in de tekst staat of er
+Voor evenementen geldt een aparte regel. Een evenement dat VANDAAG plaatsvindt (zie
+de datum onderaan het bericht) mag je oppakbaar noemen als het een concreet gevolg
+heeft voor mensen die er niet bij zijn of er juist mee te maken krijgen: een
+afsluiting, overlast, drukte op de weg, parkeerproblemen, een prijswijziging,
+toegankelijkheid of veiligheid. Is het alleen een aankondiging zonder zulke gevolgen
+— bijvoorbeeld een concert, een markt, een tentoonstelling of een familiedag — dan
+is het antwoord "nee". Een evenement dat in de toekomst of in het verleden
+plaatsvindt krijgt altijd "nee", ook als het gevolg interessant zou kunnen zijn.
+
+Een uitnodiging, een algemene mededeling, een bestuurlijke procedure, een terugblik,
+een prijs of een persbericht over een organisatie krijgt "nee", ook als het
+onderwerp interessant is. Een gevolg telt alleen als het in de tekst staat of er
 rechtstreeks uit volgt.
 
 Geef ALLEEN geldig JSON terug, in dit exacte formaat, zonder markdown-fences of andere tekst:
