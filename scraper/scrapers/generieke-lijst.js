@@ -3,28 +3,29 @@
 // Voor institutionele/overheidssites (musea, waterschap, provincie, scholen)
 // die geen WordPress draaien en dus geen voorspelbare /feed/ hebben. We
 // proberen eerst alsnog een RSS/Atom-feed te vinden — niet alleen via een
-// <link>-tag in de <head>, maar sinds Deel C ook via de uitgebreide lijst
-// standaardpaden uit feed-varianten.js (feed/, rss, index.xml, blog/feed/,
-// ?feed=rss2, enzovoort). Lukt dat niet, dan scrapen we de HTML met een
-// bredere set patronen dan de WordPress-scraper, omdat deze sites onderling
-// veel meer van elkaar verschillen.
+// <link>-tag in de <head>, maar ook via de uitgebreide lijst standaardpaden
+// uit feed-varianten.js (feed/, rss, index.xml, blog/feed/, ?feed=rss2,
+// enzovoort). Lukt dat niet, dan scrapen we de HTML met een bredere set
+// patronen dan de WordPress-scraper.
 //
-// LET OP: dit is bewust een brede, algemene aanpak — geen scraper die precies
-// op de HTML van elke individuele site is afgestemd (dat vereist inzage in
-// de broncode per site, die we hier niet hebben kunnen inspecteren). Voor
-// sommige bronnen zal deze aanpak in één keer goed werken, voor andere zal
-// er na de eerste run bijgesteld moeten worden — check de bericht-aantallen
-// in de logs per bron; 0 berichten van een bron die duidelijk wel nieuws
-// heeft is het signaal om deze scraper voor die specifieke bron te verfijnen.
+// Sinds de "feed-retry"-ronde: de eerste 5 kandidaten (de meest waarschijnlijke)
+// krijgen 2 pogingen in plaats van 1. Reden: een enkele time-out op een goede
+// feed-URL liet de scraper eerder doorgaan naar 40 andere kandidaten (die
+// allemaal 404 zijn) en zo "geen feed" melden, terwijl de juiste feed gewoon
+// even niet reageerde. Ook wordt nu gelogd wat een feed-kandidaat mankeert,
+// behalve bij een gewone 404 ("niet gevonden").
 //
-// Sinds Deel B: de HTML-scrape probeert per item ook een foto te vinden (via
-// de eerste <img> in het item, met de standaard attribuut-fallbacks).
+// Sinds Deel B: de HTML-scrape probeert per item ook een foto te vinden.
 
 const cheerio = require("cheerio");
 const { haalOp, parseerRssTekst, oorzaakTekst, leesDatumEnEinde, volgPaginas, haalFotoUitItem } = require("../hulpmiddelen");
 const { feedKandidaten } = require("../feed-varianten");
 
-// Volgorde van kandidaat-selectors voor één nieuwsitem-blok, breed naar smal.
+// Hoeveel van de eerste feed-kandidaten een tweede kans krijgen. Daarna
+// proberen we de rest met één poging (die zijn bijna altijd 404; daar is een
+// retry zonde van de tijd).
+const MAX_KANDIDATEN_MET_RETRY = 5;
+
 const ITEM_SELECTORS = [
   "article",
   ".news-item",
@@ -41,13 +42,14 @@ async function scrapeGeneriekeLijst(bron) {
     const html = await haalOp(bron.url);
     const $ = cheerio.load(html);
 
-    // Stap 1: alle bekende feed-plekken proberen (link-tags uit de pagina +
-    // de standaardpaden op pagina en origin + query-varianten). De eerste
-    // die een geldige feed teruggeeft wint.
+    // Stap 1: alle bekende feed-plekken proberen. De eerste 5 krijgen 2
+    // pogingen, de rest 1. De eerste die een geldige feed teruggeeft wint.
     const kandidaten = feedKandidaten(bron.url, $);
-    for (const feedUrl of kandidaten) {
+    for (let i = 0; i < kandidaten.length; i++) {
+      const feedUrl = kandidaten[i];
+      const pogingen = i < MAX_KANDIDATEN_MET_RETRY ? 2 : 1;
       try {
-        const feedTekst = await haalOp(feedUrl, 1, { stil: true });
+        const feedTekst = await haalOp(feedUrl, pogingen, { stil: true });
         // Soft 404-bescherming: HTML terugkrijgen waar een feed verwacht werd.
         if (!/<(rss|feed|rdf:RDF)[\s>]/i.test(feedTekst.slice(0, 2000))) continue;
         const items = await parseerRssTekst(feedTekst, bron);
@@ -55,12 +57,17 @@ async function scrapeGeneriekeLijst(bron) {
           console.log(`[${bron.id}] Feed gevonden en gebruikt (${feedUrl}), ${items.length} bericht(en).`);
           return items;
         }
-      } catch {
-        /* deze variant werkt niet, probeer de volgende */
+      } catch (fout) {
+        // Een 404 betekent: deze kandidaat bestaat niet, dat is normaal. Iets
+        // anders (time-out, 403, 5xx) is wél de moeite om te melden, want dat
+        // kan verklaren waarom een werkende feed deze run niet gevonden werd.
+        if (!/HTTP 404/.test(fout.message)) {
+          console.log(`[${bron.id}] Feed-kandidaat ${feedUrl} faalde: ${fout.message}`);
+        }
       }
     }
 
-    // Stap 2: HTML-scrape met de bredere patronenset, over alle pagina's (zie volgPaginas).
+    // Stap 2: HTML-scrape met de bredere patronenset, over alle pagina's.
     console.log(`[${bron.id}] Geen bruikbare feed in ${kandidaten.length} varianten, generieke HTML-scrape gebruikt.`);
     return await scrapeHtml($, bron, html);
   } catch (fout) {
@@ -69,22 +76,7 @@ async function scrapeGeneriekeLijst(bron) {
   }
 }
 
-/**
- * Probeert de vaste lijst kandidaat-selectors, breed naar smal, tegen een
- * al-geladen cheerio-document. Puur functie — geen logging, geen fetch —
- * zodat dit ook door voeg-bron-toe.js hergebruikt kan worden om dit gratis
- * te proberen vóórdat Gemini wordt ingeschakeld. Eén implementatie, niet
- * twee die uit elkaar kunnen lopen (zoals eerder het geval was).
- *
- * Geeft { selector, berichten } terug zodra een selector minstens 3
- * bruikbare berichten oplevert, anders null.
- *
- * opties (voor vervolgpagina's, zie scrapeHtml): { selector } probeert alleen
- * die ene selector, en { minimum } vervangt de ondergrens van 3 berichten (de
- * laatste pagina van een lijst heeft vaak maar een paar berichten).
- */
 function probeerGeneriekePatronen($, bron, opties = {}) {
-  // Agenda-bronnen tonen datums vaak zonder jaar ("30 sep"); zie haalDatumZonderJaar in hulpmiddelen.js.
   const datumOpties = { zonderJaar: bron.soort === "agenda" };
   const minimum = opties.minimum ?? 3;
   const paginaUrl = opties.paginaUrl || bron.url;
@@ -94,22 +86,15 @@ function probeerGeneriekePatronen($, bron, opties = {}) {
       const titelEl = $(el).find("h1, h2, h3, h4").first();
       const titel = titelEl.text().trim();
       const link = titelEl.find("a").attr("href") || $(el).find("a").first().attr("href");
-      if (!titel || !link || titel.length < 8) return; // te korte "titels" zijn meestal menu-items, geen nieuws
+      if (!titel || !link || titel.length < 8) return;
 
       const datumTekst =
         $(el).find("time").attr("datetime") ||
         $(el).find("time").text().trim() ||
         ($(el).text().match(/\d{1,2}[\s\-\/]\w+[\s\-\/]\d{4}/) || [])[0];
 
-      // Zelfde fallback als de andere scrapers: als er geen (bruikbaar)
-      // datum-element is, kijk of de titel/item-tekst zelf een datum
-      // bevat (zoals bij loket.zaanstad.nl). Bij een agenda kan dat een
-      // bereik zijn, dan bewaren we ook de eindDatum.
       const datum = leesDatumEnEinde([[datumTekst, "streng"], [titel, "zoek"], [$(el).text(), "zoek"]], datumOpties);
 
-      // Foto: eerste <img> in het item, met de standaard attribuut-fallbacks
-      // (src, data-src, data-lazy-src, data-original, srcset). Als er niets
-      // bruikbaars staat, blijft het veld leeg; de tekststap vult later aan.
       const foto = haalFotoUitItem($, el, null, null, paginaUrl);
 
       berichten.push({
@@ -126,8 +111,6 @@ function probeerGeneriekePatronen($, bron, opties = {}) {
       });
     });
 
-    // Zodra een selector minstens een paar bruikbare berichten oplevert,
-    // gaan we daarvan uit — anders proberen we de volgende, bredere selector.
     if (berichten.length >= minimum) {
       return { selector, berichten: dedupliceerOpUrl(berichten) };
     }
@@ -142,8 +125,6 @@ async function scrapeHtml($, bron, eersteHtml) {
     return [];
   }
 
-  // Pagina 1 bepaalt welke selector werkt; de vervolgpagina's gebruiken diezelfde
-  // selector (met een ondergrens van 1 bericht, voor een korte laatste pagina).
   const { berichten } = await volgPaginas(
     bron,
     ($pagina, paginaUrl, n) =>
@@ -155,11 +136,11 @@ async function scrapeHtml($, bron, eersteHtml) {
 
   const zonderDatum = berichten.filter((b) => !b.gepubliceerdOp).length;
   if (zonderDatum > 0) {
-    console.warn(`[${bron.id}] ${zonderDatum} van ${berichten.length} berichten (selector "${resultaat.selector}") hadden geen herkenbare datum — die tellen nu mee als "te oud" bij de leeftijdsfilter.`);
+    console.warn(`[${bron.id}] ${zonderDatum} van ${berichten.length} berichten (selector "${resultaat.selector}") hadden geen herkenbare datum.`);
   }
   const zonderFoto = berichten.filter((b) => !b.foto).length;
   if (zonderFoto === berichten.length && berichten.length > 0) {
-    console.warn(`[${bron.id}] Geen enkel bericht heeft een foto in de lijst; de tekststap in index.js probeert het nog via de berichtpagina's.`);
+    console.warn(`[${bron.id}] Geen enkel bericht heeft een foto in de lijst; de tekststap probeert het nog via de berichtpagina's.`);
   }
   return berichten;
 }
