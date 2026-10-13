@@ -7,6 +7,11 @@
 // bron.detailSelector en b.titel door aan de tekststap, zodat ook nieuwe
 // bronnen met een specifieke detail-selector de schone tekst kunnen
 // beoordelen.
+//
+// Sinds de "directe feed"-ronde (2026-10-13): de optie feedModus slaat de
+// dekking-check tegen een Gemini-referentie over (een feed is zijn eigen
+// referentie) en slaat de tekst-controle over (feed-items hebben al tekst).
+// Alleen titel, link, datum en het eigen domein worden gecontroleerd.
 
 const { scraperVoorType } = require("./scraper-register");
 const {
@@ -141,6 +146,17 @@ function beoordeelResultaat(bron, berichten, opties = {}) {
   const nu = Date.now();
   statistieken.toekomst = metDatum.filter((b) => new Date(b.gepubliceerdOp).getTime() > nu + 12 * 3600 * 1000).length;
   statistieken.agendaUitDatums = agendaUitDatums(geldig).reden;
+
+  // Feed-modus: sla de dekking- en tekstchecks over. Een feed is zijn eigen
+  // referentie, en feed-items hebben al tekst. Alleen titel/link/datum/domain
+  // zijn gecontroleerd (hierboven). Dat is genoeg om te weten dat de feed
+  // bruikbaar is.
+  if (opties.feedModus) {
+    const geslaagd = redenen.length === 0;
+    const rustig = geslaagd && aantal < WEINIG_BERICHTEN;
+    if (rustig) waarschuwingen.push(`Slechts ${aantal} bericht(en) in de feed; de bron krijgt rustig: true zodat de dagelijkse run dit niet als fout meldt.`);
+    return { geslaagd, twijfel: false, rustig, aantal, redenen, waarschuwingen, dekking: 1.0, ontbrekend: [], geldig, statistieken, feedModus: true };
+  }
 
   let dekking = null;
   let ontbrekend = [];
@@ -330,7 +346,7 @@ async function testBron(bron, opties = {}) {
     };
   }
   const oordeel = beoordeelResultaat(bron, berichten, opties);
-  if (oordeel.geslaagd && !opties.zonderTekstControle) {
+  if (oordeel.geslaagd && !opties.zonderTekstControle && !opties.feedModus) {
     try {
       await controleerTekst(oordeel, bron, opties);
     } catch (fout) {
