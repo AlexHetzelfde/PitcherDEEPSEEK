@@ -20,15 +20,15 @@
 // commando hoeft te staan.
 //
 // Wat dit script doet, en waarom het niet meer ten onrechte "gelukt" meldt:
-// de eigenlijke zoektocht zit in bron-ontdekking.js. Gemini leest altijd eerst
-// de hele pagina (daarom is GEMINI_API_KEY verplicht) en zijn lijst van
-// berichten is de referentie voor elke methode (feed, WordPress REST,
-// JSON-LD, generieke patronen, Gemini-recept). Elke methode moet door de poort
-// in bron-poort.js. Alleen een methode die bewezen
-// berichten oplevert komt in bronnen.js. Slaagt niets, dan stopt dit script
-// met exitcode 1, dus de workflow wordt rood en er wordt niets gecommit.
+// de eigenlijke zoektocht zit in bron-ontdekking.js. Voor een gewone pagina
+// leest Gemini altijd eerst de hele pagina en is zijn lijst van berichten de
+// referentie voor elke methode (feed, WordPress REST, JSON-LD, generieke
+// patronen, Gemini-recept). Voor een RSS/Atom-feed is Gemini NIET nodig: de
+// feed is zijn eigen referentie. Alleen een methode die bewezen berichten
+// oplevert komt in bronnen.js. Slaagt niets, dan stopt dit script met
+// exitcode 1, dus de workflow wordt rood en er wordt niets gecommit.
 
-const { ontdekBron, maakRapport, schrijfStapSamenvatting, GEMINI_VERPLICHT_MELDING } = require("./bron-ontdekking");
+const { ontdekBron, maakRapport, schrijfStapSamenvatting, isDirecteFeed } = require("./bron-ontdekking");
 const { testBron, voorbeeldRegels, normaliseerUrl, telBinnenVenster } = require("./bron-poort");
 const { schrijfBron } = require("./bronnen-schrijver");
 const bronnen = require("./bronnen");
@@ -68,11 +68,6 @@ async function main() {
     stopMetFout(`"${url}" is geen geldige http(s)-url.`);
   }
 
-  // Gemini is altijd verplicht: hij leest de hele pagina en levert de referentielijst
-  // waartegen elke methode wordt gecontroleerd. Daarom stoppen we hier meteen, nog
-  // voordat er iets wordt opgehaald.
-  if (!process.env.GEMINI_API_KEY) stopMetFout(GEMINI_VERPLICHT_MELDING);
-
   // Staat deze url (genormaliseerd: zonder www, #anker, slash aan het eind en tracking-parameters)
   // al bij een andere bron? Dan zou je dezelfde berichten dubbel ophalen. Dezelfde url bij
   // hetzelfde id is het vervangen van die ene bron en mag (zie hieronder).
@@ -95,6 +90,18 @@ async function main() {
       );
     }
     console.log(oordeel.geslaagd ? "De bestaande bron werkt, maar wordt op verzoek vervangen." : `De bestaande bron is kapot (${oordeel.redenen[0] || "geen bruikbare berichten"}). Die wordt vervangen.`);
+  }
+
+  // Gemini is alleen verplicht voor HTML-pagina's. Als de URL zelf een
+  // feed is, werkt ontdekBron zonder Gemini. Daarom checken we eerst of
+  // het een feed is, en pas daarna of de API-key nodig is.
+  const isFeed = await isDirecteFeed(url);
+  if (isFeed) {
+    console.log(`De opgegeven URL is een RSS/Atom-feed. Geen GEMINI_API_KEY nodig.`);
+  } else if (!process.env.GEMINI_API_KEY) {
+    stopMetFout(
+      "GEMINI_API_KEY ontbreekt. Voor een gewone HTML-pagina heeft het toevoegen van een bron Gemini nodig: Gemini leest de hele pagina en geeft de lijst van berichten waartegen elke methode wordt gecontroleerd. Voor een RSS/Atom-feed is Gemini niet nodig — voer de feed-URL rechtstreeks in, of zet het secret GEMINI_API_KEY in de repo-instellingen (Settings > Secrets and variables > Actions)."
+    );
   }
 
   const uit = await ontdekBron({
@@ -122,8 +129,6 @@ async function main() {
 
   const { actie } = await schrijfBron(uit.bron);
 
-  // Na het bewijs: levert de bron vandaag ook iets op binnen het venster? Een bron die 0 oplevert is
-  // geen fout (rustige bronnen bestaan), maar wel iets dat de eigenaar moet weten.
   const venster = telBinnenVenster(uit.oordeel, uit.bron);
   const geenBinnenVenster =
     venster.binnen === 0
@@ -133,11 +138,11 @@ async function main() {
   const voorbeelden = voorbeeldRegels(uit.oordeel, 5).join("\n");
   console.log(`\n✓ Bron "${id}" ${actie} in bronnen.js: type ${uit.bron.type}${uit.bron.soort ? `, soort ${uit.bron.soort}` : ""}${uit.bron.rustig ? ", rustige bron" : ""}.`);
   console.log(`  Bewezen met de echte scraper: ${uit.oordeel.aantal} bericht(en).`);
-  console.log(`  Tekstdekking: ${uit.oordeel.tekstTekst || "niet gemeten"}.`);
+  console.log(`  Tekstdekking: ${uit.oordeel.tekstTekst || "niet gemeten (feed-modus: items hebben al tekst)"}.`);
   console.log(`  Binnen het venster: ${venster.binnen} van ${venster.totaal} bericht(en).`);
   if (geenBinnenVenster) {
     console.log(`  ⚠️  ${geenBinnenVenster}`);
-    console.log(`::warning title=Bron ${id}: 0 berichten binnen het venster::${geenBinnenVenster}`); // verschijnt als gele melding in de Actions-run
+    console.log(`::warning title=Bron ${id}: 0 berichten binnen het venster::${geenBinnenVenster}`);
   }
   if (uit.oordeel.soortReden) console.log(`  ${uit.oordeel.soortReden}`);
   console.log(`  Voorbeelden:\n${voorbeelden}`);
@@ -150,7 +155,7 @@ async function main() {
       "",
       `- Methode: \`${uit.bron.type}\`${uit.bron.soort ? `, soort \`${uit.bron.soort}\`` : ""}${uit.bron.rustig ? ", rustige bron" : ""}`,
       `- Bewezen met de echte scraper: ${uit.oordeel.aantal} bericht(en)`,
-      `- Tekstdekking: ${uit.oordeel.tekstTekst || "niet gemeten"}`,
+      `- Tekstdekking: ${uit.oordeel.tekstTekst || "niet gemeten (feed-modus: items hebben al tekst)"}`,
       `- Binnen het venster: ${venster.binnen} van ${venster.totaal} bericht(en)`,
       ...(uit.oordeel.soortReden ? [`- ${uit.oordeel.soortReden}`] : []),
       ...(geenBinnenVenster ? ["", `> ⚠️ **Let op: 0 berichten binnen het venster.** ${geenBinnenVenster}`] : []),
