@@ -2,13 +2,18 @@
 // Centrale lijst van bronnen. Elke bron krijgt een categorie: "lokaal" of "landelijk".
 // Voeg hier nieuwe bronnen toe zodra je er meer wilt scrapen — de rest van de
 // pipeline (AI-beoordeling, front-end) werkt automatisch mee.
+//
+// Sinds de "schone tekst"-ronde (2026-10-13) mogen bronnen een optioneel
+// veld "detailSelector" hebben: een CSS-selector die op de detailpagina als
+// eerste wordt geprobeerd. Bedoeld voor sites waarvan de artikeltekst in een
+// specifiek blok zit dat de generieke selectors zouden missen.
 
 module.exports = [
   {
     id: "zaansche-molen",
     naam: "De Zaansche Molen — Nieuws",
     categorie: "lokaal",
-    type: "wordpress-html", // scraapt de HTML van een WordPress-nieuwsoverzicht
+    type: "wordpress-html",
     url: "https://www.zaanschemolen.nl/nieuws/",
   },
   {
@@ -71,10 +76,6 @@ module.exports = [
     id: "nh-actueel",
     naam: "Provincie Noord-Holland — Actueel",
     categorie: "lokaal",
-    // De /Actueel-pagina zelf heeft een opmaak die geen van de generieke
-    // patronen herkent (0 berichten, structureel). De provincie heeft
-    // echter een eigen RSS-feed met exact dezelfde content, mét nette
-    // pubDate's — dus die gebruiken we in plaats van HTML te scrapen.
     type: "rss",
     url: "https://www.noord-holland.nl/pnhnieuws",
   },
@@ -91,16 +92,13 @@ module.exports = [
     categorie: "lokaal",
     type: "gemini-recept",
     url: "https://loket.zaanstad.nl/mozard/!suite16.scherm1168?mGmr=2168",
+    detailSelector: ".aandachtstekst__tekst",
     selectors: {
       itemSelector: ".zaakregel",
       titelSelector: "h3",
       linkSelector: "a.zaakregel__verwijzing",
       datumSelector: null,
       datumAttribuut: null,
-      // De samenvatting staat op de detailpagina in een div met id me_CBCzqv
-      // (Mozard-suite). Deze selector pakt hem als de lijstpagina zelf ook
-      // een omschrijving toont; anders vult de tekststap in index.js hem aan
-      // via de fallback in haalTekstUitHtml (zie hulpmiddelen.js).
       samenvattingSelector: "#me_CBCzqv, .aandachtstekst__tekst, .zaakregel__omschrijving, .zaakregel p",
     },
   },
@@ -139,6 +137,7 @@ module.exports = [
     type: "gemini-recept",
     url: "https://waarheen.deorkaan.nl/agenda/",
     soort: "agenda",
+    detailSelector: ".text-content-section",
     selectors: {
       itemSelector: "a.event-card",
       titelSelector: "h2",

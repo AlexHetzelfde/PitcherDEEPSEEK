@@ -6,12 +6,17 @@
 //    wat sommige overheidssites direct blokkeren met HTTP 403).
 //  - Accept en Accept-Language worden meegestuurd.
 //  - Het TLS-tussencertificaat dat we voor loket.zaanstad.nl ophalen, wordt
-//    per hostname gecached. Zonder die cache deden we hetzelfde werk 21 keer
-//    in één run (21 hoorzittingen) en dat viel de server op.
+//    per hostname gecached.
 //
 // Sinds de "geduldiger"-ronde zijn de wachttijden voor het ophalen van
-// berichtpagina's flink verhoogd. Alle waarden zijn met een omgevingsvariabele
-// te overrulen.
+// berichtpagina's flink verhoogd.
+//
+// Sinds de "schone tekst"-ronde (2026-10-13):
+//  - ARTIKEL_INHOUD_SELECTORS is herordend: specifieke CMS-/thema-selectors
+//    staan nu VÓÓR main en #content.
+//  - haalTekstUitHtml accepteert opties { titel, detailSelector }.
+//  - stripDubbeleTitel haalt een herhaalde kop aan het begin weg.
+//  - vulBerichtenAanMetTekst geeft titel en detailSelector door aan haalTekst.
 
 const cheerio = require("cheerio");
 const Parser = require("rss-parser");
@@ -28,9 +33,6 @@ const tls = require("tls");
 const crypto = require("crypto");
 const { Agent } = require("undici");
 
-// Browser-achtige UA. Eerlijk genoeg (geen bekende browser claimen), maar wel
-// herkenbaar als "gewoon verkeer" voor sites die bot-UAs blokkeren. De
-// ibabs-scraper gebruikte al zo'n UA en dat werkt.
 const GEBRUIKERSAGENT =
   "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/128.0.0.0 Safari/537.36";
 
@@ -81,12 +83,6 @@ function oorzaakTekst(fout) {
   return ` — oorzaak: ${tekst}${code}`;
 }
 
-/**
- * Cache voor de TLS-dispatcher per hostname. We halen het ontbrekende
- * tussencertificaat (via de AIA-link) één keer per hostname op en hergebruiken
- * het daarna voor de hele run. Zonder deze cache deden we hetzelfde werk
- * tientallen keren achter elkaar — traag en het valt de server op.
- */
 const dispatcherCache = new Map();
 
 async function haalDispatcherVoorHost(hostname, url) {
@@ -346,15 +342,13 @@ function parseerDatumTekst(tekst, opties = {}) {
   }
   return haalDatumUitTekst(t, opties);
 }
+
 async function haalOpEcht(url, pogingen = 3, opties = {}) {
   let laatsteFout;
   let dispatcher;
   const timeoutMs = opties.timeoutMs || 20_000;
   const { hostname } = new URL(url);
 
-  // Standaard headers één keer, buiten de loop: de cookie-fallback in de
-  // catch-block heeft ze ook nodig, en daar is de lokale fetchOpties-variabele
-  // niet meer in scope.
   const standaardHeaders = {
     "User-Agent": GEBRUIKERSAGENT,
     "Accept": "*/*",
@@ -444,10 +438,6 @@ function nieuweWacht(ms) {
   return new Promise((resolve) => setTimeout(resolve, ms));
 }
 
-// ---------------------------------------------------------------------------
-// Foto's
-// ---------------------------------------------------------------------------
-
 function urlUitMediaKnoop(knoop) {
   if (!knoop) return null;
   if (typeof knoop === "string") return knoop;
@@ -531,10 +521,6 @@ function haalFotoUitItem($, el, fotoSelector, fotoAttribuut, baseUrl) {
   return null;
 }
 
-// ---------------------------------------------------------------------------
-// RSS parsen
-// ---------------------------------------------------------------------------
-
 async function parseerRssTekst(tekst, bron) {
   const feed = await rssParser.parseString(tekst);
   return (feed.items || []).map((item) => {
@@ -556,10 +542,6 @@ async function parseerRssTekst(tekst, bron) {
 function schoonmakenSamenvatting(tekst) {
   return tekst.replace(/\s+/g, " ").trim().slice(0, 600);
 }
-
-// ---------------------------------------------------------------------------
-// Paginering
-// ---------------------------------------------------------------------------
 
 const MAX_PAGINAS = Number(process.env.MAX_PAGINAS || 10);
 const PAGINA_PAUZE_MS = Number(process.env.PAGINA_PAUZE_MS || 500);
@@ -724,10 +706,6 @@ async function volgPaginas(bron, leesPagina, opties = {}) {
   return { berichten: alle, paginas: n, reden };
 }
 
-// ---------------------------------------------------------------------------
-// Tekst (en foto) per bericht ophalen
-// ---------------------------------------------------------------------------
-
 const ARTIKEL_TIMEOUT_MS = Number(process.env.ARTIKELTEKST_TIMEOUT_MS || 30_000);
 const ARTIKEL_TOTAAL_TIMEOUT_MS = Number(process.env.ARTIKELTEKST_TOTAAL_TIMEOUT_MS || 90_000);
 const ARTIKEL_PARALLEL = Number(process.env.ARTIKELTEKST_PARALLEL || 4);
@@ -745,9 +723,19 @@ const ARTIKEL_WEG =
   ".breadcrumb, .breadcrumbs, .share, .social, .cookie, .cookies, #cookie, .related, .comments";
 
 const ARTIKEL_INHOUD_SELECTORS = [
-  "article", "main", '[role="main"]', ".entry-content", ".post-content", ".article-content",
-  ".article-body", ".node__content", ".content-main", "#content", ".content",
-  "#me_CBCzqv", ".aandachtstekst__tekst",
+  ".text-content-section",
+  ".aandachtstekst__tekst",
+  ".entry-content",
+  ".post-content",
+  ".article-content",
+  ".article-body",
+  ".node__content",
+  ".content-main",
+  "article",
+  '[role="main"]',
+  "main",
+  "#content",
+  ".content",
 ];
 
 function maakSchoneTekst(tekst) {
@@ -761,7 +749,17 @@ function kortAf(tekst, max) {
   return `${(laatsteSpatie > max - 150 ? stuk.slice(0, laatsteSpatie) : stuk).trim()}…`;
 }
 
-function haalTekstUitHtml(html) {
+function stripDubbeleTitel(tekst, titel) {
+  const t = maakSchoneTekst(titel);
+  if (!t || t.length < 12) return tekst;
+  const prefix = tekst.slice(0, t.length);
+  if (prefix.toLowerCase() === t.toLowerCase()) {
+    return tekst.slice(t.length).replace(/^[\s\-–—:.,;•·]+/, "").trim();
+  }
+  return tekst;
+}
+
+function haalTekstUitHtml(html, opties = {}) {
   if (!html || String(html).startsWith("%PDF-")) return null;
   const $ = cheerio.load(html);
 
@@ -774,20 +772,32 @@ function haalTekstUitHtml(html) {
   $(ARTIKEL_WEG).remove();
   $("p, li, h1, h2, h3, h4, h5, h6, br, div, tr, section").after("\n");
 
+  const kandidaten = [];
+  if (opties.detailSelector && typeof opties.detailSelector === "string" && opties.detailSelector.trim()) {
+    kandidaten.push(opties.detailSelector.trim());
+  }
+  kandidaten.push(...ARTIKEL_INHOUD_SELECTORS);
+
   let tekst = null;
-  for (const selector of ARTIKEL_INHOUD_SELECTORS) {
+  for (const selector of kandidaten) {
     let langste = "";
-    $(selector).each((_, el) => {
-      const t = maakSchoneTekst($(el).text());
-      if (t.length > langste.length) langste = t;
-    });
+    try {
+      $(selector).each((_, el) => {
+        const t = maakSchoneTekst($(el).text());
+        if (t.length > langste.length) langste = t;
+      });
+    } catch {
+      continue;
+    }
     if (langste.length >= MIN_BRUIKBARE_TEKST_TEKENS) {
-      tekst = kortAf(langste, ARTIKEL_MAX_TEKENS);
+      const schoon = opties.titel ? stripDubbeleTitel(langste, opties.titel) : langste;
+      tekst = kortAf(schoon, ARTIKEL_MAX_TEKENS);
       break;
     }
   }
   if (!tekst && metaTeksten[0] && metaTeksten[0].length >= MIN_BRUIKBARE_TEKST_TEKENS) {
-    tekst = kortAf(metaTeksten[0], ARTIKEL_MAX_TEKENS);
+    const schoon = opties.titel ? stripDubbeleTitel(metaTeksten[0], opties.titel) : metaTeksten[0];
+    tekst = kortAf(schoon, ARTIKEL_MAX_TEKENS);
   }
 
   if (!tekst && !foto) return null;
@@ -807,7 +817,7 @@ function metTijdslimiet(belofte, ms, melding) {
   return Promise.race([belofte, limiet]).finally(() => clearTimeout(timer));
 }
 
-async function haalArtikelTekst(url) {
+async function haalArtikelTekst(url, opties = {}) {
   if (!url || /\.(pdf|docx?|xlsx?|pptx?|zip|jpe?g|png|gif)(\?|#|$)/i.test(url)) return null;
   try {
     const html = await metTijdslimiet(
@@ -815,7 +825,7 @@ async function haalArtikelTekst(url) {
       ARTIKEL_TOTAAL_TIMEOUT_MS,
       `timeout na ${ARTIKEL_TOTAAL_TIMEOUT_MS / 1000}s bij het ophalen van ${url}`
     );
-    const resultaat = haalTekstUitHtml(html);
+    const resultaat = haalTekstUitHtml(html, opties);
     if (!resultaat) {
       console.log(`[tekst] Geen bruikbare tekst of foto op ${url} (HTML: ${html.length} tekens).`);
     }
@@ -878,7 +888,7 @@ async function vulBerichtenAanMetTekst(berichten, opties = {}) {
         continue;
       }
       try {
-        const uit = await haalTekst(b.url);
+        const uit = await haalTekst(b.url, { titel: b.titel, detailSelector: b.detailSelector });
         netwerkFoutenAchtereen = 0;
         if (uit && uit.foto && !b.foto) {
           b.foto = uit.foto;
@@ -963,6 +973,7 @@ module.exports = {
   vindVolgendePagina,
   MAX_PAGINAS,
   haalTekstUitHtml,
+  stripDubbeleTitel,
   haalArtikelTekst,
   vulBerichtenAanMetTekst,
   tekstDekkingTekst,
