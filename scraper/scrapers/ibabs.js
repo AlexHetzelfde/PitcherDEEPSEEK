@@ -15,14 +15,19 @@
 // documentinhoud van alle ~100 berichten per rapport ophalen, ook van
 // berichten die al weken geleden al eens verwerkt zijn — dat duurde in de
 // praktijk 30+ minuten voor niets.
+//
+// Sinds de "documentinhoud"-ronde (2026-10-13):
+//  - Meerdere PDF-URL-patronen worden geprobeerd, inclusief
+//    /Reports/Document/{itemId}?documentId={documentId} — het patroon dat
+//    de iBabs-detailpagina zelf gebruikt. Het oude /Document/View/{documentId}
+//    werkt niet meer op alle iBabs-versies.
+//  - Meerdere regex-patronen voor het documentId (inclusief data-document-id).
+//  - Elke faalstap logt nu een waarschuwing: geen stil falen meer.
+//  - Fallback naar de HTML-tekst van de detailpagina (Onderwerp, Toelichting,
+//    Afzender, Advies) als de PDF geen leesbare tekst bevat (bijv. een scan).
 
-// De maximale lengte van de tekst die uit een PDF wordt gehaald. Was 3000,
-// maar dat is te kort voor echte raadsstukken (vaak 5-10 pagina's): dan ziet
-// Gemini minder dan 20% van de inhoud. 15.000 tekens is ongeveer 7-8 A4'tjes,
-// genoeg voor vrijwel elk raadsvoorstel, en past ruim binnen het contextvenster
-// van Gemini.
 const MAX_DOCUMENT_TEKST_LENGTE = 15000;
-const REQUEST_TIMEOUT_MS = 15_000; // voorkomt dat één tragere/hangende iBabs-pagina de hele run ophoudt
+const REQUEST_TIMEOUT_MS = 15_000;
 
 const { binnenLeeftijdsgrens, MAX_LEEFTIJD_DAGEN, oorzaakTekst } = require("../hulpmiddelen");
 
@@ -30,7 +35,7 @@ let pdfParse;
 try {
   pdfParse = require("pdf-parse");
 } catch {
-  pdfParse = null; // ontbreekt pdf-parse (bv. niet geïnstalleerd) — pdf's worden dan overgeslagen, geen crash
+  pdfParse = null;
 }
 
 const BASE_URL = "https://zaanstad.bestuurlijkeinformatie.nl";
@@ -43,13 +48,6 @@ const KOLOMMEN = [
   ["typeselectie", true],
   ["afhandelingselectie", true],
   ["registrationdate", true],
-  // Niet elk iBabs-rapport gebruikt hetzelfde kolomschema — "Ingekomen
-  // stukken" heeft bijvoorbeeld geen "datumbericht"/"registrationdate",
-  // maar "datum" ("Datum invoer") en "datumpublicatie" ("Datum publicatie").
-  // Onschadelijk om dit voor ALLE ibabs-rapporten op te vragen: een rapport
-  // dat deze velden niet heeft, geeft er gewoon niets voor terug (zoals we
-  // al zagen bij datumbericht/registrationdate voor dít rapport) — het
-  // breekt niets voor rapporten die het al bij het oude kon.
   ["datum", true],
   ["datumpublicatie", true],
 ];
@@ -103,10 +101,6 @@ async function scrapeIbabs(bron, gezieneUrls = new Set()) {
   const zonderDatum = alleBerichten.filter((b) => !b.gepubliceerdOp);
   if (zonderDatum.length > 0) {
     console.warn(`[${bron.id}] ${zonderDatum.length} van ${alleBerichten.length} berichten hadden geen herkenbare datum (datumbericht/registrationdate kon niet geparsed worden) — die tellen mee als "te oud" en worden overgeslagen.`);
-    // Diagnostisch, geen gok: laat de ruwe datumvelden van een paar
-    // voorbeelden zien. Als dit structureel is voor dit rapport (zoals bij
-    // ingekomen-stukken), zien we hier meteen het échte veld/formaat in
-    // plaats van daar blind naar te moeten raden.
     const voorbeelden = rijen
       .filter((rij) => !parseerNlDatum(rij.datumbericht) && !parseerNlDatum(rij.registrationdate))
       .slice(0, 3);
@@ -117,18 +111,12 @@ async function scrapeIbabs(bron, gezieneUrls = new Set()) {
     }
   }
 
-  // Filter 1: niet ouder dan MAX_LEEFTIJD_DAGEN, via de centrale functie in
-  // hulpmiddelen.js — dus ook hier geldt: geen betrouwbare datum = eruit,
-  // niet uit voorzichtigheid meegenomen.
   const recenteBerichten = alleBerichten.filter((b) => binnenLeeftijdsgrens(b.gepubliceerdOp));
   const aantalTeOud = alleBerichten.length - recenteBerichten.length;
   if (aantalTeOud > 0) {
     console.log(`[${bron.id}] ${aantalTeOud} bericht(en) ouder dan ${MAX_LEEFTIJD_DAGEN} dagen overgeslagen.`);
   }
 
-  // Filter 2: al eerder geziene berichten hoeven geen nieuwe documentinhoud —
-  // die worden dan ook door index.js's dedup weggefilterd, dus we besparen
-  // onszelf hier alvast de dure ophaalstap.
   const nieuweBerichten = recenteBerichten.filter((b) => !gezieneUrls.has(b.url));
   const aantalAlGezien = recenteBerichten.length - nieuweBerichten.length;
   if (aantalAlGezien > 0) {
@@ -146,6 +134,11 @@ async function scrapeIbabs(bron, gezieneUrls = new Set()) {
       console.log(`[${bron.id}] documentinhoud opgehaald: ${teller}/${nieuweBerichten.length}`);
     }
     compleetBerichten.push(berichtMetInhoud);
+  }
+
+  const zonderInhoud = compleetBerichten.filter((b) => !b.documentInhoudOpgehaald).length;
+  if (zonderInhoud > 0) {
+    console.warn(`[${bron.id}] ${zonderInhoud} van ${compleetBerichten.length} bericht(en) zonder documentinhoud — zie de waarschuwingen hierboven voor de reden per bericht.`);
   }
 
   return compleetBerichten;
@@ -220,18 +213,59 @@ function parseerNlDatum(tekst) {
 }
 
 /**
+ * Zoekt het documentId in de detailpagina-HTML. Drie patronen, want
+ * iBabs-versies en pagina-varianten verschillen:
+ *   1. /Reports/Document/{itemId}?documentId={uuid}
+ *   2. documentId={uuid}         (losse parameter, overal in de HTML)
+ *   3. data-document-id="{uuid}" (attribuut op de bijlage-link)
+ */
+function vindDocumentId(html, itemId) {
+  if (itemId) {
+    const specifiek = html.match(new RegExp(`/Reports/Document/${itemId.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")}\\?documentId=([a-f0-9-]{36})`, "i"));
+    if (specifiek) return specifiek[1];
+  }
+  const los = html.match(/documentId=([a-f0-9-]{36})/i);
+  if (los) return los[1];
+  const attr = html.match(/data-document-id=["']([a-f0-9-]{36})["']/i);
+  if (attr) return attr[1];
+  return null;
+}
+
+/**
+ * Tekst uit de detailpagina-HTML halen als fallback wanneer de PDF geen
+ * leesbare tekst bevat (bijvoorbeeld een scan zonder tekstlaag). Pakt de
+ * velden die iBabs altijd toont: Onderwerp, Toelichting, Afzender, Advies.
+ */
+function haalDetailTekstUitHtml(html) {
+  const velden = ["Onderwerp", "Toelichting", "Afzender", "Advies"];
+  const stukken = [];
+  for (const veld of velden) {
+    const regex = new RegExp(`<dt[^>]*>\\s*${veld}\\s*</dt>\\s*<dd[^>]*>([\\s\\S]*?)</dd>`, "i");
+    const match = html.match(regex);
+    if (!match) continue;
+    const tekst = match[1].replace(/<[^>]+>/g, " ").replace(/\s+/g, " ").trim();
+    if (tekst && !stukken.some((s) => s.endsWith(tekst))) stukken.push(`${veld}: ${tekst}`);
+  }
+  return stukken.length > 0 ? stukken.join(" — ").slice(0, MAX_DOCUMENT_TEKST_LENGTE) : null;
+}
+
+/**
  * Volgt dezelfde tweestapsroute als het werkende Python-script: eerst de
  * detailpagina van het item ophalen om de documentId te vinden, dan pas de
- * pdf zelf downloaden. Faalt dit, dan blijft het bericht gewoon staan met
- * alleen de tabelgegevens — geen crash voor de rest van de run. Elke
- * netwerkaanvraag heeft een timeout, zodat één trage pagina niet de hele
- * run kan ophouden.
+ * pdf zelf downloaden. Meerdere PDF-URL-patronen worden geprobeerd, want
+ * /Document/View/ werkt niet meer op alle iBabs-versies. Elke faalstap logt
+ * een waarschuwing, zodat in de run te zien is waaróm een bericht geen
+ * documentinhoud heeft.
  */
 async function voegDocumentInhoudToe(bericht, cookie) {
-  if (!bericht.itemId) return { ...bericht, documentInhoudOpgehaald: false };
+  if (!bericht.itemId) {
+    console.warn(`[${bericht.bronId}] Geen itemId voor "${bericht.titel}" — detailpagina overgeslagen.`);
+    return { ...bericht, documentInhoudOpgehaald: false };
+  }
 
+  const itemUrl = `${BASE_URL}/Reports/Item/${bericht.itemId}`;
+  let html;
   try {
-    const itemUrl = `${BASE_URL}/Reports/Item/${bericht.itemId}`;
     const itemResponse = await fetchMetTimeout(itemUrl, {
       headers: {
         "User-Agent": GEBRUIKERSAGENT,
@@ -239,53 +273,115 @@ async function voegDocumentInhoudToe(bericht, cookie) {
         ...(cookie ? { Cookie: cookie } : {}),
       },
     });
-    if (!itemResponse.ok) throw new Error(`detailpagina HTTP ${itemResponse.status}`);
-    const html = await itemResponse.text();
+    if (!itemResponse.ok) throw new Error(`HTTP ${itemResponse.status}`);
+    html = await itemResponse.text();
+  } catch (fout) {
+    console.warn(`[${bericht.bronId}] Detailpagina niet op te halen voor "${bericht.titel}": ${fout.message}${oorzaakTekst(fout)}`);
+    return { ...bericht, documentInhoudOpgehaald: false };
+  }
 
-    const documentIdMatch =
-      html.match(new RegExp(`/Reports/Document/${bericht.itemId}\\?documentId=([a-f0-9-]{36})`)) ||
-      html.match(/documentId=([a-f0-9-]{36})/);
-    if (!documentIdMatch) {
-      return { ...bericht, documentInhoudOpgehaald: false };
+  const documentId = vindDocumentId(html, bericht.itemId);
+  if (!documentId) {
+    console.warn(`[${bericht.bronId}] Geen documentId in de detailpagina voor "${bericht.titel}" (itemId ${bericht.itemId}).`);
+    return { ...bericht, documentInhoudOpgehaald: false };
+  }
+
+  // Meerdere PDF-URL-patronen. De eerste is wat de detailpagina zelf gebruikt;
+  // de tweede is het oudere /Document/View/-endpoint dat op sommige
+  // iBabs-versies nog werkt; de derde is een variant zonder itemId.
+  const pdfKandidaten = [
+    `${BASE_URL}/Reports/Document/${bericht.itemId}?documentId=${documentId}`,
+    `${BASE_URL}/Document/View/${documentId}`,
+    `${BASE_URL}/Reports/Document/${documentId}`,
+  ];
+
+  let buffer = null;
+  let pdfUrl = null;
+  let laatsteFout = null;
+  for (const kandidaat of pdfKandidaten) {
+    try {
+      const pdfResponse = await fetchMetTimeout(kandidaat, {
+        headers: {
+          "User-Agent": GEBRUIKERSAGENT,
+          Accept: "application/pdf,*/*",
+          Referer: itemUrl,
+          ...(cookie ? { Cookie: cookie } : {}),
+        },
+      });
+      if (!pdfResponse.ok) {
+        laatsteFout = `HTTP ${pdfResponse.status}`;
+        continue;
+      }
+      const buf = Buffer.from(await pdfResponse.arrayBuffer());
+      if (buf.subarray(0, 4).toString() === "%PDF") {
+        buffer = buf;
+        pdfUrl = kandidaat;
+        break;
+      }
+      laatsteFout = `geen PDF-header (kreeg "${buf.subarray(0, 8).toString().replace(/\s/g, " ")}")`;
+    } catch (fout) {
+      laatsteFout = fout.message;
     }
-    const documentId = documentIdMatch[1];
+  }
 
-    const pdfUrl = `${BASE_URL}/Document/View/${documentId}`;
-    const pdfResponse = await fetchMetTimeout(pdfUrl, {
-      headers: {
-        "User-Agent": GEBRUIKERSAGENT,
-        Referer: itemUrl,
-        ...(cookie ? { Cookie: cookie } : {}),
-      },
-    });
-    if (!pdfResponse.ok) throw new Error(`pdf HTTP ${pdfResponse.status}`);
+  if (!buffer) {
+    console.warn(`[${bericht.bronId}] PDF niet op te halen voor "${bericht.titel}": ${laatsteFout} (geprobeerd: ${pdfKandidaten.length} url's).`);
+    return { ...bericht, documentInhoudOpgehaald: false };
+  }
 
-    const buffer = Buffer.from(await pdfResponse.arrayBuffer());
-    if (buffer.subarray(0, 4).toString() !== "%PDF") {
-      return { ...bericht, documentInhoudOpgehaald: false };
-    }
-    if (!pdfParse) {
-      console.warn(`[${bericht.bronId}] pdf-parse niet beschikbaar — pdf overgeslagen voor "${bericht.titel}".`);
-      return { ...bericht, documentInhoudOpgehaald: false };
-    }
+  if (!pdfParse) {
+    console.warn(`[${bericht.bronId}] pdf-parse niet beschikbaar — pdf overgeslagen voor "${bericht.titel}".`);
+    return { ...bericht, url: pdfUrl, documentInhoudOpgehaald: false };
+  }
 
+  let documentTekst = "";
+  let parseFout = null;
+  try {
     const data = await pdfParse(buffer);
     const volledigeTekst = (data.text || "").replace(/\s+/g, " ").trim();
-    const documentTekst = volledigeTekst.slice(0, MAX_DOCUMENT_TEKST_LENGTE);
+    documentTekst = volledigeTekst.slice(0, MAX_DOCUMENT_TEKST_LENGTE);
     if (volledigeTekst.length > MAX_DOCUMENT_TEKST_LENGTE) {
       console.log(`[${bericht.bronId}] PDF-tekst ingekort van ${volledigeTekst.length} naar ${MAX_DOCUMENT_TEKST_LENGTE} tekens voor "${bericht.titel}".`);
     }
-
-    return {
-      ...bericht,
-      url: pdfUrl,
-      samenvatting: [bericht.samenvatting, documentTekst].filter(Boolean).join(" — "),
-      documentInhoudOpgehaald: documentTekst.length > 0,
-    };
   } catch (fout) {
-    console.warn(`[${bericht.bronId}] Kon documentinhoud niet ophalen voor "${bericht.titel}": ${fout.message}${oorzaakTekst(fout)}`);
-    return { ...bericht, documentInhoudOpgehaald: false };
+    parseFout = fout.message;
   }
+
+  if (parseFout) {
+    console.warn(`[${bericht.bronId}] PDF-parse mislukte voor "${bericht.titel}": ${parseFout} (${buffer.length} bytes).`);
+    const fallback = haalDetailTekstUitHtml(html);
+    if (fallback) {
+      return {
+        ...bericht,
+        url: pdfUrl,
+        samenvatting: [bericht.samenvatting, fallback].filter(Boolean).join(" — "),
+        documentInhoudOpgehaald: true,
+      };
+    }
+    return { ...bericht, url: pdfUrl, documentInhoudOpgehaald: false };
+  }
+
+  if (!documentTekst) {
+    console.warn(`[${bericht.bronId}] PDF bevat geen leesbare tekst voor "${bericht.titel}" (${buffer.length} bytes, waarschijnlijk een scan zonder tekstlaag).`);
+    const fallback = haalDetailTekstUitHtml(html);
+    if (fallback) {
+      console.log(`[${bericht.bronId}] Teruggevallen op de HTML-tekst van de detailpagina voor "${bericht.titel}".`);
+      return {
+        ...bericht,
+        url: pdfUrl,
+        samenvatting: [bericht.samenvatting, fallback].filter(Boolean).join(" — "),
+        documentInhoudOpgehaald: true,
+      };
+    }
+    return { ...bericht, url: pdfUrl, documentInhoudOpgehaald: false };
+  }
+
+  return {
+    ...bericht,
+    url: pdfUrl,
+    samenvatting: [bericht.samenvatting, documentTekst].filter(Boolean).join(" — "),
+    documentInhoudOpgehaald: true,
+  };
 }
 
 module.exports = { scrapeIbabs };
