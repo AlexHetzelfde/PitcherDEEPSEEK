@@ -7,6 +7,12 @@
 // detailSelector meegeeft (bij het herstellen van een bron), wordt die aan de
 // nieuwe bron-config toegevoegd. Zonder dat zou herstel-bronnen.js het veld
 // uit een werkende bron wegpoetsen.
+//
+// Sinds de "directe feed"-ronde (2026-10-13): als de opgegeven URL zelf een
+// RSS/Atom/RDF-feed is, wordt hij meteen als type "rss" getest en
+// teruggegeven. Geen Gemini, geen HTML-analyse. Dat werkt voor
+// voeg-bron-toe.js én herstel-bronnen.js, want allebei gebruiken ze
+// ontdekBron().
 
 const cheerio = require("cheerio");
 const { haalOp, oorzaakTekst, startResponsCache, stopResponsCache } = require("./hulpmiddelen");
@@ -22,6 +28,20 @@ const WP_NEGEER_TYPES = new Set([
   "attachment", "page", "nav_menu_item", "wp_block", "wp_template", "wp_template_part",
   "wp_navigation", "wp_global_styles", "wp_font_family", "wp_font_face", "revision",
 ]);
+
+/**
+ * Is de opgegeven URL zelf een RSS/Atom/RDF-feed? Zo ja: haal hem op en
+ * controleer of de eerste 2000 tekens een feed-root bevatten. Geen Gemini
+ * nodig — de feed is zijn eigen referentie.
+ */
+async function isDirecteFeed(url) {
+  try {
+    const tekst = await haalOp(url, 1, { stil: true });
+    return /<(rss|feed|rdf:RDF)[\s>]/i.test(tekst.slice(0, 2000));
+  } catch {
+    return false;
+  }
+}
 
 function agendaAchtig(url) {
   try {
@@ -152,6 +172,30 @@ async function ontdekBronIntern(opties) {
   const basis = { id, naam, categorie };
   const verslag = [];
   const behoud = { detailSelector: opties.detailSelector };
+
+  // NIEUW: is de URL zelf een feed? Dan is er niets uit te zoeken, en is
+  // Gemini niet nodig. Dit moet VOOR de Gemini-verplichting hieronder.
+  log.log(`Controleren of ${url} een feed is...`);
+  if (await isDirecteFeed(url)) {
+    log.log(`  Ja — de URL is een RSS/Atom-feed. Direct testen als rss-bron (geen Gemini nodig).`);
+    const testBronConfig = { ...basis, type: "rss", url };
+    const oordeel = await testBron(testBronConfig, { feedModus: true, siteUrl: url });
+    if (oordeel.geslaagd) {
+      noteer(verslag, log, "directe-feed", { type: "rss", url }, oordeel);
+      const bron = { ...basis, type: "rss", url };
+      if (soortKeuze === "agenda") bron.soort = "agenda";
+      if (oordeel.rustig) bron.rustig = true;
+      return { bron, oordeel, verslag };
+    }
+    log.log(`  De feed gaf geen bruikbare berichten: ${oordeel.redenen[0] || "onbekende reden"}`);
+    return {
+      bron: null,
+      oordeel: null,
+      verslag,
+      fout: `De URL is een geldige RSS/Atom-feed, maar bevat geen bruikbare berichten (${oordeel.redenen.join("; ") || "geen titel, link of datum"}).`,
+    };
+  }
+  log.log(`  Nee — geen feed, doorgaan met de gewone analyse.`);
 
   if (!apiKey && !vraagGemini) {
     verslag.push({ stap: "gemini", kandidaat: "gemini", uitkomst: "afgekeurd", redenen: [GEMINI_VERPLICHT_MELDING], waarschuwingen: [], aantal: 0 });
@@ -350,4 +394,4 @@ function schrijfStapSamenvatting(markdown) {
   }
 }
 
-module.exports = { ontdekBron, maakRapport, agendaAchtig, verzamelPaginaLinks, soortVarianten, schrijfStapSamenvatting, bepaalSoort, GEMINI_VERPLICHT_MELDING };
+module.exports = { ontdekBron, maakRapport, agendaAchtig, verzamelPaginaLinks, soortVarianten, schrijfStapSamenvatting, bepaalSoort, isDirecteFeed, GEMINI_VERPLICHT_MELDING };
