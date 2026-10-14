@@ -25,6 +25,18 @@
 //  - Elke faalstap logt nu een waarschuwing: geen stil falen meer.
 //  - Fallback naar de HTML-tekst van de detailpagina (Onderwerp, Toelichting,
 //    Afzender, Advies) als de PDF geen leesbare tekst bevat (bijv. een scan).
+//
+// Sinds de "HTML-fallback-eerst"-ronde (2026-10-14):
+//  - De HTML-fallback draait nu ALTIJD, ook als er geen documentId is. Dat
+//    is de belangrijkste wijziging: bij ingekomen stukken zonder PDF-bijlage
+//    (nieuwsbrieven, externe brieven) is de detailpagina-tekst de enige
+//    bron van inhoud. Zonder deze wijziging gingen zulke items met alleen
+//    de titel naar Gemini en werden ze onterecht als "niet oppakbaar"
+//    beoordeeld.
+//  - De volgorde is nu: (1) detailpagina ophalen, (2) HTML-fallback
+//    voorbereiden, (3) documentId zoeken, (4) bij geen documentId: HTML-
+//    fallback gebruiken, (5) bij wel documentId: PDF proberen, (6) bij
+//    PDF-falen: HTML-fallback alsnog gebruiken.
 
 const MAX_DOCUMENT_TEKST_LENGTE = 15000;
 const REQUEST_TIMEOUT_MS = 15_000;
@@ -233,8 +245,16 @@ function vindDocumentId(html, itemId) {
 
 /**
  * Tekst uit de detailpagina-HTML halen als fallback wanneer de PDF geen
- * leesbare tekst bevat (bijvoorbeeld een scan zonder tekstlaag). Pakt de
+ * leesbare tekst bevat (bijvoorbeeld een scan zonder tekstlaag) of wanneer er
+ * helemaal geen PDF-bijlage is (nieuwsbrieven, externe brieven). Pakt de
  * velden die iBabs altijd toont: Onderwerp, Toelichting, Afzender, Advies.
+ *
+ * Voor "Het laatste nieuws uit raadsledenland!" levert dit bijvoorbeeld op:
+ *   "Onderwerp: Het laatste nieuws uit raadsledenland! — Afzender: Nederlandse
+ *    Vereniging voor Raadsleden — Toelichting: https://... — Advies: Ter
+ *    kennisname"
+ * Dat is mager maar voldoende voor de AI om te zien dat het om een externe
+ * nieuwsbrief gaat en geen oppakbaar nieuws.
  */
 function haalDetailTekstUitHtml(html) {
   const velden = ["Onderwerp", "Toelichting", "Afzender", "Advies"];
@@ -256,6 +276,15 @@ function haalDetailTekstUitHtml(html) {
  * /Document/View/ werkt niet meer op alle iBabs-versies. Elke faalstap logt
  * een waarschuwing, zodat in de run te zien is waaróm een bericht geen
  * documentinhoud heeft.
+ *
+ * Sinds 2026-10-14: de HTML-fallback draait ALTIJD, ook als er geen
+ * documentId is. De volgorde is nu:
+ *   1. detailpagina ophalen
+ *   2. HTML-fallback voorbereiden (altijd, geen extra requests)
+ *   3. documentId zoeken
+ *   4. geen documentId + HTML-fallback aanwezig → HTML-fallback gebruiken
+ *   5. wel documentId → PDF proberen
+ *   6. PDF-falen → HTML-fallback alsnog gebruiken
  */
 async function voegDocumentInhoudToe(bericht, cookie) {
   if (!bericht.itemId) {
@@ -280,15 +309,28 @@ async function voegDocumentInhoudToe(bericht, cookie) {
     return { ...bericht, documentInhoudOpgehaald: false };
   }
 
+  // Stap 2: HTML-fallback voorbereiden. Doet geen extra request — we hebben de
+  // HTML al. Wordt gebruikt als er geen PDF-bijlage is of als de PDF faalt.
+  const htmlFallback = haalDetailTekstUitHtml(html);
+
+  // Stap 3: documentId zoeken.
   const documentId = vindDocumentId(html, bericht.itemId);
+
+  // Stap 4: geen documentId — gebruik HTML-fallback als die er is.
   if (!documentId) {
-    console.warn(`[${bericht.bronId}] Geen documentId in de detailpagina voor "${bericht.titel}" (itemId ${bericht.itemId}).`);
+    if (htmlFallback) {
+      console.log(`[${bericht.bronId}] Geen PDF-bijlage voor "${bericht.titel}" — HTML-fallback gebruikt.`);
+      return {
+        ...bericht,
+        samenvatting: [bericht.samenvatting, htmlFallback].filter(Boolean).join(" — "),
+        documentInhoudOpgehaald: true,
+      };
+    }
+    console.warn(`[${bericht.bronId}] Geen documentId én geen HTML-fallback voor "${bericht.titel}" (itemId ${bericht.itemId}).`);
     return { ...bericht, documentInhoudOpgehaald: false };
   }
 
-  // Meerdere PDF-URL-patronen. De eerste is wat de detailpagina zelf gebruikt;
-  // de tweede is het oudere /Document/View/-endpoint dat op sommige
-  // iBabs-versies nog werkt; de derde is een variant zonder itemId.
+  // Stap 5: wel documentId — probeer de PDF. Meerdere URL-patronen.
   const pdfKandidaten = [
     `${BASE_URL}/Reports/Document/${bericht.itemId}?documentId=${documentId}`,
     `${BASE_URL}/Document/View/${documentId}`,
@@ -324,13 +366,30 @@ async function voegDocumentInhoudToe(bericht, cookie) {
     }
   }
 
+  // Stap 6: PDF-falen — HTML-fallback alsnog gebruiken.
   if (!buffer) {
+    if (htmlFallback) {
+      console.warn(`[${bericht.bronId}] PDF niet op te halen voor "${bericht.titel}" (${laatsteFout}) — HTML-fallback gebruikt.`);
+      return {
+        ...bericht,
+        samenvatting: [bericht.samenvatting, htmlFallback].filter(Boolean).join(" — "),
+        documentInhoudOpgehaald: true,
+      };
+    }
     console.warn(`[${bericht.bronId}] PDF niet op te halen voor "${bericht.titel}": ${laatsteFout} (geprobeerd: ${pdfKandidaten.length} url's).`);
     return { ...bericht, documentInhoudOpgehaald: false };
   }
 
   if (!pdfParse) {
     console.warn(`[${bericht.bronId}] pdf-parse niet beschikbaar — pdf overgeslagen voor "${bericht.titel}".`);
+    if (htmlFallback) {
+      return {
+        ...bericht,
+        url: pdfUrl,
+        samenvatting: [bericht.samenvatting, htmlFallback].filter(Boolean).join(" — "),
+        documentInhoudOpgehaald: true,
+      };
+    }
     return { ...bericht, url: pdfUrl, documentInhoudOpgehaald: false };
   }
 
@@ -347,29 +406,14 @@ async function voegDocumentInhoudToe(bericht, cookie) {
     parseFout = fout.message;
   }
 
-  if (parseFout) {
-    console.warn(`[${bericht.bronId}] PDF-parse mislukte voor "${bericht.titel}": ${parseFout} (${buffer.length} bytes).`);
-    const fallback = haalDetailTekstUitHtml(html);
-    if (fallback) {
+  if (parseFout || !documentTekst) {
+    const reden = parseFout ? `parse mislukt: ${parseFout}` : `geen leesbare tekst (${buffer.length} bytes, waarschijnlijk een scan)`;
+    console.warn(`[${bericht.bronId}] PDF onbruikbaar voor "${bericht.titel}" (${reden}).`);
+    if (htmlFallback) {
       return {
         ...bericht,
         url: pdfUrl,
-        samenvatting: [bericht.samenvatting, fallback].filter(Boolean).join(" — "),
-        documentInhoudOpgehaald: true,
-      };
-    }
-    return { ...bericht, url: pdfUrl, documentInhoudOpgehaald: false };
-  }
-
-  if (!documentTekst) {
-    console.warn(`[${bericht.bronId}] PDF bevat geen leesbare tekst voor "${bericht.titel}" (${buffer.length} bytes, waarschijnlijk een scan zonder tekstlaag).`);
-    const fallback = haalDetailTekstUitHtml(html);
-    if (fallback) {
-      console.log(`[${bericht.bronId}] Teruggevallen op de HTML-tekst van de detailpagina voor "${bericht.titel}".`);
-      return {
-        ...bericht,
-        url: pdfUrl,
-        samenvatting: [bericht.samenvatting, fallback].filter(Boolean).join(" — "),
+        samenvatting: [bericht.samenvatting, htmlFallback].filter(Boolean).join(" — "),
         documentInhoudOpgehaald: true,
       };
     }
