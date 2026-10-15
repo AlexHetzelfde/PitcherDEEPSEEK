@@ -5,6 +5,17 @@
 // Sinds de "schone tekst"-ronde (2026-10-13): de bestaande detailSelector van
 // een bron wordt doorgegeven aan ontdekBron, zodat het veld behouden blijft
 // bij het opnieuw uitzoeken van de bron.
+//
+// Sinds de "eerlijke-pipeline"-ronde (2026-10-15):
+//  - De "leeg"-trigger gebruikt dezelfde rustig-drempel als de venster-trigger.
+//    Zonder die aanpassing ging een rustige bron (met rustig: true, drempel
+//    14) al na 2 lege runs naar herstel, ook al was dat verwacht gedrag.
+//  - Agenda-bronnen worden nooit meer getriggerd op "niets vandaag". Dat is
+//    normaal (rustige dag, geen evenement) en werd eerder als kapot gezien.
+//    Een agenda-scraper die écht niets meer vindt, valt wel onder de
+//    "leeg"-trigger hierboven.
+//  - De tekst "maximaal 7 dagen oud" gebruikte een hardcoded getal, terwijl
+//    MAX_LEEFTIJD_DAGEN 1 is. Nu wordt de constante gebruikt.
 
 const { execFileSync } = require("child_process");
 const fs = require("fs/promises");
@@ -14,6 +25,7 @@ const bronnen = require("./bronnen");
 const { ontdekBron, maakRapport, schrijfStapSamenvatting } = require("./bron-ontdekking");
 const { schrijfBron, bronNaarTekst } = require("./bronnen-schrijver");
 const { voorbeeldRegels } = require("./bron-poort");
+const { MAX_LEEFTIJD_DAGEN } = require("./hulpmiddelen");
 
 const MIN_DAGEN = Number(process.env.HERSTEL_MIN_DAGEN || 2);
 const MIN_DAGEN_RUSTIG = Number(process.env.HERSTEL_MIN_DAGEN_RUSTIG || 14);
@@ -42,9 +54,22 @@ async function leesGezondheid() {
 const aantalLeeg = (gezondheid, id) => (gezondheid[id] && gezondheid[id].opeenvolgendGeenBerichten) || 0;
 const aantalGeenVenster = (gezondheid, id) => (gezondheid[id] && gezondheid[id].opeenvolgendGeenBinnenVenster) || 0;
 
+/**
+ * Bepaalt of een bron in aanmerking komt voor herstel.
+ *  - "leeg": de scraper vindt al N dagen geen enkel bericht meer.
+ *  - "venster": de scraper vindt wel berichten, maar geen enkel binnen het
+ *    leeftijdsvenster. Alleen voor nieuws-bronnen; voor agenda-bronnen is
+ *    "niets vandaag" normaal en wordt hier niets gemeld.
+ */
 function aanleidingVoor(gezondheid, bron) {
   const leeg = aantalLeeg(gezondheid, bron.id);
-  if (leeg >= MIN_DAGEN) return { soort: "leeg", aantal: leeg };
+  const drempelLeeg = bron.rustig ? MIN_DAGEN_RUSTIG : MIN_DAGEN;
+  if (leeg >= drempelLeeg) return { soort: "leeg", aantal: leeg };
+
+  // Agenda-bronnen nooit triggeren op "niets vandaag". Een agenda-scraper
+  // die écht niets meer vindt, valt wel onder de "leeg"-trigger hierboven.
+  if (bron.soort === "agenda") return null;
+
   const laatste = gezondheid[bron.id];
   const geenVenster = aantalGeenVenster(gezondheid, bron.id);
   const drempel = bron.rustig ? MIN_DAGEN_RUSTIG : MIN_DAGEN;
@@ -55,7 +80,10 @@ function aanleidingVoor(gezondheid, bron) {
 function aanleidingTekst(bron, aanleiding, gezondheid) {
   if (aanleiding.soort === "venster") {
     const gevonden = (gezondheid[bron.id] && gezondheid[bron.id].gevonden) || 0;
-    const venster = bron.soort === "agenda" ? "agenda-venster" : "leeftijdsvenster (maximaal 7 dagen oud)";
+    const venster =
+      bron.soort === "agenda"
+        ? "agenda-venster"
+        : `leeftijdsvenster (maximaal ${MAX_LEEFTIJD_DAGEN} dag(en) oud)`;
     return `leverde de laatste ${aanleiding.aantal} run(s) achter elkaar wel berichten op (${gevonden} in de laatste run), maar geen enkel bericht binnen het ${venster}${bron.rustig ? " (een rustige bron, daarom pas na een ruimere drempel gemeld)" : ""}`;
   }
   return `leverde ${aanleiding.aantal} run(s) achter elkaar geen enkel bericht op`;
@@ -74,20 +102,43 @@ function kiesDoelen(gezondheid, geforceerd) {
     return { doelen: [bron], reden: `handmatig gekozen: ${geforceerd}`, aanleidingen };
   }
   if (geforceerd === "alle") {
-    const doelen = bronnen.filter((b) => aantalLeeg(gezondheid, b.id) >= 1 || (gezondheid[b.id] && gezondheid[b.id].gevonden > 0 && gezondheid[b.id].binnenVenster === 0));
+    const doelen = bronnen.filter(
+      (b) =>
+        aantalLeeg(gezondheid, b.id) >= 1 ||
+        (gezondheid[b.id] && gezondheid[b.id].gevonden > 0 && gezondheid[b.id].binnenVenster === 0)
+    );
     doelen.forEach((b) => {
       const g = gezondheid[b.id];
-      aanleidingen[b.id] = aantalLeeg(gezondheid, b.id) >= 1 ? { soort: "leeg", aantal: aantalLeeg(gezondheid, b.id) } : { soort: "venster", aantal: aantalGeenVenster(gezondheid, b.id) || 1 };
+      aanleidingen[b.id] =
+        aantalLeeg(gezondheid, b.id) >= 1
+          ? { soort: "leeg", aantal: aantalLeeg(gezondheid, b.id) }
+          : { soort: "venster", aantal: aantalGeenVenster(gezondheid, b.id) || 1 };
     });
-    return { doelen, reden: "handmatig: alle bronnen die de laatste run leeg waren of niets binnen het venster hadden", aanleidingen };
+    return {
+      doelen,
+      reden: "handmatig: alle bronnen die de laatste run leeg waren of niets binnen het venster hadden",
+      aanleidingen,
+    };
   }
 
   const vandaagLeeg = bronnen.filter((b) => aantalLeeg(gezondheid, b.id) >= 1);
   if (vandaagLeeg.length > bronnen.length / 2) {
-    return { doelen: [], reden: `${vandaagLeeg.length} van de ${bronnen.length} bronnen waren leeg: waarschijnlijk een netwerkstoring bij ons, niet bij de sites. Niets gedaan.`, aanleidingen };
+    return {
+      doelen: [],
+      reden: `${vandaagLeeg.length} van de ${bronnen.length} bronnen waren leeg: waarschijnlijk een netwerkstoring bij ons, niet bij de sites. Niets gedaan.`,
+      aanleidingen,
+    };
   }
-  const kandidaten = bronnen.map((b) => ({ bron: b, aanleiding: aanleidingVoor(gezondheid, b) })).filter((x) => x.aanleiding);
-  kandidaten.sort((a, b) => (a.aanleiding.soort === b.aanleiding.soort ? b.aanleiding.aantal - a.aanleiding.aantal : a.aanleiding.soort === "leeg" ? -1 : 1));
+  const kandidaten = bronnen
+    .map((b) => ({ bron: b, aanleiding: aanleidingVoor(gezondheid, b) }))
+    .filter((x) => x.aanleiding);
+  kandidaten.sort((a, b) =>
+    a.aanleiding.soort === b.aanleiding.soort
+      ? b.aanleiding.aantal - a.aanleiding.aantal
+      : a.aanleiding.soort === "leeg"
+        ? -1
+        : 1
+  );
   kandidaten.forEach((x) => (aanleidingen[x.bron.id] = x.aanleiding));
   return {
     doelen: kandidaten.map((x) => x.bron),
@@ -109,7 +160,9 @@ function zoekUrlVoor(bron) {
 
 function runLink() {
   const { GITHUB_SERVER_URL, GITHUB_REPOSITORY, GITHUB_RUN_ID } = process.env;
-  return GITHUB_SERVER_URL && GITHUB_REPOSITORY && GITHUB_RUN_ID ? `${GITHUB_SERVER_URL}/${GITHUB_REPOSITORY}/actions/runs/${GITHUB_RUN_ID}` : null;
+  return GITHUB_SERVER_URL && GITHUB_REPOSITORY && GITHUB_RUN_ID
+    ? `${GITHUB_SERVER_URL}/${GITHUB_REPOSITORY}/actions/runs/${GITHUB_RUN_ID}`
+    : null;
 }
 
 function prTekst(oud, nieuw, uit, gezondheid, aanleiding) {
@@ -190,7 +243,8 @@ async function maakPullRequest(oud, nieuw, uit, gezondheid, aanleiding) {
     return "pull request (droog)";
   }
 
-  const origineleRef = git("rev-parse", "--abbrev-ref", "HEAD") === "HEAD" ? git("rev-parse", "HEAD") : git("rev-parse", "--abbrev-ref", "HEAD");
+  const origineleRef =
+    git("rev-parse", "--abbrev-ref", "HEAD") === "HEAD" ? git("rev-parse", "HEAD") : git("rev-parse", "--abbrev-ref", "HEAD");
   if (git("status", "--porcelain", "--", "scraper/bronnen.js")) throw new Error("scraper/bronnen.js heeft lokale wijzigingen; niet overschrijven.");
   const branch = `herstel/${oud.id}`;
   try {
@@ -214,7 +268,9 @@ async function maakPullRequest(oud, nieuw, uit, gezondheid, aanleiding) {
 }
 
 async function herstelEen(bron, gezondheid, aanleiding) {
-  console.log(`\n=== Herstel: ${bron.id} (${bron.type}, ${aanleiding.soort === "venster" ? `${aanleiding.aantal} run(s) niets binnen het venster` : `${aanleiding.aantal} run(s) leeg`}) ===`);
+  console.log(
+    `\n=== Herstel: ${bron.id} (${bron.type}, ${aanleiding.soort === "venster" ? `${aanleiding.aantal} run(s) niets binnen het venster` : `${aanleiding.aantal} run(s) leeg`}) ===`
+  );
 
   const bestaand = bestaatAlOpen(bron.id);
   if (bestaand) {
@@ -224,7 +280,13 @@ async function herstelEen(bron, gezondheid, aanleiding) {
 
   if (NIET_HERSTELBAAR.has(bron.type)) {
     console.log(`  Type ${bron.type} heeft een eigen scraper; automatisch herzoeken is niet mogelijk. Alleen een issue.`);
-    const detail = await maakIssue(bron, null, gezondheid, `Dit is een \`${bron.type}\`-bron met een eigen scraper. Die kan niet automatisch opnieuw worden uitgezocht: kijk handmatig of de iBabs-pagina of het rapport is veranderd.`, aanleiding);
+    const detail = await maakIssue(
+      bron,
+      null,
+      gezondheid,
+      `Dit is een \`${bron.type}\`-bron met een eigen scraper. Die kan niet automatisch opnieuw worden uitgezocht: kijk handmatig of de iBabs-pagina of het rapport is veranderd.`,
+      aanleiding
+    );
     return { id: bron.id, uitkomst: "issue", detail };
   }
 
