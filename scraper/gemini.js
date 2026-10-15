@@ -11,18 +11,23 @@
 //     een korte pitch met invalshoek, researchvraag en bronnen. GEEN
 //     prioriteit — die komt uit call 3.
 //
-//   Call 3 (ranking): één keer per run, voor ALLE pitches gezamenlijk. Geeft
-//     elke pitch een score van 1 tot 10 op basis van hoe groot of belangrijk
-//     het nieuws is (opnieuw de nieuwscriteria uit het boek).
+//   Call 3 (ranking): één keer per run, voor ALLE pitches gezamenlijk.
 //
 // Waarom drie calls:
 //   - Filter en pitch zijn twee verschillende taken. Splitsen geeft elke
 //     prompt gerichte aandacht.
-//   - Ranking in één call ziet alle pitches naast elkaar. Dat geeft een
-//     betere rangschikking dan per bericht een cijfer geven.
+//   - Ranking in één call ziet alle pitches naast elkaar.
 //
-// De landelijke filter en pitch staan er nog, maar worden alleen gebruikt
-// als er ook landelijke bronnen in bronnen.js staan. Voor nu zijn die leeg.
+// Sinds de "eerlijke-pipeline"-ronde (2026-10-15):
+//  - De typfout "INVALSHEEK" is "INVALSHOEK" geworden.
+//  - Bij "twijfel" wordt geen pitch-call meer gedaan. Die categorie komt
+//    toch niet in de pitches (alleen "ja" voor lokaal, en "ja" voor
+//    landelijk), dus de call en de 4,5 s pauze waren verspilde moeite en
+//    API-kosten.
+//  - fetchMetTimeout leest de body nu binnen de timeout. Voorheen werd de
+//    timeout gewist zodra de headers binnen waren, en een trage body kon
+//    dan onbeperkt doorlopen. De functie geeft nu { response, tekst } terug
+//    zodat de aanroeper zelf JSON.parse doet.
 //
 // Verwacht de API-key in de omgevingsvariabele GEMINI_API_KEY.
 
@@ -71,8 +76,7 @@ Output (alleen geldige JSON, geen tekst eromheen):
 Blijf strikt bij wat feitelijk in het bericht staat. Doe geen aannames over motieven, gevolgen of context die niet genoemd worden.`;
 
 // ---------------------------------------------------------------------------
-// FILTER-PROMPT (landelijk) — ongewijzigd, alleen gebruikt als er landelijke
-// bronnen zijn. Voor nu staan die niet in bronnen.js.
+// FILTER-PROMPT (landelijk) — gebruikt alleen als er landelijke bronnen zijn.
 // ---------------------------------------------------------------------------
 
 const PROMPT_LANDELIJK_FILTER = `Je bent een redactionele assistent voor een lokale journalist in Zaanstreek-Waterland.
@@ -104,8 +108,7 @@ Blijf strikt bij wat feitelijk in het bericht staat. Doe geen aannames over moti
 gevolgen of context die niet genoemd worden.`;
 
 // ---------------------------------------------------------------------------
-// PITCH-PROMPT (lokaal) — kort, met invalshoek + researchvraag + bronnen,
-// GEEN prioriteit (die komt uit de ranking-call).
+// PITCH-PROMPT (lokaal) — kort, met invalshoek + researchvraag + bronnen.
 // ---------------------------------------------------------------------------
 
 const PROMPT_LOKAAL_PITCH = `Je bent redactioneel assistent voor een lokale journalist in Zaanstreek-Waterland.
@@ -119,7 +122,7 @@ Een goede pitch is kort, concreet, en heeft drie dingen:
 
 Geef:
 
-1. INVALSHEEK — vanuit welke hoek wordt het bekeken? Eén zin.
+1. INVALSHOEK — vanuit welke hoek wordt het bekeken? Eén zin.
    Bijvoorbeeld: "vanuit gehandicapten in de Zaanstreek" of
    "vanuit de ondernemers in Zaandam die er last van hebben".
 
@@ -142,7 +145,7 @@ Laat velden leeg als ze niet uit de tekst volgen. Verzin niets.
 Blijf strikt bij wat er staat.`;
 
 // ---------------------------------------------------------------------------
-// PITCH-PROMPT (landelijk) — ongewijzigd.
+// PITCH-PROMPT (landelijk) — gebruikt alleen als er landelijke bronnen zijn.
 // ---------------------------------------------------------------------------
 
 const PROMPT_LANDELIJK_PITCH = `Je bent een redactionele assistent voor een lokale journalist in Zaanstreek-Waterland.
@@ -165,7 +168,6 @@ gevolgen of context die niet genoemd worden.`;
 
 // ---------------------------------------------------------------------------
 // RANKING-PROMPT — één keer per run, voor alle pitches gezamenlijk.
-// Scoort op basis van de nieuwscriteria uit het boek.
 // ---------------------------------------------------------------------------
 
 const PROMPT_RANKING = `Je bent redactioneel assistent voor een lokale journalist in Zaanstreek-Waterland.
@@ -222,7 +224,10 @@ async function roepGeminiAanRuw(volledigePrompt, bronIdVoorLog, apiKey, pogingen
   let laatsteFout;
   for (let poging = 1; poging <= pogingen; poging++) {
     try {
-      const response = await fetchMetTimeout(
+      // fetchMetTimeout leest de body binnen de timeout en geeft
+      // { response, tekst } terug. JSON.parse doen we hier, zodat een
+      // kapotte body ook onder de timeout valt.
+      const { response, tekst: ruweTekst } = await fetchMetTimeout(
         GEMINI_URL(apiKey),
         {
           method: "POST",
@@ -247,7 +252,7 @@ async function roepGeminiAanRuw(volledigePrompt, bronIdVoorLog, apiKey, pogingen
         throw new Error(`Gemini HTTP ${response.status}`);
       }
 
-      const data = await response.json();
+      const data = JSON.parse(ruweTekst);
       const tekst = data?.candidates?.[0]?.content?.parts?.[0]?.text;
       if (!tekst) throw new Error("Geen tekst in Gemini-respons");
 
@@ -280,6 +285,12 @@ async function beoordeelMetGemini(bericht, apiKey, pogingen = 3) {
 
   const oppakbaar = isLokaal ? filterResultaat.oppakbaar : filterResultaat.lokaleInvalshoek;
   if (oppakbaar === "nee") {
+    return { ...bericht, aiBeoordeling: filterResultaat, aiFout: null };
+  }
+  // Bij "twijfel" geen pitch-call: die categorie komt niet in de pitches
+  // (alleen "ja" voor lokaal, en "ja" voor landelijk). De pitch-call zou
+  // alleen maar API-kosten en 4,5 s vertraging toevoegen.
+  if (oppakbaar === "twijfel") {
     return { ...bericht, aiBeoordeling: filterResultaat, aiFout: null };
   }
 
@@ -321,18 +332,6 @@ async function beoordeelBerichten(berichten, apiKey, maxAantal = 18, label = "")
 // Derde stap: ranking (één call voor alle pitches samen)
 // ---------------------------------------------------------------------------
 
-/**
- * Geeft elke pitch een prioriteit (1-10) op basis van de nieuwscriteria.
- * Doet één Gemini-call voor de hele lijst, zodat de AI de pitches naast
- * elkaar kan zien en onderling kan vergelijken.
- *
- * De pitches krijgen tijdelijk een nummer ("nr") mee. De AI geeft per nummer
- * een score terug. De code koppelt dat nummer terug aan het juiste bericht,
- * zodat titels niet verward kunnen worden.
- *
- * Geeft dezelfde berichten terug, met aiBeoordeling.prioriteit ingevuld.
- * Bij een mislukte call krijgen alle pitches prioriteit null.
- */
 async function rangschikPitches(berichten, apiKey, pogingen = 3) {
   if (berichten.length === 0) return berichten;
 
@@ -384,11 +383,22 @@ async function rangschikPitches(berichten, apiKey, pogingen = 3) {
 
 // ---------------------------------------------------------------------------
 
+/**
+ * Fetch met een timeout die de HELE operatie dekt (headers én body). De
+ * AbortController wordt pas opgeruimd als de body-read klaar is. Voorheen
+ * werd de timeout direct na fetch() gewist en kon een trage body onbeperkt
+ * doorlopen.
+ *
+ * Geeft { response, tekst } terug. De aanroeper parseert de tekst zelf met
+ * JSON.parse, zodat de body-read binnen de timeout valt.
+ */
 async function fetchMetTimeout(url, opties, timeoutMs) {
   const controller = new AbortController();
   const timeoutId = setTimeout(() => controller.abort(), timeoutMs);
   try {
-    return await fetch(url, { ...opties, signal: controller.signal });
+    const response = await fetch(url, { ...opties, signal: controller.signal });
+    const tekst = await response.text();
+    return { response, tekst };
   } finally {
     clearTimeout(timeoutId);
   }
