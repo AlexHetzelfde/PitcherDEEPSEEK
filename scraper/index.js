@@ -42,6 +42,17 @@
 //  - In werkFeedBij wordt de bronNaam van bestaande items bijgewerkt naar de
 //    huidige naam uit bronnen.js. Zonder deze stap zou een rename (zoals de
 //    vijf bronnen met naam == id) oude items achterlaten met de oude naam.
+//
+// Sinds de "rechtspraak-filter"-ronde (2026-10-15):
+//  - In scrapeAlleBronnen is een optionele, bron-specifieke filter
+//    toegevoegd op basis van bron.filterTermen. Als die er is, moeten titel
+//    of samenvatting minstens één van de termen bevatten (case-insensitive),
+//    anders valt het bericht af. Bedoeld voor brede feeds met veel ruis
+//    (zoals de RSS van de Rechtbank Noord-Holland, waar alle uitspraken uit
+//    Haarlem, Alkmaar, Schiphol, Den Helder en Hoorn in staan). De filter
+//    draait VOOR de agenda-afleiding en VOOR de rest van de pipeline, dus
+//    weggefilterde berichten komen ook niet in de feed, in bron-gezondheid
+//    of bij Gemini.
 
 const fs = require("fs/promises");
 const path = require("path");
@@ -248,7 +259,29 @@ async function scrapeAlleBronnen() {
 
     const startBron = Date.now();
     try {
-      const berichten = await scraper(bron);
+      let berichten = await scraper(bron);
+
+      // Optionele, bron-specifieke filter. Alleen berichten waarvan titel of
+      // samenvatting één van de filterTermen bevat komen door. Bedoeld voor
+      // brede feeds met veel ruis (zoals de RSS van de Rechtbank
+      // Noord-Holland, waar alle uitspraken uit Haarlem, Alkmaar, Schiphol,
+      // Den Helder en Hoorn in staan). De filter draait VOOR de agenda-
+      // afleiding en VOOR de rest van de pipeline, dus weggefilterde
+      // berichten komen ook niet in de feed, in bron-gezondheid of bij
+      // Gemini.
+      if (bron.filterTermen && bron.filterTermen.length > 0) {
+        const voorFilter = berichten.length;
+        const termen = bron.filterTermen.map((t) => String(t).toLowerCase());
+        berichten = berichten.filter((b) => {
+          const hooiberg = `${b.titel || ""} ${b.samenvatting || ""}`.toLowerCase();
+          return termen.some((term) => hooiberg.includes(term));
+        });
+        const weg = voorFilter - berichten.length;
+        if (weg > 0) {
+          console.log(`[${bron.id}] ${weg} van ${voorFilter} bericht(en) weggefilterd (geen filterTerm in titel of samenvatting).`);
+        }
+      }
+
       const duurSec = ((Date.now() - startBron) / 1000).toFixed(1);
       console.log(`[${bron.id}] ${berichten.length} bericht(en) gevonden (${duurSec}s).`);
 
