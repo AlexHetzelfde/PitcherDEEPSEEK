@@ -1,38 +1,62 @@
 name: Dagelijkse nieuwsrun
 
-# Draait automatisch elke avond via GitHub's eigen schedule (zie 'cron'
-# hieronder) — geen externe cron-service meer nodig. Cron-tijden in GitHub
-# Actions zijn ALTIJD in UTC; 21:00 UTC komt overeen met 23:00 in Nederland
-# in de winter (CET, UTC+1). In de zomer (CEST, UTC+2, van eind maart tot
-# eind oktober) is 21:00 UTC dus 23:00 - 1 = 22:00 uur Nederlandse tijd — een
-# uur eerder dan bedoeld. Dat is de prijs van één vaste cron-tijd; wil je het
-# hele jaar door precies 23:00 Nederlandse tijd, dan zijn er twee cron-regels
-# nodig (één voor winter, één voor zomer, elk actief op de juiste maanden).
+# Draait automatisch elke nacht om 04:00 NEDERLANDSE TIJD. Omdat GitHub-cron
+# altijd in UTC rekent en Nederland twee keer per jaar van tijdzone wisselt,
+# zijn er twee cron-regels nodig:
 #
-# Je kunt 'm ook nog altijd gewoon handmatig starten via de Actions-tab
-# ("Run workflow") — handig om te testen.
+#   - Zomertijd (CEST, UTC+2, eind maart t/m eind oktober):
+#       04:00 NL = 02:00 UTC  →  "0 2 * 4,5,6,7,8,9,10 *"
+#   - Wintertijd (CET, UTC+1, eind oktober t/m eind maart):
+#       04:00 NL = 03:00 UTC  →  "0 3 * 11,12,1,2,3 *"
+#
+# Samen dekken die twaalf maanden. Op de wisseldagen zelf (eind maart,
+# eind oktober) kan de run een uur vroeger of later vallen dan 04:00; dat
+# is inherent aan vaste cron-tijden en geen probleem voor deze pipeline.
+#
+# Het venster dat de run meeneemt:
+#   nieuws: vanaf 00:00 NL van de VORIGE dag t/m nu  →  ongeveer 2 dagen
+#   agenda: alleen evenementen die VANDAAG beginnen
+# De run om 04:00 NL betekent dat de pitches om 08:00 NL klaarstaan.
+#
+# Handmatig starten kan altijd via de Actions-tab ("Run workflow"); zo'n
+# handmatige run telt door de dag-ontdubbeling in werkBronGezondheidBij
+# niet dubbel mee voor de "opeenvolgend leeg"-tellers.
 #
 # Sinds de "tijdzone"-ronde (2026-10-15):
-#  - Alle Node-stappen krijgen TZ=Europe/Amsterdam mee via env. Zonder deze
-#    variabele rekent Node in UTC, waardoor "vandaag" begint om 02:00
-#    Nederlandse tijd in plaats van 00:00, en het nieuwsvenster dus 22 uur
-#    te ruim is. Met TZ gezet komt beginVandaag overeen met middernacht
-#    Nederlandse tijd, en vallen alleen artikelen van de Nederlandse
-#    kalenderdag(en) binnen het venster.
+#  - TZ=Europe/Amsterdam op job-niveau. Zonder deze variabele rekent Node in
+#    UTC, en begint "vandaag" om 02:00 NL in plaats van 00:00 NL — het
+#    nieuwsvenster zou dan 2 uur te ruim zijn.
+#
+# Sinds de "04:00-ronde" (2026-10-15):
+#  - Twee cron-regels voor 04:00 NL in zowel zomer- als wintertijd.
+#  - concurrency + timeout-minutes toegevoegd als vangnet.
+#  - Het comment-blok over zomer/wintertijd rechtgezet (stond omgekeerd).
 
 on:
   workflow_dispatch: {}
   schedule:
-    - cron: "0 21 * * *"
+    # Zomertijd: 04:00 NL = 02:00 UTC
+    - cron: "0 2 * 4,5,6,7,8,9,10 *"
+    # Wintertijd: 04:00 NL = 03:00 UTC
+    - cron: "0 3 * 11,12,1,2,3 *"
+
+# Eén run tegelijk. Twee runs na elkaar (bijv. handmatig + schedule) zouden
+# anders tegelijk op data/*.json pushen en de tweede push zou falen.
+concurrency:
+  group: dagelijkse-run
+  cancel-in-progress: false
 
 permissions:
-  contents: write # nodig om de data/*.json bestanden terug te committen
-  pull-requests: write # zelfherstel: een kapotte bron als pull request voorstellen
-  issues: write # zelfherstel: een issue openen als er niets werkends te vinden is
+  contents: write       # nodig om de data/*.json bestanden terug te committen
+  pull-requests: write  # zelfherstel: een kapotte bron als pull request voorstellen
+  issues: write         # zelfherstel: een issue openen als er niets werkends te vinden is
 
 jobs:
   scrape-en-beoordeel:
     runs-on: ubuntu-latest
+    # Harde bovengrens: een hangende feed mag de job niet urenlang laten
+    # doorlopen. De normale duur is 10-20 minuten; 60 minuten is ruim.
+    timeout-minutes: 60
     env:
       # Alle stappen in deze job (en dus alle Node-processen) rekenen in
       # Nederlandse tijd. Dit beïnvloedt new Date(), toLocaleDateString, en
