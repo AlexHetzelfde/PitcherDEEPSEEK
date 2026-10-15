@@ -23,8 +23,19 @@
 //  - rechtspraak-noord-holland toegevoegd: de RSS-feed van de Rechtbank
 //    Noord-Holland. Zonder filter komen alle uitspraken van de rechtbank
 //    binnen (Haarlem, Alkmaar, Schiphol, Den Helder, Hoorn, enzovoort); de
-//    AI-beoordeling vist de Zaanse zaken eruit. Een filterTermen-mechanisme
-//    staat nog op de wensenlijst.
+//    AI-beoordeling vist de Zaanse zaken eruit.
+//
+// Sinds de "eerlijke-pipeline"-ronde (2026-10-15):
+//  - ibabs-collegeberichten en ibabs-ingekomen-stukken hebben rustig: true
+//    gekregen. De iBabs-scraper gooit zelf berichten buiten het venster weg,
+//    dus een rustige periode (geen raadsvergaderingen in het weekend, geen
+//    nieuwe documenten op feestdagen) gaf "0 berichten" en daarmee een
+//    herstel-issue. Met deze vlag duurt het veel langer voordat dat gebeurt.
+//  - De vijf bronnen die "naam" gelijk hadden aan hun "id" (hhnk,
+//    zaandijk-leeft, OmgevingsdienstNHN, omgevingsdienstnoordzeekanaal,
+//    WaarheenAgenda) hebben een leesbare naam gekregen. De oude namen staan
+//    in FEED_BRON_ALIASSEN in index.js, zodat bestaande feed-items hun soort
+//    en hun naam automatisch bijwerken.
 
 module.exports = [
   {
@@ -41,6 +52,7 @@ module.exports = [
     categorie: "lokaal",
     type: "ibabs",
     url: "https://zaanstad.bestuurlijkeinformatie.nl/Reports/Details/8ea04074-52e6-4284-bd1a-66e378b40ec1",
+    rustig: true,
   },
   {
     id: "ibabs-ingekomen-stukken",
@@ -48,6 +60,7 @@ module.exports = [
     categorie: "lokaal",
     type: "ibabs",
     url: "https://zaanstad.bestuurlijkeinformatie.nl/Reports/Details/58e397b1-0b36-49e2-90ed-325405f27f72",
+    rustig: true,
   },
   {
     id: "ovo-zaanstad",
@@ -114,7 +127,7 @@ module.exports = [
   },
   {
     id: "zaandijk-leeft",
-    naam: "zaandijk-leeft",
+    naam: "Zaandijk Leeft!",
     categorie: "lokaal",
     type: "wordpress-html",
     url: "https://zaandijkleeft.nl/",
@@ -122,7 +135,7 @@ module.exports = [
   },
   {
     id: "OmgevingsdienstNHN",
-    naam: "OmgevingsdienstNHN",
+    naam: "Omgevingsdienst Noord-Holland Noord",
     categorie: "lokaal",
     type: "generieke-lijst",
     url: "https://www.odnhn.nl/Menu/Over_ons/Nieuws/2022",
@@ -130,7 +143,7 @@ module.exports = [
   },
   {
     id: "omgevingsdienstnoordzeekanaal",
-    naam: "omgevingsdienstnoordzeekanaal",
+    naam: "Omgevingsdienst Noordzeekanaalgebied",
     categorie: "lokaal",
     type: "wordpress-html",
     url: "https://odnzkg.nl/nieuws/",
@@ -156,7 +169,7 @@ module.exports = [
   },
   {
     id: "WaarheenAgenda",
-    naam: "WaarheenAgenda",
+    naam: "Waarheen Agenda (De Orkaan)",
     categorie: "lokaal",
     type: "gemini-recept",
     url: "https://waarheen.deorkaan.nl/agenda/",
@@ -172,7 +185,7 @@ module.exports = [
   },
   {
     id: "hhnk",
-    naam: "hhnk",
+    naam: "Hoogheemraadschap Hollands Noorderkwartier — Nieuws",
     categorie: "lokaal",
     type: "generieke-lijst",
     url: "https://www.hhnk.nl/nieuws",
