@@ -16,17 +16,16 @@
 //              niet als link op de pagina voorkomt (zie bron-ontdekking.js)
 //
 // In Actions kunnen dezelfde opties als omgevingsvariabelen worden doorgegeven
-// (SOORT, VERVANG, ACCEPTEER_TWIJFEL), zodat er geen invoer in een shell-
+// (SOORT, VERVANG, ACCEPTEER_TWIJFEL, NAAM), zodat er geen invoer in een shell-
 // commando hoeft te staan.
 //
-// Wat dit script doet, en waarom het niet meer ten onrechte "gelukt" meldt:
-// de eigenlijke zoektocht zit in bron-ontdekking.js. Voor een gewone pagina
-// leest Gemini altijd eerst de hele pagina en is zijn lijst van berichten de
-// referentie voor elke methode (feed, WordPress REST, JSON-LD, generieke
-// patronen, Gemini-recept). Voor een RSS/Atom-feed is Gemini NIET nodig: de
-// feed is zijn eigen referentie. Alleen een methode die bewezen berichten
-// oplevert komt in bronnen.js. Slaagt niets, dan stopt dit script met
-// exitcode 1, dus de workflow wordt rood en er wordt niets gecommit.
+// Sinds de "eerlijke-pipeline"-ronde (2026-10-15):
+//  - Als een bestaande bron wordt vervangen, blijven detailSelector en rustig
+//    behouden. Zonder die twee velden zou "opnieuw toevoegen" via deze route
+//    (die het herstel-issue aanraadt) beide instellingen wissen.
+//  - Er is een optionele naam-input. Zonder die input krijgt een nieuwe bron
+//    "naam: id", wat in de feed lelijk staat (zoals de vijf bronnen die dat
+//    al hadden).
 
 const { ontdekBron, maakRapport, schrijfStapSamenvatting, isDirecteFeed } = require("./bron-ontdekking");
 const { testBron, voorbeeldRegels, normaliseerUrl, telBinnenVenster } = require("./bron-poort");
@@ -42,6 +41,7 @@ function leesArgumenten(argv) {
     id,
     categorie,
     soort: (soort || process.env.SOORT || "auto").trim().toLowerCase(),
+    naam: (process.env.NAAM || "").trim() || null,
     vervang: vlaggen.has("--vervang") || process.env.VERVANG === "true",
     accepteerTwijfel: vlaggen.has("--accepteer-twijfel") || process.env.ACCEPTEER_TWIJFEL === "true",
   };
@@ -54,7 +54,7 @@ function stopMetFout(bericht, samenvatting) {
 }
 
 async function main() {
-  const { url, id, categorie, soort, vervang, accepteerTwijfel } = leesArgumenten(process.argv.slice(2));
+  const { url, id, categorie, soort, naam, vervang, accepteerTwijfel } = leesArgumenten(process.argv.slice(2));
 
   if (!url || !id || !categorie) {
     stopMetFout("Gebruik: node voeg-bron-toe.js <url> <bron-id> <categorie> [soort] [--vervang] [--accepteer-twijfel]");
@@ -89,12 +89,15 @@ async function main() {
         `De bestaande bron "${id}" werkt nog (${oordeel.aantal} bericht(en)). Kies een ander id, of zet "vervang" aan als je 'm bewust wilt vervangen.`
       );
     }
-    console.log(oordeel.geslaagd ? "De bestaande bron werkt, maar wordt op verzoek vervangen." : `De bestaande bron is kapot (${oordeel.redenen[0] || "geen bruikbare berichten"}). Die wordt vervangen.`);
+    console.log(
+      oordeel.geslaagd
+        ? "De bestaande bron werkt, maar wordt op verzoek vervangen."
+        : `De bestaande bron is kapot (${oordeel.redenen[0] || "geen bruikbare berichten"}). Die wordt vervangen.`
+    );
   }
 
   // Gemini is alleen verplicht voor HTML-pagina's. Als de URL zelf een
-  // feed is, werkt ontdekBron zonder Gemini. Daarom checken we eerst of
-  // het een feed is, en pas daarna of de API-key nodig is.
+  // feed is, werkt ontdekBron zonder Gemini.
   const isFeed = await isDirecteFeed(url);
   if (isFeed) {
     console.log(`De opgegeven URL is een RSS/Atom-feed. Geen GEMINI_API_KEY nodig.`);
@@ -104,13 +107,19 @@ async function main() {
     );
   }
 
+  // Naam: input > bestaande naam > id.
+  const effectieveNaam = naam || (bestaand ? bestaand.naam : id);
+
   const uit = await ontdekBron({
     url,
     id,
-    naam: bestaand ? bestaand.naam : id,
+    naam: effectieveNaam,
     categorie,
     soort,
     apiKey: process.env.GEMINI_API_KEY,
+    // Behoud detailSelector van de bestaande bron, zodat "opnieuw toevoegen"
+    // via deze route (die het herstel-issue aanraadt) dat veld niet wist.
+    detailSelector: bestaand ? bestaand.detailSelector : undefined,
   });
 
   if (!uit.bron) {
@@ -126,6 +135,11 @@ async function main() {
       rapport
     );
   }
+
+  // Behoud rustig-vlag van de bestaande bron. ontdekBron zet rustig alleen
+  // als de poort te weinig berichten vindt; zonder deze regel zou een
+  // bewust-rustige bron bij het vervangen zijn vlag kwijtraken.
+  if (bestaand && bestaand.rustig && !uit.bron.rustig) uit.bron.rustig = true;
 
   const { actie } = await schrijfBron(uit.bron);
 
