@@ -1,0 +1,61 @@
+# .github/workflows/controle.yml
+#
+# Syntaxcontrole op alle JS-bestanden en validatie van bronnen.js. Draait op
+# elke push naar main en op elke pull request.
+#
+# Aanleiding: op 15 okt 2026 kwam er een afgekapt scraper/index.js binnen
+# via "Add files via upload". Geen van de bestaande workflows controleerde
+# de syntax, dus de fout werd pas om 21:00 UTC gemeld toen de dagelijkse
+# run crashte. Deze workflow vangt dat meteen bij de commit.
+name: Controleer JS-bestanden
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "**/*.js"
+      - "scraper/package.json"
+      - "scraper/package-lock.json"
+      - ".github/workflows/controle.yml"
+  pull_request:
+    paths:
+      - "**/*.js"
+      - "scraper/package.json"
+      - "scraper/package-lock.json"
+  workflow_dispatch:
+
+jobs:
+  syntax:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Installeer dependencies
+        working-directory: scraper
+        run: |
+          if [ -f package-lock.json ]; then
+            npm ci
+          else
+            npm install
+          fi
+
+      # Draait vanaf de repo-root, zodat script.js ook wordt gecontroleerd.
+      # Sluit alle node_modules uit (zowel in de root als in scraper/).
+      - name: Syntaxcontrole (node --check) op alle JS-bestanden
+        run: |
+          fout=0
+          while IFS= read -r bestand; do
+            if ! node --check "$bestand"; then
+              echo "::error file=$bestand::node --check faalde"
+              fout=1
+            fi
+          done < <(find . -name "*.js" -not -path "*/node_modules/*")
+          exit $fout
+
+      - name: Valideer bronnen.js
+        working-directory: scraper
+        run: node valideer-bronnen.js
