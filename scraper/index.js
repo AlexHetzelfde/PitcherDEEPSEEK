@@ -17,22 +17,31 @@
 //    vandaag" (rustige dag, geen waarschuwing) en "geen enkele leesbare
 //    datum" (datumherkenning kan kapot zijn, wél waarschuwen).
 //  - In werkFeedBij wordt de "soort"-vlag van elk bestaand feed-item
-//    opnieuw berekend op basis van de huidige bron-config. Zo blijven items
-//    correct gemarkeerd als een bron later van nieuws naar agenda verandert
-//    (of andersom), zonder dat oude items voor altijd de verkeerde vlag
-//    houden.
+//    opnieuw berekend op basis van de huidige bron-config.
 //
 // Sinds de "feed-bronidentiteit"-ronde (2026-10-15):
 //  - bepaalFeedSoort matchte op bronNaam, maar twee bronnen zijn ooit
-//    hernoemd (zaans-cultuur-huis → "Zaans Cultuurhuis — Agenda",
-//    zaanstad-hoorzittingen → "Zaanstad — Hoorzittingen") terwijl oude
-//    feed-items nog de oude naam droegen. Daardoor werden agenda-items van
-//    die twee bronnen bij elke run ten onrechte naar "nieuws" geflipt.
-//    Nu: (1) nieuwe feed-items krijgen een bronId mee, (2) bestaande items
-//    zonder bronId krijgen er één bijgeplakt op basis van naam of alias, en
-//    (3) een kleine alias-tabel overbrugt de twee historische namen.
-//    Voortaan wordt alleen nog op bronId gematcht, zodat een latere
-//    hernoeming geen kwaad meer kan doen.
+//    hernoemd terwijl oude feed-items nog de oude naam droegen. Daardoor
+//    werden agenda-items van die twee bronnen bij elke run ten onrechte
+//    naar "nieuws" geflipt. Nu: (1) nieuwe feed-items krijgen een bronId
+//    mee, (2) bestaande items zonder bronId krijgen er één bijgeplakt op
+//    basis van naam of alias, en (3) een alias-tabel overbrugt de
+//    historische namen.
+//
+// Sinds de "eerlijke-pipeline"-ronde (2026-10-15):
+//  - De .map() die voor bronnen met een detailSelector een kopie maakte, is
+//    weg. Die kopie werd verrijkt met tekst/foto, maar Stap 4 (feed) en
+//    Stap 5 (Gemini) lazen de originelen — waardoor bronnen met een
+//    detailSelector (WaarheenAgenda, zaanstad-hoorzittingen) in de praktijk
+//    altijd zonder tekst naar Gemini gingen en alle items "nee" kregen.
+//    Nu geeft index.js een detailSelectorVoor-callback mee aan
+//    vulBerichtenAanMetTekst, zodat die op de originele objecten werkt.
+//  - In werkBronGezondheidBij telt een herhaalde run op dezelfde
+//    kalenderdag niet mee voor de "opeenvolgend leeg"-tellers. Handmatige
+//    runs op dezelfde dag lieten de tellers eerder onterecht oplopen.
+//  - In werkFeedBij wordt de bronNaam van bestaande items bijgewerkt naar de
+//    huidige naam uit bronnen.js. Zonder deze stap zou een rename (zoals de
+//    vijf bronnen met naam == id) oude items achterlaten met de oude naam.
 
 const fs = require("fs/promises");
 const path = require("path");
@@ -116,12 +125,6 @@ function logBronOverzicht({ gevondenPerBron, overPerBron, ruweBerichten = [] }) 
     } else if (over === 0 && bron.rustig) {
       status = "💤 rustige bron, nu geen recente berichten (verwacht)";
     } else if (over === 0 && bron.soort === "agenda") {
-      // Onderscheid maken tussen twee situaties die er hetzelfde uitzien in
-      // de cijfers maar een heel verschillende betekenis hebben:
-      //  - de bron heeft leesbare datums, maar geen daarvan valt op vandaag;
-      //    dat is normaal (rustige dag, geen evenement vandaag).
-      //  - de bron heeft geen enkele leesbare datum; dan kan de
-      //    datumherkenning kapot zijn en moet er wél gewaarschuwd worden.
       const berichten = perBron.get(bron.id) || [];
       const heeftLeesbareDatums = berichten.some(
         (b) => b.gepubliceerdOp && !isNaN(new Date(b.gepubliceerdOp).getTime())
@@ -171,6 +174,26 @@ function logBronOverzicht({ gevondenPerBron, overPerBron, ruweBerichten = [] }) 
 
 const GEZONDHEID_BESTAND = path.join(DATA_MAP, "bron-gezondheid.json");
 
+/** Geeft de kalenderdag (YYYY-MM-DD) van een ISO-tijdstip in Nederlandse tijd. */
+function kalenderdag(iso) {
+  if (!iso) return null;
+  const d = new Date(iso);
+  if (isNaN(d.getTime())) return null;
+  return d.toLocaleDateString("sv-SE", { timeZone: "Europe/Amsterdam" });
+}
+
+/**
+ * Werkt bron-gezondheid.json bij. Belangrijk: een tweede run op dezelfde
+ * kalenderdag telt niet mee voor de "opeenvolgend leeg"-tellers. Zonder die
+ * regel liet een handmatige testrun de tellers direct oplopen, waarna
+ * herstel-bronnen.js na 2 runs al een issue aanmaakte over een bron die
+ * gewoon een rustige dag had.
+ *
+ * Als een run wél berichten vindt, gaan de tellers altijd naar 0 — ook als de
+ * vorige run dezelfde dag was. Anders zou een geslaagde handmatige herstelrun
+ * de teller niet resetten, en zou de volgende dag als "opeenvolgend leeg"
+ * doorgaan.
+ */
 async function werkBronGezondheidBij({ gevondenPerBron, overPerBron }) {
   let vorige = {};
   try {
@@ -178,18 +201,36 @@ async function werkBronGezondheidBij({ gevondenPerBron, overPerBron }) {
   } catch {
     /* eerste run */
   }
+
+  const vandaag = kalenderdag(new Date().toISOString());
+
+  function volgendeTeller(huidigAantal, eerder) {
+    if (huidigAantal > 0) return 0;
+    const vorigeTeller = (eerder && eerder.teller) || 0;
+    const vorigeDag = eerder && eerder.dag;
+    if (vorigeDag === vandaag) return vorigeTeller;
+    return vorigeTeller + 1;
+  }
+
   const nieuw = {};
   for (const bron of bronnen) {
     const gevonden = gevondenPerBron[bron.id] || 0;
     const binnenVenster = overPerBron[bron.id] || 0;
-    const eerder = (vorige[bron.id] && vorige[bron.id].opeenvolgendGeenBerichten) || 0;
-    const eerderVenster = (vorige[bron.id] && vorige[bron.id].opeenvolgendGeenBinnenVenster) || 0;
+    const eerder = vorige[bron.id];
+    const eerderBerichten = eerder && {
+      teller: eerder.opeenvolgendGeenBerichten,
+      dag: kalenderdag(eerder.laatsteRun),
+    };
+    const eerderVenster = eerder && {
+      teller: eerder.opeenvolgendGeenBinnenVenster,
+      dag: kalenderdag(eerder.laatsteRun),
+    };
     nieuw[bron.id] = {
       laatsteRun: new Date().toISOString(),
       gevonden,
       binnenVenster,
-      opeenvolgendGeenBerichten: gevonden === 0 ? eerder + 1 : 0,
-      opeenvolgendGeenBinnenVenster: binnenVenster === 0 ? eerderVenster + 1 : 0,
+      opeenvolgendGeenBerichten: volgendeTeller(gevonden, eerderBerichten),
+      opeenvolgendGeenBinnenVenster: volgendeTeller(binnenVenster, eerderVenster),
     };
   }
   await schrijfJson("bron-gezondheid.json", nieuw);
@@ -279,6 +320,11 @@ async function leesFeedUrls() {
 const FEED_BRON_ALIASSEN = {
   "zaans-cultuur-huis": "Zaans Cultuurhuis — Agenda",
   "zaanstad-hoorzittingen": "Zaanstad — Hoorzittingen",
+  hhnk: "Hoogheemraadschap Hollands Noorderkwartier — Nieuws",
+  "zaandijk-leeft": "Zaandijk Leeft!",
+  OmgevingsdienstNHN: "Omgevingsdienst Noord-Holland Noord",
+  omgevingsdienstnoordzeekanaal: "Omgevingsdienst Noordzeekanaalgebied",
+  WaarheenAgenda: "Waarheen Agenda (De Orkaan)",
 };
 
 /**
@@ -316,12 +362,9 @@ function vindBronVoorItem(item, lookup) {
  *     huidige bron-config (via bronId, naam of alias).
  *  2. Plakt een ontbrekend bronId op bestaande items bij, zodat de naam-
  *     lookup op termijn niet meer nodig is.
- *  3. Voegt nieuwe berichten toe en capt op FEED_MAX_ITEMS.
- *
- * Belangrijk: als een item niet aan een bron gekoppeld kan worden, laten we
- * zijn bestaande soort met rust. Voorheen viel zoiets terug op "nieuws",
- * waardoor een agenda-item zonder herkenbare bron elke run opnieuw werd
- * geflipt.
+ *  3. Vervangt de bronNaam van bestaande items door de huidige naam uit
+ *     bronnen.js, zodat een latere rename geen oude namen achterlaat.
+ *  4. Voegt nieuwe berichten toe en capt op FEED_MAX_ITEMS.
  */
 async function werkFeedBij(berichten, bronPerId) {
   const feedPad = path.join(DATA_MAP, "feed.json");
@@ -337,6 +380,7 @@ async function werkFeedBij(berichten, bronPerId) {
 
   let soortGecorrigeerd = 0;
   let idBijgeplakt = 0;
+  let naamGecorrigeerd = 0;
   bestaand = bestaand.map((item) => {
     const bron = vindBronVoorItem(item, lookup);
     if (!bron) return item;
@@ -350,6 +394,10 @@ async function werkFeedBij(berichten, bronPerId) {
     if (!item.bronId) {
       wijzigingen.bronId = bron.id;
       idBijgeplakt++;
+    }
+    if (item.bronNaam !== bron.naam) {
+      wijzigingen.bronNaam = bron.naam;
+      naamGecorrigeerd++;
     }
     return Object.keys(wijzigingen).length === 0 ? item : { ...item, ...wijzigingen };
   });
@@ -404,6 +452,9 @@ async function werkFeedBij(berichten, bronPerId) {
   }
   if (idBijgeplakt > 0) {
     console.log(`  ${idBijgeplakt} bestaand(e) item(s) kregen een bronId (voortaan geen naam-lookup meer nodig).`);
+  }
+  if (naamGecorrigeerd > 0) {
+    console.log(`  ${naamGecorrigeerd} bestaand(e) item(s) kregen de huidige bronNaam.`);
   }
 }
 
@@ -495,24 +546,26 @@ async function main() {
 
   logFase("STAP 2 — Bepalen welke berichten tekst en foto nodig hebben");
   const feedUrls = await leesFeedUrls();
-  const teVerrijken = alleBerichten
-    .filter((b) => {
-      if (binnen(b)) return true;
-      if (!feedUrls.has(b.url) && binnenFeedVenster(b.gepubliceerdOp)) return true;
-      return false;
-    })
-    .map((b) => {
-      const bron = bronPerId[b.bronId];
-      return bron && bron.detailSelector ? { ...b, detailSelector: bron.detailSelector } : b;
-    });
+  const teVerrijken = alleBerichten.filter((b) => {
+    if (binnen(b)) return true;
+    if (!feedUrls.has(b.url) && binnenFeedVenster(b.gepubliceerdOp)) return true;
+    return false;
+  });
   console.log(`Tekst/foto nodig voor ${teVerrijken.length} van ${alleBerichten.length} unieke bericht(en).`);
   console.log(`(${recenteBerichten.length} voor Gemini, ${teVerrijken.length - recenteBerichten.length} nieuw voor de feed.)`);
 
   logFase("STAP 3 — Tekst en foto ophalen");
   const startTekst = Date.now();
   try {
+    // De detailSelector komt via een callback mee, zodat
+    // vulBerichtenAanMetTekst op de originele objecten werkt. Voorheen maakte
+    // deze stap een kopie en ging de verrijking verloren voor Stap 4 en 5.
     const { perBron } = await vulBerichtenAanMetTekst(teVerrijken, {
       nietOphalen: (b) => GEEN_TEKSTOPHAAL_TYPES.has(bronPerId[b.bronId] && bronPerId[b.bronId].type),
+      detailSelectorVoor: (b) => {
+        const bron = bronPerId[b.bronId];
+        return bron && bron.detailSelector ? bron.detailSelector : null;
+      },
     });
     for (const bron of bronnen) {
       const s = perBron[bron.id];
@@ -544,4 +597,74 @@ async function main() {
 
   const datumKort = (b) => (b ? String(b.gepubliceerdOp).slice(0, 10) : "-");
   console.log(`Lokaal: ${lokaal.length} berichten (dichtstbijzijnde datum: ${datumKort(lokaal[0])}).`);
-  console.log(`Land
+  console.log(`Landelijk: ${landelijk.length} berichten (dichtstbijzijnde datum: ${datumKort(landelijk[0])}).`);
+
+  await schrijfJson("nieuws-lokaal.json", lokaal);
+  await schrijfJson("nieuws-landelijk.json", landelijk);
+
+  if (!apiKey) {
+    console.log("Klaar (zonder AI-beoordeling).");
+    return;
+  }
+
+  logFase("STAP 7 — Gemini-beoordeling");
+  const startGemini = Date.now();
+
+  console.log(`Lokaal: ${Math.min(lokaal.length, DAGCAP_GEMINI)} van ${lokaal.length} berichten gaan naar Gemini.`);
+  const lokaalBeoordeeld = await beoordeelBerichten(lokaal, apiKey, DAGCAP_GEMINI, "lokaal");
+
+  console.log(`Landelijk: ${Math.min(landelijk.length, DAGCAP_GEMINI)} van ${landelijk.length} berichten gaan naar Gemini.`);
+  const landelijkBeoordeeld = await beoordeelBerichten(landelijk, apiKey, DAGCAP_GEMINI, "landelijk");
+
+  logDuur(startGemini, "Gemini-beoordeling");
+
+  await schrijfJson("nieuws-lokaal.json", lokaalBeoordeeld);
+  await schrijfJson("nieuws-landelijk.json", landelijkBeoordeeld);
+
+  logFase("STAP 8 — Pitches rangschikken");
+  const kansrijkeLokaal = lokaalBeoordeeld.filter((b) => b.aiBeoordeling?.oppakbaar === "ja");
+  const kansrijkLandelijk = landelijkBeoordeeld.filter((b) => b.aiBeoordeling?.lokaleInvalshoek === "ja");
+  const alleKansrijke = [...kansrijkeLokaal, ...kansrijkLandelijk];
+  console.log(`Kansrijke berichten: ${kansrijkeLokaal.length} lokaal, ${kansrijkLandelijk.length} landelijk (${alleKansrijke.length} totaal).`);
+
+  let alleKansrijkeMetScore = alleKansrijke;
+  try {
+    alleKansrijkeMetScore = await rangschikPitches(alleKansrijke, apiKey);
+  } catch (fout) {
+    console.error(`Rangschikken mislukte onverwacht (pitches houden prioriteit null): ${fout.message}${oorzaakTekst(fout)}`);
+  }
+
+  const scorePerUrl = new Map(alleKansrijkeMetScore.map((b) => [b.url, b.aiBeoordeling?.prioriteit ?? null]));
+  const metScoreTerug = (lijst) => lijst.map((b) => scorePerUrl.has(b.url) ? { ...b, aiBeoordeling: { ...(b.aiBeoordeling || {}), prioriteit: scorePerUrl.get(b.url) } } : b);
+  await schrijfJson("nieuws-lokaal.json", metScoreTerug(lokaalBeoordeeld));
+  await schrijfJson("nieuws-landelijk.json", metScoreTerug(landelijkBeoordeeld));
+
+  logFase("STAP 9 — Top pitches samenstellen");
+  const topPitches = stelPitchesSamen(
+    alleKansrijkeMetScore.filter((b) => b.categorie === "lokaal"),
+    alleKansrijkeMetScore.filter((b) => b.categorie === "landelijk"),
+    AANTAL_PITCHES
+  );
+
+  await schrijfJson("pitches.json", {
+    gegenereerdOp: new Date().toISOString(),
+    aantalBerichtenTotaal: berichtenVanVandaag.length,
+    topPitches,
+  });
+
+  console.log(`Pitches: ${topPitches.length} van ${alleKansrijke.length} kansrijke bericht(en) opgenomen (top ${AANTAL_PITCHES}).`);
+  if (topPitches.length > 0) {
+    const scores = topPitches.map((p) => prioriteitVan(p)).filter((s) => s > 0);
+    if (scores.length > 0) {
+      console.log(`Scores in top ${topPitches.length}: min ${Math.min(...scores)}, max ${Math.max(...scores)}, gemiddeld ${(scores.reduce((a, b) => a + b, 0) / scores.length).toFixed(1)}.`);
+    }
+  }
+
+  logDuur(startRun, "Dagelijkse run");
+  console.log(`Klaar: ${topPitches.length} pitches gegenereerd.`);
+}
+
+main().catch((fout) => {
+  console.error(`Dagelijkse run stopte met een fout: ${fout.stack || fout.message}`);
+  process.exit(1);
+});
