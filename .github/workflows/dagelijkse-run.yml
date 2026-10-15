@@ -11,6 +11,15 @@ name: Dagelijkse nieuwsrun
 #
 # Je kunt 'm ook nog altijd gewoon handmatig starten via de Actions-tab
 # ("Run workflow") — handig om te testen.
+#
+# Sinds de "tijdzone"-ronde (2026-10-15):
+#  - Alle Node-stappen krijgen TZ=Europe/Amsterdam mee via env. Zonder deze
+#    variabele rekent Node in UTC, waardoor "vandaag" begint om 02:00
+#    Nederlandse tijd in plaats van 00:00, en het nieuwsvenster dus 22 uur
+#    te ruim is. Met TZ gezet komt beginVandaag overeen met middernacht
+#    Nederlandse tijd, en vallen alleen artikelen van de Nederlandse
+#    kalenderdag(en) binnen het venster.
+
 on:
   workflow_dispatch: {}
   schedule:
@@ -24,6 +33,11 @@ permissions:
 jobs:
   scrape-en-beoordeel:
     runs-on: ubuntu-latest
+    env:
+      # Alle stappen in deze job (en dus alle Node-processen) rekenen in
+      # Nederlandse tijd. Dit beïnvloedt new Date(), toLocaleDateString, en
+      # daarmee het nieuwsvenster en de agenda-check.
+      TZ: Europe/Amsterdam
     steps:
       - name: Checkout repo
         uses: actions/checkout@v4
