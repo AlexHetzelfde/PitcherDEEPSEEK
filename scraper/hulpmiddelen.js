@@ -17,6 +17,17 @@
 //  - haalTekstUitHtml accepteert opties { titel, detailSelector }.
 //  - stripDubbeleTitel haalt een herhaalde kop aan het begin weg.
 //  - vulBerichtenAanMetTekst geeft titel en detailSelector door aan haalTekst.
+//
+// Sinds de "eerlijke-pipeline"-ronde (2026-10-15):
+//  - vulBerichtenAanMetTekst accepteert de optie detailSelectorVoor, een
+//    callback die per bericht de detailSelector van de bron ophaalt. Zonder
+//    deze optie maakte de aanroeper een kopie ({ ...b, detailSelector }),
+//    en dan ging de verrijking verloren voor de code die de originelen las.
+//    In de praktijk kwamen WaarheenAgenda en zaanstad-hoorzittingen daardoor
+//    altijd zonder tekst bij Gemini aan.
+//  - De timeout in haalOpEcht dekt nu ook het lezen van de body. Voorheen
+//    werd clearTimeout direct na fetch() aangeroepen, waardoor een trage
+//    body-read geen timeout meer opleverde.
 
 const cheerio = require("cheerio");
 const Parser = require("rss-parser");
@@ -50,9 +61,19 @@ function binnenLeeftijdsgrens(gepubliceerdOpIso) {
   return datum.getTime() >= beginNieuwsVenster();
 }
 
+// Bewust niet gebruikt: zie binnenAgendaVenster hieronder. Deze constanten
+// staan alleen nog voor het geval iemand ze later wil activeren; ze zijn
+// niet meer de bron van waarheid.
 const AGENDA_MAX_VERLEDEN_DAGEN = 0;
 const AGENDA_MAX_VOORUIT_DAGEN = 0;
 
+/**
+ * Is het bericht een evenement dat vandaag begint? Alleen de startdag telt:
+ * een expo van twee weken hoort niet elke dag in de pitch-lijst. De
+ * eindDatum wordt hier niet gebruikt (de parameter blijft staan zodat de
+ * aanroepen in index.js en bron-poort.js niet hoeven te veranderen, en
+ * zodat een latere uitbreiding geen wijzigingen in de scrapers vraagt).
+ */
 function binnenAgendaVenster(gepubliceerdOpIso, eindDatumIso) {
   if (!gepubliceerdOpIso) return false;
   const start = new Date(gepubliceerdOpIso).getTime();
@@ -361,15 +382,20 @@ async function haalOpEcht(url, pogingen = 3, opties = {}) {
     try {
       const controller = new AbortController();
       const timeoutId = setTimeout(() => controller.abort(), timeoutMs);
-      const fetchOpties = { headers: standaardHeaders, signal: controller.signal };
-      if (dispatcher) fetchOpties.dispatcher = dispatcher;
-      const response = await fetch(url, fetchOpties);
-      clearTimeout(timeoutId);
-
-      if (!response.ok) {
-        throw new Error(`HTTP ${response.status} voor ${url}`);
+      // BELANGRIJK: clearTimeout staat in een finally, zodat de timeout ook
+      // het lezen van de body dekt. Voorheen werd hij direct na fetch()
+      // gewist, en dan kon een trage body-read onbeperkt duren.
+      try {
+        const fetchOpties = { headers: standaardHeaders, signal: controller.signal };
+        if (dispatcher) fetchOpties.dispatcher = dispatcher;
+        const response = await fetch(url, fetchOpties);
+        if (!response.ok) {
+          throw new Error(`HTTP ${response.status} voor ${url}`);
+        }
+        return await response.text();
+      } finally {
+        clearTimeout(timeoutId);
       }
-      return await response.text();
     } catch (fout) {
       laatsteFout = fout;
 
@@ -844,6 +870,16 @@ function hostVan(url) {
   }
 }
 
+/**
+ * Vult tekst en foto aan op de bericht-objecten. BELANGRIJK: mutaties worden
+ * op de originele objecten gedaan, niet op een kopie. De aanroeper mag geen
+ * kopie meer maken; de detailSelector komt via de optie detailSelectorVoor
+ * binnen, een callback die per bericht de selector van de bron ophaalt.
+ *
+ * Zonder deze opzet ging de verrijking verloren voor code die de originele
+ * array las (feed en Gemini), en kwamen bronnen met een detailSelector
+ * altijd zonder tekst aan bij de AI.
+ */
 async function vulBerichtenAanMetTekst(berichten, opties = {}) {
   const {
     nietOphalen = () => false,
@@ -853,6 +889,7 @@ async function vulBerichtenAanMetTekst(berichten, opties = {}) {
     parallel = ARTIKEL_PARALLEL,
     pauzeMs = ARTIKEL_PAUZE_MS,
     maxSeconden = ARTIKEL_MAX_SECONDEN,
+    detailSelectorVoor = null,
   } = opties;
 
   const perBron = {};
@@ -888,7 +925,11 @@ async function vulBerichtenAanMetTekst(berichten, opties = {}) {
         continue;
       }
       try {
-        const uit = await haalTekst(b.url, { titel: b.titel, detailSelector: b.detailSelector });
+        // De detailSelector komt van het bericht zelf (heeft voorrang) of
+        // via de callback van de bron-config.
+        const detailSelector =
+          b.detailSelector ?? (typeof detailSelectorVoor === "function" ? detailSelectorVoor(b) : null);
+        const uit = await haalTekst(b.url, { titel: b.titel, detailSelector });
         netwerkFoutenAchtereen = 0;
         if (uit && uit.foto && !b.foto) {
           b.foto = uit.foto;
