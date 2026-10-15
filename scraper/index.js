@@ -21,6 +21,18 @@
 //    correct gemarkeerd als een bron later van nieuws naar agenda verandert
 //    (of andersom), zonder dat oude items voor altijd de verkeerde vlag
 //    houden.
+//
+// Sinds de "feed-bronidentiteit"-ronde (2026-10-15):
+//  - bepaalFeedSoort matchte op bronNaam, maar twee bronnen zijn ooit
+//    hernoemd (zaans-cultuur-huis → "Zaans Cultuurhuis — Agenda",
+//    zaanstad-hoorzittingen → "Zaanstad — Hoorzittingen") terwijl oude
+//    feed-items nog de oude naam droegen. Daardoor werden agenda-items van
+//    die twee bronnen bij elke run ten onrechte naar "nieuws" geflipt.
+//    Nu: (1) nieuwe feed-items krijgen een bronId mee, (2) bestaande items
+//    zonder bronId krijgen er één bijgeplakt op basis van naam of alias, en
+//    (3) een kleine alias-tabel overbrugt de twee historische namen.
+//    Voortaan wordt alleen nog op bronId gematcht, zodat een latere
+//    hernoeming geen kwaad meer kan doen.
 
 const fs = require("fs/promises");
 const path = require("path");
@@ -259,18 +271,62 @@ async function leesFeedUrls() {
 }
 
 /**
- * Berekent de juiste "soort" voor een feed-item op basis van de huidige
- * bron-config. Wordt gebruikt om bestaande feed-items te corrigeren als een
- * bron later van nieuws naar agenda is veranderd (of andersom). Zonder deze
- * stap zou een item de verkeerde kleur/badge houden tot het uit de feed rolt.
+ * Historische namen van bronnen die ooit zijn hernoemd in bronnen.js, maar
+ * waarvan de oude items nog in feed.json staan. Zonder deze tabel zou
+ * bepaalFeedSoort die items niet herkennen en ze ten onrechte "nieuws" geven.
+ * Nieuwe items krijgen een bronId en hebben deze tabel niet meer nodig.
  */
-function bepaalFeedSoort(item, bronPerId) {
-  const bron = Object.values(bronPerId).find((b) => b.naam === item.bronNaam);
-  return bron && bron.soort === "agenda" ? "agenda" : "nieuws";
+const FEED_BRON_ALIASSEN = {
+  "zaans-cultuur-huis": "Zaans Cultuurhuis — Agenda",
+  "zaanstad-hoorzittingen": "Zaanstad — Hoorzittingen",
+};
+
+/**
+ * Bouwt twee lookups in één keer: op id en op naam. Wordt aan werkFeedBij
+ * meegegeven zodat elk feed-item in O(1) zijn bron vindt (in plaats van een
+ * find over alle bronnen per item).
+ */
+function maakBronLookup(bronPerId) {
+  const perId = new Map();
+  const perNaam = new Map();
+  for (const bron of Object.values(bronPerId)) {
+    perId.set(bron.id, bron);
+    perNaam.set(bron.naam, bron);
+  }
+  return { perId, perNaam };
 }
 
+/**
+ * Vindt de bronconfiguratie die bij een feed-item hoort.
+ * Volgorde: bronId → bronNaam → alias → niets.
+ * Geeft null als geen van de drie lukt (het item blijft dan gewoon staan
+ * met zijn bestaande soort; we forceren geen "nieuws" meer).
+ */
+function vindBronVoorItem(item, lookup) {
+  if (item.bronId && lookup.perId.has(item.bronId)) return lookup.perId.get(item.bronId);
+  if (item.bronNaam && lookup.perNaam.has(item.bronNaam)) return lookup.perNaam.get(item.bronNaam);
+  const alias = item.bronNaam ? FEED_BRON_ALIASSEN[item.bronNaam] : null;
+  if (alias && lookup.perNaam.has(alias)) return lookup.perNaam.get(alias);
+  return null;
+}
+
+/**
+ * Werkt de nieuwsfeed bij:
+ *  1. Herberekent de "soort"-vlag van elk bestaand item op basis van de
+ *     huidige bron-config (via bronId, naam of alias).
+ *  2. Plakt een ontbrekend bronId op bestaande items bij, zodat de naam-
+ *     lookup op termijn niet meer nodig is.
+ *  3. Voegt nieuwe berichten toe en capt op FEED_MAX_ITEMS.
+ *
+ * Belangrijk: als een item niet aan een bron gekoppeld kan worden, laten we
+ * zijn bestaande soort met rust. Voorheen viel zoiets terug op "nieuws",
+ * waardoor een agenda-item zonder herkenbare bron elke run opnieuw werd
+ * geflipt.
+ */
 async function werkFeedBij(berichten, bronPerId) {
   const feedPad = path.join(DATA_MAP, "feed.json");
+  const lookup = maakBronLookup(bronPerId);
+
   let bestaand = [];
   try {
     const inhoud = JSON.parse(await fs.readFile(feedPad, "utf-8"));
@@ -279,12 +335,23 @@ async function werkFeedBij(berichten, bronPerId) {
     /* eerste run, of ongeldig bestand: begin met leeg */
   }
 
-  // Herbereken de "soort"-vlag van bestaande items op basis van de huidige
-  // bron-config. Items van een bron die later van nieuws naar agenda is
-  // veranderd (zoals zaans-cultuur-huis) worden zo automatisch bijgewerkt.
+  let soortGecorrigeerd = 0;
+  let idBijgeplakt = 0;
   bestaand = bestaand.map((item) => {
-    const nieuweSoort = bepaalFeedSoort(item, bronPerId);
-    return item.soort === nieuweSoort ? item : { ...item, soort: nieuweSoort };
+    const bron = vindBronVoorItem(item, lookup);
+    if (!bron) return item;
+
+    const nieuweSoort = bron.soort === "agenda" ? "agenda" : "nieuws";
+    const wijzigingen = {};
+    if (item.soort !== nieuweSoort) {
+      wijzigingen.soort = nieuweSoort;
+      soortGecorrigeerd++;
+    }
+    if (!item.bronId) {
+      wijzigingen.bronId = bron.id;
+      idBijgeplakt++;
+    }
+    return Object.keys(wijzigingen).length === 0 ? item : { ...item, ...wijzigingen };
   });
 
   const voorToekomst = bestaand.length;
@@ -303,6 +370,7 @@ async function werkFeedBij(berichten, bronPerId) {
       samenvatting: kortAfTekst(b.samenvatting || "", FEED_SAMENVATTING_TEKENS),
       foto: b.foto || null,
       gepubliceerdOp: b.gepubliceerdOp,
+      bronId: b.bronId,
       bronNaam: b.bronNaam,
       categorie: b.categorie,
       soort: bron && bron.soort === "agenda" ? "agenda" : "nieuws",
@@ -331,6 +399,12 @@ async function werkFeedBij(berichten, bronPerId) {
       `${verwijderd > 0 ? `, ${verwijderd} oudste verwijderd (cap = ${FEED_MAX_ITEMS})` : ""}` +
       `, ${metFoto} met foto.`
   );
+  if (soortGecorrigeerd > 0) {
+    console.log(`  waarvan ${soortGecorrigeerd} bestaand(e) item(s) met een gecorrigeerde soort-vlag.`);
+  }
+  if (idBijgeplakt > 0) {
+    console.log(`  ${idBijgeplakt} bestaand(e) item(s) kregen een bronId (voortaan geen naam-lookup meer nodig).`);
+  }
 }
 
 function prioriteitVan(bericht) {
@@ -470,74 +544,4 @@ async function main() {
 
   const datumKort = (b) => (b ? String(b.gepubliceerdOp).slice(0, 10) : "-");
   console.log(`Lokaal: ${lokaal.length} berichten (dichtstbijzijnde datum: ${datumKort(lokaal[0])}).`);
-  console.log(`Landelijk: ${landelijk.length} berichten (dichtstbijzijnde datum: ${datumKort(landelijk[0])}).`);
-
-  await schrijfJson("nieuws-lokaal.json", lokaal);
-  await schrijfJson("nieuws-landelijk.json", landelijk);
-
-  if (!apiKey) {
-    console.log("Klaar (zonder AI-beoordeling).");
-    return;
-  }
-
-  logFase("STAP 7 — Gemini-beoordeling");
-  const startGemini = Date.now();
-
-  console.log(`Lokaal: ${Math.min(lokaal.length, DAGCAP_GEMINI)} van ${lokaal.length} berichten gaan naar Gemini.`);
-  const lokaalBeoordeeld = await beoordeelBerichten(lokaal, apiKey, DAGCAP_GEMINI, "lokaal");
-
-  console.log(`Landelijk: ${Math.min(landelijk.length, DAGCAP_GEMINI)} van ${landelijk.length} berichten gaan naar Gemini.`);
-  const landelijkBeoordeeld = await beoordeelBerichten(landelijk, apiKey, DAGCAP_GEMINI, "landelijk");
-
-  logDuur(startGemini, "Gemini-beoordeling");
-
-  await schrijfJson("nieuws-lokaal.json", lokaalBeoordeeld);
-  await schrijfJson("nieuws-landelijk.json", landelijkBeoordeeld);
-
-  logFase("STAP 8 — Pitches rangschikken");
-  const kansrijkeLokaal = lokaalBeoordeeld.filter((b) => b.aiBeoordeling?.oppakbaar === "ja");
-  const kansrijkLandelijk = landelijkBeoordeeld.filter((b) => b.aiBeoordeling?.lokaleInvalshoek === "ja");
-  const alleKansrijke = [...kansrijkeLokaal, ...kansrijkLandelijk];
-  console.log(`Kansrijke berichten: ${kansrijkeLokaal.length} lokaal, ${kansrijkLandelijk.length} landelijk (${alleKansrijke.length} totaal).`);
-
-  let alleKansrijkeMetScore = alleKansrijke;
-  try {
-    alleKansrijkeMetScore = await rangschikPitches(alleKansrijke, apiKey);
-  } catch (fout) {
-    console.error(`Rangschikken mislukte onverwacht (pitches houden prioriteit null): ${fout.message}${oorzaakTekst(fout)}`);
-  }
-
-  const scorePerUrl = new Map(alleKansrijkeMetScore.map((b) => [b.url, b.aiBeoordeling?.prioriteit ?? null]));
-  const metScoreTerug = (lijst) => lijst.map((b) => scorePerUrl.has(b.url) ? { ...b, aiBeoordeling: { ...(b.aiBeoordeling || {}), prioriteit: scorePerUrl.get(b.url) } } : b);
-  await schrijfJson("nieuws-lokaal.json", metScoreTerug(lokaalBeoordeeld));
-  await schrijfJson("nieuws-landelijk.json", metScoreTerug(landelijkBeoordeeld));
-
-  logFase("STAP 9 — Top pitches samenstellen");
-  const topPitches = stelPitchesSamen(
-    alleKansrijkeMetScore.filter((b) => b.categorie === "lokaal"),
-    alleKansrijkeMetScore.filter((b) => b.categorie === "landelijk"),
-    AANTAL_PITCHES
-  );
-
-  await schrijfJson("pitches.json", {
-    gegenereerdOp: new Date().toISOString(),
-    aantalBerichtenTotaal: berichtenVanVandaag.length,
-    topPitches,
-  });
-
-  console.log(`Pitches: ${topPitches.length} van ${alleKansrijke.length} kansrijke bericht(en) opgenomen (top ${AANTAL_PITCHES}).`);
-  if (topPitches.length > 0) {
-    const scores = topPitches.map((p) => prioriteitVan(p)).filter((s) => s > 0);
-    if (scores.length > 0) {
-      console.log(`Scores in top ${topPitches.length}: min ${Math.min(...scores)}, max ${Math.max(...scores)}, gemiddeld ${(scores.reduce((a, b) => a + b, 0) / scores.length).toFixed(1)}.`);
-    }
-  }
-
-  logDuur(startRun, "Dagelijkse run");
-  console.log(`Klaar: ${topPitches.length} pitches gegenereerd.`);
-}
-
-main().catch((fout) => {
-  console.error(`Dagelijkse run stopte met een fout: ${fout.stack || fout.message}`);
-  process.exit(1);
-});
+  console.log(`Land
