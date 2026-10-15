@@ -7,8 +7,16 @@
 //
 // Sinds de nieuwe pitch-structuur (op basis van het Basisboek journalistiek
 // schrijven) toont een pitch-kaart nu: invalshoek, researchvraag, bronnen en
-// prioriteit. De oude velden (gevolgenVoor, gevolg, vervolgstappen) zijn
-// vervangen.
+// prioriteit.
+//
+// Sinds de "eerlijke-pipeline"-ronde (2026-10-15):
+//  - formatteerDatum laat het tijdstip weg als het middernacht is in
+//    Amsterdam. Zo tonen agenda-items ("14 okt") geen onzinnige "00:00".
+//  - De foto-URL in de feed wordt volledig ge-escaped voordat hij in het
+//    style-attribuut belandt. Een aanhalingsteken of pijltje in de URL kon
+//    eerder uit het attribuut breken.
+//  - De sectie "Alle landelijke berichten" wordt verborgen zolang
+//    nieuws-landelijk.json leeg is.
 
 async function laadJson(pad) {
   const response = await fetch(pad, { cache: "no-store" });
@@ -20,12 +28,27 @@ function formatteerDatum(isoTekst) {
   if (!isoTekst) return "datum onbekend";
   const datum = new Date(isoTekst);
   if (isNaN(datum.getTime())) return "datum onbekend";
-  return datum.toLocaleString("nl-NL", {
-    day: "numeric",
-    month: "short",
+
+  // Als het tijdstip in Amsterdam middernacht is, tonen we alleen de datum.
+  // Dat gebeurt bij datum-only items (agenda-berichten zonder tijd).
+  const tijdInAmsterdam = datum.toLocaleTimeString("nl-NL", {
+    timeZone: "Europe/Amsterdam",
     hour: "2-digit",
     minute: "2-digit",
+    hour12: false,
   });
+  const isMiddernacht = tijdInAmsterdam === "00:00";
+
+  const opties = {
+    day: "numeric",
+    month: "short",
+    timeZone: "Europe/Amsterdam",
+  };
+  if (!isMiddernacht) {
+    opties.hour = "2-digit";
+    opties.minute = "2-digit";
+  }
+  return datum.toLocaleString("nl-NL", opties);
 }
 
 function renderPitches(data) {
@@ -77,9 +100,27 @@ function renderFeed(items) {
   container.innerHTML = items.map(renderFeedItem).join("");
 }
 
+/**
+ * Escapet een URL voor gebruik binnen url('...') in een style-attribuut.
+ * Vervangt backslash, enkele en dubbele aanhalingstekens, haakjes, spaties en
+ * punthaken. Zonder deze stap kan een aanhalingsteken in de URL uit het
+ * attribuut breken en de pagina-opmaak verstoren.
+ */
+function escapeVoorCssUrl(url) {
+  return String(url)
+    .replace(/\\/g, "\\\\")
+    .replace(/'/g, "\\'")
+    .replace(/"/g, '\\"')
+    .replace(/\)/g, "\\)")
+    .replace(/\(/g, "\\(")
+    .replace(/\s/g, "\\ ")
+    .replace(/</g, "\\<")
+    .replace(/>/g, "\\>");
+}
+
 function renderFeedItem(item) {
   const heeftFoto = typeof item.foto === "string" && item.foto.length > 0;
-  const veiligeFoto = heeftFoto ? item.foto.replace(/'/g, "%27").replace(/\)/g, "%29") : "";
+  const veiligeFoto = heeftFoto ? escapeVoorCssUrl(item.foto) : "";
   const stijl = heeftFoto ? ` style="background-image: url('${veiligeFoto}')"` : "";
   const soort = item.soort === "agenda" ? "agenda" : "nieuws";
   const soortLabel = soort === "agenda" ? "agenda" : "nieuws";
@@ -155,9 +196,18 @@ async function initialiseer() {
 
   try {
     const landelijk = await laadJson("data/nieuws-landelijk.json");
-    renderBerichtenLijst("landelijk-lijst", landelijk);
+    if (Array.isArray(landelijk) && landelijk.length > 0) {
+      renderBerichtenLijst("landelijk-lijst", landelijk);
+    } else {
+      // Zolang er geen (bruikbare) landelijke bronnen zijn, verbergen we de
+      // hele sectie in plaats van een lege lijst te tonen.
+      const sectie = document.getElementById("landelijk-sectie");
+      if (sectie) sectie.style.display = "none";
+    }
   } catch (fout) {
-    document.getElementById("landelijk-lijst").innerHTML = `<p class="foutmelding">Landelijk nieuws kon niet geladen worden: ${fout.message}</p>`;
+    // Ook bij een laadfout: liever verbergen dan een lege sectie tonen.
+    const sectie = document.getElementById("landelijk-sectie");
+    if (sectie) sectie.style.display = "none";
   }
 }
 
