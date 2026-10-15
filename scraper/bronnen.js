@@ -6,26 +6,25 @@
 //
 // Sinds de "schone tekst"-ronde (2026-10-13) mogen bronnen een optioneel
 // veld "detailSelector" hebben: een CSS-selector die op de detailpagina als
-// eerste wordt geprobeerd. Bedoeld voor sites waarvan de artikeltekst in een
-// specifiek blok zit dat de generieke selectors zouden missen.
+// eerste wordt geprobeerd.
 //
 // Sinds de "evenementdatum"-ronde (2026-10-14):
-//  - zaansche-molen, ovo-zaanstad en blaise-pascal-college hebben rustig: true
-//    gekregen (ze publiceren niet dagelijks; de herstel-drempel gaat van 2 naar
-//    14 runs zonder berichten binnen het venster).
-//  - zaanstad-hoorzittingen heeft soort: "agenda" gekregen (de auto-detectie
-//    herkende het al correct, maar de expliciete config haalt de waarschuwing
-//    uit elke run).
-//  - zaans-cultuur-huis is veranderd van generieke-lijst naar gemini-recept
-//    met expliciete selectors, en heeft soort: "agenda" gekregen. De oude
-//    RSS-feed gaf alleen de publicatiedatum (bijv. 12 oktober voor een
-//    evenement op 27 november), waardoor evenementen alleen in de feed
-//    verschenen op de dag van aankondiging en niet op de dag van het
-//    evenement zelf. Nu wordt time.event-date (het datetime-attribuut)
-//    gebruikt, wat exact de evenementdatum is.
-//  - hhnk-actueel en pascal-zuid zijn verwijderd: hhnk-actueel is een
-//    doorverwijspagina zonder berichten, pascal-zuid leverde 1 bericht
-//    zonder leesbare datum op.
+//  - zaansche-molen, ovo-zaanstad en blaise-pascal-college hebben rustig: true.
+//  - zaanstad-hoorzittingen heeft soort: "agenda".
+//  - zaans-cultuur-huis is gemini-recept met soort: "agenda" en gebruikt
+//    time.event-date (datetime-attribuut) als datum.
+//  - hhnk-actueel en pascal-zuid zijn verwijderd.
+//
+// Sinds de "rustige-bronnen-en-rechtspraak"-ronde (2026-10-15):
+//  - zaans-museum, zaanse-schans, omgevingsdienstnoordzeekanaal,
+//    OmgevingsdienstNHN en zaandijk-leeft hebben rustig: true gekregen. Ze
+//    publiceren niet dagelijks (hun nieuwste bericht is 5 tot 92 dagen oud),
+//    waardoor ze zonder deze vlag na elke run in de herstel-lijst belandden.
+//  - rechtspraak-noord-holland toegevoegd: de RSS-feed van de Rechtbank
+//    Noord-Holland. Zonder filter komen alle uitspraken van de rechtbank
+//    binnen (Haarlem, Alkmaar, Schiphol, Den Helder, Hoorn, enzovoort); de
+//    AI-beoordeling vist de Zaanse zaken eruit. Een filterTermen-mechanisme
+//    staat nog op de wensenlijst.
 
 module.exports = [
   {
@@ -72,6 +71,7 @@ module.exports = [
     categorie: "lokaal",
     type: "generieke-lijst",
     url: "https://zaansmuseum.nl/nieuws-pers/",
+    rustig: true,
   },
   {
     id: "zaanse-schans",
@@ -79,6 +79,7 @@ module.exports = [
     categorie: "lokaal",
     type: "generieke-lijst",
     url: "https://www.dezaanseschans.nl/contact/actueel/",
+    rustig: true,
   },
   {
     id: "nh-actueel",
@@ -117,6 +118,7 @@ module.exports = [
     categorie: "lokaal",
     type: "wordpress-html",
     url: "https://zaandijkleeft.nl/",
+    rustig: true,
   },
   {
     id: "OmgevingsdienstNHN",
@@ -124,6 +126,7 @@ module.exports = [
     categorie: "lokaal",
     type: "generieke-lijst",
     url: "https://www.odnhn.nl/Menu/Over_ons/Nieuws/2022",
+    rustig: true,
   },
   {
     id: "omgevingsdienstnoordzeekanaal",
@@ -131,6 +134,7 @@ module.exports = [
     categorie: "lokaal",
     type: "wordpress-html",
     url: "https://odnzkg.nl/nieuws/",
+    rustig: true,
   },
   {
     id: "zaans-cultuur-huis",
@@ -172,5 +176,12 @@ module.exports = [
     categorie: "lokaal",
     type: "generieke-lijst",
     url: "https://www.hhnk.nl/nieuws",
+  },
+  {
+    id: "rechtspraak-noord-holland",
+    naam: "Rechtspraak — Rechtbank Noord-Holland",
+    categorie: "lokaal",
+    type: "rss",
+    url: "https://uitspraken.rechtspraak.nl/rss/?instantie=http%3A%2F%2Fstandaarden.overheid.nl%2Fowms%2Fterms%2FRechtbank_Noord-Holland&instantietype=2",
   },
 ];

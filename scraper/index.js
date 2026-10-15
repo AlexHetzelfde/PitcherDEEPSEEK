@@ -10,6 +10,17 @@
 // 7. Gemini-beoordeling (filter + pitch per bericht)
 // 8. Gemini-ranking (één call voor alle pitches samen)
 // 9. Pitches rangschikken en wegschrijven
+//
+// Sinds de "rustige-agenda-en-feed-consistentie"-ronde (2026-10-15):
+//  - In logBronOverzicht wordt voor agenda-bronnen met 0 berichten binnen het
+//    venster onderscheid gemaakt tussen "wel leesbare datums, geen evenement
+//    vandaag" (rustige dag, geen waarschuwing) en "geen enkele leesbare
+//    datum" (datumherkenning kan kapot zijn, wél waarschuwen).
+//  - In werkFeedBij wordt de "soort"-vlag van elk bestaand feed-item
+//    opnieuw berekend op basis van de huidige bron-config. Zo blijven items
+//    correct gemarkeerd als een bron later van nieuws naar agenda verandert
+//    (of andersom), zonder dat oude items voor altijd de verkeerde vlag
+//    houden.
 
 const fs = require("fs/promises");
 const path = require("path");
@@ -93,7 +104,21 @@ function logBronOverzicht({ gevondenPerBron, overPerBron, ruweBerichten = [] }) 
     } else if (over === 0 && bron.rustig) {
       status = "💤 rustige bron, nu geen recente berichten (verwacht)";
     } else if (over === 0 && bron.soort === "agenda") {
-      status = "⚠️  0 binnen het agenda-venster — check datumherkenning (datums zonder jaar?) of de agenda is leeg";
+      // Onderscheid maken tussen twee situaties die er hetzelfde uitzien in
+      // de cijfers maar een heel verschillende betekenis hebben:
+      //  - de bron heeft leesbare datums, maar geen daarvan valt op vandaag;
+      //    dat is normaal (rustige dag, geen evenement vandaag).
+      //  - de bron heeft geen enkele leesbare datum; dan kan de
+      //    datumherkenning kapot zijn en moet er wél gewaarschuwd worden.
+      const berichten = perBron.get(bron.id) || [];
+      const heeftLeesbareDatums = berichten.some(
+        (b) => b.gepubliceerdOp && !isNaN(new Date(b.gepubliceerdOp).getTime())
+      );
+      if (heeftLeesbareDatums) {
+        status = "ℹ️  geen evenement vandaag — komt wel in de feed";
+      } else {
+        status = "⚠️  0 binnen het agenda-venster — geen enkele leesbare datum in de lijst (datumherkenning controleren)";
+      }
     } else if (over === 0) {
       status = "ℹ️  0 binnen het pitch-venster — komt wel in de feed";
     } else {
@@ -233,6 +258,17 @@ async function leesFeedUrls() {
   }
 }
 
+/**
+ * Berekent de juiste "soort" voor een feed-item op basis van de huidige
+ * bron-config. Wordt gebruikt om bestaande feed-items te corrigeren als een
+ * bron later van nieuws naar agenda is veranderd (of andersom). Zonder deze
+ * stap zou een item de verkeerde kleur/badge houden tot het uit de feed rolt.
+ */
+function bepaalFeedSoort(item, bronPerId) {
+  const bron = Object.values(bronPerId).find((b) => b.naam === item.bronNaam);
+  return bron && bron.soort === "agenda" ? "agenda" : "nieuws";
+}
+
 async function werkFeedBij(berichten, bronPerId) {
   const feedPad = path.join(DATA_MAP, "feed.json");
   let bestaand = [];
@@ -242,6 +278,14 @@ async function werkFeedBij(berichten, bronPerId) {
   } catch {
     /* eerste run, of ongeldig bestand: begin met leeg */
   }
+
+  // Herbereken de "soort"-vlag van bestaande items op basis van de huidige
+  // bron-config. Items van een bron die later van nieuws naar agenda is
+  // veranderd (zoals zaans-cultuur-huis) worden zo automatisch bijgewerkt.
+  bestaand = bestaand.map((item) => {
+    const nieuweSoort = bepaalFeedSoort(item, bronPerId);
+    return item.soort === nieuweSoort ? item : { ...item, soort: nieuweSoort };
+  });
 
   const voorToekomst = bestaand.length;
   bestaand = bestaand.filter((b) => binnenFeedVenster(b.gepubliceerdOp));
@@ -336,6 +380,7 @@ async function main() {
   const startRun = Date.now();
   console.log(`Start dagelijkse run: ${new Date().toISOString()}`);
   console.log(`Instellingen: dagcap=${DAGCAP_GEMINI}/lijst, pitches=${AANTAL_PITCHES}, feedcap=${FEED_MAX_ITEMS}`);
+  console.log(`Tijdzone: ${process.env.TZ || "(systeemstandaard)"} → lokale tijd ${new Date().toLocaleString("nl-NL")}`);
 
   const apiKey = process.env.GEMINI_API_KEY;
   if (!apiKey) {
