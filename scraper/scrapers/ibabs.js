@@ -10,33 +10,28 @@
 // BELANGRIJK VOOR SNELHEID: het ophalen van de volledige documentinhoud (een
 // extra pagina-load + pdf-download per bericht) is duur. Daarom wordt dat
 // alleen gedaan voor berichten die (a) niet ouder zijn dan MAX_LEEFTIJD_DAGEN
-// en (b) nog niet eerder gezien zijn (via de gezieneUrls-set die index.js
-// meegeeft). Zonder die twee filters zou elke dagelijkse run opnieuw de
-// documentinhoud van alle ~100 berichten per rapport ophalen, ook van
-// berichten die al weken geleden al eens verwerkt zijn — dat duurde in de
-// praktijk 30+ minuten voor niets.
+// en (b) nog niet eerder gezien zijn. Sinds de "eerlijke-pipeline"-ronde
+// (2026-10-15) is die tweede check vervallen: hij werkte nooit, omdat het
+// url-veld later overschreven wordt met de pdf-url en dus nooit matchte met
+// een opgeslagen url. De parameter is daarom verwijderd; de kosten zijn
+// beperkt tot twee dagen aan items die opnieuw worden opgehaald.
 //
 // Sinds de "documentinhoud"-ronde (2026-10-13):
 //  - Meerdere PDF-URL-patronen worden geprobeerd, inclusief
-//    /Reports/Document/{itemId}?documentId={documentId} — het patroon dat
-//    de iBabs-detailpagina zelf gebruikt. Het oude /Document/View/{documentId}
-//    werkt niet meer op alle iBabs-versies.
-//  - Meerdere regex-patronen voor het documentId (inclusief data-document-id).
+//    /Reports/Document/{itemId}?documentId={documentId}.
+//  - Meerdere regex-patronen voor het documentId.
 //  - Elke faalstap logt nu een waarschuwing: geen stil falen meer.
-//  - Fallback naar de HTML-tekst van de detailpagina (Onderwerp, Toelichting,
-//    Afzender, Advies) als de PDF geen leesbare tekst bevat (bijv. een scan).
+//  - Fallback naar de HTML-tekst van de detailpagina als de PDF geen
+//    leesbare tekst bevat (bijv. een scan).
 //
 // Sinds de "HTML-fallback-eerst"-ronde (2026-10-14):
-//  - De HTML-fallback draait nu ALTIJD, ook als er geen documentId is. Dat
-//    is de belangrijkste wijziging: bij ingekomen stukken zonder PDF-bijlage
-//    (nieuwsbrieven, externe brieven) is de detailpagina-tekst de enige
-//    bron van inhoud. Zonder deze wijziging gingen zulke items met alleen
-//    de titel naar Gemini en werden ze onterecht als "niet oppakbaar"
-//    beoordeeld.
-//  - De volgorde is nu: (1) detailpagina ophalen, (2) HTML-fallback
-//    voorbereiden, (3) documentId zoeken, (4) bij geen documentId: HTML-
-//    fallback gebruiken, (5) bij wel documentId: PDF proberen, (6) bij
-//    PDF-falen: HTML-fallback alsnog gebruiken.
+//  - De HTML-fallback draait nu ALTIJD, ook als er geen documentId is.
+//
+// Sinds de "eerlijke-pipeline"-ronde (2026-10-15):
+//  - fetchMetTimeout leest de body nu binnen de timeout. Voorheen werden de
+//    headers gecontroleerd en daarna werd de timeout gewist; een trage body
+//    kon dan onbeperkt doorlopen.
+//  - De dode gezieneUrls-parameter is verwijderd.
 
 const MAX_DOCUMENT_TEKST_LENGTE = 15000;
 const REQUEST_TIMEOUT_MS = 15_000;
@@ -67,7 +62,27 @@ const KOLOMMEN = [
 const GEBRUIKERSAGENT =
   "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/128.0.0.0 Safari/537.36";
 
-async function scrapeIbabs(bron, gezieneUrls = new Set()) {
+/**
+ * Fetch met een timeout die de HELE operatie dekt (headers én body). De
+ * AbortController wordt pas opgeruimd als de body-read klaar is.
+ * De lezer bepaalt of de body als tekst, JSON of buffer wordt teruggegeven.
+ */
+async function fetchMetTimeout(url, opties = {}, lezer = "text") {
+  const controller = new AbortController();
+  const timeoutId = setTimeout(() => controller.abort(), REQUEST_TIMEOUT_MS);
+  try {
+    const response = await fetch(url, { ...opties, signal: controller.signal });
+    let body;
+    if (lezer === "json") body = await response.json();
+    else if (lezer === "buffer") body = Buffer.from(await response.arrayBuffer());
+    else body = await response.text();
+    return { response, body };
+  } finally {
+    clearTimeout(timeoutId);
+  }
+}
+
+async function scrapeIbabs(bron) {
   const guidMatch = bron.url.match(/Reports\/Details\/([a-f0-9-]{36})/i);
   if (!guidMatch) {
     console.warn(`[${bron.id}] Kon geen rapport-GUID uit de URL halen: ${bron.url}`);
@@ -79,7 +94,7 @@ async function scrapeIbabs(bron, gezieneUrls = new Set()) {
 
   let cookie = "";
   try {
-    const sessieResponse = await fetchMetTimeout(lijstPageUrl, { headers: { "User-Agent": GEBRUIKERSAGENT } });
+    const { response: sessieResponse } = await fetchMetTimeout(lijstPageUrl, { headers: { "User-Agent": GEBRUIKERSAGENT } }, "text");
     cookie = verzamelCookies(sessieResponse);
   } catch (fout) {
     console.warn(`[${bron.id}] Sessie ophalen mislukt (${fout.message}${oorzaakTekst(fout)}) — doorgaan zonder cookie.`);
@@ -87,21 +102,24 @@ async function scrapeIbabs(bron, gezieneUrls = new Set()) {
 
   let rijen;
   try {
-    const response = await fetchMetTimeout(lijstDataUrl, {
-      method: "POST",
-      headers: {
-        "User-Agent": GEBRUIKERSAGENT,
-        Accept: "application/json, text/javascript, */*; q=0.01",
-        "Content-Type": "application/x-www-form-urlencoded; charset=UTF-8",
-        "X-Requested-With": "XMLHttpRequest",
-        Origin: BASE_URL,
-        Referer: lijstPageUrl,
-        ...(cookie ? { Cookie: cookie } : {}),
+    const { response, body: data } = await fetchMetTimeout(
+      lijstDataUrl,
+      {
+        method: "POST",
+        headers: {
+          "User-Agent": GEBRUIKERSAGENT,
+          Accept: "application/json, text/javascript, */*; q=0.01",
+          "Content-Type": "application/x-www-form-urlencoded; charset=UTF-8",
+          "X-Requested-With": "XMLHttpRequest",
+          Origin: BASE_URL,
+          Referer: lijstPageUrl,
+          ...(cookie ? { Cookie: cookie } : {}),
+        },
+        body: bouwLijstBody(0, 1),
       },
-      body: bouwLijstBody(0, 1),
-    });
+      "json"
+    );
     if (!response.ok) throw new Error(`HTTP ${response.status}`);
-    const data = await response.json();
     rijen = data.data || [];
   } catch (fout) {
     console.error(`[${bron.id}] Lijst ophalen mislukt: ${fout.message}${oorzaakTekst(fout)}`);
@@ -112,7 +130,9 @@ async function scrapeIbabs(bron, gezieneUrls = new Set()) {
 
   const zonderDatum = alleBerichten.filter((b) => !b.gepubliceerdOp);
   if (zonderDatum.length > 0) {
-    console.warn(`[${bron.id}] ${zonderDatum.length} van ${alleBerichten.length} berichten hadden geen herkenbare datum (datumbericht/registrationdate kon niet geparsed worden) — die tellen mee als "te oud" en worden overgeslagen.`);
+    console.warn(
+      `[${bron.id}] ${zonderDatum.length} van ${alleBerichten.length} berichten hadden geen herkenbare datum (datumbericht/registrationdate kon niet geparsed worden) — die tellen mee als "te oud" en worden overgeslagen.`
+    );
     const voorbeelden = rijen
       .filter((rij) => !parseerNlDatum(rij.datumbericht) && !parseerNlDatum(rij.registrationdate))
       .slice(0, 3);
@@ -129,21 +149,15 @@ async function scrapeIbabs(bron, gezieneUrls = new Set()) {
     console.log(`[${bron.id}] ${aantalTeOud} bericht(en) ouder dan ${MAX_LEEFTIJD_DAGEN} dagen overgeslagen.`);
   }
 
-  const nieuweBerichten = recenteBerichten.filter((b) => !gezieneUrls.has(b.url));
-  const aantalAlGezien = recenteBerichten.length - nieuweBerichten.length;
-  if (aantalAlGezien > 0) {
-    console.log(`[${bron.id}] ${aantalAlGezien} al eerder gezien bericht(en) overgeslagen (geen nieuwe documentinhoud nodig).`);
-  }
-
-  console.log(`[${bron.id}] ${nieuweBerichten.length} bericht(en) waarvoor documentinhoud wordt opgehaald.`);
+  console.log(`[${bron.id}] ${recenteBerichten.length} bericht(en) waarvoor documentinhoud wordt opgehaald.`);
 
   const compleetBerichten = [];
   let teller = 0;
-  for (const bericht of nieuweBerichten) {
+  for (const bericht of recenteBerichten) {
     teller++;
     const berichtMetInhoud = await voegDocumentInhoudToe(bericht, cookie);
     if (teller % 10 === 0) {
-      console.log(`[${bron.id}] documentinhoud opgehaald: ${teller}/${nieuweBerichten.length}`);
+      console.log(`[${bron.id}] documentinhoud opgehaald: ${teller}/${recenteBerichten.length}`);
     }
     compleetBerichten.push(berichtMetInhoud);
   }
@@ -154,16 +168,6 @@ async function scrapeIbabs(bron, gezieneUrls = new Set()) {
   }
 
   return compleetBerichten;
-}
-
-async function fetchMetTimeout(url, opties = {}) {
-  const controller = new AbortController();
-  const timeoutId = setTimeout(() => controller.abort(), REQUEST_TIMEOUT_MS);
-  try {
-    return await fetch(url, { ...opties, signal: controller.signal });
-  } finally {
-    clearTimeout(timeoutId);
-  }
 }
 
 function verzamelCookies(response) {
@@ -233,7 +237,9 @@ function parseerNlDatum(tekst) {
  */
 function vindDocumentId(html, itemId) {
   if (itemId) {
-    const specifiek = html.match(new RegExp(`/Reports/Document/${itemId.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")}\\?documentId=([a-f0-9-]{36})`, "i"));
+    const specifiek = html.match(
+      new RegExp(`/Reports/Document/${itemId.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")}\\?documentId=([a-f0-9-]{36})`, "i")
+    );
     if (specifiek) return specifiek[1];
   }
   const los = html.match(/documentId=([a-f0-9-]{36})/i);
@@ -248,13 +254,6 @@ function vindDocumentId(html, itemId) {
  * leesbare tekst bevat (bijvoorbeeld een scan zonder tekstlaag) of wanneer er
  * helemaal geen PDF-bijlage is (nieuwsbrieven, externe brieven). Pakt de
  * velden die iBabs altijd toont: Onderwerp, Toelichting, Afzender, Advies.
- *
- * Voor "Het laatste nieuws uit raadsledenland!" levert dit bijvoorbeeld op:
- *   "Onderwerp: Het laatste nieuws uit raadsledenland! — Afzender: Nederlandse
- *    Vereniging voor Raadsleden — Toelichting: https://... — Advies: Ter
- *    kennisname"
- * Dat is mager maar voldoende voor de AI om te zien dat het om een externe
- * nieuwsbrief gaat en geen oppakbaar nieuws.
  */
 function haalDetailTekstUitHtml(html) {
   const velden = ["Onderwerp", "Toelichting", "Afzender", "Advies"];
@@ -269,23 +268,6 @@ function haalDetailTekstUitHtml(html) {
   return stukken.length > 0 ? stukken.join(" — ").slice(0, MAX_DOCUMENT_TEKST_LENGTE) : null;
 }
 
-/**
- * Volgt dezelfde tweestapsroute als het werkende Python-script: eerst de
- * detailpagina van het item ophalen om de documentId te vinden, dan pas de
- * pdf zelf downloaden. Meerdere PDF-URL-patronen worden geprobeerd, want
- * /Document/View/ werkt niet meer op alle iBabs-versies. Elke faalstap logt
- * een waarschuwing, zodat in de run te zien is waaróm een bericht geen
- * documentinhoud heeft.
- *
- * Sinds 2026-10-14: de HTML-fallback draait ALTIJD, ook als er geen
- * documentId is. De volgorde is nu:
- *   1. detailpagina ophalen
- *   2. HTML-fallback voorbereiden (altijd, geen extra requests)
- *   3. documentId zoeken
- *   4. geen documentId + HTML-fallback aanwezig → HTML-fallback gebruiken
- *   5. wel documentId → PDF proberen
- *   6. PDF-falen → HTML-fallback alsnog gebruiken
- */
 async function voegDocumentInhoudToe(bericht, cookie) {
   if (!bericht.itemId) {
     console.warn(`[${bericht.bronId}] Geen itemId voor "${bericht.titel}" — detailpagina overgeslagen.`);
@@ -295,28 +277,27 @@ async function voegDocumentInhoudToe(bericht, cookie) {
   const itemUrl = `${BASE_URL}/Reports/Item/${bericht.itemId}`;
   let html;
   try {
-    const itemResponse = await fetchMetTimeout(itemUrl, {
-      headers: {
-        "User-Agent": GEBRUIKERSAGENT,
-        Accept: "text/html",
-        ...(cookie ? { Cookie: cookie } : {}),
+    const { response, body } = await fetchMetTimeout(
+      itemUrl,
+      {
+        headers: {
+          "User-Agent": GEBRUIKERSAGENT,
+          Accept: "text/html",
+          ...(cookie ? { Cookie: cookie } : {}),
+        },
       },
-    });
-    if (!itemResponse.ok) throw new Error(`HTTP ${itemResponse.status}`);
-    html = await itemResponse.text();
+      "text"
+    );
+    if (!response.ok) throw new Error(`HTTP ${response.status}`);
+    html = body;
   } catch (fout) {
     console.warn(`[${bericht.bronId}] Detailpagina niet op te halen voor "${bericht.titel}": ${fout.message}${oorzaakTekst(fout)}`);
     return { ...bericht, documentInhoudOpgehaald: false };
   }
 
-  // Stap 2: HTML-fallback voorbereiden. Doet geen extra request — we hebben de
-  // HTML al. Wordt gebruikt als er geen PDF-bijlage is of als de PDF faalt.
   const htmlFallback = haalDetailTekstUitHtml(html);
-
-  // Stap 3: documentId zoeken.
   const documentId = vindDocumentId(html, bericht.itemId);
 
-  // Stap 4: geen documentId — gebruik HTML-fallback als die er is.
   if (!documentId) {
     if (htmlFallback) {
       console.log(`[${bericht.bronId}] Geen PDF-bijlage voor "${bericht.titel}" — HTML-fallback gebruikt.`);
@@ -330,7 +311,6 @@ async function voegDocumentInhoudToe(bericht, cookie) {
     return { ...bericht, documentInhoudOpgehaald: false };
   }
 
-  // Stap 5: wel documentId — probeer de PDF. Meerdere URL-patronen.
   const pdfKandidaten = [
     `${BASE_URL}/Reports/Document/${bericht.itemId}?documentId=${documentId}`,
     `${BASE_URL}/Document/View/${documentId}`,
@@ -342,19 +322,22 @@ async function voegDocumentInhoudToe(bericht, cookie) {
   let laatsteFout = null;
   for (const kandidaat of pdfKandidaten) {
     try {
-      const pdfResponse = await fetchMetTimeout(kandidaat, {
-        headers: {
-          "User-Agent": GEBRUIKERSAGENT,
-          Accept: "application/pdf,*/*",
-          Referer: itemUrl,
-          ...(cookie ? { Cookie: cookie } : {}),
+      const { response, body: buf } = await fetchMetTimeout(
+        kandidaat,
+        {
+          headers: {
+            "User-Agent": GEBRUIKERSAGENT,
+            Accept: "application/pdf,*/*",
+            Referer: itemUrl,
+            ...(cookie ? { Cookie: cookie } : {}),
+          },
         },
-      });
-      if (!pdfResponse.ok) {
-        laatsteFout = `HTTP ${pdfResponse.status}`;
+        "buffer"
+      );
+      if (!response.ok) {
+        laatsteFout = `HTTP ${response.status}`;
         continue;
       }
-      const buf = Buffer.from(await pdfResponse.arrayBuffer());
       if (buf.subarray(0, 4).toString() === "%PDF") {
         buffer = buf;
         pdfUrl = kandidaat;
@@ -366,7 +349,6 @@ async function voegDocumentInhoudToe(bericht, cookie) {
     }
   }
 
-  // Stap 6: PDF-falen — HTML-fallback alsnog gebruiken.
   if (!buffer) {
     if (htmlFallback) {
       console.warn(`[${bericht.bronId}] PDF niet op te halen voor "${bericht.titel}" (${laatsteFout}) — HTML-fallback gebruikt.`);
