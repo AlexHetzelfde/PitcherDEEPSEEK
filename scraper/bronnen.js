@@ -17,25 +17,26 @@
 //
 // Sinds de "rustige-bronnen-en-rechtspraak"-ronde (2026-10-15):
 //  - zaans-museum, zaanse-schans, omgevingsdienstnoordzeekanaal,
-//    OmgevingsdienstNHN en zaandijk-leeft hebben rustig: true gekregen. Ze
-//    publiceren niet dagelijks (hun nieuwste bericht is 5 tot 92 dagen oud),
-//    waardoor ze zonder deze vlag na elke run in de herstel-lijst belandden.
+//    OmgevingsdienstNHN en zaandijk-leeft hebben rustig: true gekregen.
 //  - rechtspraak-noord-holland toegevoegd: de RSS-feed van de Rechtbank
-//    Noord-Holland. Zonder filter komen alle uitspraken van de rechtbank
-//    binnen (Haarlem, Alkmaar, Schiphol, Den Helder, Hoorn, enzovoort); de
-//    AI-beoordeling vist de Zaanse zaken eruit.
+//    Noord-Holland.
 //
 // Sinds de "eerlijke-pipeline"-ronde (2026-10-15):
 //  - ibabs-collegeberichten en ibabs-ingekomen-stukken hebben rustig: true
 //    gekregen. De iBabs-scraper gooit zelf berichten buiten het venster weg,
-//    dus een rustige periode (geen raadsvergaderingen in het weekend, geen
-//    nieuwe documenten op feestdagen) gaf "0 berichten" en daarmee een
-//    herstel-issue. Met deze vlag duurt het veel langer voordat dat gebeurt.
+//    dus een rustige periode gaf "0 berichten" en daarmee een herstel-issue.
 //  - De vijf bronnen die "naam" gelijk hadden aan hun "id" (hhnk,
 //    zaandijk-leeft, OmgevingsdienstNHN, omgevingsdienstnoordzeekanaal,
 //    WaarheenAgenda) hebben een leesbare naam gekregen. De oude namen staan
-//    in FEED_BRON_ALIASSEN in index.js, zodat bestaande feed-items hun soort
-//    en hun naam automatisch bijwerken.
+//    in FEED_BRON_ALIASSEN in index.js.
+//
+// Sinds de "rechtspraak-filter"-ronde (2026-10-15):
+//  - De rechtspraak-feed krijgt een filterTermen-veld. De RSS van de
+//    Rechtbank Noord-Holland bevat alle uitspraken uit de hele provincie
+//    (Haarlem, Alkmaar, Schiphol, Den Helder, Hoorn, ...). Zonder filter
+//    domineren die de dagelijkse run en de feed met tientallen niet-Zaanse
+//    zaken. Met filterTermen komen alleen uitspraken door waarin een
+//    Zaanstreek-Waterlandse plaatsnaam voorkomt (in titel of samenvatting).
 
 module.exports = [
   {
@@ -196,5 +197,55 @@ module.exports = [
     categorie: "lokaal",
     type: "rss",
     url: "https://uitspraken.rechtspraak.nl/rss/?instantie=http%3A%2F%2Fstandaarden.overheid.nl%2Fowms%2Fterms%2FRechtbank_Noord-Holland&instantietype=2",
+    // De rechtbank-feed bevat uitspraken uit heel Noord-Holland (Haarlem,
+    // Alkmaar, Schiphol, Den Helder, Hoorn, ...). Alleen uitspraken waarin
+    // een Zaanstreek-Waterlandse plaatsnaam voorkomt zijn voor deze
+    // pipeline interessant. De filter draait op titel + samenvatting,
+    // case-insensitive, en slaat aan zodra één term voorkomt. Toegepast in
+    // index.js (scrapeAlleBronnen), vóór de agenda-afleiding en vóór de
+    // feed, dus weggefilterde berichten komen nergens meer in.
+    filterTermen: [
+      // Zaanstreek
+      "Zaanstad",
+      "Zaandam",
+      "Zaandijk",
+      "Koog aan de Zaan",
+      "Wormerveer",
+      "Krommenie",
+      "Assendelft",
+      "Westzaan",
+      "Wormer",
+      "Wijdewormer",
+      "Jisp",
+      "Neck",
+      "Oostknollendam",
+      "Spijkerboor",
+      "Oostzaan",
+      // Waterland
+      "Landsmeer",
+      "Den Ilp",
+      "Watergang",
+      "Purmerend",
+      "Edam",
+      "Volendam",
+      "Monnickendam",
+      "Marken",
+      "Katwoude",
+      "Ilpendam",
+      "Broek in Waterland",
+      "Zuiderwoude",
+      "Uitdam",
+      "Middelie",
+      "Warder",
+      "Beets",
+      "Hobrede",
+      "Kwadijk",
+      "Oosthuizen",
+      "Schardam",
+      // Regio (vangt zaken die geen specifieke plaats noemen)
+      "Zaanstreek",
+      "Waterland",
+    ],
+    rustig: true,
   },
 ];
