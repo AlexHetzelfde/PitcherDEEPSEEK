@@ -71,6 +71,8 @@ h2 {
   margin-top: -0.5rem;
 }
 
+/* --- Pitchkaarten ------------------------------------------------------- */
+
 .kaarten-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
@@ -121,44 +123,29 @@ h2 {
   color: var(--kleur-landelijk);
 }
 
-.invalshoek {
+/* Badge voor de prioriteit (1-10) uit de ranking-call. Stond eerder niet
+   in de CSS, waardoor de badge ongestyled naast de categorie-badge hing. */
+.badge.prioriteit-badge {
+  background: #f0e7c8;
+  color: #7a5a10;
+  margin-left: 0.35rem;
+}
+
+.invalshoek,
+.researchvraag,
+.bronnen,
+.onderbouwing {
   font-size: 0.85rem;
   color: #333;
   margin-top: 0.5rem;
+}
+
+.invalshoek {
   font-style: italic;
 }
 
-.bron-titel {
-  font-size: 0.8rem;
-  color: #777;
-  margin: -0.25rem 0 0.5rem;
-}
-
-.bron-titel a {
-  color: inherit;
-}
-
-.vervolgstappen {
-  margin: 0.5rem 0 0;
-  padding-left: 1.1rem;
-  font-size: 0.8rem;
-  color: #444;
-}
-
-.vervolgstappen li {
-  margin-bottom: 0.2rem;
-}
-
-.gevolg {
-  font-size: 0.85rem;
-  color: #333;
-  margin-top: 0.4rem;
-}
-
-.prioriteit {
-  font-size: 0.75rem;
-  color: #777;
-  margin-top: 0.5rem;
+.onderbouwing {
+  color: #666;
 }
 
 /* --- Nieuwsfeed --------------------------------------------------------- */
@@ -295,7 +282,7 @@ h2 {
   overflow: hidden;
 }
 
-/* --- Alle berichten (bestaand) ----------------------------------------- */
+/* --- Alle berichten ----------------------------------------------------- */
 
 .berichten-lijst {
   margin-top: 1rem;
@@ -312,6 +299,16 @@ h2 {
 
 .bericht-rij a {
   color: var(--kleur-tekst);
+}
+
+/* De stippen (●●/●○/○○) die per bericht de AI-beoordeling tonen. Had
+   eerder geen stijl, waardoor de stippen tegen de link aanplakten. */
+.bericht-stip {
+  font-family: monospace;
+  color: var(--kleur-accent);
+  letter-spacing: 0.1em;
+  flex: 0 0 auto;
+  min-width: 2.4em;
 }
 
 .bericht-meta {
