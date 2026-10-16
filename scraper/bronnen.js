@@ -255,4 +255,15 @@ module.exports = [
     type: "rss",
     url: "https://zoek.officielebekendmakingen.nl/rss?q=(c.product-area==%22officielepublicaties%22)and(dt.creator==%22Zaanstad%22)and((dt.type==%22algemeen%20verbindend%20voorschrift%20(ministeri%C3%ABle%20regeling)%22)or(dt.type==%22algemeen%20verbindend%20voorschrift%20(verordening)%22)or(dt.type==%22algemeenverbindendverklaring%20van%20cao-bepalingen%22)or(dt.type==%22ander%20besluit%20van%20algemene%20strekking%22)or(dt.type==%22bekendmaking%20aan%20de%20scheepvaart%22)or(dt.type==%22beleidsregel%22)or(dt.type==%22delegatie-%20of%20mandaatbesluit%22)or(dt.type==%22gemeenschappelijke%20regeling%22)or(dt.type==%22ruimtelijk%20plan%20of%20omgevingsdocument%22)or(dt.type==%22verkeersbesluit%20of%20-mededeling%22)or(dt.type==%22andere%20melding%22)or(dt.type==%22evenementmelding%22)or(dt.type==%22exploitatiemelding%22)or(dt.type==%22melding%20van%20activiteiten%20op%20of%20in%20oppervlaktewater%22)or(dt.type==%22omgevingsmelding%22)or(dt.type==%22benoeming%20of%20ontslag%22)or(dt.type==%22circulaire%22)or(dt.type==%22convenant%22)or(dt.type==%22interne%20regeling%22)or(dt.type==%22kieswetpublicatie%22)or(dt.type==%22koninklijke%20onderscheiding%22)or(dt.type==%22mededeling%20verzekeringswezen%22)or(dt.type==%22onteigening%22)or(dt.type==%22overige%20overheidsinformatie%22)or(dt.type==%22participatie%22)or(dt.type==%22pensioenen%22)or(dt.type==%22tuchtrechtelijke%20uitspraak%22)or(dt.type==%22vervreemding%20erfgoed%22)or(dt.type==%22andere%20beschikking%22)or(dt.type==%22andere%20vergunning%22)or(dt.type==%22evenementenvergunning%22)or(dt.type==%22exploitatievergunning%22)or(dt.type==%22vergunning%20voor%20activiteiten%20op%20of%20in%20oppervlaktewater%22)or(dt.type==%22afvalinzameling%22)or(dt.type==%22andere%20voorlichtingsinformatie%22)or(dt.type==%22inspraak%22)or(dt.type==%22openingstijden%22)or(dt.type==%22vergadering%20of%20stuk%20van%20het%20bestuur%22)or(dt.type==%22verkiezingen%22))and(((w.publicatienaam==%22Tractatenblad%22))or((w.publicatienaam==%22Staatsblad%22))or((w.publicatienaam==%22Staatscourant%22))or((w.publicatienaam==%22Gemeenteblad%22))or((w.publicatienaam==%22Provinciaal%20blad%22))or((w.publicatienaam==%22Waterschapsblad%22))or((w.publicatienaam==%22Blad%20gemeenschappelijke%20regeling%22)))",
   },
+  {
+    id: "wetenregelgeving",
+    naam: "wetenregelgeving",
+    categorie: "lokaal",
+    type: "generieke-lijst",
+    url: "https://lokaleregelgeving.overheid.nl/ZoekResultaat?gemeenten=Zaanstad&count=50",
+    paginering: {
+      soort: "patroon",
+      patroon: "https://lokaleregelgeving.overheid.nl/ZoekResultaat?gemeenten=Zaanstad&count=50&page={n}",
+    },
+  },
 ];
