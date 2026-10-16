@@ -4,14 +4,17 @@
 // komt. Dit is de plek waar "gelukt" wordt bewezen, niet aangenomen.
 //
 // Sinds de "schone tekst"-ronde (2026-10-13): controleerTekst geeft
-// bron.detailSelector en b.titel door aan de tekststap, zodat ook nieuwe
-// bronnen met een specifieke detail-selector de schone tekst kunnen
-// beoordelen.
+// bron.detailSelector en b.titel door aan de tekststap.
 //
 // Sinds de "directe feed"-ronde (2026-10-13): de optie feedModus slaat de
-// dekking-check tegen een Gemini-referentie over (een feed is zijn eigen
-// referentie) en slaat de tekst-controle over (feed-items hebben al tekst).
-// Alleen titel, link, datum en het eigen domein worden gecontroleerd.
+// dekking-check tegen een Gemini-referentie over.
+//
+// Sinds de "id-titels-en-bronkwaliteit"-ronde (2026-10-16):
+//  - Nieuwe check: als meer dan 30% van de titels op een ID lijkt
+//    ("gmb-2026-485069", "ECLI:NL:RBNHO:..."), wordt de bron afgekeurd met
+//    een duidelijke melding. Zonder deze check zou een bron als
+//    officielebekendmakingen stil worden toegevoegd terwijl de AI alleen
+//    een nietszeggende code te zien krijgt.
 
 const { scraperVoorType } = require("./scraper-register");
 const {
@@ -24,6 +27,7 @@ const {
   MAX_LEEFTIJD_DAGEN,
   AGENDA_MAX_VERLEDEN_DAGEN,
   AGENDA_MAX_VOORUIT_DAGEN,
+  ID_TITEL_PATROON,
 } = require("./hulpmiddelen");
 
 const SELECTOR_TYPES = ["generieke-lijst", "gemini-recept"];
@@ -36,6 +40,7 @@ const MIN_TITEL_TEKENS = 4;
 const TEKST_STEEKPROEF = 10;
 const MIN_TEKST_TEKENS = 100;
 const MIN_TEKST_DEKKING = 0.6;
+const MAX_ID_TITEL_AANDEEL = 0.3;
 
 const PADKANDIDATEN_MIN_AANTAL = 20;
 const PADKANDIDATEN_MAX_DEKKING = 0.5;
@@ -87,6 +92,7 @@ function beoordeelResultaat(bron, berichten, opties = {}) {
   let zonderTitel = 0;
   let zonderLink = 0;
   let dubbel = 0;
+  let idTitels = 0;
   const gezien = new Set();
   const geldig = [];
   for (const b of berichten || []) {
@@ -104,12 +110,13 @@ function beoordeelResultaat(bron, berichten, opties = {}) {
       dubbel++;
       continue;
     }
+    if (ID_TITEL_PATROON.test(titel)) idTitels++;
     gezien.add(genormaliseerd);
     geldig.push({ ...b, titel });
   }
 
   const aantal = geldig.length;
-  const statistieken = { ruw: (berichten || []).length, geldig: aantal, zonderTitel, zonderLink, dubbel };
+  const statistieken = { ruw: (berichten || []).length, geldig: aantal, zonderTitel, zonderLink, dubbel, idTitels };
 
   if (aantal === 0) {
     redenen.push(
@@ -119,6 +126,14 @@ function beoordeelResultaat(bron, berichten, opties = {}) {
   }
   if (zonderTitel + zonderLink > 0) {
     waarschuwingen.push(`${zonderTitel + zonderLink} van ${statistieken.ruw} items overgeslagen (geen echte titel of geen geldige link).`);
+  }
+  // NIEUW: als meer dan 30% van de titels een ID is, is de scraper verkeerd
+  // geconfigureerd. De bron wordt afgekeurd met een duidelijke melding,
+  // zodat dit bij het toevoegen van een nieuwe bron meteen opvalt.
+  if (idTitels / aantal > MAX_ID_TITEL_AANDEEL) {
+    redenen.push(
+      `${idTitels} van ${aantal} titels lijken op een ID (zoals "gmb-2026-485069" of "ECLI:NL:RBNHO:2026:9200") in plaats van een leesbare titel. De scraper pakt waarschijnlijk het verkeerde veld; de AI kan hier niets mee.`
+    );
   }
 
   const eigenDomein = registreerbaarDomein(siteUrl);
@@ -147,10 +162,7 @@ function beoordeelResultaat(bron, berichten, opties = {}) {
   statistieken.toekomst = metDatum.filter((b) => new Date(b.gepubliceerdOp).getTime() > nu + 12 * 3600 * 1000).length;
   statistieken.agendaUitDatums = agendaUitDatums(geldig).reden;
 
-  // Feed-modus: sla de dekking- en tekstchecks over. Een feed is zijn eigen
-  // referentie, en feed-items hebben al tekst. Alleen titel/link/datum/domain
-  // zijn gecontroleerd (hierboven). Dat is genoeg om te weten dat de feed
-  // bruikbaar is.
+  // Feed-modus: sla de dekking- en tekstchecks over.
   if (opties.feedModus) {
     const geslaagd = redenen.length === 0;
     const rustig = geslaagd && aantal < WEINIG_BERICHTEN;
