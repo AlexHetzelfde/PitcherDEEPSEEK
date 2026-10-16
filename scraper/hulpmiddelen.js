@@ -2,32 +2,27 @@
 // Gedeelde functies die door meerdere scrapers gebruikt worden.
 //
 // Sinds de "browser-UA"-ronde:
-//  - De User-Agent is browser-achtig (was: "NieuwsaggregatorZaanstreekBot/1.0",
-//    wat sommige overheidssites direct blokkeren met HTTP 403).
+//  - De User-Agent is browser-achtig.
 //  - Accept en Accept-Language worden meegestuurd.
 //  - Het TLS-tussencertificaat dat we voor loket.zaanstad.nl ophalen, wordt
 //    per hostname gecached.
 //
-// Sinds de "geduldiger"-ronde zijn de wachttijden voor het ophalen van
-// berichtpagina's flink verhoogd.
-//
 // Sinds de "schone tekst"-ronde (2026-10-13):
-//  - ARTIKEL_INHOUD_SELECTORS is herordend: specifieke CMS-/thema-selectors
-//    staan nu VÓÓR main en #content.
+//  - ARTIKEL_INHOUD_SELECTORS is herordend.
 //  - haalTekstUitHtml accepteert opties { titel, detailSelector }.
 //  - stripDubbeleTitel haalt een herhaalde kop aan het begin weg.
-//  - vulBerichtenAanMetTekst geeft titel en detailSelector door aan haalTekst.
 //
 // Sinds de "eerlijke-pipeline"-ronde (2026-10-15):
-//  - vulBerichtenAanMetTekst accepteert de optie detailSelectorVoor, een
-//    callback die per bericht de detailSelector van de bron ophaalt. Zonder
-//    deze optie maakte de aanroeper een kopie ({ ...b, detailSelector }),
-//    en dan ging de verrijking verloren voor de code die de originelen las.
-//    In de praktijk kwamen WaarheenAgenda en zaanstad-hoorzittingen daardoor
-//    altijd zonder tekst bij Gemini aan.
-//  - De timeout in haalOpEcht dekt nu ook het lezen van de body. Voorheen
-//    werd clearTimeout direct na fetch() aangeroepen, waardoor een trage
-//    body-read geen timeout meer opleverde.
+//  - vulBerichtenAanMetTekst accepteert de optie detailSelectorVoor.
+//  - De timeout in haalOpEcht dekt nu ook het lezen van de body.
+//
+// Sinds de "id-titels-en-bronkwaliteit"-ronde (2026-10-16):
+//  - kiesRssTitel: als een RSS-item een ID-achtige titel heeft (zoals
+//    "gmb-2026-485069 : Zaanstad" in de KOOP-feed), wordt de leesbare titel
+//    uit de description of content gehaald. Zonder deze stap gaat de AI met
+//    een nietszeggend ID naar de beoordeling.
+//  - titelIsId + ID_TITEL_PATROON: gedeelde detectie, ook gebruikt door
+//    bron-poort.js om nieuwe bronnen met dit probleem af te keuren.
 
 const cheerio = require("cheerio");
 const Parser = require("rss-parser");
@@ -61,18 +56,11 @@ function binnenLeeftijdsgrens(gepubliceerdOpIso) {
   return datum.getTime() >= beginNieuwsVenster();
 }
 
-// Bewust niet gebruikt: zie binnenAgendaVenster hieronder. Deze constanten
-// staan alleen nog voor het geval iemand ze later wil activeren; ze zijn
-// niet meer de bron van waarheid.
 const AGENDA_MAX_VERLEDEN_DAGEN = 0;
 const AGENDA_MAX_VOORUIT_DAGEN = 0;
 
 /**
- * Is het bericht een evenement dat vandaag begint? Alleen de startdag telt:
- * een expo van twee weken hoort niet elke dag in de pitch-lijst. De
- * eindDatum wordt hier niet gebruikt (de parameter blijft staan zodat de
- * aanroepen in index.js en bron-poort.js niet hoeven te veranderen, en
- * zodat een latere uitbreiding geen wijzigingen in de scrapers vraagt).
+ * Is het bericht een evenement dat vandaag begint? Alleen de startdag telt.
  */
 function binnenAgendaVenster(gepubliceerdOpIso, eindDatumIso) {
   if (!gepubliceerdOpIso) return false;
@@ -382,9 +370,8 @@ async function haalOpEcht(url, pogingen = 3, opties = {}) {
     try {
       const controller = new AbortController();
       const timeoutId = setTimeout(() => controller.abort(), timeoutMs);
-      // BELANGRIJK: clearTimeout staat in een finally, zodat de timeout ook
-      // het lezen van de body dekt. Voorheen werd hij direct na fetch()
-      // gewist, en dan kon een trage body-read onbeperkt duren.
+      // clearTimeout staat in een finally, zodat de timeout ook het lezen van
+      // de body dekt. Voorheen werd hij direct na fetch() gewist.
       try {
         const fetchOpties = { headers: standaardHeaders, signal: controller.signal };
         if (dispatcher) fetchOpties.dispatcher = dispatcher;
@@ -547,6 +534,45 @@ function haalFotoUitItem($, el, fotoSelector, fotoAttribuut, baseUrl) {
   return null;
 }
 
+/**
+ * Titels die eigenlijk een ID zijn, zoals de titel van een bekendmaking in
+ * de KOOP-RSS ("gmb-2026-485069 : Zaanstad") of een ECLI-nummer van de
+ * rechtspraak ("ECLI:NL:RBNHO:2026:9200"). Zulke titels zijn onbruikbaar
+ * voor de AI: er valt niets uit af te leiden. Wordt hergebruikt in
+ * bron-poort.js om nieuwe bronnen met dit probleem af te keuren.
+ */
+const ID_TITEL_PATROON = /^(?:[a-z]{2,5}-\d{4}-\d+\s*[:\-].*|[a-z]{2,5}-\d{4}-\d+|ECLI:[A-Z]{2}:[A-Z]+:\d{4}:\d+)$/i;
+
+function titelIsId(titel) {
+  if (!titel) return true;
+  const t = String(titel).trim();
+  if (t.length < 3) return true;
+  return ID_TITEL_PATROON.test(t);
+}
+
+/**
+ * Kiest de beste titel voor een RSS-item. Als de RSS-titel een ID is (zoals
+ * bij officielebekendmakingen: "gmb-2026-485069 : Zaanstad"), probeert deze
+ * functie een leesbare titel te vinden in de description, summary of content.
+ * Het ID-voorvoegsel wordt van het begin gestript. Lukt dat niet, dan blijft
+ * de originele titel staan; bron-poort.js waarschuwt dan dat de AI alleen
+ * een ID ziet.
+ */
+function kiesRssTitel(item) {
+  const titel = (item.title || "").trim();
+  if (!titelIsId(titel)) return titel;
+
+  const kandidaten = [item.description, item.summary, item.contentSnippet, item.content];
+  for (const ruw of kandidaten) {
+    if (!ruw) continue;
+    const plat = String(ruw).replace(/<[^>]+>/g, " ").replace(/\s+/g, " ").trim();
+    if (plat.length < 10) continue;
+    const zonderId = plat.replace(/^[a-z]{2,5}-\d{4}-\d+\s*[:\-]\s*/i, "").trim();
+    if (zonderId.length >= 10) return zonderId.slice(0, 200);
+  }
+  return titel;
+}
+
 async function parseerRssTekst(tekst, bron) {
   const feed = await rssParser.parseString(tekst);
   return (feed.items || []).map((item) => {
@@ -555,7 +581,7 @@ async function parseerRssTekst(tekst, bron) {
       bronId: bron.id,
       bronNaam: bron.naam,
       categorie: bron.categorie,
-      titel: (item.title || "").trim(),
+      titel: kiesRssTitel(item),
       url: item.link || "",
       samenvatting: schoonmakenSamenvatting(item.contentSnippet || item.content || ""),
       gepubliceerdOp: item.isoDate || item.pubDate || null,
@@ -875,10 +901,6 @@ function hostVan(url) {
  * op de originele objecten gedaan, niet op een kopie. De aanroeper mag geen
  * kopie meer maken; de detailSelector komt via de optie detailSelectorVoor
  * binnen, een callback die per bericht de selector van de bron ophaalt.
- *
- * Zonder deze opzet ging de verrijking verloren voor code die de originele
- * array las (feed en Gemini), en kwamen bronnen met een detailSelector
- * altijd zonder tekst aan bij de AI.
  */
 async function vulBerichtenAanMetTekst(berichten, opties = {}) {
   const {
@@ -925,8 +947,6 @@ async function vulBerichtenAanMetTekst(berichten, opties = {}) {
         continue;
       }
       try {
-        // De detailSelector komt van het bericht zelf (heeft voorrang) of
-        // via de callback van de bron-config.
         const detailSelector =
           b.detailSelector ?? (typeof detailSelectorVoor === "function" ? detailSelectorVoor(b) : null);
         const uit = await haalTekst(b.url, { titel: b.titel, detailSelector });
@@ -1026,4 +1046,7 @@ module.exports = {
   ARTIKEL_MAX_TEKENS,
   LIJSTTEKST_GENOEG_TEKENS,
   MIN_BRUIKBARE_TEKST_TEKENS,
+  ID_TITEL_PATROON,
+  titelIsId,
+  kiesRssTitel,
 };
