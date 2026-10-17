@@ -14,16 +14,18 @@
 //  - vulBerichtenAanMetTekst zet per bericht tekstBron ("artikel" of "lijst").
 //
 // Sinds de "datum-en-debug"-ronde (2026-10-17):
-//  - haalDatumUitTekst herkent nu ook DD-MM-YYYY / DD/MM/YYYY / DD.MM.YYYY,
-//    zodat teksten als "Geldend van 16-10-2026 t/m heden" wel worden geparsed.
+//  - haalDatumUitTekst herkent nu ook DD-MM-YYYY / DD/MM/YYYY / DD.MM.YYYY.
 //  - Optionele debug-logging via DEBUG_DATUM=1.
 //
 // Sinds de "rechtspraak-data-api"-ronde (2026-10-17):
 //  - haalRechtspraakTekst haalt de volledige uitspraaktekst op via
-//    data.rechtspraak.nl/uitspraken/content?id=ECLI:... (XML). De deeplink
-//    geeft een lege Angular-app terug, dus zonder deze functie bleef de
-//    rechtspraak-bron steken op de korte RSS-samenvatting.
+//    data.rechtspraak.nl/uitspraken/content?id=ECLI:... (XML).
 //  - haalArtikelTekst herkent rechtspraak-deeplinks en gebruikt de data-API.
+//
+// Sinds de "tekstbron-respect"-ronde (2026-10-17):
+//  - vulBerichtenAanMetTekst respecteert een bestaande tekstBron: "artikel".
+//    Zonder deze check overschreef de tekststap de vlag die de iBabs-scraper
+//    zelf al had gezet, waardoor iBabs-items als "lijst" werden geteld.
 
 const cheerio = require("cheerio");
 const Parser = require("rss-parser");
@@ -285,8 +287,6 @@ function haalDatumUitTekst(tekst, opties = {}) {
 
   // 2. DMY: DD-MM-YYYY / DD/MM/YYYY / DD.MM.YYYY (Nederlandse notatie)
   //    Nodig voor teksten als "Geldend van 16-10-2026 t/m heden".
-  //    We pakken de EERSTE match; dat is bij "geldend van X t/m Y" de
-  //    ingangsdatum, wat de relevante datum is.
   const dmj = bronTekst.match(/(?<!\d)(\d{1,2})[-/.](\d{1,2})[-/.](\d{4})(?!\d)/);
   if (dmj) {
     const dag = Number(dmj[1]);
@@ -993,13 +993,6 @@ function haalTekstUitHtml(html, opties = {}) {
  * Haalt de tekst van een rechtspraak-uitspraak op via de officiële data-API.
  * De deeplink-URL (rechtspraak.nl/uitspraak?id=ECLI:...) geeft een lege
  * Angular-app terug; de tekst staat alleen in de data-API (XML).
- *
- * De XML bevat:
- *   <inhoudsindicatie> — korte samenvatting
- *   <uitspraak>        — volledige tekst (in <para>-tags)
- *
- * We gebruiken de volledige tekst als die lang genoeg is, anders de
- * inhoudsindicatie.
  */
 async function haalRechtspraakTekst(url) {
   const match = String(url).match(/[?&]id=(ECLI:[^&]+)/);
@@ -1085,11 +1078,11 @@ async function vulBerichtenAanMetTekst(berichten, opties = {}) {
     const tekstGenoeg = (b.samenvatting || "").length >= lijsttekstGenoeg;
     const heeftFoto = Boolean(b.foto);
     if (tekstGenoeg && heeftFoto) {
-      b.tekstBron = "lijst";
+      if (!b.tekstBron) b.tekstBron = "lijst";
       continue;
     }
     if (nietOphalen(b)) {
-      b.tekstBron = "lijst";
+      if (!b.tekstBron) b.tekstBron = "lijst";
       continue;
     }
     const host = hostVan(b.url);
@@ -1108,13 +1101,13 @@ async function vulBerichtenAanMetTekst(berichten, opties = {}) {
       const s = stat(b.bronId);
       if (hostGestopt) {
         s.overgeslagen++;
-        b.tekstBron = "lijst";
+        if (!b.tekstBron) b.tekstBron = "lijst";
         continue;
       }
       if (Date.now() > einde) {
         tijdOp = true;
         s.overgeslagen++;
-        b.tekstBron = "lijst";
+        if (!b.tekstBron) b.tekstBron = "lijst";
         continue;
       }
       try {
@@ -1130,12 +1123,12 @@ async function vulBerichtenAanMetTekst(berichten, opties = {}) {
           b.tekstBron = "artikel";
           s.opgehaald++;
         } else {
-          b.tekstBron = "lijst";
+          if (!b.tekstBron) b.tekstBron = "lijst";
           s.geenTekst++;
         }
       } catch (fout) {
         s.fouten++;
-        b.tekstBron = "lijst";
+        if (!b.tekstBron) b.tekstBron = "lijst";
         if (s.fouten <= 5) log.warn(`[${b.bronId}] Tekst/foto ophalen mislukt voor ${b.url}: ${fout.message}${oorzaakTekst(fout)} — het bericht gaat door met de lijstgegevens.`);
         netwerkFoutenAchtereen = isNetwerkFout(fout) ? netwerkFoutenAchtereen + 1 : 0;
         if (netwerkFoutenAchtereen >= MAX_NETWERKFOUTEN_ACHTEREEN) {
