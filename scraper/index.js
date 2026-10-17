@@ -1,26 +1,16 @@
 // index.js — hoofdscript van de dagelijkse run
 //
-// Volgorde:
-// 1. Scrapen — alle bronnen, alle berichten
-// 2. Bepaal welke berichten tekst/foto nodig hebben + geef detailSelector mee
-// 3. Tekst en foto ophalen (met schone extractie)
-// 4. Nieuwsfeed bijwerken
-// 5. Voor de pitches: filter op het pitch-venster
-// 6. Splitsen en sorteren
-// 7. Gemini-beoordeling (filter + pitch per bericht)
-// 8. Gemini-ranking (één call voor alle pitches samen)
-// 9. Pitches rangschikken en wegschrijven
-//
 // Sinds de "tijdzone-en-logica"-ronde (2026-10-17):
-//  - binnenFeedVenster vergelijkt kalenderdagen in Amsterdam.
-//  - FEED_MAX_ITEMS staat op 800 (was 200); de feed wordt nieuwste-eerst
-//    gesorteerd en de oudste onderaan valt af.
-//  - GEEN_TEKSTOPHAAL_BRONNEN: OmgevingsdienstNHN geeft structureel 403 op
-//    artikelpagina's; de lijstgegevens blijven wel behouden.
-//  - logBronOverzicht toont voor iBabs-bronnen een aparte melding ("iBabs
-//    filtert zelf op datum") in plaats van "scraper kapot".
-//  - Er wordt een bijdragetabel in de step summary geschreven: per bron
-//    hoeveel berichten, hoeveel binnen het venster, hoeveel kansrijk.
+//  - binnenFeedVenster is gesplitst in twee functies:
+//      * nietInToekomst: voor BESTAANDE feed-items (alleen toekomst eruit).
+//      * binnenFeedVenster: voor NIEUWE feed-items (gisteren + vandaag,
+//        via binnenVenster). Zonder deze splitsing kwamen de 150 bekendmakingen
+//        van 6 dagen oud allemaal in de feed, omdat de oude functie alleen
+//        een bovengrens had.
+//  - FEED_MAX_ITEMS staat op 800 (was 200).
+//  - GEEN_TEKSTOPHAAL_BRONNEN: OmgevingsdienstNHN geeft 403.
+//  - logBronOverzicht toont voor iBabs-bronnen een aparte melding.
+//  - Bijdragetabel in de step summary.
 
 const fs = require("fs/promises");
 const path = require("path");
@@ -275,11 +265,22 @@ function kortAfTekst(tekst, max) {
   return `${(laatsteSpatie > max - 40 ? stuk.slice(0, laatsteSpatie) : stuk).trim()}…`;
 }
 
-function binnenFeedVenster(iso) {
+// Voor BESTAANDE feed-items: alleen toekomst eruit. Oude items mogen blijven
+// staan (ze zijn al een keer toegevoegd; de feed is een rolling window van
+// FEED_MAX_ITEMS).
+function nietInToekomst(iso) {
   if (!iso) return false;
   const dag = kalenderdagAmsterdam(iso);
   if (!dag) return false;
   return dag <= vandaagAmsterdam();
+}
+
+// Voor NIEUWE feed-items: volledig venster (gisteren + vandaag, of voor
+// agenda-bronnen alleen vandaag). Dit is dezelfde logica als de pitches.
+// Zonder deze splitsing kwamen de 150 bekendmakingen van 6 dagen oud
+// allemaal in de feed, omdat de oude functie alleen een bovengrens had.
+function binnenFeedVenster(iso, bron) {
+  return binnenVenster(iso, bron);
 }
 
 async function leesFeedUrls() {
@@ -356,15 +357,23 @@ async function werkFeedBij(berichten, bronPerId) {
     return Object.keys(wijzigingen).length === 0 ? item : { ...item, ...wijzigingen };
   });
 
+  // BESTAANDE items: alleen toekomst eruit. Oude items blijven staan tot de
+  // cap van FEED_MAX_ITEMS ze eruit gooit.
   const voorToekomst = bestaand.length;
-  bestaand = bestaand.filter((b) => binnenFeedVenster(b.gepubliceerdOp));
+  bestaand = bestaand.filter((b) => nietInToekomst(b.gepubliceerdOp));
   const uitToekomst = voorToekomst - bestaand.length;
 
   const bestaandeUrls = new Set(bestaand.map((b) => b.url).filter(Boolean));
   const nieuw = [];
+  const overgeslagen = { buitenVenster: 0 };
   for (const b of berichten) {
     if (!b.url || bestaandeUrls.has(b.url)) continue;
-    if (!binnenFeedVenster(b.gepubliceerdOp)) continue;
+    // NIEUWE items: volledig venster (gisteren + vandaag). Zonder deze check
+    // kwamen de 150 bekendmakingen van 6 dagen oud allemaal in de feed.
+    if (!binnenFeedVenster(b.gepubliceerdOp, bronPerId[b.bronId])) {
+      overgeslagen.buitenVenster++;
+      continue;
+    }
     const bron = bronPerId[b.bronId];
     nieuw.push({
       url: b.url,
@@ -397,6 +406,7 @@ async function werkFeedBij(berichten, bronPerId) {
   console.log(
     `Feed bijgewerkt: ${nieuw.length} nieuw, ` +
       `${uitToekomst > 0 ? `${uitToekomst} uit de toekomst gefilterd, ` : ""}` +
+      `${overgeslagen.buitenVenster > 0 ? `${overgeslagen.buitenVenster} buiten het venster overgeslagen, ` : ""}` +
       `${gecapt.length} in de feed` +
       `${verwijderd > 0 ? `, ${verwijderd} oudste verwijderd (cap = ${FEED_MAX_ITEMS})` : ""}` +
       `, ${metFoto} met foto.`
@@ -524,7 +534,9 @@ async function main() {
   const feedUrls = await leesFeedUrls();
   const teVerrijken = alleBerichten.filter((b) => {
     if (binnen(b)) return true;
-    if (!feedUrls.has(b.url) && binnenFeedVenster(b.gepubliceerdOp)) return true;
+    // NIEUWE feed-items: alleen als ze binnen het venster vallen. Zonder deze
+    // check werd er tekst opgehaald voor items die nooit in de feed komen.
+    if (!feedUrls.has(b.url) && binnenFeedVenster(b.gepubliceerdOp, bronPerId[b.bronId])) return true;
     return false;
   });
   console.log(`Tekst/foto nodig voor ${teVerrijken.length} van ${alleBerichten.length} unieke bericht(en).`);
