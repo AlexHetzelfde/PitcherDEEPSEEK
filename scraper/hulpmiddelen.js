@@ -16,10 +16,14 @@
 // Sinds de "datum-en-debug"-ronde (2026-10-17):
 //  - haalDatumUitTekst herkent nu ook DD-MM-YYYY / DD/MM/YYYY / DD.MM.YYYY,
 //    zodat teksten als "Geldend van 16-10-2026 t/m heden" wel worden geparsed.
-//    Zonder deze fix gaf wetenregelgeving alle 50 items een lege datum.
-//  - Optionele debug-logging via DEBUG_DATUM=1: logt per datum-parse welke
-//    tekst welke datum oplevert. Handig om te controleren of de extractie
-//    klopt zonder de hele run te vervuilen.
+//  - Optionele debug-logging via DEBUG_DATUM=1.
+//
+// Sinds de "rechtspraak-data-api"-ronde (2026-10-17):
+//  - haalRechtspraakTekst haalt de volledige uitspraaktekst op via
+//    data.rechtspraak.nl/uitspraken/content?id=ECLI:... (XML). De deeplink
+//    geeft een lege Angular-app terug, dus zonder deze functie bleef de
+//    rechtspraak-bron steken op de korte RSS-samenvatting.
+//  - haalArtikelTekst herkent rechtspraak-deeplinks en gebruikt de data-API.
 
 const cheerio = require("cheerio");
 const Parser = require("rss-parser");
@@ -280,7 +284,7 @@ function haalDatumUitTekst(tekst, opties = {}) {
   }
 
   // 2. DMY: DD-MM-YYYY / DD/MM/YYYY / DD.MM.YYYY (Nederlandse notatie)
-  //    NIEUW: nodig voor teksten als "Geldend van 16-10-2026 t/m heden".
+  //    Nodig voor teksten als "Geldend van 16-10-2026 t/m heden".
   //    We pakken de EERSTE match; dat is bij "geldend van X t/m Y" de
   //    ingangsdatum, wat de relevante datum is.
   const dmj = bronTekst.match(/(?<!\d)(\d{1,2})[-/.](\d{1,2})[-/.](\d{4})(?!\d)/);
@@ -985,6 +989,37 @@ function haalTekstUitHtml(html, opties = {}) {
   };
 }
 
+/**
+ * Haalt de tekst van een rechtspraak-uitspraak op via de officiële data-API.
+ * De deeplink-URL (rechtspraak.nl/uitspraak?id=ECLI:...) geeft een lege
+ * Angular-app terug; de tekst staat alleen in de data-API (XML).
+ *
+ * De XML bevat:
+ *   <inhoudsindicatie> — korte samenvatting
+ *   <uitspraak>        — volledige tekst (in <para>-tags)
+ *
+ * We gebruiken de volledige tekst als die lang genoeg is, anders de
+ * inhoudsindicatie.
+ */
+async function haalRechtspraakTekst(url) {
+  const match = String(url).match(/[?&]id=(ECLI:[^&]+)/);
+  if (!match) return null;
+  const ecli = decodeURIComponent(match[1]);
+  const apiUrl = `https://data.rechtspraak.nl/uitspraken/content?id=${encodeURIComponent(ecli)}`;
+  try {
+    const xml = await haalOp(apiUrl, 2, { stil: true });
+    const $ = cheerio.load(xml, { xmlMode: true });
+    const volledig = $("uitspraak").text().replace(/\s+/g, " ").trim();
+    const indicatie = $("inhoudsindicatie").text().replace(/\s+/g, " ").trim();
+    const tekst = volledig.length >= MIN_BRUIKBARE_TEKST_TEKENS ? volledig : indicatie;
+    if (!tekst || tekst.length < MIN_BRUIKBARE_TEKST_TEKENS) return null;
+    return { tekst: kortAf(tekst, ARTIKEL_MAX_TEKENS), methode: "artikel" };
+  } catch (fout) {
+    console.log(`[rechtspraak] Kon ${apiUrl} niet ophalen: ${fout.message}`);
+    return null;
+  }
+}
+
 function metTijdslimiet(belofte, ms, melding) {
   belofte.catch(() => {});
   let timer;
@@ -996,6 +1031,15 @@ function metTijdslimiet(belofte, ms, melding) {
 
 async function haalArtikelTekst(url, opties = {}) {
   if (!url || /\.(pdf|docx?|xlsx?|pptx?|zip|jpe?g|png|gif)(\?|#|$)/i.test(url)) return null;
+
+  // Speciale behandeling voor rechtspraak-deeplinks: de HTML is een lege
+  // Angular-app, de tekst staat alleen in de data-API (XML).
+  if (/rechtspraak\.nl\/(?:uitspraak|inziendocument)\?/.test(url)) {
+    const resultaat = await haalRechtspraakTekst(url);
+    if (resultaat) return resultaat;
+    // Fallthrough naar normale HTML-verwerking als de API faalt.
+  }
+
   try {
     const html = await metTijdslimiet(
       haalOp(url, 2, { stil: true, timeoutMs: ARTIKEL_TIMEOUT_MS }),
@@ -1173,6 +1217,7 @@ module.exports = {
   haalTekstUitHtml,
   stripDubbeleTitel,
   haalArtikelTekst,
+  haalRechtspraakTekst,
   vulBerichtenAanMetTekst,
   tekstDekkingTekst,
   tekstStatistiekRegel,
