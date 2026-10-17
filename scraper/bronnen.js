@@ -1,38 +1,16 @@
 // bronnen.js
 //
 // Centrale lijst van bronnen. Elke bron krijgt een categorie: "lokaal" of "landelijk".
-// Voeg hier nieuwe bronnen toe zodra je er meer wilt scrapen — de rest van de
-// pipeline (AI-beoordeling, front-end) werkt automatisch mee.
 //
-// Sinds de "schone tekst"-ronde (2026-10-13) mogen bronnen een optioneel
-// veld "detailSelector" hebben.
-//
-// Sinds de "evenementdatum"-ronde (2026-10-14):
-//  - zaansche-molen, ovo-zaanstad en blaise-pascal-college hebben rustig: true.
-//  - zaanstad-hoorzittingen heeft soort: "agenda".
-//  - zaans-cultuur-huis is gemini-recept met soort: "agenda".
-//  - hhnk-actueel en pascal-zuid zijn verwijderd.
-//
-// Sinds de "rustige-bronnen-en-rechtspraak"-ronde (2026-10-15):
-//  - zaans-museum, zaanse-schans, omgevingsdienstnoordzeekanaal,
-//    OmgevingsdienstNHN en zaandijk-leeft hebben rustig: true gekregen.
-//  - rechtspraak-noord-holland toegevoegd.
-//
-// Sinds de "eerlijke-pipeline"-ronde (2026-10-15):
-//  - ibabs-collegeberichten en ibabs-ingekomen-stukken hebben rustig: true.
-//  - De vijf bronnen die "naam" gelijk hadden aan hun "id" hebben een leesbare
-//    naam gekregen.
-//  - De rechtspraak-feed kreeg een filterTermen-veld om niet-Zaanse uitspraken
-//    eruit te filteren.
-//
-// Sinds de "id-titels-en-bronkwaliteit"-ronde (2026-10-16):
-//  - bekendmakingen: RSS-feed van officielebekendmakingen.nl. De titel van
-//    elk item is een ID ("gmb-2026-485069 : Zaanstad"); de scraper haalt nu
-//    via kiesRssTitel de leesbare titel uit de description. bron-poort.js
-//    keurt bronnen met >30% ID-titels af, zodat dit niet meer stil gebeurt.
-//  - wetenregelgeving: alleen pagina 1 (paginering: { soort: "geen" }),
-//    rustig: true. Anders leest de scraper 3 pagina's terug en komen er
-//    items met datums ver in het verleden of de toekomst tussen.
+// Sinds de "tijdzone-en-logica"-ronde (2026-10-17):
+//  - wetenregelgeving is omgezet van generieke-lijst naar gemini-recept, met
+//    selectors die passen op de echte HTML van lokaleregelgeving.overheid.nl:
+//    li.item, h2.result--title a en ul.list--metadata li:first-child. De oude
+//    fallback-selector "li" pakte de verkeerde elementen en gaf alle 50
+//    berichten dezelfde datum.
+//  - rechtspraak-noord-holland heeft een detailSelector gekregen:
+//    .rnl-detail-uitspraaktekst--content. Zonder die selector gaf de
+//    deeplink-pagina geen leesbare uitspraaktekst.
 
 module.exports = [
   {
@@ -193,6 +171,7 @@ module.exports = [
     categorie: "lokaal",
     type: "rss",
     url: "https://uitspraken.rechtspraak.nl/rss/?instantie=http%3A%2F%2Fstandaarden.overheid.nl%2Fowms%2Fterms%2FRechtbank_Noord-Holland&instantietype=2",
+    detailSelector: ".rnl-detail-uitspraaktekst--content",
     filterTermen: [
       "Zaanstad",
       "Zaandam",
@@ -246,9 +225,19 @@ module.exports = [
     id: "wetenregelgeving",
     naam: "Lokale regelgeving — Zaanstad",
     categorie: "lokaal",
-    type: "generieke-lijst",
+    type: "gemini-recept",
     url: "https://lokaleregelgeving.overheid.nl/ZoekResultaat?gemeenten=Zaanstad&count=50",
     paginering: { soort: "geen" },
     rustig: true,
+    selectors: {
+      itemSelector: "li.item",
+      titelSelector: "h2.result--title a",
+      linkSelector: "h2.result--title a",
+      datumSelector: "ul.list--metadata li:first-child",
+      datumAttribuut: null,
+      samenvattingSelector: null,
+      fotoSelector: null,
+      fotoAttribuut: null,
+    },
   },
 ];
