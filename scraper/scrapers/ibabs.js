@@ -1,37 +1,16 @@
 // scrapers/ibabs.js
 //
-// Haalt raadsinformatie op uit iBabs (*.bestuurlijkeinformatie.nl) via de
-// onderliggende DataTables-API van de rapportpagina, in plaats van de pagina
-// zelf met een browser te laten renderen. Deze aanpak — inclusief de
-// tussenstap om via de detailpagina eerst de documentId te vinden voordat de
-// pdf gedownload kan worden — is overgenomen uit een al werkend Python-
-// scraper-script voor hetzelfde iBabs-systeem. Vereist GEEN Playwright/browser.
-//
-// BELANGRIJK VOOR SNELHEID: het ophalen van de volledige documentinhoud (een
-// extra pagina-load + pdf-download per bericht) is duur. Daarom wordt dat
-// alleen gedaan voor berichten die (a) niet ouder zijn dan MAX_LEEFTIJD_DAGEN
-// en (b) nog niet eerder gezien zijn. Sinds de "eerlijke-pipeline"-ronde
-// (2026-10-15) is die tweede check vervallen: hij werkte nooit, omdat het
-// url-veld later overschreven wordt met de pdf-url en dus nooit matchte met
-// een opgeslagen url. De parameter is daarom verwijderd; de kosten zijn
-// beperkt tot twee dagen aan items die opnieuw worden opgehaald.
-//
-// Sinds de "documentinhoud"-ronde (2026-10-13):
-//  - Meerdere PDF-URL-patronen worden geprobeerd, inclusief
-//    /Reports/Document/{itemId}?documentId={documentId}.
-//  - Meerdere regex-patronen voor het documentId.
-//  - Elke faalstap logt nu een waarschuwing: geen stil falen meer.
-//  - Fallback naar de HTML-tekst van de detailpagina als de PDF geen
-//    leesbare tekst bevat (bijv. een scan).
-//
-// Sinds de "HTML-fallback-eerst"-ronde (2026-10-14):
-//  - De HTML-fallback draait nu ALTIJD, ook als er geen documentId is.
-//
-// Sinds de "eerlijke-pipeline"-ronde (2026-10-15):
-//  - fetchMetTimeout leest de body nu binnen de timeout. Voorheen werden de
-//    headers gecontroleerd en daarna werd de timeout gewist; een trage body
-//    kon dan onbeperkt doorlopen.
-//  - De dode gezieneUrls-parameter is verwijderd.
+// Sinds de "ibabs-tekstbron"-ronde (2026-10-17):
+//  - voegDocumentInhoudToe zet nu tekstBron: "artikel" op alle returns waar
+//    PDF- of HTML-tekst is toegevoegd. Zonder deze vlag telde de statistiek
+//    in index.js de iBabs-items als "lijst", ook al hadden ze volledige
+//    PDF-tekst. De tekststap slaat iBabs over (GEEN_TEKSTOPHAAL_TYPES),
+//    dus de vlag moet door de scraper zelf worden gezet.
+//  - Per bericht wordt gelogd: "PDF-tekst: X tekens" / "HTML-fallback:
+//    X tekens" / "geen tekst". Zo is in de log meteen te zien welk bericht
+//    welke tekst heeft opgeleverd.
+//  - Na de loop volgt een overzichtslog per bericht: samenvatting-lengte
+//    en tekstBron.
 
 const MAX_DOCUMENT_TEKST_LENGTE = 15000;
 const REQUEST_TIMEOUT_MS = 15_000;
@@ -167,6 +146,15 @@ async function scrapeIbabs(bron) {
     console.warn(`[${bron.id}] ${zonderInhoud} van ${compleetBerichten.length} bericht(en) zonder documentinhoud — zie de waarschuwingen hierboven voor de reden per bericht.`);
   }
 
+  // Overzicht per bericht: welk type tekst is opgehaald en hoeveel tekens.
+  // Dit maakt in één oogopslag duidelijk waarom de statistiek in index.js
+  // eventueel 0/4 zegt: de samenvatting-lengte zegt niets over de vraag of
+  // er artikeltekst is toegevoegd.
+  for (const bericht of compleetBerichten) {
+    const lengte = (bericht.samenvatting || "").length;
+    console.log(`[${bron.id}]   "${(bericht.titel || "").slice(0, 60)}": samenvatting ${lengte} tekens, tekstBron=${bericht.tekstBron || "geen"}`);
+  }
+
   return compleetBerichten;
 }
 
@@ -300,11 +288,12 @@ async function voegDocumentInhoudToe(bericht, cookie) {
 
   if (!documentId) {
     if (htmlFallback) {
-      console.log(`[${bericht.bronId}] Geen PDF-bijlage voor "${bericht.titel}" — HTML-fallback gebruikt.`);
+      console.log(`[${bericht.bronId}] HTML-fallback: ${htmlFallback.length} tekens voor "${bericht.titel}".`);
       return {
         ...bericht,
         samenvatting: [bericht.samenvatting, htmlFallback].filter(Boolean).join(" — "),
         documentInhoudOpgehaald: true,
+        tekstBron: "artikel",
       };
     }
     console.warn(`[${bericht.bronId}] Geen documentId én geen HTML-fallback voor "${bericht.titel}" (itemId ${bericht.itemId}).`);
@@ -351,11 +340,12 @@ async function voegDocumentInhoudToe(bericht, cookie) {
 
   if (!buffer) {
     if (htmlFallback) {
-      console.warn(`[${bericht.bronId}] PDF niet op te halen voor "${bericht.titel}" (${laatsteFout}) — HTML-fallback gebruikt.`);
+      console.warn(`[${bericht.bronId}] PDF niet op te halen voor "${bericht.titel}" (${laatsteFout}) — HTML-fallback gebruikt (${htmlFallback.length} tekens).`);
       return {
         ...bericht,
         samenvatting: [bericht.samenvatting, htmlFallback].filter(Boolean).join(" — "),
         documentInhoudOpgehaald: true,
+        tekstBron: "artikel",
       };
     }
     console.warn(`[${bericht.bronId}] PDF niet op te halen voor "${bericht.titel}": ${laatsteFout} (geprobeerd: ${pdfKandidaten.length} url's).`);
@@ -370,6 +360,7 @@ async function voegDocumentInhoudToe(bericht, cookie) {
         url: pdfUrl,
         samenvatting: [bericht.samenvatting, htmlFallback].filter(Boolean).join(" — "),
         documentInhoudOpgehaald: true,
+        tekstBron: "artikel",
       };
     }
     return { ...bericht, url: pdfUrl, documentInhoudOpgehaald: false };
@@ -392,21 +383,25 @@ async function voegDocumentInhoudToe(bericht, cookie) {
     const reden = parseFout ? `parse mislukt: ${parseFout}` : `geen leesbare tekst (${buffer.length} bytes, waarschijnlijk een scan)`;
     console.warn(`[${bericht.bronId}] PDF onbruikbaar voor "${bericht.titel}" (${reden}).`);
     if (htmlFallback) {
+      console.log(`[${bericht.bronId}] HTML-fallback: ${htmlFallback.length} tekens voor "${bericht.titel}".`);
       return {
         ...bericht,
         url: pdfUrl,
         samenvatting: [bericht.samenvatting, htmlFallback].filter(Boolean).join(" — "),
         documentInhoudOpgehaald: true,
+        tekstBron: "artikel",
       };
     }
     return { ...bericht, url: pdfUrl, documentInhoudOpgehaald: false };
   }
 
+  console.log(`[${bericht.bronId}] PDF-tekst: ${documentTekst.length} tekens voor "${bericht.titel}".`);
   return {
     ...bericht,
     url: pdfUrl,
     samenvatting: [bericht.samenvatting, documentTekst].filter(Boolean).join(" — "),
     documentInhoudOpgehaald: true,
+    tekstBron: "artikel",
   };
 }
 
