@@ -23,6 +23,23 @@
 //    bron-poort.js.
 //  - vindVolgendePagina geeft null terug bij paginering.soort "geen", zodat
 //    een bron als wetenregelgeving alleen pagina 1 leest.
+//
+// Sinds de "tijdzone-en-logica"-ronde (2026-10-17):
+//  - kalenderdagAmsterdam / vandaagAmsterdam / dagVerschil / kalenderdagMinDagen:
+//    alle datumvergelijkingen gebeuren nu op kalenderdagen in Europe/Amsterdam.
+//    Zonder deze fix werd een evenement van vandaag (opgeslagen als
+//    2026-10-17T00:00:00Z) in een UTC-runner als "na vandaag" gezien.
+//  - binnenLeeftijdsgrens heeft nu ook een bovengrens: datums in de toekomst
+//    worden geweigerd, ook als ze verder dan 1 dag vooruit liggen.
+//  - binnenAgendaVenster vergelijkt kalenderdagen i.p.v. tijdstippen.
+//  - paginaVoorbij: bij een oplopende agenda kijkt de check nu naar de EERSTE
+//    datum op de pagina (niet de laatste). Zonder deze fix stopte een
+//    oplopende agenda (zoals Waarheen) al na de eerste pagina.
+//  - volgPaginas logt de datumverdeling per kalenderdag in plaats van alleen
+//    eerste en laatste datum.
+//  - parseerRssTekst logt de kalenderdag-verdeling van de feed.
+//  - vulBerichtenAanMetTekst zet per bericht tekstBron ("artikel" of "lijst").
+//    De statistiek telt alleen "artikel" nog als "met tekst".
 
 const cheerio = require("cheerio");
 const Parser = require("rss-parser");
@@ -42,7 +59,48 @@ const { Agent } = require("undici");
 const GEBRUIKERSAGENT =
   "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/128.0.0.0 Safari/537.36";
 
+const TZ = "Europe/Amsterdam";
 const MAX_LEEFTIJD_DAGEN = 1;
+
+// ---------------------------------------------------------------------------
+// Kalenderdag-helpers (Amsterdam)
+// ---------------------------------------------------------------------------
+
+/** Geeft de kalenderdag (YYYY-MM-DD) van een ISO-tijdstip in Amsterdam. */
+function kalenderdagAmsterdam(iso) {
+  if (!iso) return null;
+  const d = new Date(iso);
+  if (isNaN(d.getTime())) return null;
+  return d.toLocaleDateString("sv-SE", { timeZone: TZ });
+}
+
+/** Geeft de kalenderdag van vandaag in Amsterdam. */
+function vandaagAmsterdam() {
+  return new Date().toLocaleDateString("sv-SE", { timeZone: TZ });
+}
+
+/**
+ * Verschil in kalenderdagen: positief als totDag na vanDag ligt.
+ * 0 = zelfde dag, 1 = totDag is één dag later, -1 = totDag is één dag eerder.
+ */
+function dagVerschil(vanDag, totDag) {
+  if (!vanDag || !totDag) return null;
+  const a = new Date(vanDag + "T00:00:00Z").getTime();
+  const b = new Date(totDag + "T00:00:00Z").getTime();
+  return Math.round((b - a) / (24 * 60 * 60 * 1000));
+}
+
+/** Geeft de kalenderdag die `dagen` dagen vóór vandaag ligt (Amsterdam). */
+function kalenderdagMinDagen(dagen) {
+  const vandaag = vandaagAmsterdam();
+  const d = new Date(vandaag + "T12:00:00Z");
+  d.setUTCDate(d.getUTCDate() - dagen);
+  return d.toISOString().slice(0, 10);
+}
+
+// ---------------------------------------------------------------------------
+// Vensters
+// ---------------------------------------------------------------------------
 
 function beginNieuwsVenster(nu = new Date()) {
   const beginVandaag = new Date(nu.getFullYear(), nu.getMonth(), nu.getDate()).getTime();
@@ -51,9 +109,11 @@ function beginNieuwsVenster(nu = new Date()) {
 
 function binnenLeeftijdsgrens(gepubliceerdOpIso) {
   if (!gepubliceerdOpIso) return false;
-  const datum = new Date(gepubliceerdOpIso);
-  if (isNaN(datum.getTime())) return false;
-  return datum.getTime() >= beginNieuwsVenster();
+  const dag = kalenderdagAmsterdam(gepubliceerdOpIso);
+  if (!dag) return false;
+  const verschil = dagVerschil(dag, vandaagAmsterdam());
+  if (verschil === null) return false;
+  return verschil >= 0 && verschil <= MAX_LEEFTIJD_DAGEN;
 }
 
 const AGENDA_MAX_VERLEDEN_DAGEN = 0;
@@ -61,13 +121,11 @@ const AGENDA_MAX_VOORUIT_DAGEN = 0;
 
 function binnenAgendaVenster(gepubliceerdOpIso, eindDatumIso) {
   if (!gepubliceerdOpIso) return false;
-  const start = new Date(gepubliceerdOpIso).getTime();
-  if (isNaN(start)) return false;
-  const dag = 24 * 60 * 60 * 1000;
-  const nu = new Date();
-  const beginVandaag = new Date(nu.getFullYear(), nu.getMonth(), nu.getDate()).getTime();
-  const eindVandaag = beginVandaag + dag;
-  return start >= beginVandaag && start < eindVandaag;
+  const startDag = kalenderdagAmsterdam(gepubliceerdOpIso);
+  if (!startDag) return false;
+  const verschilStart = dagVerschil(startDag, vandaagAmsterdam());
+  if (verschilStart === null) return false;
+  return verschilStart <= AGENDA_MAX_VERLEDEN_DAGEN && verschilStart >= -AGENDA_MAX_VOORUIT_DAGEN;
 }
 
 function binnenVenster(gepubliceerdOpIso, bron, eindDatumIso) {
@@ -88,6 +146,10 @@ function oorzaakTekst(fout) {
   const tekst = oorzaak.message || String(oorzaak);
   return ` — oorzaak: ${tekst}${code}`;
 }
+
+// ---------------------------------------------------------------------------
+// Netwerk
+// ---------------------------------------------------------------------------
 
 const dispatcherCache = new Map();
 
@@ -211,6 +273,10 @@ async function haalOpMetCookies(url, opties = {}, maxHops = 20) {
   }
   throw new Error(`Ook mét cookies nog steeds meer dan ${maxHops} redirects — vermoedelijk een echte lus, geen sessieprobleem`);
 }
+
+// ---------------------------------------------------------------------------
+// Datum-parsing
+// ---------------------------------------------------------------------------
 
 const NEDERLANDSE_MAANDEN = {
   januari: 0, februari: 1, maart: 2, april: 3, mei: 4, juni: 5,
@@ -349,6 +415,10 @@ function parseerDatumTekst(tekst, opties = {}) {
   return haalDatumUitTekst(t, opties);
 }
 
+// ---------------------------------------------------------------------------
+// HTTP
+// ---------------------------------------------------------------------------
+
 async function haalOpEcht(url, pogingen = 3, opties = {}) {
   let laatsteFout;
   let dispatcher;
@@ -446,6 +516,10 @@ function nieuweWacht(ms) {
   return new Promise((resolve) => setTimeout(resolve, ms));
 }
 
+// ---------------------------------------------------------------------------
+// Foto's
+// ---------------------------------------------------------------------------
+
 function urlUitMediaKnoop(knoop) {
   if (!knoop) return null;
   if (typeof knoop === "string") return knoop;
@@ -529,6 +603,10 @@ function haalFotoUitItem($, el, fotoSelector, fotoAttribuut, baseUrl) {
   return null;
 }
 
+// ---------------------------------------------------------------------------
+// ID-titels
+// ---------------------------------------------------------------------------
+
 const ID_TITEL_PATROON = /^(?:[a-z]{2,5}-\d{4}-\d+\s*[:\-].*|[a-z]{2,5}-\d{4}-\d+|ECLI:[A-Z]{2}:[A-Z]+:\d{4}:\d+)$/i;
 
 function titelIsId(titel) {
@@ -553,9 +631,33 @@ function kiesRssTitel(item) {
   return titel;
 }
 
+// ---------------------------------------------------------------------------
+// RSS
+// ---------------------------------------------------------------------------
+
+function logRssDatums(bronId, items) {
+  const perDag = new Map();
+  for (const item of items) {
+    const dag = kalenderdagAmsterdam(item.gepubliceerdOp);
+    if (dag) perDag.set(dag, (perDag.get(dag) || 0) + 1);
+  }
+  if (perDag.size === 0) {
+    console.log(`[${bronId}] RSS: ${items.length} items, geen leesbare datums.`);
+    return;
+  }
+  const gesorteerd = [...perDag.entries()].sort();
+  if (gesorteerd.length === 1) {
+    console.log(`[${bronId}] RSS: ${items.length} items, alle op ${gesorteerd[0][0]} (${gesorteerd[0][1]}x).`);
+  } else {
+    const eerste = gesorteerd[0];
+    const laatste = gesorteerd[gesorteerd.length - 1];
+    console.log(`[${bronId}] RSS: ${items.length} items, van ${eerste[0]} (${eerste[1]}x) t/m ${laatste[0]} (${laatste[1]}x).`);
+  }
+}
+
 async function parseerRssTekst(tekst, bron) {
   const feed = await rssParser.parseString(tekst);
-  return (feed.items || []).map((item) => {
+  const items = (feed.items || []).map((item) => {
     const foto = haalFotoUitRssItem(item);
     return {
       bronId: bron.id,
@@ -569,11 +671,19 @@ async function parseerRssTekst(tekst, bron) {
       opgehaaldOp: new Date().toISOString(),
     };
   });
+  if (items.length > 0 && bron && bron.id) {
+    logRssDatums(bron.id, items);
+  }
+  return items;
 }
 
 function schoonmakenSamenvatting(tekst) {
   return tekst.replace(/\s+/g, " ").trim().slice(0, 600);
 }
+
+// ---------------------------------------------------------------------------
+// Paginering
+// ---------------------------------------------------------------------------
 
 const MAX_PAGINAS = Number(process.env.MAX_PAGINAS || 10);
 const PAGINA_PAUZE_MS = Number(process.env.PAGINA_PAUZE_MS || 500);
@@ -594,38 +704,64 @@ function lijstRichting(berichten, standaard) {
   return op > neer ? "oplopend" : neer > op ? "aflopend" : standaard;
 }
 
+function beschrijfDatumVerdeling(berichten) {
+  const perDag = new Map();
+  for (const b of berichten) {
+    const dag = kalenderdagAmsterdam(b.gepubliceerdOp);
+    if (dag) perDag.set(dag, (perDag.get(dag) || 0) + 1);
+  }
+  if (perDag.size === 0) return "geen datums";
+  const gesorteerd = [...perDag.entries()].sort();
+  if (gesorteerd.length <= 4) {
+    return gesorteerd.map(([d, n]) => `${d} (${n}x)`).join(", ");
+  }
+  const eerste = gesorteerd[0];
+  const laatste = gesorteerd[gesorteerd.length - 1];
+  return `${eerste[0]} (${eerste[1]}x) t/m ${laatste[0]} (${laatste[1]}x)`;
+}
+
+/**
+ * Bepaalt of de scraper mag stoppen met pagineren.
+ *
+ * Agenda (oplopend): stop als de EERSTE datum op de pagina na vandaag ligt.
+ *   Een oplopende agenda loopt van oud naar nieuw; de eerste datum is de
+ *   oudste. Ligt die al in de toekomst, dan is de hele rest van de agenda
+ *   ook toekomst en valt niets meer in het venster.
+ * Agenda (aflopend): stop als de LAATSTE datum op de pagina vóór vandaag
+ *   ligt. Bij een aflopende agenda is de laatste datum de oudste; ligt die
+ *   in het verleden, dan is de rest van de agenda nog ouder.
+ * Nieuws: stop als de LAATSTE datum op de pagina ouder is dan het venster.
+ */
 function paginaVoorbij(bron, paginaBerichten, nu = Date.now()) {
   const metDatum = paginaBerichten.filter((b) => tijdVan(b.gepubliceerdOp) !== null);
   if (metDatum.length === 0) return "geen enkel bericht op deze pagina heeft een datum (zulke berichten worden toch geweerd)";
-  const dag = 24 * 60 * 60 * 1000;
+
+  const vandaag = vandaagAmsterdam();
+  const eerste = metDatum[0];
   const laatste = metDatum[metDatum.length - 1];
-  const start = tijdVan(laatste.gepubliceerdOp);
-  const eind = tijdVan(laatste.eindDatum) ?? start;
-  const datumTekst = String(laatste.gepubliceerdOp).slice(0, 10);
+  const eersteDag = kalenderdagAmsterdam(eerste.gepubliceerdOp);
+  const laatsteDag = kalenderdagAmsterdam(laatste.gepubliceerdOp);
 
   if (bron.soort === "agenda") {
     const richting = lijstRichting(metDatum, "oplopend");
-    const nuDatum = new Date();
-    const beginVandaag = new Date(nuDatum.getFullYear(), nuDatum.getMonth(), nuDatum.getDate()).getTime();
-    const eindVandaag = beginVandaag + dag;
-    if (richting === "oplopend" && start >= eindVandaag) {
-      return `agenda is voorbij het venster (laatste evenement op deze pagina: ${datumTekst}, na vandaag)`;
+    if (richting === "oplopend" && eersteDag > vandaag) {
+      return `agenda is voorbij het venster (eerste evenement op deze pagina: ${eersteDag}, na vandaag)`;
     }
-    if (richting === "aflopend" && eind < beginVandaag) {
-      return `agenda is voorbij het venster (laatste evenement op deze pagina: ${datumTekst}, al voorbij)`;
+    if (richting === "aflopend" && laatsteDag < vandaag) {
+      return `agenda is voorbij het venster (laatste evenement op deze pagina: ${laatsteDag}, al voorbij)`;
     }
     return null;
   }
-  if (lijstRichting(metDatum, "aflopend") === "aflopend" && start < beginNieuwsVenster()) {
-    return `berichten zijn ouder dan het nieuwsvenster (laatste op deze pagina: ${datumTekst})`;
+
+  const grensDag = kalenderdagMinDagen(MAX_LEEFTIJD_DAGEN);
+  if (lijstRichting(metDatum, "aflopend") === "aflopend" && laatsteDag < grensDag) {
+    return `berichten zijn ouder dan het nieuwsvenster (laatste op deze pagina: ${laatsteDag}, grens ${grensDag})`;
   }
   return null;
 }
 
 function vindVolgendePagina($, paginaUrl, huidigNummer, paginering) {
-  // NIEUW: expliciete "geen paginering". De scraper leest dan alleen pagina 1.
-  // Zonder deze regel zou de generieke detectie hieronder alsnog een "page=2"-
-  // link vinden en alle pagina's ophalen.
+  // Expliciete "geen paginering". De scraper leest dan alleen pagina 1.
   if (paginering && paginering.soort === "geen") return null;
 
   const absoluut = (href) => {
@@ -691,9 +827,7 @@ async function volgPaginas(bron, leesPagina, opties = {}) {
     nieuw.forEach((b) => gezienBerichtUrls.add(b.url));
     alle.push(...nieuw);
 
-    const metDatum = pagina.filter((b) => tijdVan(b.gepubliceerdOp) !== null);
-    const datumBereik = metDatum.length ? `, datums ${String(metDatum[0].gepubliceerdOp).slice(0, 10)} t/m ${String(metDatum[metDatum.length - 1].gepubliceerdOp).slice(0, 10)}` : "";
-    log.log(`[${bron.id}] pagina ${n}: ${pagina.length} bericht(en), ${nieuw.length} nieuw${datumBereik}.`);
+    log.log(`[${bron.id}] pagina ${n}: ${pagina.length} bericht(en), ${nieuw.length} nieuw; datums: ${beschrijfDatumVerdeling(pagina)}.`);
 
     if (pagina.length === 0) {
       reden = n === 1 ? "pagina 1 bevat geen berichten" : `pagina ${n} bevat geen berichten`;
@@ -743,6 +877,10 @@ async function volgPaginas(bron, leesPagina, opties = {}) {
   return { berichten: alle, paginas: n, reden };
 }
 
+// ---------------------------------------------------------------------------
+// Artikeltekst
+// ---------------------------------------------------------------------------
+
 const ARTIKEL_TIMEOUT_MS = Number(process.env.ARTIKELTEKST_TIMEOUT_MS || 30_000);
 const ARTIKEL_TOTAAL_TIMEOUT_MS = Number(process.env.ARTIKELTEKST_TOTAAL_TIMEOUT_MS || 90_000);
 const ARTIKEL_PARALLEL = Number(process.env.ARTIKELTEKST_PARALLEL || 4);
@@ -768,6 +906,8 @@ const ARTIKEL_INHOUD_SELECTORS = [
   ".article-body",
   ".node__content",
   ".content-main",
+  ".rnl-detail-uitspraaktekst--content",
+  ".uitspraak",
   "article",
   '[role="main"]',
   "main",
@@ -900,8 +1040,14 @@ async function vulBerichtenAanMetTekst(berichten, opties = {}) {
   for (const b of berichten) {
     const tekstGenoeg = (b.samenvatting || "").length >= lijsttekstGenoeg;
     const heeftFoto = Boolean(b.foto);
-    if (tekstGenoeg && heeftFoto) continue;
-    if (nietOphalen(b)) continue;
+    if (tekstGenoeg && heeftFoto) {
+      b.tekstBron = "lijst";
+      continue;
+    }
+    if (nietOphalen(b)) {
+      b.tekstBron = "lijst";
+      continue;
+    }
     const host = hostVan(b.url);
     if (!perHost.has(host)) perHost.set(host, []);
     perHost.get(host).push(b);
@@ -918,11 +1064,13 @@ async function vulBerichtenAanMetTekst(berichten, opties = {}) {
       const s = stat(b.bronId);
       if (hostGestopt) {
         s.overgeslagen++;
+        b.tekstBron = "lijst";
         continue;
       }
       if (Date.now() > einde) {
         tijdOp = true;
         s.overgeslagen++;
+        b.tekstBron = "lijst";
         continue;
       }
       try {
@@ -935,12 +1083,15 @@ async function vulBerichtenAanMetTekst(berichten, opties = {}) {
         }
         if (uit && uit.tekst && uit.tekst.length > (b.samenvatting || "").length) {
           b.samenvatting = uit.tekst;
+          b.tekstBron = "artikel";
           s.opgehaald++;
         } else {
+          b.tekstBron = "lijst";
           s.geenTekst++;
         }
       } catch (fout) {
         s.fouten++;
+        b.tekstBron = "lijst";
         if (s.fouten <= 5) log.warn(`[${b.bronId}] Tekst/foto ophalen mislukt voor ${b.url}: ${fout.message}${oorzaakTekst(fout)} — het bericht gaat door met de lijstgegevens.`);
         netwerkFoutenAchtereen = isNetwerkFout(fout) ? netwerkFoutenAchtereen + 1 : 0;
         if (netwerkFoutenAchtereen >= MAX_NETWERKFOUTEN_ACHTEREEN) {
@@ -965,23 +1116,25 @@ async function vulBerichtenAanMetTekst(berichten, opties = {}) {
   for (const b of berichten) {
     const s = stat(b.bronId);
     s.totaal++;
-    if ((b.samenvatting || "").length >= MIN_BRUIKBARE_TEKST_TEKENS) s.metTekst++;
+    if (b.tekstBron === "artikel" && (b.samenvatting || "").length >= MIN_BRUIKBARE_TEKST_TEKENS) s.metTekst++;
     if (b.foto) s.metFoto++;
   }
   return { perBron, tijdOp };
 }
 
 function tekstDekkingTekst(s) {
-  return `${s.metTekst} van ${s.totaal} met tekst`;
+  return `${s.metTekst} van ${s.totaal} met artikeltekst`;
 }
 
 function tekstStatistiekRegel(s) {
-  const delen = [`${s.opgehaald} van de berichtpagina`, `${Math.max(0, s.metTekst - s.opgehaald)} uit de lijst`];
+  const uitLijst = Math.max(0, s.totaal - s.opgehaald);
+  const delen = [`${s.opgehaald} van de berichtpagina`];
+  if (uitLijst > 0) delen.push(`${uitLijst} uit de lijst`);
   if (s.geenTekst) delen.push(`${s.geenTekst} pagina('s) zonder bruikbare tekst`);
   if (s.fouten) delen.push(`${s.fouten} mislukt`);
   if (s.overgeslagen) delen.push(`${s.overgeslagen} overgeslagen`);
   if (s.metFoto) delen.push(`${s.metFoto} met foto`);
-  return `${tekstDekkingTekst(s)} (${delen.join(", ")})`;
+  return `${s.metTekst} van ${s.totaal} met artikeltekst (${delen.join(", ")})`;
 }
 
 module.exports = {
@@ -1000,9 +1153,14 @@ module.exports = {
   agendaUitDatums,
   parseerDatumTekst,
   GEBRUIKERSAGENT,
+  TZ,
   MAX_LEEFTIJD_DAGEN,
   AGENDA_MAX_VERLEDEN_DAGEN,
   AGENDA_MAX_VOORUIT_DAGEN,
+  kalenderdagAmsterdam,
+  vandaagAmsterdam,
+  dagVerschil,
+  kalenderdagMinDagen,
   binnenLeeftijdsgrens,
   binnenAgendaVenster,
   binnenVenster,
