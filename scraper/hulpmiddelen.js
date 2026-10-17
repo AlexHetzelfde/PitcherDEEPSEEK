@@ -1,45 +1,25 @@
 // hulpmiddelen.js
 // Gedeelde functies die door meerdere scrapers gebruikt worden.
 //
-// Sinds de "browser-UA"-ronde:
-//  - De User-Agent is browser-achtig.
-//  - Accept en Accept-Language worden meegestuurd.
-//  - Het TLS-tussencertificaat dat we voor loket.zaanstad.nl ophalen, wordt
-//    per hostname gecached.
-//
-// Sinds de "schone tekst"-ronde (2026-10-13):
-//  - ARTIKEL_INHOUD_SELECTORS is herordend.
-//  - haalTekstUitHtml accepteert opties { titel, detailSelector }.
-//  - stripDubbeleTitel haalt een herhaalde kop aan het begin weg.
-//
-// Sinds de "eerlijke-pipeline"-ronde (2026-10-15):
-//  - vulBerichtenAanMetTekst accepteert de optie detailSelectorVoor.
-//  - De timeout in haalOpEcht dekt nu ook het lezen van de body.
-//
-// Sinds de "id-titels-en-bronkwaliteit"-ronde (2026-10-16):
-//  - kiesRssTitel: als een RSS-item een ID-achtige titel heeft, wordt de
-//    leesbare titel uit de description gehaald.
-//  - titelIsId + ID_TITEL_PATROON: gedeelde detectie, ook gebruikt door
-//    bron-poort.js.
-//  - vindVolgendePagina geeft null terug bij paginering.soort "geen", zodat
-//    een bron als wetenregelgeving alleen pagina 1 leest.
-//
 // Sinds de "tijdzone-en-logica"-ronde (2026-10-17):
 //  - kalenderdagAmsterdam / vandaagAmsterdam / dagVerschil / kalenderdagMinDagen:
 //    alle datumvergelijkingen gebeuren nu op kalenderdagen in Europe/Amsterdam.
-//    Zonder deze fix werd een evenement van vandaag (opgeslagen als
-//    2026-10-17T00:00:00Z) in een UTC-runner als "na vandaag" gezien.
 //  - binnenLeeftijdsgrens heeft nu ook een bovengrens: datums in de toekomst
-//    worden geweigerd, ook als ze verder dan 1 dag vooruit liggen.
+//    worden geweigerd.
 //  - binnenAgendaVenster vergelijkt kalenderdagen i.p.v. tijdstippen.
 //  - paginaVoorbij: bij een oplopende agenda kijkt de check nu naar de EERSTE
-//    datum op de pagina (niet de laatste). Zonder deze fix stopte een
-//    oplopende agenda (zoals Waarheen) al na de eerste pagina.
-//  - volgPaginas logt de datumverdeling per kalenderdag in plaats van alleen
-//    eerste en laatste datum.
+//    datum op de pagina (niet de laatste).
+//  - volgPaginas logt de datumverdeling per kalenderdag.
 //  - parseerRssTekst logt de kalenderdag-verdeling van de feed.
 //  - vulBerichtenAanMetTekst zet per bericht tekstBron ("artikel" of "lijst").
-//    De statistiek telt alleen "artikel" nog als "met tekst".
+//
+// Sinds de "datum-en-debug"-ronde (2026-10-17):
+//  - haalDatumUitTekst herkent nu ook DD-MM-YYYY / DD/MM/YYYY / DD.MM.YYYY,
+//    zodat teksten als "Geldend van 16-10-2026 t/m heden" wel worden geparsed.
+//    Zonder deze fix gaf wetenregelgeving alle 50 items een lege datum.
+//  - Optionele debug-logging via DEBUG_DATUM=1: logt per datum-parse welke
+//    tekst welke datum oplevert. Handig om te controleren of de extractie
+//    klopt zonder de hele run te vervuilen.
 
 const cheerio = require("cheerio");
 const Parser = require("rss-parser");
@@ -62,11 +42,15 @@ const GEBRUIKERSAGENT =
 const TZ = "Europe/Amsterdam";
 const MAX_LEEFTIJD_DAGEN = 1;
 
+function debugDatum() {
+  const v = process.env.DEBUG_DATUM;
+  return v === "1" || v === "ja" || v === "true";
+}
+
 // ---------------------------------------------------------------------------
 // Kalenderdag-helpers (Amsterdam)
 // ---------------------------------------------------------------------------
 
-/** Geeft de kalenderdag (YYYY-MM-DD) van een ISO-tijdstip in Amsterdam. */
 function kalenderdagAmsterdam(iso) {
   if (!iso) return null;
   const d = new Date(iso);
@@ -74,15 +58,10 @@ function kalenderdagAmsterdam(iso) {
   return d.toLocaleDateString("sv-SE", { timeZone: TZ });
 }
 
-/** Geeft de kalenderdag van vandaag in Amsterdam. */
 function vandaagAmsterdam() {
   return new Date().toLocaleDateString("sv-SE", { timeZone: TZ });
 }
 
-/**
- * Verschil in kalenderdagen: positief als totDag na vanDag ligt.
- * 0 = zelfde dag, 1 = totDag is één dag later, -1 = totDag is één dag eerder.
- */
 function dagVerschil(vanDag, totDag) {
   if (!vanDag || !totDag) return null;
   const a = new Date(vanDag + "T00:00:00Z").getTime();
@@ -90,7 +69,6 @@ function dagVerschil(vanDag, totDag) {
   return Math.round((b - a) / (24 * 60 * 60 * 1000));
 }
 
-/** Geeft de kalenderdag die `dagen` dagen vóór vandaag ligt (Amsterdam). */
 function kalenderdagMinDagen(dagen) {
   const vandaag = vandaagAmsterdam();
   const d = new Date(vandaag + "T12:00:00Z");
@@ -289,21 +267,46 @@ const MAAND_ALLES = `${MAANDEN_LANG}|jan|feb|mrt|apr|jun|jul|aug|sept?|okt|nov|d
 
 function haalDatumUitTekst(tekst, opties = {}) {
   if (!tekst) return null;
+  const bronTekst = typeof tekst === "string" ? tekst : String(tekst);
 
-  const iso = tekst.match(/(?<!\d)(\d{4})-(\d{2})-(\d{2})(?!\d)/);
+  // 1. ISO: YYYY-MM-DD
+  const iso = bronTekst.match(/(?<!\d)(\d{4})-(\d{2})-(\d{2})(?!\d)/);
   if (iso) {
     const d = new Date(`${iso[1]}-${iso[2]}-${iso[3]}T00:00:00`);
-    if (!isNaN(d.getTime())) return d.toISOString();
+    if (!isNaN(d.getTime())) {
+      if (debugDatum()) console.log(`[datum] ISO "${iso[0]}" → ${d.toISOString().slice(0, 10)}`);
+      return d.toISOString();
+    }
   }
 
-  const nl = tekst.match(new RegExp(`(?<!\\d)(\\d{1,2})\\s+(${MAANDEN_LANG})\\s+(\\d{4})(?!\\d)`, "i"));
+  // 2. DMY: DD-MM-YYYY / DD/MM/YYYY / DD.MM.YYYY (Nederlandse notatie)
+  //    NIEUW: nodig voor teksten als "Geldend van 16-10-2026 t/m heden".
+  //    We pakken de EERSTE match; dat is bij "geldend van X t/m Y" de
+  //    ingangsdatum, wat de relevante datum is.
+  const dmj = bronTekst.match(/(?<!\d)(\d{1,2})[-/.](\d{1,2})[-/.](\d{4})(?!\d)/);
+  if (dmj) {
+    const dag = Number(dmj[1]);
+    const maand = Number(dmj[2]) - 1;
+    const jaar = Number(dmj[3]);
+    const d = new Date(jaar, maand, dag);
+    if (!isNaN(d.getTime()) && d.getMonth() === maand && d.getDate() === dag) {
+      if (debugDatum()) console.log(`[datum] DMY "${dmj[0]}" → ${d.toISOString().slice(0, 10)}`);
+      return d.toISOString();
+    }
+  }
+
+  // 3. Nederlandse maandnaam: "16 oktober 2026"
+  const nl = bronTekst.match(new RegExp(`(?<!\\d)(\\d{1,2})\\s+(${MAANDEN_LANG})\\s+(\\d{4})(?!\\d)`, "i"));
   if (nl) {
     const maand = NEDERLANDSE_MAANDEN[nl[2].toLowerCase()];
     const d = new Date(Number(nl[3]), maand, Number(nl[1]));
-    if (!isNaN(d.getTime())) return d.toISOString();
+    if (!isNaN(d.getTime())) {
+      if (debugDatum()) console.log(`[datum] NL "${nl[0]}" → ${d.toISOString().slice(0, 10)}`);
+      return d.toISOString();
+    }
   }
 
-  if (opties.zonderJaar) return haalDatumZonderJaar(tekst, opties.nu);
+  if (opties.zonderJaar) return haalDatumZonderJaar(bronTekst, opties.nu);
   return null;
 }
 
@@ -389,10 +392,22 @@ function leesDatumEnEinde(kandidaten, opties = {}) {
     if (!tekst) continue;
     if (opties.zonderJaar) {
       const bereik = haalDatumBereik(tekst, opties);
-      if (bereik) return bereik;
+      if (bereik) {
+        if (debugDatum()) console.log(`[datum] bereik (${modus}): "${String(tekst).slice(0, 80)}" → ${bereik.start} t/m ${bereik.eind || "(geen eind)"}`);
+        return bereik;
+      }
     }
     const datum = modus === "streng" ? parseerDatumTekst(tekst, opties) : haalDatumUitTekst(tekst, opties);
-    if (datum) return { start: datum, eind: null };
+    if (datum) {
+      if (debugDatum()) console.log(`[datum] match (${modus}): "${String(tekst).slice(0, 80)}" → ${datum.slice(0, 10)}`);
+      return { start: datum, eind: null };
+    }
+  }
+  if (debugDatum()) {
+    const overzicht = kandidaten
+      .map(([t, m]) => `${m}:${JSON.stringify(String(t || "").slice(0, 50))}`)
+      .join(" | ");
+    console.log(`[datum] geen match in kandidaten: ${overzicht}`);
   }
   return { start: null, eind: null };
 }
@@ -720,18 +735,6 @@ function beschrijfDatumVerdeling(berichten) {
   return `${eerste[0]} (${eerste[1]}x) t/m ${laatste[0]} (${laatste[1]}x)`;
 }
 
-/**
- * Bepaalt of de scraper mag stoppen met pagineren.
- *
- * Agenda (oplopend): stop als de EERSTE datum op de pagina na vandaag ligt.
- *   Een oplopende agenda loopt van oud naar nieuw; de eerste datum is de
- *   oudste. Ligt die al in de toekomst, dan is de hele rest van de agenda
- *   ook toekomst en valt niets meer in het venster.
- * Agenda (aflopend): stop als de LAATSTE datum op de pagina vóór vandaag
- *   ligt. Bij een aflopende agenda is de laatste datum de oudste; ligt die
- *   in het verleden, dan is de rest van de agenda nog ouder.
- * Nieuws: stop als de LAATSTE datum op de pagina ouder is dan het venster.
- */
 function paginaVoorbij(bron, paginaBerichten, nu = Date.now()) {
   const metDatum = paginaBerichten.filter((b) => tijdVan(b.gepubliceerdOp) !== null);
   if (metDatum.length === 0) return "geen enkel bericht op deze pagina heeft een datum (zulke berichten worden toch geweerd)";
@@ -761,7 +764,6 @@ function paginaVoorbij(bron, paginaBerichten, nu = Date.now()) {
 }
 
 function vindVolgendePagina($, paginaUrl, huidigNummer, paginering) {
-  // Expliciete "geen paginering". De scraper leest dan alleen pagina 1.
   if (paginering && paginering.soort === "geen") return null;
 
   const absoluut = (href) => {
@@ -906,8 +908,6 @@ const ARTIKEL_INHOUD_SELECTORS = [
   ".article-body",
   ".node__content",
   ".content-main",
-  ".rnl-detail-uitspraaktekst--content",
-  ".uitspraak",
   "article",
   '[role="main"]',
   "main",
