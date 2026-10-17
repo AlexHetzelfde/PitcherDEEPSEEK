@@ -4,6 +4,11 @@
 //
 // Sinds de "schone tekst"-ronde (2026-10-13): "detailSelector" wordt
 // gevalideerd als geldige CSS-selector (of null/weggelaten).
+//
+// Sinds de "id-titels-en-bronkwaliteit"-ronde (2026-10-16):
+//  - paginering.soort "geen" wordt geaccepteerd: bronnen die alleen pagina 1
+//    willen lezen (zoals wetenregelgeving) kunnen dat expliciet aangeven.
+//    Zonder deze toevoeging faalde valideer-bronnen.js op die configuratie.
 
 const cheerio = require("cheerio");
 const bronnen = require("./bronnen");
@@ -104,8 +109,11 @@ function valideerBronnen(lijst) {
         if (typeof p.patroon !== "string" || !p.patroon.includes("{n}")) fouten.push(`${label}: paginering.patroon moet de tekst {n} bevatten (de plek van het paginanummer).`);
       } else if (p.soort === "volgende-link") {
         if (typeof p.selector !== "string" || !geldigeCssSelector(p.selector)) fouten.push(`${label}: paginering.selector is geen geldige CSS-selector.`);
+      } else if (p.soort === "geen") {
+        // Expliciet "geen paginering": niets te valideren. De scraper leest
+        // dan alleen de eerste pagina.
       } else {
-        fouten.push(`${label}: paginering.soort "${p.soort}" bestaat niet (kies patroon of volgende-link).`);
+        fouten.push(`${label}: paginering.soort "${p.soort}" bestaat niet (kies patroon, volgende-link of geen).`);
       }
     }
     if (bron.soort !== undefined && bron.soort !== "agenda") {
