@@ -17,12 +17,12 @@
 //  - De timeout in haalOpEcht dekt nu ook het lezen van de body.
 //
 // Sinds de "id-titels-en-bronkwaliteit"-ronde (2026-10-16):
-//  - kiesRssTitel: als een RSS-item een ID-achtige titel heeft (zoals
-//    "gmb-2026-485069 : Zaanstad" in de KOOP-feed), wordt de leesbare titel
-//    uit de description of content gehaald. Zonder deze stap gaat de AI met
-//    een nietszeggend ID naar de beoordeling.
+//  - kiesRssTitel: als een RSS-item een ID-achtige titel heeft, wordt de
+//    leesbare titel uit de description gehaald.
 //  - titelIsId + ID_TITEL_PATROON: gedeelde detectie, ook gebruikt door
-//    bron-poort.js om nieuwe bronnen met dit probleem af te keuren.
+//    bron-poort.js.
+//  - vindVolgendePagina geeft null terug bij paginering.soort "geen", zodat
+//    een bron als wetenregelgeving alleen pagina 1 leest.
 
 const cheerio = require("cheerio");
 const Parser = require("rss-parser");
@@ -59,9 +59,6 @@ function binnenLeeftijdsgrens(gepubliceerdOpIso) {
 const AGENDA_MAX_VERLEDEN_DAGEN = 0;
 const AGENDA_MAX_VOORUIT_DAGEN = 0;
 
-/**
- * Is het bericht een evenement dat vandaag begint? Alleen de startdag telt.
- */
 function binnenAgendaVenster(gepubliceerdOpIso, eindDatumIso) {
   if (!gepubliceerdOpIso) return false;
   const start = new Date(gepubliceerdOpIso).getTime();
@@ -370,8 +367,6 @@ async function haalOpEcht(url, pogingen = 3, opties = {}) {
     try {
       const controller = new AbortController();
       const timeoutId = setTimeout(() => controller.abort(), timeoutMs);
-      // clearTimeout staat in een finally, zodat de timeout ook het lezen van
-      // de body dekt. Voorheen werd hij direct na fetch() gewist.
       try {
         const fetchOpties = { headers: standaardHeaders, signal: controller.signal };
         if (dispatcher) fetchOpties.dispatcher = dispatcher;
@@ -534,13 +529,6 @@ function haalFotoUitItem($, el, fotoSelector, fotoAttribuut, baseUrl) {
   return null;
 }
 
-/**
- * Titels die eigenlijk een ID zijn, zoals de titel van een bekendmaking in
- * de KOOP-RSS ("gmb-2026-485069 : Zaanstad") of een ECLI-nummer van de
- * rechtspraak ("ECLI:NL:RBNHO:2026:9200"). Zulke titels zijn onbruikbaar
- * voor de AI: er valt niets uit af te leiden. Wordt hergebruikt in
- * bron-poort.js om nieuwe bronnen met dit probleem af te keuren.
- */
 const ID_TITEL_PATROON = /^(?:[a-z]{2,5}-\d{4}-\d+\s*[:\-].*|[a-z]{2,5}-\d{4}-\d+|ECLI:[A-Z]{2}:[A-Z]+:\d{4}:\d+)$/i;
 
 function titelIsId(titel) {
@@ -550,14 +538,6 @@ function titelIsId(titel) {
   return ID_TITEL_PATROON.test(t);
 }
 
-/**
- * Kiest de beste titel voor een RSS-item. Als de RSS-titel een ID is (zoals
- * bij officielebekendmakingen: "gmb-2026-485069 : Zaanstad"), probeert deze
- * functie een leesbare titel te vinden in de description, summary of content.
- * Het ID-voorvoegsel wordt van het begin gestript. Lukt dat niet, dan blijft
- * de originele titel staan; bron-poort.js waarschuwt dan dat de AI alleen
- * een ID ziet.
- */
 function kiesRssTitel(item) {
   const titel = (item.title || "").trim();
   if (!titelIsId(titel)) return titel;
@@ -643,6 +623,11 @@ function paginaVoorbij(bron, paginaBerichten, nu = Date.now()) {
 }
 
 function vindVolgendePagina($, paginaUrl, huidigNummer, paginering) {
+  // NIEUW: expliciete "geen paginering". De scraper leest dan alleen pagina 1.
+  // Zonder deze regel zou de generieke detectie hieronder alsnog een "page=2"-
+  // link vinden en alle pagina's ophalen.
+  if (paginering && paginering.soort === "geen") return null;
+
   const absoluut = (href) => {
     try {
       const u = new URL(href, paginaUrl);
@@ -896,12 +881,6 @@ function hostVan(url) {
   }
 }
 
-/**
- * Vult tekst en foto aan op de bericht-objecten. BELANGRIJK: mutaties worden
- * op de originele objecten gedaan, niet op een kopie. De aanroeper mag geen
- * kopie meer maken; de detailSelector komt via de optie detailSelectorVoor
- * binnen, een callback die per bericht de selector van de bron ophaalt.
- */
 async function vulBerichtenAanMetTekst(berichten, opties = {}) {
   const {
     nietOphalen = () => false,
