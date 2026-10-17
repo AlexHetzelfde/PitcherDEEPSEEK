@@ -2,20 +2,11 @@
 //
 // Zelfherstel voor bronnen die niets meer opleveren.
 //
-// Sinds de "schone tekst"-ronde (2026-10-13): de bestaande detailSelector van
-// een bron wordt doorgegeven aan ontdekBron, zodat het veld behouden blijft
-// bij het opnieuw uitzoeken van de bron.
-//
-// Sinds de "eerlijke-pipeline"-ronde (2026-10-15):
-//  - De "leeg"-trigger gebruikt dezelfde rustig-drempel als de venster-trigger.
-//    Zonder die aanpassing ging een rustige bron (met rustig: true, drempel
-//    14) al na 2 lege runs naar herstel, ook al was dat verwacht gedrag.
-//  - Agenda-bronnen worden nooit meer getriggerd op "niets vandaag". Dat is
-//    normaal (rustige dag, geen evenement) en werd eerder als kapot gezien.
-//    Een agenda-scraper die écht niets meer vindt, valt wel onder de
-//    "leeg"-trigger hierboven.
-//  - De tekst "maximaal 7 dagen oud" gebruikte een hardcoded getal, terwijl
-//    MAX_LEEFTIJD_DAGEN 1 is. Nu wordt de constante gebruikt.
+// Sinds de "tijdzone-en-logica"-ronde (2026-10-17):
+//  - Rustige bronnen (rustig: true) worden niet meer getriggerd op "venster".
+//    Dat is verwacht gedrag (een rustige bron publiceert nu eenmaal weinig),
+//    en leidde tot een groeiende backlog aan open issues. Rustige bronnen
+//    worden alleen nog op "leeg" gecontroleerd (de scraper vindt niets meer).
 
 const { execFileSync } = require("child_process");
 const fs = require("fs/promises");
@@ -54,13 +45,6 @@ async function leesGezondheid() {
 const aantalLeeg = (gezondheid, id) => (gezondheid[id] && gezondheid[id].opeenvolgendGeenBerichten) || 0;
 const aantalGeenVenster = (gezondheid, id) => (gezondheid[id] && gezondheid[id].opeenvolgendGeenBinnenVenster) || 0;
 
-/**
- * Bepaalt of een bron in aanmerking komt voor herstel.
- *  - "leeg": de scraper vindt al N dagen geen enkel bericht meer.
- *  - "venster": de scraper vindt wel berichten, maar geen enkel binnen het
- *    leeftijdsvenster. Alleen voor nieuws-bronnen; voor agenda-bronnen is
- *    "niets vandaag" normaal en wordt hier niets gemeld.
- */
 function aanleidingVoor(gezondheid, bron) {
   const leeg = aantalLeeg(gezondheid, bron.id);
   const drempelLeeg = bron.rustig ? MIN_DAGEN_RUSTIG : MIN_DAGEN;
@@ -70,9 +54,12 @@ function aanleidingVoor(gezondheid, bron) {
   // die écht niets meer vindt, valt wel onder de "leeg"-trigger hierboven.
   if (bron.soort === "agenda") return null;
 
+  // Rustige bronnen niet triggeren op "venster": dat is verwacht gedrag.
+  if (bron.rustig) return null;
+
   const laatste = gezondheid[bron.id];
   const geenVenster = aantalGeenVenster(gezondheid, bron.id);
-  const drempel = bron.rustig ? MIN_DAGEN_RUSTIG : MIN_DAGEN;
+  const drempel = MIN_DAGEN;
   if (laatste && laatste.gevonden > 0 && laatste.binnenVenster === 0 && geenVenster >= drempel) return { soort: "venster", aantal: geenVenster };
   return null;
 }
@@ -84,7 +71,7 @@ function aanleidingTekst(bron, aanleiding, gezondheid) {
       bron.soort === "agenda"
         ? "agenda-venster"
         : `leeftijdsvenster (maximaal ${MAX_LEEFTIJD_DAGEN} dag(en) oud)`;
-    return `leverde de laatste ${aanleiding.aantal} run(s) achter elkaar wel berichten op (${gevonden} in de laatste run), maar geen enkel bericht binnen het ${venster}${bron.rustig ? " (een rustige bron, daarom pas na een ruimere drempel gemeld)" : ""}`;
+    return `leverde de laatste ${aanleiding.aantal} run(s) achter elkaar wel berichten op (${gevonden} in de laatste run), maar geen enkel bericht binnen het ${venster}`;
   }
   return `leverde ${aanleiding.aantal} run(s) achter elkaar geen enkel bericht op`;
 }
@@ -105,10 +92,9 @@ function kiesDoelen(gezondheid, geforceerd) {
     const doelen = bronnen.filter(
       (b) =>
         aantalLeeg(gezondheid, b.id) >= 1 ||
-        (gezondheid[b.id] && gezondheid[b.id].gevonden > 0 && gezondheid[b.id].binnenVenster === 0)
+        (gezondheid[b.id] && gezondheid[b.id].gevonden > 0 && gezondheid[b.id].binnenVenster === 0 && !b.rustig)
     );
     doelen.forEach((b) => {
-      const g = gezondheid[b.id];
       aanleidingen[b.id] =
         aantalLeeg(gezondheid, b.id) >= 1
           ? { soort: "leeg", aantal: aantalLeeg(gezondheid, b.id) }
