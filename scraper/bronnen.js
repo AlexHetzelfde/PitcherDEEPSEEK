@@ -240,4 +240,25 @@ module.exports = [
       fotoAttribuut: null,
     },
   },
+  {
+    id: "DeOrkaan",
+    naam: "DeOrkaan",
+    categorie: "lokaal",
+    type: "gemini-recept",
+    url: "https://www.deorkaan.nl/",
+    selectors: {
+      itemSelector: ".home-article-grid > div",
+      titelSelector: "h3 a",
+      linkSelector: "h3 a",
+      datumSelector: ".text-gray-500",
+      datumAttribuut: null,
+      samenvattingSelector: "p.text-sm",
+      fotoSelector: "img.post-thumb",
+      fotoAttribuut: "src",
+    },
+    paginering: {
+      soort: "patroon",
+      patroon: "https://www.deorkaan.nl/page/{n}/",
+    },
+  },
 ];
