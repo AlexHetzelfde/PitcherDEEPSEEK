@@ -1,21 +1,18 @@
 // index.js — hoofdscript van de dagelijkse run
 //
-// Sinds de "tijdzone-en-logica"-ronde (2026-10-17):
-//  - nietInToekomst is de ENIGE feed-filter. Nieuwe items mogen ouder zijn
-//    dan 1 dag; de cap van FEED_MAX_ITEMS (800) gooit de oudste eruit.
-//    Zonder deze keuze (strategie B) groeide de feed nooit, omdat de
-//    venster-filter en de cap elkaar tegenwerkten.
-//  - FEED_MAX_ITEMS staat op 800.
-//  - GEEN_TEKSTOPHAAL_BRONNEN: OmgevingsdienstNHN geeft 403.
-//  - logBronOverzicht toont voor iBabs-bronnen een aparte melding.
-//  - Bijdragetabel in de step summary.
+// Sinds de "gradatie-en-bewijs-zonder-labels"-ronde (2026-10-21):
+//  - Filter stap 7: gradatie + citaat + codescore in plaats van ja/nee.
+//  - Stap 8: filtert op DREMPEL (uit nieuwscriteria.js) en op centraleVraag.
+//  - Geen ranking-call meer: stelPitchesSamen sorteert op codescore.
+//  - Geen AI-invoer-log meer: de redacteur beoordeelt zelf de pitches.
 
 const fs = require("fs/promises");
 const path = require("path");
 
 const bronnen = require("./bronnen");
 const { scraperVoorType } = require("./scraper-register");
-const { beoordeelBerichten, rangschikPitches } = require("./gemini");
+const { beoordeelBerichten, PROMPT_VERSIE, MODELLEN } = require("./gemini");
+const { DREMPEL, MAX_SCORE_LOKAAL, MAX_SCORE_LANDELIJK } = require("./nieuwscriteria");
 const {
   binnenVenster,
   MAX_LEEFTIJD_DAGEN,
@@ -156,7 +153,7 @@ async function werkBronGezondheidBij({ gevondenPerBron, overPerBron }) {
   try {
     vorige = JSON.parse(await fs.readFile(GEZONDHEID_BESTAND, "utf-8"));
   } catch {
-    /* eerste run */
+    // eerste run
   }
 
   const vandaag = kalenderdag(new Date().toISOString());
@@ -263,10 +260,6 @@ function kortAfTekst(tekst, max) {
   return `${(laatsteSpatie > max - 40 ? stuk.slice(0, laatsteSpatie) : stuk).trim()}…`;
 }
 
-// De ENIGE feed-filter. Zowel bestaande als nieuwe items: alleen toekomst
-// eruit. De cap van FEED_MAX_ITEMS gooit de oudste eruit. Nieuwe items mogen
-// dus ouder zijn dan 1 dag — dat is de "strategie B" die de eigenaar heeft
-// gekozen: nieuwste erin, oudste eruit.
 function nietInToekomst(iso) {
   if (!iso) return false;
   const dag = kalenderdagAmsterdam(iso);
@@ -321,7 +314,7 @@ async function werkFeedBij(berichten, bronPerId) {
     const inhoud = JSON.parse(await fs.readFile(feedPad, "utf-8"));
     if (Array.isArray(inhoud)) bestaand = inhoud;
   } catch {
-    /* eerste run, of ongeldig bestand: begin met leeg */
+    // eerste run, of ongeldig bestand: begin met leeg
   }
 
   let soortGecorrigeerd = 0;
@@ -348,8 +341,6 @@ async function werkFeedBij(berichten, bronPerId) {
     return Object.keys(wijzigingen).length === 0 ? item : { ...item, ...wijzigingen };
   });
 
-  // BESTAANDE items: alleen toekomst eruit. Oude items blijven staan tot de
-  // cap van FEED_MAX_ITEMS ze eruit gooit.
   const voorToekomst = bestaand.length;
   bestaand = bestaand.filter((b) => nietInToekomst(b.gepubliceerdOp));
   const uitToekomst = voorToekomst - bestaand.length;
@@ -359,7 +350,6 @@ async function werkFeedBij(berichten, bronPerId) {
   const overgeslagen = { buitenVenster: 0 };
   for (const b of berichten) {
     if (!b.url || bestaandeUrls.has(b.url)) continue;
-    // NIEUWE items: ook alleen toekomst eruit. De cap gooit de oudste eruit.
     if (!nietInToekomst(b.gepubliceerdOp)) {
       overgeslagen.buitenVenster++;
       continue;
@@ -394,12 +384,12 @@ async function werkFeedBij(berichten, bronPerId) {
 
   await schrijfJson("feed.json", gecapt);
   console.log(
-    `Feed bijgewerkt: ${nieuw.length} nieuw, ` +
-      `${uitToekomst > 0 ? `${uitToekomst} uit de toekomst gefilterd, ` : ""}` +
-      `${overgeslagen.buitenVenster > 0 ? `${overgeslagen.buitenVenster} in de toekomst overgeslagen, ` : ""}` +
-      `${gecapt.length} in de feed` +
-      `${verwijderd > 0 ? `, ${verwijderd} oudste verwijderd (cap = ${FEED_MAX_ITEMS})` : ""}` +
-      `, ${metFoto} met foto.`
+    `Feed bijgewerkt: ${nieuw.length} nieuw, `
+      + `${uitToekomst > 0 ? `${uitToekomst} uit de toekomst gefilterd, ` : ""}`
+      + `${overgeslagen.buitenVenster > 0 ? `${overgeslagen.buitenVenster} in de toekomst overgeslagen, ` : ""}`
+      + `${gecapt.length} in de feed`
+      + `${verwijderd > 0 ? `, ${verwijderd} oudste verwijderd (cap = ${FEED_MAX_ITEMS})` : ""}`
+      + `, ${metFoto} met foto.`
   );
   if (soortGecorrigeerd > 0) {
     console.log(`  waarvan ${soortGecorrigeerd} bestaand(e) item(s) met een gecorrigeerde soort-vlag.`);
@@ -412,9 +402,9 @@ async function werkFeedBij(berichten, bronPerId) {
   }
 }
 
-function prioriteitVan(bericht) {
-  const p = bericht.aiBeoordeling && bericht.aiBeoordeling.prioriteit;
-  return Number.isInteger(p) && p >= 1 && p <= 10 ? p : 0;
+function scoreVan(bericht) {
+  const score = bericht.aiBeoordeling && bericht.aiBeoordeling.score;
+  return typeof score === "number" ? score : 0;
 }
 
 function sorteerOpDatum(berichten, bronPerId) {
@@ -448,11 +438,13 @@ function sorteerOpDatum(berichten, bronPerId) {
 
 function stelPitchesSamen(kansrijkeLokaal, kansrijkLandelijk, aantal) {
   const gecombineerd = [...kansrijkeLokaal, ...kansrijkLandelijk];
-  const zonderPrioriteit = gecombineerd.filter((b) => prioriteitVan(b) === 0);
-  if (zonderPrioriteit.length > 0) {
-    console.warn(`${zonderPrioriteit.length} kansrijk(e) bericht(en) zonder geldige prioriteit; die komen onderaan de pitchlijst.`);
+  const zonderScore = gecombineerd.filter((b) => scoreVan(b) === 0);
+  if (zonderScore.length > 0) {
+    console.warn(`${zonderScore.length} kansrijk(e) bericht(en) zonder geldige score; die komen onderaan de pitchlijst.`);
   }
-  return gecombineerd.sort((a, b) => prioriteitVan(b) - prioriteitVan(a)).slice(0, aantal);
+  return gecombineerd
+    .sort((a, b) => scoreVan(b) - scoreVan(a))
+    .slice(0, aantal);
 }
 
 function schrijfBijdrageTabel({ gevondenPerBron, overPerBron, kansrijkPerBron }) {
@@ -471,9 +463,9 @@ function schrijfBijdrageTabel({ gevondenPerBron, overPerBron, kansrijkPerBron })
     regels.push(`| ${bron.id} | ${g} | ${o} | ${k} |`);
   }
   try {
-    require("fs").appendFileSync(pad, regels.join("\n") + "\n");
+    require("fs").appendFileSync(pad, `${regels.join("\n")}\n`);
   } catch {
-    /* samenvatting is een extraatje */
+    // samenvatting is een extraatje
   }
 }
 
@@ -481,13 +473,16 @@ async function main() {
   const startRun = Date.now();
   console.log(`Start dagelijkse run: ${new Date().toISOString()}`);
   console.log(`Instellingen: dagcap=${DAGCAP_GEMINI}/lijst, pitches=${AANTAL_PITCHES}, feedcap=${FEED_MAX_ITEMS}`);
+  console.log(`Promptversie: ${PROMPT_VERSIE}`);
+  console.log(`Modellen: filter=${MODELLEN.filter[0]}, pitch=${MODELLEN.pitch[0]}, sterker=${MODELLEN.sterker[0]}`);
+  console.log(`Drempels: lokaal=${DREMPEL.lokaal}/${MAX_SCORE_LOKAAL}, landelijk=${DREMPEL.landelijk}/${MAX_SCORE_LANDELIJK}`);
   console.log(`Tijdzone: ${process.env.TZ || "(systeemstandaard)"} → lokale tijd ${new Date().toLocaleString("nl-NL")}`);
 
   const apiKey = process.env.GEMINI_API_KEY;
   if (!apiKey) {
     console.warn(
-      "GEMINI_API_KEY is niet gezet — het scrapen en sorteren draaien gewoon door, " +
-        "maar er worden geen AI-beoordelingen/pitches gegenereerd."
+      "GEMINI_API_KEY is niet gezet — het scrapen en sorteren draaien gewoon door, "
+        + "maar er worden geen AI-beoordelingen/pitches gegenereerd."
     );
   }
 
@@ -522,9 +517,6 @@ async function main() {
 
   logFase("STAP 2 — Bepalen welke berichten tekst en foto nodig hebben");
   const feedUrls = await leesFeedUrls();
-  // Strategie B: nieuwe items mogen ouder zijn dan 1 dag. We verrijken alles
-  // wat nog niet in de feed staat (en niet in de toekomst ligt), niet alleen
-  // wat binnen het pitch-venster valt.
   const teVerrijken = alleBerichten.filter((b) => {
     if (feedUrls.has(b.url)) return false;
     return nietInToekomst(b.gepubliceerdOp);
@@ -537,8 +529,8 @@ async function main() {
   try {
     const { perBron } = await vulBerichtenAanMetTekst(teVerrijken, {
       nietOphalen: (b) =>
-        GEEN_TEKSTOPHAAL_TYPES.has(bronPerId[b.bronId] && bronPerId[b.bronId].type) ||
-        GEEN_TEKSTOPHAAL_BRONNEN.has(b.bronId),
+        GEEN_TEKSTOPHAAL_TYPES.has(bronPerId[b.bronId] && bronPerId[b.bronId].type)
+        || GEEN_TEKSTOPHAAL_BRONNEN.has(b.bronId),
       detailSelectorVoor: (b) => {
         const bron = bronPerId[b.bronId];
         return bron && bron.detailSelector ? bron.detailSelector : null;
@@ -598,42 +590,42 @@ async function main() {
   await schrijfJson("nieuws-lokaal.json", lokaalBeoordeeld);
   await schrijfJson("nieuws-landelijk.json", landelijkBeoordeeld);
 
-  logFase("STAP 8 — Pitches rangschikken");
-  const kansrijkeLokaal = lokaalBeoordeeld.filter((b) => b.aiBeoordeling?.oppakbaar === "ja");
-  const kansrijkLandelijk = landelijkBeoordeeld.filter((b) => b.aiBeoordeling?.lokaleInvalshoek === "ja");
+  logFase("STAP 8 — Pitches samenstellen op codescore");
+  const kansrijkeLokaal = lokaalBeoordeeld.filter(
+    (b) => scoreVan(b) >= DREMPEL.lokaal && b.aiBeoordeling && b.aiBeoordeling.centraleVraag
+  );
+  const kansrijkLandelijk = landelijkBeoordeeld.filter(
+    (b) => scoreVan(b) >= DREMPEL.landelijk && b.aiBeoordeling && b.aiBeoordeling.centraleVraag
+  );
   const alleKansrijke = [...kansrijkeLokaal, ...kansrijkLandelijk];
   console.log(`Kansrijke berichten: ${kansrijkeLokaal.length} lokaal, ${kansrijkLandelijk.length} landelijk (${alleKansrijke.length} totaal).`);
 
-  let alleKansrijkeMetScore = alleKansrijke;
-  try {
-    alleKansrijkeMetScore = await rangschikPitches(alleKansrijke, apiKey);
-  } catch (fout) {
-    console.error(`Rangschikken mislukte onverwacht (pitches houden prioriteit null): ${fout.message}${oorzaakTekst(fout)}`);
-  }
-
-  const scorePerUrl = new Map(alleKansrijkeMetScore.map((b) => [b.url, b.aiBeoordeling?.prioriteit ?? null]));
-  const metScoreTerug = (lijst) => lijst.map((b) => scorePerUrl.has(b.url) ? { ...b, aiBeoordeling: { ...(b.aiBeoordeling || {}), prioriteit: scorePerUrl.get(b.url) } } : b);
-  await schrijfJson("nieuws-lokaal.json", metScoreTerug(lokaalBeoordeeld));
-  await schrijfJson("nieuws-landelijk.json", metScoreTerug(landelijkBeoordeeld));
-
-  logFase("STAP 9 — Top pitches samenstellen");
   const topPitches = stelPitchesSamen(
-    alleKansrijkeMetScore.filter((b) => b.categorie === "lokaal"),
-    alleKansrijkeMetScore.filter((b) => b.categorie === "landelijk"),
+    alleKansrijke.filter((b) => b.categorie === "lokaal"),
+    alleKansrijke.filter((b) => b.categorie === "landelijk"),
     AANTAL_PITCHES
   );
 
   await schrijfJson("pitches.json", {
     gegenereerdOp: new Date().toISOString(),
+    promptVersie: PROMPT_VERSIE,
     aantalBerichtenTotaal: berichtenVanVandaag.length,
+    drempels: {
+      lokaal: DREMPEL.lokaal,
+      landelijk: DREMPEL.landelijk,
+      maxLokaal: MAX_SCORE_LOKAAL,
+      maxLandelijk: MAX_SCORE_LANDELIJK,
+    },
     topPitches,
   });
 
   console.log(`Pitches: ${topPitches.length} van ${alleKansrijke.length} kansrijke bericht(en) opgenomen (top ${AANTAL_PITCHES}).`);
   if (topPitches.length > 0) {
-    const scores = topPitches.map((p) => prioriteitVan(p)).filter((s) => s > 0);
+    const scores = topPitches.map((p) => scoreVan(p)).filter((s) => s > 0);
     if (scores.length > 0) {
-      console.log(`Scores in top ${topPitches.length}: min ${Math.min(...scores)}, max ${Math.max(...scores)}, gemiddeld ${(scores.reduce((a, b) => a + b, 0) / scores.length).toFixed(1)}.`);
+      console.log(
+        `Scores in top ${topPitches.length}: min ${Math.min(...scores)}, max ${Math.max(...scores)}, gemiddeld ${(scores.reduce((a, b) => a + b, 0) / scores.length).toFixed(1)}.`
+      );
     }
   }
 
