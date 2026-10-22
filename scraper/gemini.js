@@ -31,9 +31,9 @@ const PROMPT_VERSIE = "2026-10-22-pitch-vier-velden";
 
 // Afspraak 18: hetzelfde model als nu, met dezelfde fallback-keten.
 const MODELLEN = {
-  filter: ["gemini-flash-lite-latest", "gemini-flash-latest", "gemini-pro-latest"],
-  pitch: ["gemini-flash-lite-latest", "gemini-flash-latest", "gemini-pro-latest"],
-  sterker: ["gemini-flash-latest", "gemini-pro-latest"],
+  filter: ["gemini-flash-latest"],
+  pitch: ["gemini-flash-latest"],
+  sterker: ["gemini-flash-latest"],
 };
 
 const MAX_OUTPUT_TOKENS = 2048;
