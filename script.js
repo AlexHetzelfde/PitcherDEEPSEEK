@@ -1,22 +1,16 @@
 // script.js — front-end logica
 //
-// Deze pagina leest vier statische JSON-bestanden die de GitHub Actions-
-// workflow elke avond ververst: data/pitches.json, data/feed.json,
-// data/nieuws-lokaal.json en data/nieuws-landelijk.json. Geen backend nodig —
-// alles is een simpele fetch() naar bestanden in dezelfde repo.
+// Leest vier statische JSON-bestanden die de GitHub Actions-workflow elke
+// avond ververst: data/pitches.json, data/feed.json, data/nieuws-lokaal.json
+// en data/nieuws-landelijk.json.
 //
-// Sinds de nieuwe pitch-structuur (op basis van het Basisboek journalistiek
-// schrijven) toont een pitch-kaart nu: invalshoek, researchvraag, bronnen en
-// prioriteit.
-//
-// Sinds de "eerlijke-pipeline"-ronde (2026-10-15):
-//  - formatteerDatum laat het tijdstip weg als het middernacht is in
-//    Amsterdam. Zo tonen agenda-items ("14 okt") geen onzinnige "00:00".
-//  - De foto-URL in de feed wordt volledig ge-escaped voordat hij in het
-//    style-attribuut belandt. Een aanhalingsteken of pijltje in de URL kon
-//    eerder uit het attribuut breken.
-//  - De sectie "Alle landelijke berichten" wordt verborgen zolang
-//    nieuws-landelijk.json leeg is.
+// Sinds de "gradatie-en-bewijs-zonder-labels"-ronde (2026-10-21):
+//  - Geen prioriteit-badge meer; de codescore staat centraal.
+//  - Pitch-kaart toont de nieuwe velden: kern, feiten, uit te zoeken,
+//    bellijst met rollen, genre, afnemer.
+//  - Bronnen als objecten (bellijst) worden gerenderd; oude pitches met
+//    bronnen als strings blijven werken.
+//  - Berichtenlijst toont de codescore in plaats van de stippen.
 
 async function laadJson(pad) {
   const response = await fetch(pad, { cache: "no-store" });
@@ -29,8 +23,6 @@ function formatteerDatum(isoTekst) {
   const datum = new Date(isoTekst);
   if (isNaN(datum.getTime())) return "datum onbekend";
 
-  // Als het tijdstip in Amsterdam middernacht is, tonen we alleen de datum.
-  // Dat gebeurt bij datum-only items (agenda-berichten zonder tijd).
   const tijdInAmsterdam = datum.toLocaleTimeString("nl-NL", {
     timeZone: "Europe/Amsterdam",
     hour: "2-digit",
@@ -51,12 +43,19 @@ function formatteerDatum(isoTekst) {
   return datum.toLocaleString("nl-NL", opties);
 }
 
+function scoreBand(score) {
+  if (score >= 18) return "hoog";
+  if (score >= 10) return "middel";
+  return "laag";
+}
+
 function renderPitches(data) {
   const container = document.getElementById("pitches-lijst");
   const updateEl = document.getElementById("laatste-update");
 
   if (updateEl && data.gegenereerdOp) {
-    updateEl.textContent = `Laatst bijgewerkt: ${formatteerDatum(data.gegenereerdOp)} · ${data.aantalBerichtenTotaal ?? "?"} berichten verwerkt vandaag`;
+    const versie = data.promptVersie ? ` · prompt ${data.promptVersie}` : "";
+    updateEl.textContent = `Laatst bijgewerkt: ${formatteerDatum(data.gegenereerdOp)} · ${data.aantalBerichtenTotaal ?? "?"} berichten verwerkt vandaag${versie}`;
   }
 
   if (!data.topPitches || data.topPitches.length === 0) {
@@ -69,28 +68,44 @@ function renderPitches(data) {
 
 function renderPitchKaart(bericht) {
   const beoordeling = bericht.aiBeoordeling || {};
-  const prioriteit = Number.isInteger(beoordeling.prioriteit) ? beoordeling.prioriteit : null;
-  const bronnen = Array.isArray(beoordeling.bronnen) ? beoordeling.bronnen.filter((b) => typeof b === "string" && b.trim()) : [];
+  const score = typeof beoordeling.score === "number" ? beoordeling.score : null;
+  const band = score !== null ? scoreBand(score) : null;
+
+  // Nieuwe bellijst (objecten) of oude bronnen (strings).
+  const bellijst = Array.isArray(beoordeling.bellijst) ? beoordeling.bellijst.filter((b) => b && typeof b === "object") : [];
+  const oudeBronnen = Array.isArray(beoordeling.bronnen)
+    ? beoordeling.bronnen.filter((b) => typeof b === "string" && b.trim())
+    : [];
+
+  // Invalshoek kan een string (oud) of een object { tekst, citaat } (nieuw) zijn.
+  const invalshoekTekst = beoordeling.invalshoek
+    ? (typeof beoordeling.invalshoek === "string" ? beoordeling.invalshoek : beoordeling.invalshoek.tekst)
+    : null;
+
+  const feiten = Array.isArray(beoordeling.feiten) ? beoordeling.feiten.filter((f) => f && (f.tekst || typeof f === "string")) : [];
+  const uitTeZoeken = Array.isArray(beoordeling.uitTeZoeken) ? beoordeling.uitTeZoeken.filter((u) => typeof u === "string" && u.trim()) : [];
 
   return `
     <article class="pitch-kaart">
-      <span class="badge ${bericht.categorie}">${bericht.categorie}</span>
-      ${prioriteit !== null ? `<span class="badge prioriteit-badge">prioriteit ${prioriteit}/10</span>` : ""}
-      <h3><a href="${escapeHtml(bericht.url)}" target="_blank" rel="noopener">${escapeHtml(bericht.titel)}</a></h3>
-      <div class="bericht-meta">${escapeHtml(bericht.bronNaam)} · ${formatteerDatum(bericht.gepubliceerdOp)}</div>
-      ${beoordeling.invalshoek ? `<p class="invalshoek"><strong>Invalshoek:</strong> ${escapeHtml(beoordeling.invalshoek)}</p>` : ""}
-      ${beoordeling.researchvraag ? `<p class="researchvraag"><strong>Researchvraag:</strong> ${escapeHtml(beoordeling.researchvraag)}</p>` : ""}
-      ${bronnen.length > 0 ? `<p class="bronnen"><strong>Bronnen:</strong> ${bronnen.map((b) => escapeHtml(b)).join(", ")}</p>` : ""}
+      <span class="badge ${escapeHtml(bericht.categorie || "lokaal")}">${escapeHtml(bericht.categorie || "lokaal")}</span>
+      ${score !== null ? `<span class="badge pitch-score pitch-score-${band}" title="Codescore ${score} van de maximaal haalbare score">score ${score} · ${band}</span>` : ""}
+      ${beoordeling.genre ? `<span class="badge pitch-genre">${escapeHtml(beoordeling.genre)}</span>` : ""}
+      <h3><a href="${escapeHtml(bericht.url)}" target="_blank" rel="noopener">${escapeHtml(beoordeling.werktitel || bericht.titel)}</a></h3>
+      <div class="bericht-meta">${escapeHtml(bericht.bronNaam || "")} · ${formatteerDatum(bericht.gepubliceerdOp)}</div>
+      ${beoordeling.kern ? `<p class="pitch-kern">${escapeHtml(beoordeling.kern)}</p>` : ""}
+      ${invalshoekTekst ? `<p class="invalshoek"><strong>Invalshoek:</strong> ${escapeHtml(invalshoekTekst)}</p>` : ""}
+      ${beoordeling.centraleVraag ? `<p class="researchvraag"><strong>Centrale vraag:</strong> ${escapeHtml(beoordeling.centraleVraag)}</p>` : ""}
+      ${feiten.length > 0 ? `<div class="pitch-feiten"><strong>Feiten:</strong><ul>${feiten.map((f) => `<li>${escapeHtml(typeof f === "string" ? f : f.tekst || "")}</li>`).join("")}</ul></div>` : ""}
+      ${uitTeZoeken.length > 0 ? `<div class="pitch-uittezoeken"><strong>Uit te zoeken:</strong><ul>${uitTeZoeken.map((u) => `<li>${escapeHtml(u)}</li>`).join("")}</ul></div>` : ""}
+      ${bellijst.length > 0 ? `<div class="pitch-bellijst"><strong>Bellijst:</strong><ul>${bellijst.map((b) => `<li><strong>${escapeHtml(b.rol || "bron")}:</strong> ${escapeHtml(b.naam || "nader te bepalen")}${b.waarom ? ` — ${escapeHtml(b.waarom)}` : ""}</li>`).join("")}</ul></div>` : ""}
+      ${oudeBronnen.length > 0 ? `<p class="bronnen"><strong>Bronnen:</strong> ${oudeBronnen.map((b) => escapeHtml(b)).join(", ")}</p>` : ""}
+      ${beoordeling.eersteCheck ? `<p class="pitch-eerstecheck"><strong>Eerste check:</strong> ${escapeHtml(beoordeling.eersteCheck)}</p>` : ""}
+      ${beoordeling.afnemer ? `<p class="pitch-afnemer"><strong>Afnemer:</strong> ${escapeHtml(beoordeling.afnemer)}</p>` : ""}
       ${beoordeling.onderbouwing ? `<p class="onderbouwing"><em>${escapeHtml(beoordeling.onderbouwing)}</em></p>` : ""}
     </article>
   `;
 }
 
-/**
- * De nieuwsfeed: alle binnengekomen berichten op datum, nieuwste eerst.
- * Elk item heeft een foto (of een grijs vlak), een titel en een stukje tekst.
- * Nieuws krijgt een rood accent, agenda/evenement een geel accent.
- */
 function renderFeed(items) {
   const container = document.getElementById("feed-lijst");
   if (!items || items.length === 0) {
@@ -100,12 +115,6 @@ function renderFeed(items) {
   container.innerHTML = items.map(renderFeedItem).join("");
 }
 
-/**
- * Escapet een URL voor gebruik binnen url('...') in een style-attribuut.
- * Vervangt backslash, enkele en dubbele aanhalingstekens, haakjes, spaties en
- * punthaken. Zonder deze stap kan een aanhalingsteken in de URL uit het
- * attribuut breken en de pagina-opmaak verstoren.
- */
 function escapeVoorCssUrl(url) {
   return String(url)
     .replace(/\\/g, "\\\\")
@@ -149,19 +158,18 @@ function renderBerichtenLijst(containerId, berichten) {
     container.innerHTML = '<p class="leeg">Geen berichten gevonden voor vandaag.</p>';
     return;
   }
-
   container.innerHTML = berichten.map(renderBerichtRij).join("");
 }
 
 function renderBerichtRij(bericht) {
   const beoordeling = bericht.aiBeoordeling || {};
-  const oppakbaar = beoordeling.oppakbaar || beoordeling.lokaleInvalshoek || "";
-  const stippen = oppakbaar === "ja" ? "●●" : oppakbaar === "twijfel" ? "●○" : "○○";
+  const score = typeof beoordeling.score === "number" ? beoordeling.score : null;
+  const scoreTekst = score !== null ? `score ${score}` : "";
   return `
     <div class="bericht-rij">
-      <span class="bericht-stip" title="${escapeHtml(oppakbaar)}">${stippen}</span>
-      <a href="${escapeHtml(bericht.url)}" target="_blank" rel="noopener">${escapeHtml(bericht.titel)}</a>
-      <span class="bericht-meta">${escapeHtml(bericht.bronNaam)}</span>
+      <span class="bericht-score">${escapeHtml(scoreTekst)}</span>
+      <a href="${escapeHtml(bericht.url)}" target="_blank" rel="noopener">${escapeHtml(bericht.titel || "")}</a>
+      <span class="bericht-meta">${escapeHtml(bericht.bronNaam || "")}</span>
     </div>
   `;
 }
@@ -177,21 +185,21 @@ async function initialiseer() {
     const pitches = await laadJson("data/pitches.json");
     renderPitches(pitches);
   } catch (fout) {
-    document.getElementById("pitches-lijst").innerHTML = `<p class="foutmelding">Pitches konden niet geladen worden: ${fout.message}</p>`;
+    document.getElementById("pitches-lijst").innerHTML = `<p class="foutmelding">Pitches konden niet geladen worden: ${escapeHtml(fout.message)}</p>`;
   }
 
   try {
     const feed = await laadJson("data/feed.json");
     renderFeed(feed);
   } catch (fout) {
-    document.getElementById("feed-lijst").innerHTML = `<p class="foutmelding">Feed kon niet geladen worden: ${fout.message}</p>`;
+    document.getElementById("feed-lijst").innerHTML = `<p class="foutmelding">Feed kon niet geladen worden: ${escapeHtml(fout.message)}</p>`;
   }
 
   try {
     const lokaal = await laadJson("data/nieuws-lokaal.json");
     renderBerichtenLijst("lokaal-lijst", lokaal);
   } catch (fout) {
-    document.getElementById("lokaal-lijst").innerHTML = `<p class="foutmelding">Lokaal nieuws kon niet geladen worden: ${fout.message}</p>`;
+    document.getElementById("lokaal-lijst").innerHTML = `<p class="foutmelding">Lokaal nieuws kon niet geladen worden: ${escapeHtml(fout.message)}</p>`;
   }
 
   try {
@@ -199,13 +207,10 @@ async function initialiseer() {
     if (Array.isArray(landelijk) && landelijk.length > 0) {
       renderBerichtenLijst("landelijk-lijst", landelijk);
     } else {
-      // Zolang er geen (bruikbare) landelijke bronnen zijn, verbergen we de
-      // hele sectie in plaats van een lege lijst te tonen.
       const sectie = document.getElementById("landelijk-sectie");
       if (sectie) sectie.style.display = "none";
     }
-  } catch (fout) {
-    // Ook bij een laadfout: liever verbergen dan een lege sectie tonen.
+  } catch {
     const sectie = document.getElementById("landelijk-sectie");
     if (sectie) sectie.style.display = "none";
   }

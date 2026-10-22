@@ -75,7 +75,7 @@ h2 {
 
 .kaarten-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
   gap: 1rem;
   margin-top: 1rem;
 }
@@ -123,12 +123,35 @@ h2 {
   color: var(--kleur-landelijk);
 }
 
-/* Badge voor de prioriteit (1-10) uit de ranking-call. Stond eerder niet
-   in de CSS, waardoor de badge ongestyled naast de categorie-badge hing. */
-.badge.prioriteit-badge {
+/* Codescore-badge: de kleur geeft de band aan (hoog/middel/laag),
+   de tooltip de ruwe score. */
+.badge.pitch-score {
+  margin-left: 0.35rem;
+}
+.badge.pitch-score-hoog {
+  background: #d4edda;
+  color: #155724;
+}
+.badge.pitch-score-middel {
   background: #f0e7c8;
   color: #7a5a10;
+}
+.badge.pitch-score-laag {
+  background: #f8d7da;
+  color: #721c24;
+}
+
+.badge.pitch-genre {
+  background: #e7eaf5;
+  color: #4a5b8c;
   margin-left: 0.35rem;
+}
+
+.pitch-kern {
+  font-style: italic;
+  color: #333;
+  margin: 0.5rem 0;
+  font-size: 0.9rem;
 }
 
 .invalshoek,
@@ -146,6 +169,27 @@ h2 {
 
 .onderbouwing {
   color: #666;
+}
+
+.pitch-feiten,
+.pitch-uittezoeken,
+.pitch-bellijst {
+  font-size: 0.85rem;
+  margin: 0.5rem 0;
+}
+
+.pitch-feiten ul,
+.pitch-uittezoeken ul,
+.pitch-bellijst ul {
+  margin: 0.25rem 0 0 0;
+  padding-left: 1.2rem;
+}
+
+.pitch-eerstecheck,
+.pitch-afnemer {
+  font-size: 0.8rem;
+  color: #666;
+  margin-top: 0.5rem;
 }
 
 /* --- Nieuwsfeed --------------------------------------------------------- */
@@ -290,6 +334,7 @@ h2 {
 
 .bericht-rij {
   display: flex;
+  align-items: baseline;
   justify-content: space-between;
   gap: 1rem;
   padding: 0.6rem 0;
@@ -299,16 +344,16 @@ h2 {
 
 .bericht-rij a {
   color: var(--kleur-tekst);
+  flex: 1 1 auto;
 }
 
-/* De stippen (●●/●○/○○) die per bericht de AI-beoordeling tonen. Had
-   eerder geen stijl, waardoor de stippen tegen de link aanplakten. */
-.bericht-stip {
+/* Codescore in de berichtenlijst. */
+.bericht-score {
   font-family: monospace;
+  font-size: 0.75rem;
   color: var(--kleur-accent);
-  letter-spacing: 0.1em;
   flex: 0 0 auto;
-  min-width: 2.4em;
+  min-width: 5em;
 }
 
 .bericht-meta {
