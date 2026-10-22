@@ -1,17 +1,28 @@
 // index.js — hoofdscript van de dagelijkse run
 //
-// Sinds de "gradatie-en-bewijs-zonder-labels"-ronde (2026-10-21):
-//  - Filter stap 7: gradatie + citaat + codescore in plaats van ja/nee.
-//  - Stap 8: filtert op DREMPEL (uit nieuwscriteria.js) en op centraleVraag.
-//  - Geen ranking-call meer: stelPitchesSamen sorteert op codescore.
-//  - Geen AI-invoer-log meer: de redacteur beoordeelt zelf de pitches.
+// Sinds de "pitch-en-filter-uit-elkaar"-ronde (2026-10-22):
+//  - Nieuws gaat NIET meer door het criteria-filter. Elk nieuwsbericht
+//    binnen het datumvenster gaat direct naar de pitch-call (afspraak 1).
+//  - Agenda doorloopt nog steeds het criteria-filter (afspraak 2).
+//  - Pitch is kort: vier velden (afspraak 3 en 4).
+//  - Top-pitches worden op datum gesorteerd (afspraak 5).
+//  - Feed-berichten die al in feed.json staan maar binnen het pitch-venster
+//    vallen, worden opnieuw verrijkt (afspraak 7).
+//
+// Ongewijzigd voor agenda sinds 2026-10-21: filter met scores 0-3,
+// citaat-controle, wegingen, drempel.
 
 const fs = require("fs/promises");
 const path = require("path");
 
 const bronnen = require("./bronnen");
 const { scraperVoorType } = require("./scraper-register");
-const { beoordeelBerichten, PROMPT_VERSIE, MODELLEN } = require("./gemini");
+const {
+  beoordeelBerichten,
+  genereerPitches,
+  PROMPT_VERSIE,
+  MODELLEN,
+} = require("./gemini");
 const { DREMPEL, MAX_SCORE_LOKAAL, MAX_SCORE_LANDELIJK } = require("./nieuwscriteria");
 const {
   binnenVenster,
@@ -35,8 +46,14 @@ const GEEN_TEKSTOPHAAL_TYPES = new Set(["ibabs"]);
 const GEEN_TEKSTOPHAAL_BRONNEN = new Set(["OmgevingsdienstNHN"]);
 const PAGINADATUM_TYPES = new Set(["gemini-recept", "generieke-lijst", "wordpress-html", "json-ld"]);
 const afgeleideAgenda = new Map();
+
 function effectieveBron(bron) {
   return afgeleideAgenda.has(bron.id) ? { ...bron, soort: "agenda" } : bron;
+}
+
+function isAgendaItem(b) {
+  const bron = bronnen.find((x) => x.id === b.bronId);
+  return Boolean(bron && (bron.soort === "agenda" || afgeleideAgenda.has(bron.id)));
 }
 
 function logFase(titel) {
@@ -171,14 +188,8 @@ async function werkBronGezondheidBij({ gevondenPerBron, overPerBron }) {
     const gevonden = gevondenPerBron[bron.id] || 0;
     const binnenVensterAantal = overPerBron[bron.id] || 0;
     const eerder = vorige[bron.id];
-    const eerderBerichten = eerder && {
-      teller: eerder.opeenvolgendGeenBerichten,
-      dag: kalenderdag(eerder.laatsteRun),
-    };
-    const eerderVenster = eerder && {
-      teller: eerder.opeenvolgendGeenBinnenVenster,
-      dag: kalenderdag(eerder.laatsteRun),
-    };
+    const eerderBerichten = eerder && { teller: eerder.opeenvolgendGeenBerichten, dag: kalenderdag(eerder.laatsteRun) };
+    const eerderVenster = eerder && { teller: eerder.opeenvolgendGeenBinnenVenster, dag: kalenderdag(eerder.laatsteRun) };
     nieuw[bron.id] = {
       laatsteRun: new Date().toISOString(),
       gevonden,
@@ -314,7 +325,7 @@ async function werkFeedBij(berichten, bronPerId) {
     const inhoud = JSON.parse(await fs.readFile(feedPad, "utf-8"));
     if (Array.isArray(inhoud)) bestaand = inhoud;
   } catch {
-    // eerste run, of ongeldig bestand: begin met leeg
+    // eerste run
   }
 
   let soortGecorrigeerd = 0;
@@ -391,15 +402,9 @@ async function werkFeedBij(berichten, bronPerId) {
       + `${verwijderd > 0 ? `, ${verwijderd} oudste verwijderd (cap = ${FEED_MAX_ITEMS})` : ""}`
       + `, ${metFoto} met foto.`
   );
-  if (soortGecorrigeerd > 0) {
-    console.log(`  waarvan ${soortGecorrigeerd} bestaand(e) item(s) met een gecorrigeerde soort-vlag.`);
-  }
-  if (idBijgeplakt > 0) {
-    console.log(`  ${idBijgeplakt} bestaand(e) item(s) kregen een bronId (voortaan geen naam-lookup meer nodig).`);
-  }
-  if (naamGecorrigeerd > 0) {
-    console.log(`  ${naamGecorrigeerd} bestaand(e) item(s) kregen de huidige bronNaam.`);
-  }
+  if (soortGecorrigeerd > 0) console.log(`  waarvan ${soortGecorrigeerd} bestaand(e) item(s) met een gecorrigeerde soort-vlag.`);
+  if (idBijgeplakt > 0) console.log(`  ${idBijgeplakt} bestaand(e) item(s) kregen een bronId.`);
+  if (naamGecorrigeerd > 0) console.log(`  ${naamGecorrigeerd} bestaand(e) item(s) kregen de huidige bronNaam.`);
 }
 
 function scoreVan(bericht) {
@@ -436,14 +441,21 @@ function sorteerOpDatum(berichten, bronPerId) {
   return [...sorteerNieuws(nieuws), ...sorteerAgenda(agenda)];
 }
 
-function stelPitchesSamen(kansrijkeLokaal, kansrijkLandelijk, aantal) {
-  const gecombineerd = [...kansrijkeLokaal, ...kansrijkLandelijk];
-  const zonderScore = gecombineerd.filter((b) => scoreVan(b) === 0);
-  if (zonderScore.length > 0) {
-    console.warn(`${zonderScore.length} kansrijk(e) bericht(en) zonder geldige score; die komen onderaan de pitchlijst.`);
-  }
-  return gecombineerd
-    .sort((a, b) => scoreVan(b) - scoreVan(a))
+/**
+ * Afspraak 5: top-pitches op datum (nieuwste eerst), niet meer op codescore.
+ * Alleen berichten met een echte pitch (werktitel én vraag) komen in de top.
+ */
+function stelPitchesSamen(allePitches, aantal) {
+  return allePitches
+    .filter((b) => b.aiBeoordeling && b.aiBeoordeling.werktitel && b.aiBeoordeling.vraag)
+    .sort((a, b) => {
+      const ta = new Date(a.gepubliceerdOp).getTime();
+      const tb = new Date(b.gepubliceerdOp).getTime();
+      if (isNaN(ta) && isNaN(tb)) return 0;
+      if (isNaN(ta)) return 1;
+      if (isNaN(tb)) return -1;
+      return tb - ta;
+    })
     .slice(0, aantal);
 }
 
@@ -453,8 +465,8 @@ function schrijfBijdrageTabel({ gevondenPerBron, overPerBron, kansrijkPerBron })
   const regels = [
     "### Bijdrage per bron",
     "",
-    "| Bron | Gevonden | Binnen venster | Kansrijk |",
-    "|------|----------|----------------|----------|",
+    "| Bron | Gevonden | Binnen venster | Pitch |",
+    "|------|----------|----------------|-------|",
   ];
   for (const bron of bronnen) {
     const g = gevondenPerBron[bron.id] || 0;
@@ -475,14 +487,14 @@ async function main() {
   console.log(`Instellingen: dagcap=${DAGCAP_GEMINI}/lijst, pitches=${AANTAL_PITCHES}, feedcap=${FEED_MAX_ITEMS}`);
   console.log(`Promptversie: ${PROMPT_VERSIE}`);
   console.log(`Modellen: filter=${MODELLEN.filter[0]}, pitch=${MODELLEN.pitch[0]}, sterker=${MODELLEN.sterker[0]}`);
-  console.log(`Drempels: lokaal=${DREMPEL.lokaal}/${MAX_SCORE_LOKAAL}, landelijk=${DREMPEL.landelijk}/${MAX_SCORE_LANDELIJK}`);
+  console.log(`Drempels (alleen agenda): lokaal=${DREMPEL.lokaal}/${MAX_SCORE_LOKAAL}, landelijk=${DREMPEL.landelijk}/${MAX_SCORE_LANDELIJK}`);
   console.log(`Tijdzone: ${process.env.TZ || "(systeemstandaard)"} → lokale tijd ${new Date().toLocaleString("nl-NL")}`);
 
   const apiKey = process.env.GEMINI_API_KEY;
   if (!apiKey) {
     console.warn(
       "GEMINI_API_KEY is niet gezet — het scrapen en sorteren draaien gewoon door, "
-        + "maar er worden geen AI-beoordelingen/pitches gegenereerd."
+        + "maar er worden geen pitches gegenereerd en geen agenda-filters uitgevoerd."
     );
   }
 
@@ -517,12 +529,18 @@ async function main() {
 
   logFase("STAP 2 — Bepalen welke berichten tekst en foto nodig hebben");
   const feedUrls = await leesFeedUrls();
+  // Afspraak 7: feed-berichten binnen het pitch-venster worden opnieuw
+  // verrijkt. Zonder deze fix gaan ze met 250 tekens naar de AI.
   const teVerrijken = alleBerichten.filter((b) => {
-    if (feedUrls.has(b.url)) return false;
-    return nietInToekomst(b.gepubliceerdOp);
+    if (!nietInToekomst(b.gepubliceerdOp)) return false;
+    const inFeed = feedUrls.has(b.url);
+    const inVenster = binnen(b);
+    if (inFeed && !inVenster) return false;
+    return true;
   });
+  const herverrijkt = teVerrijken.filter((b) => feedUrls.has(b.url) && binnen(b)).length;
   console.log(`Tekst/foto nodig voor ${teVerrijken.length} van ${alleBerichten.length} unieke bericht(en).`);
-  console.log(`(${recenteBerichten.length} voor Gemini, ${teVerrijken.length} nieuw voor de feed.)`);
+  console.log(`(${recenteBerichten.length} voor de pitch, ${teVerrijken.length} voor de feed; ${herverrijkt} feed-berichten worden opnieuw verrijkt.)`);
 
   logFase("STAP 3 — Tekst en foto ophalen");
   const startTekst = Date.now();
@@ -541,7 +559,7 @@ async function main() {
       if (!s) continue;
       console.log(`[${bron.id}] ${tekstStatistiekRegel(s)}`);
       if (s.totaal > 0 && s.metTekst === 0) {
-        console.warn(`[${bron.id}] Geen enkel bericht met artikeltekst: Gemini ziet van deze bron alleen lijstgegevens.`);
+        console.warn(`[${bron.id}] Geen enkel bericht met artikeltekst: de AI ziet van deze bron alleen lijstgegevens.`);
       }
     }
   } catch (fout) {
@@ -576,39 +594,59 @@ async function main() {
     return;
   }
 
-  logFase("STAP 7 — Gemini-beoordeling");
+  logFase("STAP 7 — Filter (agenda) en pitch (alle berichten)");
   const startGemini = Date.now();
 
-  console.log(`Lokaal: ${Math.min(lokaal.length, DAGCAP_GEMINI)} van ${lokaal.length} berichten gaan naar Gemini.`);
-  const lokaalBeoordeeld = await beoordeelBerichten(lokaal, apiKey, DAGCAP_GEMINI, "lokaal");
+  const lokaalAgenda = lokaal.filter(isAgendaItem);
+  const lokaalNieuws = lokaal.filter((b) => !isAgendaItem(b));
+  const landelijkAgenda = landelijk.filter(isAgendaItem);
+  const landelijkNieuws = landelijk.filter((b) => !isAgendaItem(b));
 
-  console.log(`Landelijk: ${Math.min(landelijk.length, DAGCAP_GEMINI)} van ${landelijk.length} berichten gaan naar Gemini.`);
-  const landelijkBeoordeeld = await beoordeelBerichten(landelijk, apiKey, DAGCAP_GEMINI, "landelijk");
+  // Afspraak 1 en 2: alleen agenda door het criteria-filter.
+  console.log(`Filter (agenda): lokaal ${lokaalAgenda.length}, landelijk ${landelijkAgenda.length}.`);
+  const lokaalAgendaGefilterd = await beoordeelBerichten(lokaalAgenda, apiKey, DAGCAP_GEMINI, "lokaal");
+  const landelijkAgendaGefilterd = await beoordeelBerichten(landelijkAgenda, apiKey, DAGCAP_GEMINI, "landelijk");
 
-  logDuur(startGemini, "Gemini-beoordeling");
-
-  await schrijfJson("nieuws-lokaal.json", lokaalBeoordeeld);
-  await schrijfJson("nieuws-landelijk.json", landelijkBeoordeeld);
-
-  logFase("STAP 8 — Pitches samenstellen op codescore");
-  const kansrijkeLokaal = lokaalBeoordeeld.filter(
+  const lokaalAgendaKansrijk = lokaalAgendaGefilterd.filter(
     (b) => scoreVan(b) >= DREMPEL.lokaal && b.aiBeoordeling && b.aiBeoordeling.centraleVraag
   );
-  const kansrijkLandelijk = landelijkBeoordeeld.filter(
+  const landelijkAgendaKansrijk = landelijkAgendaGefilterd.filter(
     (b) => scoreVan(b) >= DREMPEL.landelijk && b.aiBeoordeling && b.aiBeoordeling.centraleVraag
   );
-  const alleKansrijke = [...kansrijkeLokaal, ...kansrijkLandelijk];
-  console.log(`Kansrijke berichten: ${kansrijkeLokaal.length} lokaal, ${kansrijkLandelijk.length} landelijk (${alleKansrijke.length} totaal).`);
-
-  const topPitches = stelPitchesSamen(
-    alleKansrijke.filter((b) => b.categorie === "lokaal"),
-    alleKansrijke.filter((b) => b.categorie === "landelijk"),
-    AANTAL_PITCHES
+  console.log(
+    `Kansrijke agenda: ${lokaalAgendaKansrijk.length} lokaal, ${landelijkAgendaKansrijk.length} landelijk.`
   );
+
+  // Afspraak 1 en 3: alle nieuws + kansrijke agenda gaan naar de pitch.
+  const tePitchen = [
+    ...lokaalNieuws,
+    ...landelijkNieuws,
+    ...lokaalAgendaKansrijk,
+    ...landelijkAgendaKansrijk,
+  ];
+  console.log(
+    `Pitch: ${tePitchen.length} berichten (${lokaalNieuws.length + landelijkNieuws.length} nieuws + ${lokaalAgendaKansrijk.length + landelijkAgendaKansrijk.length} agenda).`
+  );
+
+  const gepitcht = await genereerPitches(tePitchen, apiKey, DAGCAP_GEMINI * 2, "gemengd");
+
+  const pitchMap = new Map(gepitcht.map((p) => [p.url, p]));
+  const lokaalEind = lokaal.map((b) => pitchMap.get(b.url) || b);
+  const landelijkEind = landelijk.map((b) => pitchMap.get(b.url) || b);
+
+  logDuur(startGemini, "Filter en pitch");
+
+  await schrijfJson("nieuws-lokaal.json", lokaalEind);
+  await schrijfJson("nieuws-landelijk.json", landelijkEind);
+
+  logFase("STAP 8 — Pitches samenstellen op datum");
+  // Afspraak 5: nieuwste eerst, geen codescore-sortering meer.
+  const topPitches = stelPitchesSamen(gepitcht, AANTAL_PITCHES);
 
   await schrijfJson("pitches.json", {
     gegenereerdOp: new Date().toISOString(),
     promptVersie: PROMPT_VERSIE,
+    sorteerwijze: "datum",
     aantalBerichtenTotaal: berichtenVanVandaag.length,
     drempels: {
       lokaal: DREMPEL.lokaal,
@@ -619,18 +657,20 @@ async function main() {
     topPitches,
   });
 
-  console.log(`Pitches: ${topPitches.length} van ${alleKansrijke.length} kansrijke bericht(en) opgenomen (top ${AANTAL_PITCHES}).`);
+  console.log(`Pitches: ${topPitches.length} van ${gepitcht.filter((p) => p.aiBeoordeling && p.aiBeoordeling.werktitel).length} succesvol gepitchte bericht(en) opgenomen (top ${AANTAL_PITCHES}, gesorteerd op datum).`);
   if (topPitches.length > 0) {
-    const scores = topPitches.map((p) => scoreVan(p)).filter((s) => s > 0);
-    if (scores.length > 0) {
-      console.log(
-        `Scores in top ${topPitches.length}: min ${Math.min(...scores)}, max ${Math.max(...scores)}, gemiddeld ${(scores.reduce((a, b) => a + b, 0) / scores.length).toFixed(1)}.`
-      );
+    const datums = topPitches.map((p) => kalenderdagAmsterdam(p.gepubliceerdOp)).filter(Boolean);
+    if (datums.length > 0) {
+      console.log(`Datums in top ${topPitches.length}: ${datums[0]} t/m ${datums[datums.length - 1]}.`);
     }
   }
 
   const kansrijkPerBron = {};
-  for (const b of alleKansrijke) kansrijkPerBron[b.bronId] = (kansrijkPerBron[b.bronId] || 0) + 1;
+  for (const b of gepitcht) {
+    if (b.aiBeoordeling && b.aiBeoordeling.werktitel) {
+      kansrijkPerBron[b.bronId] = (kansrijkPerBron[b.bronId] || 0) + 1;
+    }
+  }
   schrijfBijdrageTabel({
     gevondenPerBron: tellingen.gevondenPerBron,
     overPerBron: tellingen.overPerBron,
