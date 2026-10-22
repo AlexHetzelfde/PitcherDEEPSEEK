@@ -4,13 +4,15 @@
 // avond ververst: data/pitches.json, data/feed.json, data/nieuws-lokaal.json
 // en data/nieuws-landelijk.json.
 //
-// Sinds de "gradatie-en-bewijs-zonder-labels"-ronde (2026-10-21):
-//  - Geen prioriteit-badge meer; de codescore staat centraal.
-//  - Pitch-kaart toont de nieuwe velden: kern, feiten, uit te zoeken,
-//    bellijst met rollen, genre, afnemer.
-//  - Bronnen als objecten (bellijst) worden gerenderd; oude pitches met
-//    bronnen als strings blijven werken.
-//  - Berichtenlijst toont de codescore in plaats van de stippen.
+// Sinds de "pitch-en-filter-uit-elkaar"-ronde (2026-10-22):
+//  - Pitch-kaart toont de vier velden van de nieuwe pitch: werktitel (als
+//    titel), samenvatting (pitch-samenvatting), invalshoek, vraag.
+//  - Score-badge verschijnt alleen nog als aiBeoordeling.score bestaat
+//    (agenda; nieuws heeft geen score meer).
+//  - Oude velden (kern, feiten, uit te zoeken, bellijst, genre, afnemer,
+//    eerste check) worden niet meer gerenderd.
+//  - Top-pitches komen gesorteerd op datum binnen (nieuwste eerst); de
+//    front-end sorteert niet opnieuw.
 
 async function laadJson(pad) {
   const response = await fetch(pad, { cache: "no-store" });
@@ -71,36 +73,23 @@ function renderPitchKaart(bericht) {
   const score = typeof beoordeling.score === "number" ? beoordeling.score : null;
   const band = score !== null ? scoreBand(score) : null;
 
-  // Nieuwe bellijst (objecten) of oude bronnen (strings).
-  const bellijst = Array.isArray(beoordeling.bellijst) ? beoordeling.bellijst.filter((b) => b && typeof b === "object") : [];
-  const oudeBronnen = Array.isArray(beoordeling.bronnen)
-    ? beoordeling.bronnen.filter((b) => typeof b === "string" && b.trim())
-    : [];
-
-  // Invalshoek kan een string (oud) of een object { tekst, citaat } (nieuw) zijn.
+  // Invalshoek is in de nieuwe pitch een string; in oude data kan het een
+  // object { tekst, citaat } zijn.
   const invalshoekTekst = beoordeling.invalshoek
     ? (typeof beoordeling.invalshoek === "string" ? beoordeling.invalshoek : beoordeling.invalshoek.tekst)
     : null;
 
-  const feiten = Array.isArray(beoordeling.feiten) ? beoordeling.feiten.filter((f) => f && (f.tekst || typeof f === "string")) : [];
-  const uitTeZoeken = Array.isArray(beoordeling.uitTeZoeken) ? beoordeling.uitTeZoeken.filter((u) => typeof u === "string" && u.trim()) : [];
+  const vraag = beoordeling.vraag || beoordeling.centraleVraag || null;
 
   return `
     <article class="pitch-kaart">
       <span class="badge ${escapeHtml(bericht.categorie || "lokaal")}">${escapeHtml(bericht.categorie || "lokaal")}</span>
-      ${score !== null ? `<span class="badge pitch-score pitch-score-${band}" title="Codescore ${score} van de maximaal haalbare score">score ${score} · ${band}</span>` : ""}
-      ${beoordeling.genre ? `<span class="badge pitch-genre">${escapeHtml(beoordeling.genre)}</span>` : ""}
+      ${score !== null ? `<span class="badge pitch-score pitch-score-${band}" title="Codescore ${score} (agenda-filter)">score ${score} · ${band}</span>` : ""}
       <h3><a href="${escapeHtml(bericht.url)}" target="_blank" rel="noopener">${escapeHtml(beoordeling.werktitel || bericht.titel)}</a></h3>
       <div class="bericht-meta">${escapeHtml(bericht.bronNaam || "")} · ${formatteerDatum(bericht.gepubliceerdOp)}</div>
-      ${beoordeling.kern ? `<p class="pitch-kern">${escapeHtml(beoordeling.kern)}</p>` : ""}
+      ${beoordeling.samenvatting ? `<p class="pitch-samenvatting">${escapeHtml(beoordeling.samenvatting)}</p>` : ""}
       ${invalshoekTekst ? `<p class="invalshoek"><strong>Invalshoek:</strong> ${escapeHtml(invalshoekTekst)}</p>` : ""}
-      ${beoordeling.centraleVraag ? `<p class="researchvraag"><strong>Centrale vraag:</strong> ${escapeHtml(beoordeling.centraleVraag)}</p>` : ""}
-      ${feiten.length > 0 ? `<div class="pitch-feiten"><strong>Feiten:</strong><ul>${feiten.map((f) => `<li>${escapeHtml(typeof f === "string" ? f : f.tekst || "")}</li>`).join("")}</ul></div>` : ""}
-      ${uitTeZoeken.length > 0 ? `<div class="pitch-uittezoeken"><strong>Uit te zoeken:</strong><ul>${uitTeZoeken.map((u) => `<li>${escapeHtml(u)}</li>`).join("")}</ul></div>` : ""}
-      ${bellijst.length > 0 ? `<div class="pitch-bellijst"><strong>Bellijst:</strong><ul>${bellijst.map((b) => `<li><strong>${escapeHtml(b.rol || "bron")}:</strong> ${escapeHtml(b.naam || "nader te bepalen")}${b.waarom ? ` — ${escapeHtml(b.waarom)}` : ""}</li>`).join("")}</ul></div>` : ""}
-      ${oudeBronnen.length > 0 ? `<p class="bronnen"><strong>Bronnen:</strong> ${oudeBronnen.map((b) => escapeHtml(b)).join(", ")}</p>` : ""}
-      ${beoordeling.eersteCheck ? `<p class="pitch-eerstecheck"><strong>Eerste check:</strong> ${escapeHtml(beoordeling.eersteCheck)}</p>` : ""}
-      ${beoordeling.afnemer ? `<p class="pitch-afnemer"><strong>Afnemer:</strong> ${escapeHtml(beoordeling.afnemer)}</p>` : ""}
+      ${vraag ? `<p class="researchvraag"><strong>Vraag:</strong> ${escapeHtml(vraag)}</p>` : ""}
       ${beoordeling.onderbouwing ? `<p class="onderbouwing"><em>${escapeHtml(beoordeling.onderbouwing)}</em></p>` : ""}
     </article>
   `;
