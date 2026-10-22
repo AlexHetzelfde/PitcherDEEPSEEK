@@ -27,15 +27,16 @@ try {
 const BASE_URL = "https://zaanstad.bestuurlijkeinformatie.nl";
 const PAGE_SIZE = 100;
 
+// Volgorde en namen zoals de iBabs-site ze nu aanbiedt (gecontroleerd op
+// 2026-10-22). De volgorde moet exact overeenkomen met de `data-columns`
+// in de HTML, anders sorteert de API op de verkeerde kolom.
 const KOLOMMEN = [
-  ["title", false],
-  ["datumbericht", true],
-  ["portefeuillehouderselectie", true],
-  ["typeselectie", true],
-  ["afhandelingselectie", true],
-  ["registrationdate", true],
-  ["datum", true],
-  ["datumpublicatie", true],
+  ["title", false, false],              // [naam, heeftPipe, searchable]
+  ["registrationdate", true, true],
+  ["datumbericht", true, true],
+  ["portefeuillehouderselectie", true, true],
+  ["typeselectie", true, false],
+  ["afhandelingselectie", true, true],
 ];
 
 const GEBRUIKERSAGENT =
@@ -169,17 +170,17 @@ function verzamelCookies(response) {
 function bouwLijstBody(start, draw) {
   const params = new URLSearchParams();
   params.set("draw", String(draw));
-  KOLOMMEN.forEach(([naam, heeftPipe], i) => {
+  KOLOMMEN.forEach(([naam, heeftPipe, searchable], i) => {
     params.set(`columns[${i}][data]`, naam);
     params.set(`columns[${i}][name]`, naam);
-    params.set(`columns[${i}][searchable]`, "true");
+    params.set(`columns[${i}][searchable]`, searchable ? "true" : "false");
     params.set(`columns[${i}][orderable]`, "true");
     params.set(`columns[${i}][search][value]`, heeftPipe ? "|" : "");
     params.set(`columns[${i}][search][regex]`, "false");
   });
-  params.set("order[0][column]", "5");
+  params.set("order[0][column]", "2");
   params.set("order[0][dir]", "desc");
-  params.set("order[0][name]", "registrationdate");
+  params.set("order[0][name]", "datumbericht");
   params.set("start", String(start));
   params.set("length", String(PAGE_SIZE));
   params.set("search[value]", "");
@@ -200,8 +201,6 @@ function normaliseerRij(rij, bron) {
       .join(" — "),
     gepubliceerdOp:
       parseerNlDatum(rij.datumbericht) ||
-      parseerNlDatum(rij.datumpublicatie) ||
-      parseerNlDatum(rij.datum) ||
       parseerNlDatum(rij.registrationdate),
     opgehaaldOp: new Date().toISOString(),
   };
@@ -209,13 +208,25 @@ function normaliseerRij(rij, bron) {
 
 function parseerNlDatum(tekst) {
   if (!tekst) return null;
-  const match = String(tekst).match(/(\d{1,2})-(\d{1,2})-(\d{4})/);
-  if (!match) return null;
-  const [, dag, maand, jaar] = match;
-  const datum = new Date(Number(jaar), Number(maand) - 1, Number(dag));
-  return isNaN(datum.getTime()) ? null : datum.toISOString();
-}
+  const s = String(tekst).trim();
+  if (!s) return null;
 
+  // ISO: YYYY-MM-DD (met of zonder tijd)
+  const iso = s.match(/^(\d{4})-(\d{2})-(\d{2})(?:[T ]|$)/);
+  if (iso) {
+    const d = new Date(Number(iso[1]), Number(iso[2]) - 1, Number(iso[3]));
+    return isNaN(d.getTime()) ? null : d.toISOString();
+  }
+
+  // NL: DD-MM-YYYY (met of zonder tijd)
+  const nl = s.match(/^(\d{1,2})-(\d{1,2})-(\d{4})(?:[T ]|$)/);
+  if (nl) {
+    const d = new Date(Number(nl[3]), Number(nl[2]) - 1, Number(nl[1]));
+    return isNaN(d.getTime()) ? null : d.toISOString();
+  }
+
+  return null;
+}
 /**
  * Zoekt het documentId in de detailpagina-HTML. Drie patronen, want
  * iBabs-versies en pagina-varianten verschillen:
