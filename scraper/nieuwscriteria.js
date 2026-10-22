@@ -1,11 +1,13 @@
 // nieuwscriteria.js
 //
-// De ENIGE bron van waarheid voor de nieuwscriteria. Alle prompts (filter,
-// pitch) lezen uit dit bestand, zodat er geen verschillende namen of
-// definities meer zijn.
+// De ENIGE bron van waarheid voor de nieuwscriteria. Alleen het agenda-filter
+// leest nog uit dit bestand (sinds 2026-10-22); nieuws gaat direct naar de
+// pitch en gebruikt geen criteria meer.
 //
 // Bron: Basisboek journalistiek schrijven, §5.1.3, p. 151-153 (en p. 154
-// voor hoor en wederhoor, p. 33 voor perspectief).
+// voor hoor en wederhoor, p. 33 voor perspectief). De boekpagina staat in
+// CRITERIA voor documentatie, maar verschijnt NIET in de prompt naar Gemini
+// (afspraak 6 van de review).
 //
 // TWEE SOORTEN CRITERIA:
 //   - KERN: belang, omvang, afwijking, inzicht, gevolgen.
@@ -14,11 +16,6 @@
 //
 // DE REGEL: een versterker telt alleen mee als minstens één kerncriterium
 // boven 0 scoort. Zonder kern is de totaalscore 0, ongeacht de versterkers.
-// Zo valt een jubileum van een entertainer af (geen kern) en zakt een
-// routinebesluit (lage kern) weg.
-//
-// De weging en drempel zijn instelbare getallen, zodat je ze kunt bijstellen
-// zonder een prompt te herschrijven.
 
 const KERN_CRITERIA = ["belang", "omvang", "afwijking", "inzicht", "gevolgen"];
 const VERSTERKER_CRITERIA = ["wie", "nieuwsVanMorgen", "voorHetEerst", "primeur", "amusement"];
@@ -198,9 +195,8 @@ const MAX_SCORE_LOKAAL = KERN_CRITERIA.reduce((som, id) => som + WEGING.kern[id]
 
 const MAX_SCORE_LANDELIJK = MAX_SCORE_LOKAAL + WEGING.kern.lokaleRelevantie * 3;
 
-// Drempel: onder deze score wordt geen pitch gemaakt. Laag genoeg voor
-// recall (de sorteer op codescore doet de rest), hoog genoeg om routine
-// en ruis te weren.
+// Drempel: onder deze score wordt geen pitch gemaakt. Geldt alleen nog
+// voor agenda (nieuws gaat direct naar de pitch).
 const DREMPEL = {
   lokaal: 6.0,
   landelijk: 8.0,
@@ -232,7 +228,12 @@ function berekenScore(scores, categorie = "lokaal") {
   return Math.round((kernScore + versterkerScore) * 10) / 10;
 }
 
-/** Geeft de criteria als tekst voor de prompt. Alleen landelijk krijgt lokaleRelevantie. */
+/**
+ * Geeft de criteria als tekst voor de prompt. Alleen landelijk krijgt
+ * lokaleRelevantie. De boekpagina wordt NIET meegenomen in de prompt
+ * (afspraak 6 van de review): die blijft alleen in CRITERIA staan voor
+ * documentatie.
+ */
 function bouwCriteriaTekst(categorie = "lokaal") {
   const relevante = CRITERIA.filter((c) => !c.alleenLandelijk || categorie === "landelijk");
   return relevante
@@ -241,7 +242,7 @@ function bouwCriteriaTekst(categorie = "lokaal") {
         .sort(([a], [b]) => Number(a) - Number(b))
         .map(([score, tekst]) => `  ${score}: ${tekst}`)
         .join("\n");
-      return `- ${c.naam} (${c.type}, ${c.boekpagina}): ${c.beschrijving}\n${ankers}`;
+      return `- ${c.naam} (${c.type}): ${c.beschrijving}\n${ankers}`;
     })
     .join("\n\n");
 }
