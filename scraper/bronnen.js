@@ -2,6 +2,13 @@
 //
 // Centrale lijst van bronnen. Elke bron krijgt een categorie: "lokaal" of "landelijk".
 //
+// Sinds de "ibabs-kolommen-vast"-ronde (2026-10-22):
+//  - De twee iBabs-bronnen hebben een `ibabs`-configuratie gekregen met de
+//    kolommen, sorteerkolom, datumvelden en samenvattingvelden van dat
+//    specifieke rapport. Elk iBabs-rapport heeft een andere structuur; één
+//    vaste lijst in de scraper werkt niet voor beide. De scraper leest deze
+//    configuratie en gebruikt hem voor de POST-body en de kolom-mapping.
+//
 // Sinds de "tijdzone-en-logica"-ronde (2026-10-17):
 //  - wetenregelgeving is omgezet van generieke-lijst naar gemini-recept, met
 //    selectors die passen op de echte HTML van lokaleregelgeving.overheid.nl:
@@ -28,6 +35,27 @@ module.exports = [
     type: "ibabs",
     url: "https://zaanstad.bestuurlijkeinformatie.nl/Reports/Details/8ea04074-52e6-4284-bd1a-66e378b40ec1",
     rustig: true,
+    ibabs: {
+      // Volgorde en namen exact zoals de DataTables-configuratie op de
+      // rapportpagina (data-columns in de HTML). De API sorteert op de
+      // kolom die hier als sorteerKolom staat.
+      kolommen: [
+        { data: "title", searchable: false },
+        { data: "registrationdate" },
+        { data: "datumbericht" },
+        { data: "portefeuillehouderselectie" },
+        { data: "typeselectie", searchable: false },
+        { data: "afhandelingselectie" },
+      ],
+      sorteerKolom: "datumbericht",
+      sorteerRichting: "desc",
+      // Welke velden mogen dienen als publicatiedatum? De eerste die een
+      // leesbare datum oplevert, wint.
+      datumVelden: ["datumbericht", "registrationdate"],
+      // Welke velden komen in de samenvatting? Worden met " — " aan elkaar
+      // geplakt. De PDF-tekst wordt hier later aan toegevoegd.
+      samenvattingVelden: ["typeselectie", "portefeuillehouderselectie", "afhandelingselectie"],
+    },
   },
   {
     id: "ibabs-ingekomen-stukken",
@@ -36,6 +64,23 @@ module.exports = [
     type: "ibabs",
     url: "https://zaanstad.bestuurlijkeinformatie.nl/Reports/Details/58e397b1-0b36-49e2-90ed-325405f27f72",
     rustig: true,
+    ibabs: {
+      // Andere rapport, andere kolommen, andere sorteerkolom. Dit is exact
+      // de data-columns van de Ingekomen-stukken-pagina.
+      kolommen: [
+        { data: "datum" },
+        { data: "title", searchable: false },
+        { data: "afzender" },
+        { data: "adviesselectie" },
+        { data: "identity" },
+        { data: "datumpublicatie" },
+        { data: "behandelenin" },
+      ],
+      sorteerKolom: "datum",
+      sorteerRichting: "desc",
+      datumVelden: ["datum", "datumpublicatie"],
+      samenvattingVelden: ["afzender", "adviesselectie", "behandelenin"],
+    },
   },
   {
     id: "ovo-zaanstad",
