@@ -1,31 +1,9 @@
 // hulpmiddelen.js
 // Gedeelde functies die door meerdere scrapers gebruikt worden.
 //
-// Sinds de "tijdzone-en-logica"-ronde (2026-10-17):
-//  - kalenderdagAmsterdam / vandaagAmsterdam / dagVerschil / kalenderdagMinDagen:
-//    alle datumvergelijkingen gebeuren nu op kalenderdagen in Europe/Amsterdam.
-//  - binnenLeeftijdsgrens heeft nu ook een bovengrens: datums in de toekomst
-//    worden geweigerd.
-//  - binnenAgendaVenster vergelijkt kalenderdagen i.p.v. tijdstippen.
-//  - paginaVoorbij: bij een oplopende agenda kijkt de check nu naar de EERSTE
-//    datum op de pagina (niet de laatste).
-//  - volgPaginas logt de datumverdeling per kalenderdag.
-//  - parseerRssTekst logt de kalenderdag-verdeling van de feed.
-//  - vulBerichtenAanMetTekst zet per bericht tekstBron ("artikel" of "lijst").
-//
-// Sinds de "datum-en-debug"-ronde (2026-10-17):
-//  - haalDatumUitTekst herkent nu ook DD-MM-YYYY / DD/MM/YYYY / DD.MM.YYYY.
-//  - Optionele debug-logging via DEBUG_DATUM=1.
-//
-// Sinds de "rechtspraak-data-api"-ronde (2026-10-17):
-//  - haalRechtspraakTekst haalt de volledige uitspraaktekst op via
-//    data.rechtspraak.nl/uitspraken/content?id=ECLI:... (XML).
-//  - haalArtikelTekst herkent rechtspraak-deeplinks en gebruikt de data-API.
-//
-// Sinds de "tekstbron-respect"-ronde (2026-10-17):
-//  - vulBerichtenAanMetTekst respecteert een bestaande tekstBron: "artikel".
-//    Zonder deze check overschreef de tekststap de vlag die de iBabs-scraper
-//    zelf al had gezet, waardoor iBabs-items als "lijst" werden geteld.
+// Sinds de "pitch-en-filter-uit-elkaar"-ronde (2026-10-22):
+//  - ARTIKEL_MAX_TEKENS van 3.000 naar 6.000, zodat lange onderzoeksartikelen
+//    niet worden afgekapt voordat de AI de conclusie ziet (afspraak 8).
 
 const cheerio = require("cheerio");
 const Parser = require("rss-parser");
@@ -275,7 +253,6 @@ function haalDatumUitTekst(tekst, opties = {}) {
   if (!tekst) return null;
   const bronTekst = typeof tekst === "string" ? tekst : String(tekst);
 
-  // 1. ISO: YYYY-MM-DD
   const iso = bronTekst.match(/(?<!\d)(\d{4})-(\d{2})-(\d{2})(?!\d)/);
   if (iso) {
     const d = new Date(`${iso[1]}-${iso[2]}-${iso[3]}T00:00:00`);
@@ -285,8 +262,6 @@ function haalDatumUitTekst(tekst, opties = {}) {
     }
   }
 
-  // 2. DMY: DD-MM-YYYY / DD/MM/YYYY / DD.MM.YYYY (Nederlandse notatie)
-  //    Nodig voor teksten als "Geldend van 16-10-2026 t/m heden".
   const dmj = bronTekst.match(/(?<!\d)(\d{1,2})[-/.](\d{1,2})[-/.](\d{4})(?!\d)/);
   if (dmj) {
     const dag = Number(dmj[1]);
@@ -299,7 +274,6 @@ function haalDatumUitTekst(tekst, opties = {}) {
     }
   }
 
-  // 3. Nederlandse maandnaam: "16 oktober 2026"
   const nl = bronTekst.match(new RegExp(`(?<!\\d)(\\d{1,2})\\s+(${MAANDEN_LANG})\\s+(\\d{4})(?!\\d)`, "i"));
   if (nl) {
     const maand = NEDERLANDSE_MAANDEN[nl[2].toLowerCase()];
@@ -894,7 +868,9 @@ const ARTIKEL_PAUZE_MS = Number(process.env.ARTIKELTEKST_PAUZE_MS || 2_500);
 const ARTIKEL_MAX_SECONDEN = Number(process.env.ARTIKELTEKST_MAX_SECONDEN || 1_800);
 const MAX_NETWERKFOUTEN_ACHTEREEN = Number(process.env.ARTIKELTEKST_MAX_NETWERKFOUTEN || 5);
 
-const ARTIKEL_MAX_TEKENS = 3000;
+// Afspraak 8: van 3.000 naar 6.000, zodat lange onderzoeksartikelen niet
+// worden afgekapt voordat de AI de conclusie ziet.
+const ARTIKEL_MAX_TEKENS = 6000;
 const LIJSTTEKST_GENOEG_TEKENS = 600;
 const MIN_BRUIKBARE_TEKST_TEKENS = 100;
 
@@ -989,11 +965,6 @@ function haalTekstUitHtml(html, opties = {}) {
   };
 }
 
-/**
- * Haalt de tekst van een rechtspraak-uitspraak op via de officiële data-API.
- * De deeplink-URL (rechtspraak.nl/uitspraak?id=ECLI:...) geeft een lege
- * Angular-app terug; de tekst staat alleen in de data-API (XML).
- */
 async function haalRechtspraakTekst(url) {
   const match = String(url).match(/[?&]id=(ECLI:[^&]+)/);
   if (!match) return null;
@@ -1025,12 +996,9 @@ function metTijdslimiet(belofte, ms, melding) {
 async function haalArtikelTekst(url, opties = {}) {
   if (!url || /\.(pdf|docx?|xlsx?|pptx?|zip|jpe?g|png|gif)(\?|#|$)/i.test(url)) return null;
 
-  // Speciale behandeling voor rechtspraak-deeplinks: de HTML is een lege
-  // Angular-app, de tekst staat alleen in de data-API (XML).
   if (/rechtspraak\.nl\/(?:uitspraak|inziendocument)\?/.test(url)) {
     const resultaat = await haalRechtspraakTekst(url);
     if (resultaat) return resultaat;
-    // Fallthrough naar normale HTML-verwerking als de API faalt.
   }
 
   try {
