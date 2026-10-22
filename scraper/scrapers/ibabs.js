@@ -1,16 +1,27 @@
 // scrapers/ibabs.js
 //
+// Scraper voor iBabs-rapporten (Collegeberichten, Ingekomen stukken, en elk
+// ander iBabs-rapport dat je later toevoegt).
+//
+// Sinds de "ibabs-kolommen-vast"-ronde (2026-10-22):
+//  - De kolomconfiguratie staat per bron in bronnen.js onder `bron.ibabs`.
+//    Elk iBabs-rapport heeft een andere kolomvolgorde en sorteert op een
+//    andere kolom; één vaste lijst in deze scraper kan dus nooit voor alle
+//    rapporten tegelijk werken. Dynamisch uit de HTML lezen kan, maar voegt
+//    een extra GET en een parser toe die kan falen. Vast per bron is
+//    voorspelbaarder.
+//  - parseerNlDatum is geankerd en accepteert zowel ISO (YYYY-MM-DD) als
+//    NL (DD-MM-YYYY). Zonder anker matchte "2026-10-22" als 26-10-2022,
+//    waardoor alle berichten vier jaar oud leken en werden overgeslagen.
+//  - DT_RowId krijgt een eventuele "row_"-prefix gestript voordat er een
+//    detailpagina-URL van wordt gemaakt.
+//
 // Sinds de "ibabs-tekstbron"-ronde (2026-10-17):
-//  - voegDocumentInhoudToe zet nu tekstBron: "artikel" op alle returns waar
+//  - voegDocumentInhoudToe zet tekstBron: "artikel" op alle returns waar
 //    PDF- of HTML-tekst is toegevoegd. Zonder deze vlag telde de statistiek
 //    in index.js de iBabs-items als "lijst", ook al hadden ze volledige
-//    PDF-tekst. De tekststap slaat iBabs over (GEEN_TEKSTOPHAAL_TYPES),
-//    dus de vlag moet door de scraper zelf worden gezet.
-//  - Per bericht wordt gelogd: "PDF-tekst: X tekens" / "HTML-fallback:
-//    X tekens" / "geen tekst". Zo is in de log meteen te zien welk bericht
-//    welke tekst heeft opgeleverd.
-//  - Na de loop volgt een overzichtslog per bericht: samenvatting-lengte
-//    en tekstBron.
+//    PDF-tekst.
+//  - Per bericht wordt gelogd welk type tekst is opgehaald.
 
 const MAX_DOCUMENT_TEKST_LENGTE = 15000;
 const REQUEST_TIMEOUT_MS = 15_000;
@@ -26,18 +37,6 @@ try {
 
 const BASE_URL = "https://zaanstad.bestuurlijkeinformatie.nl";
 const PAGE_SIZE = 100;
-
-// Volgorde en namen zoals de iBabs-site ze nu aanbiedt (gecontroleerd op
-// 2026-10-22). De volgorde moet exact overeenkomen met de `data-columns`
-// in de HTML, anders sorteert de API op de verkeerde kolom.
-const KOLOMMEN = [
-  ["title", false, false],              // [naam, heeftPipe, searchable]
-  ["registrationdate", true, true],
-  ["datumbericht", true, true],
-  ["portefeuillehouderselectie", true, true],
-  ["typeselectie", true, false],
-  ["afhandelingselectie", true, true],
-];
 
 const GEBRUIKERSAGENT =
   "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/128.0.0.0 Safari/537.36";
@@ -62,6 +61,52 @@ async function fetchMetTimeout(url, opties = {}, lezer = "text") {
   }
 }
 
+/**
+ * Leest de iBabs-configuratie uit bronnen.js. Elke iBabs-bron moet een
+ * `ibabs`-object hebben met:
+ *   - kolommen: [{ data, searchable? }] in exact de volgorde van de HTML
+ *   - sorteerKolom: naam van de kolom waarop gesorteerd wordt
+ *   - sorteerRichting: "asc" of "desc" (default "desc")
+ *   - datumVelden: lijst van velden waaruit de publicatiedatum wordt gelezen
+ *   - samenvattingVelden: lijst van velden die in de samenvatting komen
+ *
+ * Zonder `ibabs` valt de scraper terug op de Collegeberichten-configuratie
+ * en logt een waarschuwing. Zo blijft de scraper werken als je vergeet de
+ * configuratie toe te voegen, maar zie je het wel in de log.
+ */
+function leesIbabsConfig(bron, log = console) {
+  const cfg = bron.ibabs;
+  if (!cfg || !Array.isArray(cfg.kolommen) || cfg.kolommen.length === 0) {
+    log.warn(
+      `[${bron.id}] Geen 'ibabs'-configuratie in bronnen.js. De scraper valt terug op de Collegeberichten-configuratie. Voeg 'ibabs: { kolommen, sorteerKolom, ... }' toe aan deze bron.`
+    );
+    return {
+      kolommen: [
+        { data: "title", searchable: false },
+        { data: "registrationdate" },
+        { data: "datumbericht" },
+        { data: "portefeuillehouderselectie" },
+        { data: "typeselectie", searchable: false },
+        { data: "afhandelingselectie" },
+      ],
+      sorteerKolom: "datumbericht",
+      sorteerRichting: "desc",
+      datumVelden: ["datumbericht", "registrationdate"],
+      samenvattingVelden: ["typeselectie", "portefeuillehouderselectie", "afhandelingselectie"],
+    };
+  }
+  return {
+    kolommen: cfg.kolommen,
+    sorteerKolom: cfg.sorteerKolom || cfg.kolommen[0].data,
+    sorteerRichting: cfg.sorteerRichting === "asc" ? "asc" : "desc",
+    datumVelden:
+      Array.isArray(cfg.datumVelden) && cfg.datumVelden.length
+        ? cfg.datumVelden
+        : cfg.kolommen.map((k) => k.data).filter((d) => /datum/i.test(d)),
+    samenvattingVelden: Array.isArray(cfg.samenvattingVelden) ? cfg.samenvattingVelden : [],
+  };
+}
+
 async function scrapeIbabs(bron) {
   const guidMatch = bron.url.match(/Reports\/Details\/([a-f0-9-]{36})/i);
   if (!guidMatch) {
@@ -71,10 +116,15 @@ async function scrapeIbabs(bron) {
   const guid = guidMatch[1];
   const lijstPageUrl = bron.url;
   const lijstDataUrl = `${BASE_URL}/Reports/GetReportData/${guid}`;
+  const config = leesIbabsConfig(bron);
 
   let cookie = "";
   try {
-    const { response: sessieResponse } = await fetchMetTimeout(lijstPageUrl, { headers: { "User-Agent": GEBRUIKERSAGENT } }, "text");
+    const { response: sessieResponse } = await fetchMetTimeout(
+      lijstPageUrl,
+      { headers: { "User-Agent": GEBRUIKERSAGENT } },
+      "text"
+    );
     cookie = verzamelCookies(sessieResponse);
   } catch (fout) {
     console.warn(`[${bron.id}] Sessie ophalen mislukt (${fout.message}${oorzaakTekst(fout)}) — doorgaan zonder cookie.`);
@@ -95,7 +145,7 @@ async function scrapeIbabs(bron) {
           Referer: lijstPageUrl,
           ...(cookie ? { Cookie: cookie } : {}),
         },
-        body: bouwLijstBody(0, 1),
+        body: bouwLijstBody(0, 1, config),
       },
       "json"
     );
@@ -106,20 +156,20 @@ async function scrapeIbabs(bron) {
     return [];
   }
 
-  const alleBerichten = rijen.map((rij) => normaliseerRij(rij, bron)).filter((b) => b.titel);
+  const alleBerichten = rijen
+    .map((rij) => normaliseerRij(rij, bron, config))
+    .filter((b) => b.titel);
 
   const zonderDatum = alleBerichten.filter((b) => !b.gepubliceerdOp);
   if (zonderDatum.length > 0) {
     console.warn(
-      `[${bron.id}] ${zonderDatum.length} van ${alleBerichten.length} berichten hadden geen herkenbare datum (datumbericht/registrationdate kon niet geparsed worden) — die tellen mee als "te oud" en worden overgeslagen.`
+      `[${bron.id}] ${zonderDatum.length} van ${alleBerichten.length} berichten hadden geen herkenbare datum (geprobeerd: ${config.datumVelden.join(", ")}) — die tellen mee als "te oud" en worden overgeslagen.`
     );
     const voorbeelden = rijen
-      .filter((rij) => !parseerNlDatum(rij.datumbericht) && !parseerNlDatum(rij.registrationdate))
+      .filter((rij) => !config.datumVelden.some((veld) => parseerNlDatum(rij[veld])))
       .slice(0, 3);
     for (const rij of voorbeelden) {
-      console.warn(
-        `[${bron.id}]   voorbeeld — datumbericht: ${JSON.stringify(rij.datumbericht)}, registrationdate: ${JSON.stringify(rij.registrationdate)}, alle velden: ${Object.keys(rij).join(", ")}`
-      );
+      console.warn(`[${bron.id}]   voorbeeld — beschikbare velden: ${Object.keys(rij).join(", ")}`);
     }
   }
 
@@ -144,16 +194,16 @@ async function scrapeIbabs(bron) {
 
   const zonderInhoud = compleetBerichten.filter((b) => !b.documentInhoudOpgehaald).length;
   if (zonderInhoud > 0) {
-    console.warn(`[${bron.id}] ${zonderInhoud} van ${compleetBerichten.length} bericht(en) zonder documentinhoud — zie de waarschuwingen hierboven voor de reden per bericht.`);
+    console.warn(
+      `[${bron.id}] ${zonderInhoud} van ${compleetBerichten.length} bericht(en) zonder documentinhoud — zie de waarschuwingen hierboven voor de reden per bericht.`
+    );
   }
 
-  // Overzicht per bericht: welk type tekst is opgehaald en hoeveel tekens.
-  // Dit maakt in één oogopslag duidelijk waarom de statistiek in index.js
-  // eventueel 0/4 zegt: de samenvatting-lengte zegt niets over de vraag of
-  // er artikeltekst is toegevoegd.
   for (const bericht of compleetBerichten) {
     const lengte = (bericht.samenvatting || "").length;
-    console.log(`[${bron.id}]   "${(bericht.titel || "").slice(0, 60)}": samenvatting ${lengte} tekens, tekstBron=${bericht.tekstBron || "geen"}`);
+    console.log(
+      `[${bron.id}]   "${(bericht.titel || "").slice(0, 60)}": samenvatting ${lengte} tekens, tekstBron=${bericht.tekstBron || "geen"}`
+    );
   }
 
   return compleetBerichten;
@@ -167,20 +217,32 @@ function verzamelCookies(response) {
   return ruw.map((c) => c.split(";")[0]).join("; ");
 }
 
-function bouwLijstBody(start, draw) {
+/**
+ * Bouwt de POST-body voor /Reports/GetReportData. De kolommen, hun volgorde
+ * en de sorteerkolom komen uit bron.ibabs (zie bronnen.js). De API verwacht
+ * exact dezelfde namen en volgorde als de DataTables-configuratie op de
+ * rapportpagina.
+ *
+ * De `search[value]` per kolom: "|" voor kolommen die doorzoekbaar zijn,
+ * "" voor kolommen die dat niet zijn (zoals title). Dat matcht de
+ * DataTables-configuratie in de HTML en is wat de oude code ook deed.
+ */
+function bouwLijstBody(start, draw, config) {
   const params = new URLSearchParams();
   params.set("draw", String(draw));
-  KOLOMMEN.forEach(([naam, heeftPipe, searchable], i) => {
-    params.set(`columns[${i}][data]`, naam);
-    params.set(`columns[${i}][name]`, naam);
-    params.set(`columns[${i}][searchable]`, searchable ? "true" : "false");
+  config.kolommen.forEach((kol, i) => {
+    params.set(`columns[${i}][data]`, kol.data);
+    params.set(`columns[${i}][name]`, kol.data);
+    params.set(`columns[${i}][searchable]`, kol.searchable === false ? "false" : "true");
     params.set(`columns[${i}][orderable]`, "true");
-    params.set(`columns[${i}][search][value]`, heeftPipe ? "|" : "");
+    params.set(`columns[${i}][search][value]`, kol.searchable === false ? "" : "|");
     params.set(`columns[${i}][search][regex]`, "false");
   });
-  params.set("order[0][column]", "2");
-  params.set("order[0][dir]", "desc");
-  params.set("order[0][name]", "datumbericht");
+  const sorteerIdx = config.kolommen.findIndex((k) => k.data === config.sorteerKolom);
+  const idx = sorteerIdx >= 0 ? sorteerIdx : 0;
+  params.set("order[0][column]", String(idx));
+  params.set("order[0][dir]", config.sorteerRichting);
+  params.set("order[0][name]", config.kolommen[idx].data);
   params.set("start", String(start));
   params.set("length", String(PAGE_SIZE));
   params.set("search[value]", "");
@@ -188,37 +250,46 @@ function bouwLijstBody(start, draw) {
   return params.toString();
 }
 
-function normaliseerRij(rij, bron) {
+function normaliseerRij(rij, bron, config) {
+  let gepubliceerdOp = null;
+  for (const veld of config.datumVelden) {
+    gepubliceerdOp = parseerNlDatum(rij[veld]);
+    if (gepubliceerdOp) break;
+  }
+  const samenvatting = config.samenvattingVelden
+    .map((veld) => rij[veld])
+    .filter((v) => typeof v === "string" && v.trim())
+    .join(" — ");
+  const itemId = rij.DT_RowId ? String(rij.DT_RowId).replace(/^row_/, "") : null;
   return {
     bronId: bron.id,
     bronNaam: bron.naam,
     categorie: bron.categorie,
     titel: (rij.title || "").trim(),
-    itemId: rij.DT_RowId,
-    url: rij.DT_RowId ? `${BASE_URL}/Reports/Item/${rij.DT_RowId}` : bron.url,
-    samenvatting: [rij.typeselectie, rij.portefeuillehouderselectie, rij.afhandelingselectie]
-      .filter(Boolean)
-      .join(" — "),
-    gepubliceerdOp:
-      parseerNlDatum(rij.datumbericht) ||
-      parseerNlDatum(rij.registrationdate),
+    itemId,
+    url: itemId ? `${BASE_URL}/Reports/Item/${itemId}` : bron.url,
+    samenvatting,
+    gepubliceerdOp,
     opgehaaldOp: new Date().toISOString(),
   };
 }
 
+/**
+ * Parseert een datum uit de iBabs-respons. Geankerd, zodat "2026-10-22"
+ * niet als 26-10-2022 wordt gelezen. Accepteert ISO (YYYY-MM-DD) en NL
+ * (DD-MM-YYYY), met of zonder tijd erachter.
+ */
 function parseerNlDatum(tekst) {
   if (!tekst) return null;
   const s = String(tekst).trim();
   if (!s) return null;
 
-  // ISO: YYYY-MM-DD (met of zonder tijd)
   const iso = s.match(/^(\d{4})-(\d{2})-(\d{2})(?:[T ]|$)/);
   if (iso) {
     const d = new Date(Number(iso[1]), Number(iso[2]) - 1, Number(iso[3]));
     return isNaN(d.getTime()) ? null : d.toISOString();
   }
 
-  // NL: DD-MM-YYYY (met of zonder tijd)
   const nl = s.match(/^(\d{1,2})-(\d{1,2})-(\d{4})(?:[T ]|$)/);
   if (nl) {
     const d = new Date(Number(nl[3]), Number(nl[2]) - 1, Number(nl[1]));
@@ -227,6 +298,7 @@ function parseerNlDatum(tekst) {
 
   return null;
 }
+
 /**
  * Zoekt het documentId in de detailpagina-HTML. Drie patronen, want
  * iBabs-versies en pagina-varianten verschillen:
@@ -237,7 +309,10 @@ function parseerNlDatum(tekst) {
 function vindDocumentId(html, itemId) {
   if (itemId) {
     const specifiek = html.match(
-      new RegExp(`/Reports/Document/${itemId.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")}\\?documentId=([a-f0-9-]{36})`, "i")
+      new RegExp(
+        `/Reports/Document/${itemId.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")}\\?documentId=([a-f0-9-]{36})`,
+        "i"
+      )
     );
     if (specifiek) return specifiek[1];
   }
@@ -251,8 +326,8 @@ function vindDocumentId(html, itemId) {
 /**
  * Tekst uit de detailpagina-HTML halen als fallback wanneer de PDF geen
  * leesbare tekst bevat (bijvoorbeeld een scan zonder tekstlaag) of wanneer er
- * helemaal geen PDF-bijlage is (nieuwsbrieven, externe brieven). Pakt de
- * velden die iBabs altijd toont: Onderwerp, Toelichting, Afzender, Advies.
+ * helemaal geen PDF-bijlage is. Pakt de velden die iBabs altijd toont:
+ * Onderwerp, Toelichting, Afzender, Advies.
  */
 function haalDetailTekstUitHtml(html) {
   const velden = ["Onderwerp", "Toelichting", "Afzender", "Advies"];
@@ -351,7 +426,9 @@ async function voegDocumentInhoudToe(bericht, cookie) {
 
   if (!buffer) {
     if (htmlFallback) {
-      console.warn(`[${bericht.bronId}] PDF niet op te halen voor "${bericht.titel}" (${laatsteFout}) — HTML-fallback gebruikt (${htmlFallback.length} tekens).`);
+      console.warn(
+        `[${bericht.bronId}] PDF niet op te halen voor "${bericht.titel}" (${laatsteFout}) — HTML-fallback gebruikt (${htmlFallback.length} tekens).`
+      );
       return {
         ...bericht,
         samenvatting: [bericht.samenvatting, htmlFallback].filter(Boolean).join(" — "),
@@ -359,7 +436,9 @@ async function voegDocumentInhoudToe(bericht, cookie) {
         tekstBron: "artikel",
       };
     }
-    console.warn(`[${bericht.bronId}] PDF niet op te halen voor "${bericht.titel}": ${laatsteFout} (geprobeerd: ${pdfKandidaten.length} url's).`);
+    console.warn(
+      `[${bericht.bronId}] PDF niet op te halen voor "${bericht.titel}": ${laatsteFout} (geprobeerd: ${pdfKandidaten.length} url's).`
+    );
     return { ...bericht, documentInhoudOpgehaald: false };
   }
 
@@ -384,14 +463,18 @@ async function voegDocumentInhoudToe(bericht, cookie) {
     const volledigeTekst = (data.text || "").replace(/\s+/g, " ").trim();
     documentTekst = volledigeTekst.slice(0, MAX_DOCUMENT_TEKST_LENGTE);
     if (volledigeTekst.length > MAX_DOCUMENT_TEKST_LENGTE) {
-      console.log(`[${bericht.bronId}] PDF-tekst ingekort van ${volledigeTekst.length} naar ${MAX_DOCUMENT_TEKST_LENGTE} tekens voor "${bericht.titel}".`);
+      console.log(
+        `[${bericht.bronId}] PDF-tekst ingekort van ${volledigeTekst.length} naar ${MAX_DOCUMENT_TEKST_LENGTE} tekens voor "${bericht.titel}".`
+      );
     }
   } catch (fout) {
     parseFout = fout.message;
   }
 
   if (parseFout || !documentTekst) {
-    const reden = parseFout ? `parse mislukt: ${parseFout}` : `geen leesbare tekst (${buffer.length} bytes, waarschijnlijk een scan)`;
+    const reden = parseFout
+      ? `parse mislukt: ${parseFout}`
+      : `geen leesbare tekst (${buffer.length} bytes, waarschijnlijk een scan)`;
     console.warn(`[${bericht.bronId}] PDF onbruikbaar voor "${bericht.titel}" (${reden}).`);
     if (htmlFallback) {
       console.log(`[${bericht.bronId}] HTML-fallback: ${htmlFallback.length} tekens voor "${bericht.titel}".`);
@@ -416,4 +499,10 @@ async function voegDocumentInhoudToe(bericht, cookie) {
   };
 }
 
-module.exports = { scrapeIbabs };
+module.exports = {
+  scrapeIbabs,
+  parseerNlDatum,
+  bouwLijstBody,
+  normaliseerRij,
+  leesIbabsConfig,
+};
