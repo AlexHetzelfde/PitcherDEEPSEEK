@@ -10,6 +10,13 @@
   --kleur-nieuws-licht: #f7e4e4;
   --kleur-agenda: #b8860b;
   --kleur-agenda-licht: #faf0d4;
+  --kleur-oppervlak: #ffffff;
+  --kleur-zacht: #eef3f0;
+  --kleur-donker: #1f4d38;
+  --kleur-prio-1: #b83a3a;
+  --kleur-prio-2: #c2681b;
+  --kleur-prio-3: #4a5b8c;
+  --kleur-prio-4: #7a7a7a;
   --font: "Segoe UI", system-ui, -apple-system, sans-serif;
 }
 
@@ -26,14 +33,13 @@ body {
 }
 
 .site-header {
-  padding: 2rem 1.5rem 1.5rem;
+  padding: 1rem 1.5rem 0.75rem;
   background: var(--kleur-accent);
   color: white;
-  text-align: center;
 }
 
 .site-header h1 {
-  margin: 0 0 0.25rem;
+  margin: 0;
   font-size: 1.6rem;
 }
 
@@ -44,18 +50,27 @@ body {
 }
 
 .laatste-update {
-  margin: 0.5rem 0 0;
+  margin: 0.4rem 0 0;
   font-size: 0.8rem;
-  opacity: 0.75;
+  opacity: 0.8;
+  min-height: 1.2em;
 }
 
 main {
-  max-width: 900px;
-  margin: 0 auto;
-  padding: 1.5rem 1rem 3rem;
+  padding: 1rem 1rem 3rem;
 }
 
-section {
+.paneel[hidden] {
+  display: none;
+}
+
+/* De pitch-tab houdt de smalle leesbreedte van vroeger. */
+.paneel-smal {
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.paneel-smal > section {
   margin-bottom: 2.5rem;
 }
 
@@ -399,5 +414,474 @@ h2 {
   }
   .feed-datum {
     margin-left: 0;
+  }
+}
+
+
+/* ======================================================================
+   ZANP: tabs, werkbalk, nieuwsstroom en weekagenda
+   ====================================================================== */
+
+:focus-visible {
+  outline: 3px solid #1b6fd6;
+  outline-offset: 2px;
+}
+
+.header-rij {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem 1.5rem;
+}
+
+.merk {
+  font-weight: 800;
+  letter-spacing: 0.04em;
+}
+
+.merk-sub {
+  margin-left: 0.75rem;
+  font-size: 0.9rem;
+  font-weight: 400;
+  opacity: 0.9;
+}
+
+.tabs {
+  display: flex;
+  gap: 0.25rem;
+}
+
+.tab {
+  font: inherit;
+  font-weight: 600;
+  color: white;
+  background: transparent;
+  border: 0;
+  border-bottom: 3px solid transparent;
+  padding: 0.5rem 0.9rem;
+  cursor: pointer;
+  opacity: 0.8;
+}
+
+.tab:hover {
+  opacity: 1;
+}
+
+.tab[aria-selected="true"] {
+  opacity: 1;
+  border-bottom-color: white;
+}
+
+.werkbalk {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  gap: 0.75rem 1.25rem;
+  margin-bottom: 0.5rem;
+}
+
+.veld {
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+}
+
+.veld-label {
+  font-size: 0.7rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: #666;
+}
+
+.veld input[type="search"],
+.veld select {
+  font: inherit;
+  font-size: 0.9rem;
+  padding: 0.4rem 0.5rem;
+  border: 1px solid var(--kleur-rand);
+  border-radius: 6px;
+  background: var(--kleur-oppervlak);
+  color: var(--kleur-tekst);
+  min-width: 11rem;
+}
+
+.vinkje {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 0.9rem;
+  padding-bottom: 0.45rem;
+}
+
+.knop {
+  font: inherit;
+  font-size: 0.9rem;
+  font-weight: 600;
+  padding: 0.4rem 0.8rem;
+  border: 1px solid var(--kleur-rand);
+  border-radius: 6px;
+  background: var(--kleur-oppervlak);
+  color: var(--kleur-tekst);
+  cursor: pointer;
+}
+
+.knop:hover {
+  background: var(--kleur-zacht);
+}
+
+.uitleg {
+  color: #555;
+  font-size: 0.85rem;
+  margin: 0.25rem 0 0.75rem;
+}
+
+/* --- Nieuwsstroom: een kolom per rubriek ------------------------------ */
+
+.wire-kolommen {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.75rem;
+  overflow-x: auto;
+  padding-bottom: 0.75rem;
+  scroll-snap-type: x proximity;
+}
+
+.wire-kolom {
+  flex: 0 0 min(340px, 88vw);
+  display: flex;
+  flex-direction: column;
+  max-height: calc(100vh - 220px);
+  min-height: 220px;
+  background: var(--kleur-oppervlak);
+  border: 1px solid var(--kleur-rand);
+  border-radius: 8px;
+  overflow: hidden;
+  scroll-snap-align: start;
+}
+
+.wire-kolom-kop {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 0.5rem;
+  padding: 0.7rem 0.9rem;
+}
+
+.wire-kolom-kop h2 {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 1rem;
+  color: var(--kleur-accent);
+}
+
+.wire-aantal {
+  font-size: 0.8rem;
+  color: #777;
+}
+
+.agenda-balk {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  width: 100%;
+  font: inherit;
+  font-size: 0.85rem;
+  font-weight: 600;
+  text-align: left;
+  color: white;
+  background: var(--kleur-accent);
+  border: 0;
+  padding: 0.6rem 0.9rem;
+  cursor: pointer;
+}
+
+.agenda-balk:hover {
+  background: var(--kleur-donker);
+}
+
+.agenda-balk.leeg {
+  background: #8aa597;
+}
+
+.agenda-teller {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 1.6rem;
+  height: 1.6rem;
+  padding: 0 0.35rem;
+  border-radius: 999px;
+  background: white;
+  color: var(--kleur-accent);
+  font-size: 0.8rem;
+}
+
+.agenda-balk-pijl {
+  margin-left: auto;
+}
+
+.wire-lijst {
+  overflow-y: auto;
+  flex: 1 1 auto;
+}
+
+.wire-dag {
+  position: sticky;
+  top: 0;
+  z-index: 1;
+  margin: 0;
+  padding: 0.3rem 0.9rem;
+  font-size: 0.7rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: #666;
+  background: var(--kleur-zacht);
+}
+
+.wire-item {
+  padding: 0.7rem 0.9rem;
+  border-bottom: 1px solid var(--kleur-rand);
+}
+
+.wire-kop {
+  display: block;
+  width: 100%;
+  font: inherit;
+  font-weight: 700;
+  font-size: 0.95rem;
+  line-height: 1.3;
+  text-align: left;
+  color: var(--kleur-tekst);
+  background: none;
+  border: 0;
+  padding: 0;
+  cursor: pointer;
+}
+
+.wire-kop:hover {
+  text-decoration: underline;
+}
+
+.versie-suffix {
+  font-weight: 700;
+  color: var(--kleur-accent);
+}
+
+/* Waarde boven, label eronder, zoals in de ANP-lijst. */
+.wire-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.25rem 1.1rem;
+  margin: 0.45rem 0 0;
+}
+
+.wire-meta > div {
+  display: flex;
+  flex-direction: column-reverse;
+}
+
+.wire-meta dd {
+  margin: 0;
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: #333;
+}
+
+.wire-meta dt {
+  font-size: 0.68rem;
+  color: #888;
+}
+
+.prio-waarde {
+  display: inline-block;
+  min-width: 1.2em;
+  text-align: center;
+  border-radius: 3px;
+  color: white;
+  padding: 0 0.25em;
+}
+
+.prio-waarde.prio-1 { background: var(--kleur-prio-1); }
+.prio-waarde.prio-2 { background: var(--kleur-prio-2); }
+.prio-waarde.prio-3 { background: var(--kleur-prio-3); }
+.prio-waarde.prio-4 { background: var(--kleur-prio-4); }
+
+.wire-detail {
+  margin-top: 0.6rem;
+  padding: 0.6rem 0.75rem;
+  background: var(--kleur-zacht);
+  border-radius: 6px;
+  font-size: 0.85rem;
+}
+
+.wire-detail[hidden] {
+  display: none;
+}
+
+.wire-detail p {
+  margin: 0 0 0.5rem;
+}
+
+.wire-detail p:last-child {
+  margin-bottom: 0;
+}
+
+.wire-label {
+  display: inline-block;
+  font-size: 0.65rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  padding: 0.1rem 0.45rem;
+  border-radius: 999px;
+  margin-right: 0.4rem;
+}
+
+.wire-label.ai {
+  background: var(--kleur-agenda-licht);
+  color: var(--kleur-agenda);
+}
+
+.wire-label.signaal {
+  background: #e7eaf5;
+  color: var(--kleur-landelijk);
+}
+
+.wire-label.waarschuwing {
+  background: var(--kleur-nieuws-licht);
+  color: var(--kleur-nieuws);
+}
+
+.wire-bron-link {
+  font-weight: 600;
+  color: var(--kleur-accent);
+}
+
+/* --- Weekagenda ------------------------------------------------------- */
+
+.week-nav {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.weeklabel {
+  margin-left: 0.5rem;
+}
+
+.agenda-week {
+  display: grid;
+  grid-template-columns: repeat(7, minmax(220px, 1fr));
+  gap: 0.75rem;
+  overflow-x: auto;
+  padding-bottom: 0.75rem;
+  align-items: start;
+}
+
+.agenda-dag {
+  background: var(--kleur-oppervlak);
+  border: 1px solid var(--kleur-rand);
+  border-radius: 8px;
+  overflow: hidden;
+  min-height: 140px;
+}
+
+.agenda-dag.vandaag {
+  border-color: var(--kleur-accent);
+  box-shadow: 0 0 0 1px var(--kleur-accent);
+}
+
+.agenda-dag-kop {
+  margin: 0;
+  padding: 0.65rem 0.9rem;
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: var(--kleur-accent);
+  border-bottom: 1px solid var(--kleur-rand);
+}
+
+.agenda-dag.vandaag .agenda-dag-kop {
+  background: var(--kleur-accent);
+  color: white;
+}
+
+.agenda-item {
+  padding: 0.65rem 0.9rem;
+  border-bottom: 1px solid var(--kleur-rand);
+  font-size: 0.85rem;
+}
+
+.agenda-tijd {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+  font-weight: 700;
+  color: var(--kleur-accent);
+  font-size: 0.8rem;
+}
+
+.agenda-tijd.onbekend {
+  color: #888;
+  font-weight: 400;
+}
+
+.agenda-tijd svg {
+  flex: 0 0 auto;
+}
+
+.agenda-kop {
+  margin: 0.2rem 0 0;
+  font-weight: 700;
+  line-height: 1.3;
+}
+
+.agenda-kop a {
+  color: var(--kleur-tekst);
+  text-decoration: none;
+}
+
+.agenda-kop a:hover {
+  text-decoration: underline;
+}
+
+.agenda-status {
+  color: var(--kleur-nieuws);
+}
+
+.agenda-meta {
+  margin: 0.25rem 0 0;
+  font-size: 0.75rem;
+  color: #777;
+}
+
+.doorlopend-label {
+  display: inline-block;
+  margin-left: 0.4rem;
+  padding: 0.1rem 0.5rem;
+  font-size: 0.65rem;
+  font-weight: 700;
+  color: white;
+  background: var(--kleur-accent);
+  border-radius: 999px;
+}
+
+.agenda-leeg {
+  padding: 0.75rem 0.9rem;
+  font-size: 0.8rem;
+  color: #888;
+  font-style: italic;
+}
+
+@media (max-width: 700px) {
+  .merk-sub {
+    display: block;
+    margin-left: 0;
+  }
+  .wire-kolom {
+    max-height: none;
   }
 }

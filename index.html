@@ -1,52 +1,105 @@
 <!DOCTYPE html>
 <html lang="nl">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Nieuwsaggregator Zaanstreek-Waterland</title>
-  <link rel="stylesheet" href="style.css" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>ZANP — Nieuwsdienst Zaanstreek-Waterland</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
   <header class="site-header">
-    <h1>Nieuwsaggregator Zaanstreek-Waterland</h1>
-    <p class="subtitel">Dagelijkse pitchmachine voor lokale journalistiek — bijgewerkt elke nacht</p>
+    <div class="header-rij">
+      <h1><span class="merk">ZANP</span><span class="merk-sub">Nieuwsdienst Zaanstreek-Waterland</span></h1>
+      <nav class="tabs" role="tablist" aria-label="Weergave">
+        <button type="button" class="tab" role="tab" id="tab-nieuwsdienst" data-tab="nieuwsdienst" aria-controls="paneel-nieuwsdienst" aria-selected="true">Nieuwsdienst</button>
+        <button type="button" class="tab" role="tab" id="tab-agenda" data-tab="agenda" aria-controls="paneel-agenda" aria-selected="false" tabindex="-1">Agenda</button>
+        <button type="button" class="tab" role="tab" id="tab-pitches" data-tab="pitches" aria-controls="paneel-pitches" aria-selected="false" tabindex="-1">Pitches</button>
+      </nav>
+    </div>
     <p id="laatste-update" class="laatste-update"></p>
   </header>
 
   <main>
-    <section id="pitches-sectie">
-      <h2>Top 10 pitches van vandaag</h2>
-      <p class="uitleg">Berichten die de AI als "oppakbaar" (lokaal nieuws) of met een "lokale invalshoek" (landelijk nieuws) heeft beoordeeld, gesorteerd op de prioriteit (1-10) die de AI geeft op basis van het concrete gevolg voor mensen.</p>
-      <div id="pitches-lijst" class="kaarten-grid">
-        <p class="laden">Pitches laden…</p>
+    <!-- ================= Nieuwsdienst ================= -->
+    <section id="paneel-nieuwsdienst" class="paneel" role="tabpanel" aria-labelledby="tab-nieuwsdienst">
+      <div class="werkbalk">
+        <label class="veld">
+          <span class="veld-label">Zoeken</span>
+          <input type="search" id="wire-zoek" placeholder="Zoek in koppen en teksten" autocomplete="off">
+        </label>
+        <label class="veld">
+          <span class="veld-label">Prioriteit</span>
+          <select id="wire-prio">
+            <option value="4">Alle (1 t/m 4)</option>
+            <option value="3">1 t/m 3</option>
+            <option value="2">1 en 2</option>
+          </select>
+        </label>
+        <label class="veld">
+          <span class="veld-label">Periode</span>
+          <select id="wire-periode">
+            <option value="0">Vandaag</option>
+            <option value="2" selected>Laatste 3 dagen</option>
+            <option value="6">Laatste 7 dagen</option>
+            <option value="999">Alles</option>
+          </select>
+        </label>
+        <label class="vinkje">
+          <input type="checkbox" id="wire-recent">
+          <span>Recent gewijzigd</span>
+        </label>
       </div>
+      <p class="uitleg" id="wire-uitleg">Prioriteit: 1 = urgent, 2 = belangrijk, 3 = regulier, 4 = routine. De AI geeft nooit prio 1. Een tekst met het label AI is automatisch samengevat uit de bron: controleer hem voor gebruik.</p>
+      <div id="wire-kolommen" class="wire-kolommen"><p class="laden">Berichten laden…</p></div>
     </section>
 
-    <section id="feed-sectie">
-      <h2>Nieuwsfeed</h2>
-      <p class="uitleg">Alle binnengekomen berichten op datum, nieuwste eerst. <span class="feed-legenda feed-legenda-nieuws">rood</span> = nieuws, <span class="feed-legenda feed-legenda-agenda">geel</span> = agenda/evenement.</p>
-      <div id="feed-lijst" class="feed-lijst">
-        <p class="laden">Feed laden…</p>
+    <!-- ================= Agenda ================= -->
+    <section id="paneel-agenda" class="paneel" role="tabpanel" aria-labelledby="tab-agenda" hidden>
+      <div class="werkbalk">
+        <div class="week-nav">
+          <button type="button" id="agenda-vorige" class="knop" aria-label="Vorige week">‹</button>
+          <button type="button" id="agenda-vandaag" class="knop">Vandaag</button>
+          <button type="button" id="agenda-volgende" class="knop" aria-label="Volgende week">›</button>
+          <strong id="agenda-weeklabel" class="weeklabel"></strong>
+        </div>
+        <label class="veld">
+          <span class="veld-label">Rubriek</span>
+          <select id="agenda-rubriek"><option value="">Alle rubrieken</option></select>
+        </label>
       </div>
+      <p class="uitleg">Een tijd met ± is uit de tekst van de bron gehaald en niet uit een vast veld. Meerdaagse evenementen staan op elke dag en zijn gemarkeerd als doorlopend. De agenda bouwt zich vanaf de eerste run op: eerdere dagen zijn pas gevuld naarmate de dienst langer draait.</p>
+      <div id="agenda-week" class="agenda-week"><p class="laden">Agenda laden…</p></div>
     </section>
 
-    <section id="lokaal-sectie">
-      <h2>Alle lokale berichten</h2>
-      <div id="lokaal-lijst" class="berichten-lijst">
-        <p class="laden">Berichten laden…</p>
-      </div>
-    </section>
+    <!-- ================= Pitches (ongewijzigd, nu een eigen tab) ================= -->
+    <section id="paneel-pitches" class="paneel paneel-smal" role="tabpanel" aria-labelledby="tab-pitches" hidden>
+      <section>
+        <h2>Top 10 pitches van vandaag</h2>
+        <p class="uitleg">Per bericht maakt de AI een korte pitch met werktitel, samenvatting, invalshoek en vraag. De nieuwste berichten staan bovenaan.</p>
+        <p id="pitch-update" class="uitleg"></p>
+        <div id="pitches-lijst" class="kaarten-grid"><p class="laden">Pitches laden…</p></div>
+      </section>
 
-    <section id="landelijk-sectie">
-      <h2>Alle landelijke berichten</h2>
-      <div id="landelijk-lijst" class="berichten-lijst">
-        <p class="laden">Berichten laden…</p>
-      </div>
+      <section>
+        <h2>Nieuwsfeed</h2>
+        <p class="uitleg">Alle binnengekomen berichten op datum, nieuwste eerst. <span class="feed-legenda feed-legenda-nieuws">rood</span> = nieuws, <span class="feed-legenda feed-legenda-agenda">geel</span> = agenda/evenement.</p>
+        <div id="feed-lijst" class="feed-lijst"><p class="laden">Feed laden…</p></div>
+      </section>
+
+      <section id="lokaal-sectie">
+        <h2>Alle lokale berichten</h2>
+        <div id="lokaal-lijst" class="berichten-lijst"><p class="laden">Laden…</p></div>
+      </section>
+
+      <section id="landelijk-sectie">
+        <h2>Alle landelijke berichten</h2>
+        <div id="landelijk-lijst" class="berichten-lijst"><p class="laden">Laden…</p></div>
+      </section>
     </section>
   </main>
 
   <footer class="site-footer">
-    <p>Gebouwd voor lokale journalistiek in Zaanstreek-Waterland. De AI zoekt in elk bericht naar het concrete gevolg voor mensen.</p>
+    <p>Gebouwd voor lokale journalistiek in Zaanstreek-Waterland. Teksten met het label AI zijn automatisch samengevat uit officiële bronnen en niet door een mens gecontroleerd. Artikelen van andere redacties worden alleen als kop met een link getoond.</p>
   </footer>
 
   <script src="script.js"></script>
