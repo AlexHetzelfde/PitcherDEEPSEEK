@@ -1,11 +1,20 @@
 // gemini.js
 //
-// Roept Gemini aan voor twee taken:
+// Roept Gemini aan voor drie taken:
 //   1. beoordeelBerichten — het criteria-filter. Draait alleen nog voor
 //      agenda (afspraak 1 en 2 van de review). Nieuws slaat dit filter over.
 //   2. genereerPitches — de pitch. Draait voor alle nieuws + de agenda die
 //      het filter heeft gehaald. Vier velden: werktitel, samenvatting,
 //      invalshoek, vraag (afspraak 3).
+//   3. schrijfMeldingen — de nieuwsdienst (ZANP). Maakt van een officiële
+//      bron of een persbericht een korte, feitelijke melding: kop, tekst en
+//      prio. Draait NOOIT voor artikelen van andere redacties; dat regelt
+//      rubrieken.js (herschrijf: false). De uitvoer wordt in wire.js
+//      gecontroleerd (cijfers moeten in de bron staan).
+//
+// Sinds de ZANP-ronde (2026-10-23):
+//  - schrijfMeldingen toegevoegd, met eigen promptversie en lage temperatuur.
+//  - Pitch en filter zijn ongewijzigd.
 //
 // Sinds de "pitch-en-filter-uit-elkaar"-ronde (2026-10-22):
 //  - Nieuws gaat niet meer door het criteria-filter.
@@ -28,17 +37,20 @@ const {
 } = require("./nieuwscriteria");
 
 const PROMPT_VERSIE = "2026-10-22-pitch-vier-velden";
+const PROMPT_VERSIE_WIRE = "2026-10-23-melding-kop-tekst-prio";
 
 // Afspraak 18: hetzelfde model als nu, met dezelfde fallback-keten.
 const MODELLEN = {
   filter: ["gemini-flash-latest"],
   pitch: ["gemini-flash-latest"],
   sterker: ["gemini-flash-latest"],
+  wire: ["gemini-flash-latest"],
 };
 
 const MAX_OUTPUT_TOKENS = 2048;
 const TEMPERATUUR_FILTER = 0.2;
 const TEMPERATUUR_PITCH = 0.3;
+const TEMPERATUUR_WIRE = 0.1; // feiten overnemen, niet fantaseren
 const PARALLEL = 3;
 
 // ---------------------------------------------------------------------------
@@ -344,14 +356,126 @@ async function genereerPitches(berichten, apiKey, cap, categorie) {
   return resultaten;
 }
 
+// ---------------------------------------------------------------------------
+// Melding voor de nieuwsdienst (ZANP)
+// ---------------------------------------------------------------------------
+
+// Een prompt per bericht. Het voorbeeld is bewust verzonnen (en dus nooit een
+// echt bericht van vandaag), zodat het model het niet overneemt.
+function bouwMeldingPrompt(item) {
+  const tekst = (item.tekst || "").trim();
+  return `Je bent redacteur bij een regionale nieuwsdienst voor Zaanstreek-Waterland, in de stijl van een persbureau: kort, feitelijk en neutraal.
+Schrijf op basis van de bron hieronder een melding met drie velden.
+
+VELDEN:
+
+kop
+Eis: maximaal 14 woorden, tegenwoordige tijd, feitelijk. Noem wie of wat en de kern. Geen vraag, geen aanloktaal, geen uitroepteken.
+Voorbeeld: "Fietspad langs de Vaart in Wormer twee weken dicht voor onderhoud"
+
+tekst
+Eis: twee tot vier zinnen over wie of wat, waar, wanneer en wat het concreet betekent. Uitsluitend feiten uit de bron. Geen oordeel, geen citaten, geen achtergrond uit eigen kennis.
+Voorbeeld: "De gemeente knapt van 3 tot en met 14 maart het fietspad langs de Vaart op. Fietsers worden in die periode omgeleid via de Dorpsstraat."
+
+prio
+Een geheel getal van 2 tot en met 4:
+  2: raakt veel inwoners of heeft direct gevolgen voor het dagelijks leven (verkeer, veiligheid, zorg, geld).
+  3: relevant voor een kleinere groep, of een belangrijk besluit.
+  4: routine of administratief (vergunning, bekendmaking, persbericht van een instelling).
+
+REGELS:
+- Gebruik alleen wat in de bron staat. Staat iets er niet in, laat het dan weg. Verzin geen namen, getallen, data of plaatsen.
+- Neem getallen letterlijk over; reken niets om en tel niets op.
+- Is de brontekst te kort of te onduidelijk voor een melding, antwoord dan {"onvoldoende": true}.
+- Schrijf in correct, helder Nederlands.
+
+Geef ALLEEN geldige JSON terug, exact dit formaat, geen markdown-fences en geen andere tekst:
+{
+  "kop": "...",
+  "tekst": "...",
+  "prio": 3
+}
+
+BRON:
+Titel: ${item.titel || ""}
+Bron: ${item.bronNaam || ""}
+Datum: ${item.gepubliceerdOp || ""}
+Tekst:
+${tekst || "(geen tekst beschikbaar)"}`;
+}
+
+// Geeft { onvoldoende: true } of { kop, tekst, prio } terug, of null bij een
+// onbruikbaar antwoord.
+function valideerMelding(data) {
+  if (!data || typeof data !== "object") return null;
+  if (data.onvoldoende === true) return { onvoldoende: true };
+  for (const veld of ["kop", "tekst"]) {
+    if (typeof data[veld] !== "string" || !data[veld].trim()) return null;
+  }
+  const kop = data.kop.trim();
+  if (kop.length > 160) return null;
+  const prio = Number(data.prio);
+  return {
+    kop,
+    tekst: data.tekst.trim(),
+    prio: Number.isInteger(prio) ? prio : null,
+  };
+}
+
+async function schrijfMeldingVoorItem(item, apiKey) {
+  const prompt = bouwMeldingPrompt(item);
+  const data = await roepGeminiMetFallback(MODELLEN.wire, prompt, apiKey, TEMPERATUUR_WIRE);
+  const melding = valideerMelding(data);
+  if (!melding) throw new Error("onvolledige melding (kop of tekst ontbreekt)");
+  return melding;
+}
+
+/**
+ * Schrijft meldingen voor een lijst items. Geeft een Map terug van item.id
+ * naar { melding } | { onvoldoende: true } | { fout }. Items voorbij de
+ * dagcap krijgen { fout: "overgeslagen (dagcap …)" }; ze behouden dan
+ * gewoon hun originele kop.
+ */
+async function schrijfMeldingen(items, apiKey, cap) {
+  const resultaten = new Map();
+  if (!Array.isArray(items) || items.length === 0) return resultaten;
+  const teDoen = items.slice(0, cap);
+
+  for (let i = 0; i < teDoen.length; i += PARALLEL) {
+    const batch = teDoen.slice(i, i + PARALLEL);
+    await Promise.all(
+      batch.map(async (item) => {
+        try {
+          const melding = await schrijfMeldingVoorItem(item, apiKey);
+          resultaten.set(item.id, melding.onvoldoende ? { onvoldoende: true } : { melding });
+        } catch (fout) {
+          resultaten.set(item.id, { fout: fout.message });
+        }
+      })
+    );
+    const gedaan = Math.min(i + PARALLEL, teDoen.length);
+    if (gedaan % 10 === 0 || gedaan === teDoen.length) {
+      console.log(`  melding: ${gedaan}/${teDoen.length} berichten`);
+    }
+  }
+  for (let i = cap; i < items.length; i++) {
+    resultaten.set(items[i].id, { fout: `overgeslagen (dagcap ${cap})` });
+  }
+  return resultaten;
+}
+
 module.exports = {
   beoordeelBerichten,
   genereerPitches,
+  schrijfMeldingen,
   PROMPT_VERSIE,
+  PROMPT_VERSIE_WIRE,
   MODELLEN,
   bouwFilterPrompt,
   bouwPitchPrompt,
+  bouwMeldingPrompt,
   valideerPitch,
+  valideerMelding,
   valideerScores,
   parseAntwoord,
 };

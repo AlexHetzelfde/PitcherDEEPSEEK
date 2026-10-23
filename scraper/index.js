@@ -11,6 +11,17 @@
 //
 // Ongewijzigd voor agenda sinds 2026-10-21: filter met scores 0-3,
 // citaat-controle, wegingen, drempel.
+//
+// Sinds de ZANP-ronde (2026-10-23): de nieuwsdienst-laag erbij. Pitch,
+// filter en feed werken ongewijzigd door; er komen twee databestanden bij.
+//  - STAP 4b bouwt data/agenda.json uit ALLE agenda-items (ook de komende
+//    drie weken), zonder AI. Dit staat los van het nieuwsvenster: de feed
+//    houdt toekomstige items bewust buiten beeld, een weekagenda niet.
+//  - STAP 6b bouwt data/berichten.json: de stroom met kop, korte tekst,
+//    rubriek, prio en versies. Draait ook zonder API-sleutel (dan alleen
+//    originele koppen). De AI-tekst gaat door een cijfercontrole (wire.js)
+//    en wordt alleen gemaakt voor bronnen met herschrijf: true in
+//    rubrieken.js. Artikelen van andere redacties blijven kop + link.
 
 const fs = require("fs/promises");
 const path = require("path");
@@ -20,10 +31,14 @@ const { scraperVoorType } = require("./scraper-register");
 const {
   beoordeelBerichten,
   genereerPitches,
+  schrijfMeldingen,
   PROMPT_VERSIE,
+  PROMPT_VERSIE_WIRE,
   MODELLEN,
 } = require("./gemini");
 const { DREMPEL, MAX_SCORE_LOKAAL, MAX_SCORE_LANDELIJK } = require("./nieuwscriteria");
+const { RUBRIEKEN, isBekendeBron } = require("./rubrieken");
+const { bouwAgenda, planBerichten, verwerkMelding, voegBerichtenSamen, MIN_TEKST_VOOR_AI } = require("./wire");
 const {
   binnenVenster,
   MAX_LEEFTIJD_DAGEN,
@@ -41,6 +56,10 @@ const DAGCAP_GEMINI = Number(process.env.DAGCAP_GEMINI || 100);
 const AANTAL_PITCHES = Number(process.env.AANTAL_PITCHES || 10);
 const FEED_MAX_ITEMS = Number(process.env.FEED_MAX_ITEMS || 800);
 const FEED_SAMENVATTING_TEKENS = Number(process.env.FEED_SAMENVATTING_TEKENS || 250);
+// Aparte dagcap voor de meldingen van de nieuwsdienst; deze komen boven op
+// de pitch-aanroepen. Houd de dagelijkse quotum van het gratis Gemini-model
+// in de gaten als je beide hoog zet.
+const WIRE_CAP = Number(process.env.WIRE_CAP || 80);
 
 const GEEN_TEKSTOPHAAL_TYPES = new Set(["ibabs"]);
 const GEEN_TEKSTOPHAAL_BRONNEN = new Set(["OmgevingsdienstNHN"]);
@@ -261,6 +280,14 @@ function verwijderDubbelen(berichten) {
 async function schrijfJson(bestandsnaam, data) {
   await fs.mkdir(DATA_MAP, { recursive: true });
   await fs.writeFile(path.join(DATA_MAP, bestandsnaam), JSON.stringify(data, null, 2), "utf-8");
+}
+
+async function leesJson(bestandsnaam, standaard) {
+  try {
+    return JSON.parse(await fs.readFile(path.join(DATA_MAP, bestandsnaam), "utf-8"));
+  } catch {
+    return standaard;
+  }
 }
 
 function kortAfTekst(tekst, max) {
@@ -574,6 +601,25 @@ async function main() {
     console.error(`Nieuwsfeed bijwerken mislukte onverwacht (de rest van de run gaat door): ${fout.message}${oorzaakTekst(fout)}`);
   }
 
+  logFase("STAP 4b — Weekagenda bijwerken (zonder AI)");
+  try {
+    const bestaandeAgenda = await leesJson("agenda.json", { items: [] });
+    const { items, stats } = bouwAgenda({
+      ruweBerichten,
+      bronPerId,
+      bestaand: Array.isArray(bestaandeAgenda.items) ? bestaandeAgenda.items : [],
+    });
+    await schrijfJson("agenda.json", { gegenereerdOp: new Date().toISOString(), items });
+    const zonderTijd = items.filter((i) => !i.heeftTijd).length;
+    console.log(
+      `Agenda bijgewerkt: ${items.length} items (${stats.nieuw} nieuw, ${stats.bijgewerkt} bijgewerkt, `
+        + `${stats.behouden} behouden, ${stats.verdwenen} verdwenen, ${stats.verlopen} verlopen); `
+        + `${zonderTijd} zonder tijd.`
+    );
+  } catch (fout) {
+    console.error(`Agenda bijwerken mislukte onverwacht (de rest van de run gaat door): ${fout.message}${oorzaakTekst(fout)}`);
+  }
+
   logFase("STAP 5 — Berichten voor de pitches filteren");
   const berichtenVanVandaag = alleBerichten.filter(binnen);
   console.log(`Voor de pitches: ${berichtenVanVandaag.length} van ${alleBerichten.length} unieke bericht(en) vallen binnen het venster.`);
@@ -588,6 +634,56 @@ async function main() {
 
   await schrijfJson("nieuws-lokaal.json", lokaal);
   await schrijfJson("nieuws-landelijk.json", landelijk);
+
+  logFase("STAP 6b — Nieuwsdienst (ZANP) bijwerken");
+  try {
+    for (const bron of bronnen) {
+      if (!isBekendeBron(bron.id)) {
+        console.warn(`[${bron.id}] Staat niet in rubrieken.js: rubriek Overig, prio 3, geen AI-tekst. Voeg de bron daar toe.`);
+      }
+    }
+    const vorigeBerichten = await leesJson("berichten.json", { berichten: [] });
+    const bestaand = Array.isArray(vorigeBerichten.berichten) ? vorigeBerichten.berichten : [];
+    const feedItems = await leesJson("feed.json", []);
+    const nu = new Date();
+
+    const vensterNieuws = berichtenVanVandaag.filter((b) => !isAgendaItem(b));
+    const { nieuwe, stats } = planBerichten({
+      vensterBerichten: vensterNieuws,
+      feedItems: Array.isArray(feedItems) ? feedItems : [],
+      bestaand,
+      nu,
+    });
+    console.log(
+      `Berichten: ${stats.nieuw} nieuw, ${stats.update} nieuwe versie(s), ${stats.opnieuw} opnieuw voor AI-tekst, ${stats.ongewijzigd} ongewijzigd`
+        + `${bestaand.length === 0 ? `, ${stats.seed} kale signalen uit de feed (eerste run)` : ""}.`
+    );
+
+    let verwerkt = nieuwe.map((n) => n.record);
+    const teSchrijven = nieuwe.filter((n) => n.invoer);
+    if (apiKey && teSchrijven.length > 0) {
+      console.log(`Meldingen schrijven voor ${teSchrijven.length} bericht(en) (cap ${WIRE_CAP}, prompt ${PROMPT_VERSIE_WIRE}, minimaal ${MIN_TEKST_VOOR_AI} tekens brontekst).`);
+      const resultaten = await schrijfMeldingen(teSchrijven.map((n) => n.invoer), apiKey, WIRE_CAP);
+      verwerkt = nieuwe.map((n) => (n.invoer ? verwerkMelding(n, resultaten.get(n.invoer.id)) : n.record));
+      const telling = {};
+      for (const r of verwerkt) if (r.controle) telling[r.controle] = (telling[r.controle] || 0) + 1;
+      console.log(`Controle-uitkomsten: ${JSON.stringify(telling)}`);
+    } else if (!apiKey && teSchrijven.length > 0) {
+      console.log(`Geen API-sleutel: ${teSchrijven.length} bericht(en) blijven kop + link.`);
+    }
+
+    const eind = voegBerichtenSamen(bestaand, verwerkt, nu);
+    await schrijfJson("berichten.json", {
+      gegenereerdOp: nu.toISOString(),
+      promptVersie: PROMPT_VERSIE_WIRE,
+      prioSchaal: "1 = urgent, 2 = belangrijk, 3 = regulier, 4 = routine. De AI geeft nooit prio 1.",
+      rubrieken: RUBRIEKEN,
+      berichten: eind,
+    });
+    console.log(`Nieuwsdienst bijgewerkt: ${eind.length} berichten in de stroom, ${eind.filter((r) => r.ai).length} met AI-tekst.`);
+  } catch (fout) {
+    console.error(`Nieuwsdienst bijwerken mislukte onverwacht (de rest van de run gaat door): ${fout.stack || fout.message}`);
+  }
 
   if (!apiKey) {
     console.log("Klaar (zonder AI-beoordeling).");
