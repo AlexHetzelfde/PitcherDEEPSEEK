@@ -1,8 +1,8 @@
 {
-  "gegenereerdOp": "2026-10-23T04:11:19.661Z",
+  "gegenereerdOp": "2026-10-24T04:05:31.037Z",
   "promptVersie": "2026-10-22-pitch-vier-velden",
   "sorteerwijze": "datum",
-  "aantalBerichtenTotaal": 32,
+  "aantalBerichtenTotaal": 44,
   "drempels": {
     "lokaal": 6,
     "landelijk": 8,
@@ -14,170 +14,19 @@
       "bronId": "nh-actueel",
       "bronNaam": "Provincie Noord-Holland — Actueel",
       "categorie": "lokaal",
-      "titel": "Opperdoezerpad ter hoogte van N240 afgesloten",
-      "url": "https://www.noord-holland.nl/Actueel/Archief/2026/Oktober_2026/Opperdoezerpad_ter_hoogte_van_N240_afgesloten",
-      "samenvatting": "Publicatiedatum: 22 oktober 2026 Laatst gewijzigd: 22 oktober 2026 0 reacties Van 2 tot en met 13 november voert de provincie Noord-Holland werkzaamheden uit aan het Opperdoezerpad bij de kruising met de N240. Met deze werkzaamheden wil de provincie de oversteek veiliger maken voor fietsers en voetgangers. Tijdens de werkzaamheden zal de fietsoversteek afgesloten zijn. Fietsers worden omgeleid via de Almereweg. Woningen aan het Oosteinde blijven bereikbaar. Op de N240 wordt een halve rijbaanafzetting geplaatst met stoplicht. Wat gaat de provincie nu doen? De provincie hoogt naast de N240 beide zijden van het Opperdoezerpad met ongeveer 30 centimeter op. Daarna wordt nieuw asfalt aangebracht. Ook komen er extra verkeersborden en wegmarkering om automobilisten beter te attenderen op de oversteek. Door de ophoging, de extra borden en markering: staan fietsers en voetgangers eerder op gelijke hoogte met de N240 voor een beter zicht op de weg ontstaat er een vlakkere plek voor fietsers en voetgangers bij de oversteek zodat zij makkelijker de N240 over kunnen steken is de oversteek beter zichtbaar voor automobilisten De maatregel is afgestemd met de dorpsraden en de gemeente Medemblik. Maatregelen Opperdoezerpad De provincie maakt plannen voor een nieuwe inrichting van de N240. De uitvoering hiervan staat gepland in 2029. Op dat moment wordt de oversteek verder van de spoorweg af gelegd en komt er een middengeleider waar gewacht kan worden zodat de N240 in 2 keer overgestoken kan worden. Delen op: Deel dit bericht op Facebook Deel dit bericht op X Deel dit bericht op LinkedIn Om te kunnen reageren moet u eerst inloggen.",
-      "gepubliceerdOp": "2026-10-22T13:44:59.000Z",
-      "foto": "https://www.noord-holland.nl/bestanden/afbeeldingen/Nieuws/Opperdoezerpad.jpg",
-      "opgehaaldOp": "2026-10-23T03:57:27.068Z",
+      "titel": "Gewijzigde regels voor de ruimte in Noord-Holland",
+      "url": "https://www.noord-holland.nl/Actueel/Archief/2026/Oktober_2026/Gewijzigde_regels_voor_de_ruimte_in_Noord_Holland",
+      "samenvatting": "Publicatiedatum: 23 oktober 2026 Laatst gewijzigd: 23 oktober 2026 0 reacties De provincie zorgt ervoor dat de woon-, werk- en leefomgeving prettig en toekomstbestendig blijft. Daarom past ze jaarlijks de Omgevingsverordening aan. Vanaf januari 2027 gelden aangepaste regels die samen met gemeenten, belangenorganisaties en andere partners zijn gerealiseerd. Wijzigingen in de Omgevingsverordening De Omgevingsverordening Noord-Holland wordt jaarlijks geactualiseerd. De voorgestelde wijzigingen hebben van 21 mei tot en met 1 juli 2026 ter inzage gelegen. De meeste wijzigingen gaan over aanscherpingen of verduidelijkingen van bestaand beleid. Nieuw is bijvoorbeeld het provinciaal beleid voor grote batterijen. Vaststelling door Provinciale Staten (PS) Gedeputeerde Staten (GS) leggen de gewijzigde verordening, inclusief de Nota van beantwoording, in december ter besluitvorming voor aan Provinciale Staten (PS). Voordat het definitief wordt vastgesteld, bespreekt de Statencommissie Ruimte de verordening op maandag 23 november. Tijdens die vergadering is inspraak mogelijk. Na vaststelling door PS treedt de gewijzigde Omgevingsverordening in januari 2027 in werking. Zie voor meer informatie de pagina over de Omgevingsverordening. Delen op: Deel dit bericht op Facebook Deel dit bericht op X Deel dit bericht op LinkedIn Om te kunnen reageren moet u eerst inloggen.",
+      "gepubliceerdOp": "2026-10-23T10:29:16.000Z",
+      "foto": "https://www.noord-holland.nl/bestanden/afbeeldingen/Nieuws/omgevingsverordening%20foto.jpg",
+      "opgehaaldOp": "2026-10-24T03:52:46.322Z",
       "tekstBron": "artikel",
       "aiBeoordeling": {
-        "werktitel": "Werk aan Opperdoezerpad bij N240: fietsoversteek twee weken dicht voor veiliger kruising",
-        "samenvatting": "De provincie Noord-Holland voert van 2 tot en met 13 november werkzaamheden uit aan het Opperdoezerpad bij de N240 om de oversteek veiliger te maken voor fietsers en voetgangers. Het fietspad wordt aan weerszijden met circa 30 centimeter opgehoogd, opnieuw geasfalteerd en voorzien van extra borden en markering. Tijdens de klus is de oversteek dicht en geldt er op de N240 een halve rijbaanafzetting met stoplicht.",
-        "invalshoek": "Lokaal: vanuit fietsers en voetgangers bij het Opperdoezerpad en de N240 die tijdens de werkzaamheden moeten omrijden via de Almereweg.",
-        "vraag": "Hoeveel extra reistijd veroorzaken de omleiding via de Almereweg en het stoplicht op de N240 voor weggebruikers?",
-        "centraleVraag": "Hoeveel extra reistijd veroorzaken de omleiding via de Almereweg en het stoplicht op de N240 voor weggebruikers?"
-      }
-    },
-    {
-      "bronId": "ibabs-collegeberichten",
-      "bronNaam": "Zaanstad — Collegeberichten (iBabs)",
-      "categorie": "lokaal",
-      "titel": "GEHEIM Update intern onderzoek",
-      "itemId": "722a97c4-303f-45ab-b09b-260110a299eb",
-      "url": "https://zaanstad.bestuurlijkeinformatie.nl/Reports/Item/722a97c4-303f-45ab-b09b-260110a299eb",
-      "samenvatting": "Raadsinformatiebrief — Onclin, S. — Actieve informatievoorziening — Onderwerp: GEHEIM Update intern onderzoek",
-      "gepubliceerdOp": "2026-10-21T22:00:00.000Z",
-      "opgehaaldOp": "2026-10-23T03:57:07.065Z",
-      "documentInhoudOpgehaald": true,
-      "tekstBron": "artikel",
-      "aiBeoordeling": {
-        "werktitel": "Geheime update over intern onderzoek naar Zaanse gemeenteraad gestuurd",
-        "samenvatting": "S. Onclin heeft via een raadsinformatiebrief een geheime update gedeeld met de gemeenteraad van Zaanstad. Het bericht is verstuurd in het kader van actieve informatievoorziening en gaat over een intern onderzoek.",
-        "invalshoek": "Institutioneel: vanuit de Zaanse gemeenteraadsleden die vertrouwelijk zijn geïnformeerd over het lopende onderzoek.",
-        "vraag": "Waar richt het geheime interne onderzoek waarover S. Onclin de raad informeert zich precies op?",
-        "centraleVraag": "Waar richt het geheime interne onderzoek waarover S. Onclin de raad informeert zich precies op?"
-      }
-    },
-    {
-      "bronId": "ibabs-collegeberichten",
-      "bronNaam": "Zaanstad — Collegeberichten (iBabs)",
-      "categorie": "lokaal",
-      "titel": "GEHEIM Verkenning Zuiderhout Noord",
-      "itemId": "e5e45c3d-3de7-445b-a9fd-7cb4707859d3",
-      "url": "https://zaanstad.bestuurlijkeinformatie.nl/Reports/Item/e5e45c3d-3de7-445b-a9fd-7cb4707859d3",
-      "samenvatting": "Raadsinformatiebrief — Laan, van der H. — Actieve informatievoorziening — Onderwerp: GEHEIM Verkenning Zuiderhout Noord",
-      "gepubliceerdOp": "2026-10-21T22:00:00.000Z",
-      "opgehaaldOp": "2026-10-23T03:57:07.065Z",
-      "documentInhoudOpgehaald": true,
-      "tekstBron": "artikel",
-      "aiBeoordeling": {
-        "werktitel": "Gemeente houdt verkenning Zuiderhout Noord geheim voor het publiek",
-        "samenvatting": "Wethouder Van der Laan heeft via een raadsinformatiebrief een verkenning over Zuiderhout Noord gedeeld met de gemeenteraad van Zaanstad. Het stuk is als actieve informatievoorziening aan de raad gestuurd, maar is als geheim aangemerkt.",
-        "invalshoek": "Vanuit de Zaanse gemeenteraad die onder geheimhouding is geïnformeerd over de situatie rond Zuiderhout Noord.",
-        "vraag": "Waarom is de verkenning over Zuiderhout Noord door wethouder Van der Laan geheim verklaard?",
-        "centraleVraag": "Waarom is de verkenning over Zuiderhout Noord door wethouder Van der Laan geheim verklaard?"
-      }
-    },
-    {
-      "bronId": "bekendmakingen",
-      "bronNaam": "Officiële bekendmakingen — Zaanstad",
-      "categorie": "lokaal",
-      "titel": "Publicatie zakelijke omschrijving anterieure overeenkomst in de zin van art. 16.138 van de Omgevingswet",
-      "url": "https://zoek.officielebekendmakingen.nl/gmb-2026-494687.html",
-      "samenvatting": "Burgemeester en wethouders van Zaanstad maken ingevolge artikel 16.138 van de Omgevingswet bekend dat op 15 september 2026 een anterieure overeenkomst is gesloten door de Gemeente Zaanstad met Stichting Parteon (hierna: Initiatiefnemer). Voor de voorgenomen ontwikkeling is een omgevingsvergunning voor een buitenplanse omgevingsplanactiviteit (BOPA) vereist. De eventuele bekendmaking van de BOPA-procedure vindt afzonderlijk plaats. Deze publicatie ziet uitsluitend op de zakelijke omschrijving van de gesloten anterieure overeenkomst als bedoeld in artikel 16.138 van de Omgevingswet. Omschrijving plan Initiatiefnemer is voornemens het Exploitatiegebied voor eigen rekening en risico te herontwikkelen. De ontwikkeling bestaat uit de sloop van 22 bestaande grondgebonden woningen en de realisatie van 37 sociale huurappartementen en 6 grondgebonden woningen in de vrije sector huur. Daarnaast wordt binnen het Exploitatiegebied een groen plein gerealiseerd en worden voorzieningen van openbaar nut aangelegd. Locatie exploitatiegebied Het ontwikkelingsplan is gelegen op gronden die kadastraal bekendstaan als gemeente Zaandam, sectie L, nummers 2289, 2503, 2638, 2298, 2299 en 2068 (geheel of gedeeltelijk), en plaatselijk bekend zijn als Monseigneur Callierstraat in de Rosmolenwijk te Zaandam (hierna: Exploitatiegebied). Inhoud van de anterieure overeenkomst In de overeenkomst is onder andere het volgende afgesproken: 1.De gemeente spant zich in om de realisatie van de voorgenomen ontwikkeling op het Exploitatiegebied mogelijk te maken. Zij bevordert, met behoud van haar publiekrechtelijke verantwoordelijkheid, de procedurele afwikkeling van de benodigde omgevingsvergunning voor een buitenplanse omgevingsplanactiviteit (BOPA); 2.Initiatiefnemer is verplicht de te maken kosten voor de voorbereiding en behandeling van de BOPA-procedure, waaronder de kosten van benodigde onderzoeken, te voldoen; 3.Initiatiefnemer is verplicht eventuele nadeelcompensatie die voortvloeit uit de planologische besluitvorming ten behoeve van het Project te vergoeden; 4.De gemeente behoudt volledig haar publiekrechtelijke verantwoordelijkheid en bevoegdheid ten aanzien van het ruimtelijke ordeningsproces. De wijze en periode van de terinzagelegging van de anterieure overeenkomst De anterieure overeenkomst kan vanaf 20 oktober 2026 gedurende zes weken worden ingezien in het stadhuis van de gemeente Zaanstad, adres: Stadhuisplein 100, 1506 MZ te Zaandam. Voor het inzien van de anterieure overeenkomst maakt u twee werkdagen van tevoren een afspraak via y.colak@zaanstad.nl. Geen rechtsmiddelen Tegen de anterieure overeenkomst en de zakelijke omschrijving daarvan kunnen geen zienswijzen worden ingediend en staat geen bezwaar of beroep open. Zaandam 20 oktober 2026 Burgemeester en wethouders van Zaanstad",
-      "gepubliceerdOp": "2026-10-21T22:00:00.000Z",
-      "opgehaaldOp": "2026-10-23T03:59:31.673Z",
-      "tekstBron": "artikel",
-      "aiBeoordeling": {
-        "werktitel": "Parteon en Zaanstad sluiten deal: 22 huizen in Rosmolenwijk wijken voor 43 nieuwe huurwoningen",
-        "samenvatting": "Gemeente Zaanstad heeft een anterieure overeenkomst gesloten met woningcorporatie Parteon over de herontwikkeling van de Monseigneur Callierstraat in de Rosmolenwijk. Het plan omvat de sloop van 22 bestaande woningen en de bouw van 37 sociale huurappartementen, zes vrije sector huurwoningen en een groen plein. Voor de uitvoering is nog een omgevingsvergunning via een BOPA-procedure vereist.",
-        "invalshoek": "Vanuit de buurt van de Monseigneur Callierstraat in de Zaandamse Rosmolenwijk, waar 22 woningen plaats moeten maken voor nieuwbouw en een groen plein.",
-        "vraag": "Wanneer start de officiële BOPA-procedure voor het nieuwbouwproject aan de Monseigneur Callierstraat?",
-        "centraleVraag": "Wanneer start de officiële BOPA-procedure voor het nieuwbouwproject aan de Monseigneur Callierstraat?"
-      }
-    },
-    {
-      "bronId": "bekendmakingen",
-      "bronNaam": "Officiële bekendmakingen — Zaanstad",
-      "categorie": "lokaal",
-      "titel": "Ondermandaatbesluit gemeente Zaanstad 2024",
-      "url": "https://zoek.officielebekendmakingen.nl/gmb-2026-491144.html",
-      "samenvatting": "Wijzigingsbesluit Ondermandaatbesluit gemeente Zaanstad 2024 De gemeentesecretaris van de gemeente Zaanstad; gelet op het Organisatiebesluit Zaanstad 2024 (Organisatiebesluit) en de Wet explosieven voor civiel gebruik (Wecg); -overwegende dat het college in artikel 5 van het Organisatiebesluit, met uitzondering van het in artikel 6 van het Organisatiebesluit bepaalde, mandaat heeft verleend aan de gemeentesecretaris tot het nemen van besluiten en het afdoen van zaken die verband houden met en voortvloeien uit de verantwoordelijkheid die de concerndirectie op grond van artikel 5 van het Organisatiebesluit bepaalde draagt; -overwegende dat de gemeentesecretaris de bevoegdheid heeft om de op grond van artikel 4 en artikel 5 van het Organisatiebesluit verleende mandaten in ondermandaat te geven; -overwegende dat het, uit een oogpunt van doelmatigheid, wenselijk is een aantal bevoegdheden te ondermandateren; besluit: In Bijlage II Bijzonder deel Ondermandaatbesluit gemeente Zaanstad 2024, Cluster individuele dienstverlening, Afdeling Bouw R.O. en Omgevingsvergunningen onderstaand schema, ondermandaat te verlenen voor het uitoefenen van de volgende door het college, ingevolge het Organisatiebesluit Zaanstad 2024, aan mij in mandaat gegeven bevoegdheden: Wet explosieven voor civiel gebruik (Wecg) Bevoegd orgaan Mandaat aan Bijzonderheden Het besluiten op een aanvraag voor een vergunning op grond van artikel 10, eerste lid onder a jo. artikel 11 Wecg. Het college van Zaanstad Afdeling Omgevingsvergunningen: Afdelingshoofd Teammanager Medewerkers Het verbinden van bijzondere beveiligingseisen als bedoeld in artikel 12 Wecg aan een te verlenen vergunning. Het college van Zaanstad Afdeling Omgevingsvergunningen: Afdelingshoofd Teammanager Medewerkers Het opvragen van relevante gegevens over een overbrenging als bedoeld in artikel 16 van de Wecg. Het college van Zaanstad Afdeling Omgevingsvergunningen: Afdelingshoofd Teammanager Medewerkers Dit Wijzigingsbesluit Ondermandaatbesluit treedt in werking met ingang van de dag na bekendmaking. Aldus besloten, namens burgemeester en wethouders van Zaanstad, Zaandam, 1 oktober 2026 Mr. L. Graaff Gemeentesecretaris",
-      "gepubliceerdOp": "2026-10-21T22:00:00.000Z",
-      "opgehaaldOp": "2026-10-23T03:59:31.673Z",
-      "tekstBron": "artikel",
-      "aiBeoordeling": {
-        "werktitel": "Ambtenaren Zaanstad beslissen voortaan zelf over vergunningen voor explosieven",
-        "samenvatting": "De gemeentesecretaris van Zaanstad heeft bevoegdheden rondom de Wet explosieven voor civiel gebruik gemandateerd aan de afdeling Omgevingsvergunningen. Hierdoor mogen afdelingshoofden, teammanagers en medewerkers voortaan zelfstandig besluiten nemen over vergunningaanvragen, bijzondere beveiligingseisen en het opvragen van overbrengingsgegevens.",
-        "invalshoek": "Institutioneel: vanuit de ambtelijke organisatie van de gemeente Zaanstad die bevoegdheden rondom civiele explosieven neerlegt bij de afdeling Omgevingsvergunningen.",
-        "vraag": "Hoeveel vergunningsaanvragen op grond van de Wet explosieven voor civiel gebruik behandelt de afdeling Omgevingsvergunningen in Zaanstad jaarlijks?",
-        "centraleVraag": "Hoeveel vergunningsaanvragen op grond van de Wet explosieven voor civiel gebruik behandelt de afdeling Omgevingsvergunningen in Zaanstad jaarlijks?"
-      }
-    },
-    {
-      "bronId": "bekendmakingen",
-      "bronNaam": "Officiële bekendmakingen — Zaanstad",
-      "categorie": "lokaal",
-      "titel": "Publicatie zakelijke omschrijving anterieure overeenkomst in de zin van art. 16.138 van de Omgevingswet",
-      "url": "https://zoek.officielebekendmakingen.nl/gmb-2026-494648.html",
-      "samenvatting": "Burgemeester en wethouders van Zaanstad maken ingevolge artikel 16.138 van de Omgevingswet bekend dat op 21 april 2026 een anterieure overeenkomst is gesloten door de Gemeente Zaanstad met Midvast B.V. (hierna: Initiatiefnemer). Voor de voorgenomen ontwikkeling is een omgevingsvergunning voor een buitenplanse omgevingsplanactiviteit (BOPA) vereist. De eventuele bekendmaking van de BOPA-procedure vindt afzonderlijk plaats. Deze publicatie ziet uitsluitend op de zakelijke omschrijving van de gesloten anterieure overeenkomst als bedoeld in artikel 16.138 van de Omgevingswet. Omschrijving plan Initiatiefnemer is voornemens het Exploitatiegebied voor eigen rekening en risico te herontwikkelen ten behoeve van woningbouw, bestaande uit sociale huurwoningen, middeldure huurwoningen en vrije sector koopwoningen, in combinatie met een commerciële functie. Locatie exploitatiegebied Het ontwikkelingsplan is gelegen op gronden die kadastraal bekendstaan als gemeente Zaandam, sectie K, nummers 8761, 8762, 9348, 10427 en 12617, en plaatselijk bekend zijn als Westzijde te Zaandam (hierna: Exploitatiegebied). Inhoud van de anterieure overeenkomst In de overeenkomst is onder andere het volgende afgesproken: 1.De gemeente spant zich in om de realisatie van de voorgenomen ontwikkeling op het Exploitatiegebied mogelijk te maken. Zij bevordert, met behoud van haar publiekrechtelijke verantwoordelijkheid, de procedurele afwikkeling van de benodigde omgevingsvergunning voor een buitenplanse omgevingsplanactiviteit (BOPA); 2.Initiatiefnemer is verplicht de kosten voor de voorbereiding en behandeling van de BOPA-procedure, waaronder de kosten van de benodigde onderzoeken, te vergoeden; 3.Initiatiefnemer is verplicht eventuele nadeelcompensatie die voortvloeit uit de planologische maatregel(en) te vergoeden; 4.De gemeente behoudt volledig haar publiekrechtelijke verantwoordelijkheid en bevoegdheid ten aanzien van het ruimtelijke ordeningsproces. De wijze en periode van de terinzagelegging van de anterieure overeenkomst De anterieure overeenkomst kan vanaf 20 oktober 2026 gedurende zes weken worden ingezien in het stadhuis van de gemeente Zaanstad, adres: Stadhuisplein 100 1506 MZ te Zaandam. Voor het inzien van de anterieure overeenkomst maakt u twee werkdagen van tevoren een afspraak via y.colak@zaanstad.nl. Geen rechtsmiddelen Tegen de anterieure overeenkomst en de zakelijke omschrijving daarvan kunnen geen zienswijzen worden ingediend en staat geen bezwaar of beroep open. Zaandam 20 oktober 2026 Burgemeester en Wethouders van Zaanstad",
-      "gepubliceerdOp": "2026-10-21T22:00:00.000Z",
-      "opgehaaldOp": "2026-10-23T03:59:31.673Z",
-      "tekstBron": "artikel",
-      "aiBeoordeling": {
-        "werktitel": "Nieuwe woningen en winkels aan de Westzijde: Zaanstad sluit deal met ontwikkelaar Midvast",
-        "samenvatting": "De gemeente Zaanstad heeft een anterieure overeenkomst gesloten met ontwikkelaar Midvast B.V. voor een herontwikkeling aan de Westzijde in Zaandam. Het plan bestaat uit sociale huurwoningen, middeldure huur, vrije sector koopwoningen en een commerciële functie. Voor de uitvoering moet nog een vergunningsprocedure voor een buitenplanse omgevingsplanactiviteit worden doorlopen.",
-        "invalshoek": "Vanuit de omwonenden aan de Westzijde in Zaandam die te maken krijgen met de nieuwbouw van woningen en commerciële voorzieningen in hun straat.",
-        "vraag": "Hoeveel woningen wil Midvast B.V. precies gaan bouwen aan de Westzijde in Zaandam?",
-        "centraleVraag": "Hoeveel woningen wil Midvast B.V. precies gaan bouwen aan de Westzijde in Zaandam?"
-      }
-    },
-    {
-      "bronId": "DeOrkaan",
-      "bronNaam": "DeOrkaan",
-      "categorie": "lokaal",
-      "titel": "ADE gaat vannacht los: niet parkeren, afsluitingen en uitstapverbod",
-      "url": "https://www.deorkaan.nl/ade-gaat-vannacht-los-niet-parkeren-afsluitingen-en-uitstapverbod/",
-      "samenvatting": "Over een uurtje – om 18.00 uur donderdag 22 oktober – begint het Amsterdam Dance Event (ADE) bij Hemkade 48 met ‘Free Your Mind’ dat tot vanavond 02.00 uur duurt. Op die locatie zijn vrijdag, zaterdag en zondag nog vier andere ADE-events. Bij de buren van Teats zijn op dezelfde dagen drie evenementen. Bij Taets worden 22.500 bezoekers verwacht. Het aantal bezoekers bij de Hemkade is onbekend, de maximale capaciteit daar is ruim 4.000 – dat zou dus om maximaal 20.000 kunnen gaan (vijf evenementen). Provincialeweg afgesloten Om al het verkeer in goede banen te leiden zijn diverse maatregelen genomen. Er worden een extra Hempont en pendelbussen ingezet, terwijl verkeersregelaars het verkeer in goede banen moeten leiden. Die maatregelen gelden alleen voor de Taets-events omdat daar een vergunning voor is verleend, waaraan voorwaarden zijn verbonden. Volgens de organisatoren blijven woningen en bedrijven bereikbaar, maar kan het rond het Hembrugterrein drukker worden dan normaal. Bij eerdere feesten klaagden ondernemers over de bereikbaarheid van hun bedrijven. Tijdens ADE vorig jaar liepen bezoekers van twee feesten door elkaar. Ook nu is er zaterdagavond een potentieel probleem, omdat weer twee feesten rond 23.00 uur eindigen en er eentje begint. Parkeerverbod Zuiderhout Volgens een brief aan bewoners komen er behalve de verkeersregelaars, ook verkeersborden en parkeerverboden. Die hebben we inderdaad al aangetroffen. Ook is er toegezegd dat handhavers gaan controleren op foutparkeren. Langs de looproutes komen extra toiletten en afvalbakken. Door Piet Bakker en Nick Boeske, op basis van langsfietsen, bewonersbrief Sona en eerder geschreven artikelen.",
-      "foto": "https://www.deorkaan.nl/wp-content/uploads/2026/10/ade-borden-2026-10-21-stilstaan-verboden-275x190.jpg",
-      "gepubliceerdOp": "2026-10-21T22:00:00.000Z",
-      "opgehaaldOp": "2026-10-23T03:59:33.594Z",
-      "tekstBron": "artikel",
-      "aiBeoordeling": {
-        "werktitel": "Tienduizenden ADE-bezoekers naar het Hembrugterrein: zo wapent de buurt zich tegen verkeerschaos",
-        "samenvatting": "Tijdens het Amsterdam Dance Event worden bij Taets en Hemkade 48 tienduizenden bezoekers verwacht verspreid over meerdere dagen en feesten. Om verkeersoverlast rond het Hembrugterrein te voorkomen, worden onder meer extra pendelbussen, een extra Hempont en een parkeerverbod bij Zuiderhout ingezet. Ondernemers klaagden bij eerdere edities over de bereikbaarheid van hun bedrijven, terwijl er zaterdag opnieuw bezoekersstromen door elkaar dreigen te lopen.",
-        "invalshoek": "Lokaal: vanuit de ondernemers en bewoners rond het Hembrugterrein en Zuiderhout die te maken krijgen met verkeersbeperkingen en grote bezoekersstromen.",
-        "vraag": "Wat betekenen de verkeersmaatregelen en de samenloop van feesten op zaterdagavond rond 23.00 uur concreet voor de bereikbaarheid van ondernemers op het Hembrugterrein?",
-        "centraleVraag": "Wat betekenen de verkeersmaatregelen en de samenloop van feesten op zaterdagavond rond 23.00 uur concreet voor de bereikbaarheid van ondernemers op het Hembrugterrein?"
-      }
-    },
-    {
-      "bronId": "DeOrkaan",
-      "bronNaam": "DeOrkaan",
-      "categorie": "lokaal",
-      "titel": "Niet heien maar drukken in de Rosmolenstraat…",
-      "url": "https://www.deorkaan.nl/niet-heien-maar-drukken-in-de-rosmolenstraat/",
-      "samenvatting": "Het werk aan de nieuwbouw aan de Rosmolenstraat is begonnen. Voor de gesloopte 100 sociale huurwoningen, laat Parteon 112 sociale woningen terugbouwen. Er wordt niet geheid maar ‘gedrukt’, en dat door de firma Drukpaal (de naam zegt het al). Het zijn fikse palen. De straat is grotendeels afgezet. De planning is om de woningen begin 2028 op te leveren. Door Piet Bakker na een tip van Jan ter Wisscha en met foto’s van Rens Kamminga. Extra informatie van de website van Parteon en ons dossier Rosmolenstraat.",
-      "foto": "https://www.deorkaan.nl/wp-content/uploads/2026/10/Rosmolenstraat-Zaandam-Orkaan-Rens-Kamminga-20261022091424-DJI2-275x190.jpg",
-      "gepubliceerdOp": "2026-10-21T22:00:00.000Z",
-      "opgehaaldOp": "2026-10-23T03:59:33.595Z",
-      "tekstBron": "artikel",
-      "aiBeoordeling": {
-        "werktitel": "Nieuwbouw Rosmolenstraat van start: geen heiwerk maar 'drukken' voor 112 sociale huurwoningen",
-        "samenvatting": "Woningcorporatie Parteon is gestart met de nieuwbouw van 112 sociale huurwoningen aan de Rosmolenstraat ter vervanging van honderd gesloopte woningen. Voor de fundering worden palen de grond in gedrukt in plaats van geheid, waarbij de straat grotendeels is afgezet. De oplevering van het nieuwbouwproject staat gepland voor begin 2028.",
-        "invalshoek": "Vanuit omwonenden van de Rosmolenstraat die te maken krijgen met een grotendeels afgezette straat en de werkzaamheden met gedrukte palen.",
-        "vraag": "Wat betekent de afzetting van de Rosmolenstraat voor de bereikbaarheid van omwonenden tot aan de oplevering in begin 2028?",
-        "centraleVraag": "Wat betekent de afzetting van de Rosmolenstraat voor de bereikbaarheid van omwonenden tot aan de oplevering in begin 2028?"
-      }
-    },
-    {
-      "bronId": "DeOrkaan",
-      "bronNaam": "DeOrkaan",
-      "categorie": "lokaal",
-      "titel": "Na week nog altijd onduidelijkheid over KPN-storing (update)",
-      "url": "https://www.deorkaan.nl/na-zes-dagen-nog-altijd-onduidelijkheid-over-kpn-storing/",
-      "samenvatting": "Eén week na het begin van de KPN-storing zitten sommige bewoners van Westerwatering en het Zaaneiland nog altijd zonder internet en digitale televisie. Navraag bij KPN levert geen duidelijkheid op over de exacte omvang en duur van de storing. De storing begon op 16 oktober en werd volgens KPN veroorzaakt door een kabelbreuk. In de loop van zondagmiddag kwam bij een deel van de getroffen huishoudens het signaal terug. Dat betekende niet dat de problemen voorbij waren. Sommige bewoners kregen maandag opnieuw met uitval te maken en De Orkaan ontving woensdag nog meldingen uit zowel Westerwatering (postcode 1507) als het Zaaneiland (1506) van bewoners die zonder internet en tv zitten. De verwachte eindtijd blijkt rekbaar. Zaterdag meldde KPN nog dat de storing die avond rond 21.05 uur verholpen zou zijn. Later verschoof dat naar de ochtend van 22 oktober. Die tijd is inmiddels verstreken, maar niet iedereen heeft zijn verbinding terug. UPDATE 16:10: in minstens één postcodegebied is de storing voorbij: Meerdere kabels geraakt Duidelijkheid kan KPN nog altijd niet geven. De Orkaan belde vanochtend (22 oktober) om te vragen hoe groot het getroffen gebied is en wanneer de storing voorbij is. Opvallend genoeg kon de medewerker de storing niet terugvinden in het algemene storingssysteem. Dat er iets aan de hand is, was hem wel bekend. Op 16 oktober had hij ook al bewoners uit Zaandam met dezelfde problemen aan de lijn. Volgens hem gaat het om een bekende storing waaraan nog altijd wordt gewerkt. Een nieuwe eindtijd kan hij niet geven. Dat sommige bewoners inmiddels weer verbinding hebben en anderen nog altijd niet, kan volgens hem betekenen dat meerdere kabels zijn geraakt. De ene kan dan al gerepareerd zijn, terwijl de andere nog op herstel wacht. KPN zegt getroffen klanten per sms op de hoogte te houden. Zolang er geen bericht komt dat de storing is opgelost, loopt de reparatie volgens de medewerker nog. Wanneer ook de laatste bewoners weer internet en tv hebben, blijft onduidelijk. Door Mila Lange.",
-      "foto": "https://www.deorkaan.nl/wp-content/uploads/2026/10/internetstoring-laptop-275x190.jpeg",
-      "gepubliceerdOp": "2026-10-21T22:00:00.000Z",
-      "opgehaaldOp": "2026-10-23T03:59:33.595Z",
-      "tekstBron": "artikel",
-      "aiBeoordeling": {
-        "werktitel": "Hardnekkige KPN-storing teistert Westerwatering en Zaaneiland al een week: wanneer werkt alles weer?",
-        "samenvatting": "Een week na een kabelbreuk zitten delen van Westerwatering en het Zaaneiland nog altijd zonder internet en televisie van KPN. De telecomprovider kan vooralsnog geen duidelijkheid geven over de exacte omvang van het getroffen gebied of een definitieve eindtijd.",
-        "invalshoek": "Vanuit de gedupeerde bewoners in Westerwatering en op het Zaaneiland die al ruim een week zonder internet en televisie zitten.",
-        "vraag": "Wanneer verwacht KPN de resterende kabelbreuken in de postcodegebieden 1506 en 1507 volledig hersteld te hebben?",
-        "centraleVraag": "Wanneer verwacht KPN de resterende kabelbreuken in de postcodegebieden 1506 en 1507 volledig hersteld te hebben?"
+        "werktitel": "Nieuwe provinciale regels voor de ruimte: Noord-Holland introduceert beleid voor grote batterijen",
+        "samenvatting": "De provincie Noord-Holland actualiseert de Omgevingsverordening, die na besluitvorming door Provinciale Staten in januari 2027 ingaat. Naast verduidelijkingen van bestaand beleid bevat het voorstel nieuw provinciaal beleid voor grote batterijen. Belanghebbenden kunnen op maandag 23 november inspreken wanneer de Statencommissie Ruimte de wijzigingen behandelt.",
+        "invalshoek": "Vanuit gemeenten in Zaanstreek-Waterland die vanaf januari 2027 te maken krijgen met het nieuwe provinciale beleid voor grote batterijen.",
+        "vraag": "Wat betekent het nieuwe provinciale beleid vanaf januari 2027 voor de plaatsing van grote batterijen in Zaanstreek-Waterland?",
+        "centraleVraag": "Wat betekent het nieuwe provinciale beleid vanaf januari 2027 voor de plaatsing van grote batterijen in Zaanstreek-Waterland?"
       }
     }
   ]
