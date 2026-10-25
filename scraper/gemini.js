@@ -6,11 +6,13 @@
 //   2. genereerPitches — de pitch. Draait voor alle nieuws + de agenda die
 //      het filter heeft gehaald. Vier velden: werktitel, samenvatting,
 //      invalshoek, vraag (afspraak 3).
-//   3. schrijfMeldingen — de nieuwsdienst (ZANP). Maakt van een officiële
-//      bron of een persbericht een korte, feitelijke melding: kop, tekst en
-//      prio. Draait NOOIT voor artikelen van andere redacties; dat regelt
-//      rubrieken.js (herschrijf: false). De uitvoer wordt in wire.js
-//      gecontroleerd (cijfers moeten in de bron staan).
+//   3. schrijfMeldingen — de nieuwsdienst (ZANP). Twee modi: "volledig" maakt
+//      van een officiële bron of een persbericht een korte, feitelijke
+//      melding (kop, tekst, prio); "analyse" schrijft GEEN tekst en haalt
+//      alleen een checklist en agendapunten uit de bron (artikelen van
+//      andere redacties). Wie volledig mag, bepaalt rubrieken.json. De
+//      uitvoer wordt in wire.js gecontroleerd tegen de bron.
+//   4. beslisZelfdeNieuwsfeit — voor dubbel nieuws, alleen bij twijfelgevallen.
 //
 // Sinds de ZANP-ronde (2026-10-23):
 //  - schrijfMeldingen toegevoegd, met eigen promptversie en lage temperatuur.
@@ -37,7 +39,7 @@ const {
 } = require("./nieuwscriteria");
 
 const PROMPT_VERSIE = "2026-10-22-pitch-vier-velden";
-const PROMPT_VERSIE_WIRE = "2026-10-23-melding-kop-tekst-prio";
+const PROMPT_VERSIE_WIRE = "2026-10-24-melding-checklist-agendapunten";
 
 // Afspraak 18: hetzelfde model als nu, met dezelfde fallback-keten.
 const MODELLEN = {
@@ -359,15 +361,62 @@ async function genereerPitches(berichten, apiKey, cap, categorie) {
 // ---------------------------------------------------------------------------
 // Melding voor de nieuwsdienst (ZANP)
 // ---------------------------------------------------------------------------
+//
+// Twee modi per bericht:
+//   "volledig"  kop, tekst, prio + checklist + agendapunten (officiële en
+//               organisatiebronnen die we mogen herschrijven)
+//   "analyse"   alleen checklist + agendapunten, GEEN tekst (artikelen van
+//               andere redacties en onbekende bronnen)
+// Alles wat de AI teruggeeft wordt in wire.js gecontroleerd tegen de bron.
+
+const CHECKLIST_UITLEG = `CHECKLIST (feiten uit de bron; bij twijfel false of null):
+- gevaar: true bij acuut gevaar voor mensen (brand, gaslek, instortingsgevaar, ernstig ongeval). Niet bij gewone wegwerkzaamheden.
+- evacuatieOfNlAlert: true als er sprake is van ontruiming, evacuatie of een NL-Alert.
+- gewondenOfDoden: true als er gewonden of doden worden genoemd.
+- betrokkenen: het aantal getroffenen, gewonden of ontruimden als getal dat letterlijk in de bron staat, anders null.
+- geldbedragEuro: een bedrag in euro dat letterlijk in de bron staat, in hele euro's (2,5 miljoen wordt 2500000), anders null.
+- banen: het aantal banen dat verdwijnt of erbij komt, als getal dat letterlijk in de bron staat, anders null.
+- bestuurlijkeCrisis: true bij aftreden of schorsing van een bestuurder, motie van wantrouwen, coalitiebreuk of integriteitsonderzoek naar bestuurders.
+- besluitMetGrootGevolg: true bij een besluit dat veel inwoners direct raakt (sluiting van een voorziening, grote bouwplannen, belastingverhoging).
+- tijdkritisch: true als het nu speelt of binnen enkele uren, en mensen direct moeten handelen.`;
+
+const AGENDAPUNTEN_UITLEG = `AGENDAPUNTEN (optioneel, hooguit 3):
+Alleen openbare bijeenkomsten, zittingen, inspraakmomenten, inloopavonden of evenementen met een concrete datum in de toekomst die in de tekst staat. Geen deadlines (die vindt de code zelf), geen gebeurtenissen uit het verleden. Staat er geen datum in de tekst, laat het punt dan weg.
+Per punt:
+  "titel": maximaal 12 woorden
+  "datumTekst": de datum EXACT zoals in de bron geschreven, bijvoorbeeld "dinsdag 3 november" of "morgen"
+  "tijd": de begintijd exact zoals in de bron ("19.30 uur"), of null
+  "eindtijd": de eindtijd exact zoals in de bron, of null
+  "plaats": de plaats of locatie exact zoals in de bron, of null`;
+
+const CHECKLIST_VOORBEELD = `"checklist": {
+    "gevaar": false,
+    "evacuatieOfNlAlert": false,
+    "gewondenOfDoden": false,
+    "betrokkenen": null,
+    "geldbedragEuro": null,
+    "banen": null,
+    "bestuurlijkeCrisis": false,
+    "besluitMetGrootGevolg": false,
+    "tijdkritisch": false
+  },
+  "agendapunten": []`;
+
+function bronBlok(item) {
+  const tekst = (item.tekst || "").trim();
+  return `BRON:
+Titel: ${item.titel || ""}
+Bron: ${item.bronNaam || ""}
+Datum: ${item.gepubliceerdOp || ""}
+Tekst:
+${tekst || "(geen tekst beschikbaar)"}`;
+}
 
 // Een prompt per bericht. Het voorbeeld is bewust verzonnen (en dus nooit een
 // echt bericht van vandaag), zodat het model het niet overneemt.
 function bouwMeldingPrompt(item) {
-  const tekst = (item.tekst || "").trim();
   return `Je bent redacteur bij een regionale nieuwsdienst voor Zaanstreek-Waterland, in de stijl van een persbureau: kort, feitelijk en neutraal.
-Schrijf op basis van de bron hieronder een melding met drie velden.
-
-VELDEN:
+Schrijf op basis van de bron hieronder een melding met een kop, een tekst, een prio, een checklist en eventueel agendapunten.
 
 kop
 Eis: maximaal 14 woorden, tegenwoordige tijd, feitelijk. Noem wie of wat en de kern. Geen vraag, geen aanloktaal, geen uitroepteken.
@@ -383,6 +432,10 @@ Een geheel getal van 2 tot en met 4:
   3: relevant voor een kleinere groep, of een belangrijk besluit.
   4: routine of administratief (vergunning, bekendmaking, persbericht van een instelling).
 
+${CHECKLIST_UITLEG}
+
+${AGENDAPUNTEN_UITLEG}
+
 REGELS:
 - Gebruik alleen wat in de bron staat. Staat iets er niet in, laat het dan weg. Verzin geen namen, getallen, data of plaatsen.
 - Neem getallen letterlijk over; reken niets om en tel niets op.
@@ -393,22 +446,48 @@ Geef ALLEEN geldige JSON terug, exact dit formaat, geen markdown-fences en geen 
 {
   "kop": "...",
   "tekst": "...",
-  "prio": 3
+  "prio": 3,
+  ${CHECKLIST_VOORBEELD}
 }
 
-BRON:
-Titel: ${item.titel || ""}
-Bron: ${item.bronNaam || ""}
-Datum: ${item.gepubliceerdOp || ""}
-Tekst:
-${tekst || "(geen tekst beschikbaar)"}`;
+${bronBlok(item)}`;
 }
 
-// Geeft { onvoldoende: true } of { kop, tekst, prio } terug, of null bij een
-// onbruikbaar antwoord.
-function valideerMelding(data) {
+// Alleen feiten en agendapunten; er wordt GEEN tekst van de bron overgenomen.
+function bouwAnalysePrompt(item) {
+  return `Je analyseert een bericht voor een regionale nieuwsdienst voor Zaanstreek-Waterland. Je schrijft zelf geen tekst: je vult alleen een checklist in en haalt eventuele agendapunten uit de bron.
+
+${CHECKLIST_UITLEG}
+
+${AGENDAPUNTEN_UITLEG}
+
+REGELS:
+- Gebruik alleen wat in de bron staat. Verzin geen getallen, data of plaatsen.
+- Is de brontekst te kort of te onduidelijk, antwoord dan {"onvoldoende": true}.
+
+Geef ALLEEN geldige JSON terug, exact dit formaat, geen markdown-fences en geen andere tekst:
+{
+  ${CHECKLIST_VOORBEELD}
+}
+
+${bronBlok(item)}`;
+}
+
+// Geeft { onvoldoende: true } of { kop, tekst, prio, checklist, agendapunten }
+// terug, of null bij een onbruikbaar antwoord. Checklist en agendapunten gaan
+// ongecontroleerd door; wire.js controleert ze tegen de bron.
+function valideerMelding(data, modus = "volledig") {
   if (!data || typeof data !== "object") return null;
   if (data.onvoldoende === true) return { onvoldoende: true };
+
+  const checklist = data.checklist && typeof data.checklist === "object" ? data.checklist : null;
+  const agendapunten = Array.isArray(data.agendapunten) ? data.agendapunten : [];
+
+  if (modus === "analyse") {
+    if (!checklist) return null;
+    return { checklist, agendapunten };
+  }
+
   for (const veld of ["kop", "tekst"]) {
     if (typeof data[veld] !== "string" || !data[veld].trim()) return null;
   }
@@ -419,22 +498,25 @@ function valideerMelding(data) {
     kop,
     tekst: data.tekst.trim(),
     prio: Number.isInteger(prio) ? prio : null,
+    checklist,
+    agendapunten,
   };
 }
 
 async function schrijfMeldingVoorItem(item, apiKey) {
-  const prompt = bouwMeldingPrompt(item);
+  const modus = item.modus === "analyse" ? "analyse" : "volledig";
+  const prompt = modus === "analyse" ? bouwAnalysePrompt(item) : bouwMeldingPrompt(item);
   const data = await roepGeminiMetFallback(MODELLEN.wire, prompt, apiKey, TEMPERATUUR_WIRE);
-  const melding = valideerMelding(data);
-  if (!melding) throw new Error("onvolledige melding (kop of tekst ontbreekt)");
+  const melding = valideerMelding(data, modus);
+  if (!melding) throw new Error(modus === "analyse" ? "onvolledige analyse (checklist ontbreekt)" : "onvolledige melding (kop of tekst ontbreekt)");
   return melding;
 }
 
 /**
- * Schrijft meldingen voor een lijst items. Geeft een Map terug van item.id
- * naar { melding } | { onvoldoende: true } | { fout }. Items voorbij de
- * dagcap krijgen { fout: "overgeslagen (dagcap …)" }; ze behouden dan
- * gewoon hun originele kop.
+ * Schrijft meldingen of analyses voor een lijst items. Geeft een Map terug
+ * van item.id naar { melding } | { onvoldoende: true } | { fout }. Items
+ * voorbij de cap krijgen { fout: "overgeslagen (cap …)" }; zij worden bij
+ * een volgende run opnieuw geprobeerd en behouden intussen hun kop.
  */
 async function schrijfMeldingen(items, apiKey, cap) {
   const resultaten = new Map();
@@ -459,21 +541,67 @@ async function schrijfMeldingen(items, apiKey, cap) {
     }
   }
   for (let i = cap; i < items.length; i++) {
-    resultaten.set(items[i].id, { fout: `overgeslagen (dagcap ${cap})` });
+    resultaten.set(items[i].id, { fout: `overgeslagen (cap ${cap})` });
   }
   return resultaten;
+}
+
+// ---------------------------------------------------------------------------
+// Dubbel nieuws: gaat het om hetzelfde nieuwsfeit?
+// ---------------------------------------------------------------------------
+
+function bouwZelfdePrompt(paar) {
+  const blok = (x) => `Titel: ${x.titel || ""}\nBron: ${x.bronNaam || ""}\nTekst: ${(x.tekst || "").slice(0, 500)}`;
+  return `Twee berichten uit Zaanstreek-Waterland. Gaat het om HETZELFDE nieuwsfeit, dus dezelfde gebeurtenis of hetzelfde besluit, ook als ze anders zijn geschreven?
+Antwoord alleen "zelfde": true als het over dezelfde gebeurtenis gaat. Een vervolg, een reactie, een ander aspect of een soortgelijke maar andere gebeurtenis is "zelfde": false.
+
+BERICHT A
+${blok(paar.a)}
+
+BERICHT B
+${blok(paar.b)}
+
+Geef ALLEEN geldige JSON terug, geen markdown-fences en geen andere tekst:
+{ "zelfde": true }`;
+}
+
+/**
+ * Beslist voor een lijst twijfelparen of ze hetzelfde nieuwsfeit zijn.
+ * Geeft een Map sleutel → true | false | null (null bij een fout of
+ * overgeslagen vanwege de cap).
+ */
+async function beslisZelfdeNieuwsfeit(paren, apiKey, cap) {
+  const uit = new Map();
+  const teDoen = (paren || []).slice(0, cap);
+  for (let i = 0; i < teDoen.length; i += PARALLEL) {
+    await Promise.all(
+      teDoen.slice(i, i + PARALLEL).map(async (paar) => {
+        try {
+          const data = await roepGeminiMetFallback(MODELLEN.wire, bouwZelfdePrompt(paar), apiKey, TEMPERATUUR_WIRE);
+          uit.set(paar.sleutel, data && typeof data.zelfde === "boolean" ? data.zelfde : null);
+        } catch {
+          uit.set(paar.sleutel, null);
+        }
+      })
+    );
+  }
+  for (const paar of (paren || []).slice(cap)) uit.set(paar.sleutel, null);
+  return uit;
 }
 
 module.exports = {
   beoordeelBerichten,
   genereerPitches,
   schrijfMeldingen,
+  beslisZelfdeNieuwsfeit,
   PROMPT_VERSIE,
   PROMPT_VERSIE_WIRE,
   MODELLEN,
   bouwFilterPrompt,
   bouwPitchPrompt,
   bouwMeldingPrompt,
+  bouwAnalysePrompt,
+  bouwZelfdePrompt,
   valideerPitch,
   valideerMelding,
   valideerScores,

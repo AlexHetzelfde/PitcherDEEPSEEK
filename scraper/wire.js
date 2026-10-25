@@ -1,10 +1,13 @@
 // wire.js
 //
-// ZANP-ronde (2026-10-23): de persdienst-laag bovenop de bestaande scraper.
+// ZANP (2026-10-23, fase 2 op 2026-10-24): de persdienst-laag.
 //
-// Dit bestand maakt twee databestanden die de nieuwe frontend leest:
-//   data/berichten.json  de stroom: kop, korte tekst, rubriek, prio, versie
-//   data/agenda.json     de weekagenda: begin- en eindtijd, status, doorlopend
+// Dit bestand maakt de inhoud van twee databestanden die de frontend leest:
+//   data/berichten.json  de stroom: kop, korte tekst, rubriek, prio, versie,
+//                        checklist, agendapunten, termijnen
+//   data/agenda.json     de weekagenda: scrapete items (met het filter eerste
+//                        keer of jubileum) plus agendapunten en termijnen die
+//                        uit berichten komen
 //
 // Het bevat GEEN netwerk- of AI-aanroepen. Gemini zit in gemini.js
 // (schrijfMeldingen); dit bestand bereidt voor en verwerkt het resultaat.
@@ -35,6 +38,15 @@
 const crypto = require("crypto");
 const { TZ, kalenderdagAmsterdam, vandaagAmsterdam, dagVerschil } = require("./hulpmiddelen");
 const { profielVoor } = require("./rubrieken");
+const {
+  REGEL_VERSIE,
+  beoordeelAgendaRelevantie,
+  datumUitTekst,
+  klokUitTekst,
+  termijnenUitTekst,
+  titelGelijkenis,
+} = require("./agenda-regels");
+const { isRegio } = require("./alert-regels");
 
 const DAG_MS = 24 * 60 * 60 * 1000;
 
@@ -47,6 +59,8 @@ const BERICHTEN_MAX_AANTAL = 1500;
 const SEED_MAX_DAGEN = 7;
 
 const MIN_TEKST_VOOR_AI = 80;
+const MAX_AGENDAPUNTEN_PER_BERICHT = 3;
+const TITEL_DUBBEL_DREMPEL = 0.5;
 const AFGEKAPT_VANAF_TEKENS = 5900; // ARTIKEL_MAX_TEKENS is 6000
 const MAX_KOP_TEKENS = 160;
 
@@ -233,6 +247,8 @@ function maakAgendaItem(b, nu) {
     plaats,
     status: statusUitTitel(b.titel),
     rubriek: profiel.rubriek,
+    herkomst: profiel.herkomst,
+    afkomst: "bron",
     bronId: b.bronId,
     bronNaam: b.bronNaam,
     start,
@@ -246,37 +262,202 @@ function maakAgendaItem(b, nu) {
   };
 }
 
+function agendaItemsVanBronnen(ruweBerichten, bronPerId) {
+  return ruweBerichten.filter((b) => {
+    const bron = bronPerId[b.bronId];
+    return bron && bron.soort === "agenda" && b.url && b.gepubliceerdOp;
+  });
+}
+
 /**
- * Bouwt de agenda uit ALLE gescrapete agenda-items (dus ook die van de
- * komende weken), voegt ze samen met de vorige agenda.json en ruimt op:
- *  - verlopen items (meer dan AGENDA_TERUG_DAGEN dagen geleden) gaan weg;
- *  - toekomstige items die de bron al AGENDA_VERDWENEN_NA_DAGEN dagen niet
- *    meer toont, gaan weg (afgelast of van de pagina gehaald). Alleen als
- *    de bron deze run wel iets opleverde, zodat een kapotte scraper geen
- *    agenda leegmaakt.
+ * Welke gescrapete agenda-items hebben nog een beoordeling nodig? Dat zijn
+ * items van bronnen met agendaFilter "eerste-of-jubileum" waarvan de
+ * opgeslagen beoordeling ontbreekt of van een oudere REGEL_VERSIE is.
+ * Voor die items haalt zanp.js eenmalig de detailtekst op, want een
+ * lijstregel van 250 tekens is te weinig om "eerste editie" te zien.
+ * Dichtstbijzijnde datum eerst, hooguit "max" stuks per run.
  */
-function bouwAgenda({ ruweBerichten, bronPerId, bestaand = [], nu = new Date() }) {
+function agendaTeVerrijken({ ruweBerichten, bronPerId, bestaand = [], max = 40, nu = new Date() }) {
+  const vorige = new Map(bestaand.map((i) => [i.id, i]));
   const vandaag = vandaagAmsterdam();
   const eersteDag = volgendeDag(vandaag, -AGENDA_TERUG_DAGEN);
   const laatsteDag = volgendeDag(vandaag, AGENDA_VOORUIT_DAGEN);
+  const kandidaten = [];
+  const gezien = new Set();
+  for (const b of agendaItemsVanBronnen(ruweBerichten, bronPerId)) {
+    if (profielVoor(b.bronId).agendaFilter !== "eerste-of-jubileum") continue;
+    const item = maakAgendaItem(b, nu);
+    if (!item || gezien.has(item.id)) continue; // dezelfde url op dezelfde dag staat soms dubbel in een lijst
+    gezien.add(item.id);
+    // Alleen items die straks ook in de agenda komen; anders vult een oud
+    // item een plek die een komend evenement nodig heeft.
+    if (item.eindDag < eersteDag || item.startDag > laatsteDag) continue;
+    const oud = vorige.get(item.id);
+    const geldig = oud && oud.relevantie && oud.relevantie.regelVersie === REGEL_VERSIE && !oud.inAfwachting;
+    if (!geldig) kandidaten.push({ b, item });
+  }
+  // Eerst wat vandaag en straks komt (dichtstbijzijnde datum eerst), daarna
+  // wat al geweest is (meest recente eerst).
+  kandidaten.sort((x, y) => {
+    const xKomt = x.item.eindDag >= vandaag;
+    const yKomt = y.item.eindDag >= vandaag;
+    if (xKomt !== yKomt) return xKomt ? -1 : 1;
+    if (xKomt) return x.item.startDag < y.item.startDag ? -1 : x.item.startDag > y.item.startDag ? 1 : 0;
+    return x.item.startDag < y.item.startDag ? 1 : x.item.startDag > y.item.startDag ? -1 : 0;
+  });
+  return kandidaten.slice(0, max).map((k) => k.b);
+}
+
+// Agendapunten en termijnen die uit berichten komen. Deze worden elke run
+// opnieuw afgeleid uit de berichten zelf (nooit apart bewaard), zodat ze
+// altijd kloppen met de laatste versie van het bericht.
+function agendaItemsUitBerichten(records, nu) {
+  const perGroep = new Map();
+  for (const r of [...records].sort((a, b) => (a.versie || 1) - (b.versie || 1))) perGroep.set(r.groepId, r);
+  const items = [];
+  for (const r of perGroep.values()) {
+    const basis = {
+      url: r.url,
+      rubriek: r.rubriek,
+      herkomst: r.herkomst,
+      bronId: r.bronId,
+      bronNaam: r.bronNaam,
+      berichtId: r.groepId,
+      status: null,
+      plaats: null,
+      eind: null,
+      doorlopend: false,
+      relevantie: { zichtbaar: true, regel: "uit-bericht", woorden: null, regelVersie: REGEL_VERSIE },
+      zichtbaar: true,
+      inAfwachting: false,
+      laatstGezienOp: nu.toISOString(),
+    };
+    (r.agendapunten || []).slice(0, MAX_AGENDAPUNTEN_PER_BERICHT).forEach((ap, i) => {
+      items.push({
+        ...basis,
+        id: korteId(`${r.groepId}|ap${i}`),
+        kop: ap.titel,
+        plaats: ap.plaats || null,
+        start: ap.start || amsterdamNaarIso(ap.dag, 0, 0),
+        eind: ap.eind || null,
+        startDag: ap.dag,
+        eindDag: ap.dag,
+        heeftTijd: Boolean(ap.start),
+        tijdBron: ap.start ? "bericht" : "geen",
+        afkomst: "bericht",
+        zekerheid: ap.zekerheid || "afgeleid",
+      });
+    });
+    (r.termijnen || []).forEach((t) => {
+      items.push({
+        ...basis,
+        id: korteId(`${r.groepId}|termijn|${t.soort}|${t.dag}`),
+        kop: `Laatste dag ${t.soort}: ${r.kop}`.slice(0, MAX_KOP_TEKENS),
+        start: amsterdamNaarIso(t.dag, 0, 0),
+        startDag: t.dag,
+        eindDag: t.dag,
+        heeftTijd: false,
+        tijdBron: "geen",
+        afkomst: "termijn",
+        zekerheid: "letterlijk",
+      });
+    });
+  }
+  return items;
+}
+
+/**
+ * Voegt dubbelen samen: een agendapunt uit een bericht dat al als gescraped
+ * item bestaat (zelfde dag, gelijkende titel) wordt niet apart getoond; het
+ * gescrapete item krijgt een link naar het bericht.
+ */
+function ontdubbelAgenda(items) {
+  const gescraped = items.filter((i) => i.afkomst === "bron");
+  const uit = [];
+  for (const item of items) {
+    if (item.afkomst !== "bericht") {
+      uit.push(item);
+      continue;
+    }
+    const dubbel = gescraped.find(
+      (g) => g.startDag <= item.startDag && item.startDag <= g.eindDag && titelGelijkenis(g.kop, item.kop) >= TITEL_DUBBEL_DREMPEL
+    );
+    if (dubbel) {
+      if (!dubbel.berichtId) dubbel.berichtId = item.berichtId;
+      continue;
+    }
+    // Hetzelfde evenement uit twee berichten (twee bronnen melden dezelfde
+    // inloopavond): één keer tonen, het eerste bericht wint.
+    const eerder = uit.find(
+      (u) => u.afkomst === "bericht" && u.startDag === item.startDag && titelGelijkenis(u.kop, item.kop) >= TITEL_DUBBEL_DREMPEL
+    );
+    if (!eerder) uit.push(item);
+  }
+  return uit;
+}
+
+/**
+ * Bouwt de agenda:
+ *  1. alle gescrapete agenda-items (ook de komende weken), met het filter
+ *     "eerste keer of jubileum" voor evenementenbronnen. De beoordeling
+ *     wordt EENMAAL gedaan en bewaard; items zonder beoordeling staan op
+ *     "inAfwachting" (verborgen) tot hun detailtekst is opgehaald. Items die
+ *     afvallen blijven bewaard met zichtbaar: false;
+ *  2. plus agendapunten en termijnen uit berichten;
+ *  3. samengevoegd met de vorige agenda.json, met opruiming:
+ *     - verlopen items (meer dan AGENDA_TERUG_DAGEN geleden) gaan weg;
+ *     - gescrapete toekomstige items die hun bron al
+ *       AGENDA_VERDWENEN_NA_DAGEN dagen niet meer toont, gaan weg. Alleen
+ *       als die bron deze run wel iets opleverde, zodat een kapotte scraper
+ *       of een bron die deze run niet draaide een agenda nooit leegmaakt.
+ */
+function bouwAgenda({ ruweBerichten, bronPerId, bestaand = [], berichtRecords = [], nu = new Date() }) {
+  const vandaag = vandaagAmsterdam();
+  const eersteDag = volgendeDag(vandaag, -AGENDA_TERUG_DAGEN);
+  const laatsteDag = volgendeDag(vandaag, AGENDA_VOORUIT_DAGEN);
+  const vorige = new Map(bestaand.map((i) => [i.id, i]));
 
   const nieuw = new Map();
   const bronnenMetItems = new Set();
-  for (const b of ruweBerichten) {
-    const bron = bronPerId[b.bronId];
-    if (!bron || bron.soort !== "agenda" || !b.url) continue;
+  for (const b of agendaItemsVanBronnen(ruweBerichten, bronPerId)) {
     bronnenMetItems.add(b.bronId);
     const item = maakAgendaItem(b, nu);
     if (!item) continue;
     if (item.eindDag < eersteDag || item.startDag > laatsteDag) continue;
+
+    const filter = profielVoor(b.bronId).agendaFilter;
+    const oud = vorige.get(item.id);
+    let relevantie;
+    if (filter !== "eerste-of-jubileum") {
+      relevantie = beoordeelAgendaRelevantie(item.kop, "", "alles");
+    } else if (oud && oud.relevantie && oud.relevantie.regelVersie === REGEL_VERSIE && !oud.inAfwachting) {
+      relevantie = oud.relevantie; // eenmalig: de eerste beoordeling blijft staan
+    } else if (b._verrijkt) {
+      relevantie = beoordeelAgendaRelevantie(b.titel, b.samenvatting, filter);
+    } else {
+      relevantie = null;
+    }
+    item.relevantie = relevantie;
+    item.zichtbaar = relevantie ? relevantie.zichtbaar : false;
+    item.inAfwachting = !relevantie;
+    // Staat dezelfde url op dezelfde dag twee keer in een lijst, dan mag een
+    // dubbel zonder beoordeling nooit de beoordeelde versie overschrijven.
+    const eerder = nieuw.get(item.id);
+    if (eerder && !(eerder.inAfwachting && relevantie)) continue;
     nieuw.set(item.id, item);
   }
 
-  const vorige = new Map(bestaand.map((i) => [i.id, i]));
+  // Wat uit berichten komt, wordt elke run opnieuw afgeleid; de opgeslagen
+  // kopieën van een vorige run laten we dus los.
+  const uitBerichten = agendaItemsUitBerichten(berichtRecords, nu).filter(
+    (i) => i.eindDag >= eersteDag && i.startDag <= laatsteDag
+  );
+
   const samen = new Map();
-  const stats = { nieuw: 0, bijgewerkt: 0, behouden: 0, verdwenen: 0, verlopen: 0 };
+  const stats = { nieuw: 0, bijgewerkt: 0, behouden: 0, verdwenen: 0, verlopen: 0, uitBerichten: uitBerichten.length };
 
   for (const oud of bestaand) {
+    if (oud.afkomst === "bericht" || oud.afkomst === "termijn") continue;
     if (nieuw.has(oud.id)) continue;
     if (oud.eindDag < eersteDag) {
       stats.verlopen++;
@@ -296,13 +477,40 @@ function bouwAgenda({ ruweBerichten, bronPerId, bestaand = [], nu = new Date() }
     else stats.nieuw++;
     samen.set(id, { ...item, eerstGezienOp: oud && oud.eerstGezienOp ? oud.eerstGezienOp : nu.toISOString() });
   }
+  for (const item of uitBerichten) {
+    const oud = vorige.get(item.id);
+    samen.set(item.id, { ...item, eerstGezienOp: oud && oud.eerstGezienOp ? oud.eerstGezienOp : nu.toISOString() });
+  }
 
-  const items = [...samen.values()].sort((a, b) => {
+  const items = ontdubbelAgenda([...samen.values()]).sort((a, b) => {
     if (a.startDag !== b.startDag) return a.startDag < b.startDag ? -1 : 1;
     if (a.start !== b.start) return a.start < b.start ? -1 : 1;
     return a.kop.localeCompare(b.kop, "nl");
   });
+  stats.zichtbaar = items.filter((i) => i.zichtbaar).length;
+  stats.verborgen = items.filter((i) => !i.zichtbaar && !i.inAfwachting).length;
+  stats.inAfwachting = items.filter((i) => i.inAfwachting).length;
   return { items, stats };
+}
+
+// Zet op elk bericht de ids van de agenda-items die ernaar verwijzen.
+function koppelAgendaAanBerichten(records, agendaItems) {
+  const perBericht = new Map();
+  for (const i of agendaItems) {
+    if (!i.berichtId) continue;
+    if (!perBericht.has(i.berichtId)) perBericht.set(i.berichtId, []);
+    perBericht.get(i.berichtId).push(i.id);
+  }
+  return records.map((r) => {
+    const ids = perBericht.get(r.groepId);
+    if (ids && ids.length) return { ...r, agendaIds: ids };
+    if (r.agendaIds) {
+      const { agendaIds, ...rest } = r;
+      void agendaIds;
+      return rest;
+    }
+    return r;
+  });
 }
 
 // ---------------------------------------------------------------------------
@@ -319,10 +527,14 @@ function isBijgewerkt(vorige, titel, lengte) {
   return Math.abs(lengte - oud) > Math.max(120, oud * 0.08);
 }
 
+function publicatieDagVan(b) {
+  return kalenderdagAmsterdam(b.gepubliceerdOp) || vandaagAmsterdam();
+}
+
 function maakBerichtRecord(b, profiel, versie, tekst, nu, opties = {}) {
   const groepId = korteId(b.url);
   const isUpdate = versie > 1;
-  return {
+  const record = {
     id: `${groepId}-v${versie}`,
     groepId,
     versie,
@@ -330,7 +542,7 @@ function maakBerichtRecord(b, profiel, versie, tekst, nu, opties = {}) {
     kop: schoneKop(b.titel),
     tekst: null,
     rubriek: profiel.rubriek,
-    soort: profiel.soort,
+    herkomst: profiel.herkomst,
     prio: profiel.prio,
     // Bij een update is "tijd" het moment waarop wij de wijziging zagen.
     tijd: isUpdate ? nu.toISOString() : b.gepubliceerdOp,
@@ -342,16 +554,50 @@ function maakBerichtRecord(b, profiel, versie, tekst, nu, opties = {}) {
     ai: false,
     controle: null,
     eerstGezienOp: nu.toISOString(),
+    gecontroleerdOp: nu.toISOString(),
     bronTitel: opschonen(b.titel),
     bronLengte: tekst.length,
     ...(opties.seed ? { seed: true } : {}),
   };
+  // Termijnen (zienswijze, bezwaar, beroep, inspraak) uit officiële bronnen.
+  if (!opties.seed && (profiel.herkomst === "officieel" || profiel.herkomst === "organisatie")) {
+    const termijnen = termijnenUitTekst(tekst, publicatieDagVan(b));
+    if (termijnen.length) record.termijnen = termijnen;
+  }
+  return record;
+}
+
+// De AI-aanroep voor dit bericht, of null. "volledig" schrijft een korte
+// tekst; "analyse" haalt alleen checklist en agendapunten eruit (voor
+// bronnen die we nooit herschrijven).
+function maakInvoer(record, b, profiel, tekst) {
+  if (tekst.length < MIN_TEKST_VOOR_AI) return null;
+  const mag = profiel.herschrijf && profiel.herkomst !== "signaal";
+  return {
+    id: record.id,
+    modus: mag ? "volledig" : "analyse",
+    titel: b.titel || "",
+    tekst,
+    bronNaam: b.bronNaam || "",
+    gepubliceerdOp: b.gepubliceerdOp || "",
+    publicatieDag: publicatieDagVan(b),
+    standaardPrio: profiel.prio,
+  };
+}
+
+function wilOpnieuw(vorige, invoer) {
+  if (!invoer || vorige.seed) return false;
+  if (!(vorige.controle === null || vorige.controle === "ai-fout")) return false;
+  return invoer.modus === "volledig" ? !vorige.ai : !vorige.analyse;
 }
 
 /**
- * Bepaalt welke berichten nieuw zijn of een nieuwe versie hebben.
- * Geeft per bericht { record, invoer }. "invoer" is gevuld als de AI er een
- * korte tekst van mag maken (herschrijf-bron én genoeg brontekst).
+ * Bepaalt welke berichten nieuw zijn, een nieuwe versie hebben of opnieuw
+ * een AI-poging nodig hebben. Geeft per bericht { record, invoer }. "invoer"
+ * is gevuld als de AI er iets mee mag doen.
+ *
+ * "bijgewerkteControle" zijn bekende berichten die we deze run opnieuw
+ * bekeken en ongewijzigd vonden; zij krijgen een nieuwe gecontroleerdOp.
  *
  * Bij de allereerste run (nog geen berichten.json) wordt de stroom aangevuld
  * met oudere feed-items als kale signalen (alleen kop), zodat het scherm niet
@@ -365,6 +611,7 @@ function planBerichten({ vensterBerichten, feedItems = [], bestaand = [], nu = n
   }
 
   const nieuwe = [];
+  const bijgewerkteControle = [];
   const stats = { nieuw: 0, update: 0, opnieuw: 0, ongewijzigd: 0, seed: 0 };
   const gezien = new Set();
 
@@ -383,26 +630,12 @@ function planBerichten({ vensterBerichten, feedItems = [], bestaand = [], nu = n
         // sleutel). Zo'n bericht proberen we opnieuw zolang het in het
         // venster valt, onder hetzelfde id. Afgekeurde of te korte teksten
         // niet: dat verandert bij een tweede poging niet.
-        const opnieuw =
-          profiel.herschrijf &&
-          tekst.length >= MIN_TEKST_VOOR_AI &&
-          !vorige.ai &&
-          !vorige.seed &&
-          (vorige.controle === null || vorige.controle === "ai-fout");
-        if (opnieuw) {
-          nieuwe.push({
-            record: vorige,
-            invoer: {
-              id: vorige.id,
-              titel: b.titel || "",
-              tekst,
-              bronNaam: b.bronNaam || "",
-              gepubliceerdOp: b.gepubliceerdOp || "",
-              standaardPrio: profiel.prio,
-            },
-          });
+        const invoer = maakInvoer(vorige, b, profiel, tekst);
+        if (wilOpnieuw(vorige, invoer)) {
+          nieuwe.push({ record: { ...vorige, gecontroleerdOp: nu.toISOString() }, invoer });
           stats.opnieuw++;
         } else {
+          bijgewerkteControle.push({ ...vorige, gecontroleerdOp: nu.toISOString() });
           stats.ongewijzigd++;
         }
         continue;
@@ -414,18 +647,7 @@ function planBerichten({ vensterBerichten, feedItems = [], bestaand = [], nu = n
     }
 
     const record = maakBerichtRecord(b, profiel, versie, tekst, nu);
-    const invoer =
-      profiel.herschrijf && tekst.length >= MIN_TEKST_VOOR_AI
-        ? {
-            id: record.id,
-            titel: b.titel || "",
-            tekst,
-            bronNaam: b.bronNaam || "",
-            gepubliceerdOp: b.gepubliceerdOp || "",
-            standaardPrio: profiel.prio,
-          }
-        : null;
-    nieuwe.push({ record, invoer });
+    nieuwe.push({ record, invoer: maakInvoer(record, b, profiel, tekst) });
   }
 
   if (bestaand.length === 0) {
@@ -446,7 +668,7 @@ function planBerichten({ vensterBerichten, feedItems = [], bestaand = [], nu = n
     }
   }
 
-  return { nieuwe, stats };
+  return { nieuwe, bijgewerkteControle, stats };
 }
 
 // ---------------------------------------------------------------------------
@@ -483,24 +705,115 @@ function begrensPrio(prio, standaard) {
   return Math.min(hoog, Math.max(laag, prio));
 }
 
+// Alle getallen in een tekst als waarde, ook "2,5 miljoen" en "1.200.000".
+function waardenInBron(bron) {
+  const waarden = [];
+  const re = /(\d{1,3}(?:\.\d{3})+|\d+)(?:,(\d+))?\s*(miljoen|miljard|mln|mld|duizend)?/gi;
+  const eenheden = { miljoen: 1e6, mln: 1e6, miljard: 1e9, mld: 1e9, duizend: 1e3 };
+  let m;
+  while ((m = re.exec(String(bron))) !== null) {
+    const heel = Number(m[1].replace(/\./g, ""));
+    const basis = m[2] ? Number(`${heel}.${m[2]}`) : heel;
+    waarden.push(basis * (eenheden[(m[3] || "").toLowerCase()] || 1));
+  }
+  return waarden;
+}
+
+function getalStaatInBron(n, bron) {
+  if (!Number.isFinite(n)) return false;
+  const marge = Math.max(0.5, Math.abs(n) * 0.005);
+  return waardenInBron(bron).some((w) => Math.abs(w - n) <= marge);
+}
+
+const BOOLEAN_VELDEN = ["gevaar", "evacuatieOfNlAlert", "gewondenOfDoden", "bestuurlijkeCrisis", "besluitMetGrootGevolg", "tijdkritisch"];
+const GETAL_VELDEN = ["betrokkenen", "geldbedragEuro", "banen"];
+
+/**
+ * De checklist van de AI, gecontroleerd. Getallen blijven alleen staan als ze
+ * in de bron voorkomen (ook als "2,5 miljoen"); getallen als woord ("twee
+ * gewonden") tellen niet mee en worden null. Of iets in de regio speelt
+ * bepaalt de code (alert-regels.js), niet de AI.
+ */
+function maakChecklist(raw, bron) {
+  const r = raw && typeof raw === "object" ? raw : {};
+  const uit = {};
+  for (const veld of BOOLEAN_VELDEN) uit[veld] = r[veld] === true;
+  for (const veld of GETAL_VELDEN) {
+    const ruw = r[veld];
+    const n = typeof ruw === "number" || typeof ruw === "string" ? Number(ruw) : NaN;
+    uit[veld] = Number.isFinite(n) && getalStaatInBron(n, bron) ? n : null;
+  }
+  uit.inRegio = isRegio(bron);
+  return uit;
+}
+
+function normaliseer(tekst) {
+  return String(tekst ?? "").toLowerCase().replace(/\s+/g, " ").trim();
+}
+
+/**
+ * Controleert de agendapunten van de AI. Een punt blijft alleen staan als de
+ * datumtekst letterlijk in de bron staat, de datum te berekenen is (met
+ * controle op de weekdag), en tijden en plaats ook in de bron voorkomen.
+ */
+function verifieerAgendapunten(raw, bron, publicatieDag) {
+  if (!Array.isArray(raw)) return [];
+  const hooi = normaliseer(bron);
+  const uit = [];
+  for (const ap of raw.slice(0, MAX_AGENDAPUNTEN_PER_BERICHT * 2)) {
+    if (!ap || typeof ap.titel !== "string" || typeof ap.datumTekst !== "string") continue;
+    if (!ap.titel.trim() || !hooi.includes(normaliseer(ap.datumTekst))) continue;
+    const datum = datumUitTekst(ap.datumTekst, publicatieDag);
+    if (!datum) continue;
+
+    let start = null;
+    let eind = null;
+    if (typeof ap.tijd === "string" && ap.tijd.trim() && cijfersKloppen(ap.tijd, bron)) {
+      const klok = klokUitTekst(ap.tijd);
+      if (klok) start = amsterdamNaarIso(datum.dag, klok[0], klok[1]);
+    }
+    if (start && typeof ap.eindtijd === "string" && ap.eindtijd.trim() && cijfersKloppen(ap.eindtijd, bron)) {
+      const klok = klokUitTekst(ap.eindtijd);
+      if (klok) {
+        const kandidaat = amsterdamNaarIso(datum.dag, klok[0], klok[1]);
+        if (kandidaat > start) eind = kandidaat;
+      }
+    }
+    const plaats =
+      typeof ap.plaats === "string" && ap.plaats.trim() && hooi.includes(normaliseer(ap.plaats))
+        ? ap.plaats.trim().slice(0, 80)
+        : null;
+    uit.push({ titel: schoneKop(ap.titel), dag: datum.dag, start, eind, plaats, zekerheid: datum.zekerheid });
+    if (uit.length >= MAX_AGENDAPUNTEN_PER_BERICHT) break;
+  }
+  return uit;
+}
+
 /**
  * Verwerkt het resultaat van Gemini voor één bericht.
- * resultaat: { melding: { kop, tekst, prio } } | { onvoldoende: true } | { fout }
+ * resultaat: { melding: { kop?, tekst?, prio?, checklist?, agendapunten? } }
+ *          | { onvoldoende: true } | { fout }
  */
 function verwerkMelding({ record, invoer }, resultaat) {
   if (!invoer || !resultaat) return record;
   if (resultaat.fout) return { ...record, controle: "ai-fout" };
   if (resultaat.onvoldoende) return { ...record, controle: "ai-onvoldoende-tekst" };
 
-  const { kop, tekst, prio } = resultaat.melding;
-  if (!cijfersKloppen(`${kop} ${tekst}`, `${invoer.titel} ${invoer.tekst}`)) {
-    return { ...record, controle: "cijfers-afgekeurd" };
-  }
+  const m = resultaat.melding;
+  const bron = `${invoer.titel} ${invoer.tekst}`;
+  const basis = { ...record, checklist: maakChecklist(m.checklist, bron) };
+  const agendapunten = verifieerAgendapunten(m.agendapunten, bron, invoer.publicatieDag);
+  if (agendapunten.length) basis.agendapunten = agendapunten;
+  else delete basis.agendapunten;
+
+  if (invoer.modus === "analyse") return { ...basis, analyse: true, controle: "analyse-ok" };
+
+  if (!cijfersKloppen(`${m.kop} ${m.tekst}`, bron)) return { ...basis, controle: "cijfers-afgekeurd" };
   return {
-    ...record,
-    kop: schoneKop(kop),
-    tekst: opschonen(tekst),
-    prio: begrensPrio(prio, invoer.standaardPrio),
+    ...basis,
+    kop: schoneKop(m.kop),
+    tekst: opschonen(m.tekst),
+    prio: begrensPrio(m.prio, invoer.standaardPrio),
     ai: true,
     controle: "cijfers-ok",
   };
@@ -542,6 +855,8 @@ module.exports = {
   BERICHTEN_MAX_AANTAL,
   MIN_TEKST_VOOR_AI,
   bouwAgenda,
+  agendaTeVerrijken,
+  koppelAgendaAanBerichten,
   planBerichten,
   verwerkMelding,
   voegBerichtenSamen,
@@ -557,4 +872,9 @@ module.exports = {
   heeftEchteTijd,
   aantalWoorden,
   maakAgendaItem,
+  maakChecklist,
+  verifieerAgendapunten,
+  getalStaatInBron,
+  agendaItemsUitBerichten,
+  ontdubbelAgenda,
 };

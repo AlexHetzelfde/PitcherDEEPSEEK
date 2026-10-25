@@ -19,6 +19,22 @@
 // (SOORT, VERVANG, ACCEPTEER_TWIJFEL, NAAM), zodat er geen invoer in een shell-
 // commando hoeft te staan.
 //
+// Sinds de ZANP-fase-2-ronde (2026-10-24):
+//  - Een nieuwe bron doet automatisch mee aan de nieuwsdienst en de agenda
+//    (zie zanp.js). Daarvoor schrijft dit script ook een regel in
+//    rubrieken.json, met de invoer RUBRIEK, HERKOMST en AGENDA_FILTER. De
+//    standaard is "behouden": een nieuwe bron wordt dan Overig / onbekend
+//    (alleen kop en link, geen AI-tekst) en een bestaande bron houdt zijn
+//    instellingen. Zo staat er nooit stilletjes een verkeerde instelling.
+//    HERKOMST: signaal (andere redactie, nooit herschrijven), officieel of
+//    organisatie (de AI mag een korte samenvatting maken).
+//  - Bij een agendabron meldt de samenvatting hoeveel van de geteste items
+//    door het agendafilter komen, en waarschuwt als dat bijna niets is.
+//  - Bij het vervangen van een bestaande bron blijft ook filterTermen
+//    behouden (rechtspraak gebruikt dat om alleen Zaanse uitspraken te houden).
+//  - Landelijke bronnen doen niet mee aan ZANP (die is regionaal); ze blijven
+//    wel in het pitchdeel.
+//
 // Sinds de "eerlijke-pipeline"-ronde (2026-10-15):
 //  - Als een bestaande bron wordt vervangen, blijven detailSelector en rustig
 //    behouden. Zonder die twee velden zou "opnieuw toevoegen" via deze route
@@ -31,6 +47,11 @@ const { ontdekBron, maakRapport, schrijfStapSamenvatting, isDirecteFeed } = requ
 const { testBron, voorbeeldRegels, normaliseerUrl, telBinnenVenster } = require("./bron-poort");
 const { schrijfBron } = require("./bronnen-schrijver");
 const bronnen = require("./bronnen");
+const { RUBRIEKEN, profielVoor, isBekendeBron, voegProfielToe } = require("./rubrieken");
+const { beoordeelAgendaRelevantie } = require("./agenda-regels");
+
+const GELDIGE_HERKOMSTEN = ["signaal", "officieel", "organisatie"];
+const GELDIGE_AGENDAFILTERS = ["alles", "eerste-of-jubileum"];
 
 function leesArgumenten(argv) {
   const positioneel = argv.filter((a) => !a.startsWith("--"));
@@ -44,7 +65,26 @@ function leesArgumenten(argv) {
     naam: (process.env.NAAM || "").trim() || null,
     vervang: vlaggen.has("--vervang") || process.env.VERVANG === "true",
     accepteerTwijfel: vlaggen.has("--accepteer-twijfel") || process.env.ACCEPTEER_TWIJFEL === "true",
+    rubriek: (process.env.RUBRIEK || "behouden").trim(),
+    herkomst: (process.env.HERKOMST || "behouden").trim().toLowerCase(),
+    agendaFilter: (process.env.AGENDA_FILTER || "behouden").trim().toLowerCase(),
   };
+}
+
+// Bepaalt de ZANP-regel voor deze bron. "behouden" betekent: neem de regel
+// die er al is, en bestaat die niet, de veilige standaard (Overig, onbekend).
+function bepaalZanpProfiel({ id, invoer, soort }) {
+  const huidig = isBekendeBron(id) ? profielVoor(id) : null;
+  const kies = (waarde, bestaandeWaarde, standaard) =>
+    waarde && waarde !== "behouden" ? waarde : bestaandeWaarde !== undefined && bestaandeWaarde !== null ? bestaandeWaarde : standaard;
+
+  const rubriek = kies(invoer.rubriek, huidig && huidig.rubriek, "ALG");
+  const herkomst = kies(invoer.herkomst, huidig && huidig.herkomst, "onbekend");
+  const agendaFilter = soort === "agenda" ? kies(invoer.agendaFilter, huidig && huidig.agendaFilter, "alles") : undefined;
+  const mag = herkomst === "officieel" || herkomst === "organisatie";
+  const herschrijf = huidig && huidig.herkomst === herkomst ? huidig.herschrijf === true && mag : mag;
+  const prio = huidig && huidig.herkomst === herkomst && Number.isInteger(huidig.prio) ? huidig.prio : herkomst === "organisatie" ? 4 : 3;
+  return { rubriek, herkomst, herschrijf, prio, ...(agendaFilter ? { agendaFilter } : {}) };
 }
 
 function stopMetFout(bericht, samenvatting) {
@@ -54,7 +94,8 @@ function stopMetFout(bericht, samenvatting) {
 }
 
 async function main() {
-  const { url, id, categorie, soort, naam, vervang, accepteerTwijfel } = leesArgumenten(process.argv.slice(2));
+  const argumenten = leesArgumenten(process.argv.slice(2));
+  const { url, id, categorie, soort, naam, vervang, accepteerTwijfel } = argumenten;
 
   if (!url || !id || !categorie) {
     stopMetFout("Gebruik: node voeg-bron-toe.js <url> <bron-id> <categorie> [soort] [--vervang] [--accepteer-twijfel]");
@@ -62,6 +103,16 @@ async function main() {
   if (!/^[a-z0-9][a-z0-9-]*$/i.test(id)) stopMetFout(`Bron-id "${id}" mag alleen letters, cijfers en streepjes bevatten (geen spaties).`);
   if (!["lokaal", "landelijk"].includes(categorie)) stopMetFout(`Categorie "${categorie}" bestaat niet: kies lokaal of landelijk.`);
   if (!["auto", "nieuws", "agenda"].includes(soort)) stopMetFout(`Soort "${soort}" bestaat niet: kies auto, nieuws of agenda.`);
+  const geldigeRubrieken = RUBRIEKEN.map((r) => r.code);
+  if (argumenten.rubriek !== "behouden" && !geldigeRubrieken.includes(argumenten.rubriek)) {
+    stopMetFout(`Rubriek "${argumenten.rubriek}" bestaat niet in rubrieken.json. Kies uit: ${geldigeRubrieken.join(", ")}, of "behouden".`);
+  }
+  if (argumenten.herkomst !== "behouden" && !GELDIGE_HERKOMSTEN.includes(argumenten.herkomst)) {
+    stopMetFout(`Herkomst "${argumenten.herkomst}" bestaat niet: kies ${GELDIGE_HERKOMSTEN.join(", ")} of "behouden".`);
+  }
+  if (argumenten.agendaFilter !== "behouden" && !GELDIGE_AGENDAFILTERS.includes(argumenten.agendaFilter)) {
+    stopMetFout(`Agendafilter "${argumenten.agendaFilter}" bestaat niet: kies ${GELDIGE_AGENDAFILTERS.join(" of ")} of "behouden".`);
+  }
   try {
     if (!["http:", "https:"].includes(new URL(url).protocol)) throw new Error();
   } catch {
@@ -140,8 +191,31 @@ async function main() {
   // als de poort te weinig berichten vindt; zonder deze regel zou een
   // bewust-rustige bron bij het vervangen zijn vlag kwijtraken.
   if (bestaand && bestaand.rustig && !uit.bron.rustig) uit.bron.rustig = true;
+  // Idem voor filterTermen: zonder dit veld zou "vervangen" het filter wissen.
+  if (bestaand && bestaand.filterTermen && !uit.bron.filterTermen) uit.bron.filterTermen = bestaand.filterTermen;
 
   const { actie } = await schrijfBron(uit.bron);
+
+  // --- ZANP: rubriek, herkomst en agendafilter vastleggen -------------------
+  const zanp = bepaalZanpProfiel({ id, invoer: argumenten, soort: uit.bron.soort });
+  voegProfielToe(id, zanp);
+  const zanpRegel = `ZANP: rubriek ${zanp.rubriek}, herkomst ${zanp.herkomst}, ${zanp.herschrijf ? "AI-samenvatting toegestaan" : "alleen kop en link"}, prio ${zanp.prio}${zanp.agendaFilter ? `, agendafilter ${zanp.agendaFilter}` : ""}.`;
+  const zanpWaarschuwingen = [];
+  if (categorie === "landelijk") {
+    zanpWaarschuwingen.push("Een landelijke bron doet niet mee aan ZANP (die is regionaal); hij blijft wel in het pitchdeel.");
+  }
+  if (zanp.herkomst === "onbekend") {
+    zanpWaarschuwingen.push("Herkomst is nog onbekend: de berichten komen onder Overig, zonder AI-tekst. Start deze workflow opnieuw met \"vervang\" aan en kies rubriek en herkomst om dat te veranderen.");
+  }
+  let agendaRegel = null;
+  if (uit.bron.soort === "agenda") {
+    const items = uit.oordeel.geldig || [];
+    const door = items.filter((b) => beoordeelAgendaRelevantie(b.titel, b.samenvatting || "", zanp.agendaFilter).zichtbaar).length;
+    agendaRegel = `Agendafilter "${zanp.agendaFilter}": ${door} van ${items.length} geteste item(s) zouden in de agenda zichtbaar zijn (geschat op titel en lijsttekst).`;
+    if (zanp.agendaFilter === "eerste-of-jubileum" && items.length >= 10 && door / items.length < 0.05) {
+      zanpWaarschuwingen.push(`Bijna niets komt door het agendafilter (${door} van ${items.length}). Kies agenda_filter "alles" als je deze agenda volledig wilt zien.`);
+    }
+  }
 
   const venster = telBinnenVenster(uit.oordeel, uit.bron);
   const geenBinnenVenster =
@@ -161,7 +235,13 @@ async function main() {
   if (uit.oordeel.soortReden) console.log(`  ${uit.oordeel.soortReden}`);
   console.log(`  Voorbeelden:\n${voorbeelden}`);
   uit.oordeel.waarschuwingen.forEach((w) => console.log(`  ⚠️  ${w}`));
-  console.log("Commit en push bronnen.js om 'm mee te nemen in de volgende dagelijkse run.");
+  console.log(`  ${zanpRegel}`);
+  if (agendaRegel) console.log(`  ${agendaRegel}`);
+  zanpWaarschuwingen.forEach((w) => {
+    console.log(`  ⚠️  ${w}`);
+    console.log(`::warning title=Bron ${id} (ZANP)::${w}`);
+  });
+  console.log("Commit en push bronnen.js en rubrieken.json om 'm mee te nemen in de volgende runs.");
 
   schrijfStapSamenvatting(
     [
@@ -172,7 +252,10 @@ async function main() {
       `- Tekstdekking: ${uit.oordeel.tekstTekst || "niet gemeten (feed-modus: items hebben al tekst)"}`,
       `- Binnen het venster: ${venster.binnen} van ${venster.totaal} bericht(en)`,
       ...(uit.oordeel.soortReden ? [`- ${uit.oordeel.soortReden}`] : []),
+      `- ${zanpRegel}`,
+      ...(agendaRegel ? [`- ${agendaRegel}`] : []),
       ...(geenBinnenVenster ? ["", `> ⚠️ **Let op: 0 berichten binnen het venster.** ${geenBinnenVenster}`] : []),
+      ...zanpWaarschuwingen.map((w) => `\n> ⚠️ ${w}`),
       "",
       "Voorbeelden:",
       "",
