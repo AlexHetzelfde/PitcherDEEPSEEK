@@ -885,3 +885,351 @@ h2 {
     max-height: none;
   }
 }
+
+/* ======================================================================
+   ZANP fase 2: alerts, kolomkeuze, chips, dagbalk, gefilterde agenda
+   ====================================================================== */
+
+.laatste-update.verouderd {
+  font-weight: 700;
+  opacity: 1;
+  background: #fff3cd;
+  color: #664d03;
+  display: inline-block;
+  padding: 0.15rem 0.6rem;
+  border-radius: 4px;
+}
+
+/* --- Alertbalk: blijft in beeld bij scrollen --- */
+
+.alert-balk {
+  position: sticky;
+  top: 0;
+  z-index: 30;
+}
+
+.alert-balk:empty {
+  display: none;
+}
+
+.alert {
+  display: flex;
+  align-items: stretch;
+  color: white;
+}
+
+.alert-rood {
+  background: #b3261e;
+}
+
+.alert-oranje {
+  background: #b8590f;
+}
+
+.alert-open {
+  flex: 1 1 auto;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0.25rem 0.75rem;
+  font: inherit;
+  text-align: left;
+  color: inherit;
+  background: none;
+  border: 0;
+  padding: 0.55rem 1rem;
+  cursor: pointer;
+}
+
+.alert-open:hover .alert-kop {
+  text-decoration: underline;
+}
+
+.alert-label {
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  font-size: 0.75rem;
+}
+
+.alert-kop {
+  font-weight: 700;
+}
+
+.alert-reden {
+  font-size: 0.8rem;
+  opacity: 0.9;
+}
+
+.alert-sluit {
+  flex: 0 0 auto;
+  font: inherit;
+  font-size: 1.4rem;
+  line-height: 1;
+  color: inherit;
+  background: none;
+  border: 0;
+  padding: 0 1rem;
+  cursor: pointer;
+}
+
+.alert-sluit:hover {
+  background: rgba(0, 0, 0, 0.18);
+}
+
+.alert :focus-visible {
+  outline-color: white;
+}
+
+/* Een bericht met een lopende alert krijgt een gekleurde rand in de stroom. */
+.wire-item.heeft-alert {
+  border-left: 4px solid #b3261e;
+  padding-left: calc(0.9rem - 4px);
+}
+
+.wire-item.heeft-alert.alert-oranje {
+  border-left-color: #b8590f;
+}
+
+/* --- Kolomkeuze --- */
+
+.kolommenkiezer {
+  position: relative;
+  align-self: flex-end;
+  padding-bottom: 0.2rem;
+}
+
+.kolommenkiezer summary {
+  cursor: pointer;
+  font-size: 0.9rem;
+  font-weight: 600;
+  padding: 0.4rem 0.8rem;
+  border: 1px solid var(--kleur-rand);
+  border-radius: 6px;
+  background: var(--kleur-oppervlak);
+  list-style: none;
+}
+
+.kolommenkiezer summary::-webkit-details-marker {
+  display: none;
+}
+
+.kolommen-opties {
+  position: absolute;
+  z-index: 10;
+  top: calc(100% + 0.25rem);
+  left: 0;
+  min-width: 15rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  padding: 0.7rem 0.9rem;
+  background: var(--kleur-oppervlak);
+  border: 1px solid var(--kleur-rand);
+  border-radius: 8px;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.12);
+}
+
+/* Alleen op een telefoon: kolomtabs in plaats van zijwaarts scrollen. */
+.kolom-tabs {
+  display: none;
+  gap: 0.4rem;
+  overflow-x: auto;
+  padding: 0.25rem 0 0.6rem;
+}
+
+.kolom-tab {
+  flex: 0 0 auto;
+  font: inherit;
+  font-size: 0.85rem;
+  font-weight: 600;
+  padding: 0.4rem 0.8rem;
+  border: 1px solid var(--kleur-rand);
+  border-radius: 999px;
+  background: var(--kleur-oppervlak);
+  color: var(--kleur-tekst);
+  cursor: pointer;
+}
+
+.kolom-tab.actief {
+  background: var(--kleur-accent);
+  border-color: var(--kleur-accent);
+  color: white;
+}
+
+/* --- Chips --- */
+
+.wire-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.3rem;
+  margin-top: 0.4rem;
+}
+
+.chip {
+  display: inline-block;
+  font: inherit;
+  font-size: 0.7rem;
+  font-weight: 600;
+  line-height: 1.4;
+  padding: 0.1rem 0.5rem;
+  border: 1px solid var(--kleur-rand);
+  border-radius: 999px;
+  background: var(--kleur-zacht);
+  color: #444;
+}
+
+button.chip {
+  cursor: pointer;
+}
+
+button.chip:hover {
+  background: #dfe9e3;
+}
+
+.chip-agenda,
+.chip-bericht {
+  border-color: var(--kleur-accent);
+  color: var(--kleur-accent);
+  background: white;
+}
+
+.chip-regel {
+  background: var(--kleur-agenda-licht);
+  border-color: var(--kleur-agenda);
+  color: var(--kleur-agenda);
+}
+
+.chip-grijs {
+  background: #f0f0f0;
+  color: #777;
+}
+
+.nieuw-stip {
+  display: inline-block;
+  font-size: 0.6rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: white;
+  background: var(--kleur-accent);
+  padding: 0 0.4rem;
+  border-radius: 3px;
+  vertical-align: 0.1em;
+}
+
+/* --- Agenda: dagbalk en gefilterde items --- */
+
+.week-dagen {
+  display: grid;
+  grid-template-columns: repeat(7, minmax(0, 1fr));
+  gap: 0.4rem;
+  margin: 0.25rem 0 0.75rem;
+}
+
+.week-dag {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.1rem;
+  font: inherit;
+  padding: 0.4rem 0.2rem;
+  border: 1px solid var(--kleur-rand);
+  border-radius: 8px;
+  background: var(--kleur-oppervlak);
+  color: var(--kleur-tekst);
+  cursor: pointer;
+}
+
+.week-dag:hover {
+  background: var(--kleur-zacht);
+}
+
+.week-dag.vandaag .wd-nr {
+  color: var(--kleur-accent);
+}
+
+.week-dag.actief {
+  border-color: var(--kleur-accent);
+  box-shadow: 0 0 0 1px var(--kleur-accent);
+}
+
+.wd-naam {
+  font-size: 0.7rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  color: #777;
+}
+
+.wd-nr {
+  font-size: 1.1rem;
+  font-weight: 800;
+}
+
+.wd-teller {
+  min-width: 1.4rem;
+  font-size: 0.7rem;
+  font-weight: 700;
+  text-align: center;
+  color: white;
+  background: var(--kleur-accent);
+  border-radius: 999px;
+  padding: 0 0.3rem;
+}
+
+.wd-teller.leeg {
+  background: #c9d3cd;
+}
+
+.agenda-item.gefilterd {
+  opacity: 0.6;
+  background: repeating-linear-gradient(135deg, transparent 0 8px, rgba(0, 0, 0, 0.025) 8px 16px);
+}
+
+.veld input[type="date"] {
+  font: inherit;
+  font-size: 0.9rem;
+  padding: 0.35rem 0.5rem;
+  border: 1px solid var(--kleur-rand);
+  border-radius: 6px;
+  background: var(--kleur-oppervlak);
+  color: var(--kleur-tekst);
+}
+
+@media (min-width: 701px) {
+  .kolom-tabs {
+    display: none;
+  }
+}
+
+@media (max-width: 700px) {
+  .kolom-tabs {
+    display: flex;
+  }
+  .wire-kolommen {
+    display: block;
+    overflow: visible;
+  }
+  .wire-kolom {
+    display: none;
+    width: 100%;
+    flex: none;
+  }
+  .wire-kolom.actief {
+    display: flex;
+  }
+  .agenda-week {
+    display: block;
+  }
+  .agenda-week .agenda-dag {
+    display: none;
+  }
+  .agenda-week .agenda-dag.gekozen {
+    display: block;
+  }
+  .kolommenkiezer {
+    display: none; /* op een telefoon kies je een kolom met de tabs */
+  }
+  .week-dag {
+    padding: 0.3rem 0.1rem;
+  }
+}

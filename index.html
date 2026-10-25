@@ -19,6 +19,9 @@
     <p id="laatste-update" class="laatste-update"></p>
   </header>
 
+  <!-- Rode en oranje alerts; zichtbaar op elke tab. Alleen gevuld als ALERT_MODUS=aan. -->
+  <div id="alert-balk" class="alert-balk" role="region" aria-label="Alerts" aria-live="polite"></div>
+
   <main>
     <!-- ================= Nieuwsdienst ================= -->
     <section id="paneel-nieuwsdienst" class="paneel" role="tabpanel" aria-labelledby="tab-nieuwsdienst">
@@ -48,8 +51,13 @@
           <input type="checkbox" id="wire-recent">
           <span>Recent gewijzigd</span>
         </label>
+        <details class="kolommenkiezer" id="kolommenkiezer">
+          <summary>Kolommen</summary>
+          <div id="kolommen-opties" class="kolommen-opties"></div>
+        </details>
       </div>
-      <p class="uitleg" id="wire-uitleg">Prioriteit: 1 = urgent, 2 = belangrijk, 3 = regulier, 4 = routine. De AI geeft nooit prio 1. Een tekst met het label AI is automatisch samengevat uit de bron: controleer hem voor gebruik.</p>
+      <nav id="kolom-tabs" class="kolom-tabs" aria-label="Kolom kiezen"></nav>
+      <p class="uitleg" id="wire-uitleg">Prioriteit: 1 = urgent, 2 = belangrijk, 3 = regulier, 4 = routine. De AI geeft nooit prio 1. Een tekst met het label AI is automatisch samengevat uit de bron: controleer hem voor gebruik. Meldt meer dan één bron hetzelfde nieuws, dan staat het als één bericht met "ook gemeld door".</p>
       <div id="wire-kolommen" class="wire-kolommen"><p class="laden">Berichten laden…</p></div>
     </section>
 
@@ -63,11 +71,20 @@
           <strong id="agenda-weeklabel" class="weeklabel"></strong>
         </div>
         <label class="veld">
+          <span class="veld-label">Ga naar datum</span>
+          <input type="date" id="agenda-datum">
+        </label>
+        <label class="veld">
           <span class="veld-label">Rubriek</span>
           <select id="agenda-rubriek"><option value="">Alle rubrieken</option></select>
         </label>
+        <label class="vinkje">
+          <input type="checkbox" id="agenda-toon-alles">
+          <span id="agenda-toon-alles-label">Toon ook gefilterde items</span>
+        </label>
       </div>
-      <p class="uitleg">Een tijd met ± is uit de tekst van de bron gehaald en niet uit een vast veld. Meerdaagse evenementen staan op elke dag en zijn gemarkeerd als doorlopend. De agenda bouwt zich vanaf de eerste run op: eerdere dagen zijn pas gevuld naarmate de dienst langer draait.</p>
+      <div id="week-dagen" class="week-dagen" role="group" aria-label="Dag van de week kiezen"></div>
+      <p class="uitleg">Bij evenementenbronnen staat standaard alleen wat voor het eerst plaatsvindt of een jubileum is; de rest staat achter "Toon ook gefilterde items". Een tijd met ± is uit de tekst van de bron gehaald. Meerdaagse evenementen staan op elke dag. Agendapunten en termijnen uit berichten zijn gemarkeerd. Eerdere dagen zijn pas gevuld naarmate de dienst langer draait.</p>
       <div id="agenda-week" class="agenda-week"><p class="laden">Agenda laden…</p></div>
     </section>
 
