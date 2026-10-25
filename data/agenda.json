@@ -1,5 +1,5 @@
 {
-  "gegenereerdOp": "2026-10-25T18:50:19.772Z",
+  "gegenereerdOp": "2026-10-25T20:41:55.866Z",
   "regelVersie": "2026-10-24-1",
   "items": [
     {
@@ -2428,6 +2428,37 @@
       "zichtbaar": true,
       "inAfwachting": false,
       "eerstGezienOp": "2026-10-24T03:56:04.357Z"
+    },
+    {
+      "url": "https://www.deorkaan.nl/dichter-bij-de-tijd-vol-is-vol/",
+      "rubriek": "LOK",
+      "herkomst": "signaal",
+      "bronId": "DeOrkaan",
+      "bronNaam": "DeOrkaan",
+      "berichtId": "c2269f9c66",
+      "status": null,
+      "plaats": null,
+      "eind": "2026-11-06T16:00:00.000Z",
+      "doorlopend": false,
+      "relevantie": {
+        "zichtbaar": true,
+        "regel": "uit-bericht",
+        "woorden": null,
+        "regelVersie": "2026-10-24-1"
+      },
+      "zichtbaar": true,
+      "inAfwachting": false,
+      "laatstGezienOp": "2026-10-25T20:41:55.866Z",
+      "id": "61bac39982",
+      "kop": "Poëziemiddag Dichter bij de tijd",
+      "start": "2026-11-06T13:30:00.000Z",
+      "startDag": "2026-11-06",
+      "eindDag": "2026-11-06",
+      "heeftTijd": true,
+      "tijdBron": "bericht",
+      "afkomst": "bericht",
+      "zekerheid": "afgeleid",
+      "eerstGezienOp": "2026-10-25T20:41:55.866Z"
     },
     {
       "id": "73b0e3410c",

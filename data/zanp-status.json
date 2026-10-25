@@ -1,5 +1,5 @@
 {
-  "gegenereerdOp": "2026-10-25T18:50:19.772Z",
+  "gegenereerdOp": "2026-10-25T20:41:55.866Z",
   "alertModus": "log",
   "bronnen": {
     "zaansche-molen": {
@@ -38,12 +38,12 @@
       "opeenvolgendLeeg": 0
     },
     "nh-actueel": {
-      "laatsteScrape": "2026-10-25T18:50:19.772Z",
+      "laatsteScrape": "2026-10-25T20:41:55.866Z",
       "gevonden": 15,
       "opeenvolgendLeeg": 0
     },
     "nh-cultuur": {
-      "laatsteScrape": "2026-10-25T18:50:19.772Z",
+      "laatsteScrape": "2026-10-25T20:41:55.866Z",
       "gevonden": 15,
       "opeenvolgendLeeg": 0
     },
@@ -78,9 +78,9 @@
       "opeenvolgendLeeg": 0
     },
     "hhnk": {
-      "laatsteScrape": "2026-10-25T18:50:19.772Z",
-      "gevonden": 0,
-      "opeenvolgendLeeg": 1
+      "laatsteScrape": "2026-10-25T20:41:55.866Z",
+      "gevonden": 15,
+      "opeenvolgendLeeg": 0
     },
     "rechtspraak-noord-holland": {
       "laatsteScrape": "2026-10-25T18:50:19.772Z",
@@ -98,7 +98,7 @@
       "opeenvolgendLeeg": 0
     },
     "DeOrkaan": {
-      "laatsteScrape": "2026-10-25T18:50:19.772Z",
+      "laatsteScrape": "2026-10-25T20:41:55.866Z",
       "gevonden": 12,
       "opeenvolgendLeeg": 0
     }
@@ -106,27 +106,27 @@
   "bronnenZonderRubriek": [],
   "gemini": {
     "dag": "2026-10-25",
-    "gebruikt": 32,
+    "gebruikt": 40,
     "dagcap": 80
   },
   "clusterBeslissingen": {},
   "laatsteRun": {
     "agenda": {
       "nieuw": 0,
-      "bijgewerkt": 69,
-      "behouden": 27,
+      "bijgewerkt": 0,
+      "behouden": 96,
       "verdwenen": 0,
       "verlopen": 0,
-      "uitBerichten": 0,
-      "zichtbaar": 19,
+      "uitBerichten": 1,
+      "zichtbaar": 20,
       "verborgen": 51,
       "inAfwachting": 26
     },
     "berichten": {
-      "nieuw": 1,
+      "nieuw": 0,
       "update": 0,
-      "opnieuw": 7,
-      "ongewijzigd": 0,
+      "opnieuw": 8,
+      "ongewijzigd": 4,
       "seed": 0
     },
     "cluster": {
