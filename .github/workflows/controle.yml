@@ -1,6 +1,7 @@
 # .github/workflows/controle.yml
 #
-# Syntaxcontrole op alle JS-bestanden en validatie van bronnen.js. Draait op
+# Syntaxcontrole op alle JS-bestanden en validatie van bronnen.js en
+# rubrieken.json (de ZANP-instellingen per bron). Draait op
 # elke push naar main en op elke pull request.
 #
 # Aanleiding: op 15 okt 2026 kwam er een afgekapt scraper/index.js binnen
@@ -16,12 +17,14 @@ on:
       - "**/*.js"
       - "scraper/package.json"
       - "scraper/package-lock.json"
+      - "scraper/rubrieken.json"
       - ".github/workflows/controle.yml"
   pull_request:
     paths:
       - "**/*.js"
       - "scraper/package.json"
       - "scraper/package-lock.json"
+      - "scraper/rubrieken.json"
   workflow_dispatch:
 
 jobs:
@@ -59,3 +62,10 @@ jobs:
       - name: Valideer bronnen.js
         working-directory: scraper
         run: node valideer-bronnen.js
+
+      # De ZANP-instellingen per bron. Een fout hier stopt een push niet op
+      # de server, maar maakt deze controle rood: de ZANP-run valt dan terug
+      # op de veilige standaard, dus herstel het snel.
+      - name: Valideer rubrieken.json
+        working-directory: scraper
+        run: node valideer-rubrieken.js

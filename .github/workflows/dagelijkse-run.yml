@@ -27,6 +27,11 @@ name: Dagelijkse nieuwsrun
 #    UTC, en begint "vandaag" om 02:00 NL in plaats van 00:00 NL — het
 #    nieuwsvenster zou dan 2 uur te ruim zijn.
 #
+# Sinds de ZANP-fase-2-ronde (2026-10-24):
+#  - Deze run doet alleen nog de pitchmachine. De nieuwsdienst staat in
+#    zanp-run.yml. De commitstap commit alleen nog de pitch-bestanden en
+#    rebaset voor het pushen. De cronregels zijn bewust ongewijzigd.
+#
 # Sinds de "04:00-ronde" (2026-10-15):
 #  - Twee cron-regels voor 04:00 NL in zowel zomer- als wintertijd.
 #  - concurrency + timeout-minutes toegevoegd als vangnet.
@@ -87,13 +92,27 @@ jobs:
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
         run: npm start
 
+      # Alleen de bestanden van de pitchmachine. De nieuwsdienst (zanp-run.yml)
+      # schrijft berichten.json, agenda.json en zanp-status.json; die mogen
+      # hier niet meegaan en kunnen tijdens deze run van 10-20 minuten
+      # tussentijds zijn gepusht. Daarom eerst rebasen, en bij een mislukte
+      # push opnieuw proberen.
       - name: Resultaten committen
         run: |
           git config user.name "nieuwsaggregator-bot"
           git config user.email "actions@users.noreply.github.com"
-          git add data/*.json
+          git add data/feed.json data/nieuws-lokaal.json data/nieuws-landelijk.json data/pitches.json data/bron-gezondheid.json
           git diff --quiet --cached || git commit -m "Dagelijkse update: $(TZ='Europe/Amsterdam' date '+%Y-%m-%d %H:%M')"
-          git push
+          gelukt=0
+          for poging in 1 2 3 4; do
+            if git pull --rebase origin "$GITHUB_REF_NAME" && git push; then gelukt=1; break; fi
+            echo "Push mislukte (poging $poging van 4), opnieuw proberen..."
+            sleep $((poging * 5))
+          done
+          if [ "$gelukt" != "1" ]; then
+            echo "::error::Pushen mislukte na 4 pogingen"
+            exit 1
+          fi
 
       # Zelfherstel: bronnen die twee runs achter elkaar niets opleverden worden
       # opnieuw uitgezocht. Het resultaat komt NOOIT direct op main, maar als pull

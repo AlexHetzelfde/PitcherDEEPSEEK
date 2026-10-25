@@ -1,0 +1,111 @@
+# .github/workflows/zanp-run.yml
+#
+# De half-uurlijkse run van ZANP, de nieuwsdienst. Staat LOS van de
+# dagelijkse pitchrun (dagelijkse-run.yml):
+#
+#              | dagelijkse run (pitch)             | deze run (ZANP)
+#   ---------- | ---------------------------------- | ------------------------------
+#   draait     | elke nacht                         | elk half uur
+#   schrijft   | pitches, feed, nieuws-lokaal,      | berichten, agenda,
+#              | nieuws-landelijk, bron-gezondheid  | zanp-status
+#
+# Een run scrapet niet elke bron: rustige bronnen en agendabronnen één keer
+# per dag, de rest elke run (zie scraper/zanp.js).
+#
+# Minuten 7 en 37 en niet 0 en 30: geplande runs rond het hele uur worden bij
+# drukte op GitHub vaak vertraagd. De exacte starttijd is nooit gegarandeerd;
+# reken op "binnen het uur" en niet op een flits.
+#
+# Instellen (optioneel), in Settings > Secrets and variables > Actions >
+# Variables:
+#   ALERT_MODUS   "log" (standaard: alerts alleen berekenen en loggen) of "aan"
+#                 (rode en oranje balken tonen). Begin met "log".
+#
+# Handmatig starten kan ook (Actions-tab); kies "alles" om ook de rustige
+# bronnen en agendabronnen te scrapen.
+
+name: ZANP nieuwsdienst
+
+on:
+  workflow_dispatch:
+    inputs:
+      alles:
+        description: "Alle bronnen scrapen, ook de rustige bronnen en agendabronnen"
+        required: true
+        type: boolean
+        default: false
+  schedule:
+    - cron: "7,37 * * * *"
+
+# Eén ZANP-run tegelijk. Een nieuwe run wacht op de lopende; wachten er al
+# meer, dan blijft alleen de nieuwste over (oude gegevens zijn niet nuttig).
+# Een eigen groep: de dagelijkse run en deze run mogen elkaar niet blokkeren
+# en ook niet elkaars wachtende run vervangen.
+concurrency:
+  group: zanp-run
+  cancel-in-progress: false
+
+permissions:
+  contents: write # nodig om data/berichten.json, agenda.json en zanp-status.json te committen
+
+jobs:
+  zanp:
+    runs-on: ubuntu-latest
+    # Een normale run duurt een paar minuten. Hang je langer, dan is er iets mis.
+    timeout-minutes: 25
+    env:
+      # Zelfde tijdzone als de dagelijkse run: de scrapers lezen datums in
+      # Nederlandse tijd.
+      TZ: Europe/Amsterdam
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Node.js instellen
+        uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+
+      - name: Dependencies installeren
+        working-directory: scraper
+        run: npm install --no-audit --no-fund
+
+      - name: bronnen.js valideren
+        working-directory: scraper
+        run: node valideer-bronnen.js
+
+      # Alleen een waarschuwing: een fout in rubrieken.json mag de run niet
+      # stoppen (zanp.js valt dan terug op de veilige standaard).
+      - name: rubrieken.json controleren
+        continue-on-error: true
+        working-directory: scraper
+        run: node valideer-rubrieken.js
+
+      - name: ZANP-run
+        working-directory: scraper
+        env:
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+          ALERT_MODUS: ${{ vars.ALERT_MODUS || 'log' }}
+          ZANP_ALLES: ${{ inputs.alles && '1' || '' }}
+        run: node zanp.js
+
+      # Alleen de eigen bestanden van ZANP, nooit data/*.json: de pitchrun
+      # schrijft andere bestanden en die mogen hier niet meegaan.
+      - name: Resultaten committen
+        run: |
+          git config user.name "nieuwsaggregator-bot"
+          git config user.email "actions@users.noreply.github.com"
+          git add data/berichten.json data/agenda.json data/zanp-status.json
+          git diff --quiet --cached || git commit -m "ZANP: $(TZ='Europe/Amsterdam' date '+%Y-%m-%d %H:%M')"
+          # De dagelijkse run of "Bron toevoegen" kan tussentijds hebben gepusht:
+          # eerst rebasen, bij een mislukte push opnieuw proberen.
+          gelukt=0
+          for poging in 1 2 3 4; do
+            if git pull --rebase origin "$GITHUB_REF_NAME" && git push; then gelukt=1; break; fi
+            echo "Push mislukte (poging $poging van 4), opnieuw proberen..."
+            sleep $((poging * 5))
+          done
+          if [ "$gelukt" != "1" ]; then
+            echo "::error::Pushen mislukte na 4 pogingen"
+            exit 1
+          fi

@@ -9,6 +9,14 @@ name: Bron toevoegen
 # scraper/bron-poort.js). Lukt dat niet, dan wordt deze workflow rood en
 # verandert er niets aan bronnen.js. In de samenvatting bovenaan de run staat
 # wat er geprobeerd is en waarom het niet werkte.
+#
+# Sinds de ZANP-fase-2-ronde (2026-10-24): een nieuwe bron doet automatisch
+# mee aan de nieuwsdienst en de agenda (zanp-run.yml). Daarvoor schrijft deze
+# workflow ook een regel in scraper/rubrieken.json, met drie extra velden
+# (rubriek, herkomst, agenda_filter). De standaard "behouden" betekent: een
+# nieuwe bron wordt Overig / onbekend (alleen kop en link, geen AI-tekst) en
+# een bestaande bron houdt zijn instellingen. Staat een rubriek niet in de
+# lijst hieronder, voeg die dan ook hier toe.
 on:
   workflow_dispatch:
     inputs:
@@ -37,6 +45,39 @@ on:
           - nieuws
           - agenda
         default: auto
+      rubriek:
+        description: "ZANP-rubriek van deze bron (behouden = bestaande instelling, of Overig bij een nieuwe bron)"
+        required: true
+        type: choice
+        options:
+          - behouden
+          - BES
+          - REC
+          - PRV
+          - CUL
+          - ONW
+          - LOK
+          - ALG
+        default: behouden
+      herkomst:
+        description: "Herkomst. signaal = andere redactie of aggregator (alleen kop en link). officieel/organisatie = de AI mag een korte samenvatting maken. behouden = bestaande instelling, of onbekend bij een nieuwe bron"
+        required: true
+        type: choice
+        options:
+          - behouden
+          - signaal
+          - officieel
+          - organisatie
+        default: behouden
+      agenda_filter:
+        description: "Alleen voor agendabronnen. alles = elk evenement tonen. eerste-of-jubileum = alleen eerste keer of jubileum. behouden = bestaande instelling, of alles bij een nieuwe bron"
+        required: true
+        type: choice
+        options:
+          - behouden
+          - alles
+          - eerste-of-jubileum
+        default: behouden
       vervang:
         description: "Een bestaande bron met dit id vervangen, ook als die nog werkt (een kapotte bron wordt altijd vervangen)"
         required: true
@@ -49,7 +90,7 @@ on:
         default: false
 
 permissions:
-  contents: write # nodig om bronnen.js terug te committen
+  contents: write # nodig om bronnen.js en rubrieken.json terug te committen
 
 jobs:
   voeg-bron-toe:
@@ -78,6 +119,9 @@ jobs:
           BRON_ID: ${{ inputs.bron_id }}
           BRON_CATEGORIE: ${{ inputs.categorie }}
           SOORT: ${{ inputs.soort }}
+          RUBRIEK: ${{ inputs.rubriek }}
+          HERKOMST: ${{ inputs.herkomst }}
+          AGENDA_FILTER: ${{ inputs.agenda_filter }}
           VERVANG: ${{ inputs.vervang }}
           ACCEPTEER_TWIJFEL: ${{ inputs.accepteer_twijfel }}
         run: node voeg-bron-toe.js "$BRON_URL" "$BRON_ID" "$BRON_CATEGORIE"
@@ -86,12 +130,28 @@ jobs:
         working-directory: scraper
         run: node valideer-bronnen.js
 
-      - name: bronnen.js committen
+      - name: rubrieken.json valideren (laatste check vóór commit)
+        working-directory: scraper
+        run: node valideer-rubrieken.js
+
+      # bronnen.js en rubrieken.json horen bij elkaar. Pushen met rebase en
+      # nieuwe pogingen, want de ZANP-run (elk half uur) of de dagelijkse run
+      # kan tussentijds hebben gepusht.
+      - name: bronnen.js en rubrieken.json committen
         env:
           BRON_ID: ${{ inputs.bron_id }}
         run: |
           git config user.name "nieuwsaggregator-bot"
           git config user.email "actions@users.noreply.github.com"
-          git add scraper/bronnen.js
+          git add scraper/bronnen.js scraper/rubrieken.json
           git diff --quiet --cached || git commit -m "Bron toegevoegd of hersteld via workflow: $BRON_ID"
-          git push
+          gelukt=0
+          for poging in 1 2 3 4; do
+            if git pull --rebase origin "$GITHUB_REF_NAME" && git push; then gelukt=1; break; fi
+            echo "Push mislukte (poging $poging van 4), opnieuw proberen..."
+            sleep $((poging * 5))
+          done
+          if [ "$gelukt" != "1" ]; then
+            echo "::error::Pushen mislukte na 4 pogingen"
+            exit 1
+          fi
