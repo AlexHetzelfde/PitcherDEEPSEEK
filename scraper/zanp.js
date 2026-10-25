@@ -24,7 +24,10 @@
 //
 // Omgevingsvariabelen (allemaal optioneel)
 //   GEMINI_API_KEY      zonder sleutel draait alles, maar zonder AI
-//   ZANP_DAGCAP         AI-aanroepen per dag (standaard 150)
+//   ZANP_DAGCAP         AI-aanroepen per dag (standaard 80). Het gratis Gemini-quotum is
+//                       per project en wordt gedeeld met de pitchrun; die draait aan het
+//                       eind van de quotumdag en kan leeg uitkomen als ZANP alles opmaakt.
+//                       Controleer je limiet in AI Studio en zet dit getal ruim eronder.
 //   ZANP_RUNCAP         AI-aanroepen voor meldingen per run (standaard 25)
 //   ZANP_CLUSTER_CAP    AI-vragen over dubbel nieuws per run (standaard 8)
 //   ZANP_TEKST_MAX      artikelen per run ophalen (standaard 60)
@@ -34,11 +37,11 @@
 //   ZANP_ALLES=1        alle bronnen scrapen, ook de rustige (handmatige run)
 
 const bronnen = require("./bronnen");
-const { RUBRIEKEN, isBekendeBron } = require("./rubrieken");
+const { RUBRIEKEN, isBekendeBron, profielVoor } = require("./rubrieken");
 const { binnenVenster, vulBerichtenAanMetTekst, oorzaakTekst, vandaagAmsterdam } = require("./hulpmiddelen");
 const gedeeld = require("./gedeeld");
 const wire = require("./wire");
-const { REGEL_VERSIE } = require("./agenda-regels");
+const { REGEL_VERSIE, beoordeelAgendaRelevantie } = require("./agenda-regels");
 const { bouwClusters, pasClustersToe, clusterContext, kiesPrimair } = require("./cluster");
 const { CONFIG: ALERT_CONFIG, beoordeelAlert, beperkAlerts } = require("./alert-regels");
 const { schrijfMeldingen, beslisZelfdeNieuwsfeit, PROMPT_VERSIE_WIRE } = require("./gemini");
@@ -60,7 +63,7 @@ function getal(naam, standaard, env) {
 
 function leesInstellingen(env) {
   return {
-    dagcap: getal("ZANP_DAGCAP", 150, env),
+    dagcap: getal("ZANP_DAGCAP", 80, env),
     runcap: getal("ZANP_RUNCAP", 25, env),
     clusterCap: getal("ZANP_CLUSTER_CAP", 8, env),
     tekstMax: getal("ZANP_TEKST_MAX", 60, env),
@@ -181,6 +184,45 @@ function bepaalAlerts(records, clusterResultaat, modus, nu) {
 }
 
 // ---------------------------------------------------------------------------
+// Oude data (fase 1) omzetten
+// ---------------------------------------------------------------------------
+
+// De eerste fase schreef "soort" in plaats van "herkomst" en kende geen
+// gecontroleerdOp. Zonder omzetting zouden alerts en de keuze van de beste
+// bron in een cluster geen herkomst zien. De huidige instelling in
+// rubrieken.json wint van de oude waarde.
+function migreerBericht(r) {
+  if (r.herkomst && !("soort" in r) && r.gecontroleerdOp) return r;
+  const { soort, ...rest } = r;
+  const profiel = profielVoor(r.bronId);
+  return {
+    ...rest,
+    herkomst: r.herkomst || (isBekendeBron(r.bronId) ? profiel.herkomst : soort) || "onbekend",
+    gecontroleerdOp: r.gecontroleerdOp || r.eerstGezienOp,
+  };
+}
+
+// Oude agenda-items hebben geen beoordeling. Bij "alles" zijn ze gewoon
+// zichtbaar. Bij een bron met het filter eerste-keer-of-jubileum zetten we ze
+// op "in afwachting" (verborgen): komen ze opnieuw voorbij in de bron, dan
+// worden ze beoordeeld; anders blijven ze verborgen tot ze verlopen. Zo lekken
+// oude items niet ongefilterd de agenda in.
+function migreerAgendaItem(i) {
+  if (i.relevantie !== undefined) return i.afkomst ? i : { ...i, afkomst: "bron" };
+  const filter = profielVoor(i.bronId).agendaFilter;
+  if (filter === "eerste-of-jubileum") {
+    return { ...i, afkomst: i.afkomst || "bron", zichtbaar: false, inAfwachting: true };
+  }
+  return {
+    ...i,
+    afkomst: i.afkomst || "bron",
+    relevantie: beoordeelAgendaRelevantie(i.kop, "", "alles"),
+    zichtbaar: true,
+    inAfwachting: false,
+  };
+}
+
+// ---------------------------------------------------------------------------
 // De run
 // ---------------------------------------------------------------------------
 
@@ -247,7 +289,7 @@ async function draai(deps = {}) {
   // ---- 3. agenda: detailtekst voor het filter -------------------------------
   logFase("ZANP 3 — Agenda: detailtekst voor het filter");
   const agendaBestand = await leesJson("agenda.json", { items: [] });
-  const bestaandeAgenda = Array.isArray(agendaBestand.items) ? agendaBestand.items : [];
+  const bestaandeAgenda = (Array.isArray(agendaBestand.items) ? agendaBestand.items : []).map(migreerAgendaItem);
   const teVerrijkenAgenda = wire.agendaTeVerrijken({ ruweBerichten: ruwe, bronPerId, bestaand: bestaandeAgenda, max: inst.agendaDetailMax, nu });
   console.log(`${teVerrijkenAgenda.length} agenda-item(s) krijgen een detailpagina-controle (max ${inst.agendaDetailMax}).`);
   if (teVerrijkenAgenda.length) {
@@ -262,7 +304,7 @@ async function draai(deps = {}) {
   // ---- 4. nieuws: wat heeft tekst nodig? ------------------------------------
   logFase("ZANP 4 — Nieuws: nieuwe en gewijzigde berichten");
   const berichtenBestand = await leesJson("berichten.json", { berichten: [] });
-  const bestaand = Array.isArray(berichtenBestand.berichten) ? berichtenBestand.berichten : [];
+  const bestaand = (Array.isArray(berichtenBestand.berichten) ? berichtenBestand.berichten : []).map(migreerBericht);
   const laatstePerUrl = new Map();
   for (const r of bestaand) {
     const v = laatstePerUrl.get(r.url);
@@ -409,7 +451,7 @@ async function draai(deps = {}) {
   return { records, agenda: agenda.items, status, samenvatting };
 }
 
-module.exports = { draai, bepaalAlerts, isAanDeBeurt, leesInstellingen };
+module.exports = { draai, bepaalAlerts, isAanDeBeurt, leesInstellingen, migreerBericht, migreerAgendaItem };
 
 if (require.main === module) {
   draai().catch((fout) => {
