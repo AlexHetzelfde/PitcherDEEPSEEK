@@ -1,104 +1,104 @@
 {
-  "gegenereerdOp": "2026-10-25T17:46:59.266Z",
+  "gegenereerdOp": "2026-10-25T18:50:19.772Z",
   "alertModus": "log",
   "bronnen": {
     "zaansche-molen": {
-      "laatsteScrape": "2026-10-25T14:13:42.860Z",
+      "laatsteScrape": "2026-10-25T18:50:19.772Z",
       "gevonden": 10,
       "opeenvolgendLeeg": 0
     },
     "ibabs-collegeberichten": {
-      "laatsteScrape": "2026-10-25T14:13:42.860Z",
+      "laatsteScrape": "2026-10-25T18:50:19.772Z",
       "gevonden": 0,
-      "opeenvolgendLeeg": 1
+      "opeenvolgendLeeg": 2
     },
     "ibabs-ingekomen-stukken": {
-      "laatsteScrape": "2026-10-25T14:13:42.860Z",
+      "laatsteScrape": "2026-10-25T18:50:19.772Z",
       "gevonden": 0,
-      "opeenvolgendLeeg": 1
+      "opeenvolgendLeeg": 2
     },
     "ovo-zaanstad": {
-      "laatsteScrape": "2026-10-25T14:13:42.860Z",
+      "laatsteScrape": "2026-10-25T18:50:19.772Z",
       "gevonden": 10,
       "opeenvolgendLeeg": 0
     },
     "blaise-pascal-college": {
-      "laatsteScrape": "2026-10-25T14:13:42.860Z",
+      "laatsteScrape": "2026-10-25T18:50:19.772Z",
       "gevonden": 0,
-      "opeenvolgendLeeg": 1
+      "opeenvolgendLeeg": 2
     },
     "zaans-museum": {
-      "laatsteScrape": "2026-10-25T14:13:42.860Z",
+      "laatsteScrape": "2026-10-25T18:50:19.772Z",
       "gevonden": 10,
       "opeenvolgendLeeg": 0
     },
     "zaanse-schans": {
-      "laatsteScrape": "2026-10-25T14:13:42.860Z",
+      "laatsteScrape": "2026-10-25T18:50:19.772Z",
       "gevonden": 10,
       "opeenvolgendLeeg": 0
     },
     "nh-actueel": {
-      "laatsteScrape": "2026-10-25T17:46:59.266Z",
+      "laatsteScrape": "2026-10-25T18:50:19.772Z",
       "gevonden": 15,
       "opeenvolgendLeeg": 0
     },
     "nh-cultuur": {
-      "laatsteScrape": "2026-10-25T17:46:59.266Z",
+      "laatsteScrape": "2026-10-25T18:50:19.772Z",
       "gevonden": 15,
       "opeenvolgendLeeg": 0
     },
     "zaanstad-hoorzittingen": {
-      "laatsteScrape": "2026-10-25T14:13:42.860Z",
-      "gevonden": 0,
-      "opeenvolgendLeeg": 1
+      "laatsteScrape": "2026-10-25T18:50:19.772Z",
+      "gevonden": 17,
+      "opeenvolgendLeeg": 0
     },
     "zaandijk-leeft": {
-      "laatsteScrape": "2026-10-25T14:13:42.860Z",
+      "laatsteScrape": "2026-10-25T18:50:19.772Z",
       "gevonden": 10,
       "opeenvolgendLeeg": 0
     },
     "OmgevingsdienstNHN": {
-      "laatsteScrape": "2026-10-25T14:13:42.860Z",
+      "laatsteScrape": "2026-10-25T18:50:19.772Z",
       "gevonden": 7,
       "opeenvolgendLeeg": 0
     },
     "omgevingsdienstnoordzeekanaal": {
-      "laatsteScrape": "2026-10-25T14:13:42.860Z",
+      "laatsteScrape": "2026-10-25T18:50:19.772Z",
       "gevonden": 10,
       "opeenvolgendLeeg": 0
     },
     "zaans-cultuur-huis": {
-      "laatsteScrape": "2026-10-25T14:13:42.860Z",
+      "laatsteScrape": "2026-10-25T18:50:19.772Z",
       "gevonden": 14,
       "opeenvolgendLeeg": 0
     },
     "WaarheenAgenda": {
-      "laatsteScrape": "2026-10-25T14:13:42.860Z",
+      "laatsteScrape": "2026-10-25T18:50:19.772Z",
       "gevonden": 48,
       "opeenvolgendLeeg": 0
     },
     "hhnk": {
-      "laatsteScrape": "2026-10-25T17:46:59.266Z",
-      "gevonden": 15,
-      "opeenvolgendLeeg": 0
+      "laatsteScrape": "2026-10-25T18:50:19.772Z",
+      "gevonden": 0,
+      "opeenvolgendLeeg": 1
     },
     "rechtspraak-noord-holland": {
-      "laatsteScrape": "2026-10-25T14:13:42.860Z",
+      "laatsteScrape": "2026-10-25T18:50:19.772Z",
       "gevonden": 2,
       "opeenvolgendLeeg": 0
     },
     "bekendmakingen": {
-      "laatsteScrape": "2026-10-25T14:13:42.860Z",
+      "laatsteScrape": "2026-10-25T18:50:19.772Z",
       "gevonden": 150,
       "opeenvolgendLeeg": 0
     },
     "wetenregelgeving": {
-      "laatsteScrape": "2026-10-25T14:13:42.860Z",
+      "laatsteScrape": "2026-10-25T18:50:19.772Z",
       "gevonden": 50,
       "opeenvolgendLeeg": 0
     },
     "DeOrkaan": {
-      "laatsteScrape": "2026-10-25T17:46:59.266Z",
+      "laatsteScrape": "2026-10-25T18:50:19.772Z",
       "gevonden": 12,
       "opeenvolgendLeeg": 0
     }
@@ -106,31 +106,31 @@
   "bronnenZonderRubriek": [],
   "gemini": {
     "dag": "2026-10-25",
-    "gebruikt": 24,
-    "dagcap": 150
+    "gebruikt": 32,
+    "dagcap": 80
   },
   "clusterBeslissingen": {},
   "laatsteRun": {
     "agenda": {
       "nieuw": 0,
-      "bijgewerkt": 0,
-      "behouden": 96,
+      "bijgewerkt": 69,
+      "behouden": 27,
       "verdwenen": 0,
       "verlopen": 0,
       "uitBerichten": 0,
-      "zichtbaar": 3,
-      "verborgen": 79,
-      "inAfwachting": 14
+      "zichtbaar": 19,
+      "verborgen": 51,
+      "inAfwachting": 26
     },
     "berichten": {
       "nieuw": 1,
-      "update": 1,
-      "opnieuw": 10,
+      "update": 0,
+      "opnieuw": 7,
       "ongewijzigd": 0,
       "seed": 0
     },
     "cluster": {
-      "vergeleken": 595,
+      "vergeleken": 630,
       "automatisch": 0,
       "aiGevraagd": 0,
       "aiJa": 0,
