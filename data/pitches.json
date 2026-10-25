@@ -1,33 +1,13 @@
 {
-  "gegenereerdOp": "2026-10-24T04:05:31.037Z",
+  "gegenereerdOp": "2026-10-25T04:05:56.354Z",
   "promptVersie": "2026-10-22-pitch-vier-velden",
   "sorteerwijze": "datum",
-  "aantalBerichtenTotaal": 44,
+  "aantalBerichtenTotaal": 36,
   "drempels": {
     "lokaal": 6,
     "landelijk": 8,
     "maxLokaal": 34.5,
     "maxLandelijk": 40.5
   },
-  "topPitches": [
-    {
-      "bronId": "nh-actueel",
-      "bronNaam": "Provincie Noord-Holland — Actueel",
-      "categorie": "lokaal",
-      "titel": "Gewijzigde regels voor de ruimte in Noord-Holland",
-      "url": "https://www.noord-holland.nl/Actueel/Archief/2026/Oktober_2026/Gewijzigde_regels_voor_de_ruimte_in_Noord_Holland",
-      "samenvatting": "Publicatiedatum: 23 oktober 2026 Laatst gewijzigd: 23 oktober 2026 0 reacties De provincie zorgt ervoor dat de woon-, werk- en leefomgeving prettig en toekomstbestendig blijft. Daarom past ze jaarlijks de Omgevingsverordening aan. Vanaf januari 2027 gelden aangepaste regels die samen met gemeenten, belangenorganisaties en andere partners zijn gerealiseerd. Wijzigingen in de Omgevingsverordening De Omgevingsverordening Noord-Holland wordt jaarlijks geactualiseerd. De voorgestelde wijzigingen hebben van 21 mei tot en met 1 juli 2026 ter inzage gelegen. De meeste wijzigingen gaan over aanscherpingen of verduidelijkingen van bestaand beleid. Nieuw is bijvoorbeeld het provinciaal beleid voor grote batterijen. Vaststelling door Provinciale Staten (PS) Gedeputeerde Staten (GS) leggen de gewijzigde verordening, inclusief de Nota van beantwoording, in december ter besluitvorming voor aan Provinciale Staten (PS). Voordat het definitief wordt vastgesteld, bespreekt de Statencommissie Ruimte de verordening op maandag 23 november. Tijdens die vergadering is inspraak mogelijk. Na vaststelling door PS treedt de gewijzigde Omgevingsverordening in januari 2027 in werking. Zie voor meer informatie de pagina over de Omgevingsverordening. Delen op: Deel dit bericht op Facebook Deel dit bericht op X Deel dit bericht op LinkedIn Om te kunnen reageren moet u eerst inloggen.",
-      "gepubliceerdOp": "2026-10-23T10:29:16.000Z",
-      "foto": "https://www.noord-holland.nl/bestanden/afbeeldingen/Nieuws/omgevingsverordening%20foto.jpg",
-      "opgehaaldOp": "2026-10-24T03:52:46.322Z",
-      "tekstBron": "artikel",
-      "aiBeoordeling": {
-        "werktitel": "Nieuwe provinciale regels voor de ruimte: Noord-Holland introduceert beleid voor grote batterijen",
-        "samenvatting": "De provincie Noord-Holland actualiseert de Omgevingsverordening, die na besluitvorming door Provinciale Staten in januari 2027 ingaat. Naast verduidelijkingen van bestaand beleid bevat het voorstel nieuw provinciaal beleid voor grote batterijen. Belanghebbenden kunnen op maandag 23 november inspreken wanneer de Statencommissie Ruimte de wijzigingen behandelt.",
-        "invalshoek": "Vanuit gemeenten in Zaanstreek-Waterland die vanaf januari 2027 te maken krijgen met het nieuwe provinciale beleid voor grote batterijen.",
-        "vraag": "Wat betekent het nieuwe provinciale beleid vanaf januari 2027 voor de plaatsing van grote batterijen in Zaanstreek-Waterland?",
-        "centraleVraag": "Wat betekent het nieuwe provinciale beleid vanaf januari 2027 voor de plaatsing van grote batterijen in Zaanstreek-Waterland?"
-      }
-    }
-  ]
+  "topPitches": []
 }

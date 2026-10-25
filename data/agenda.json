@@ -1,5 +1,5 @@
 {
-  "gegenereerdOp": "2026-10-24T03:56:04.380Z",
+  "gegenereerdOp": "2026-10-25T03:54:46.995Z",
   "items": [
     {
       "id": "aee87343e0",
@@ -17,7 +17,7 @@
       "doorlopend": true,
       "heeftTijd": false,
       "tijdBron": "geen",
-      "laatstGezienOp": "2026-10-24T03:56:04.357Z",
+      "laatstGezienOp": "2026-10-25T03:54:46.973Z",
       "eerstGezienOp": "2026-10-24T03:56:04.357Z"
     },
     {
@@ -55,7 +55,7 @@
       "doorlopend": false,
       "heeftTijd": true,
       "tijdBron": "tekst",
-      "laatstGezienOp": "2026-10-24T03:56:04.357Z",
+      "laatstGezienOp": "2026-10-25T03:54:46.973Z",
       "eerstGezienOp": "2026-10-24T03:56:04.357Z"
     },
     {
@@ -226,7 +226,7 @@
       "doorlopend": false,
       "heeftTijd": false,
       "tijdBron": "geen",
-      "laatstGezienOp": "2026-10-24T03:56:04.357Z",
+      "laatstGezienOp": "2026-10-25T03:54:46.973Z",
       "eerstGezienOp": "2026-10-24T03:56:04.357Z"
     },
     {
@@ -511,7 +511,7 @@
       "doorlopend": false,
       "heeftTijd": false,
       "tijdBron": "geen",
-      "laatstGezienOp": "2026-10-24T03:56:04.357Z",
+      "laatstGezienOp": "2026-10-25T03:54:46.973Z",
       "eerstGezienOp": "2026-10-24T03:56:04.357Z"
     },
     {
@@ -549,7 +549,7 @@
       "doorlopend": false,
       "heeftTijd": false,
       "tijdBron": "geen",
-      "laatstGezienOp": "2026-10-24T03:56:04.357Z",
+      "laatstGezienOp": "2026-10-25T03:54:46.973Z",
       "eerstGezienOp": "2026-10-24T03:56:04.357Z"
     },
     {
@@ -591,25 +591,6 @@
       "eerstGezienOp": "2026-10-24T03:56:04.357Z"
     },
     {
-      "id": "e5ae173c62",
-      "url": "https://waarheen.deorkaan.nl/agenda/22e-evean-herfsttocht-ddl/",
-      "kop": "22e Evean Herfsttocht (DDL)",
-      "plaats": null,
-      "status": null,
-      "rubriek": "CUL",
-      "bronId": "WaarheenAgenda",
-      "bronNaam": "Waarheen Agenda (De Orkaan)",
-      "start": "2026-10-24T22:00:00.000Z",
-      "eind": null,
-      "startDag": "2026-10-25",
-      "eindDag": "2026-10-25",
-      "doorlopend": false,
-      "heeftTijd": false,
-      "tijdBron": "geen",
-      "laatstGezienOp": "2026-10-24T03:56:04.357Z",
-      "eerstGezienOp": "2026-10-24T03:56:04.357Z"
-    },
-    {
       "id": "c9e5e1ee97",
       "url": "https://waarheen.deorkaan.nl/agenda/2026-10-25-alice-in-wonderland/",
       "kop": "Alice in Wonderland",
@@ -625,7 +606,7 @@
       "doorlopend": false,
       "heeftTijd": false,
       "tijdBron": "geen",
-      "laatstGezienOp": "2026-10-24T03:56:04.357Z",
+      "laatstGezienOp": "2026-10-25T03:54:46.973Z",
       "eerstGezienOp": "2026-10-24T03:56:04.357Z"
     },
     {
@@ -644,7 +625,7 @@
       "doorlopend": false,
       "heeftTijd": false,
       "tijdBron": "geen",
-      "laatstGezienOp": "2026-10-24T03:56:04.357Z",
+      "laatstGezienOp": "2026-10-25T03:54:46.973Z",
       "eerstGezienOp": "2026-10-24T03:56:04.357Z"
     },
     {
@@ -663,7 +644,7 @@
       "doorlopend": false,
       "heeftTijd": false,
       "tijdBron": "geen",
-      "laatstGezienOp": "2026-10-24T03:56:04.357Z",
+      "laatstGezienOp": "2026-10-25T03:54:46.973Z",
       "eerstGezienOp": "2026-10-24T03:56:04.357Z"
     },
     {
@@ -682,26 +663,7 @@
       "doorlopend": false,
       "heeftTijd": false,
       "tijdBron": "geen",
-      "laatstGezienOp": "2026-10-24T03:56:04.357Z",
-      "eerstGezienOp": "2026-10-24T03:56:04.357Z"
-    },
-    {
-      "id": "d51a4e12ea",
-      "url": "https://waarheen.deorkaan.nl/agenda/halloween-voor-kinderen/",
-      "kop": "Halloween voor kinderen",
-      "plaats": null,
-      "status": null,
-      "rubriek": "CUL",
-      "bronId": "WaarheenAgenda",
-      "bronNaam": "Waarheen Agenda (De Orkaan)",
-      "start": "2026-10-24T22:00:00.000Z",
-      "eind": null,
-      "startDag": "2026-10-25",
-      "eindDag": "2026-10-25",
-      "doorlopend": false,
-      "heeftTijd": false,
-      "tijdBron": "geen",
-      "laatstGezienOp": "2026-10-24T03:56:04.357Z",
+      "laatstGezienOp": "2026-10-25T03:54:46.973Z",
       "eerstGezienOp": "2026-10-24T03:56:04.357Z"
     },
     {
@@ -720,7 +682,7 @@
       "doorlopend": false,
       "heeftTijd": false,
       "tijdBron": "geen",
-      "laatstGezienOp": "2026-10-24T03:56:04.357Z",
+      "laatstGezienOp": "2026-10-25T03:54:46.973Z",
       "eerstGezienOp": "2026-10-24T03:56:04.357Z"
     },
     {
@@ -739,7 +701,7 @@
       "doorlopend": false,
       "heeftTijd": false,
       "tijdBron": "geen",
-      "laatstGezienOp": "2026-10-24T03:56:04.357Z",
+      "laatstGezienOp": "2026-10-25T03:54:46.973Z",
       "eerstGezienOp": "2026-10-24T03:56:04.357Z"
     },
     {
@@ -758,8 +720,27 @@
       "doorlopend": false,
       "heeftTijd": false,
       "tijdBron": "geen",
-      "laatstGezienOp": "2026-10-24T03:56:04.357Z",
+      "laatstGezienOp": "2026-10-25T03:54:46.973Z",
       "eerstGezienOp": "2026-10-24T03:56:04.357Z"
+    },
+    {
+      "id": "6fcb1c9539",
+      "url": "https://waarheen.deorkaan.nl/agenda/2026-10-25-maanheks-try-out/",
+      "kop": "Maanheks (Try-out)",
+      "plaats": null,
+      "status": null,
+      "rubriek": "CUL",
+      "bronId": "WaarheenAgenda",
+      "bronNaam": "Waarheen Agenda (De Orkaan)",
+      "start": "2026-10-24T22:00:00.000Z",
+      "eind": null,
+      "startDag": "2026-10-25",
+      "eindDag": "2026-10-25",
+      "doorlopend": false,
+      "heeftTijd": false,
+      "tijdBron": "geen",
+      "laatstGezienOp": "2026-10-25T03:54:46.973Z",
+      "eerstGezienOp": "2026-10-25T03:54:46.973Z"
     },
     {
       "id": "4a609034b2",
@@ -777,8 +758,27 @@
       "doorlopend": false,
       "heeftTijd": false,
       "tijdBron": "geen",
-      "laatstGezienOp": "2026-10-24T03:56:04.357Z",
+      "laatstGezienOp": "2026-10-25T03:54:46.973Z",
       "eerstGezienOp": "2026-10-24T03:56:04.357Z"
+    },
+    {
+      "id": "e5b558c0b9",
+      "url": "https://waarheen.deorkaan.nl/agenda/2026-10-25-muziek-in-de-rosmolenwijk/",
+      "kop": "Muziek in de Rosmolenwijk",
+      "plaats": null,
+      "status": null,
+      "rubriek": "CUL",
+      "bronId": "WaarheenAgenda",
+      "bronNaam": "Waarheen Agenda (De Orkaan)",
+      "start": "2026-10-24T22:00:00.000Z",
+      "eind": null,
+      "startDag": "2026-10-25",
+      "eindDag": "2026-10-25",
+      "doorlopend": false,
+      "heeftTijd": false,
+      "tijdBron": "geen",
+      "laatstGezienOp": "2026-10-25T03:54:46.973Z",
+      "eerstGezienOp": "2026-10-25T03:54:46.973Z"
     },
     {
       "id": "74a83904df",
@@ -796,7 +796,7 @@
       "doorlopend": false,
       "heeftTijd": false,
       "tijdBron": "geen",
-      "laatstGezienOp": "2026-10-24T03:56:04.357Z",
+      "laatstGezienOp": "2026-10-25T03:54:46.973Z",
       "eerstGezienOp": "2026-10-24T03:56:04.357Z"
     },
     {
@@ -815,7 +815,7 @@
       "doorlopend": false,
       "heeftTijd": false,
       "tijdBron": "geen",
-      "laatstGezienOp": "2026-10-24T03:56:04.357Z",
+      "laatstGezienOp": "2026-10-25T03:54:46.973Z",
       "eerstGezienOp": "2026-10-24T03:56:04.357Z"
     },
     {
@@ -834,7 +834,7 @@
       "doorlopend": false,
       "heeftTijd": false,
       "tijdBron": "geen",
-      "laatstGezienOp": "2026-10-24T03:56:04.357Z",
+      "laatstGezienOp": "2026-10-25T03:54:46.973Z",
       "eerstGezienOp": "2026-10-24T03:56:04.357Z"
     },
     {
@@ -853,7 +853,7 @@
       "doorlopend": false,
       "heeftTijd": false,
       "tijdBron": "geen",
-      "laatstGezienOp": "2026-10-24T03:56:04.357Z",
+      "laatstGezienOp": "2026-10-25T03:54:46.973Z",
       "eerstGezienOp": "2026-10-24T03:56:04.357Z"
     },
     {
@@ -872,13 +872,13 @@
       "doorlopend": false,
       "heeftTijd": false,
       "tijdBron": "geen",
-      "laatstGezienOp": "2026-10-24T03:56:04.357Z",
+      "laatstGezienOp": "2026-10-25T03:54:46.973Z",
       "eerstGezienOp": "2026-10-24T03:56:04.357Z"
     },
     {
-      "id": "2b02c513b1",
-      "url": "https://waarheen.deorkaan.nl/agenda/sintswap/",
-      "kop": "SintSwap",
+      "id": "28f5a5dc81",
+      "url": "https://waarheen.deorkaan.nl/agenda/sona-presents-golfos/",
+      "kop": "SONA Presents: GOLFOS - ADE",
       "plaats": null,
       "status": null,
       "rubriek": "CUL",
@@ -891,8 +891,8 @@
       "doorlopend": false,
       "heeftTijd": false,
       "tijdBron": "geen",
-      "laatstGezienOp": "2026-10-24T03:56:04.357Z",
-      "eerstGezienOp": "2026-10-24T03:56:04.357Z"
+      "laatstGezienOp": "2026-10-25T03:54:46.973Z",
+      "eerstGezienOp": "2026-10-25T03:54:46.973Z"
     },
     {
       "id": "3ef1516015",
@@ -910,7 +910,7 @@
       "doorlopend": false,
       "heeftTijd": false,
       "tijdBron": "geen",
-      "laatstGezienOp": "2026-10-24T03:56:04.357Z",
+      "laatstGezienOp": "2026-10-25T03:54:46.973Z",
       "eerstGezienOp": "2026-10-24T03:56:04.357Z"
     },
     {
@@ -929,7 +929,7 @@
       "doorlopend": false,
       "heeftTijd": false,
       "tijdBron": "geen",
-      "laatstGezienOp": "2026-10-24T03:56:04.357Z",
+      "laatstGezienOp": "2026-10-25T03:54:46.973Z",
       "eerstGezienOp": "2026-10-24T03:56:04.357Z"
     },
     {
@@ -948,8 +948,27 @@
       "doorlopend": false,
       "heeftTijd": false,
       "tijdBron": "geen",
-      "laatstGezienOp": "2026-10-24T03:56:04.357Z",
+      "laatstGezienOp": "2026-10-25T03:54:46.973Z",
       "eerstGezienOp": "2026-10-24T03:56:04.357Z"
+    },
+    {
+      "id": "e4bb1566f5",
+      "url": "https://waarheen.deorkaan.nl/agenda/wine-dine-wild-editie/",
+      "kop": "Wine & Dine: Wild editie",
+      "plaats": null,
+      "status": null,
+      "rubriek": "CUL",
+      "bronId": "WaarheenAgenda",
+      "bronNaam": "Waarheen Agenda (De Orkaan)",
+      "start": "2026-10-24T22:00:00.000Z",
+      "eind": null,
+      "startDag": "2026-10-25",
+      "eindDag": "2026-10-25",
+      "doorlopend": false,
+      "heeftTijd": false,
+      "tijdBron": "geen",
+      "laatstGezienOp": "2026-10-25T03:54:46.973Z",
+      "eerstGezienOp": "2026-10-25T03:54:46.973Z"
     },
     {
       "id": "07605c6eef",
@@ -967,7 +986,7 @@
       "doorlopend": false,
       "heeftTijd": true,
       "tijdBron": "veld",
-      "laatstGezienOp": "2026-10-24T03:56:04.357Z",
+      "laatstGezienOp": "2026-10-25T03:54:46.973Z",
       "eerstGezienOp": "2026-10-24T03:56:04.357Z"
     },
     {
@@ -986,7 +1005,7 @@
       "doorlopend": false,
       "heeftTijd": true,
       "tijdBron": "veld",
-      "laatstGezienOp": "2026-10-24T03:56:04.357Z",
+      "laatstGezienOp": "2026-10-25T03:54:46.973Z",
       "eerstGezienOp": "2026-10-24T03:56:04.357Z"
     },
     {
@@ -1005,8 +1024,179 @@
       "doorlopend": false,
       "heeftTijd": true,
       "tijdBron": "veld",
-      "laatstGezienOp": "2026-10-24T03:56:04.357Z",
+      "laatstGezienOp": "2026-10-25T03:54:46.973Z",
       "eerstGezienOp": "2026-10-24T03:56:04.357Z"
+    },
+    {
+      "id": "e5ae173c62",
+      "url": "https://waarheen.deorkaan.nl/agenda/22e-evean-herfsttocht-ddl/",
+      "kop": "22e Evean Herfsttocht (DDL)",
+      "plaats": null,
+      "status": null,
+      "rubriek": "CUL",
+      "bronId": "WaarheenAgenda",
+      "bronNaam": "Waarheen Agenda (De Orkaan)",
+      "start": "2026-10-25T07:30:00.000Z",
+      "eind": null,
+      "startDag": "2026-10-25",
+      "eindDag": "2026-10-25",
+      "doorlopend": false,
+      "heeftTijd": true,
+      "tijdBron": "tekst",
+      "laatstGezienOp": "2026-10-25T03:54:46.973Z",
+      "eerstGezienOp": "2026-10-24T03:56:04.357Z"
+    },
+    {
+      "id": "0e39e95a50",
+      "url": "https://waarheen.deorkaan.nl/agenda/2026-10-25-vlooienmarkt-sporthal-oostzaan/",
+      "kop": "Vlooienmarkt Sporthal Oostzaan",
+      "plaats": null,
+      "status": null,
+      "rubriek": "CUL",
+      "bronId": "WaarheenAgenda",
+      "bronNaam": "Waarheen Agenda (De Orkaan)",
+      "start": "2026-10-25T08:30:00.000Z",
+      "eind": "2026-10-25T15:00:00.000Z",
+      "startDag": "2026-10-25",
+      "eindDag": "2026-10-25",
+      "doorlopend": false,
+      "heeftTijd": true,
+      "tijdBron": "tekst",
+      "laatstGezienOp": "2026-10-25T03:54:46.973Z",
+      "eerstGezienOp": "2026-10-25T03:54:46.973Z"
+    },
+    {
+      "id": "2b02c513b1",
+      "url": "https://waarheen.deorkaan.nl/agenda/sintswap/",
+      "kop": "SintSwap",
+      "plaats": null,
+      "status": null,
+      "rubriek": "CUL",
+      "bronId": "WaarheenAgenda",
+      "bronNaam": "Waarheen Agenda (De Orkaan)",
+      "start": "2026-10-25T17:00:00.000Z",
+      "eind": null,
+      "startDag": "2026-10-25",
+      "eindDag": "2026-10-25",
+      "doorlopend": false,
+      "heeftTijd": true,
+      "tijdBron": "tekst",
+      "laatstGezienOp": "2026-10-25T03:54:46.973Z",
+      "eerstGezienOp": "2026-10-24T03:56:04.357Z"
+    },
+    {
+      "id": "d51a4e12ea",
+      "url": "https://waarheen.deorkaan.nl/agenda/halloween-voor-kinderen/",
+      "kop": "Halloween voor kinderen",
+      "plaats": null,
+      "status": null,
+      "rubriek": "CUL",
+      "bronId": "WaarheenAgenda",
+      "bronNaam": "Waarheen Agenda (De Orkaan)",
+      "start": "2026-10-25T19:00:00.000Z",
+      "eind": null,
+      "startDag": "2026-10-25",
+      "eindDag": "2026-10-25",
+      "doorlopend": false,
+      "heeftTijd": true,
+      "tijdBron": "tekst",
+      "laatstGezienOp": "2026-10-25T03:54:46.973Z",
+      "eerstGezienOp": "2026-10-24T03:56:04.357Z"
+    },
+    {
+      "id": "15fada5c2a",
+      "url": "https://waarheen.deorkaan.nl/agenda/150-jaar-noordzeekanaal-de-toekomst/",
+      "kop": "150 jaar Noordzeekanaal & de toekomst",
+      "plaats": null,
+      "status": null,
+      "rubriek": "CUL",
+      "bronId": "WaarheenAgenda",
+      "bronNaam": "Waarheen Agenda (De Orkaan)",
+      "start": "2026-10-25T23:00:00.000Z",
+      "eind": null,
+      "startDag": "2026-10-26",
+      "eindDag": "2026-10-26",
+      "doorlopend": false,
+      "heeftTijd": false,
+      "tijdBron": "geen",
+      "laatstGezienOp": "2026-10-25T03:54:46.973Z",
+      "eerstGezienOp": "2026-10-25T03:54:46.973Z"
+    },
+    {
+      "id": "07e4c5e9c7",
+      "url": "https://waarheen.deorkaan.nl/agenda/2026-10-26-atelier2100-hoe-onderzoek-je-de-toekomst/",
+      "kop": "Atelier2100: Hoe onderzoek je de toekomst?",
+      "plaats": null,
+      "status": null,
+      "rubriek": "CUL",
+      "bronId": "WaarheenAgenda",
+      "bronNaam": "Waarheen Agenda (De Orkaan)",
+      "start": "2026-10-25T23:00:00.000Z",
+      "eind": null,
+      "startDag": "2026-10-26",
+      "eindDag": "2026-10-26",
+      "doorlopend": false,
+      "heeftTijd": false,
+      "tijdBron": "geen",
+      "laatstGezienOp": "2026-10-25T03:54:46.973Z",
+      "eerstGezienOp": "2026-10-25T03:54:46.973Z"
+    },
+    {
+      "id": "caa31efed7",
+      "url": "https://waarheen.deorkaan.nl/agenda/koppiebar-pub-quiz-2/",
+      "kop": "Koppiebar Pub Quiz",
+      "plaats": null,
+      "status": null,
+      "rubriek": "CUL",
+      "bronId": "WaarheenAgenda",
+      "bronNaam": "Waarheen Agenda (De Orkaan)",
+      "start": "2026-10-25T23:00:00.000Z",
+      "eind": null,
+      "startDag": "2026-10-26",
+      "eindDag": "2026-10-26",
+      "doorlopend": false,
+      "heeftTijd": false,
+      "tijdBron": "geen",
+      "laatstGezienOp": "2026-10-25T03:54:46.973Z",
+      "eerstGezienOp": "2026-10-25T03:54:46.973Z"
+    },
+    {
+      "id": "d05bc3e497",
+      "url": "https://waarheen.deorkaan.nl/agenda/2026-10-27-jongerencultuur-komt-samen/",
+      "kop": "Jongerencultuur komt samen!",
+      "plaats": null,
+      "status": null,
+      "rubriek": "CUL",
+      "bronId": "WaarheenAgenda",
+      "bronNaam": "Waarheen Agenda (De Orkaan)",
+      "start": "2026-10-26T23:00:00.000Z",
+      "eind": null,
+      "startDag": "2026-10-27",
+      "eindDag": "2026-10-27",
+      "doorlopend": false,
+      "heeftTijd": false,
+      "tijdBron": "geen",
+      "laatstGezienOp": "2026-10-25T03:54:46.973Z",
+      "eerstGezienOp": "2026-10-25T03:54:46.973Z"
+    },
+    {
+      "id": "ccabbf8a6b",
+      "url": "https://waarheen.deorkaan.nl/agenda/lezing-regie-in-eigen-leven-4/",
+      "kop": "Lezing: Regie in eigen leven",
+      "plaats": null,
+      "status": null,
+      "rubriek": "CUL",
+      "bronId": "WaarheenAgenda",
+      "bronNaam": "Waarheen Agenda (De Orkaan)",
+      "start": "2026-10-26T23:00:00.000Z",
+      "eind": null,
+      "startDag": "2026-10-27",
+      "eindDag": "2026-10-27",
+      "doorlopend": false,
+      "heeftTijd": false,
+      "tijdBron": "geen",
+      "laatstGezienOp": "2026-10-25T03:54:46.973Z",
+      "eerstGezienOp": "2026-10-25T03:54:46.973Z"
     },
     {
       "id": "d222f3d239",
@@ -1024,7 +1214,7 @@
       "doorlopend": false,
       "heeftTijd": true,
       "tijdBron": "tekst",
-      "laatstGezienOp": "2026-10-24T03:56:04.357Z",
+      "laatstGezienOp": "2026-10-25T03:54:46.973Z",
       "eerstGezienOp": "2026-10-24T03:56:04.357Z"
     },
     {
@@ -1043,7 +1233,7 @@
       "doorlopend": false,
       "heeftTijd": true,
       "tijdBron": "tekst",
-      "laatstGezienOp": "2026-10-24T03:56:04.357Z",
+      "laatstGezienOp": "2026-10-25T03:54:46.973Z",
       "eerstGezienOp": "2026-10-24T03:56:04.357Z"
     },
     {
@@ -1062,8 +1252,293 @@
       "doorlopend": false,
       "heeftTijd": true,
       "tijdBron": "tekst",
-      "laatstGezienOp": "2026-10-24T03:56:04.357Z",
+      "laatstGezienOp": "2026-10-25T03:54:46.973Z",
       "eerstGezienOp": "2026-10-24T03:56:04.357Z"
+    },
+    {
+      "id": "3c38a32aa0",
+      "url": "https://waarheen.deorkaan.nl/agenda/40-jaar-de-fabriek-de-aanslag-op-35mm/",
+      "kop": "40 jaar De Fabriek: De aanslag op 35mm",
+      "plaats": null,
+      "status": null,
+      "rubriek": "CUL",
+      "bronId": "WaarheenAgenda",
+      "bronNaam": "Waarheen Agenda (De Orkaan)",
+      "start": "2026-10-27T23:00:00.000Z",
+      "eind": null,
+      "startDag": "2026-10-28",
+      "eindDag": "2026-10-28",
+      "doorlopend": false,
+      "heeftTijd": false,
+      "tijdBron": "geen",
+      "laatstGezienOp": "2026-10-25T03:54:46.973Z",
+      "eerstGezienOp": "2026-10-25T03:54:46.973Z"
+    },
+    {
+      "id": "a2d4490cf5",
+      "url": "https://waarheen.deorkaan.nl/agenda/2026-10-28-allerzielen-met-zaans-interkerkelijk-mannenkoor/",
+      "kop": "Allerzielen met Zaans Interkerkelijk Mannenkoor",
+      "plaats": null,
+      "status": null,
+      "rubriek": "CUL",
+      "bronId": "WaarheenAgenda",
+      "bronNaam": "Waarheen Agenda (De Orkaan)",
+      "start": "2026-10-27T23:00:00.000Z",
+      "eind": null,
+      "startDag": "2026-10-28",
+      "eindDag": "2026-10-28",
+      "doorlopend": false,
+      "heeftTijd": false,
+      "tijdBron": "geen",
+      "laatstGezienOp": "2026-10-25T03:54:46.973Z",
+      "eerstGezienOp": "2026-10-25T03:54:46.973Z"
+    },
+    {
+      "id": "c2f870d7bb",
+      "url": "https://waarheen.deorkaan.nl/agenda/bingo-in-de-bovenkruier-8/",
+      "kop": "Bingo in de Bovenkruier",
+      "plaats": null,
+      "status": null,
+      "rubriek": "CUL",
+      "bronId": "WaarheenAgenda",
+      "bronNaam": "Waarheen Agenda (De Orkaan)",
+      "start": "2026-10-27T23:00:00.000Z",
+      "eind": null,
+      "startDag": "2026-10-28",
+      "eindDag": "2026-10-28",
+      "doorlopend": false,
+      "heeftTijd": false,
+      "tijdBron": "geen",
+      "laatstGezienOp": "2026-10-25T03:54:46.973Z",
+      "eerstGezienOp": "2026-10-25T03:54:46.973Z"
+    },
+    {
+      "id": "3ba752fa5a",
+      "url": "https://waarheen.deorkaan.nl/agenda/2026-10-28-expositie-pleegzorg-van-dichtbij/",
+      "kop": "Expositie Pleegzorg van dichtbij",
+      "plaats": null,
+      "status": null,
+      "rubriek": "CUL",
+      "bronId": "WaarheenAgenda",
+      "bronNaam": "Waarheen Agenda (De Orkaan)",
+      "start": "2026-10-27T23:00:00.000Z",
+      "eind": "2026-11-03T23:00:00.000Z",
+      "startDag": "2026-10-28",
+      "eindDag": "2026-11-03",
+      "doorlopend": true,
+      "heeftTijd": false,
+      "tijdBron": "geen",
+      "laatstGezienOp": "2026-10-25T03:54:46.973Z",
+      "eerstGezienOp": "2026-10-25T03:54:46.973Z"
+    },
+    {
+      "id": "e55d5e1d66",
+      "url": "https://waarheen.deorkaan.nl/agenda/hazes-dinner/",
+      "kop": "Hazes Dinner",
+      "plaats": null,
+      "status": null,
+      "rubriek": "CUL",
+      "bronId": "WaarheenAgenda",
+      "bronNaam": "Waarheen Agenda (De Orkaan)",
+      "start": "2026-10-27T23:00:00.000Z",
+      "eind": null,
+      "startDag": "2026-10-28",
+      "eindDag": "2026-10-28",
+      "doorlopend": false,
+      "heeftTijd": false,
+      "tijdBron": "geen",
+      "laatstGezienOp": "2026-10-25T03:54:46.973Z",
+      "eerstGezienOp": "2026-10-25T03:54:46.973Z"
+    },
+    {
+      "id": "c5b1986fa4",
+      "url": "https://waarheen.deorkaan.nl/agenda/oude-zaanse-films-kijken-2/",
+      "kop": "Oude Zaanse films kijken",
+      "plaats": null,
+      "status": null,
+      "rubriek": "CUL",
+      "bronId": "WaarheenAgenda",
+      "bronNaam": "Waarheen Agenda (De Orkaan)",
+      "start": "2026-10-27T23:00:00.000Z",
+      "eind": null,
+      "startDag": "2026-10-28",
+      "eindDag": "2026-10-28",
+      "doorlopend": false,
+      "heeftTijd": false,
+      "tijdBron": "geen",
+      "laatstGezienOp": "2026-10-25T03:54:46.973Z",
+      "eerstGezienOp": "2026-10-25T03:54:46.973Z"
+    },
+    {
+      "id": "d62730986e",
+      "url": "https://waarheen.deorkaan.nl/agenda/pubquiz-bij-de-koperen-bel-5/",
+      "kop": "Pubquiz bij De Koperen Bel",
+      "plaats": null,
+      "status": null,
+      "rubriek": "CUL",
+      "bronId": "WaarheenAgenda",
+      "bronNaam": "Waarheen Agenda (De Orkaan)",
+      "start": "2026-10-27T23:00:00.000Z",
+      "eind": null,
+      "startDag": "2026-10-28",
+      "eindDag": "2026-10-28",
+      "doorlopend": false,
+      "heeftTijd": false,
+      "tijdBron": "geen",
+      "laatstGezienOp": "2026-10-25T03:54:46.973Z",
+      "eerstGezienOp": "2026-10-25T03:54:46.973Z"
+    },
+    {
+      "id": "5acb827732",
+      "url": "https://waarheen.deorkaan.nl/agenda/2026-10-28-vrijwilligersmarkt-in-assendelft/",
+      "kop": "Vrijwilligersmarkt in Assendelft",
+      "plaats": null,
+      "status": null,
+      "rubriek": "CUL",
+      "bronId": "WaarheenAgenda",
+      "bronNaam": "Waarheen Agenda (De Orkaan)",
+      "start": "2026-10-27T23:00:00.000Z",
+      "eind": null,
+      "startDag": "2026-10-28",
+      "eindDag": "2026-10-28",
+      "doorlopend": false,
+      "heeftTijd": false,
+      "tijdBron": "geen",
+      "laatstGezienOp": "2026-10-25T03:54:46.973Z",
+      "eerstGezienOp": "2026-10-25T03:54:46.973Z"
+    },
+    {
+      "id": "0f122c237d",
+      "url": "https://waarheen.deorkaan.nl/agenda/wouter-harbers-kasper-schonewille/",
+      "kop": "Wouter Harbers & Kasper Schonewille",
+      "plaats": null,
+      "status": null,
+      "rubriek": "CUL",
+      "bronId": "WaarheenAgenda",
+      "bronNaam": "Waarheen Agenda (De Orkaan)",
+      "start": "2026-10-27T23:00:00.000Z",
+      "eind": null,
+      "startDag": "2026-10-28",
+      "eindDag": "2026-10-28",
+      "doorlopend": false,
+      "heeftTijd": false,
+      "tijdBron": "geen",
+      "laatstGezienOp": "2026-10-25T03:54:46.973Z",
+      "eerstGezienOp": "2026-10-25T03:54:46.973Z"
+    },
+    {
+      "id": "09da03a3bd",
+      "url": "https://waarheen.deorkaan.nl/agenda/marcel-hensema/",
+      "kop": "Marcel Hensema",
+      "plaats": null,
+      "status": null,
+      "rubriek": "CUL",
+      "bronId": "WaarheenAgenda",
+      "bronNaam": "Waarheen Agenda (De Orkaan)",
+      "start": "2026-10-28T23:00:00.000Z",
+      "eind": null,
+      "startDag": "2026-10-29",
+      "eindDag": "2026-10-29",
+      "doorlopend": false,
+      "heeftTijd": false,
+      "tijdBron": "geen",
+      "laatstGezienOp": "2026-10-25T03:54:46.973Z",
+      "eerstGezienOp": "2026-10-25T03:54:46.973Z"
+    },
+    {
+      "id": "b6d3001216",
+      "url": "https://waarheen.deorkaan.nl/agenda/plien-bianca-3/",
+      "kop": "Plien & Bianca",
+      "plaats": null,
+      "status": null,
+      "rubriek": "CUL",
+      "bronId": "WaarheenAgenda",
+      "bronNaam": "Waarheen Agenda (De Orkaan)",
+      "start": "2026-10-28T23:00:00.000Z",
+      "eind": null,
+      "startDag": "2026-10-29",
+      "eindDag": "2026-10-29",
+      "doorlopend": false,
+      "heeftTijd": false,
+      "tijdBron": "geen",
+      "laatstGezienOp": "2026-10-25T03:54:46.973Z",
+      "eerstGezienOp": "2026-10-25T03:54:46.973Z"
+    },
+    {
+      "id": "462edc6edb",
+      "url": "https://waarheen.deorkaan.nl/agenda/zaanlinq-netwerkborrel/",
+      "kop": "Zaanlinq Netwerkborrel",
+      "plaats": null,
+      "status": null,
+      "rubriek": "CUL",
+      "bronId": "WaarheenAgenda",
+      "bronNaam": "Waarheen Agenda (De Orkaan)",
+      "start": "2026-10-28T23:00:00.000Z",
+      "eind": null,
+      "startDag": "2026-10-29",
+      "eindDag": "2026-10-29",
+      "doorlopend": false,
+      "heeftTijd": false,
+      "tijdBron": "geen",
+      "laatstGezienOp": "2026-10-25T03:54:46.973Z",
+      "eerstGezienOp": "2026-10-25T03:54:46.973Z"
+    },
+    {
+      "id": "3d1ccbe828",
+      "url": "https://waarheen.deorkaan.nl/agenda/zaanse-business-talk-more-2/",
+      "kop": "Zaanse Business Talk & More",
+      "plaats": null,
+      "status": null,
+      "rubriek": "CUL",
+      "bronId": "WaarheenAgenda",
+      "bronNaam": "Waarheen Agenda (De Orkaan)",
+      "start": "2026-10-28T23:00:00.000Z",
+      "eind": null,
+      "startDag": "2026-10-29",
+      "eindDag": "2026-10-29",
+      "doorlopend": false,
+      "heeftTijd": false,
+      "tijdBron": "geen",
+      "laatstGezienOp": "2026-10-25T03:54:46.973Z",
+      "eerstGezienOp": "2026-10-25T03:54:46.973Z"
+    },
+    {
+      "id": "5f37981bbf",
+      "url": "https://waarheen.deorkaan.nl/agenda/mr-jones-just-in-case/",
+      "kop": "Mr. Jones & Just In Case",
+      "plaats": null,
+      "status": null,
+      "rubriek": "CUL",
+      "bronId": "WaarheenAgenda",
+      "bronNaam": "Waarheen Agenda (De Orkaan)",
+      "start": "2026-10-29T23:00:00.000Z",
+      "eind": null,
+      "startDag": "2026-10-30",
+      "eindDag": "2026-10-30",
+      "doorlopend": false,
+      "heeftTijd": false,
+      "tijdBron": "geen",
+      "laatstGezienOp": "2026-10-25T03:54:46.973Z",
+      "eerstGezienOp": "2026-10-25T03:54:46.973Z"
+    },
+    {
+      "id": "fec8d19e72",
+      "url": "https://waarheen.deorkaan.nl/agenda/trage-gesprekken-van-building-conversation-4/",
+      "kop": "Trage gesprekken van Building Conversation",
+      "plaats": null,
+      "status": null,
+      "rubriek": "CUL",
+      "bronId": "WaarheenAgenda",
+      "bronNaam": "Waarheen Agenda (De Orkaan)",
+      "start": "2026-10-29T23:00:00.000Z",
+      "eind": null,
+      "startDag": "2026-10-30",
+      "eindDag": "2026-10-30",
+      "doorlopend": false,
+      "heeftTijd": false,
+      "tijdBron": "geen",
+      "laatstGezienOp": "2026-10-25T03:54:46.973Z",
+      "eerstGezienOp": "2026-10-25T03:54:46.973Z"
     },
     {
       "id": "90c7bbffc2",
@@ -1081,7 +1556,7 @@
       "doorlopend": false,
       "heeftTijd": true,
       "tijdBron": "veld",
-      "laatstGezienOp": "2026-10-24T03:56:04.357Z",
+      "laatstGezienOp": "2026-10-25T03:54:46.973Z",
       "eerstGezienOp": "2026-10-24T03:56:04.357Z"
     },
     {
@@ -1100,7 +1575,7 @@
       "doorlopend": false,
       "heeftTijd": true,
       "tijdBron": "tekst",
-      "laatstGezienOp": "2026-10-24T03:56:04.357Z",
+      "laatstGezienOp": "2026-10-25T03:54:46.973Z",
       "eerstGezienOp": "2026-10-24T03:56:04.357Z"
     },
     {
@@ -1119,7 +1594,7 @@
       "doorlopend": false,
       "heeftTijd": true,
       "tijdBron": "tekst",
-      "laatstGezienOp": "2026-10-24T03:56:04.357Z",
+      "laatstGezienOp": "2026-10-25T03:54:46.973Z",
       "eerstGezienOp": "2026-10-24T03:56:04.357Z"
     },
     {
@@ -1138,7 +1613,7 @@
       "doorlopend": false,
       "heeftTijd": true,
       "tijdBron": "tekst",
-      "laatstGezienOp": "2026-10-24T03:56:04.357Z",
+      "laatstGezienOp": "2026-10-25T03:54:46.973Z",
       "eerstGezienOp": "2026-10-24T03:56:04.357Z"
     },
     {
@@ -1157,7 +1632,7 @@
       "doorlopend": false,
       "heeftTijd": true,
       "tijdBron": "tekst",
-      "laatstGezienOp": "2026-10-24T03:56:04.357Z",
+      "laatstGezienOp": "2026-10-25T03:54:46.973Z",
       "eerstGezienOp": "2026-10-24T03:56:04.357Z"
     },
     {
@@ -1176,7 +1651,7 @@
       "doorlopend": false,
       "heeftTijd": true,
       "tijdBron": "tekst",
-      "laatstGezienOp": "2026-10-24T03:56:04.357Z",
+      "laatstGezienOp": "2026-10-25T03:54:46.973Z",
       "eerstGezienOp": "2026-10-24T03:56:04.357Z"
     },
     {
@@ -1195,7 +1670,7 @@
       "doorlopend": false,
       "heeftTijd": true,
       "tijdBron": "tekst",
-      "laatstGezienOp": "2026-10-24T03:56:04.357Z",
+      "laatstGezienOp": "2026-10-25T03:54:46.973Z",
       "eerstGezienOp": "2026-10-24T03:56:04.357Z"
     },
     {
@@ -1214,7 +1689,7 @@
       "doorlopend": false,
       "heeftTijd": true,
       "tijdBron": "tekst",
-      "laatstGezienOp": "2026-10-24T03:56:04.357Z",
+      "laatstGezienOp": "2026-10-25T03:54:46.973Z",
       "eerstGezienOp": "2026-10-24T03:56:04.357Z"
     },
     {
@@ -1233,7 +1708,7 @@
       "doorlopend": false,
       "heeftTijd": true,
       "tijdBron": "veld",
-      "laatstGezienOp": "2026-10-24T03:56:04.357Z",
+      "laatstGezienOp": "2026-10-25T03:54:46.973Z",
       "eerstGezienOp": "2026-10-24T03:56:04.357Z"
     },
     {
@@ -1252,7 +1727,7 @@
       "doorlopend": false,
       "heeftTijd": true,
       "tijdBron": "tekst",
-      "laatstGezienOp": "2026-10-24T03:56:04.357Z",
+      "laatstGezienOp": "2026-10-25T03:54:46.973Z",
       "eerstGezienOp": "2026-10-24T03:56:04.357Z"
     },
     {
@@ -1271,7 +1746,7 @@
       "doorlopend": false,
       "heeftTijd": true,
       "tijdBron": "tekst",
-      "laatstGezienOp": "2026-10-24T03:56:04.357Z",
+      "laatstGezienOp": "2026-10-25T03:54:46.973Z",
       "eerstGezienOp": "2026-10-24T03:56:04.357Z"
     },
     {
@@ -1290,7 +1765,7 @@
       "doorlopend": false,
       "heeftTijd": true,
       "tijdBron": "tekst",
-      "laatstGezienOp": "2026-10-24T03:56:04.357Z",
+      "laatstGezienOp": "2026-10-25T03:54:46.973Z",
       "eerstGezienOp": "2026-10-24T03:56:04.357Z"
     },
     {
@@ -1309,7 +1784,7 @@
       "doorlopend": false,
       "heeftTijd": true,
       "tijdBron": "tekst",
-      "laatstGezienOp": "2026-10-24T03:56:04.357Z",
+      "laatstGezienOp": "2026-10-25T03:54:46.973Z",
       "eerstGezienOp": "2026-10-24T03:56:04.357Z"
     },
     {
@@ -1328,7 +1803,7 @@
       "doorlopend": false,
       "heeftTijd": true,
       "tijdBron": "veld",
-      "laatstGezienOp": "2026-10-24T03:56:04.357Z",
+      "laatstGezienOp": "2026-10-25T03:54:46.973Z",
       "eerstGezienOp": "2026-10-24T03:56:04.357Z"
     }
   ]
