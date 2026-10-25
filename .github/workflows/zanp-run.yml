@@ -20,6 +20,10 @@
 # Variables:
 #   ALERT_MODUS   "log" (standaard: alerts alleen berekenen en loggen) of "aan"
 #                 (rode en oranje balken tonen). Begin met "log".
+#   ZANP_DAGCAP   AI-aanroepen per dag voor ZANP (standaard 80). Het gratis
+#                 Gemini-quotum wordt gedeeld met de pitchrun; houd dit getal
+#                 ruim onder je limiet in AI Studio.
+#   ZANP_RUNCAP   AI-aanroepen per run (standaard 25).
 #
 # Handmatig starten kan ook (Actions-tab); kies "alles" om ook de rustige
 # bronnen en agendabronnen te scrapen.
@@ -87,6 +91,9 @@ jobs:
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
           ALERT_MODUS: ${{ vars.ALERT_MODUS || 'log' }}
           ZANP_ALLES: ${{ inputs.alles && '1' || '' }}
+          # Leeg betekent: de standaard uit zanp.js (80 per dag, 25 per run).
+          ZANP_DAGCAP: ${{ vars.ZANP_DAGCAP }}
+          ZANP_RUNCAP: ${{ vars.ZANP_RUNCAP }}
         run: node zanp.js
 
       # Alleen de eigen bestanden van ZANP, nooit data/*.json: de pitchrun
