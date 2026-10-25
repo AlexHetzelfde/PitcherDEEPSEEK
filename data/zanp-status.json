@@ -1,0 +1,143 @@
+{
+  "gegenereerdOp": "2026-10-25T14:13:42.860Z",
+  "alertModus": "log",
+  "bronnen": {
+    "zaansche-molen": {
+      "laatsteScrape": "2026-10-25T14:13:42.860Z",
+      "gevonden": 10,
+      "opeenvolgendLeeg": 0
+    },
+    "ibabs-collegeberichten": {
+      "laatsteScrape": "2026-10-25T14:13:42.860Z",
+      "gevonden": 0,
+      "opeenvolgendLeeg": 1
+    },
+    "ibabs-ingekomen-stukken": {
+      "laatsteScrape": "2026-10-25T14:13:42.860Z",
+      "gevonden": 0,
+      "opeenvolgendLeeg": 1
+    },
+    "ovo-zaanstad": {
+      "laatsteScrape": "2026-10-25T14:13:42.860Z",
+      "gevonden": 10,
+      "opeenvolgendLeeg": 0
+    },
+    "blaise-pascal-college": {
+      "laatsteScrape": "2026-10-25T14:13:42.860Z",
+      "gevonden": 0,
+      "opeenvolgendLeeg": 1
+    },
+    "zaans-museum": {
+      "laatsteScrape": "2026-10-25T14:13:42.860Z",
+      "gevonden": 10,
+      "opeenvolgendLeeg": 0
+    },
+    "zaanse-schans": {
+      "laatsteScrape": "2026-10-25T14:13:42.860Z",
+      "gevonden": 10,
+      "opeenvolgendLeeg": 0
+    },
+    "nh-actueel": {
+      "laatsteScrape": "2026-10-25T14:13:42.860Z",
+      "gevonden": 15,
+      "opeenvolgendLeeg": 0
+    },
+    "nh-cultuur": {
+      "laatsteScrape": "2026-10-25T14:13:42.860Z",
+      "gevonden": 15,
+      "opeenvolgendLeeg": 0
+    },
+    "zaanstad-hoorzittingen": {
+      "laatsteScrape": "2026-10-25T14:13:42.860Z",
+      "gevonden": 0,
+      "opeenvolgendLeeg": 1
+    },
+    "zaandijk-leeft": {
+      "laatsteScrape": "2026-10-25T14:13:42.860Z",
+      "gevonden": 10,
+      "opeenvolgendLeeg": 0
+    },
+    "OmgevingsdienstNHN": {
+      "laatsteScrape": "2026-10-25T14:13:42.860Z",
+      "gevonden": 7,
+      "opeenvolgendLeeg": 0
+    },
+    "omgevingsdienstnoordzeekanaal": {
+      "laatsteScrape": "2026-10-25T14:13:42.860Z",
+      "gevonden": 10,
+      "opeenvolgendLeeg": 0
+    },
+    "zaans-cultuur-huis": {
+      "laatsteScrape": "2026-10-25T14:13:42.860Z",
+      "gevonden": 14,
+      "opeenvolgendLeeg": 0
+    },
+    "WaarheenAgenda": {
+      "laatsteScrape": "2026-10-25T14:13:42.860Z",
+      "gevonden": 48,
+      "opeenvolgendLeeg": 0
+    },
+    "hhnk": {
+      "laatsteScrape": "2026-10-25T14:13:42.860Z",
+      "gevonden": 15,
+      "opeenvolgendLeeg": 0
+    },
+    "rechtspraak-noord-holland": {
+      "laatsteScrape": "2026-10-25T14:13:42.860Z",
+      "gevonden": 2,
+      "opeenvolgendLeeg": 0
+    },
+    "bekendmakingen": {
+      "laatsteScrape": "2026-10-25T14:13:42.860Z",
+      "gevonden": 150,
+      "opeenvolgendLeeg": 0
+    },
+    "wetenregelgeving": {
+      "laatsteScrape": "2026-10-25T14:13:42.860Z",
+      "gevonden": 50,
+      "opeenvolgendLeeg": 0
+    },
+    "DeOrkaan": {
+      "laatsteScrape": "2026-10-25T14:13:42.860Z",
+      "gevonden": 12,
+      "opeenvolgendLeeg": 0
+    }
+  },
+  "bronnenZonderRubriek": [],
+  "gemini": {
+    "dag": "2026-10-25",
+    "gebruikt": 12,
+    "dagcap": 150
+  },
+  "clusterBeslissingen": {},
+  "laatsteRun": {
+    "agenda": {
+      "nieuw": 1,
+      "bijgewerkt": 53,
+      "behouden": 42,
+      "verdwenen": 0,
+      "verlopen": 0,
+      "uitBerichten": 0,
+      "zichtbaar": 3,
+      "verborgen": 79,
+      "inAfwachting": 14
+    },
+    "berichten": {
+      "nieuw": 7,
+      "update": 0,
+      "opnieuw": 5,
+      "ongewijzigd": 0,
+      "seed": 0
+    },
+    "cluster": {
+      "vergeleken": 561,
+      "automatisch": 0,
+      "aiGevraagd": 0,
+      "aiJa": 0,
+      "aiNee": 0,
+      "uitgesteld": 0,
+      "clusters": 0
+    },
+    "alerts": 0
+  }
+}

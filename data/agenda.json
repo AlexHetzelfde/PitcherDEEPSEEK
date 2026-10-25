@@ -1,5 +1,6 @@
 {
-  "gegenereerdOp": "2026-10-25T03:54:46.995Z",
+  "gegenereerdOp": "2026-10-25T14:13:42.860Z",
+  "regelVersie": "2026-10-24-1",
   "items": [
     {
       "id": "aee87343e0",
@@ -8,16 +9,26 @@
       "plaats": null,
       "status": null,
       "rubriek": "CUL",
+      "herkomst": "signaal",
+      "afkomst": "bron",
       "bronId": "WaarheenAgenda",
       "bronNaam": "Waarheen Agenda (De Orkaan)",
-      "start": "2026-10-17T22:00:00.000Z",
+      "start": "2026-10-18T07:30:00.000Z",
       "eind": "2027-09-05T22:00:00.000Z",
       "startDag": "2026-10-18",
       "eindDag": "2027-09-05",
       "doorlopend": true,
-      "heeftTijd": false,
-      "tijdBron": "geen",
-      "laatstGezienOp": "2026-10-25T03:54:46.973Z",
+      "heeftTijd": true,
+      "tijdBron": "tekst",
+      "laatstGezienOp": "2026-10-25T14:13:42.860Z",
+      "relevantie": {
+        "zichtbaar": false,
+        "regel": null,
+        "woorden": null,
+        "regelVersie": "2026-10-24-1"
+      },
+      "zichtbaar": false,
+      "inAfwachting": false,
       "eerstGezienOp": "2026-10-24T03:56:04.357Z"
     },
     {
@@ -217,6 +228,8 @@
       "plaats": null,
       "status": null,
       "rubriek": "CUL",
+      "herkomst": "signaal",
+      "afkomst": "bron",
       "bronId": "WaarheenAgenda",
       "bronNaam": "Waarheen Agenda (De Orkaan)",
       "start": "2026-10-23T22:00:00.000Z",
@@ -226,7 +239,10 @@
       "doorlopend": false,
       "heeftTijd": false,
       "tijdBron": "geen",
-      "laatstGezienOp": "2026-10-25T03:54:46.973Z",
+      "laatstGezienOp": "2026-10-25T14:13:42.860Z",
+      "relevantie": null,
+      "zichtbaar": false,
+      "inAfwachting": true,
       "eerstGezienOp": "2026-10-24T03:56:04.357Z"
     },
     {
@@ -502,6 +518,8 @@
       "plaats": null,
       "status": null,
       "rubriek": "CUL",
+      "herkomst": "signaal",
+      "afkomst": "bron",
       "bronId": "WaarheenAgenda",
       "bronNaam": "Waarheen Agenda (De Orkaan)",
       "start": "2026-10-23T22:00:00.000Z",
@@ -511,7 +529,10 @@
       "doorlopend": false,
       "heeftTijd": false,
       "tijdBron": "geen",
-      "laatstGezienOp": "2026-10-25T03:54:46.973Z",
+      "laatstGezienOp": "2026-10-25T14:13:42.860Z",
+      "relevantie": null,
+      "zichtbaar": false,
+      "inAfwachting": true,
       "eerstGezienOp": "2026-10-24T03:56:04.357Z"
     },
     {
@@ -540,6 +561,8 @@
       "plaats": null,
       "status": null,
       "rubriek": "CUL",
+      "herkomst": "signaal",
+      "afkomst": "bron",
       "bronId": "WaarheenAgenda",
       "bronNaam": "Waarheen Agenda (De Orkaan)",
       "start": "2026-10-23T22:00:00.000Z",
@@ -549,7 +572,10 @@
       "doorlopend": false,
       "heeftTijd": false,
       "tijdBron": "geen",
-      "laatstGezienOp": "2026-10-25T03:54:46.973Z",
+      "laatstGezienOp": "2026-10-25T14:13:42.860Z",
+      "relevantie": null,
+      "zichtbaar": false,
+      "inAfwachting": true,
       "eerstGezienOp": "2026-10-24T03:56:04.357Z"
     },
     {
@@ -597,6 +623,8 @@
       "plaats": null,
       "status": null,
       "rubriek": "CUL",
+      "herkomst": "signaal",
+      "afkomst": "bron",
       "bronId": "WaarheenAgenda",
       "bronNaam": "Waarheen Agenda (De Orkaan)",
       "start": "2026-10-24T22:00:00.000Z",
@@ -606,7 +634,15 @@
       "doorlopend": false,
       "heeftTijd": false,
       "tijdBron": "geen",
-      "laatstGezienOp": "2026-10-25T03:54:46.973Z",
+      "laatstGezienOp": "2026-10-25T14:13:42.860Z",
+      "relevantie": {
+        "zichtbaar": false,
+        "regel": null,
+        "woorden": null,
+        "regelVersie": "2026-10-24-1"
+      },
+      "zichtbaar": false,
+      "inAfwachting": false,
       "eerstGezienOp": "2026-10-24T03:56:04.357Z"
     },
     {
@@ -616,6 +652,8 @@
       "plaats": null,
       "status": null,
       "rubriek": "CUL",
+      "herkomst": "signaal",
+      "afkomst": "bron",
       "bronId": "WaarheenAgenda",
       "bronNaam": "Waarheen Agenda (De Orkaan)",
       "start": "2026-10-24T22:00:00.000Z",
@@ -625,7 +663,15 @@
       "doorlopend": false,
       "heeftTijd": false,
       "tijdBron": "geen",
-      "laatstGezienOp": "2026-10-25T03:54:46.973Z",
+      "laatstGezienOp": "2026-10-25T14:13:42.860Z",
+      "relevantie": {
+        "zichtbaar": false,
+        "regel": null,
+        "woorden": null,
+        "regelVersie": "2026-10-24-1"
+      },
+      "zichtbaar": false,
+      "inAfwachting": false,
       "eerstGezienOp": "2026-10-24T03:56:04.357Z"
     },
     {
@@ -635,6 +681,8 @@
       "plaats": null,
       "status": null,
       "rubriek": "CUL",
+      "herkomst": "signaal",
+      "afkomst": "bron",
       "bronId": "WaarheenAgenda",
       "bronNaam": "Waarheen Agenda (De Orkaan)",
       "start": "2026-10-24T22:00:00.000Z",
@@ -644,7 +692,15 @@
       "doorlopend": false,
       "heeftTijd": false,
       "tijdBron": "geen",
-      "laatstGezienOp": "2026-10-25T03:54:46.973Z",
+      "laatstGezienOp": "2026-10-25T14:13:42.860Z",
+      "relevantie": {
+        "zichtbaar": false,
+        "regel": null,
+        "woorden": null,
+        "regelVersie": "2026-10-24-1"
+      },
+      "zichtbaar": false,
+      "inAfwachting": false,
       "eerstGezienOp": "2026-10-24T03:56:04.357Z"
     },
     {
@@ -654,6 +710,8 @@
       "plaats": null,
       "status": null,
       "rubriek": "CUL",
+      "herkomst": "signaal",
+      "afkomst": "bron",
       "bronId": "WaarheenAgenda",
       "bronNaam": "Waarheen Agenda (De Orkaan)",
       "start": "2026-10-24T22:00:00.000Z",
@@ -663,7 +721,15 @@
       "doorlopend": false,
       "heeftTijd": false,
       "tijdBron": "geen",
-      "laatstGezienOp": "2026-10-25T03:54:46.973Z",
+      "laatstGezienOp": "2026-10-25T14:13:42.860Z",
+      "relevantie": {
+        "zichtbaar": true,
+        "regel": "eerste-keer",
+        "woorden": "nooit eerder",
+        "regelVersie": "2026-10-24-1"
+      },
+      "zichtbaar": true,
+      "inAfwachting": false,
       "eerstGezienOp": "2026-10-24T03:56:04.357Z"
     },
     {
@@ -673,6 +739,8 @@
       "plaats": null,
       "status": null,
       "rubriek": "CUL",
+      "herkomst": "signaal",
+      "afkomst": "bron",
       "bronId": "WaarheenAgenda",
       "bronNaam": "Waarheen Agenda (De Orkaan)",
       "start": "2026-10-24T22:00:00.000Z",
@@ -682,7 +750,15 @@
       "doorlopend": false,
       "heeftTijd": false,
       "tijdBron": "geen",
-      "laatstGezienOp": "2026-10-25T03:54:46.973Z",
+      "laatstGezienOp": "2026-10-25T14:13:42.860Z",
+      "relevantie": {
+        "zichtbaar": false,
+        "regel": null,
+        "woorden": null,
+        "regelVersie": "2026-10-24-1"
+      },
+      "zichtbaar": false,
+      "inAfwachting": false,
       "eerstGezienOp": "2026-10-24T03:56:04.357Z"
     },
     {
@@ -692,6 +768,8 @@
       "plaats": null,
       "status": null,
       "rubriek": "CUL",
+      "herkomst": "signaal",
+      "afkomst": "bron",
       "bronId": "WaarheenAgenda",
       "bronNaam": "Waarheen Agenda (De Orkaan)",
       "start": "2026-10-24T22:00:00.000Z",
@@ -701,7 +779,15 @@
       "doorlopend": false,
       "heeftTijd": false,
       "tijdBron": "geen",
-      "laatstGezienOp": "2026-10-25T03:54:46.973Z",
+      "laatstGezienOp": "2026-10-25T14:13:42.860Z",
+      "relevantie": {
+        "zichtbaar": false,
+        "regel": null,
+        "woorden": null,
+        "regelVersie": "2026-10-24-1"
+      },
+      "zichtbaar": false,
+      "inAfwachting": false,
       "eerstGezienOp": "2026-10-24T03:56:04.357Z"
     },
     {
@@ -711,6 +797,8 @@
       "plaats": null,
       "status": null,
       "rubriek": "CUL",
+      "herkomst": "signaal",
+      "afkomst": "bron",
       "bronId": "WaarheenAgenda",
       "bronNaam": "Waarheen Agenda (De Orkaan)",
       "start": "2026-10-24T22:00:00.000Z",
@@ -720,7 +808,15 @@
       "doorlopend": false,
       "heeftTijd": false,
       "tijdBron": "geen",
-      "laatstGezienOp": "2026-10-25T03:54:46.973Z",
+      "laatstGezienOp": "2026-10-25T14:13:42.860Z",
+      "relevantie": {
+        "zichtbaar": false,
+        "regel": null,
+        "woorden": null,
+        "regelVersie": "2026-10-24-1"
+      },
+      "zichtbaar": false,
+      "inAfwachting": false,
       "eerstGezienOp": "2026-10-24T03:56:04.357Z"
     },
     {
@@ -730,6 +826,8 @@
       "plaats": null,
       "status": null,
       "rubriek": "CUL",
+      "herkomst": "signaal",
+      "afkomst": "bron",
       "bronId": "WaarheenAgenda",
       "bronNaam": "Waarheen Agenda (De Orkaan)",
       "start": "2026-10-24T22:00:00.000Z",
@@ -739,7 +837,15 @@
       "doorlopend": false,
       "heeftTijd": false,
       "tijdBron": "geen",
-      "laatstGezienOp": "2026-10-25T03:54:46.973Z",
+      "laatstGezienOp": "2026-10-25T14:13:42.860Z",
+      "relevantie": {
+        "zichtbaar": false,
+        "regel": null,
+        "woorden": null,
+        "regelVersie": "2026-10-24-1"
+      },
+      "zichtbaar": false,
+      "inAfwachting": false,
       "eerstGezienOp": "2026-10-25T03:54:46.973Z"
     },
     {
@@ -749,6 +855,8 @@
       "plaats": null,
       "status": null,
       "rubriek": "CUL",
+      "herkomst": "signaal",
+      "afkomst": "bron",
       "bronId": "WaarheenAgenda",
       "bronNaam": "Waarheen Agenda (De Orkaan)",
       "start": "2026-10-24T22:00:00.000Z",
@@ -758,7 +866,15 @@
       "doorlopend": false,
       "heeftTijd": false,
       "tijdBron": "geen",
-      "laatstGezienOp": "2026-10-25T03:54:46.973Z",
+      "laatstGezienOp": "2026-10-25T14:13:42.860Z",
+      "relevantie": {
+        "zichtbaar": false,
+        "regel": null,
+        "woorden": null,
+        "regelVersie": "2026-10-24-1"
+      },
+      "zichtbaar": false,
+      "inAfwachting": false,
       "eerstGezienOp": "2026-10-24T03:56:04.357Z"
     },
     {
@@ -768,6 +884,8 @@
       "plaats": null,
       "status": null,
       "rubriek": "CUL",
+      "herkomst": "signaal",
+      "afkomst": "bron",
       "bronId": "WaarheenAgenda",
       "bronNaam": "Waarheen Agenda (De Orkaan)",
       "start": "2026-10-24T22:00:00.000Z",
@@ -777,7 +895,15 @@
       "doorlopend": false,
       "heeftTijd": false,
       "tijdBron": "geen",
-      "laatstGezienOp": "2026-10-25T03:54:46.973Z",
+      "laatstGezienOp": "2026-10-25T14:13:42.860Z",
+      "relevantie": {
+        "zichtbaar": false,
+        "regel": null,
+        "woorden": null,
+        "regelVersie": "2026-10-24-1"
+      },
+      "zichtbaar": false,
+      "inAfwachting": false,
       "eerstGezienOp": "2026-10-25T03:54:46.973Z"
     },
     {
@@ -787,6 +913,8 @@
       "plaats": null,
       "status": null,
       "rubriek": "CUL",
+      "herkomst": "signaal",
+      "afkomst": "bron",
       "bronId": "WaarheenAgenda",
       "bronNaam": "Waarheen Agenda (De Orkaan)",
       "start": "2026-10-24T22:00:00.000Z",
@@ -796,7 +924,15 @@
       "doorlopend": false,
       "heeftTijd": false,
       "tijdBron": "geen",
-      "laatstGezienOp": "2026-10-25T03:54:46.973Z",
+      "laatstGezienOp": "2026-10-25T14:13:42.860Z",
+      "relevantie": {
+        "zichtbaar": false,
+        "regel": null,
+        "woorden": null,
+        "regelVersie": "2026-10-24-1"
+      },
+      "zichtbaar": false,
+      "inAfwachting": false,
       "eerstGezienOp": "2026-10-24T03:56:04.357Z"
     },
     {
@@ -806,6 +942,8 @@
       "plaats": null,
       "status": null,
       "rubriek": "CUL",
+      "herkomst": "signaal",
+      "afkomst": "bron",
       "bronId": "WaarheenAgenda",
       "bronNaam": "Waarheen Agenda (De Orkaan)",
       "start": "2026-10-24T22:00:00.000Z",
@@ -815,7 +953,15 @@
       "doorlopend": false,
       "heeftTijd": false,
       "tijdBron": "geen",
-      "laatstGezienOp": "2026-10-25T03:54:46.973Z",
+      "laatstGezienOp": "2026-10-25T14:13:42.860Z",
+      "relevantie": {
+        "zichtbaar": false,
+        "regel": null,
+        "woorden": null,
+        "regelVersie": "2026-10-24-1"
+      },
+      "zichtbaar": false,
+      "inAfwachting": false,
       "eerstGezienOp": "2026-10-24T03:56:04.357Z"
     },
     {
@@ -825,6 +971,8 @@
       "plaats": null,
       "status": null,
       "rubriek": "CUL",
+      "herkomst": "signaal",
+      "afkomst": "bron",
       "bronId": "WaarheenAgenda",
       "bronNaam": "Waarheen Agenda (De Orkaan)",
       "start": "2026-10-24T22:00:00.000Z",
@@ -834,7 +982,15 @@
       "doorlopend": false,
       "heeftTijd": false,
       "tijdBron": "geen",
-      "laatstGezienOp": "2026-10-25T03:54:46.973Z",
+      "laatstGezienOp": "2026-10-25T14:13:42.860Z",
+      "relevantie": {
+        "zichtbaar": false,
+        "regel": null,
+        "woorden": null,
+        "regelVersie": "2026-10-24-1"
+      },
+      "zichtbaar": false,
+      "inAfwachting": false,
       "eerstGezienOp": "2026-10-24T03:56:04.357Z"
     },
     {
@@ -844,6 +1000,8 @@
       "plaats": null,
       "status": null,
       "rubriek": "CUL",
+      "herkomst": "signaal",
+      "afkomst": "bron",
       "bronId": "WaarheenAgenda",
       "bronNaam": "Waarheen Agenda (De Orkaan)",
       "start": "2026-10-24T22:00:00.000Z",
@@ -853,7 +1011,15 @@
       "doorlopend": false,
       "heeftTijd": false,
       "tijdBron": "geen",
-      "laatstGezienOp": "2026-10-25T03:54:46.973Z",
+      "laatstGezienOp": "2026-10-25T14:13:42.860Z",
+      "relevantie": {
+        "zichtbaar": false,
+        "regel": null,
+        "woorden": null,
+        "regelVersie": "2026-10-24-1"
+      },
+      "zichtbaar": false,
+      "inAfwachting": false,
       "eerstGezienOp": "2026-10-24T03:56:04.357Z"
     },
     {
@@ -863,6 +1029,8 @@
       "plaats": null,
       "status": null,
       "rubriek": "CUL",
+      "herkomst": "signaal",
+      "afkomst": "bron",
       "bronId": "WaarheenAgenda",
       "bronNaam": "Waarheen Agenda (De Orkaan)",
       "start": "2026-10-24T22:00:00.000Z",
@@ -872,7 +1040,15 @@
       "doorlopend": false,
       "heeftTijd": false,
       "tijdBron": "geen",
-      "laatstGezienOp": "2026-10-25T03:54:46.973Z",
+      "laatstGezienOp": "2026-10-25T14:13:42.860Z",
+      "relevantie": {
+        "zichtbaar": false,
+        "regel": null,
+        "woorden": null,
+        "regelVersie": "2026-10-24-1"
+      },
+      "zichtbaar": false,
+      "inAfwachting": false,
       "eerstGezienOp": "2026-10-24T03:56:04.357Z"
     },
     {
@@ -882,6 +1058,8 @@
       "plaats": null,
       "status": null,
       "rubriek": "CUL",
+      "herkomst": "signaal",
+      "afkomst": "bron",
       "bronId": "WaarheenAgenda",
       "bronNaam": "Waarheen Agenda (De Orkaan)",
       "start": "2026-10-24T22:00:00.000Z",
@@ -891,7 +1069,15 @@
       "doorlopend": false,
       "heeftTijd": false,
       "tijdBron": "geen",
-      "laatstGezienOp": "2026-10-25T03:54:46.973Z",
+      "laatstGezienOp": "2026-10-25T14:13:42.860Z",
+      "relevantie": {
+        "zichtbaar": false,
+        "regel": null,
+        "woorden": null,
+        "regelVersie": "2026-10-24-1"
+      },
+      "zichtbaar": false,
+      "inAfwachting": false,
       "eerstGezienOp": "2026-10-25T03:54:46.973Z"
     },
     {
@@ -901,6 +1087,8 @@
       "plaats": null,
       "status": null,
       "rubriek": "CUL",
+      "herkomst": "signaal",
+      "afkomst": "bron",
       "bronId": "WaarheenAgenda",
       "bronNaam": "Waarheen Agenda (De Orkaan)",
       "start": "2026-10-24T22:00:00.000Z",
@@ -910,7 +1098,15 @@
       "doorlopend": false,
       "heeftTijd": false,
       "tijdBron": "geen",
-      "laatstGezienOp": "2026-10-25T03:54:46.973Z",
+      "laatstGezienOp": "2026-10-25T14:13:42.860Z",
+      "relevantie": {
+        "zichtbaar": false,
+        "regel": null,
+        "woorden": null,
+        "regelVersie": "2026-10-24-1"
+      },
+      "zichtbaar": false,
+      "inAfwachting": false,
       "eerstGezienOp": "2026-10-24T03:56:04.357Z"
     },
     {
@@ -920,6 +1116,8 @@
       "plaats": null,
       "status": null,
       "rubriek": "CUL",
+      "herkomst": "signaal",
+      "afkomst": "bron",
       "bronId": "WaarheenAgenda",
       "bronNaam": "Waarheen Agenda (De Orkaan)",
       "start": "2026-10-24T22:00:00.000Z",
@@ -929,7 +1127,15 @@
       "doorlopend": false,
       "heeftTijd": false,
       "tijdBron": "geen",
-      "laatstGezienOp": "2026-10-25T03:54:46.973Z",
+      "laatstGezienOp": "2026-10-25T14:13:42.860Z",
+      "relevantie": {
+        "zichtbaar": false,
+        "regel": null,
+        "woorden": null,
+        "regelVersie": "2026-10-24-1"
+      },
+      "zichtbaar": false,
+      "inAfwachting": false,
       "eerstGezienOp": "2026-10-24T03:56:04.357Z"
     },
     {
@@ -939,6 +1145,8 @@
       "plaats": null,
       "status": null,
       "rubriek": "CUL",
+      "herkomst": "signaal",
+      "afkomst": "bron",
       "bronId": "WaarheenAgenda",
       "bronNaam": "Waarheen Agenda (De Orkaan)",
       "start": "2026-10-24T22:00:00.000Z",
@@ -948,7 +1156,15 @@
       "doorlopend": false,
       "heeftTijd": false,
       "tijdBron": "geen",
-      "laatstGezienOp": "2026-10-25T03:54:46.973Z",
+      "laatstGezienOp": "2026-10-25T14:13:42.860Z",
+      "relevantie": {
+        "zichtbaar": false,
+        "regel": null,
+        "woorden": null,
+        "regelVersie": "2026-10-24-1"
+      },
+      "zichtbaar": false,
+      "inAfwachting": false,
       "eerstGezienOp": "2026-10-24T03:56:04.357Z"
     },
     {
@@ -958,6 +1174,8 @@
       "plaats": null,
       "status": null,
       "rubriek": "CUL",
+      "herkomst": "signaal",
+      "afkomst": "bron",
       "bronId": "WaarheenAgenda",
       "bronNaam": "Waarheen Agenda (De Orkaan)",
       "start": "2026-10-24T22:00:00.000Z",
@@ -967,7 +1185,15 @@
       "doorlopend": false,
       "heeftTijd": false,
       "tijdBron": "geen",
-      "laatstGezienOp": "2026-10-25T03:54:46.973Z",
+      "laatstGezienOp": "2026-10-25T14:13:42.860Z",
+      "relevantie": {
+        "zichtbaar": false,
+        "regel": null,
+        "woorden": null,
+        "regelVersie": "2026-10-24-1"
+      },
+      "zichtbaar": false,
+      "inAfwachting": false,
       "eerstGezienOp": "2026-10-25T03:54:46.973Z"
     },
     {
@@ -977,6 +1203,8 @@
       "plaats": null,
       "status": null,
       "rubriek": "CUL",
+      "herkomst": "organisatie",
+      "afkomst": "bron",
       "bronId": "zaans-cultuur-huis",
       "bronNaam": "Zaans Cultuurhuis — Agenda",
       "start": "2026-10-25T00:00:00.000Z",
@@ -986,7 +1214,15 @@
       "doorlopend": false,
       "heeftTijd": true,
       "tijdBron": "veld",
-      "laatstGezienOp": "2026-10-25T03:54:46.973Z",
+      "laatstGezienOp": "2026-10-25T14:13:42.860Z",
+      "relevantie": {
+        "zichtbaar": false,
+        "regel": null,
+        "woorden": null,
+        "regelVersie": "2026-10-24-1"
+      },
+      "zichtbaar": false,
+      "inAfwachting": false,
       "eerstGezienOp": "2026-10-24T03:56:04.357Z"
     },
     {
@@ -996,6 +1232,8 @@
       "plaats": null,
       "status": null,
       "rubriek": "CUL",
+      "herkomst": "organisatie",
+      "afkomst": "bron",
       "bronId": "zaans-cultuur-huis",
       "bronNaam": "Zaans Cultuurhuis — Agenda",
       "start": "2026-10-25T00:00:00.000Z",
@@ -1005,7 +1243,15 @@
       "doorlopend": false,
       "heeftTijd": true,
       "tijdBron": "veld",
-      "laatstGezienOp": "2026-10-25T03:54:46.973Z",
+      "laatstGezienOp": "2026-10-25T14:13:42.860Z",
+      "relevantie": {
+        "zichtbaar": false,
+        "regel": null,
+        "woorden": null,
+        "regelVersie": "2026-10-24-1"
+      },
+      "zichtbaar": false,
+      "inAfwachting": false,
       "eerstGezienOp": "2026-10-24T03:56:04.357Z"
     },
     {
@@ -1015,6 +1261,8 @@
       "plaats": null,
       "status": null,
       "rubriek": "CUL",
+      "herkomst": "organisatie",
+      "afkomst": "bron",
       "bronId": "zaans-cultuur-huis",
       "bronNaam": "Zaans Cultuurhuis — Agenda",
       "start": "2026-10-25T00:00:00.000Z",
@@ -1024,7 +1272,15 @@
       "doorlopend": false,
       "heeftTijd": true,
       "tijdBron": "veld",
-      "laatstGezienOp": "2026-10-25T03:54:46.973Z",
+      "laatstGezienOp": "2026-10-25T14:13:42.860Z",
+      "relevantie": {
+        "zichtbaar": false,
+        "regel": null,
+        "woorden": null,
+        "regelVersie": "2026-10-24-1"
+      },
+      "zichtbaar": false,
+      "inAfwachting": false,
       "eerstGezienOp": "2026-10-24T03:56:04.357Z"
     },
     {
@@ -1034,6 +1290,8 @@
       "plaats": null,
       "status": null,
       "rubriek": "CUL",
+      "herkomst": "signaal",
+      "afkomst": "bron",
       "bronId": "WaarheenAgenda",
       "bronNaam": "Waarheen Agenda (De Orkaan)",
       "start": "2026-10-25T07:30:00.000Z",
@@ -1043,7 +1301,15 @@
       "doorlopend": false,
       "heeftTijd": true,
       "tijdBron": "tekst",
-      "laatstGezienOp": "2026-10-25T03:54:46.973Z",
+      "laatstGezienOp": "2026-10-25T14:13:42.860Z",
+      "relevantie": {
+        "zichtbaar": false,
+        "regel": null,
+        "woorden": null,
+        "regelVersie": "2026-10-24-1"
+      },
+      "zichtbaar": false,
+      "inAfwachting": false,
       "eerstGezienOp": "2026-10-24T03:56:04.357Z"
     },
     {
@@ -1053,6 +1319,8 @@
       "plaats": null,
       "status": null,
       "rubriek": "CUL",
+      "herkomst": "signaal",
+      "afkomst": "bron",
       "bronId": "WaarheenAgenda",
       "bronNaam": "Waarheen Agenda (De Orkaan)",
       "start": "2026-10-25T08:30:00.000Z",
@@ -1062,7 +1330,15 @@
       "doorlopend": false,
       "heeftTijd": true,
       "tijdBron": "tekst",
-      "laatstGezienOp": "2026-10-25T03:54:46.973Z",
+      "laatstGezienOp": "2026-10-25T14:13:42.860Z",
+      "relevantie": {
+        "zichtbaar": false,
+        "regel": null,
+        "woorden": null,
+        "regelVersie": "2026-10-24-1"
+      },
+      "zichtbaar": false,
+      "inAfwachting": false,
       "eerstGezienOp": "2026-10-25T03:54:46.973Z"
     },
     {
@@ -1072,6 +1348,8 @@
       "plaats": null,
       "status": null,
       "rubriek": "CUL",
+      "herkomst": "signaal",
+      "afkomst": "bron",
       "bronId": "WaarheenAgenda",
       "bronNaam": "Waarheen Agenda (De Orkaan)",
       "start": "2026-10-25T17:00:00.000Z",
@@ -1081,7 +1359,15 @@
       "doorlopend": false,
       "heeftTijd": true,
       "tijdBron": "tekst",
-      "laatstGezienOp": "2026-10-25T03:54:46.973Z",
+      "laatstGezienOp": "2026-10-25T14:13:42.860Z",
+      "relevantie": {
+        "zichtbaar": false,
+        "regel": null,
+        "woorden": null,
+        "regelVersie": "2026-10-24-1"
+      },
+      "zichtbaar": false,
+      "inAfwachting": false,
       "eerstGezienOp": "2026-10-24T03:56:04.357Z"
     },
     {
@@ -1091,6 +1377,8 @@
       "plaats": null,
       "status": null,
       "rubriek": "CUL",
+      "herkomst": "signaal",
+      "afkomst": "bron",
       "bronId": "WaarheenAgenda",
       "bronNaam": "Waarheen Agenda (De Orkaan)",
       "start": "2026-10-25T19:00:00.000Z",
@@ -1100,7 +1388,15 @@
       "doorlopend": false,
       "heeftTijd": true,
       "tijdBron": "tekst",
-      "laatstGezienOp": "2026-10-25T03:54:46.973Z",
+      "laatstGezienOp": "2026-10-25T14:13:42.860Z",
+      "relevantie": {
+        "zichtbaar": true,
+        "regel": "eerste-keer",
+        "woorden": "nooit eerder",
+        "regelVersie": "2026-10-24-1"
+      },
+      "zichtbaar": true,
+      "inAfwachting": false,
       "eerstGezienOp": "2026-10-24T03:56:04.357Z"
     },
     {
@@ -1110,6 +1406,8 @@
       "plaats": null,
       "status": null,
       "rubriek": "CUL",
+      "herkomst": "signaal",
+      "afkomst": "bron",
       "bronId": "WaarheenAgenda",
       "bronNaam": "Waarheen Agenda (De Orkaan)",
       "start": "2026-10-25T23:00:00.000Z",
@@ -1119,7 +1417,15 @@
       "doorlopend": false,
       "heeftTijd": false,
       "tijdBron": "geen",
-      "laatstGezienOp": "2026-10-25T03:54:46.973Z",
+      "laatstGezienOp": "2026-10-25T14:13:42.860Z",
+      "relevantie": {
+        "zichtbaar": false,
+        "regel": null,
+        "woorden": null,
+        "regelVersie": "2026-10-24-1"
+      },
+      "zichtbaar": false,
+      "inAfwachting": false,
       "eerstGezienOp": "2026-10-25T03:54:46.973Z"
     },
     {
@@ -1129,6 +1435,8 @@
       "plaats": null,
       "status": null,
       "rubriek": "CUL",
+      "herkomst": "signaal",
+      "afkomst": "bron",
       "bronId": "WaarheenAgenda",
       "bronNaam": "Waarheen Agenda (De Orkaan)",
       "start": "2026-10-25T23:00:00.000Z",
@@ -1138,7 +1446,15 @@
       "doorlopend": false,
       "heeftTijd": false,
       "tijdBron": "geen",
-      "laatstGezienOp": "2026-10-25T03:54:46.973Z",
+      "laatstGezienOp": "2026-10-25T14:13:42.860Z",
+      "relevantie": {
+        "zichtbaar": false,
+        "regel": null,
+        "woorden": null,
+        "regelVersie": "2026-10-24-1"
+      },
+      "zichtbaar": false,
+      "inAfwachting": false,
       "eerstGezienOp": "2026-10-25T03:54:46.973Z"
     },
     {
@@ -1167,6 +1483,8 @@
       "plaats": null,
       "status": null,
       "rubriek": "CUL",
+      "herkomst": "signaal",
+      "afkomst": "bron",
       "bronId": "WaarheenAgenda",
       "bronNaam": "Waarheen Agenda (De Orkaan)",
       "start": "2026-10-26T23:00:00.000Z",
@@ -1176,7 +1494,15 @@
       "doorlopend": false,
       "heeftTijd": false,
       "tijdBron": "geen",
-      "laatstGezienOp": "2026-10-25T03:54:46.973Z",
+      "laatstGezienOp": "2026-10-25T14:13:42.860Z",
+      "relevantie": {
+        "zichtbaar": false,
+        "regel": null,
+        "woorden": null,
+        "regelVersie": "2026-10-24-1"
+      },
+      "zichtbaar": false,
+      "inAfwachting": false,
       "eerstGezienOp": "2026-10-25T03:54:46.973Z"
     },
     {
@@ -1186,6 +1512,8 @@
       "plaats": null,
       "status": null,
       "rubriek": "CUL",
+      "herkomst": "signaal",
+      "afkomst": "bron",
       "bronId": "WaarheenAgenda",
       "bronNaam": "Waarheen Agenda (De Orkaan)",
       "start": "2026-10-26T23:00:00.000Z",
@@ -1195,7 +1523,15 @@
       "doorlopend": false,
       "heeftTijd": false,
       "tijdBron": "geen",
-      "laatstGezienOp": "2026-10-25T03:54:46.973Z",
+      "laatstGezienOp": "2026-10-25T14:13:42.860Z",
+      "relevantie": {
+        "zichtbaar": false,
+        "regel": null,
+        "woorden": null,
+        "regelVersie": "2026-10-24-1"
+      },
+      "zichtbaar": false,
+      "inAfwachting": false,
       "eerstGezienOp": "2026-10-25T03:54:46.973Z"
     },
     {
@@ -1262,6 +1598,8 @@
       "plaats": null,
       "status": null,
       "rubriek": "CUL",
+      "herkomst": "signaal",
+      "afkomst": "bron",
       "bronId": "WaarheenAgenda",
       "bronNaam": "Waarheen Agenda (De Orkaan)",
       "start": "2026-10-27T23:00:00.000Z",
@@ -1271,7 +1609,15 @@
       "doorlopend": false,
       "heeftTijd": false,
       "tijdBron": "geen",
-      "laatstGezienOp": "2026-10-25T03:54:46.973Z",
+      "laatstGezienOp": "2026-10-25T14:13:42.860Z",
+      "relevantie": {
+        "zichtbaar": true,
+        "regel": "jubileum",
+        "woorden": "Jubileumjaar",
+        "regelVersie": "2026-10-24-1"
+      },
+      "zichtbaar": true,
+      "inAfwachting": false,
       "eerstGezienOp": "2026-10-25T03:54:46.973Z"
     },
     {
@@ -1281,6 +1627,8 @@
       "plaats": null,
       "status": null,
       "rubriek": "CUL",
+      "herkomst": "signaal",
+      "afkomst": "bron",
       "bronId": "WaarheenAgenda",
       "bronNaam": "Waarheen Agenda (De Orkaan)",
       "start": "2026-10-27T23:00:00.000Z",
@@ -1290,7 +1638,15 @@
       "doorlopend": false,
       "heeftTijd": false,
       "tijdBron": "geen",
-      "laatstGezienOp": "2026-10-25T03:54:46.973Z",
+      "laatstGezienOp": "2026-10-25T14:13:42.860Z",
+      "relevantie": {
+        "zichtbaar": false,
+        "regel": null,
+        "woorden": null,
+        "regelVersie": "2026-10-24-1"
+      },
+      "zichtbaar": false,
+      "inAfwachting": false,
       "eerstGezienOp": "2026-10-25T03:54:46.973Z"
     },
     {
@@ -1300,6 +1656,8 @@
       "plaats": null,
       "status": null,
       "rubriek": "CUL",
+      "herkomst": "signaal",
+      "afkomst": "bron",
       "bronId": "WaarheenAgenda",
       "bronNaam": "Waarheen Agenda (De Orkaan)",
       "start": "2026-10-27T23:00:00.000Z",
@@ -1309,7 +1667,15 @@
       "doorlopend": false,
       "heeftTijd": false,
       "tijdBron": "geen",
-      "laatstGezienOp": "2026-10-25T03:54:46.973Z",
+      "laatstGezienOp": "2026-10-25T14:13:42.860Z",
+      "relevantie": {
+        "zichtbaar": false,
+        "regel": null,
+        "woorden": null,
+        "regelVersie": "2026-10-24-1"
+      },
+      "zichtbaar": false,
+      "inAfwachting": false,
       "eerstGezienOp": "2026-10-25T03:54:46.973Z"
     },
     {
@@ -1319,6 +1685,8 @@
       "plaats": null,
       "status": null,
       "rubriek": "CUL",
+      "herkomst": "signaal",
+      "afkomst": "bron",
       "bronId": "WaarheenAgenda",
       "bronNaam": "Waarheen Agenda (De Orkaan)",
       "start": "2026-10-27T23:00:00.000Z",
@@ -1328,7 +1696,10 @@
       "doorlopend": true,
       "heeftTijd": false,
       "tijdBron": "geen",
-      "laatstGezienOp": "2026-10-25T03:54:46.973Z",
+      "laatstGezienOp": "2026-10-25T14:13:42.860Z",
+      "relevantie": null,
+      "zichtbaar": false,
+      "inAfwachting": true,
       "eerstGezienOp": "2026-10-25T03:54:46.973Z"
     },
     {
@@ -1338,6 +1709,8 @@
       "plaats": null,
       "status": null,
       "rubriek": "CUL",
+      "herkomst": "signaal",
+      "afkomst": "bron",
       "bronId": "WaarheenAgenda",
       "bronNaam": "Waarheen Agenda (De Orkaan)",
       "start": "2026-10-27T23:00:00.000Z",
@@ -1347,7 +1720,15 @@
       "doorlopend": false,
       "heeftTijd": false,
       "tijdBron": "geen",
-      "laatstGezienOp": "2026-10-25T03:54:46.973Z",
+      "laatstGezienOp": "2026-10-25T14:13:42.860Z",
+      "relevantie": {
+        "zichtbaar": false,
+        "regel": null,
+        "woorden": null,
+        "regelVersie": "2026-10-24-1"
+      },
+      "zichtbaar": false,
+      "inAfwachting": false,
       "eerstGezienOp": "2026-10-25T03:54:46.973Z"
     },
     {
@@ -1357,6 +1738,8 @@
       "plaats": null,
       "status": null,
       "rubriek": "CUL",
+      "herkomst": "signaal",
+      "afkomst": "bron",
       "bronId": "WaarheenAgenda",
       "bronNaam": "Waarheen Agenda (De Orkaan)",
       "start": "2026-10-27T23:00:00.000Z",
@@ -1366,26 +1749,15 @@
       "doorlopend": false,
       "heeftTijd": false,
       "tijdBron": "geen",
-      "laatstGezienOp": "2026-10-25T03:54:46.973Z",
-      "eerstGezienOp": "2026-10-25T03:54:46.973Z"
-    },
-    {
-      "id": "d62730986e",
-      "url": "https://waarheen.deorkaan.nl/agenda/pubquiz-bij-de-koperen-bel-5/",
-      "kop": "Pubquiz bij De Koperen Bel",
-      "plaats": null,
-      "status": null,
-      "rubriek": "CUL",
-      "bronId": "WaarheenAgenda",
-      "bronNaam": "Waarheen Agenda (De Orkaan)",
-      "start": "2026-10-27T23:00:00.000Z",
-      "eind": null,
-      "startDag": "2026-10-28",
-      "eindDag": "2026-10-28",
-      "doorlopend": false,
-      "heeftTijd": false,
-      "tijdBron": "geen",
-      "laatstGezienOp": "2026-10-25T03:54:46.973Z",
+      "laatstGezienOp": "2026-10-25T14:13:42.860Z",
+      "relevantie": {
+        "zichtbaar": false,
+        "regel": null,
+        "woorden": null,
+        "regelVersie": "2026-10-24-1"
+      },
+      "zichtbaar": false,
+      "inAfwachting": false,
       "eerstGezienOp": "2026-10-25T03:54:46.973Z"
     },
     {
@@ -1395,6 +1767,8 @@
       "plaats": null,
       "status": null,
       "rubriek": "CUL",
+      "herkomst": "signaal",
+      "afkomst": "bron",
       "bronId": "WaarheenAgenda",
       "bronNaam": "Waarheen Agenda (De Orkaan)",
       "start": "2026-10-27T23:00:00.000Z",
@@ -1404,7 +1778,15 @@
       "doorlopend": false,
       "heeftTijd": false,
       "tijdBron": "geen",
-      "laatstGezienOp": "2026-10-25T03:54:46.973Z",
+      "laatstGezienOp": "2026-10-25T14:13:42.860Z",
+      "relevantie": {
+        "zichtbaar": false,
+        "regel": null,
+        "woorden": null,
+        "regelVersie": "2026-10-24-1"
+      },
+      "zichtbaar": false,
+      "inAfwachting": false,
       "eerstGezienOp": "2026-10-25T03:54:46.973Z"
     },
     {
@@ -1414,6 +1796,8 @@
       "plaats": null,
       "status": null,
       "rubriek": "CUL",
+      "herkomst": "signaal",
+      "afkomst": "bron",
       "bronId": "WaarheenAgenda",
       "bronNaam": "Waarheen Agenda (De Orkaan)",
       "start": "2026-10-27T23:00:00.000Z",
@@ -1423,7 +1807,44 @@
       "doorlopend": false,
       "heeftTijd": false,
       "tijdBron": "geen",
-      "laatstGezienOp": "2026-10-25T03:54:46.973Z",
+      "laatstGezienOp": "2026-10-25T14:13:42.860Z",
+      "relevantie": {
+        "zichtbaar": false,
+        "regel": null,
+        "woorden": null,
+        "regelVersie": "2026-10-24-1"
+      },
+      "zichtbaar": false,
+      "inAfwachting": false,
+      "eerstGezienOp": "2026-10-25T03:54:46.973Z"
+    },
+    {
+      "id": "d62730986e",
+      "url": "https://waarheen.deorkaan.nl/agenda/pubquiz-bij-de-koperen-bel-5/",
+      "kop": "Pubquiz bij De Koperen Bel",
+      "plaats": null,
+      "status": null,
+      "rubriek": "CUL",
+      "herkomst": "signaal",
+      "afkomst": "bron",
+      "bronId": "WaarheenAgenda",
+      "bronNaam": "Waarheen Agenda (De Orkaan)",
+      "start": "2026-10-28T17:30:00.000Z",
+      "eind": null,
+      "startDag": "2026-10-28",
+      "eindDag": "2026-10-28",
+      "doorlopend": false,
+      "heeftTijd": true,
+      "tijdBron": "tekst",
+      "laatstGezienOp": "2026-10-25T14:13:42.860Z",
+      "relevantie": {
+        "zichtbaar": false,
+        "regel": null,
+        "woorden": null,
+        "regelVersie": "2026-10-24-1"
+      },
+      "zichtbaar": false,
+      "inAfwachting": false,
       "eerstGezienOp": "2026-10-25T03:54:46.973Z"
     },
     {
@@ -1433,6 +1854,8 @@
       "plaats": null,
       "status": null,
       "rubriek": "CUL",
+      "herkomst": "signaal",
+      "afkomst": "bron",
       "bronId": "WaarheenAgenda",
       "bronNaam": "Waarheen Agenda (De Orkaan)",
       "start": "2026-10-28T23:00:00.000Z",
@@ -1442,7 +1865,10 @@
       "doorlopend": false,
       "heeftTijd": false,
       "tijdBron": "geen",
-      "laatstGezienOp": "2026-10-25T03:54:46.973Z",
+      "laatstGezienOp": "2026-10-25T14:13:42.860Z",
+      "relevantie": null,
+      "zichtbaar": false,
+      "inAfwachting": true,
       "eerstGezienOp": "2026-10-25T03:54:46.973Z"
     },
     {
@@ -1452,6 +1878,8 @@
       "plaats": null,
       "status": null,
       "rubriek": "CUL",
+      "herkomst": "signaal",
+      "afkomst": "bron",
       "bronId": "WaarheenAgenda",
       "bronNaam": "Waarheen Agenda (De Orkaan)",
       "start": "2026-10-28T23:00:00.000Z",
@@ -1461,7 +1889,10 @@
       "doorlopend": false,
       "heeftTijd": false,
       "tijdBron": "geen",
-      "laatstGezienOp": "2026-10-25T03:54:46.973Z",
+      "laatstGezienOp": "2026-10-25T14:13:42.860Z",
+      "relevantie": null,
+      "zichtbaar": false,
+      "inAfwachting": true,
       "eerstGezienOp": "2026-10-25T03:54:46.973Z"
     },
     {
@@ -1471,6 +1902,8 @@
       "plaats": null,
       "status": null,
       "rubriek": "CUL",
+      "herkomst": "signaal",
+      "afkomst": "bron",
       "bronId": "WaarheenAgenda",
       "bronNaam": "Waarheen Agenda (De Orkaan)",
       "start": "2026-10-28T23:00:00.000Z",
@@ -1480,7 +1913,10 @@
       "doorlopend": false,
       "heeftTijd": false,
       "tijdBron": "geen",
-      "laatstGezienOp": "2026-10-25T03:54:46.973Z",
+      "laatstGezienOp": "2026-10-25T14:13:42.860Z",
+      "relevantie": null,
+      "zichtbaar": false,
+      "inAfwachting": true,
       "eerstGezienOp": "2026-10-25T03:54:46.973Z"
     },
     {
@@ -1490,6 +1926,8 @@
       "plaats": null,
       "status": null,
       "rubriek": "CUL",
+      "herkomst": "signaal",
+      "afkomst": "bron",
       "bronId": "WaarheenAgenda",
       "bronNaam": "Waarheen Agenda (De Orkaan)",
       "start": "2026-10-28T23:00:00.000Z",
@@ -1499,7 +1937,10 @@
       "doorlopend": false,
       "heeftTijd": false,
       "tijdBron": "geen",
-      "laatstGezienOp": "2026-10-25T03:54:46.973Z",
+      "laatstGezienOp": "2026-10-25T14:13:42.860Z",
+      "relevantie": null,
+      "zichtbaar": false,
+      "inAfwachting": true,
       "eerstGezienOp": "2026-10-25T03:54:46.973Z"
     },
     {
@@ -1509,6 +1950,8 @@
       "plaats": null,
       "status": null,
       "rubriek": "CUL",
+      "herkomst": "signaal",
+      "afkomst": "bron",
       "bronId": "WaarheenAgenda",
       "bronNaam": "Waarheen Agenda (De Orkaan)",
       "start": "2026-10-29T23:00:00.000Z",
@@ -1518,7 +1961,10 @@
       "doorlopend": false,
       "heeftTijd": false,
       "tijdBron": "geen",
-      "laatstGezienOp": "2026-10-25T03:54:46.973Z",
+      "laatstGezienOp": "2026-10-25T14:13:42.860Z",
+      "relevantie": null,
+      "zichtbaar": false,
+      "inAfwachting": true,
       "eerstGezienOp": "2026-10-25T03:54:46.973Z"
     },
     {
@@ -1528,6 +1974,8 @@
       "plaats": null,
       "status": null,
       "rubriek": "CUL",
+      "herkomst": "signaal",
+      "afkomst": "bron",
       "bronId": "WaarheenAgenda",
       "bronNaam": "Waarheen Agenda (De Orkaan)",
       "start": "2026-10-29T23:00:00.000Z",
@@ -1537,8 +1985,35 @@
       "doorlopend": false,
       "heeftTijd": false,
       "tijdBron": "geen",
-      "laatstGezienOp": "2026-10-25T03:54:46.973Z",
+      "laatstGezienOp": "2026-10-25T14:13:42.860Z",
+      "relevantie": null,
+      "zichtbaar": false,
+      "inAfwachting": true,
       "eerstGezienOp": "2026-10-25T03:54:46.973Z"
+    },
+    {
+      "id": "09804405b8",
+      "url": "https://waarheen.deorkaan.nl/agenda/vrijmibo-bij-tapperij-de-verwachting/",
+      "kop": "VrijMiBo bij Tapperij De Verwachting",
+      "plaats": null,
+      "status": null,
+      "rubriek": "CUL",
+      "herkomst": "signaal",
+      "afkomst": "bron",
+      "bronId": "WaarheenAgenda",
+      "bronNaam": "Waarheen Agenda (De Orkaan)",
+      "start": "2026-10-29T23:00:00.000Z",
+      "eind": null,
+      "startDag": "2026-10-30",
+      "eindDag": "2026-10-30",
+      "doorlopend": false,
+      "heeftTijd": false,
+      "tijdBron": "geen",
+      "laatstGezienOp": "2026-10-25T14:13:42.860Z",
+      "relevantie": null,
+      "zichtbaar": false,
+      "inAfwachting": true,
+      "eerstGezienOp": "2026-10-25T14:13:42.860Z"
     },
     {
       "id": "90c7bbffc2",
@@ -1547,6 +2022,8 @@
       "plaats": null,
       "status": null,
       "rubriek": "CUL",
+      "herkomst": "organisatie",
+      "afkomst": "bron",
       "bronId": "zaans-cultuur-huis",
       "bronNaam": "Zaans Cultuurhuis — Agenda",
       "start": "2026-10-31T00:00:00.000Z",
@@ -1556,7 +2033,10 @@
       "doorlopend": false,
       "heeftTijd": true,
       "tijdBron": "veld",
-      "laatstGezienOp": "2026-10-25T03:54:46.973Z",
+      "laatstGezienOp": "2026-10-25T14:13:42.860Z",
+      "relevantie": null,
+      "zichtbaar": false,
+      "inAfwachting": true,
       "eerstGezienOp": "2026-10-24T03:56:04.357Z"
     },
     {
@@ -1699,6 +2179,8 @@
       "plaats": null,
       "status": null,
       "rubriek": "CUL",
+      "herkomst": "organisatie",
+      "afkomst": "bron",
       "bronId": "zaans-cultuur-huis",
       "bronNaam": "Zaans Cultuurhuis — Agenda",
       "start": "2026-11-08T00:00:00.000Z",
@@ -1708,7 +2190,10 @@
       "doorlopend": false,
       "heeftTijd": true,
       "tijdBron": "veld",
-      "laatstGezienOp": "2026-10-25T03:54:46.973Z",
+      "laatstGezienOp": "2026-10-25T14:13:42.860Z",
+      "relevantie": null,
+      "zichtbaar": false,
+      "inAfwachting": true,
       "eerstGezienOp": "2026-10-24T03:56:04.357Z"
     },
     {
@@ -1794,6 +2279,8 @@
       "plaats": null,
       "status": null,
       "rubriek": "CUL",
+      "herkomst": "organisatie",
+      "afkomst": "bron",
       "bronId": "zaans-cultuur-huis",
       "bronNaam": "Zaans Cultuurhuis — Agenda",
       "start": "2026-11-13T00:00:00.000Z",
@@ -1803,7 +2290,10 @@
       "doorlopend": false,
       "heeftTijd": true,
       "tijdBron": "veld",
-      "laatstGezienOp": "2026-10-25T03:54:46.973Z",
+      "laatstGezienOp": "2026-10-25T14:13:42.860Z",
+      "relevantie": null,
+      "zichtbaar": false,
+      "inAfwachting": true,
       "eerstGezienOp": "2026-10-24T03:56:04.357Z"
     }
   ]
