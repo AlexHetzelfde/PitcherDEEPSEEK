@@ -1,5 +1,5 @@
 {
-  "gegenereerdOp": "2026-10-25T20:41:55.866Z",
+  "gegenereerdOp": "2026-10-25T23:08:01.309Z",
   "alertModus": "log",
   "bronnen": {
     "zaansche-molen": {
@@ -38,13 +38,13 @@
       "opeenvolgendLeeg": 0
     },
     "nh-actueel": {
-      "laatsteScrape": "2026-10-25T20:41:55.866Z",
+      "laatsteScrape": "2026-10-25T23:08:01.309Z",
       "gevonden": 15,
       "opeenvolgendLeeg": 0
     },
     "nh-cultuur": {
-      "laatsteScrape": "2026-10-25T20:41:55.866Z",
-      "gevonden": 15,
+      "laatsteScrape": "2026-10-25T23:08:01.309Z",
+      "gevonden": 3,
       "opeenvolgendLeeg": 0
     },
     "zaanstad-hoorzittingen": {
@@ -78,7 +78,7 @@
       "opeenvolgendLeeg": 0
     },
     "hhnk": {
-      "laatsteScrape": "2026-10-25T20:41:55.866Z",
+      "laatsteScrape": "2026-10-25T23:08:01.309Z",
       "gevonden": 15,
       "opeenvolgendLeeg": 0
     },
@@ -98,15 +98,15 @@
       "opeenvolgendLeeg": 0
     },
     "DeOrkaan": {
-      "laatsteScrape": "2026-10-25T20:41:55.866Z",
+      "laatsteScrape": "2026-10-25T23:08:01.309Z",
       "gevonden": 12,
       "opeenvolgendLeeg": 0
     }
   },
   "bronnenZonderRubriek": [],
   "gemini": {
-    "dag": "2026-10-25",
-    "gebruikt": 40,
+    "dag": "2026-10-26",
+    "gebruikt": 4,
     "dagcap": 80
   },
   "clusterBeslissingen": {},
@@ -125,12 +125,12 @@
     "berichten": {
       "nieuw": 0,
       "update": 0,
-      "opnieuw": 8,
-      "ongewijzigd": 4,
+      "opnieuw": 4,
+      "ongewijzigd": 6,
       "seed": 0
     },
     "cluster": {
-      "vergeleken": 630,
+      "vergeleken": 210,
       "automatisch": 0,
       "aiGevraagd": 0,
       "aiJa": 0,
