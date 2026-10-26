@@ -1,5 +1,5 @@
 {
-  "gegenereerdOp": "2026-10-25T23:08:01.309Z",
+  "gegenereerdOp": "2026-10-26T01:33:17.295Z",
   "promptVersie": "2026-10-24-melding-checklist-agendapunten",
   "alertModus": "log",
   "prioSchaal": "1 = urgent, 2 = belangrijk, 3 = regulier, 4 = routine. De AI geeft nooit prio 1.",
@@ -51,11 +51,46 @@
       "bronId": "DeOrkaan",
       "bronNaam": "DeOrkaan",
       "ai": false,
-      "controle": "ai-fout",
+      "controle": "analyse-ok",
       "eerstGezienOp": "2026-10-25T17:46:59.266Z",
-      "gecontroleerdOp": "2026-10-25T23:08:01.309Z",
+      "gecontroleerdOp": "2026-10-26T01:33:17.295Z",
       "bronTitel": "Koninklijk bezoek op de dansvloer bij Hemkade 48",
-      "bronLengte": 1290
+      "bronLengte": 1290,
+      "checklist": {
+        "gevaar": false,
+        "evacuatieOfNlAlert": false,
+        "gewondenOfDoden": false,
+        "bestuurlijkeCrisis": false,
+        "besluitMetGrootGevolg": false,
+        "tijdkritisch": false,
+        "betrokkenen": null,
+        "geldbedragEuro": null,
+        "banen": null,
+        "inRegio": true
+      },
+      "agendapunten": [
+        {
+          "titel": "GOLFOS",
+          "dag": "2026-10-25",
+          "start": "2026-10-25T12:00:00.000Z",
+          "eind": "2026-10-25T21:00:00.000Z",
+          "plaats": "Taets",
+          "zekerheid": "afgeleid"
+        },
+        {
+          "titel": "Vieze Asbak",
+          "dag": "2026-10-25",
+          "start": "2026-10-25T14:00:00.000Z",
+          "eind": "2026-10-25T22:00:00.000Z",
+          "plaats": "Hemkade 48",
+          "zekerheid": "afgeleid"
+        }
+      ],
+      "analyse": true,
+      "agendaIds": [
+        "098d56fd91",
+        "05a1d51816"
+      ]
     },
     {
       "id": "a2482a6def-v1",
@@ -76,7 +111,7 @@
       "ai": false,
       "controle": "analyse-ok",
       "eerstGezienOp": "2026-10-25T18:50:19.772Z",
-      "gecontroleerdOp": "2026-10-25T23:08:01.309Z",
+      "gecontroleerdOp": "2026-10-26T01:33:17.295Z",
       "bronTitel": "Het Pink draait door: 56.276 euro voor Koger oliemolen 🎉",
       "bronLengte": 3213,
       "checklist": {
@@ -112,7 +147,7 @@
       "ai": false,
       "controle": "analyse-ok",
       "eerstGezienOp": "2026-10-25T17:46:59.266Z",
-      "gecontroleerdOp": "2026-10-25T23:08:01.309Z",
+      "gecontroleerdOp": "2026-10-26T01:33:17.295Z",
       "bronTitel": "Dichter bij de tijd: vol is vol",
       "bronLengte": 1217,
       "checklist": {
@@ -159,11 +194,37 @@
       "bronId": "DeOrkaan",
       "bronNaam": "DeOrkaan",
       "ai": false,
-      "controle": "ai-fout",
+      "controle": "analyse-ok",
       "eerstGezienOp": "2026-10-25T14:13:42.860Z",
-      "gecontroleerdOp": "2026-10-25T23:08:01.309Z",
+      "gecontroleerdOp": "2026-10-26T01:33:17.295Z",
       "bronTitel": "Evy bakt weer voor Stichting Hartekind Bakt",
-      "bronLengte": 1627
+      "bronLengte": 1627,
+      "checklist": {
+        "gevaar": false,
+        "evacuatieOfNlAlert": false,
+        "gewondenOfDoden": false,
+        "bestuurlijkeCrisis": false,
+        "besluitMetGrootGevolg": false,
+        "tijdkritisch": false,
+        "betrokkenen": null,
+        "geldbedragEuro": 1100,
+        "banen": null,
+        "inRegio": true
+      },
+      "agendapunten": [
+        {
+          "titel": "Pop-up-bakkerij van Evy Stoltz voor Stichting Hartekind Bakt",
+          "dag": "2026-11-08",
+          "start": null,
+          "eind": null,
+          "plaats": null,
+          "zekerheid": "afgeleid"
+        }
+      ],
+      "analyse": true,
+      "agendaIds": [
+        "c5055e01c4"
+      ]
     },
     {
       "id": "0be04f0b83-v1",
@@ -184,7 +245,7 @@
       "ai": false,
       "controle": "analyse-ok",
       "eerstGezienOp": "2026-10-25T14:13:42.860Z",
-      "gecontroleerdOp": "2026-10-25T23:08:01.309Z",
+      "gecontroleerdOp": "2026-10-26T01:33:17.295Z",
       "bronTitel": "Fototijdreis: De Zaan bij Gerkens Cacao (Wormer)",
       "bronLengte": 5999,
       "checklist": {
@@ -220,7 +281,7 @@
       "ai": false,
       "controle": "analyse-ok",
       "eerstGezienOp": "2026-10-25T14:13:42.860Z",
-      "gecontroleerdOp": "2026-10-25T23:08:01.309Z",
+      "gecontroleerdOp": "2026-10-26T01:33:17.295Z",
       "bronTitel": "Stormschade: bouwhekken vallen op auto’s Jonge Arnoldusstraat",
       "bronLengte": 935,
       "checklist": {
@@ -256,7 +317,7 @@
       "ai": false,
       "controle": "analyse-ok",
       "eerstGezienOp": "2026-10-25T14:13:42.860Z",
-      "gecontroleerdOp": "2026-10-25T23:08:01.309Z",
+      "gecontroleerdOp": "2026-10-26T01:33:17.295Z",
       "bronTitel": "Waarom De Orkaan ervoor koos om expliciet te zijn",
       "bronLengte": 2766,
       "checklist": {
@@ -292,7 +353,7 @@
       "ai": false,
       "controle": "analyse-ok",
       "eerstGezienOp": "2026-10-25T14:13:42.860Z",
-      "gecontroleerdOp": "2026-10-25T23:08:01.309Z",
+      "gecontroleerdOp": "2026-10-26T01:33:17.295Z",
       "bronTitel": "Is 70 het nieuwe 50? (of omgekeerd?)",
       "bronLengte": 727,
       "checklist": {
@@ -328,7 +389,7 @@
       "ai": false,
       "controle": "ai-fout",
       "eerstGezienOp": "2026-10-25T14:13:42.860Z",
-      "gecontroleerdOp": "2026-10-25T23:08:01.309Z",
+      "gecontroleerdOp": "2026-10-26T01:33:17.295Z",
       "bronTitel": "Waarheen: Alice in Wonderland, SintSwap, Memory Band",
       "bronLengte": 1315
     },
@@ -351,7 +412,7 @@
       "ai": false,
       "controle": "ai-fout",
       "eerstGezienOp": "2026-10-25T14:13:42.860Z",
-      "gecontroleerdOp": "2026-10-25T23:08:01.309Z",
+      "gecontroleerdOp": "2026-10-26T01:33:17.295Z",
       "bronTitel": "Terug naar de ‘echte’ tijd: wintertijd ingegaan",
       "bronLengte": 1045
     },
@@ -376,7 +437,11 @@
       "bronTitel": "Koninklijk bezoek op de dansvloer bij Hemkade48",
       "bronLengte": 1292,
       "gecontroleerdOp": "2026-10-25T14:13:42.860Z",
-      "herkomst": "signaal"
+      "herkomst": "signaal",
+      "agendaIds": [
+        "098d56fd91",
+        "05a1d51816"
+      ]
     },
     {
       "id": "b6a8207f86-v1",
