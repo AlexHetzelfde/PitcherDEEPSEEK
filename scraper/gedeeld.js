@@ -12,6 +12,11 @@
 // maar zich wel zo gedraagt) en de filterTermen van bronnen (bijvoorbeeld
 // rechtspraak) zitten in deze functies. Daarom is verplaatsen veiliger dan
 // herschrijven.
+//
+// Sinds 2026-10-26:
+//  - Parallel scrapen (4 tegelijk) met time-out van 45s.
+//  - effectieveBron retourneert nu altijd een kopie, om mutatie van de
+//    originele bronnenlijst te voorkomen.
 
 const fs = require("fs/promises");
 const path = require("path");
@@ -33,7 +38,8 @@ const PAGINADATUM_TYPES = new Set(["gemini-recept", "generieke-lijst", "wordpres
 const afgeleideAgenda = new Map();
 
 function effectieveBron(bron) {
-  return afgeleideAgenda.has(bron.id) ? { ...bron, soort: "agenda" } : bron;
+  if (afgeleideAgenda.has(bron.id)) return { ...bron, soort: "agenda" };
+  return { ...bron };
 }
 
 function isAgendaItem(b) {
@@ -50,19 +56,37 @@ function logDuur(startMs, label) {
   console.log(`${label} klaar in ${duurSec}s`);
 }
 
-async function scrapeAlleBronnen(bronnenLijst = bronnen) {
-  const alleBerichten = [];
+async function metTijdslimiet(belofte, ms, melding) {
+  if (!ms || ms <= 0) return belofte;
+  let timer;
+  const limiet = new Promise((_, afwijzen) => {
+    timer = setTimeout(() => afwijzen(new Error(melding)), ms);
+  });
+  return Promise.race([belofte, limiet]).finally(() => clearTimeout(timer));
+}
 
-  for (const bron of bronnenLijst) {
+async function scrapeAlleBronnen(bronnenLijst = bronnen, opties = {}) {
+  const alleBerichten = [];
+  const parallel = Math.max(1, opties.parallel || 1);
+  const timeoutMs = opties.timeoutMs || 0; // 0 = geen timeout (pitchrun)
+
+  const wachtrij = [...bronnenLijst].map((bron, index) => ({ bron, index }));
+  const resultaten = new Map(); // index -> berichten
+
+  async function verwerkBron({ bron, index }) {
     const scraper = scraperVoorType(bron.type);
     if (!scraper) {
       console.warn(`[${bron.id}] Onbekend brontype "${bron.type}" — overgeslagen.`);
-      continue;
+      return;
     }
 
     const startBron = Date.now();
     try {
-      let berichten = await scraper(bron);
+      let berichten = await metTijdslimiet(
+        scraper(bron),
+        timeoutMs,
+        `time-out na ${(timeoutMs / 1000).toFixed(1)}s bij ${bron.id}`
+      );
 
       if (bron.filterTermen && bron.filterTermen.length > 0) {
         const voorFilter = berichten.length;
@@ -88,10 +112,36 @@ async function scrapeAlleBronnen(bronnenLijst = bronnen) {
           console.warn(`[${bron.id}] ⚠️  ${melding}`);
         }
       }
-      alleBerichten.push(...berichten);
+      resultaten.set(index, berichten);
     } catch (fout) {
       const duurSec = ((Date.now() - startBron) / 1000).toFixed(1);
       console.error(`[${bron.id}] Scrapen mislukt na ${duurSec}s: ${fout.message}${oorzaakTekst(fout)}`);
+      resultaten.set(index, []);
+    }
+  }
+
+  if (parallel === 1) {
+    for (const item of wachtrij) {
+      await verwerkBron(item);
+    }
+  } else {
+    const actieve = new Set();
+    while (wachtrij.length > 0 || actieve.size > 0) {
+      while (wachtrij.length > 0 && actieve.size < parallel) {
+        const item = wachtrij.shift();
+        const belofte = verwerkBron(item).finally(() => actieve.delete(belofte));
+        actieve.add(belofte);
+      }
+      if (actieve.size > 0) {
+        await Promise.race(actieve);
+      }
+    }
+  }
+
+  // Zet de berichten in de oorspronkelijke volgorde van bronnenLijst.
+  for (let i = 0; i < bronnenLijst.length; i++) {
+    if (resultaten.has(i)) {
+      alleBerichten.push(...resultaten.get(i));
     }
   }
 
@@ -126,7 +176,6 @@ function nietInToekomst(iso) {
   if (!dag) return false;
   return dag <= vandaagAmsterdam();
 }
-
 
 module.exports = {
   DATA_MAP,

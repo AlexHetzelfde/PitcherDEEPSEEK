@@ -4,6 +4,11 @@
 // Sinds de "pitch-en-filter-uit-elkaar"-ronde (2026-10-22):
 //  - ARTIKEL_MAX_TEKENS van 3.000 naar 6.000, zodat lange onderzoeksartikelen
 //    niet worden afgekapt voordat de AI de conclusie ziet (afspraak 8).
+//
+// Sinds 2026-10-26:
+//  - binnenAgendaVenster en binnenVenster krijgen een maxVooruit-parameter.
+//  - paginaVoorbij kijkt voor agenda-bronnen vooruit tot bron.maxVooruitDagen.
+//  - De pitchrun gebruikt de default (0): alleen vandaag en gisteren.
 
 const cheerio = require("cheerio");
 const Parser = require("rss-parser");
@@ -81,17 +86,19 @@ function binnenLeeftijdsgrens(gepubliceerdOpIso) {
 const AGENDA_MAX_VERLEDEN_DAGEN = 0;
 const AGENDA_MAX_VOORUIT_DAGEN = 0;
 
-function binnenAgendaVenster(gepubliceerdOpIso, eindDatumIso) {
+function binnenAgendaVenster(gepubliceerdOpIso, eindDatumIso, maxVooruit = 0) {
   if (!gepubliceerdOpIso) return false;
   const startDag = kalenderdagAmsterdam(gepubliceerdOpIso);
   if (!startDag) return false;
   const verschilStart = dagVerschil(startDag, vandaagAmsterdam());
   if (verschilStart === null) return false;
-  return verschilStart <= AGENDA_MAX_VERLEDEN_DAGEN && verschilStart >= -AGENDA_MAX_VOORUIT_DAGEN;
+  return verschilStart <= AGENDA_MAX_VERLEDEN_DAGEN && verschilStart >= -maxVooruit;
 }
 
-function binnenVenster(gepubliceerdOpIso, bron, eindDatumIso) {
-  return bron && bron.soort === "agenda" ? binnenAgendaVenster(gepubliceerdOpIso, eindDatumIso) : binnenLeeftijdsgrens(gepubliceerdOpIso);
+function binnenVenster(gepubliceerdOpIso, bron, eindDatumIso, maxVooruit = 0) {
+  return bron && bron.soort === "agenda"
+    ? binnenAgendaVenster(gepubliceerdOpIso, eindDatumIso, maxVooruit)
+    : binnenLeeftijdsgrens(gepubliceerdOpIso);
 }
 
 function leeftijdInDagen(gepubliceerdOpIso) {
@@ -724,9 +731,11 @@ function paginaVoorbij(bron, paginaBerichten, nu = Date.now()) {
   const laatsteDag = kalenderdagAmsterdam(laatste.gepubliceerdOp);
 
   if (bron.soort === "agenda") {
+    const maxVooruit = bron.maxVooruitDagen || 0;
+    const horizon = kalenderdagMinDagen(-maxVooruit);
     const richting = lijstRichting(metDatum, "oplopend");
-    if (richting === "oplopend" && eersteDag > vandaag) {
-      return `agenda is voorbij het venster (eerste evenement op deze pagina: ${eersteDag}, na vandaag)`;
+    if (richting === "oplopend" && eersteDag > horizon) {
+      return `agenda is voorbij het venster (eerste evenement op deze pagina: ${eersteDag}, horizon: ${horizon})`;
     }
     if (richting === "aflopend" && laatsteDag < vandaag) {
       return `agenda is voorbij het venster (laatste evenement op deze pagina: ${laatsteDag}, al voorbij)`;
@@ -1120,76 +1129,4 @@ async function vulBerichtenAanMetTekst(berichten, opties = {}) {
 
   for (const b of berichten) {
     const s = stat(b.bronId);
-    s.totaal++;
-    if (b.tekstBron === "artikel" && (b.samenvatting || "").length >= MIN_BRUIKBARE_TEKST_TEKENS) s.metTekst++;
-    if (b.foto) s.metFoto++;
-  }
-  return { perBron, tijdOp };
-}
-
-function tekstDekkingTekst(s) {
-  return `${s.metTekst} van ${s.totaal} met artikeltekst`;
-}
-
-function tekstStatistiekRegel(s) {
-  const uitLijst = Math.max(0, s.totaal - s.opgehaald);
-  const delen = [`${s.opgehaald} van de berichtpagina`];
-  if (uitLijst > 0) delen.push(`${uitLijst} uit de lijst`);
-  if (s.geenTekst) delen.push(`${s.geenTekst} pagina('s) zonder bruikbare tekst`);
-  if (s.fouten) delen.push(`${s.fouten} mislukt`);
-  if (s.overgeslagen) delen.push(`${s.overgeslagen} overgeslagen`);
-  if (s.metFoto) delen.push(`${s.metFoto} met foto`);
-  return `${s.metTekst} van ${s.totaal} met artikeltekst (${delen.join(", ")})`;
-}
-
-module.exports = {
-  haalOp,
-  startResponsCache,
-  stopResponsCache,
-  isNetwerkFout,
-  parseerRssTekst,
-  oorzaakTekst,
-  probeerKetenTeRepareren,
-  haalOpMetCookies,
-  haalDatumUitTekst,
-  haalDatumZonderJaar,
-  haalDatumBereik,
-  leesDatumEnEinde,
-  agendaUitDatums,
-  parseerDatumTekst,
-  GEBRUIKERSAGENT,
-  TZ,
-  MAX_LEEFTIJD_DAGEN,
-  AGENDA_MAX_VERLEDEN_DAGEN,
-  AGENDA_MAX_VOORUIT_DAGEN,
-  kalenderdagAmsterdam,
-  vandaagAmsterdam,
-  dagVerschil,
-  kalenderdagMinDagen,
-  binnenLeeftijdsgrens,
-  binnenAgendaVenster,
-  binnenVenster,
-  beginNieuwsVenster,
-  leeftijdInDagen,
-  volgPaginas,
-  paginaVoorbij,
-  vindVolgendePagina,
-  MAX_PAGINAS,
-  haalTekstUitHtml,
-  stripDubbeleTitel,
-  haalArtikelTekst,
-  haalRechtspraakTekst,
-  vulBerichtenAanMetTekst,
-  tekstDekkingTekst,
-  tekstStatistiekRegel,
-  haalFotoUitRssItem,
-  haalFotoUitHtml,
-  haalFotoUitItem,
-  maakAbsoluut,
-  ARTIKEL_MAX_TEKENS,
-  LIJSTTEKST_GENOEG_TEKENS,
-  MIN_BRUIKBARE_TEKST_TEKENS,
-  ID_TITEL_PATROON,
-  titelIsId,
-  kiesRssTitel,
-};
+    s

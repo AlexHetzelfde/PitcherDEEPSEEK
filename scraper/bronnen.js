@@ -2,22 +2,9 @@
 //
 // Centrale lijst van bronnen. Elke bron krijgt een categorie: "lokaal" of "landelijk".
 //
-// Sinds de "ibabs-kolommen-vast"-ronde (2026-10-22):
-//  - De twee iBabs-bronnen hebben een `ibabs`-configuratie gekregen met de
-//    kolommen, sorteerkolom, datumvelden en samenvattingvelden van dat
-//    specifieke rapport. Elk iBabs-rapport heeft een andere structuur; één
-//    vaste lijst in de scraper werkt niet voor beide. De scraper leest deze
-//    configuratie en gebruikt hem voor de POST-body en de kolom-mapping.
-//
-// Sinds de "tijdzone-en-logica"-ronde (2026-10-17):
-//  - wetenregelgeving is omgezet van generieke-lijst naar gemini-recept, met
-//    selectors die passen op de echte HTML van lokaleregelgeving.overheid.nl:
-//    li.item, h2.result--title a en ul.list--metadata li:first-child. De oude
-//    fallback-selector "li" pakte de verkeerde elementen en gaf alle 50
-//    berichten dezelfde datum.
-//  - rechtspraak-noord-holland heeft een detailSelector gekregen:
-//    .rnl-detail-uitspraaktekst--content. Zonder die selector gaf de
-//    deeplink-pagina geen leesbare uitspraaktekst.
+// Sinds 2026-10-26:
+//  - blaise-pascal-college en OmgevingsdienstNHN verwijderd (leverden
+//    onvoldoende op en kostten te veel tijd).
 
 module.exports = [
   {
@@ -36,9 +23,6 @@ module.exports = [
     url: "https://zaanstad.bestuurlijkeinformatie.nl/Reports/Details/8ea04074-52e6-4284-bd1a-66e378b40ec1",
     rustig: true,
     ibabs: {
-      // Volgorde en namen exact zoals de DataTables-configuratie op de
-      // rapportpagina (data-columns in de HTML). De API sorteert op de
-      // kolom die hier als sorteerKolom staat.
       kolommen: [
         { data: "title", searchable: false },
         { data: "registrationdate" },
@@ -49,11 +33,7 @@ module.exports = [
       ],
       sorteerKolom: "datumbericht",
       sorteerRichting: "desc",
-      // Welke velden mogen dienen als publicatiedatum? De eerste die een
-      // leesbare datum oplevert, wint.
       datumVelden: ["datumbericht", "registrationdate"],
-      // Welke velden komen in de samenvatting? Worden met " — " aan elkaar
-      // geplakt. De PDF-tekst wordt hier later aan toegevoegd.
       samenvattingVelden: ["typeselectie", "portefeuillehouderselectie", "afhandelingselectie"],
     },
   },
@@ -65,8 +45,6 @@ module.exports = [
     url: "https://zaanstad.bestuurlijkeinformatie.nl/Reports/Details/58e397b1-0b36-49e2-90ed-325405f27f72",
     rustig: true,
     ibabs: {
-      // Andere rapport, andere kolommen, andere sorteerkolom. Dit is exact
-      // de data-columns van de Ingekomen-stukken-pagina.
       kolommen: [
         { data: "datum" },
         { data: "title", searchable: false },
@@ -88,14 +66,6 @@ module.exports = [
     categorie: "lokaal",
     type: "generieke-lijst",
     url: "https://www.ovo-zaanstad.nl/nieuws/",
-    rustig: true,
-  },
-  {
-    id: "blaise-pascal-college",
-    naam: "Blaise Pascal College",
-    categorie: "lokaal",
-    type: "generieke-lijst",
-    url: "https://www.blaisepascalcollege.nl/",
     rustig: true,
   },
   {
@@ -151,14 +121,6 @@ module.exports = [
     categorie: "lokaal",
     type: "wordpress-html",
     url: "https://zaandijkleeft.nl/",
-    rustig: true,
-  },
-  {
-    id: "OmgevingsdienstNHN",
-    naam: "Omgevingsdienst Noord-Holland Noord",
-    categorie: "lokaal",
-    type: "generieke-lijst",
-    url: "https://www.odnhn.nl/Menu/Over_ons/Nieuws/2022",
     rustig: true,
   },
   {
@@ -218,43 +180,11 @@ module.exports = [
     url: "https://uitspraken.rechtspraak.nl/rss/?instantie=http%3A%2F%2Fstandaarden.overheid.nl%2Fowms%2Fterms%2FRechtbank_Noord-Holland&instantietype=2",
     detailSelector: ".rnl-detail-uitspraaktekst--content",
     filterTermen: [
-      "Zaanstad",
-      "Zaandam",
-      "Zaandijk",
-      "Koog aan de Zaan",
-      "Wormerveer",
-      "Krommenie",
-      "Assendelft",
-      "Westzaan",
-      "Wormer",
-      "Wijdewormer",
-      "Jisp",
-      "Neck",
-      "Oostknollendam",
-      "Spijkerboor",
-      "Oostzaan",
-      "Landsmeer",
-      "Den Ilp",
-      "Watergang",
-      "Purmerend",
-      "Edam",
-      "Volendam",
-      "Monnickendam",
-      "Marken",
-      "Katwoude",
-      "Ilpendam",
-      "Broek in Waterland",
-      "Zuiderwoude",
-      "Uitdam",
-      "Middelie",
-      "Warder",
-      "Beets",
-      "Hobrede",
-      "Kwadijk",
-      "Oosthuizen",
-      "Schardam",
-      "Zaanstreek",
-      "Waterland",
+      "Zaanstad", "Zaandam", "Zaandijk", "Koog aan de Zaan", "Wormerveer", "Krommenie", "Assendelft",
+      "Westzaan", "Wormer", "Wijdewormer", "Jisp", "Neck", "Oostknollendam", "Spijkerboor", "Oostzaan",
+      "Landsmeer", "Den Ilp", "Watergang", "Purmerend", "Edam", "Volendam", "Monnickendam", "Marken",
+      "Katwoude", "Ilpendam", "Broek in Waterland", "Zuiderwoude", "Uitdam", "Middelie", "Warder", "Beets",
+      "Hobrede", "Kwadijk", "Oosthuizen", "Schardam", "Zaanstreek", "Waterland",
     ],
     rustig: true,
   },
