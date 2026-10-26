@@ -1,34 +1,13 @@
 {
   "_uitleg": "Instellingen van ZANP per bron. Sleutel = bron-id uit bronnen.js. rubriek: code uit 'rubrieken'. herkomst: officieel | organisatie | signaal | onbekend. prio: standaardprioriteit 1 (urgent) t/m 4 (routine). herschrijf: mag de AI van de brontekst een korte feitelijke tekst maken? (alleen bij officieel en organisatie; nooit bij andere redacties). agendaFilter (alleen agendabronnen): 'alles' of 'eerste-of-jubileum'. Soort (nieuws/agenda), categorie en frequentie komen uit bronnen.js.",
   "rubrieken": [
-    {
-      "code": "BES",
-      "naam": "Bestuur & gemeente"
-    },
-    {
-      "code": "REC",
-      "naam": "Rechtspraak"
-    },
-    {
-      "code": "PRV",
-      "naam": "Provincie, water & omgeving"
-    },
-    {
-      "code": "CUL",
-      "naam": "Cultuur & erfgoed"
-    },
-    {
-      "code": "ONW",
-      "naam": "Onderwijs"
-    },
-    {
-      "code": "LOK",
-      "naam": "Lokaal nieuws (signaal)"
-    },
-    {
-      "code": "ALG",
-      "naam": "Overig"
-    }
+    { "code": "BES", "naam": "Bestuur & gemeente" },
+    { "code": "REC", "naam": "Rechtspraak" },
+    { "code": "PRV", "naam": "Provincie, water & omgeving" },
+    { "code": "CUL", "naam": "Cultuur & erfgoed" },
+    { "code": "ONW", "naam": "Onderwijs" },
+    { "code": "LOK", "naam": "Lokaal nieuws (signaal)" },
+    { "code": "ALG", "naam": "Overig" }
   ],
   "bronnen": {
     "bekendmakingen": {
@@ -86,12 +65,6 @@
       "prio": 3,
       "herschrijf": true
     },
-    "OmgevingsdienstNHN": {
-      "rubriek": "PRV",
-      "herkomst": "officieel",
-      "prio": 4,
-      "herschrijf": true
-    },
     "omgevingsdienstnoordzeekanaal": {
       "rubriek": "PRV",
       "herkomst": "officieel",
@@ -129,12 +102,6 @@
       "prio": 4,
       "herschrijf": false,
       "agendaFilter": "eerste-of-jubileum"
-    },
-    "blaise-pascal-college": {
-      "rubriek": "ONW",
-      "herkomst": "organisatie",
-      "prio": 4,
-      "herschrijf": true
     },
     "ovo-zaanstad": {
       "rubriek": "ONW",
