@@ -14,22 +14,12 @@
 //      uitvoer wordt in wire.js gecontroleerd tegen de bron.
 //   4. beslisZelfdeNieuwsfeit — voor dubbel nieuws, alleen bij twijfelgevallen.
 //
-// Sinds de ZANP-ronde (2026-10-23):
-//  - schrijfMeldingen toegevoegd, met eigen promptversie en lage temperatuur.
-//  - Pitch en filter zijn ongewijzigd.
-//
-// Sinds de "pitch-en-filter-uit-elkaar"-ronde (2026-10-22):
-//  - Nieuws gaat niet meer door het criteria-filter.
-//  - beoordeelBerichten draait alleen nog voor agenda. Citaat-controle blijft.
-//  - genereerPitches gebruikt de korte prompt: rol + taak + vier velden +
-//    JSON-schema + bericht (afspraak 9-14).
-//  - Voorbeelden: 1 werktitel, 1 samenvatting, 2 invalshoek, 2 vraag.
-//    Elk voorbeeld heeft een ander onderwerp (afspraak 11 en 15).
-//  - Lezer expliciet genoemd: "voor inwoners van Zaanstreek-Waterland"
-//    (afspraak 17).
-//  - Geen criteria, geen genre, geen bellijst, geen citaten in de pitch.
-//    "Wat betekent dit voor…" mag (afspraak 12-14).
-//  - Sorteren op codescore is weg; sortering op datum gebeurt in index.js.
+// Sinds 2026-10-26:
+//  - ZANP draait volledig op gemini-flash-lite-latest (ruimer gratis quotum).
+//  - De pitchrun blijft op gemini-flash-latest.
+//  - Stroomonderbreker: bij een 429 stopt schrijfMeldingen direct met
+//    verdere batches, zodat we geen tijd en quota verspillen.
+//  - Teller telt alleen nog geslaagde aanroepen (melding of onvoldoende).
 
 const {
   KERN_CRITERIA,
@@ -41,12 +31,11 @@ const {
 const PROMPT_VERSIE = "2026-10-22-pitch-vier-velden";
 const PROMPT_VERSIE_WIRE = "2026-10-24-melding-checklist-agendapunten";
 
-// Afspraak 18: hetzelfde model als nu, met dezelfde fallback-keten.
 const MODELLEN = {
-  filter: ["gemini-flash-latest"],
-  pitch: ["gemini-flash-latest"],
-  sterker: ["gemini-flash-latest"],
-  wire: ["gemini-flash-latest"],
+  filter: ["gemini-flash-lite-latest"], // ZANP-agenda filter
+  pitch: ["gemini-flash-latest"],       // Pitchrun (ongewijzigd)
+  sterker: ["gemini-flash-latest"],     // Pitchrun fallback (ongewijzigd)
+  wire: ["gemini-flash-lite-latest"],   // ZANP meldingen/analyses & clusters
 };
 
 const MAX_OUTPUT_TOKENS = 2048;
@@ -86,7 +75,9 @@ async function roepGeminiAan(model, prompt, apiKey, temperatuur) {
     } catch {
       // geen JSON, laat de HTTP-status staan
     }
-    throw new Error(foutTekst);
+    const error = new Error(foutTekst);
+    error.status = response.status;
+    throw error;
   }
   const data = await response.json();
   const kandidaat = data && data.candidates && data.candidates[0];
@@ -514,16 +505,21 @@ async function schrijfMeldingVoorItem(item, apiKey) {
 
 /**
  * Schrijft meldingen of analyses voor een lijst items. Geeft een Map terug
- * van item.id naar { melding } | { onvoldoende: true } | { fout }. Items
- * voorbij de cap krijgen { fout: "overgeslagen (cap …)" }; zij worden bij
- * een volgende run opnieuw geprobeerd en behouden intussen hun kop.
+ * van item.id naar { melding } | { onvoldoende: true } | { fout, status }.
+ * Items voorbij de cap krijgen { fout: "overgeslagen (cap …)" }; zij worden
+ * bij een volgende run opnieuw geprobeerd en behouden intussen hun kop.
+ *
+ * Stroomonderbreker: bij een 429 stopt de lus met nieuwe batches. De items
+ * die al verwerkt zijn blijven staan; de rest krijgt "quotum bereikt".
  */
 async function schrijfMeldingen(items, apiKey, cap) {
   const resultaten = new Map();
   if (!Array.isArray(items) || items.length === 0) return resultaten;
   const teDoen = items.slice(0, cap);
 
+  let quotaHit = false;
   for (let i = 0; i < teDoen.length; i += PARALLEL) {
+    if (quotaHit) break;
     const batch = teDoen.slice(i, i + PARALLEL);
     await Promise.all(
       batch.map(async (item) => {
@@ -531,7 +527,10 @@ async function schrijfMeldingen(items, apiKey, cap) {
           const melding = await schrijfMeldingVoorItem(item, apiKey);
           resultaten.set(item.id, melding.onvoldoende ? { onvoldoende: true } : { melding });
         } catch (fout) {
-          resultaten.set(item.id, { fout: fout.message });
+          resultaten.set(item.id, { fout: fout.message, status: fout.status });
+          if (fout.status === 429) {
+            quotaHit = true;
+          }
         }
       })
     );
@@ -540,8 +539,10 @@ async function schrijfMeldingen(items, apiKey, cap) {
       console.log(`  melding: ${gedaan}/${teDoen.length} berichten`);
     }
   }
-  for (let i = cap; i < items.length; i++) {
-    resultaten.set(items[i].id, { fout: `overgeslagen (cap ${cap})` });
+  for (let i = 0; i < items.length; i++) {
+    if (!resultaten.has(items[i].id)) {
+      resultaten.set(items[i].id, { fout: quotaHit ? "overgeslagen (quotum bereikt)" : `overgeslagen (cap ${cap})` });
+    }
   }
   return resultaten;
 }
@@ -568,24 +569,33 @@ Geef ALLEEN geldige JSON terug, geen markdown-fences en geen andere tekst:
 /**
  * Beslist voor een lijst twijfelparen of ze hetzelfde nieuwsfeit zijn.
  * Geeft een Map sleutel → true | false | null (null bij een fout of
- * overgeslagen vanwege de cap).
+ * overgeslagen vanwege de cap). Stopt ook bij een 429.
  */
 async function beslisZelfdeNieuwsfeit(paren, apiKey, cap) {
   const uit = new Map();
   const teDoen = (paren || []).slice(0, cap);
+  let quotaHit = false;
   for (let i = 0; i < teDoen.length; i += PARALLEL) {
+    if (quotaHit) break;
+    const batch = teDoen.slice(i, i + PARALLEL);
     await Promise.all(
-      teDoen.slice(i, i + PARALLEL).map(async (paar) => {
+      batch.map(async (paar) => {
         try {
           const data = await roepGeminiMetFallback(MODELLEN.wire, bouwZelfdePrompt(paar), apiKey, TEMPERATUUR_WIRE);
           uit.set(paar.sleutel, data && typeof data.zelfde === "boolean" ? data.zelfde : null);
-        } catch {
+        } catch (fout) {
           uit.set(paar.sleutel, null);
+          if (fout.status === 429) {
+            quotaHit = true;
+          }
         }
       })
     );
   }
   for (const paar of (paren || []).slice(cap)) uit.set(paar.sleutel, null);
+  for (const paar of teDoen) {
+    if (!uit.has(paar.sleutel)) uit.set(paar.sleutel, null);
+  }
   return uit;
 }
 
