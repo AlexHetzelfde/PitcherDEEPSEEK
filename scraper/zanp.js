@@ -8,33 +8,11 @@
 // voor de startvulling) data/feed.json. De pitch-bestanden blijven van
 // index.js.
 //
-// VOLGORDE VAN EEN RUN
-//  1. Welke bronnen zijn aan de beurt? Rustige bronnen en agendabronnen één
-//     keer per dag, de rest elke run. Landelijke bronnen doen niet mee.
-//  2. Scrapen (gedeeld.js, dezelfde functie als de pitchmachine).
-//  3. Agenda: detailtekst ophalen voor nieuwe evenementen van bronnen met het
-//     filter "eerste keer of jubileum" (hooguit AGENDA_DETAIL_MAX per run).
-//  4. Nieuws: tekst alleen voor NIEUWE berichten, plus een versiecontrole voor
-//     berichten jonger dan 24 uur die al VERSIE_CONTROLE_UREN niet bekeken
-//     zijn, plus berichten waarvan een eerdere AI-poging mislukte.
-//  5. AI: meldingen en analyses (cap per run én per dag, in zanp-status.json).
-//  6. Dubbel nieuws: clusters, de AI alleen bij twijfel.
-//  7. Alerts (ALERT_MODUS=log of aan).
-//  8. Agenda opbouwen en koppelen aan de berichten, alles wegschrijven.
-//
-// Omgevingsvariabelen (allemaal optioneel)
-//   GEMINI_API_KEY      zonder sleutel draait alles, maar zonder AI
-//   ZANP_DAGCAP         AI-aanroepen per dag (standaard 80). Het gratis Gemini-quotum is
-//                       per project en wordt gedeeld met de pitchrun; die draait aan het
-//                       eind van de quotumdag en kan leeg uitkomen als ZANP alles opmaakt.
-//                       Controleer je limiet in AI Studio en zet dit getal ruim eronder.
-//   ZANP_RUNCAP         AI-aanroepen voor meldingen per run (standaard 25)
-//   ZANP_CLUSTER_CAP    AI-vragen over dubbel nieuws per run (standaard 8)
-//   ZANP_TEKST_MAX      artikelen per run ophalen (standaard 60)
-//   AGENDA_DETAIL_MAX   detailpagina's voor het agendafilter per run (standaard 40)
-//   VERSIE_CONTROLE_UREN  hoe vaak een jong bericht op wijzigingen wordt bekeken (standaard 2)
-//   ALERT_MODUS         "log" (standaard) of "aan"
-//   ZANP_ALLES=1        alle bronnen scrapen, ook de rustige (handmatige run)
+// Sinds 2026-10-26:
+//  - ZANP draait op gemini-flash-lite-latest (ruim quotum).
+//  - Stroomonderbreker: bij een 429 slaat ZANP de AI over tot de wachttijd
+//    verstreken is (opgeslagen in zanp-status.json).
+//  - Teller telt alleen geslaagde aanroepen (melding of onvoldoende).
 
 const bronnen = require("./bronnen");
 const { RUBRIEKEN, isBekendeBron, profielVoor } = require("./rubrieken");
@@ -79,7 +57,7 @@ function leesInstellingen(env) {
 // ---------------------------------------------------------------------------
 
 function leegStatus() {
-  return { bronnen: {}, gemini: { dag: null, gebruikt: 0 }, clusterBeslissingen: {} };
+  return { bronnen: {}, gemini: { dag: null, gebruikt: 0, wachtTot: null }, clusterBeslissingen: {} };
 }
 
 async function leesStatus() {
@@ -89,7 +67,7 @@ async function leesStatus() {
     ...leegStatus(),
     ...s,
     bronnen: s.bronnen && typeof s.bronnen === "object" ? s.bronnen : {},
-    gemini: s.gemini && typeof s.gemini === "object" ? s.gemini : { dag: null, gebruikt: 0 },
+    gemini: s.gemini && typeof s.gemini === "object" ? s.gemini : { dag: null, gebruikt: 0, wachtTot: null },
     clusterBeslissingen: s.clusterBeslissingen && typeof s.clusterBeslissingen === "object" ? s.clusterBeslissingen : {},
   };
 }
@@ -245,7 +223,7 @@ async function draai(deps = {}) {
   logFase("ZANP 1 — Bronnen kiezen");
   const status = await leesStatus();
   const vandaag = vandaagAmsterdam();
-  if (status.gemini.dag !== vandaag) status.gemini = { dag: vandaag, gebruikt: 0 };
+  if (status.gemini.dag !== vandaag) status.gemini = { dag: vandaag, gebruikt: 0, wachtTot: null };
 
   const regionaal = bronnen.filter((b) => b.categorie !== "landelijk");
   const teScrapen = regionaal.filter((b) => isAanDeBeurt(b, status, nu, inst.alles));
@@ -352,29 +330,62 @@ async function draai(deps = {}) {
   // ---- 5. AI ----------------------------------------------------------------
   logFase("ZANP 5 — Meldingen en analyses");
   let verwerkt = nieuwe.map((n) => n.record);
-  const wacht = nieuwe
-    .filter((n) => n.invoer)
-    .sort((a, b) => (HERKOMST_RANG[a.record.herkomst] ?? 3) - (HERKOMST_RANG[b.record.herkomst] ?? 3));
-  const dagRuimte = Math.max(0, inst.dagcap - status.gemini.gebruikt);
-  const cap = Math.min(inst.runcap, dagRuimte);
-  if (!apiKey) {
-    if (wacht.length) console.log(`Geen API-sleutel: ${wacht.length} bericht(en) blijven kop + link.`);
-  } else if (wacht.length === 0) {
-    console.log("Niets te schrijven.");
-  } else if (cap === 0) {
-    console.warn(`Dagcap bereikt (${status.gemini.gebruikt}/${inst.dagcap}): ${wacht.length} bericht(en) wachten tot morgen.`);
+  
+  if (status.gemini.wachtTot && new Date(status.gemini.wachtTot) > nu) {
+    console.warn(`AI overgeslagen: quotum bereikt, wacht tot ${status.gemini.wachtTot}.`);
   } else {
-    console.log(`AI voor ${Math.min(wacht.length, cap)} van ${wacht.length} bericht(en) (cap ${cap}; vandaag al ${status.gemini.gebruikt}/${inst.dagcap}; prompt ${PROMPT_VERSIE_WIRE}).`);
-    const resultaten = await schrijf(wacht.map((n) => n.invoer), apiKey, cap);
-    status.gemini.gebruikt += [...resultaten.values()].filter((r) => !(r.fout && /^overgeslagen/.test(r.fout))).length;
-    const bijId = new Map(nieuwe.map((n) => [n.record.id, n]));
-    verwerkt = nieuwe.map((n) => {
-      const x = bijId.get(n.record.id);
-      return x.invoer ? wire.verwerkMelding(x, resultaten.get(x.invoer.id)) : x.record;
-    });
-    const telling = {};
-    for (const r of verwerkt) if (r.controle) telling[r.controle] = (telling[r.controle] || 0) + 1;
-    console.log(`Controle-uitkomsten: ${JSON.stringify(telling)}`);
+    const wacht = nieuwe
+      .filter((n) => n.invoer)
+      .sort((a, b) => (HERKOMST_RANG[a.record.herkomst] ?? 3) - (HERKOMST_RANG[b.record.herkomst] ?? 3));
+    const dagRuimte = Math.max(0, inst.dagcap - status.gemini.gebruikt);
+    const cap = Math.min(inst.runcap, dagRuimte);
+    
+    if (!apiKey) {
+      if (wacht.length) console.log(`Geen API-sleutel: ${wacht.length} bericht(en) blijven kop + link.`);
+    } else if (wacht.length === 0) {
+      console.log("Niets te schrijven.");
+    } else if (cap === 0) {
+      console.warn(`Dagcap bereikt (${status.gemini.gebruikt}/${inst.dagcap}): ${wacht.length} bericht(en) wachten tot morgen.`);
+    } else {
+      console.log(`AI voor ${Math.min(wacht.length, cap)} van ${wacht.length} bericht(en) (cap ${cap}; vandaag al ${status.gemini.gebruikt}/${inst.dagcap}; prompt ${PROMPT_VERSIE_WIRE}).`);
+      const resultaten = await schrijf(wacht.map((n) => n.invoer), apiKey, cap);
+      
+      let quotaHit = false;
+      let retryAfterText = "";
+      
+      for (const r of resultaten.values()) {
+        if (r.melding || r.onvoldoende) status.gemini.gebruikt++;
+        if (r.status === 429) {
+          quotaHit = true;
+          retryAfterText = r.fout;
+        }
+      }
+      
+      if (quotaHit) {
+        let wachtMinuten = 12 * 60; // fallback 12 uur
+        const match = retryAfterText.match(/retry in (.*?)\./);
+        if (match) {
+          const timeStr = match[1];
+          let mins = 0;
+          const h = timeStr.match(/(\d+)h/);
+          const m = timeStr.match(/(\d+)m/);
+          if (h) mins += parseInt(h[1]) * 60;
+          if (m) mins += parseInt(m[1]);
+          if (mins > 0) wachtMinuten = mins;
+        }
+        status.gemini.wachtTot = new Date(nu.getTime() + wachtMinuten * 60000).toISOString();
+        console.warn(`AI-quotum bereikt. Nieuwe poging toegestaan na ${status.gemini.wachtTot}`);
+      }
+      
+      const bijId = new Map(nieuwe.map((n) => [n.record.id, n]));
+      verwerkt = nieuwe.map((n) => {
+        const x = bijId.get(n.record.id);
+        return x.invoer ? wire.verwerkMelding(x, resultaten.get(x.invoer.id)) : x.record;
+      });
+      const telling = {};
+      for (const r of verwerkt) if (r.controle) telling[r.controle] = (telling[r.controle] || 0) + 1;
+      console.log(`Controle-uitkomsten: ${JSON.stringify(telling)}`);
+    }
   }
 
   let records = wire.voegBerichtenSamen(bestaand, [...verwerkt, ...bijgewerkteControle], nu);
@@ -383,21 +394,34 @@ async function draai(deps = {}) {
   logFase("ZANP 6 — Dubbel nieuws");
   let clusterResultaat = { clusterVan: new Map(), clusters: new Map(), beslissingen: status.clusterBeslissingen, stats: {} };
   try {
-    const clusterRuimte = Math.max(0, Math.min(inst.clusterCap, inst.dagcap - status.gemini.gebruikt));
-    const vraagAI = apiKey
-      ? async (paren) => {
-          const gevraagd = paren.slice(0, clusterRuimte);
-          status.gemini.gebruikt += gevraagd.length;
-          return beslisZelfde(gevraagd, apiKey, clusterRuimte);
-        }
-      : undefined;
-    clusterResultaat = await bouwClusters(records, {
-      nu,
-      beslissingen: status.clusterBeslissingen,
-      vraagAI,
-      maxAI: apiKey ? clusterRuimte : 0,
-    });
-    status.clusterBeslissingen = clusterResultaat.beslissingen;
+    if (!status.gemini.wachtTot || new Date(status.gemini.wachtTot) <= nu) {
+      const clusterRuimte = Math.max(0, Math.min(inst.clusterCap, inst.dagcap - status.gemini.gebruikt));
+      const vraagAI = apiKey
+        ? async (paren) => {
+            const gevraagd = paren.slice(0, clusterRuimte);
+            const antwoorden = await beslisZelfde(gevraagd, apiKey, clusterRuimte);
+            let successen = 0;
+            let foutOpgetreden = false;
+            for (const val of antwoorden.values()) {
+              if (val !== null) successen++;
+              else foutOpgetreden = true;
+            }
+            status.gemini.gebruikt += successen;
+            if (foutOpgetreden) {
+              // Fallback voor het geval we de exacte 429 niet kunnen achterhalen
+              status.gemini.wachtTot = new Date(nu.getTime() + 12 * 60 * 60000).toISOString();
+            }
+            return antwoorden;
+          }
+        : undefined;
+      clusterResultaat = await bouwClusters(records, {
+        nu,
+        beslissingen: status.clusterBeslissingen,
+        vraagAI,
+        maxAI: apiKey ? clusterRuimte : 0,
+      });
+      status.clusterBeslissingen = clusterResultaat.beslissingen;
+    }
     records = pasClustersToe(records, clusterResultaat.clusterVan);
     console.log(`Clusters: ${JSON.stringify(clusterResultaat.stats)}`);
     samenvatting.cluster = clusterResultaat.stats;
