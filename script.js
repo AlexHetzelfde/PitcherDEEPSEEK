@@ -10,15 +10,19 @@
 // De ZANP-tabs verversen zichzelf elke 5 minuten zolang de pagina zichtbaar
 // is; de pitchtab wordt één keer geladen.
 //
-// Opzet (ZANP-fase 2, 2026-10-24):
-//  - Nieuwsdienst: een kolom per rubriek plus een totaalkolom (naar het ANP).
-//    Dubbel nieuws staat als één bericht met "ook gemeld door". Alerts staan
-//    in een balk bovenaan elke tab. Kolommen zijn aan en uit te zetten (wordt
-//    onthouden); op een telefoon kies je één kolom met tabs.
-//  - Agenda: weekweergave maandag tot en met zondag, een dagbalk met tellers,
-//    een datumkiezer, het agendafilter ("Toon ook gefilterde items") en
-//    agendapunten en termijnen uit berichten, gekoppeld aan hun bericht.
-//  - Filters en week staan in de url (#nieuwsdienst?q=...), zodat je ze kunt delen.
+// Opzet (ZANP, slanke versie 2026-10-29):
+//  - Nieuwsdienst: een smalle kolom per tag plus een totaalkolom (naar het ANP).
+//    Elke kolom heeft een eigen zoekveld en toont standaard de laatste drie dagen
+//    (zoeken doorzoekt alles, "Oudere berichten" laat de rest zien). Dubbel
+//    nieuws staat als één bericht met "ook gemeld door"; berichten over dezelfde
+//    zaak (zelfde adres, ECLI, zaaknummer) verwijzen naar elkaar. Alerts staan
+//    in een rode of oranje regel bovenaan. Kolommen zijn aan en uit te zetten
+//    (wordt onthouden); op een telefoon kies je één kolom met tabs.
+//  - Agenda: "‹ Vandaag ›" en zeven dagkolommen (maandag tot en met zondag; op
+//    een telefoon onder elkaar). Wat het agendafilter wegliet staat achter de
+//    kleine knop "+N gefilterd" (of #agenda?alles=1). Een T bij een agendapunt
+//    opent het bericht erover.
+//  - Week en agendafilter staan in de url (#agenda?week=1&alles=1).
 //  - Pitches: ongewijzigd.
 //  - escapeHtml escapet ook aanhalingstekens; links zijn alleen http(s).
 
@@ -61,8 +65,11 @@ const state = {
   agendaPerId: new Map(),
   status: null,
   agendaOffset: 0,
-  agendaDag: null,
-  agendaRubriekWens: null,
+  agendaDag: null, // dag waar de agenda naartoe moet scrollen, eenmalig
+  agendaRubriek: "",
+  agendaToonAlles: false,
+  zoek: {}, // kolomcode -> zoektekst
+  oudere: new Set(), // kolommen waar ook de berichten van vóór de laatste drie dagen staan
   mobileKolom: "ALL",
   kolommenUit: new Set(leesOpslag("zanp-kolommen-uit", [])),
   weggeklikt: new Set(leesOpslag("zanp-alerts-weg", [])),
@@ -204,36 +211,21 @@ function parseHash() {
 
 function schrijfHash() {
   const p = new URLSearchParams();
-  if (state.actieveTab === "nieuwsdienst") {
-    const f = leesWireFilters();
-    if (f.zoekRuw) p.set("q", f.zoekRuw);
-    if (f.maxPrio !== 4) p.set("prio", String(f.maxPrio));
-    if (f.periode !== 2) p.set("periode", String(f.periode));
-    if (f.recent) p.set("recent", "1");
-  } else if (state.actieveTab === "agenda") {
+  if (state.actieveTab === "agenda") {
     if (state.agendaOffset) p.set("week", String(state.agendaOffset));
-    const rubriek = document.getElementById("agenda-rubriek").value;
-    if (rubriek) p.set("r", rubriek);
-    if (document.getElementById("agenda-toon-alles").checked) p.set("alles", "1");
+    if (state.agendaRubriek) p.set("r", state.agendaRubriek);
+    if (state.agendaToonAlles) p.set("alles", "1");
   }
   const tekst = p.toString();
   history.replaceState(null, "", `#${state.actieveTab}${tekst ? `?${tekst}` : ""}`);
 }
 
 function pasParamsToe(tab, params) {
-  if (tab === "nieuwsdienst") {
-    document.getElementById("wire-zoek").value = params.get("q") || "";
-    const kiesWaarde = (id, waarde, toegestaan, standaard) => {
-      document.getElementById(id).value = toegestaan.includes(waarde) ? waarde : standaard;
-    };
-    kiesWaarde("wire-prio", params.get("prio"), ["2", "3", "4"], "4");
-    kiesWaarde("wire-periode", params.get("periode"), ["0", "2", "6", "999"], "2");
-    document.getElementById("wire-recent").checked = params.get("recent") === "1";
-  } else if (tab === "agenda") {
+  if (tab === "agenda") {
     const week = Number(params.get("week"));
     state.agendaOffset = Number.isInteger(week) ? Math.max(-12, Math.min(12, week)) : 0;
-    state.agendaRubriekWens = params.get("r") || null;
-    document.getElementById("agenda-toon-alles").checked = params.get("alles") === "1";
+    state.agendaRubriek = params.get("r") || "";
+    state.agendaToonAlles = params.get("alles") === "1";
   }
 }
 
@@ -248,6 +240,8 @@ function toonTab(naam, opties = {}) {
     knop.tabIndex = actief ? 0 : -1;
     paneel.hidden = !actief;
   }
+  const kiezer = document.getElementById("kolommenkiezer");
+  if (kiezer) kiezer.hidden = gekozen !== "nieuwsdienst";
   if (opties.schrijfHash !== false) schrijfHash();
 }
 
@@ -267,10 +261,7 @@ function koppelTabs() {
     pasParamsToe(tab, params);
     toonTab(tab, { schrijfHash: false });
     if (tab === "nieuwsdienst") renderWire();
-    if (tab === "agenda") {
-      vulAgendaRubrieken();
-      renderAgenda();
-    }
+    if (tab === "agenda") renderAgenda();
   });
   const { tab, params } = parseHash();
   pasParamsToe(tab, params);
@@ -331,31 +322,30 @@ function zetBerichten(data) {
     .map((r) => (ook.has(r.groepId) ? { ...r, ookGemeld: ook.get(r.groepId) } : r));
 }
 
-function leesWireFilters() {
-  const zoekRuw = document.getElementById("wire-zoek").value.trim();
-  return {
-    zoekRuw,
-    zoek: zoekRuw.toLowerCase(),
-    maxPrio: Number(document.getElementById("wire-prio").value),
-    periode: Number(document.getElementById("wire-periode").value),
-    recent: document.getElementById("wire-recent").checked,
-  };
-}
+// De laatste drie dagen (vandaag en twee dagen terug) staan standaard in de kolom.
+const WIRE_DAGEN = 2;
 
-function gefilterdeBerichten() {
-  const { zoek, maxPrio, periode, recent } = leesWireFilters();
-  const ondergrens = periode >= 999 ? null : dagPlus(vandaagDag(), -periode);
-  return state.zichtbaar.filter((r) => {
-    if (r.prio > maxPrio) return false;
-    if (recent && !(r.versie > 1)) return false;
-    if (ondergrens && (dagVan(r.tijd) || "") < ondergrens) return false;
+// Berichten van één kolom. Zoeken doorzoekt alles; zonder zoeken staan de oudere
+// berichten achter "Oudere berichten". `ouder` is het aantal dat nu verborgen is.
+function kolomBerichten(code) {
+  const zoek = String(state.zoek[code] || "").trim().toLowerCase();
+  const ondergrens = zoek || state.oudere.has(code) ? null : dagPlus(vandaagDag(), -WIRE_DAGEN);
+  const lijst = [];
+  let ouder = 0;
+  for (const r of state.zichtbaar) {
+    if (code !== "ALL" && r.rubriek !== code) continue;
+    if (ondergrens && (dagVan(r.tijd) || "") < ondergrens) {
+      ouder++;
+      continue;
+    }
     if (zoek) {
       const ook = (r.ookGemeld || []).map((x) => x.bronNaam).join(" ");
       const hooi = `${r.kop} ${r.tekst || ""} ${r.bronNaam || ""} ${ook}`.toLowerCase();
-      if (!hooi.includes(zoek)) return false;
+      if (!hooi.includes(zoek)) continue;
     }
-    return true;
-  });
+    lijst.push(r);
+  }
+  return { lijst, ouder, zoekt: Boolean(zoek) };
 }
 
 // --- alerts -----------------------------------------------------------------
@@ -507,7 +497,8 @@ function renderWireDetail(r) {
   return delen.join("");
 }
 
-// Chips onder de meta-regel: wie meldt het nog meer, en wat staat ervan in de agenda.
+// Chips onder de meta-regel: wie meldt het nog meer, wat staat ervan in de
+// agenda en welke berichten gaan over dezelfde zaak.
 function renderWireChips(r) {
   const chips = [];
   if (r.ookGemeld && r.ookGemeld.length) {
@@ -523,6 +514,12 @@ function renderWireChips(r) {
       : `Agenda: ${datumKort(item.startDag)}${item.heeftTijd ? ` ${tijdVan(item.start)}` : ""}`;
     chips.push(`<button type="button" class="chip chip-agenda" data-actie="naar-agenda" data-dag="${escapeHtml(item.startDag)}">${escapeHtml(tekst)}</button>`);
   }
+  for (const id of (r.gerelateerd || []).slice(0, 3)) {
+    const ander = state.perGroep.get(id);
+    if (!ander || ander.groepId === r.groepId) continue;
+    const kort = String(ander.kop || "").length > 34 ? `${String(ander.kop).slice(0, 33)}…` : String(ander.kop || "");
+    chips.push(`<button type="button" class="chip chip-bericht" data-actie="open-bericht" data-id="${escapeHtml(ander.id)}" title="Zelfde zaak: ${escapeHtml(ander.kop || "")}">zie ook: ${escapeHtml(kort)}</button>`);
+  }
   return chips.length ? `<div class="wire-chips">${chips.join("")}</div>` : "";
 }
 
@@ -534,6 +531,8 @@ function renderWireItem(r, kolomCode) {
   const detailId = `detail-${kolomCode}-${r.id}`;
   const heeftAlert = r.alert && state.alertModus === "aan" && new Date(r.alert.tot).getTime() > Date.now();
   const isNieuw = state.bezoekStart && String(r.eerstGezienOp) > state.bezoekStart;
+  // In de totaalkolom staat de tag erbij; in een tagkolom is dat overbodig.
+  const tag = kolomCode === "ALL" && r.rubriek ? `<div><dt>tag</dt><dd>${escapeHtml(r.rubriek)}</dd></div>` : "";
   return `
     <article class="wire-item${heeftAlert ? ` heeft-alert alert-${r.alert.niveau}` : ""}" data-id="${escapeHtml(r.id)}">
       <button type="button" class="wire-kop" aria-expanded="false" aria-controls="${escapeHtml(detailId)}">${isNieuw ? '<span class="nieuw-stip">nieuw</span> ' : ""}${escapeHtml(r.kop)}${r.versie > 1 ? ` <span class="versie-suffix">(${r.versie})</span>` : ""}</button>
@@ -543,42 +542,42 @@ function renderWireItem(r, kolomCode) {
         <div><dt>woorden</dt><dd>${woorden}</dd></div>
         <div><dt>versie</dt><dd>${r.versie || 1}</dd></div>
         <div><dt>prio</dt><dd><span class="prio-waarde prio-${prio}">${prio}</span></dd></div>
+        ${tag}
       </dl>
       ${renderWireChips(r)}
       <div class="wire-detail" id="${escapeHtml(detailId)}" hidden>${renderWireDetail(r)}</div>
     </article>`;
 }
 
-function renderWireKolom(code, naam, berichten) {
+// De lijst van één kolom. Apart, zodat zoeken alleen de lijst vervangt en het
+// zoekveld zijn cursor houdt.
+function kolomLijstHtml(code) {
+  const { lijst, ouder, zoekt } = kolomBerichten(code);
+  let html = lijst.map((r) => renderWireItem(r, code)).join("");
+  if (!html) html = `<p class="agenda-leeg">${zoekt ? "Niets gevonden." : "Geen berichten in de laatste drie dagen."}</p>`;
+  if (ouder > 0) {
+    html += `<button type="button" class="oudere-knop" data-actie="oudere" data-kolom="${escapeHtml(code)}">Oudere berichten (${ouder})</button>`;
+  }
+  return html;
+}
+
+function renderWireKolom(code, naam) {
   const info = agendaVandaagInfo(code === "ALL" ? "" : code);
   const agendaTekst = info.aantal === 0
     ? "Geen agenda vandaag"
     : `Agenda vandaag${info.bereik ? ` · ${info.bereik}` : ""}`;
 
-  let lijst = "";
-  let vorigeDag = null;
-  for (const r of berichten) {
-    const dag = dagVan(r.tijd);
-    if (dag && dag !== vorigeDag) {
-      lijst += `<h3 class="wire-dag">${escapeHtml(dagLabel(dag))}</h3>`;
-      vorigeDag = dag;
-    }
-    lijst += renderWireItem(r, code);
-  }
-  if (!lijst) lijst = '<p class="agenda-leeg">Geen berichten voor deze filters.</p>';
-
   return `
     <section class="wire-kolom${code === state.mobileKolom ? " actief" : ""}" data-kolom="${escapeHtml(code)}" aria-label="${escapeHtml(naam)}">
       <div class="wire-kolom-kop">
         <h2>${escapeHtml(naam)}</h2>
-        <span class="wire-aantal">${berichten.length} ${berichten.length === 1 ? "bericht" : "berichten"}</span>
+        <input type="search" class="wire-zoek" data-actie="kolom-zoek" data-kolom="${escapeHtml(code)}" placeholder="Zoek" aria-label="Zoek in ${escapeHtml(naam)}" autocomplete="off" value="${escapeHtml(state.zoek[code] || "")}">
       </div>
       <button type="button" class="agenda-balk${info.aantal === 0 ? " leeg" : ""}" data-actie="agenda-van-kolom" data-rubriek="${code === "ALL" ? "" : escapeHtml(code)}">
-        <span class="agenda-teller">${info.aantal}</span>
         <span>${escapeHtml(agendaTekst)}</span>
         <span class="agenda-balk-pijl" aria-hidden="true">→</span>
       </button>
-      <div class="wire-lijst">${lijst}</div>
+      <div class="wire-lijst">${kolomLijstHtml(code)}</div>
     </section>`;
 }
 
@@ -592,19 +591,13 @@ function renderWire() {
   }
   renderKolommenKiezer();
   renderKolomTabs();
-
-  const gefilterd = gefilterdeBerichten();
-  container.innerHTML = getoondeKolommen()
-    .map((k) => renderWireKolom(k.code, k.naam, k.code === "ALL" ? gefilterd : gefilterd.filter((r) => r.rubriek === k.code)))
-    .join("");
+  container.innerHTML = getoondeKolommen().map((k) => renderWireKolom(k.code, k.naam)).join("");
 }
 
-// Opent een bericht in de stroom: filters wissen, tab tonen, kolom kiezen, scrollen.
+// Opent een bericht in de stroom: zoekvelden wissen, tab tonen, kolom kiezen, scrollen.
 function springNaarBericht(id) {
-  document.getElementById("wire-zoek").value = "";
-  document.getElementById("wire-prio").value = "4";
-  document.getElementById("wire-periode").value = "999";
-  document.getElementById("wire-recent").checked = false;
+  state.zoek = {};
+  state.oudere.add("ALL"); // het bericht kan ouder zijn dan drie dagen
   state.kolommenUit.delete("ALL");
   state.mobileKolom = "ALL";
   toonTab("nieuwsdienst");
@@ -627,18 +620,19 @@ function springNaarBericht(id) {
 }
 
 function koppelWire() {
-  let timer = null;
-  const opnieuw = () => {
-    renderWire();
-    schrijfHash();
-  };
-  document.getElementById("wire-zoek").addEventListener("input", () => {
-    clearTimeout(timer);
-    timer = setTimeout(opnieuw, 150);
+  const timers = {};
+  document.addEventListener("input", (e) => {
+    const veld = e.target.closest ? e.target.closest('[data-actie="kolom-zoek"]') : null;
+    if (!veld) return;
+    const code = veld.dataset.kolom;
+    state.zoek[code] = veld.value;
+    clearTimeout(timers[code]);
+    timers[code] = setTimeout(() => {
+      const kolom = [...document.querySelectorAll(".wire-kolom")].find((k) => k.dataset.kolom === code);
+      const lijst = kolom && kolom.querySelector(".wire-lijst");
+      if (lijst) lijst.innerHTML = kolomLijstHtml(code);
+    }, 150);
   });
-  for (const id of ["wire-prio", "wire-periode", "wire-recent"]) {
-    document.getElementById(id).addEventListener("change", opnieuw);
-  }
 }
 
 // ---------------------------------------------------------------------------
@@ -669,10 +663,12 @@ function agendaTijdLabel(item) {
   return `${circa}${tijdVan(item.start)}${item.eind ? ` – ${tijdVan(item.eind)}` : ""}`;
 }
 
-function berichtKnop(item, tekst) {
-  const record = item.berichtId ? state.perGroep.get(item.berichtId) : null;
+// Een klein vierkantje "T" dat het bericht erover opent; titel en aria-label
+// zeggen wat het is.
+function berichtKnop(groepId, titel, tekst = "T") {
+  const record = groepId ? state.perGroep.get(groepId) : null;
   if (!record) return "";
-  return `<button type="button" class="chip chip-bericht" data-actie="open-bericht" data-id="${escapeHtml(record.id)}">${escapeHtml(tekst)}</button>`;
+  return `<button type="button" class="chip chip-bericht chip-t" data-actie="open-bericht" data-id="${escapeHtml(record.id)}" title="${escapeHtml(titel)}: ${escapeHtml(record.kop || "")}" aria-label="${escapeHtml(titel)}: ${escapeHtml(record.kop || "")}">${escapeHtml(tekst)}</button>`;
 }
 
 function renderAgendaItem(item) {
@@ -690,9 +686,15 @@ function renderAgendaItem(item) {
   const regel = item.relevantie && item.relevantie.regel;
   if (regel === "eerste-keer") chips.push('<span class="chip chip-regel" title="Eerste keer volgens de bron">eerste keer</span>');
   if (regel === "jubileum") chips.push('<span class="chip chip-regel" title="Jubileum of herdenking volgens de bron">jubileum</span>');
-  if (item.afkomst === "bericht") chips.push(berichtKnop(item, "uit bericht ↗") || '<span class="chip chip-bericht">uit bericht</span>');
-  else if (item.afkomst === "termijn") chips.push(berichtKnop(item, "termijn ↗") || '<span class="chip chip-bericht">termijn</span>');
-  else if (item.berichtId) chips.push(berichtKnop(item, "bericht ↗"));
+  // Het bericht erover (T), eventueel meer berichten over dezelfde zaak, en de uitkomst.
+  const titel = item.afkomst === "termijn" ? "Termijn uit bericht" : item.afkomst === "bericht" ? "Agendapunt uit bericht" : "Bericht over dit agendapunt";
+  const eigen = berichtKnop(item.berichtId, titel);
+  if (eigen) chips.push(eigen);
+  else if (item.afkomst === "bericht") chips.push('<span class="chip chip-bericht" title="Agendapunt uit een bericht">uit bericht</span>');
+  else if (item.afkomst === "termijn") chips.push('<span class="chip chip-bericht" title="Termijn uit een bericht">termijn</span>');
+  for (const id of (item.meerBerichten || []).slice(0, 3)) chips.push(berichtKnop(id, "Ander bericht over dit agendapunt"));
+  const uitkomst = berichtKnop(item.uitkomstId, "Uitkomst", "uitkomst ↗");
+  if (uitkomst) chips.push(uitkomst);
 
   return `
     <article class="agenda-item${gefilterd ? " gefilterd" : ""}">
@@ -711,27 +713,35 @@ function agendaSleutel(item, dag) {
 
 function renderAgenda() {
   const container = document.getElementById("agenda-week");
-  const dagenBalk = document.getElementById("week-dagen");
   const vandaag = vandaagDag();
   const maandag = maandagVan(dagPlus(vandaag, state.agendaOffset * 7));
   const dagen = Array.from({ length: 7 }, (_, i) => dagPlus(maandag, i));
-  const rubriek = document.getElementById("agenda-rubriek").value;
-  const toonAlles = document.getElementById("agenda-toon-alles").checked;
+  const rubriek = state.agendaRubriek;
+  const toonAlles = state.agendaToonAlles;
 
   document.getElementById("agenda-weeklabel").textContent =
-    `Week ${isoWeekNummer(maandag)} · ${datumKort(maandag)} – ${datumKort(dagen[6])} ${dagen[6].slice(0, 4)}`;
-  document.getElementById("agenda-datum").value = dagen.includes(state.agendaDag) ? state.agendaDag : "";
-  if (!dagen.includes(state.agendaDag)) state.agendaDag = dagen.includes(vandaag) ? vandaag : dagen[0];
+    `Week ${isoWeekNummer(maandag)} · ${datumKort(maandag)} – ${datumKort(dagen[6])}`;
+
+  const namen = Object.fromEntries(state.rubrieken.map((r) => [r.code, r.naam]));
+  const filterKnop = document.getElementById("agenda-filter");
+  filterKnop.hidden = !rubriek;
+  filterKnop.textContent = rubriek ? `${namen[rubriek] || rubriek} ×` : "";
+  filterKnop.title = "Toon alle rubrieken";
 
   if (state.agenda.length === 0) {
-    dagenBalk.innerHTML = "";
+    document.getElementById("agenda-alles").hidden = true;
     container.innerHTML = '<p class="leeg">De agenda is nog leeg. Die vult zich na de eerstvolgende run van de workflow.</p>';
     return;
   }
 
   const items = state.agenda.filter((i) => !rubriek || i.rubriek === rubriek);
   const verborgen = items.filter((i) => i.startDag <= dagen[6] && i.eindDag >= dagen[0] && !agendaItemZichtbaar(i, false)).length;
-  document.getElementById("agenda-toon-alles-label").textContent = `Toon ook gefilterde items (${verborgen} deze week)`;
+  const allesKnop = document.getElementById("agenda-alles");
+  allesKnop.hidden = verborgen === 0 && !toonAlles;
+  allesKnop.textContent = toonAlles ? "alleen relevant" : `+${verborgen} gefilterd`;
+  allesKnop.title = toonAlles
+    ? "Verberg wat het agendafilter wegliet"
+    : "Toon ook wat het agendafilter wegliet (evenementen die niet voor het eerst plaatsvinden)";
 
   const perDag = dagen.map((dag) =>
     items
@@ -739,22 +749,10 @@ function renderAgenda() {
       .sort((a, b) => agendaSleutel(a, dag) - agendaSleutel(b, dag) || a.kop.localeCompare(b.kop, "nl"))
   );
 
-  dagenBalk.innerHTML = dagen
-    .map((dag, i) => {
-      const d = dagNaarDate(dag);
-      const naam = d.toLocaleDateString("nl-NL", { weekday: "short", timeZone: "UTC" });
-      return `<button type="button" class="week-dag${dag === state.agendaDag ? " actief" : ""}${dag === vandaag ? " vandaag" : ""}" data-actie="kies-dag" data-dag="${dag}" aria-pressed="${dag === state.agendaDag}">
-        <span class="wd-naam">${escapeHtml(naam)}</span>
-        <span class="wd-nr">${d.getUTCDate()}</span>
-        <span class="wd-teller${perDag[i].length ? "" : " leeg"}">${perDag[i].length}</span>
-      </button>`;
-    })
-    .join("");
-
   container.innerHTML = dagen
     .map(
       (dag, i) => `
-      <section class="agenda-dag${dag === vandaag ? " vandaag" : ""}${dag === state.agendaDag ? " gekozen" : ""}" data-dag="${dag}" aria-label="${escapeHtml(dagMetWeekdag(dag))}">
+      <section class="agenda-dag${dag === vandaag ? " vandaag" : ""}" data-dag="${dag}" aria-label="${escapeHtml(dagMetWeekdag(dag))}">
         <h2 class="agenda-dag-kop">${escapeHtml(dagMetWeekdag(dag))}</h2>
         ${perDag[i].length ? perDag[i].map(renderAgendaItem).join("") : '<p class="agenda-leeg">Niets gepland.</p>'}
       </section>`
@@ -762,48 +760,42 @@ function renderAgenda() {
     .join("");
 }
 
-function vulAgendaRubrieken() {
-  const select = document.getElementById("agenda-rubriek");
-  const aanwezig = new Set(state.agenda.map((i) => i.rubriek));
-  const namen = Object.fromEntries(state.rubrieken.map((r) => [r.code, r.naam]));
-  const gewenst = state.agendaRubriekWens !== null ? state.agendaRubriekWens : select.value;
-  state.agendaRubriekWens = null;
-  select.innerHTML = '<option value="">Alle rubrieken</option>'
-    + [...aanwezig].map((code) => `<option value="${escapeHtml(code)}">${escapeHtml(namen[code] || code)}</option>`).join("");
-  select.value = aanwezig.has(gewenst) ? gewenst : "";
+function scrollNaarAgendaDag() {
+  if (!state.agendaDag) return;
+  const dag = [...document.querySelectorAll("#agenda-week .agenda-dag")].find((k) => k.dataset.dag === state.agendaDag);
+  state.agendaDag = null;
+  if (dag && dag.scrollIntoView) dag.scrollIntoView({ block: "nearest", inline: "start" });
 }
 
 function springNaarAgenda(dag) {
   const verschil = Math.round((dagNaarDate(maandagVan(dag)) - dagNaarDate(maandagVan(vandaagDag()))) / (7 * 86400000));
   state.agendaOffset = verschil;
   state.agendaDag = dag;
-  document.getElementById("agenda-rubriek").value = "";
+  state.agendaRubriek = "";
   renderAgenda();
   toonTab("agenda");
+  scrollNaarAgendaDag();
 }
 
 function koppelAgenda() {
   const verander = (offset) => {
     state.agendaOffset = offset;
-    state.agendaDag = null;
     renderAgenda();
     schrijfHash();
   };
   document.getElementById("agenda-vorige").addEventListener("click", () => verander(state.agendaOffset - 1));
   document.getElementById("agenda-volgende").addEventListener("click", () => verander(state.agendaOffset + 1));
   document.getElementById("agenda-vandaag").addEventListener("click", () => verander(0));
-  document.getElementById("agenda-datum").addEventListener("change", (e) => {
-    const dag = e.target.value;
-    if (!/^\d{4}-\d{2}-\d{2}$/.test(dag)) return;
-    springNaarAgenda(dag);
+  document.getElementById("agenda-filter").addEventListener("click", () => {
+    state.agendaRubriek = "";
+    renderAgenda();
     schrijfHash();
   });
-  for (const id of ["agenda-rubriek", "agenda-toon-alles"]) {
-    document.getElementById(id).addEventListener("change", () => {
-      renderAgenda();
-      schrijfHash();
-    });
-  }
+  document.getElementById("agenda-alles").addEventListener("click", () => {
+    state.agendaToonAlles = !state.agendaToonAlles;
+    renderAgenda();
+    schrijfHash();
+  });
 }
 
 // ---------------------------------------------------------------------------
@@ -1004,24 +996,21 @@ function koppelKlikken() {
       case "agenda-van-kolom": {
         state.agendaOffset = 0;
         state.agendaDag = null;
-        const select = document.getElementById("agenda-rubriek");
-        select.value = el.dataset.rubriek || "";
-        if (select.value !== (el.dataset.rubriek || "")) select.value = "";
+        const code = el.dataset.rubriek || "";
+        // Alleen filteren op een rubriek die in de agenda voorkomt.
+        state.agendaRubriek = state.agenda.some((i) => i.rubriek === code) ? code : "";
         renderAgenda();
         toonTab("agenda");
         break;
       }
+      case "oudere":
+        state.oudere.add(el.dataset.kolom);
+        renderWire();
+        break;
       case "kolom-tab":
         state.mobileKolom = el.dataset.kolom;
         renderWire();
         break;
-      case "kies-dag": {
-        state.agendaDag = el.dataset.dag;
-        renderAgenda();
-        const kolom = document.querySelector(`#agenda-week .agenda-dag[data-dag="${el.dataset.dag}"]`);
-        if (kolom && kolom.scrollIntoView) kolom.scrollIntoView({ behavior: "smooth", inline: "start", block: "nearest" });
-        break;
-      }
       default:
     }
   });
@@ -1047,7 +1036,11 @@ function bewaarUiStaat() {
     if (lijst) scroll[k.dataset.kolom] = lijst.scrollTop;
   });
   const week = document.getElementById("agenda-week");
-  return { open, scroll, agendaScroll: week ? week.scrollLeft : 0 };
+  const actief = document.activeElement;
+  const focus = actief && actief.dataset && actief.dataset.actie === "kolom-zoek"
+    ? { kolom: actief.dataset.kolom, positie: actief.selectionStart }
+    : null;
+  return { open, scroll, agendaScroll: week ? week.scrollLeft : 0, focus };
 }
 
 function herstelUiStaat(staat) {
@@ -1064,12 +1057,18 @@ function herstelUiStaat(staat) {
   });
   const week = document.getElementById("agenda-week");
   if (week) week.scrollLeft = staat.agendaScroll;
+  if (staat.focus) {
+    const veld = [...document.querySelectorAll(".wire-zoek")].find((v) => v.dataset.kolom === staat.focus.kolom);
+    if (veld) {
+      veld.focus();
+      if (typeof staat.focus.positie === "number") veld.setSelectionRange(staat.focus.positie, staat.focus.positie);
+    }
+  }
 }
 
 function renderAlles() {
   renderAlertBalk();
   renderWire();
-  vulAgendaRubrieken();
   renderAgenda();
   renderStatusregel();
 }
@@ -1165,7 +1164,6 @@ async function initialiseer() {
       "De agenda is nog leeg. Die vult zich na de eerstvolgende run van de workflow."
     );
   } else {
-    vulAgendaRubrieken();
     renderAgenda();
   }
   renderStatusregel();

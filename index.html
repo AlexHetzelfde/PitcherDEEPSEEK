@@ -9,14 +9,18 @@
 <body>
   <header class="site-header">
     <div class="header-rij">
-      <h1><span class="merk">ZANP</span><span class="merk-sub">Nieuwsdienst Zaanstreek-Waterland</span></h1>
+      <h1><span class="merk">ZANP</span></h1>
       <nav class="tabs" role="tablist" aria-label="Weergave">
         <button type="button" class="tab" role="tab" id="tab-nieuwsdienst" data-tab="nieuwsdienst" aria-controls="paneel-nieuwsdienst" aria-selected="true">Nieuwsdienst</button>
         <button type="button" class="tab" role="tab" id="tab-agenda" data-tab="agenda" aria-controls="paneel-agenda" aria-selected="false" tabindex="-1">Agenda</button>
         <button type="button" class="tab" role="tab" id="tab-pitches" data-tab="pitches" aria-controls="paneel-pitches" aria-selected="false" tabindex="-1">Pitches</button>
       </nav>
+      <details class="kolommenkiezer" id="kolommenkiezer">
+        <summary>Kolommen</summary>
+        <div id="kolommen-opties" class="kolommen-opties"></div>
+      </details>
+      <p id="laatste-update" class="laatste-update"></p>
     </div>
-    <p id="laatste-update" class="laatste-update"></p>
   </header>
 
   <!-- Rode en oranje alerts; zichtbaar op elke tab. Alleen gevuld als ALERT_MODUS=aan. -->
@@ -25,66 +29,20 @@
   <main>
     <!-- ================= Nieuwsdienst ================= -->
     <section id="paneel-nieuwsdienst" class="paneel" role="tabpanel" aria-labelledby="tab-nieuwsdienst">
-      <div class="werkbalk">
-        <label class="veld">
-          <span class="veld-label">Zoeken</span>
-          <input type="search" id="wire-zoek" placeholder="Zoek in koppen en teksten" autocomplete="off">
-        </label>
-        <label class="veld">
-          <span class="veld-label">Prioriteit</span>
-          <select id="wire-prio">
-            <option value="4">Alle (1 t/m 4)</option>
-            <option value="3">1 t/m 3</option>
-            <option value="2">1 en 2</option>
-          </select>
-        </label>
-        <label class="veld">
-          <span class="veld-label">Periode</span>
-          <select id="wire-periode">
-            <option value="0">Vandaag</option>
-            <option value="2" selected>Laatste 3 dagen</option>
-            <option value="6">Laatste 7 dagen</option>
-            <option value="999">Alles</option>
-          </select>
-        </label>
-        <label class="vinkje">
-          <input type="checkbox" id="wire-recent">
-          <span>Recent gewijzigd</span>
-        </label>
-        <details class="kolommenkiezer" id="kolommenkiezer">
-          <summary>Kolommen</summary>
-          <div id="kolommen-opties" class="kolommen-opties"></div>
-        </details>
-      </div>
       <nav id="kolom-tabs" class="kolom-tabs" aria-label="Kolom kiezen"></nav>
-      <p class="uitleg" id="wire-uitleg">Prioriteit: 1 = urgent, 2 = belangrijk, 3 = regulier, 4 = routine. De AI geeft nooit prio 1. Een tekst met het label AI is automatisch samengevat uit de bron: controleer hem voor gebruik. Meldt meer dan één bron hetzelfde nieuws, dan staat het als één bericht met "ook gemeld door".</p>
       <div id="wire-kolommen" class="wire-kolommen"><p class="laden">Berichten laden…</p></div>
     </section>
 
     <!-- ================= Agenda ================= -->
     <section id="paneel-agenda" class="paneel" role="tabpanel" aria-labelledby="tab-agenda" hidden>
-      <div class="werkbalk">
-        <div class="week-nav">
-          <button type="button" id="agenda-vorige" class="knop" aria-label="Vorige week">‹</button>
-          <button type="button" id="agenda-vandaag" class="knop">Vandaag</button>
-          <button type="button" id="agenda-volgende" class="knop" aria-label="Volgende week">›</button>
-          <strong id="agenda-weeklabel" class="weeklabel"></strong>
-        </div>
-        <label class="veld">
-          <span class="veld-label">Ga naar datum</span>
-          <input type="date" id="agenda-datum">
-        </label>
-        <label class="veld">
-          <span class="veld-label">Rubriek</span>
-          <select id="agenda-rubriek"><option value="">Alle rubrieken</option></select>
-        </label>
-        <label class="vinkje">
-          <input type="checkbox" id="agenda-toon-alles">
-          <span id="agenda-toon-alles-label">Toon ook gefilterde items</span>
-        </label>
+      <div class="agenda-nav">
+        <button type="button" id="agenda-vorige" class="knop" aria-label="Vorige week">‹</button>
+        <button type="button" id="agenda-vandaag" class="knop">Vandaag</button>
+        <button type="button" id="agenda-volgende" class="knop" aria-label="Volgende week">›</button>
+        <span id="agenda-weeklabel" class="weeklabel"></span>
+        <button type="button" id="agenda-filter" class="knop knop-klein" hidden></button>
+        <button type="button" id="agenda-alles" class="knop knop-klein" hidden></button>
       </div>
-      <div id="week-dagen" class="week-dagen" role="group" aria-label="Dag van de week kiezen"></div>
-      <p class="uitleg">Bij evenementenbronnen staat standaard alleen wat voor het eerst plaatsvindt of een jubileum is; de rest staat achter "Toon ook gefilterde items". Een tijd met ± is uit de tekst van de bron gehaald. Meerdaagse evenementen staan op elke dag. Agendapunten en termijnen uit berichten zijn gemarkeerd. Eerdere dagen zijn pas gevuld naarmate de dienst langer draait.</p>
       <div id="agenda-week" class="agenda-week"><p class="laden">Agenda laden…</p></div>
     </section>
 

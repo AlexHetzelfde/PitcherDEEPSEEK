@@ -1217,19 +1217,227 @@ button.chip:hover {
   .wire-kolom.actief {
     display: flex;
   }
-  .agenda-week {
-    display: block;
-  }
-  .agenda-week .agenda-dag {
-    display: none;
-  }
-  .agenda-week .agenda-dag.gekozen {
-    display: block;
-  }
   .kolommenkiezer {
     display: none; /* op een telefoon kies je een kolom met de tabs */
   }
   .week-dag {
     padding: 0.3rem 0.1rem;
+  }
+}
+
+
+/* ======================================================================
+   ZANP slank (2026-10-29): smalle kop, smalle kolommen, eigen zoekveld per
+   kolom, agenda met alleen "‹ Vandaag ›". De pitch-tab gebruikt hier niets van.
+   ====================================================================== */
+
+.site-header {
+  padding: 0.3rem 0.75rem;
+}
+
+.header-rij {
+  flex-wrap: nowrap;
+  justify-content: flex-start;
+  gap: 0.25rem 1rem;
+  min-height: 2rem;
+}
+
+.site-header h1 {
+  font-size: 1.1rem;
+  line-height: 1;
+}
+
+.tab {
+  padding: 0.35rem 0.7rem;
+  font-size: 0.9rem;
+}
+
+.header-rij .kolommenkiezer {
+  align-self: center;
+  padding: 0;
+}
+
+.header-rij .kolommenkiezer summary {
+  padding: 0.15rem 0.6rem;
+  font-size: 0.8rem;
+  color: white;
+  background: transparent;
+  border-color: rgba(255, 255, 255, 0.5);
+}
+
+.laatste-update {
+  margin: 0 0 0 auto;
+  min-height: 0;
+  font-size: 0.72rem;
+  text-align: right;
+}
+
+main {
+  padding: 0.5rem 0.5rem 2rem;
+}
+
+/* Nieuwsstroom */
+.wire-kolommen {
+  gap: 0.5rem;
+}
+
+.wire-kolom {
+  flex: 0 0 min(230px, 88vw);
+  max-height: calc(100vh - 90px);
+  min-height: 160px;
+  border-radius: 6px;
+}
+
+.wire-kolom-kop {
+  flex-direction: column;
+  align-items: stretch;
+  gap: 0.3rem;
+  padding: 0.45rem 0.6rem;
+}
+
+.wire-kolom-kop h2 {
+  font-size: 0.85rem;
+}
+
+.wire-zoek {
+  width: 100%;
+  font: inherit;
+  font-size: 0.8rem;
+  padding: 0.2rem 0.4rem;
+  border: 1px solid var(--kleur-rand);
+  border-radius: 4px;
+  background: var(--kleur-oppervlak);
+  color: var(--kleur-tekst);
+}
+
+.agenda-balk {
+  padding: 0.25rem 0.6rem;
+  font-size: 0.72rem;
+  font-weight: 600;
+}
+
+.wire-item {
+  padding: 0.45rem 0.6rem;
+}
+
+.wire-kop {
+  font-size: 0.85rem;
+}
+
+.wire-meta {
+  gap: 0.15rem 0.7rem;
+  margin-top: 0.3rem;
+}
+
+.wire-meta dd {
+  font-size: 0.72rem;
+}
+
+.wire-meta dt {
+  font-size: 0.62rem;
+}
+
+.wire-detail {
+  font-size: 0.8rem;
+}
+
+.chip {
+  font-size: 0.66rem;
+  max-width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.oudere-knop {
+  display: block;
+  width: 100%;
+  font: inherit;
+  font-size: 0.75rem;
+  color: #666;
+  background: var(--kleur-zacht);
+  border: 0;
+  padding: 0.45rem 0.6rem;
+  cursor: pointer;
+}
+
+.oudere-knop:hover {
+  background: #dfe9e3;
+}
+
+/* Alerts: een smalle rode of oranje regel */
+.alert-open {
+  padding: 0.3rem 0.75rem;
+  font-size: 0.85rem;
+}
+
+.alert-sluit {
+  font-size: 1.2rem;
+  padding: 0 0.75rem;
+}
+
+/* Agenda */
+.agenda-nav {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.4rem;
+  margin-bottom: 0.5rem;
+}
+
+.agenda-nav .weeklabel {
+  margin-left: 0.4rem;
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: #555;
+}
+
+.knop-klein {
+  font-size: 0.75rem;
+  padding: 0.2rem 0.6rem;
+}
+
+.knop[hidden] {
+  display: none;
+}
+
+.agenda-week {
+  grid-template-columns: repeat(7, minmax(170px, 1fr));
+  gap: 0.5rem;
+}
+
+.agenda-dag-kop {
+  padding: 0.4rem 0.6rem;
+  font-size: 0.8rem;
+}
+
+.agenda-item {
+  padding: 0.45rem 0.6rem;
+  font-size: 0.8rem;
+}
+
+.chip-t {
+  min-width: 1.5rem;
+  text-align: center;
+  font-weight: 700;
+}
+
+@media (max-width: 700px) {
+  .header-rij {
+    flex-wrap: wrap;
+  }
+  .laatste-update {
+    flex: 1 0 100%;
+    margin: 0;
+    text-align: left;
+  }
+  .agenda-week {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0.5rem;
+  }
+  .wire-kolom {
+    max-height: none;
   }
 }
