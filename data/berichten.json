@@ -1,32 +1,44 @@
 {
-  "gegenereerdOp": "2026-10-26T14:05:21.411Z",
-  "promptVersie": "2026-10-24-melding-checklist-agendapunten",
+  "gegenereerdOp": "2026-10-30T08:00:10.425Z",
+  "promptVersie": "2026-10-29-batch-tag-checklist-agendapunten",
   "alertModus": "log",
   "prioSchaal": "1 = urgent, 2 = belangrijk, 3 = regulier, 4 = routine. De AI geeft nooit prio 1.",
   "rubrieken": [
     {
-      "code": "BES",
-      "naam": "Bestuur & gemeente"
+      "code": "CUL",
+      "naam": "Cultuur"
     },
     {
-      "code": "REC",
-      "naam": "Rechtspraak"
+      "code": "GEM",
+      "naam": "Gemeente"
     },
     {
       "code": "PRV",
-      "naam": "Provincie, water & omgeving"
+      "naam": "Provincie"
     },
     {
-      "code": "CUL",
-      "naam": "Cultuur & erfgoed"
+      "code": "REC",
+      "naam": "Recht"
+    },
+    {
+      "code": "BED",
+      "naam": "Bedrijven"
+    },
+    {
+      "code": "112",
+      "naam": "112"
+    },
+    {
+      "code": "SPO",
+      "naam": "Sport"
+    },
+    {
+      "code": "VER",
+      "naam": "Verkeer"
     },
     {
       "code": "ONW",
       "naam": "Onderwijs"
-    },
-    {
-      "code": "LOK",
-      "naam": "Lokaal nieuws (signaal)"
     },
     {
       "code": "ALG",
@@ -35,13 +47,1247 @@
   ],
   "berichten": [
     {
+      "id": "ccde74ed0b-v1",
+      "groepId": "ccde74ed0b",
+      "versie": 1,
+      "url": "https://lokaleregelgeving.overheid.nl/CVDR732060/3",
+      "kop": "Huisvestingsverordening gemeente Zaanstad 2025 van kracht",
+      "tekst": "De Huisvestingsverordening gemeente Zaanstad 2025 is per 30 oktober 2026 in werking getreden. Deze regeling bevat onder meer definities en regels rondom woonruimteverdeling, aangepaste woningen, bed & breakfasts en betaalbare koopwoningen. De verordening is gebaseerd op regionaal beleid van de voormalige Stadsregio Amsterdam.",
+      "rubriek": "GEM",
+      "tagBron": "ai",
+      "herkomst": "officieel",
+      "prio": 4,
+      "tijd": "2026-10-29T23:00:00.000Z",
+      "heeftTijd": false,
+      "woorden": 812,
+      "afgekapt": true,
+      "bronId": "wetenregelgeving",
+      "bronNaam": "Lokale regelgeving — Zaanstad",
+      "ai": true,
+      "controle": "cijfers-ok",
+      "eerstGezienOp": "2026-10-30T08:00:10.425Z",
+      "gecontroleerdOp": "2026-10-30T08:00:10.425Z",
+      "bronTitel": "Huisvestingsverordening gemeente Zaanstad 2025",
+      "bronLengte": 5997,
+      "checklist": {
+        "gevaar": false,
+        "evacuatieOfNlAlert": false,
+        "gewondenOfDoden": false,
+        "bestuurlijkeCrisis": false,
+        "besluitMetGrootGevolg": false,
+        "tijdkritisch": false,
+        "betrokkenen": null,
+        "geldbedragEuro": null,
+        "banen": null,
+        "inRegio": true
+      },
+      "checklistBron": "ai"
+    },
+    {
+      "id": "f10f414ce8-v1",
+      "groepId": "f10f414ce8",
+      "versie": 1,
+      "url": "https://lokaleregelgeving.overheid.nl/CVDR768335/1",
+      "kop": "Zaanstad stelt inkomensgrenzen vast voor sociale betaalbare koopwoningen 2026",
+      "tekst": "Het college van burgemeester en wethouders heeft het besluit over inkomensgrenzen voor sociale betaalbare koopwoningen vastgesteld. Nieuwbouw koopwoningen met een koopprijs tot maximaal 365.000 euro zijn bestemd voor huishoudens met een passend inkomen. Een huisvestingsvergunning kan uitsluitend worden verleend aan koopstarters die nooit eerder een zelfstandige koopwoning bezaten.",
+      "rubriek": "GEM",
+      "tagBron": "ai",
+      "herkomst": "officieel",
+      "prio": 3,
+      "tijd": "2026-10-29T23:00:00.000Z",
+      "heeftTijd": false,
+      "woorden": 603,
+      "afgekapt": false,
+      "bronId": "wetenregelgeving",
+      "bronNaam": "Lokale regelgeving — Zaanstad",
+      "ai": true,
+      "controle": "cijfers-ok",
+      "eerstGezienOp": "2026-10-30T08:00:10.425Z",
+      "gecontroleerdOp": "2026-10-30T08:00:10.425Z",
+      "bronTitel": "Inkomensgrenzen sociale betaalbare koopwoningen 2026",
+      "bronLengte": 4407,
+      "checklist": {
+        "gevaar": false,
+        "evacuatieOfNlAlert": false,
+        "gewondenOfDoden": false,
+        "bestuurlijkeCrisis": false,
+        "besluitMetGrootGevolg": false,
+        "tijdkritisch": false,
+        "betrokkenen": null,
+        "geldbedragEuro": 365000,
+        "banen": null,
+        "inRegio": true
+      },
+      "checklistBron": "ai",
+      "clusterId": "bad2467dd1",
+      "alertKandidaat": {
+        "niveau": "rood",
+        "categorie": "bestuur",
+        "reden": "besluit met groot gevolg (2 bronnen)",
+        "aangemaaktOp": "2026-10-30T08:00:10.425Z",
+        "tot": "2026-10-31T08:00:10.425Z"
+      }
+    },
+    {
+      "id": "2692219228-v1",
+      "groepId": "2692219228",
+      "versie": 1,
+      "url": "https://lokaleregelgeving.overheid.nl/CVDR768336/1",
+      "kop": "Zaanstad draagt vergunningverlening sociale koopwoningen over aan BKZ B.V.",
+      "tekst": "Het college van burgemeester en wethouders van Zaanstad verleent mandaat aan de directeur-bestuurder van Betaalbare Koopwoningen Zaanstad B.V. Dit mandaat is bedoeld voor het nemen van besluiten over huisvestingsvergunningen voor sociale betaalbare koopwoningen. De maatregel moet zorgen voor een efficiënte en doelmatige uitvoering van de vergunningverlening bij aangewezen projecten.",
+      "rubriek": "GEM",
+      "tagBron": "ai",
+      "herkomst": "officieel",
+      "prio": 4,
+      "tijd": "2026-10-29T23:00:00.000Z",
+      "heeftTijd": false,
+      "woorden": 785,
+      "afgekapt": false,
+      "bronId": "wetenregelgeving",
+      "bronNaam": "Lokale regelgeving — Zaanstad",
+      "ai": true,
+      "controle": "cijfers-ok",
+      "eerstGezienOp": "2026-10-30T08:00:10.425Z",
+      "gecontroleerdOp": "2026-10-30T08:00:10.425Z",
+      "bronTitel": "Mandaatbesluit huisvestingsvergunningen BKZ 2026",
+      "bronLengte": 5762,
+      "checklist": {
+        "gevaar": false,
+        "evacuatieOfNlAlert": false,
+        "gewondenOfDoden": false,
+        "bestuurlijkeCrisis": false,
+        "besluitMetGrootGevolg": false,
+        "tijdkritisch": false,
+        "betrokkenen": null,
+        "geldbedragEuro": null,
+        "banen": null,
+        "inRegio": true
+      },
+      "checklistBron": "ai",
+      "clusterId": "2692219228"
+    },
+    {
+      "id": "f78cb11126-v1",
+      "groepId": "f78cb11126",
+      "versie": 1,
+      "url": "https://www.deorkaan.nl/winterjassen-voor-taalcafe-en-kledingbank/",
+      "kop": "Winterjassen voor taalcafé en kledingbank",
+      "tekst": null,
+      "rubriek": "ALG",
+      "tagBron": "geen",
+      "herkomst": "signaal",
+      "prio": 3,
+      "tijd": "2026-10-29T23:00:00.000Z",
+      "heeftTijd": false,
+      "woorden": 362,
+      "afgekapt": false,
+      "bronId": "DeOrkaan",
+      "bronNaam": "DeOrkaan",
+      "ai": false,
+      "controle": "analyse-ok",
+      "eerstGezienOp": "2026-10-30T08:00:10.425Z",
+      "gecontroleerdOp": "2026-10-30T08:00:10.425Z",
+      "bronTitel": "Winterjassen voor taalcafé en kledingbank",
+      "bronLengte": 2197,
+      "checklist": {
+        "gevaar": false,
+        "evacuatieOfNlAlert": false,
+        "gewondenOfDoden": false,
+        "bestuurlijkeCrisis": false,
+        "besluitMetGrootGevolg": false,
+        "tijdkritisch": false,
+        "betrokkenen": 330,
+        "geldbedragEuro": null,
+        "banen": null,
+        "inRegio": true
+      },
+      "checklistBron": "ai",
+      "analyse": true
+    },
+    {
+      "id": "52c4814926-v1",
+      "groepId": "52c4814926",
+      "versie": 1,
+      "url": "https://www.deorkaan.nl/in-zaanstad-krijgt-een-op-de-negen-jongeren-jeugdzorg/",
+      "kop": "In Zaanstad krijgt één op de negen jongeren jeugdzorg",
+      "tekst": null,
+      "rubriek": "ALG",
+      "tagBron": "geen",
+      "herkomst": "signaal",
+      "prio": 3,
+      "tijd": "2026-10-29T23:00:00.000Z",
+      "heeftTijd": false,
+      "woorden": 405,
+      "afgekapt": false,
+      "bronId": "DeOrkaan",
+      "bronNaam": "DeOrkaan",
+      "ai": false,
+      "controle": "analyse-ok",
+      "eerstGezienOp": "2026-10-30T08:00:10.425Z",
+      "gecontroleerdOp": "2026-10-30T08:00:10.425Z",
+      "bronTitel": "In Zaanstad krijgt één op de negen jongeren jeugdzorg",
+      "bronLengte": 2521,
+      "checklist": {
+        "gevaar": false,
+        "evacuatieOfNlAlert": false,
+        "gewondenOfDoden": false,
+        "bestuurlijkeCrisis": false,
+        "besluitMetGrootGevolg": false,
+        "tijdkritisch": false,
+        "betrokkenen": 392000,
+        "geldbedragEuro": null,
+        "banen": null,
+        "inRegio": true
+      },
+      "checklistBron": "ai",
+      "analyse": true
+    },
+    {
+      "id": "c790daa75e-v1",
+      "groepId": "c790daa75e",
+      "versie": 1,
+      "url": "https://www.noord-holland.nl/Actueel/Archief/2026/Oktober_2026/Terugblik_op_busvervoer_2025",
+      "kop": "Provincie publiceert jaarverslag openbaar vervoer 2025 met lichte daling busreizigers",
+      "tekst": "De provincie Noord-Holland publiceert het jaarverslag openbaar vervoer 2025. In 2025 was er na jaren van groei een kleine daling van 2% van het aantal mensen dat met de bus ging. Reizigers gaven het regionale busvervoer in 2025 gemiddeld een 7,8.",
+      "rubriek": "PRV",
+      "tagBron": "ai",
+      "herkomst": "officieel",
+      "prio": 3,
+      "tijd": "2026-10-29T11:50:55.000Z",
+      "heeftTijd": true,
+      "woorden": 287,
+      "afgekapt": false,
+      "bronId": "nh-actueel",
+      "bronNaam": "Provincie Noord-Holland — Actueel",
+      "ai": true,
+      "controle": "cijfers-ok",
+      "eerstGezienOp": "2026-10-30T08:00:10.425Z",
+      "gecontroleerdOp": "2026-10-30T08:00:10.425Z",
+      "bronTitel": "Terugblik op busvervoer 2025",
+      "bronLengte": 1793,
+      "checklist": {
+        "gevaar": false,
+        "evacuatieOfNlAlert": false,
+        "gewondenOfDoden": false,
+        "bestuurlijkeCrisis": false,
+        "besluitMetGrootGevolg": false,
+        "tijdkritisch": false,
+        "betrokkenen": null,
+        "geldbedragEuro": null,
+        "banen": null,
+        "inRegio": false
+      },
+      "checklistBron": "ai"
+    },
+    {
+      "id": "d03a376771-v1",
+      "groepId": "d03a376771",
+      "versie": 1,
+      "url": "https://www.noord-holland.nl/Actueel/Archief/2026/Oktober_2026/Provincie_werkt_aan_asfalt_op_de_N243_en_N242_bij_Alkmaar_begin_november",
+      "kop": "Provincie voert in begin november herstelwerkzaamheden uit aan asfalt op N243 en N242",
+      "tekst": "In de week van 2 tot en met 6 november voert de provincie asfaltwerkzaamheden uit op de N243 en de N242 bij Alkmaar. De wegen zijn tijdens deze werkzaamheden op verschillende nachten afgesloten en er gelden diverse omleidingen voor verkeer. Weggebruikers moeten rekening houden met extra reistijd.",
+      "rubriek": "VER",
+      "tagBron": "ai",
+      "herkomst": "officieel",
+      "prio": 2,
+      "tijd": "2026-10-29T10:41:40.000Z",
+      "heeftTijd": true,
+      "woorden": 565,
+      "afgekapt": false,
+      "bronId": "nh-actueel",
+      "bronNaam": "Provincie Noord-Holland — Actueel",
+      "ai": true,
+      "controle": "cijfers-ok",
+      "eerstGezienOp": "2026-10-30T08:00:10.425Z",
+      "gecontroleerdOp": "2026-10-30T08:00:10.425Z",
+      "bronTitel": "Provincie werkt aan asfalt op de N243 en N242 bij Alkmaar begin november",
+      "bronLengte": 3721,
+      "checklist": {
+        "gevaar": false,
+        "evacuatieOfNlAlert": false,
+        "gewondenOfDoden": false,
+        "bestuurlijkeCrisis": false,
+        "besluitMetGrootGevolg": false,
+        "tijdkritisch": true,
+        "betrokkenen": null,
+        "geldbedragEuro": null,
+        "banen": null,
+        "inRegio": false
+      },
+      "checklistBron": "ai"
+    },
+    {
+      "id": "23b8a9279e-v1",
+      "groepId": "23b8a9279e",
+      "versie": 1,
+      "url": "https://www.noord-holland.nl/Actueel/Archief/2026/Oktober_2026/Werkgelegenheid_in_detailhandel_groeit_ondanks_afname_van_winkels_en_winkelmeters",
+      "kop": "Werkgelegenheid detailhandel in Noord-Holland stijgt licht ondanks afname winkels",
+      "tekst": "De werkgelegenheid in de detailhandel in Noord-Holland is met 1,1% toegenomen ten opzichte van 2024. Het aantal banen in deze sector steeg naar meer dan 166.000, terwijl het aantal winkels en het totale winkelvloeroppervlakte bleven dalen. De groei is vooral te zien bij online winkels en internetverkoop.",
+      "rubriek": "BED",
+      "tagBron": "ai",
+      "herkomst": "officieel",
+      "prio": 3,
+      "tijd": "2026-10-29T10:18:40.000Z",
+      "heeftTijd": true,
+      "woorden": 564,
+      "afgekapt": false,
+      "bronId": "nh-actueel",
+      "bronNaam": "Provincie Noord-Holland — Actueel",
+      "ai": true,
+      "controle": "cijfers-ok",
+      "eerstGezienOp": "2026-10-30T08:00:10.425Z",
+      "gecontroleerdOp": "2026-10-30T08:00:10.425Z",
+      "bronTitel": "Werkgelegenheid in detailhandel groeit ondanks afname van winkels en winkelmeters",
+      "bronLengte": 4062,
+      "checklist": {
+        "gevaar": false,
+        "evacuatieOfNlAlert": false,
+        "gewondenOfDoden": false,
+        "bestuurlijkeCrisis": false,
+        "besluitMetGrootGevolg": false,
+        "tijdkritisch": false,
+        "betrokkenen": null,
+        "geldbedragEuro": null,
+        "banen": 166000,
+        "inRegio": false
+      },
+      "checklistBron": "ai"
+    },
+    {
+      "id": "fe53d8bb27-v1",
+      "groepId": "fe53d8bb27",
+      "versie": 1,
+      "url": "https://www.noord-holland.nl/Actueel/Archief/2026/Oktober_2026/Komende_jaren_meer_ruimte_voor_sport_in_Noord_Holland",
+      "kop": "Provincie Noord-Holland stelt actieprogramma vast voor sport en beweging",
+      "tekst": "De provincie Noord-Holland zet met het Actieprogramma Sport Noord-Holland 2027-2031 de komende vijf jaar stappen voor een sportief en veilig sportklimaat. De provincie richt zich hierbij op onderwerpen die de gemeentegrenzen overstijgen, zoals regionale samenwerking, sociale veiligheid en talentontwikkeling. Uiterlijk in 2028 moeten ten minste drie regio's een gezamenlijke sportagenda hebben.",
+      "rubriek": "PRV",
+      "tagBron": "ai",
+      "herkomst": "officieel",
+      "prio": 3,
+      "tijd": "2026-10-29T09:12:40.000Z",
+      "heeftTijd": true,
+      "woorden": 531,
+      "afgekapt": false,
+      "bronId": "nh-actueel",
+      "bronNaam": "Provincie Noord-Holland — Actueel",
+      "ai": true,
+      "controle": "cijfers-ok",
+      "eerstGezienOp": "2026-10-30T08:00:10.425Z",
+      "gecontroleerdOp": "2026-10-30T08:00:10.425Z",
+      "bronTitel": "Komende jaren meer ruimte voor sport in Noord-Holland",
+      "bronLengte": 3943,
+      "checklist": {
+        "gevaar": false,
+        "evacuatieOfNlAlert": false,
+        "gewondenOfDoden": false,
+        "bestuurlijkeCrisis": false,
+        "besluitMetGrootGevolg": false,
+        "tijdkritisch": false,
+        "betrokkenen": null,
+        "geldbedragEuro": null,
+        "banen": null,
+        "inRegio": false
+      },
+      "checklistBron": "ai"
+    },
+    {
+      "id": "7e3e66d3e8-v1",
+      "groepId": "7e3e66d3e8",
+      "versie": 1,
+      "url": "https://www.noord-holland.nl/Actueel/Archief/2026/Oktober_2026/Kandidaten_burgemeester_Schagen",
+      "kop": "Tien personen solliciteren naar functie van burgemeester in Schagen",
+      "tekst": "Naar de opengestelde vacature voor burgemeester van de gemeente Schagen hebben tien personen gesolliciteerd. Onder de sollicitanten bevinden zich drie vrouwen en zeven mannen. De nieuwe burgemeester wordt naar verwachting in maart 2027 benoemd.",
+      "rubriek": "GEM",
+      "tagBron": "ai",
+      "herkomst": "officieel",
+      "prio": 4,
+      "tijd": "2026-10-29T08:51:55.000Z",
+      "heeftTijd": true,
+      "woorden": 117,
+      "afgekapt": false,
+      "bronId": "nh-actueel",
+      "bronNaam": "Provincie Noord-Holland — Actueel",
+      "ai": true,
+      "controle": "cijfers-ok",
+      "eerstGezienOp": "2026-10-30T08:00:10.425Z",
+      "gecontroleerdOp": "2026-10-30T08:00:10.425Z",
+      "bronTitel": "Kandidaten burgemeester Schagen",
+      "bronLengte": 795,
+      "checklist": {
+        "gevaar": false,
+        "evacuatieOfNlAlert": false,
+        "gewondenOfDoden": false,
+        "bestuurlijkeCrisis": false,
+        "besluitMetGrootGevolg": false,
+        "tijdkritisch": false,
+        "betrokkenen": 10,
+        "geldbedragEuro": null,
+        "banen": null,
+        "inRegio": false
+      },
+      "checklistBron": "ai"
+    },
+    {
+      "id": "58ce90fd3b-v1",
+      "groepId": "58ce90fd3b",
+      "versie": 1,
+      "url": "https://zaanstad.bestuurlijkeinformatie.nl/Document/View/80874d5d-0b0b-43e3-bcb5-72a7276982ff",
+      "kop": "College van B&W Zaanstad neemt besluiten over erepennen en Volkshuisvestingsfonds",
+      "tekst": "Het college van B&W van Zaanstad heeft in oktober besluiten genomen over meerdere voorstellen voor de gemeentelijke erepenning. Zo is akkoord gegaan met het uitreiken van twee erepennen en het niet toekennen van een derde voorgedragen kandidaat. Ook is besloten om de stand van zaken van het Volkshuisvestingsfonds ter kennisname aan de raad aan te bieden.",
+      "rubriek": "GEM",
+      "tagBron": "ai",
+      "herkomst": "officieel",
+      "prio": 4,
+      "tijd": "2026-10-28T23:00:00.000Z",
+      "heeftTijd": false,
+      "woorden": 542,
+      "afgekapt": false,
+      "bronId": "ibabs-collegeberichten",
+      "bronNaam": "Zaanstad — Collegeberichten (iBabs)",
+      "ai": true,
+      "controle": "cijfers-ok",
+      "eerstGezienOp": "2026-10-30T08:00:10.425Z",
+      "gecontroleerdOp": "2026-10-30T08:00:10.425Z",
+      "bronTitel": "Besluitenlijst B&W vergaderingen 20-10-26 en 21-10-26 (Circulatievergaderingen)",
+      "bronLengte": 4170,
+      "checklist": {
+        "gevaar": false,
+        "evacuatieOfNlAlert": false,
+        "gewondenOfDoden": false,
+        "bestuurlijkeCrisis": false,
+        "besluitMetGrootGevolg": false,
+        "tijdkritisch": false,
+        "betrokkenen": null,
+        "geldbedragEuro": null,
+        "banen": null,
+        "inRegio": true
+      },
+      "checklistBron": "ai"
+    },
+    {
+      "id": "beb9442086-v1",
+      "groepId": "beb9442086",
+      "versie": 1,
+      "url": "https://zaanstad.bestuurlijkeinformatie.nl/Document/View/1db3f1b5-8008-453f-a779-2804fc19f9a8",
+      "kop": "Zaanstad dient ambtelijke zienswijze in op toekomstvisie Hoogheemraadschap",
+      "tekst": "Het Hoogheemraadschap Hollands Noorderkwartier heeft een ontwerp-Toekomstvisie 2050+ opgesteld over onder meer waterveiligheid en klimaatverandering. Zaanstad ontving het stuk via de regionale samenwerking en liet wegens een korte reactietermijn een ambtelijke zienswijze indienen. De gemeente vraagt daarin onder meer om vroegtijdig inzicht in de gevolgen voor ruimtelijke ontwikkelingen.",
+      "rubriek": "PRV",
+      "tagBron": "ai",
+      "herkomst": "officieel",
+      "prio": 3,
+      "tijd": "2026-10-28T23:00:00.000Z",
+      "heeftTijd": false,
+      "woorden": 831,
+      "afgekapt": true,
+      "bronId": "ibabs-collegeberichten",
+      "bronNaam": "Zaanstad — Collegeberichten (iBabs)",
+      "ai": true,
+      "controle": "cijfers-ok",
+      "eerstGezienOp": "2026-10-30T08:00:10.425Z",
+      "gecontroleerdOp": "2026-10-30T08:00:10.425Z",
+      "bronTitel": "Zienswijze toekomstvisie 2050 Hoogheemraadschap Hollands Noorderkwartier",
+      "bronLengte": 6464,
+      "checklist": {
+        "gevaar": false,
+        "evacuatieOfNlAlert": false,
+        "gewondenOfDoden": false,
+        "bestuurlijkeCrisis": false,
+        "besluitMetGrootGevolg": false,
+        "tijdkritisch": false,
+        "betrokkenen": null,
+        "geldbedragEuro": null,
+        "banen": null,
+        "inRegio": true
+      },
+      "checklistBron": "ai"
+    },
+    {
+      "id": "f8352cb71b-v1",
+      "groepId": "f8352cb71b",
+      "versie": 1,
+      "url": "https://zaanstad.bestuurlijkeinformatie.nl/Document/View/380be766-2ba6-4b52-9fbb-4914a049806a",
+      "kop": "Gemeente past plannen voor herinrichting Damgebied aan",
+      "tekst": "De herinrichting van het Damgebied leidt tot wijzigingen in de kredietraming, waaronder het verwijderen van overkappingen bij de Zilverpadsteeg voor ongeveer 90.000 euro. Daarnaast worden bomen in de volle grond geplaatst wat onderhoudskosten bespaart, en komt de aangekondigde waterspeelplaats te vervallen. Gesprekken over grondtransacties met het Hoogheemraadschap Hollands Noorderkwartier zijn gaande.",
+      "rubriek": "GEM",
+      "tagBron": "ai",
+      "herkomst": "officieel",
+      "prio": 3,
+      "tijd": "2026-10-28T23:00:00.000Z",
+      "heeftTijd": false,
+      "woorden": 1350,
+      "afgekapt": true,
+      "bronId": "ibabs-collegeberichten",
+      "bronNaam": "Zaanstad — Collegeberichten (iBabs)",
+      "ai": true,
+      "controle": "cijfers-ok",
+      "eerstGezienOp": "2026-10-30T08:00:10.425Z",
+      "gecontroleerdOp": "2026-10-30T08:00:10.425Z",
+      "bronTitel": "Herinrichting Dam gebied",
+      "bronLengte": 9305,
+      "checklist": {
+        "gevaar": false,
+        "evacuatieOfNlAlert": false,
+        "gewondenOfDoden": false,
+        "bestuurlijkeCrisis": false,
+        "besluitMetGrootGevolg": false,
+        "tijdkritisch": false,
+        "betrokkenen": null,
+        "geldbedragEuro": 90000,
+        "banen": null,
+        "inRegio": true
+      },
+      "checklistBron": "ai"
+    },
+    {
+      "id": "b99a2e283e-v1",
+      "groepId": "b99a2e283e",
+      "versie": 1,
+      "url": "https://zaanstad.bestuurlijkeinformatie.nl/Document/View/5594841d-ba02-43d5-b010-ab47bc9ccbdb",
+      "kop": "Oekraïne-opvanglocatie Saendenborch in Zaandam officieel gesloten en opgeleverd",
+      "tekst": "Het pand Saendenborch is schoon en leeg opgeleverd aan de eigenaar na de sluiting als opvanglocatie voor Oekraïners. Voor vrijwel alle circa 425 bewoners is elders een opvangplek gevonden, voornamelijk in regiogemeenten. Vijf bewoners worden tijdelijk opgevangen in het City Trip Hostels Zaandam, waarbij de kosten door het Rijk worden vergoed.",
+      "rubriek": "GEM",
+      "tagBron": "ai",
+      "herkomst": "officieel",
+      "prio": 2,
+      "tijd": "2026-10-28T23:00:00.000Z",
+      "heeftTijd": false,
+      "woorden": 159,
+      "afgekapt": false,
+      "bronId": "ibabs-collegeberichten",
+      "bronNaam": "Zaanstad — Collegeberichten (iBabs)",
+      "ai": true,
+      "controle": "cijfers-ok",
+      "eerstGezienOp": "2026-10-30T08:00:10.425Z",
+      "gecontroleerdOp": "2026-10-30T08:00:10.425Z",
+      "bronTitel": "Kennisgeving wethouder Van der Laan: Sluiting en oplevering Saendenborch",
+      "bronLengte": 1064,
+      "checklist": {
+        "gevaar": false,
+        "evacuatieOfNlAlert": false,
+        "gewondenOfDoden": false,
+        "bestuurlijkeCrisis": false,
+        "besluitMetGrootGevolg": true,
+        "tijdkritisch": false,
+        "betrokkenen": 425,
+        "geldbedragEuro": null,
+        "banen": null,
+        "inRegio": true
+      },
+      "checklistBron": "ai",
+      "alertKandidaat": {
+        "niveau": "oranje",
+        "categorie": "bestuur",
+        "reden": "besluit met groot gevolg (officiële bron)",
+        "aangemaaktOp": "2026-10-30T08:00:10.425Z",
+        "tot": "2026-10-31T08:00:10.425Z"
+      }
+    },
+    {
+      "id": "5f8e22d6be-v1",
+      "groepId": "5f8e22d6be",
+      "versie": 1,
+      "url": "https://zaanstad.bestuurlijkeinformatie.nl/Document/View/7e314017-d2a2-4790-bef8-728519bd28fd",
+      "kop": "Gemeente en provincie informeren raad over voortgang gebiedsproces Polder Westzaan",
+      "tekst": "Zaanstad en de provincie Noord-Holland informeren de gemeenteraad over de ontwikkelingen in Polder Westzaan. Het gebiedsproces startte in 2021 en leidde tot verschillende visies en een in januari 2025 ondertekende samenwerkingsverklaring. Betrokken partijen werken samen aan een toekomstbestendige polder ondanks veranderingen in rijks- en provinciale middelen.",
+      "rubriek": "PRV",
+      "tagBron": "ai",
+      "herkomst": "officieel",
+      "prio": 4,
+      "tijd": "2026-10-28T23:00:00.000Z",
+      "heeftTijd": false,
+      "woorden": 1999,
+      "afgekapt": true,
+      "bronId": "ibabs-collegeberichten",
+      "bronNaam": "Zaanstad — Collegeberichten (iBabs)",
+      "ai": true,
+      "controle": "cijfers-ok",
+      "eerstGezienOp": "2026-10-30T08:00:10.425Z",
+      "gecontroleerdOp": "2026-10-30T08:00:10.425Z",
+      "bronTitel": "Voortgang Gebiedsproces Polder Westzaan",
+      "bronLengte": 15069,
+      "checklist": {
+        "gevaar": false,
+        "evacuatieOfNlAlert": false,
+        "gewondenOfDoden": false,
+        "bestuurlijkeCrisis": false,
+        "besluitMetGrootGevolg": false,
+        "tijdkritisch": false,
+        "betrokkenen": null,
+        "geldbedragEuro": null,
+        "banen": null,
+        "inRegio": true
+      },
+      "checklistBron": "ai"
+    },
+    {
+      "id": "dd538db5e6-v1",
+      "groepId": "dd538db5e6",
+      "versie": 1,
+      "url": "https://zaanstad.bestuurlijkeinformatie.nl/Document/View/72b96eaa-40ed-4bde-bb8d-fd2566e1347b",
+      "kop": "Gemeenteraad Krimpen aan den IJssel roept op tot steun tegen intimidatie",
+      "tekst": "De gemeenteraad van Krimpen aan den IJssel heeft unaniem een motie aangenomen genaamd 'Een aanval op 1 is een aanval op allen'. Daarin roept de raad andere gemeenteraden op om zich gezamenlijk uit te spreken tegen agressie en intimidatie richting lokale politieke ambtsdragers en ambtenaren. De griffie van Krimpen aan den IJssel heeft deze motie onder de aandacht gebracht van de raad in Zaanstad.",
+      "rubriek": "GEM",
+      "tagBron": "ai",
+      "herkomst": "officieel",
+      "prio": 3,
+      "tijd": "2026-10-28T23:00:00.000Z",
+      "heeftTijd": false,
+      "woorden": 144,
+      "afgekapt": false,
+      "bronId": "ibabs-ingekomen-stukken",
+      "bronNaam": "Zaanstad — Ingekomen stukken (iBabs)",
+      "ai": true,
+      "controle": "cijfers-ok",
+      "eerstGezienOp": "2026-10-30T08:00:10.425Z",
+      "gecontroleerdOp": "2026-10-30T08:00:10.425Z",
+      "bronTitel": "Motie vreemd - Een aanval op 1 is een aanval op allen",
+      "bronLengte": 946,
+      "checklist": {
+        "gevaar": false,
+        "evacuatieOfNlAlert": false,
+        "gewondenOfDoden": false,
+        "bestuurlijkeCrisis": false,
+        "besluitMetGrootGevolg": false,
+        "tijdkritisch": false,
+        "betrokkenen": null,
+        "geldbedragEuro": null,
+        "banen": null,
+        "inRegio": false
+      },
+      "checklistBron": "ai"
+    },
+    {
+      "id": "aafaf5dd0b-v1",
+      "groepId": "aafaf5dd0b",
+      "versie": 1,
+      "url": "https://zaanstad.bestuurlijkeinformatie.nl/Document/View/d02b8cf4-3e63-43a3-b3cb-c56d275d574b",
+      "kop": "Panel Werk en Inkomen reageert op begroting en bezuinigingen Zaanstad",
+      "tekst": "Het panel Werk en Inkomen van de gemeente Zaanstad heeft een brief gestuurd met een reactie op de begroting en de voorgenomen bezuinigingen. De leden hebben de brief ingediend via de mailbox voor cliëntenparticipatie om hun privémailadressen af te schermen vanwege hun kwetsbare positie. De brief is doorgestuurd naar de raadsgriffie voor publicatie en verspreiding onder de raadsleden.",
+      "rubriek": "GEM",
+      "tagBron": "ai",
+      "herkomst": "officieel",
+      "prio": 3,
+      "tijd": "2026-10-28T23:00:00.000Z",
+      "heeftTijd": false,
+      "woorden": 120,
+      "afgekapt": false,
+      "bronId": "ibabs-ingekomen-stukken",
+      "bronNaam": "Zaanstad — Ingekomen stukken (iBabs)",
+      "ai": true,
+      "controle": "cijfers-ok",
+      "eerstGezienOp": "2026-10-30T08:00:10.425Z",
+      "gecontroleerdOp": "2026-10-30T08:00:10.425Z",
+      "bronTitel": "Voorstellen voor een effectief en rechtvaardig sociaal beleid",
+      "bronLengte": 822,
+      "checklist": {
+        "gevaar": false,
+        "evacuatieOfNlAlert": false,
+        "gewondenOfDoden": false,
+        "bestuurlijkeCrisis": false,
+        "besluitMetGrootGevolg": false,
+        "tijdkritisch": false,
+        "betrokkenen": null,
+        "geldbedragEuro": null,
+        "banen": null,
+        "inRegio": true
+      },
+      "checklistBron": "ai"
+    },
+    {
+      "id": "c5bb09ed0a-v1",
+      "groepId": "c5bb09ed0a",
+      "versie": 1,
+      "url": "https://zaanstad.bestuurlijkeinformatie.nl/Document/View/46359542-6cf9-41c9-b19b-b947686df138",
+      "kop": "Klimaatbulletin waarschuwt voor zeespiegelstijging en betwist menselijke rol",
+      "tekst": "Een uitgegeven klimaatbulletin stelt dat in de provincies Noord- en Zuid-Holland tegen 2100 gemiddeld 2,5 meter Noordzeewater staat en dat 94 gemeenten onder water verdwijnen. Volgens de opsteller is klimaatverandering een natuurlijk proces en is de menselijke invloed daarop verwaarloosbaar. Het bulletin uit kritiek op het Parijse klimaatakkoord en het stikstofbeleid.",
+      "rubriek": "GEM",
+      "tagBron": "bron",
+      "herkomst": "officieel",
+      "prio": 4,
+      "tijd": "2026-10-28T23:00:00.000Z",
+      "heeftTijd": false,
+      "woorden": 2311,
+      "afgekapt": true,
+      "bronId": "ibabs-ingekomen-stukken",
+      "bronNaam": "Zaanstad — Ingekomen stukken (iBabs)",
+      "ai": true,
+      "controle": "cijfers-ok",
+      "eerstGezienOp": "2026-10-30T08:00:10.425Z",
+      "gecontroleerdOp": "2026-10-30T08:00:10.425Z",
+      "bronTitel": "Klimaatbulletin 1-10-26",
+      "bronLengte": 15027,
+      "checklist": {
+        "gevaar": false,
+        "evacuatieOfNlAlert": false,
+        "gewondenOfDoden": false,
+        "bestuurlijkeCrisis": false,
+        "besluitMetGrootGevolg": false,
+        "tijdkritisch": false,
+        "betrokkenen": null,
+        "geldbedragEuro": null,
+        "banen": null,
+        "inRegio": false
+      },
+      "checklistBron": "ai"
+    },
+    {
+      "id": "5915f82b3f-v1",
+      "groepId": "5915f82b3f",
+      "versie": 1,
+      "url": "https://zoek.officielebekendmakingen.nl/gmb-2026-497454.html",
+      "kop": "Zaanstad wijzigt Huisvestingsverordening 2025 voor betaalbare koopwoningen",
+      "tekst": "De raad van de gemeente Zaanstad heeft de tweede wijziging van de Huisvestingsverordening 2025 vastgesteld. In de verordening is onder meer een definitie toegevoegd voor een betaalbare koopwoning met een maximale waarde tot de nationaal vastgestelde betaalbaarheidsgrens. Ook zijn de regels rond het werkingsgebied van particuliere huurwoningen en de bestuurlijke boetes voor het omzetten van woonruimte aangepast.",
+      "rubriek": "GEM",
+      "tagBron": "ai",
+      "herkomst": "officieel",
+      "prio": 3,
+      "tijd": "2026-10-28T23:00:00.000Z",
+      "heeftTijd": false,
+      "woorden": 837,
+      "afgekapt": true,
+      "bronId": "bekendmakingen",
+      "bronNaam": "Officiële bekendmakingen — Zaanstad",
+      "ai": true,
+      "controle": "cijfers-ok",
+      "eerstGezienOp": "2026-10-30T08:00:10.425Z",
+      "gecontroleerdOp": "2026-10-30T08:00:10.425Z",
+      "bronTitel": "Huisvestingsverordening gemeente Zaanstad 2025",
+      "bronLengte": 5999,
+      "checklist": {
+        "gevaar": false,
+        "evacuatieOfNlAlert": false,
+        "gewondenOfDoden": false,
+        "bestuurlijkeCrisis": false,
+        "besluitMetGrootGevolg": true,
+        "tijdkritisch": false,
+        "betrokkenen": null,
+        "geldbedragEuro": null,
+        "banen": null,
+        "inRegio": true
+      },
+      "checklistBron": "ai",
+      "alertKandidaat": {
+        "niveau": "oranje",
+        "categorie": "bestuur",
+        "reden": "besluit met groot gevolg (officiële bron)",
+        "aangemaaktOp": "2026-10-30T08:00:10.425Z",
+        "tot": "2026-10-31T08:00:10.425Z"
+      }
+    },
+    {
+      "id": "60ef70f8ff-v1",
+      "groepId": "60ef70f8ff",
+      "versie": 1,
+      "url": "https://zoek.officielebekendmakingen.nl/gmb-2026-497451.html",
+      "kop": "College Zaanstad legt mandaat voor sociale koopwoningvergunningen vast",
+      "tekst": "Het college van burgemeester en wethouders van Zaanstad heeft een mandaat- en machtigingsbesluit genomen voor huisvestingsvergunningen van sociale betaalbare koopwoningen in 2026. De bevoegdheid om vergunningen te verlenen, weigeren en in te trekken is overgedragen aan de directeur-bestuurder van Betaalbare Koopwoningen Zaanstad B.V. Eventuele bezwaren tegen besluiten worden volgens de reguliere gemeentelijke bezwarenprocedure afgehandeld.",
+      "rubriek": "GEM",
+      "tagBron": "ai",
+      "herkomst": "officieel",
+      "prio": 4,
+      "tijd": "2026-10-28T23:00:00.000Z",
+      "heeftTijd": false,
+      "woorden": 643,
+      "afgekapt": false,
+      "bronId": "bekendmakingen",
+      "bronNaam": "Officiële bekendmakingen — Zaanstad",
+      "ai": true,
+      "controle": "cijfers-ok",
+      "eerstGezienOp": "2026-10-30T08:00:10.425Z",
+      "gecontroleerdOp": "2026-10-30T08:00:10.425Z",
+      "bronTitel": "Mandaat- machtigingsbesluit huisvestingsvergunning sociale betaalbare koopwoningen 2026",
+      "bronLengte": 4820,
+      "checklist": {
+        "gevaar": false,
+        "evacuatieOfNlAlert": false,
+        "gewondenOfDoden": false,
+        "bestuurlijkeCrisis": false,
+        "besluitMetGrootGevolg": false,
+        "tijdkritisch": false,
+        "betrokkenen": null,
+        "geldbedragEuro": null,
+        "banen": null,
+        "inRegio": true
+      },
+      "checklistBron": "ai",
+      "clusterId": "2692219228"
+    },
+    {
+      "id": "8ce4d51d16-v1",
+      "groepId": "8ce4d51d16",
+      "versie": 1,
+      "url": "https://zoek.officielebekendmakingen.nl/gmb-2026-494692.html",
+      "kop": "Gemeenteraad Zaanstad wijzigt omgevingsplan voor woning aan Krommeniedijk in Krommenie",
+      "tekst": "De gemeenteraad van Zaanstad heeft het omgevingsplan gewijzigd voor het noordelijke deel van het perceel aan de Krommeniedijk 75 in Krommenie. De bestemming verandert van agrarische productiegebieden naar wonen, waardoor omliggende gronden als erf en tuin kunnen worden gebruikt. Het wijzigingsbesluit ligt vanaf 30 oktober ter inzage op het stadhuis en online. Belanghebbenden kunnen tot en met 11 december 2026 beroep instellen bij de Raad van State.",
+      "rubriek": "GEM",
+      "tagBron": "ai",
+      "herkomst": "officieel",
+      "prio": 4,
+      "tijd": "2026-10-28T23:00:00.000Z",
+      "heeftTijd": false,
+      "woorden": 387,
+      "afgekapt": false,
+      "bronId": "bekendmakingen",
+      "bronNaam": "Officiële bekendmakingen — Zaanstad",
+      "ai": true,
+      "controle": "cijfers-ok",
+      "eerstGezienOp": "2026-10-30T08:00:10.425Z",
+      "gecontroleerdOp": "2026-10-30T08:00:10.425Z",
+      "bronTitel": "Kennisgeving vaststelling wijziging omgevingsplan gemeente Zaanstad – TAM-Omgevingsplan 22e Krommeniedijk 75",
+      "bronLengte": 2776,
+      "termijnen": [
+        {
+          "soort": "beroep",
+          "dag": "2026-12-11"
+        }
+      ],
+      "checklist": {
+        "gevaar": false,
+        "evacuatieOfNlAlert": false,
+        "gewondenOfDoden": false,
+        "bestuurlijkeCrisis": false,
+        "besluitMetGrootGevolg": false,
+        "tijdkritisch": false,
+        "betrokkenen": null,
+        "geldbedragEuro": null,
+        "banen": null,
+        "inRegio": true
+      },
+      "checklistBron": "ai"
+    },
+    {
+      "id": "bad2467dd1-v1",
+      "groepId": "bad2467dd1",
+      "versie": 1,
+      "url": "https://zoek.officielebekendmakingen.nl/gmb-2026-497439.html",
+      "kop": "Gemeente Zaanstad stelt inkomensgrenzen vast voor sociale betaalbare koopwoningen 2026",
+      "tekst": "Het college van burgemeester en wethouders van Zaanstad heeft de inkomensgrenzen vastgesteld voor sociale betaalbare koopwoningen met een koopprijs tot 365.000 euro in 2026. De grenzen verschillen per huishoudtype en inkomensgroep voor huishoudens die in aanmerking willen komen. Een huisvestingsvergunning kan uitsluitend worden verleend aan koopstarters wier huishoudinkomen onder deze vastgestelde grenzen blijft.",
+      "rubriek": "GEM",
+      "tagBron": "ai",
+      "herkomst": "officieel",
+      "prio": 3,
+      "tijd": "2026-10-28T23:00:00.000Z",
+      "heeftTijd": false,
+      "woorden": 473,
+      "afgekapt": false,
+      "bronId": "bekendmakingen",
+      "bronNaam": "Officiële bekendmakingen — Zaanstad",
+      "ai": true,
+      "controle": "cijfers-ok",
+      "eerstGezienOp": "2026-10-30T08:00:10.425Z",
+      "gecontroleerdOp": "2026-10-30T08:00:10.425Z",
+      "bronTitel": "Besluit Inkomensgrenzen sociale betaalbare koopwoningen 2026 Gemeente Zaanstad",
+      "bronLengte": 3497,
+      "checklist": {
+        "gevaar": false,
+        "evacuatieOfNlAlert": false,
+        "gewondenOfDoden": false,
+        "bestuurlijkeCrisis": false,
+        "besluitMetGrootGevolg": true,
+        "tijdkritisch": false,
+        "betrokkenen": null,
+        "geldbedragEuro": 365000,
+        "banen": null,
+        "inRegio": true
+      },
+      "checklistBron": "ai",
+      "clusterId": "bad2467dd1"
+    },
+    {
+      "id": "d9d4d4a35d-v1",
+      "groepId": "d9d4d4a35d",
+      "versie": 1,
+      "url": "https://www.deorkaan.nl/raad-zaanstad-druk-met-algemene-beschouwingen/",
+      "kop": "Raad Zaanstad druk met Algemene Beschouwingen",
+      "tekst": null,
+      "rubriek": "GEM",
+      "tagBron": "ai",
+      "herkomst": "signaal",
+      "prio": 3,
+      "tijd": "2026-10-28T23:00:00.000Z",
+      "heeftTijd": false,
+      "woorden": 151,
+      "afgekapt": false,
+      "bronId": "DeOrkaan",
+      "bronNaam": "DeOrkaan",
+      "ai": false,
+      "controle": "analyse-ok",
+      "eerstGezienOp": "2026-10-30T08:00:10.425Z",
+      "gecontroleerdOp": "2026-10-30T08:00:10.425Z",
+      "bronTitel": "Raad Zaanstad druk met Algemene Beschouwingen",
+      "bronLengte": 930,
+      "checklist": {
+        "gevaar": false,
+        "evacuatieOfNlAlert": false,
+        "gewondenOfDoden": false,
+        "bestuurlijkeCrisis": false,
+        "besluitMetGrootGevolg": false,
+        "tijdkritisch": false,
+        "betrokkenen": null,
+        "geldbedragEuro": null,
+        "banen": null,
+        "inRegio": true
+      },
+      "checklistBron": "ai",
+      "analyse": true
+    },
+    {
+      "id": "d08d2a28aa-v1",
+      "groepId": "d08d2a28aa",
+      "versie": 1,
+      "url": "https://www.deorkaan.nl/zaanse-olifantenpaadjes-xxxvi-vijverzoom-wildeman-westerkoog/",
+      "kop": "Zaanse Olifantenpaadjes XXXVI: Vijverzoom-Wildeman (Westerkoog)",
+      "tekst": null,
+      "rubriek": "ALG",
+      "tagBron": "geen",
+      "herkomst": "signaal",
+      "prio": 3,
+      "tijd": "2026-10-28T23:00:00.000Z",
+      "heeftTijd": false,
+      "woorden": 267,
+      "afgekapt": false,
+      "bronId": "DeOrkaan",
+      "bronNaam": "DeOrkaan",
+      "ai": false,
+      "controle": "analyse-ok",
+      "eerstGezienOp": "2026-10-30T08:00:10.425Z",
+      "gecontroleerdOp": "2026-10-30T08:00:10.425Z",
+      "bronTitel": "Zaanse Olifantenpaadjes XXXVI: Vijverzoom-Wildeman (Westerkoog)",
+      "bronLengte": 1654,
+      "checklist": {
+        "gevaar": false,
+        "evacuatieOfNlAlert": false,
+        "gewondenOfDoden": false,
+        "bestuurlijkeCrisis": false,
+        "besluitMetGrootGevolg": false,
+        "tijdkritisch": false,
+        "betrokkenen": null,
+        "geldbedragEuro": null,
+        "banen": null,
+        "inRegio": true
+      },
+      "checklistBron": "ai",
+      "analyse": true
+    },
+    {
+      "id": "e9463adf0f-v1",
+      "groepId": "e9463adf0f",
+      "versie": 1,
+      "url": "https://www.deorkaan.nl/wielapterinmijnwijk-nl-is-van-ons/",
+      "kop": "Gemeente betaalt ruim 8.000 euro voor website, De Orkaan koopt het adres voor 7 euro",
+      "tekst": null,
+      "rubriek": "GEM",
+      "tagBron": "ai",
+      "herkomst": "signaal",
+      "prio": 3,
+      "tijd": "2026-10-28T23:00:00.000Z",
+      "heeftTijd": false,
+      "woorden": 576,
+      "afgekapt": false,
+      "bronId": "DeOrkaan",
+      "bronNaam": "DeOrkaan",
+      "ai": false,
+      "controle": "analyse-ok",
+      "eerstGezienOp": "2026-10-30T08:00:10.425Z",
+      "gecontroleerdOp": "2026-10-30T08:00:10.425Z",
+      "bronTitel": "Gemeente betaalt ruim 8.000 euro voor website, De Orkaan koopt het adres voor 7 euro",
+      "bronLengte": 3679,
+      "checklist": {
+        "gevaar": false,
+        "evacuatieOfNlAlert": false,
+        "gewondenOfDoden": false,
+        "bestuurlijkeCrisis": false,
+        "besluitMetGrootGevolg": false,
+        "tijdkritisch": false,
+        "betrokkenen": null,
+        "geldbedragEuro": 8325,
+        "banen": null,
+        "inRegio": true
+      },
+      "checklistBron": "ai",
+      "analyse": true
+    },
+    {
+      "id": "0a1b029e20-v1",
+      "groepId": "0a1b029e20",
+      "versie": 1,
+      "url": "https://www.deorkaan.nl/waarheen-lichtjesavond-halloween-truckrun/",
+      "kop": "Waarheen: Lichtjesavond, Halloween, TruckRun",
+      "tekst": null,
+      "rubriek": "CUL",
+      "tagBron": "ai",
+      "herkomst": "signaal",
+      "prio": 3,
+      "tijd": "2026-10-28T23:00:00.000Z",
+      "heeftTijd": false,
+      "woorden": 221,
+      "afgekapt": false,
+      "bronId": "DeOrkaan",
+      "bronNaam": "DeOrkaan",
+      "ai": false,
+      "controle": "analyse-ok",
+      "eerstGezienOp": "2026-10-30T08:00:10.425Z",
+      "gecontroleerdOp": "2026-10-30T08:00:10.425Z",
+      "bronTitel": "Waarheen: Lichtjesavond, Halloween, TruckRun",
+      "bronLengte": 1427,
+      "checklist": {
+        "gevaar": false,
+        "evacuatieOfNlAlert": false,
+        "gewondenOfDoden": false,
+        "bestuurlijkeCrisis": false,
+        "besluitMetGrootGevolg": false,
+        "tijdkritisch": false,
+        "betrokkenen": null,
+        "geldbedragEuro": null,
+        "banen": null,
+        "inRegio": true
+      },
+      "checklistBron": "ai",
+      "analyse": true
+    },
+    {
+      "id": "249b658f6f-v1",
+      "groepId": "249b658f6f",
+      "versie": 1,
+      "url": "https://www.deorkaan.nl/de-orkaan-in-2-minuten-29-oktober-%f0%9f%8e%a7/",
+      "kop": "De Orkaan in 2 minuten: 29 oktober 🎧",
+      "tekst": null,
+      "rubriek": "ALG",
+      "tagBron": "geen",
+      "herkomst": "signaal",
+      "prio": 3,
+      "tijd": "2026-10-28T23:00:00.000Z",
+      "heeftTijd": false,
+      "woorden": 56,
+      "afgekapt": false,
+      "bronId": "DeOrkaan",
+      "bronNaam": "DeOrkaan",
+      "ai": false,
+      "controle": "analyse-ok",
+      "eerstGezienOp": "2026-10-30T08:00:10.425Z",
+      "gecontroleerdOp": "2026-10-30T08:00:10.425Z",
+      "bronTitel": "De Orkaan in 2 minuten: 29 oktober 🎧",
+      "bronLengte": 327,
+      "checklist": {
+        "gevaar": false,
+        "evacuatieOfNlAlert": false,
+        "gewondenOfDoden": false,
+        "bestuurlijkeCrisis": false,
+        "besluitMetGrootGevolg": false,
+        "tijdkritisch": false,
+        "betrokkenen": null,
+        "geldbedragEuro": null,
+        "banen": null,
+        "inRegio": true
+      },
+      "checklistBron": "ai",
+      "analyse": true
+    },
+    {
+      "id": "0dfc395fc0-v1",
+      "groepId": "0dfc395fc0",
+      "versie": 1,
+      "url": "https://www.deorkaan.nl/ook-loods-5-garage-vertrekt-uit-zaandam/",
+      "kop": "Ook Loods 5 Garage vertrekt uit Zaandam",
+      "tekst": null,
+      "rubriek": "BED",
+      "tagBron": "ai",
+      "herkomst": "signaal",
+      "prio": 3,
+      "tijd": "2026-10-28T23:00:00.000Z",
+      "heeftTijd": false,
+      "woorden": 373,
+      "afgekapt": false,
+      "bronId": "DeOrkaan",
+      "bronNaam": "DeOrkaan",
+      "ai": false,
+      "controle": "analyse-ok",
+      "eerstGezienOp": "2026-10-30T08:00:10.425Z",
+      "gecontroleerdOp": "2026-10-30T08:00:10.425Z",
+      "bronTitel": "Ook Loods 5 Garage vertrekt uit Zaandam",
+      "bronLengte": 2300,
+      "checklist": {
+        "gevaar": false,
+        "evacuatieOfNlAlert": false,
+        "gewondenOfDoden": false,
+        "bestuurlijkeCrisis": false,
+        "besluitMetGrootGevolg": false,
+        "tijdkritisch": false,
+        "betrokkenen": null,
+        "geldbedragEuro": null,
+        "banen": null,
+        "inRegio": true
+      },
+      "checklistBron": "ai",
+      "analyse": true
+    },
+    {
+      "id": "d544752dfe-v1",
+      "groepId": "d544752dfe",
+      "versie": 1,
+      "url": "https://www.deorkaan.nl/zestien-koereigers-aan-het-lopend-buffet-bij-krommenie-%f0%9f%93%b8/",
+      "kop": "Zestien koereigers aan het lopend buffet bij Krommenie 📸",
+      "tekst": null,
+      "rubriek": "CUL",
+      "tagBron": "ai",
+      "herkomst": "signaal",
+      "prio": 3,
+      "tijd": "2026-10-28T23:00:00.000Z",
+      "heeftTijd": false,
+      "woorden": 191,
+      "afgekapt": false,
+      "bronId": "DeOrkaan",
+      "bronNaam": "DeOrkaan",
+      "ai": false,
+      "controle": "analyse-ok",
+      "eerstGezienOp": "2026-10-30T08:00:10.425Z",
+      "gecontroleerdOp": "2026-10-30T08:00:10.425Z",
+      "bronTitel": "Zestien koereigers aan het lopend buffet bij Krommenie 📸",
+      "bronLengte": 1221,
+      "checklist": {
+        "gevaar": false,
+        "evacuatieOfNlAlert": false,
+        "gewondenOfDoden": false,
+        "bestuurlijkeCrisis": false,
+        "besluitMetGrootGevolg": false,
+        "tijdkritisch": false,
+        "betrokkenen": null,
+        "geldbedragEuro": null,
+        "banen": null,
+        "inRegio": true
+      },
+      "checklistBron": "ai",
+      "analyse": true
+    },
+    {
+      "id": "edeec2680d-v1",
+      "groepId": "edeec2680d",
+      "versie": 1,
+      "url": "https://www.deorkaan.nl/zaanse-begroting-ronde-twee-van-ai-tot-gemeentehuis/",
+      "kop": "Zaanse begroting ronde twee: van AI tot gemeentehuis",
+      "tekst": null,
+      "rubriek": "GEM",
+      "tagBron": "ai",
+      "herkomst": "signaal",
+      "prio": 3,
+      "tijd": "2026-10-28T23:00:00.000Z",
+      "heeftTijd": false,
+      "woorden": 671,
+      "afgekapt": false,
+      "bronId": "DeOrkaan",
+      "bronNaam": "DeOrkaan",
+      "ai": false,
+      "controle": "analyse-ok",
+      "eerstGezienOp": "2026-10-30T08:00:10.425Z",
+      "gecontroleerdOp": "2026-10-30T08:00:10.425Z",
+      "bronTitel": "Zaanse begroting ronde twee: van AI tot gemeentehuis",
+      "bronLengte": 4315,
+      "checklist": {
+        "gevaar": false,
+        "evacuatieOfNlAlert": false,
+        "gewondenOfDoden": false,
+        "bestuurlijkeCrisis": false,
+        "besluitMetGrootGevolg": true,
+        "tijdkritisch": false,
+        "betrokkenen": null,
+        "geldbedragEuro": 4000000,
+        "banen": null,
+        "inRegio": true
+      },
+      "checklistBron": "ai",
+      "analyse": true,
+      "alertKandidaat": {
+        "niveau": "oranje",
+        "categorie": "bestuur",
+        "reden": "besluit met groot gevolg (één bron)",
+        "aangemaaktOp": "2026-10-30T08:00:10.425Z",
+        "tot": "2026-10-31T08:00:10.425Z"
+      }
+    },
+    {
+      "id": "2ae378655c-v1",
+      "groepId": "2ae378655c",
+      "versie": 1,
+      "url": "https://www.deorkaan.nl/overzicht-verkeerssituatie-bouw-brug-krommenie/",
+      "kop": "Bij bouw Brug Krommenie: ritsen, keerlus en noodbrug",
+      "tekst": null,
+      "rubriek": "VER",
+      "tagBron": "ai",
+      "herkomst": "signaal",
+      "prio": 3,
+      "tijd": "2026-10-28T23:00:00.000Z",
+      "heeftTijd": false,
+      "woorden": 204,
+      "afgekapt": false,
+      "bronId": "DeOrkaan",
+      "bronNaam": "DeOrkaan",
+      "ai": false,
+      "controle": "analyse-ok",
+      "eerstGezienOp": "2026-10-30T08:00:10.425Z",
+      "gecontroleerdOp": "2026-10-30T08:00:10.425Z",
+      "bronTitel": "Bij bouw Brug Krommenie: ritsen, keerlus en noodbrug",
+      "bronLengte": 1303,
+      "checklist": {
+        "gevaar": false,
+        "evacuatieOfNlAlert": false,
+        "gewondenOfDoden": false,
+        "bestuurlijkeCrisis": false,
+        "besluitMetGrootGevolg": false,
+        "tijdkritisch": false,
+        "betrokkenen": null,
+        "geldbedragEuro": null,
+        "banen": null,
+        "inRegio": true
+      },
+      "checklistBron": "ai",
+      "analyse": true
+    },
+    {
+      "id": "93332513cb-v1",
+      "groepId": "93332513cb",
+      "versie": 1,
+      "url": "https://www.deorkaan.nl/bovenbouw-obs-in-t-veld-25-jaar-in-tijdelijke-huisvesting/",
+      "kop": "Bovenbouw OBS In ’t Veld 2,5 jaar in tijdelijke huisvesting",
+      "tekst": null,
+      "rubriek": "ONW",
+      "tagBron": "ai",
+      "herkomst": "signaal",
+      "prio": 3,
+      "tijd": "2026-10-28T23:00:00.000Z",
+      "heeftTijd": false,
+      "woorden": 318,
+      "afgekapt": false,
+      "bronId": "DeOrkaan",
+      "bronNaam": "DeOrkaan",
+      "ai": false,
+      "controle": "analyse-ok",
+      "eerstGezienOp": "2026-10-30T08:00:10.425Z",
+      "gecontroleerdOp": "2026-10-30T08:00:10.425Z",
+      "bronTitel": "Bovenbouw OBS In ’t Veld 2,5 jaar in tijdelijke huisvesting",
+      "bronLengte": 1960,
+      "checklist": {
+        "gevaar": false,
+        "evacuatieOfNlAlert": false,
+        "gewondenOfDoden": false,
+        "bestuurlijkeCrisis": false,
+        "besluitMetGrootGevolg": false,
+        "tijdkritisch": false,
+        "betrokkenen": null,
+        "geldbedragEuro": null,
+        "banen": null,
+        "inRegio": false
+      },
+      "checklistBron": "ai",
+      "analyse": true
+    },
+    {
       "id": "c2269f9c66-v2",
       "groepId": "c2269f9c66",
       "versie": 2,
       "url": "https://www.deorkaan.nl/dichter-bij-de-tijd-vol-is-vol/",
       "kop": "Dichter bij de tijd: vol is vol",
       "tekst": null,
-      "rubriek": "LOK",
+      "rubriek": "ALG",
       "herkomst": "signaal",
       "prio": 3,
       "tijd": "2026-10-26T14:05:21.411Z",
@@ -55,7 +1301,8 @@
       "eerstGezienOp": "2026-10-26T14:05:21.411Z",
       "gecontroleerdOp": "2026-10-26T14:05:21.411Z",
       "bronTitel": "Dichter bij de tijd: vol is vol",
-      "bronLengte": 1367
+      "bronLengte": 1367,
+      "tagBron": "geen"
     },
     {
       "id": "d7668c7cac-v1",
@@ -78,7 +1325,8 @@
       "eerstGezienOp": "2026-10-26T14:05:21.411Z",
       "gecontroleerdOp": "2026-10-26T14:05:21.411Z",
       "bronTitel": "Bloembollenbedrijf Kapiteyn uit Breezand ontvangt predicaat Koninklijk",
-      "bronLengte": 1717
+      "bronLengte": 1717,
+      "tagBron": "bron"
     },
     {
       "id": "fdcf6d39a1-v1",
@@ -87,7 +1335,7 @@
       "url": "https://www.deorkaan.nl/jonge-verslaggevers-van-obs-de-voorzaan-ondervragen-de-orkaan/",
       "kop": "Jonge verslaggevers van Obs de Voorzaan ondervragen De Orkaan",
       "tekst": null,
-      "rubriek": "LOK",
+      "rubriek": "ALG",
       "herkomst": "signaal",
       "prio": 3,
       "tijd": "2026-10-25T23:00:00.000Z",
@@ -101,7 +1349,8 @@
       "eerstGezienOp": "2026-10-26T14:05:21.411Z",
       "gecontroleerdOp": "2026-10-26T14:05:21.411Z",
       "bronTitel": "Jonge verslaggevers van Obs de Voorzaan ondervragen De Orkaan",
-      "bronLengte": 3678
+      "bronLengte": 3678,
+      "tagBron": "geen"
     },
     {
       "id": "9c89435878-v1",
@@ -110,7 +1359,7 @@
       "url": "https://www.deorkaan.nl/zaanse-olifantenpaadjes-xxxv-vlietsend-krommenie/",
       "kop": "Zaanse Olifantenpaadjes XXXV: Vlietsend, Krommenie",
       "tekst": null,
-      "rubriek": "LOK",
+      "rubriek": "ALG",
       "herkomst": "signaal",
       "prio": 3,
       "tijd": "2026-10-25T23:00:00.000Z",
@@ -124,7 +1373,8 @@
       "eerstGezienOp": "2026-10-26T14:05:21.411Z",
       "gecontroleerdOp": "2026-10-26T14:05:21.411Z",
       "bronTitel": "Zaanse Olifantenpaadjes XXXV: Vlietsend, Krommenie",
-      "bronLengte": 1637
+      "bronLengte": 1637,
+      "tagBron": "geen"
     },
     {
       "id": "8eabb519fc-v1",
@@ -133,7 +1383,7 @@
       "url": "https://www.deorkaan.nl/de-orkaan-in-2-minuten-26-oktober-%f0%9f%8e%a7/",
       "kop": "De Orkaan in 2 minuten: 26 oktober 🎧",
       "tekst": null,
-      "rubriek": "LOK",
+      "rubriek": "ALG",
       "herkomst": "signaal",
       "prio": 3,
       "tijd": "2026-10-25T23:00:00.000Z",
@@ -147,7 +1397,8 @@
       "eerstGezienOp": "2026-10-26T14:05:21.411Z",
       "gecontroleerdOp": "2026-10-26T14:05:21.411Z",
       "bronTitel": "De Orkaan in 2 minuten: 26 oktober 🎧",
-      "bronLengte": 329
+      "bronLengte": 329,
+      "tagBron": "geen"
     },
     {
       "id": "c2e8d82b1e-v1",
@@ -156,7 +1407,7 @@
       "url": "https://www.deorkaan.nl/50woordenfoto-peperbus/",
       "kop": "50woordenfoto: Peperbus…",
       "tekst": null,
-      "rubriek": "LOK",
+      "rubriek": "ALG",
       "herkomst": "signaal",
       "prio": 3,
       "tijd": "2026-10-25T23:00:00.000Z",
@@ -170,7 +1421,8 @@
       "eerstGezienOp": "2026-10-26T14:05:21.411Z",
       "gecontroleerdOp": "2026-10-26T14:05:21.411Z",
       "bronTitel": "50woordenfoto: Peperbus…",
-      "bronLengte": 582
+      "bronLengte": 582,
+      "tagBron": "geen"
     },
     {
       "id": "b3efb3215c-v1",
@@ -179,7 +1431,7 @@
       "url": "https://www.deorkaan.nl/phishing-controle-persoonsgegevens-mijn-overheid/",
       "kop": "Phishing: controle persoonsgegevens MijnOverheid",
       "tekst": null,
-      "rubriek": "LOK",
+      "rubriek": "ALG",
       "herkomst": "signaal",
       "prio": 3,
       "tijd": "2026-10-25T23:00:00.000Z",
@@ -206,7 +1458,8 @@
         "banen": null,
         "inRegio": false
       },
-      "analyse": true
+      "analyse": true,
+      "tagBron": "geen"
     },
     {
       "id": "80619494b4-v1",
@@ -215,7 +1468,7 @@
       "url": "https://www.deorkaan.nl/marina-houthavenkade-vliegt-binnen-bouwmarathon/",
       "kop": "Marina Houthavenkade vliegt binnen… #bouwmarathon",
       "tekst": null,
-      "rubriek": "LOK",
+      "rubriek": "ALG",
       "herkomst": "signaal",
       "prio": 3,
       "tijd": "2026-10-25T23:00:00.000Z",
@@ -229,7 +1482,8 @@
       "eerstGezienOp": "2026-10-26T14:05:21.411Z",
       "gecontroleerdOp": "2026-10-26T14:05:21.411Z",
       "bronTitel": "Marina Houthavenkade vliegt binnen… #bouwmarathon",
-      "bronLengte": 3519
+      "bronLengte": 3519,
+      "tagBron": "geen"
     },
     {
       "id": "1f27c8529b-v1",
@@ -238,7 +1492,7 @@
       "url": "https://www.deorkaan.nl/vrijwillige-brandweer-oostzaan-bestaat-100-jaar/",
       "kop": "Vrijwillige brandweer Oostzaan bestaat 100 jaar 🎧",
       "tekst": null,
-      "rubriek": "LOK",
+      "rubriek": "112",
       "herkomst": "signaal",
       "prio": 3,
       "tijd": "2026-10-25T23:00:00.000Z",
@@ -252,7 +1506,8 @@
       "eerstGezienOp": "2026-10-26T14:05:21.411Z",
       "gecontroleerdOp": "2026-10-26T14:05:21.411Z",
       "bronTitel": "Vrijwillige brandweer Oostzaan bestaat 100 jaar 🎧",
-      "bronLengte": 1594
+      "bronLengte": 1594,
+      "tagBron": "trefwoord"
     },
     {
       "id": "35a21976df-v1",
@@ -261,7 +1516,7 @@
       "url": "https://www.deorkaan.nl/sport-heren-zv-de-zaan-mogen-door-in-europa/",
       "kop": "Sport: heren ZV de Zaan mogen door in Europa",
       "tekst": null,
-      "rubriek": "LOK",
+      "rubriek": "ALG",
       "herkomst": "signaal",
       "prio": 3,
       "tijd": "2026-10-25T23:00:00.000Z",
@@ -275,7 +1530,8 @@
       "eerstGezienOp": "2026-10-26T14:05:21.411Z",
       "gecontroleerdOp": "2026-10-26T14:05:21.411Z",
       "bronTitel": "Sport: heren ZV de Zaan mogen door in Europa",
-      "bronLengte": 5254
+      "bronLengte": 5254,
+      "tagBron": "geen"
     },
     {
       "id": "19089101d3-v1",
@@ -284,7 +1540,7 @@
       "url": "https://www.deorkaan.nl/zaans-voor-t-hekje-steekpartij-en-explosie/",
       "kop": "Zaans voor ’t hekje: steekpartij en explosie",
       "tekst": null,
-      "rubriek": "LOK",
+      "rubriek": "112",
       "herkomst": "signaal",
       "prio": 3,
       "tijd": "2026-10-25T23:00:00.000Z",
@@ -342,7 +1598,8 @@
         "b6fb147654",
         "5a2aef5c99",
         "df48aaaba7"
-      ]
+      ],
+      "tagBron": "trefwoord"
     },
     {
       "id": "4b05ab7cb7-v2",
@@ -351,7 +1608,7 @@
       "url": "https://www.deorkaan.nl/koninklijk-bezoek-op-de-dansvloer-bij-hemkade48/",
       "kop": "Koninklijk bezoek op de dansvloer bij Hemkade 48",
       "tekst": null,
-      "rubriek": "LOK",
+      "rubriek": "ALG",
       "herkomst": "signaal",
       "prio": 3,
       "tijd": "2026-10-25T17:46:59.266Z",
@@ -400,7 +1657,8 @@
       "agendaIds": [
         "098d56fd91",
         "05a1d51816"
-      ]
+      ],
+      "tagBron": "geen"
     },
     {
       "id": "34afd9913e-v1",
@@ -409,7 +1667,7 @@
       "url": "https://www.deorkaan.nl/wsv-weet-vroege-achterstand-niet-weg-te-werken-%f0%9f%8e%a5/",
       "kop": "WSV’30 weet vroege achterstand niet weg te werken 🎥",
       "tekst": null,
-      "rubriek": "LOK",
+      "rubriek": "ALG",
       "herkomst": "signaal",
       "prio": 3,
       "tijd": "2026-10-24T22:00:00.000Z",
@@ -423,7 +1681,8 @@
       "eerstGezienOp": "2026-10-26T06:52:11.514Z",
       "gecontroleerdOp": "2026-10-26T14:05:21.411Z",
       "bronTitel": "WSV’30 weet vroege achterstand niet weg te werken 🎥",
-      "bronLengte": 1714
+      "bronLengte": 1714,
+      "tagBron": "geen"
     },
     {
       "id": "a2482a6def-v1",
@@ -432,7 +1691,7 @@
       "url": "https://www.deorkaan.nl/het-pink-draait-door-56-276-euro-voor-koger-oliemolen-%f0%9f%8e%89/",
       "kop": "Het Pink draait door: 56.276 euro voor Koger oliemolen 🎉",
       "tekst": null,
-      "rubriek": "LOK",
+      "rubriek": "ALG",
       "herkomst": "signaal",
       "prio": 3,
       "tijd": "2026-10-24T22:00:00.000Z",
@@ -459,7 +1718,8 @@
         "banen": null,
         "inRegio": true
       },
-      "analyse": true
+      "analyse": true,
+      "tagBron": "geen"
     },
     {
       "id": "c2269f9c66-v1",
@@ -468,7 +1728,7 @@
       "url": "https://www.deorkaan.nl/dichter-bij-de-tijd-vol-is-vol/",
       "kop": "Dichter bij de tijd: vol is vol",
       "tekst": null,
-      "rubriek": "LOK",
+      "rubriek": "ALG",
       "herkomst": "signaal",
       "prio": 3,
       "tijd": "2026-10-24T22:00:00.000Z",
@@ -505,7 +1765,8 @@
           "zekerheid": "afgeleid"
         }
       ],
-      "analyse": true
+      "analyse": true,
+      "tagBron": "geen"
     },
     {
       "id": "c17cec1664-v1",
@@ -514,7 +1775,7 @@
       "url": "https://www.deorkaan.nl/evy-bakt-weer-voor-stichting-hartekind-bakt/",
       "kop": "Evy bakt weer voor Stichting Hartekind Bakt",
       "tekst": null,
-      "rubriek": "LOK",
+      "rubriek": "ALG",
       "herkomst": "signaal",
       "prio": 3,
       "tijd": "2026-10-24T22:00:00.000Z",
@@ -554,7 +1815,8 @@
       "analyse": true,
       "agendaIds": [
         "c5055e01c4"
-      ]
+      ],
+      "tagBron": "geen"
     },
     {
       "id": "0be04f0b83-v1",
@@ -563,7 +1825,7 @@
       "url": "https://www.deorkaan.nl/fototijdreis-de-zaan-bij-gerkens-cacao-wormer/",
       "kop": "Fototijdreis: De Zaan bij Gerkens Cacao (Wormer)",
       "tekst": null,
-      "rubriek": "LOK",
+      "rubriek": "ALG",
       "herkomst": "signaal",
       "prio": 3,
       "tijd": "2026-10-24T22:00:00.000Z",
@@ -590,7 +1852,8 @@
         "banen": null,
         "inRegio": true
       },
-      "analyse": true
+      "analyse": true,
+      "tagBron": "geen"
     },
     {
       "id": "03bd78e223-v1",
@@ -599,7 +1862,7 @@
       "url": "https://www.deorkaan.nl/stormschade-bouwhekken-vallen-op-autos-jonge-arnoldusstraat/",
       "kop": "Stormschade: bouwhekken vallen op auto’s Jonge Arnoldusstraat",
       "tekst": null,
-      "rubriek": "LOK",
+      "rubriek": "ALG",
       "herkomst": "signaal",
       "prio": 3,
       "tijd": "2026-10-24T22:00:00.000Z",
@@ -626,7 +1889,8 @@
         "banen": null,
         "inRegio": true
       },
-      "analyse": true
+      "analyse": true,
+      "tagBron": "geen"
     },
     {
       "id": "0e2c7a0f87-v1",
@@ -635,7 +1899,7 @@
       "url": "https://www.deorkaan.nl/waarom-de-orkaan-ervoor-koos-om-expliciet-te-zijn/",
       "kop": "Waarom De Orkaan ervoor koos om expliciet te zijn",
       "tekst": null,
-      "rubriek": "LOK",
+      "rubriek": "ALG",
       "herkomst": "signaal",
       "prio": 3,
       "tijd": "2026-10-24T22:00:00.000Z",
@@ -662,7 +1926,8 @@
         "banen": null,
         "inRegio": false
       },
-      "analyse": true
+      "analyse": true,
+      "tagBron": "geen"
     },
     {
       "id": "3eafffb6f4-v1",
@@ -671,7 +1936,7 @@
       "url": "https://www.deorkaan.nl/50-70/",
       "kop": "Is 70 het nieuwe 50? (of omgekeerd?)",
       "tekst": null,
-      "rubriek": "LOK",
+      "rubriek": "ALG",
       "herkomst": "signaal",
       "prio": 3,
       "tijd": "2026-10-24T22:00:00.000Z",
@@ -698,7 +1963,8 @@
         "banen": null,
         "inRegio": true
       },
-      "analyse": true
+      "analyse": true,
+      "tagBron": "geen"
     },
     {
       "id": "9d669726d4-v1",
@@ -707,7 +1973,7 @@
       "url": "https://www.deorkaan.nl/waarheen-alice-in-wonderland-sintswap-memory-band/",
       "kop": "Waarheen: Alice in Wonderland, SintSwap, Memory Band",
       "tekst": null,
-      "rubriek": "LOK",
+      "rubriek": "ALG",
       "herkomst": "signaal",
       "prio": 3,
       "tijd": "2026-10-24T22:00:00.000Z",
@@ -734,7 +2000,8 @@
         "banen": null,
         "inRegio": true
       },
-      "analyse": true
+      "analyse": true,
+      "tagBron": "geen"
     },
     {
       "id": "5a7b64ffac-v1",
@@ -743,7 +2010,7 @@
       "url": "https://www.deorkaan.nl/terug-naar-de-echte-tijd-wintertijd-ingegaan/",
       "kop": "Terug naar de ‘echte’ tijd: wintertijd ingegaan",
       "tekst": null,
-      "rubriek": "LOK",
+      "rubriek": "ALG",
       "herkomst": "signaal",
       "prio": 3,
       "tijd": "2026-10-24T22:00:00.000Z",
@@ -757,7 +2024,8 @@
       "eerstGezienOp": "2026-10-25T14:13:42.860Z",
       "gecontroleerdOp": "2026-10-26T06:52:11.514Z",
       "bronTitel": "Terug naar de ‘echte’ tijd: wintertijd ingegaan",
-      "bronLengte": 1045
+      "bronLengte": 1045,
+      "tagBron": "geen"
     },
     {
       "id": "4b05ab7cb7-v1",
@@ -766,7 +2034,7 @@
       "url": "https://www.deorkaan.nl/koninklijk-bezoek-op-de-dansvloer-bij-hemkade48/",
       "kop": "Koninklijk bezoek op de dansvloer bij Hemkade48",
       "tekst": null,
-      "rubriek": "LOK",
+      "rubriek": "ALG",
       "prio": 3,
       "tijd": "2026-10-24T22:00:00.000Z",
       "heeftTijd": false,
@@ -784,7 +2052,8 @@
       "agendaIds": [
         "098d56fd91",
         "05a1d51816"
-      ]
+      ],
+      "tagBron": "geen"
     },
     {
       "id": "b6a8207f86-v1",
@@ -793,7 +2062,7 @@
       "url": "https://www.deorkaan.nl/hoge-nood-op-weg-naar-ade/",
       "kop": "Hoge nood op weg naar ADE",
       "tekst": null,
-      "rubriek": "LOK",
+      "rubriek": "ALG",
       "prio": 3,
       "tijd": "2026-10-23T22:00:00.000Z",
       "heeftTijd": false,
@@ -807,7 +2076,8 @@
       "bronTitel": "Hoge nood op weg naar ADE",
       "bronLengte": 628,
       "gecontroleerdOp": "2026-10-25T20:41:55.866Z",
-      "herkomst": "signaal"
+      "herkomst": "signaal",
+      "tagBron": "geen"
     },
     {
       "id": "eac016021c-v1",
@@ -816,7 +2086,7 @@
       "url": "https://www.deorkaan.nl/algemene-beschouwingen-oproep-oostzaners-en-tegenbegroting-in-de-week-van-de-orkaan-%f0%9f%8e%99/",
       "kop": "Algemene Beschouwingen, oproep Oostzaners en tegenbegroting in De Week van De Orkaan 🎙",
       "tekst": null,
-      "rubriek": "LOK",
+      "rubriek": "ALG",
       "prio": 3,
       "tijd": "2026-10-23T22:00:00.000Z",
       "heeftTijd": false,
@@ -830,7 +2100,8 @@
       "bronTitel": "Algemene Beschouwingen, oproep Oostzaners en tegenbegroting in De Week van De Orkaan 🎙",
       "bronLengte": 831,
       "gecontroleerdOp": "2026-10-25T20:41:55.866Z",
-      "herkomst": "signaal"
+      "herkomst": "signaal",
+      "tagBron": "geen"
     },
     {
       "id": "7ee3e33dae-v1",
@@ -839,7 +2110,7 @@
       "url": "https://www.deorkaan.nl/ade-handhaving-verkeersregelaars-borden-hekken-en-toiletten/",
       "kop": "ADE: handhaving, verkeersregelaars, borden, hekken en toiletten",
       "tekst": null,
-      "rubriek": "LOK",
+      "rubriek": "VER",
       "prio": 3,
       "tijd": "2026-10-23T22:00:00.000Z",
       "heeftTijd": false,
@@ -853,7 +2124,8 @@
       "bronTitel": "ADE: handhaving, verkeersregelaars, borden, hekken en toiletten",
       "bronLengte": 1504,
       "gecontroleerdOp": "2026-10-25T17:46:59.266Z",
-      "herkomst": "signaal"
+      "herkomst": "signaal",
+      "tagBron": "trefwoord"
     },
     {
       "id": "364355df5f-v1",
@@ -862,7 +2134,7 @@
       "url": "https://www.deorkaan.nl/poging-tot-afpersing-in-wormerveer-onbewezen-maar-granaat-mocht-niet/",
       "kop": "Poging tot afpersing in Wormerveer onbewezen (maar granaat mocht niet)",
       "tekst": null,
-      "rubriek": "LOK",
+      "rubriek": "ALG",
       "prio": 3,
       "tijd": "2026-10-23T22:00:00.000Z",
       "heeftTijd": false,
@@ -876,7 +2148,8 @@
       "bronTitel": "Poging tot afpersing in Wormerveer onbewezen (maar granaat mocht niet)",
       "bronLengte": 4504,
       "gecontroleerdOp": "2026-10-25T14:13:42.860Z",
-      "herkomst": "signaal"
+      "herkomst": "signaal",
+      "tagBron": "geen"
     },
     {
       "id": "fa5fcf97bc-v1",
@@ -885,7 +2158,7 @@
       "url": "https://www.deorkaan.nl/oud-wormernees-piet-grandiek-95-verpulvert-werelduurrecord-in-nieuw-zeeland-%f0%9f%9a%b4/",
       "kop": "Oud-Wormernees Piet Grandiek (95) verpulvert werelduurrecord in Nieuw-Zeeland 🚴",
       "tekst": null,
-      "rubriek": "LOK",
+      "rubriek": "ALG",
       "prio": 3,
       "tijd": "2026-10-23T22:00:00.000Z",
       "heeftTijd": false,
@@ -899,7 +2172,8 @@
       "bronTitel": "Oud-Wormernees Piet Grandiek (95) verpulvert werelduurrecord in Nieuw-Zeeland 🚴",
       "bronLengte": 5773,
       "herkomst": "signaal",
-      "gecontroleerdOp": "2026-10-25T03:54:47.028Z"
+      "gecontroleerdOp": "2026-10-25T03:54:47.028Z",
+      "tagBron": "geen"
     },
     {
       "id": "5002885429-v1",
@@ -908,7 +2182,7 @@
       "url": "https://www.deorkaan.nl/opgelet-voetgangers-over-voetpad/",
       "kop": "Opgelet! Voetgangers over fietspad!",
       "tekst": null,
-      "rubriek": "LOK",
+      "rubriek": "VER",
       "prio": 3,
       "tijd": "2026-10-23T22:00:00.000Z",
       "heeftTijd": false,
@@ -922,7 +2196,8 @@
       "bronTitel": "Opgelet! Voetgangers over fietspad!",
       "bronLengte": 333,
       "herkomst": "signaal",
-      "gecontroleerdOp": "2026-10-25T03:54:47.028Z"
+      "gecontroleerdOp": "2026-10-25T03:54:47.028Z",
+      "tagBron": "trefwoord"
     },
     {
       "id": "64825a4e86-v1",
@@ -931,7 +2206,7 @@
       "url": "https://www.deorkaan.nl/wel-baantjes-trekken-maar-beperkt-vrijzwemmen-in-de-nieuwe-slag/",
       "kop": "Wel baantjes trekken maar ‘beperkt’ vrijzwemmen in De Nieuwe Slag",
       "tekst": null,
-      "rubriek": "LOK",
+      "rubriek": "ALG",
       "prio": 3,
       "tijd": "2026-10-23T22:00:00.000Z",
       "heeftTijd": false,
@@ -945,7 +2220,8 @@
       "bronTitel": "Wel baantjes trekken maar ‘beperkt’ vrijzwemmen in De Nieuwe Slag",
       "bronLengte": 1581,
       "herkomst": "signaal",
-      "gecontroleerdOp": "2026-10-25T03:54:47.028Z"
+      "gecontroleerdOp": "2026-10-25T03:54:47.028Z",
+      "tagBron": "geen"
     },
     {
       "id": "b43da00724-v1",
@@ -954,7 +2230,7 @@
       "url": "https://www.deorkaan.nl/waarheen-vijfhoekparkloop-nacht-van-de-nacht-japke-d-bouma/",
       "kop": "Waarheen: Vijfhoekparkloop, Nacht van de nacht, Japke-d Bouma",
       "tekst": null,
-      "rubriek": "LOK",
+      "rubriek": "ALG",
       "prio": 3,
       "tijd": "2026-10-23T22:00:00.000Z",
       "heeftTijd": false,
@@ -968,7 +2244,8 @@
       "bronTitel": "Waarheen: Vijfhoekparkloop, Nacht van de nacht, Japke-d Bouma",
       "bronLengte": 1049,
       "herkomst": "signaal",
-      "gecontroleerdOp": "2026-10-25T03:54:47.028Z"
+      "gecontroleerdOp": "2026-10-25T03:54:47.028Z",
+      "tagBron": "geen"
     },
     {
       "id": "f0ce642901-v1",
@@ -991,7 +2268,8 @@
       "bronTitel": "Werkzaamheden N205 eerder afgerond",
       "bronLengte": 800,
       "herkomst": "officieel",
-      "gecontroleerdOp": "2026-10-24T03:56:04.427Z"
+      "gecontroleerdOp": "2026-10-24T03:56:04.427Z",
+      "tagBron": "bron"
     },
     {
       "id": "62acec1d0a-v1",
@@ -1014,7 +2292,8 @@
       "bronTitel": "Gewijzigde regels voor de ruimte in Noord-Holland",
       "bronLengte": 1373,
       "herkomst": "officieel",
-      "gecontroleerdOp": "2026-10-24T03:56:04.427Z"
+      "gecontroleerdOp": "2026-10-24T03:56:04.427Z",
+      "tagBron": "bron"
     },
     {
       "id": "8c012f5bf4-v1",
@@ -1037,7 +2316,8 @@
       "bronTitel": "HHNK blijft kritisch over voorkeurslocatie 380 kV-station",
       "bronLengte": 1281,
       "herkomst": "officieel",
-      "gecontroleerdOp": "2026-10-24T03:56:04.427Z"
+      "gecontroleerdOp": "2026-10-24T03:56:04.427Z",
+      "tagBron": "trefwoord"
     },
     {
       "id": "bef8fb0bc9-v1",
@@ -1046,7 +2326,7 @@
       "url": "https://zaanstad.bestuurlijkeinformatie.nl/Document/View/aa2f91db-30b1-46fe-a0fb-bf1aa2765342",
       "kop": "Gemeente Zaanstad stelt poller in Czaar Peterstraat buiten werking",
       "tekst": "Het college van burgemeester en wethouders van Zaanstad gaat akkoord met het verkeersbesluit om de poller in de Czaar Peterstraat buiten werking te stellen. Bij het besluit ligt een advies van de politie over het opheffen van de poller. De gemeenteraad ontvangt een raadsinformatiebrief over het besluit.",
-      "rubriek": "BES",
+      "rubriek": "GEM",
       "prio": 3,
       "tijd": "2026-10-22T22:00:00.000Z",
       "heeftTijd": false,
@@ -1060,7 +2340,8 @@
       "bronTitel": "Besluitenlijst BW Zaanstad 06-10-26",
       "bronLengte": 12894,
       "herkomst": "officieel",
-      "gecontroleerdOp": "2026-10-24T03:56:04.427Z"
+      "gecontroleerdOp": "2026-10-24T03:56:04.427Z",
+      "tagBron": "trefwoord"
     },
     {
       "id": "e05ed520f6-v1",
@@ -1069,7 +2350,7 @@
       "url": "https://zaanstad.bestuurlijkeinformatie.nl/Document/View/0b8eedca-2ab4-4c7a-a798-cafce4a2dda7",
       "kop": "Besluitenlijst BW Circulatievergadering 07-10-26",
       "tekst": null,
-      "rubriek": "BES",
+      "rubriek": "GEM",
       "prio": 3,
       "tijd": "2026-10-22T22:00:00.000Z",
       "heeftTijd": false,
@@ -1083,7 +2364,8 @@
       "bronTitel": "Besluitenlijst BW Circulatievergadering 07-10-26",
       "bronLengte": 1161,
       "herkomst": "officieel",
-      "gecontroleerdOp": "2026-10-24T03:56:04.427Z"
+      "gecontroleerdOp": "2026-10-24T03:56:04.427Z",
+      "tagBron": "bron"
     },
     {
       "id": "75defe03a3-v1",
@@ -1092,7 +2374,7 @@
       "url": "https://zaanstad.bestuurlijkeinformatie.nl/Document/View/4b6f57fd-9f3e-4c0c-b9c5-c7ce4b5e7a5a",
       "kop": "Inwoner stelt gemeente Zaanstad voor om Zaanse spoorweghistorie zichtbaar te maken",
       "tekst": "Een inwoner heeft de gemeente Zaanstad een suggestie gestuurd voor het behoud en de zichtbaarheid van de Zaanse spoorweghistorie. De indiener stelt voor om een historische rangeerlocomotief te plaatsen op het Hembrugterrein of aan de Zaanweg in Wormerveer. Ook wordt geopperd om op termijn straatspoor aan te leggen voor demonstraties met historische rangeerbewegingen.",
-      "rubriek": "BES",
+      "rubriek": "VER",
       "prio": 4,
       "tijd": "2026-10-22T22:00:00.000Z",
       "heeftTijd": false,
@@ -1106,7 +2388,8 @@
       "bronTitel": "Brief suggestie voor behoud van spoorweghistorie in de Havenbuurt/Hembrugterrein",
       "bronLengte": 2345,
       "herkomst": "officieel",
-      "gecontroleerdOp": "2026-10-24T03:56:04.427Z"
+      "gecontroleerdOp": "2026-10-24T03:56:04.427Z",
+      "tagBron": "trefwoord"
     },
     {
       "id": "6099c65e46-v1",
@@ -1115,7 +2398,7 @@
       "url": "https://zoek.officielebekendmakingen.nl/gmb-2026-495116.html",
       "kop": "Melding voor toepassen grond en baggerspecie nabij Fortuinweg in Zaandijk",
       "tekst": "De Omgevingsdienst Noordzeekanaalgebied heeft namens de gemeente Zaanstad een melding ontvangen voor het toepassen van grond en baggerspecie nabij Fortuinweg 1 in Zaandijk. De melding is ingediend door C.S.C. Ceelen Sport Constructies B.V. Tegen de melding kan geen bezwaar worden gemaakt.",
-      "rubriek": "BES",
+      "rubriek": "GEM",
       "prio": 4,
       "tijd": "2026-10-22T22:00:00.000Z",
       "heeftTijd": false,
@@ -1129,7 +2412,8 @@
       "bronTitel": "Melding toepassen grond en baggerspecie - Nabij Fortuinweg 1 Zaandijk , 17 meter richting noordoosten",
       "bronLengte": 473,
       "herkomst": "officieel",
-      "gecontroleerdOp": "2026-10-24T03:56:04.427Z"
+      "gecontroleerdOp": "2026-10-24T03:56:04.427Z",
+      "tagBron": "bron"
     },
     {
       "id": "d1f10bffeb-v1",
@@ -1138,7 +2422,7 @@
       "url": "https://lokaleregelgeving.overheid.nl/CVDR708833/19",
       "kop": "Gemeentesecretaris Zaanstad stelt nieuw ondermandaatbesluit vast",
       "tekst": "De gemeentesecretaris van Zaanstad heeft het Ondermandaatbesluit gemeente Zaanstad 2024 vastgesteld, dat geldt vanaf 23 oktober 2026. Bepaalde functionarissen binnen de organisatie krijgen hiermee de bevoegdheid om namens de gemeentesecretaris besluiten te nemen en correspondentie te voeren. Zaken die politiek of bestuurlijk gevoelig liggen of afwijken van vastgesteld beleid vallen buiten dit ondermandaat.",
-      "rubriek": "BES",
+      "rubriek": "GEM",
       "prio": 4,
       "tijd": "2026-10-22T22:00:00.000Z",
       "heeftTijd": false,
@@ -1152,7 +2436,8 @@
       "bronTitel": "Ondermandaatbesluit Zaanstad 2024",
       "bronLengte": 5992,
       "herkomst": "officieel",
-      "gecontroleerdOp": "2026-10-24T03:56:04.427Z"
+      "gecontroleerdOp": "2026-10-24T03:56:04.427Z",
+      "tagBron": "bron"
     },
     {
       "id": "cf1a79d982-v1",
@@ -1161,7 +2446,7 @@
       "url": "https://www.deorkaan.nl/modewinkel-room70-kaaikhof-21-assendelft-stopt-ermee/",
       "kop": "Modewinkel Room70 (Kaaikhof, Assendelft) stopt ermee",
       "tekst": null,
-      "rubriek": "LOK",
+      "rubriek": "ALG",
       "prio": 3,
       "tijd": "2026-10-22T22:00:00.000Z",
       "heeftTijd": false,
@@ -1175,7 +2460,8 @@
       "bronTitel": "Modewinkel Room70 (Kaaikhof, Assendelft) stopt ermee",
       "bronLengte": 547,
       "herkomst": "signaal",
-      "gecontroleerdOp": "2026-10-24T03:56:04.427Z"
+      "gecontroleerdOp": "2026-10-24T03:56:04.427Z",
+      "tagBron": "geen"
     },
     {
       "id": "f59c76f7d3-v1",
@@ -1184,7 +2470,7 @@
       "url": "https://www.deorkaan.nl/zaanse-olifantenpaadjes-xxiv-saendelverlaan/",
       "kop": "Zaanse Olifantenpaadjes XXIV: Saendelverlaan",
       "tekst": null,
-      "rubriek": "LOK",
+      "rubriek": "ALG",
       "prio": 3,
       "tijd": "2026-10-22T22:00:00.000Z",
       "heeftTijd": false,
@@ -1198,7 +2484,8 @@
       "bronTitel": "Zaanse Olifantenpaadjes XXIV: Saendelverlaan",
       "bronLengte": 1590,
       "herkomst": "signaal",
-      "gecontroleerdOp": "2026-10-24T03:56:04.427Z"
+      "gecontroleerdOp": "2026-10-24T03:56:04.427Z",
+      "tagBron": "geen"
     },
     {
       "id": "2b9f249802-v1",
@@ -1207,7 +2494,7 @@
       "url": "https://www.deorkaan.nl/groen-licht-voor-bewonerscommissie-in-de-vijfhoek/",
       "kop": "Groen licht voor bewonerscommissie in de Vijfhoek",
       "tekst": null,
-      "rubriek": "LOK",
+      "rubriek": "ALG",
       "prio": 3,
       "tijd": "2026-10-22T22:00:00.000Z",
       "heeftTijd": false,
@@ -1221,7 +2508,8 @@
       "bronTitel": "Groen licht voor bewonerscommissie in de Vijfhoek",
       "bronLengte": 2038,
       "herkomst": "signaal",
-      "gecontroleerdOp": "2026-10-24T03:56:04.427Z"
+      "gecontroleerdOp": "2026-10-24T03:56:04.427Z",
+      "tagBron": "geen"
     },
     {
       "id": "6270e4846a-v1",
@@ -1230,7 +2518,7 @@
       "url": "https://www.deorkaan.nl/badhuisweg-complex-bouw-begint-oplevering-2028-bouwmarathon/",
       "kop": "Badhuisweg-complex: bouw begint, oplevering 2028 #bouwmarathon",
       "tekst": null,
-      "rubriek": "LOK",
+      "rubriek": "ALG",
       "prio": 3,
       "tijd": "2026-10-22T22:00:00.000Z",
       "heeftTijd": false,
@@ -1244,7 +2532,8 @@
       "bronTitel": "Badhuisweg-complex: bouw begint, oplevering 2028 #bouwmarathon",
       "bronLengte": 3210,
       "herkomst": "signaal",
-      "gecontroleerdOp": "2026-10-24T03:56:04.427Z"
+      "gecontroleerdOp": "2026-10-24T03:56:04.427Z",
+      "tagBron": "geen"
     },
     {
       "id": "5f5a6149be-v1",
@@ -1253,7 +2542,7 @@
       "url": "https://www.deorkaan.nl/de-orkaan-in-2-minuten-23-oktober-%f0%9f%8e%a7/",
       "kop": "De Orkaan in 2 minuten: 23 oktober 🎧",
       "tekst": null,
-      "rubriek": "LOK",
+      "rubriek": "ALG",
       "prio": 3,
       "tijd": "2026-10-22T22:00:00.000Z",
       "heeftTijd": false,
@@ -1267,7 +2556,8 @@
       "bronTitel": "De Orkaan in 2 minuten: 23 oktober 🎧",
       "bronLengte": 343,
       "herkomst": "signaal",
-      "gecontroleerdOp": "2026-10-24T03:56:04.427Z"
+      "gecontroleerdOp": "2026-10-24T03:56:04.427Z",
+      "tagBron": "geen"
     },
     {
       "id": "2867a2beae-v1",
@@ -1276,7 +2566,7 @@
       "url": "https://www.deorkaan.nl/waarheen-halloween-allerheiligen-allerzielen-lichtjesavond/",
       "kop": "Waarheen? Halloween, Allerheiligen, Allerzielen, Lichtjesavond",
       "tekst": null,
-      "rubriek": "LOK",
+      "rubriek": "ALG",
       "prio": 3,
       "tijd": "2026-10-22T22:00:00.000Z",
       "heeftTijd": false,
@@ -1290,7 +2580,8 @@
       "bronTitel": "Waarheen? Halloween, Allerheiligen, Allerzielen, Lichtjesavond",
       "bronLengte": 6000,
       "herkomst": "signaal",
-      "gecontroleerdOp": "2026-10-24T03:56:04.427Z"
+      "gecontroleerdOp": "2026-10-24T03:56:04.427Z",
+      "tagBron": "geen"
     },
     {
       "id": "57cfc33fb2-v1",
@@ -1299,7 +2590,7 @@
       "url": "https://www.deorkaan.nl/26-jarige-zaandijker-veroordeeld-voor-verkrachting-van-twee-minderjarige-scholieren/",
       "kop": "26-jarige Zaandijker veroordeeld voor verkrachting van twee minderjarige scholieren",
       "tekst": null,
-      "rubriek": "LOK",
+      "rubriek": "REC",
       "prio": 3,
       "tijd": "2026-10-22T22:00:00.000Z",
       "heeftTijd": false,
@@ -1313,7 +2604,8 @@
       "bronTitel": "26-jarige Zaandijker veroordeeld voor verkrachting van twee minderjarige scholieren",
       "bronLengte": 5998,
       "herkomst": "signaal",
-      "gecontroleerdOp": "2026-10-24T03:56:04.427Z"
+      "gecontroleerdOp": "2026-10-24T03:56:04.427Z",
+      "tagBron": "trefwoord"
     },
     {
       "id": "0bcc1e77c0-v1",
@@ -1322,7 +2614,7 @@
       "url": "https://www.deorkaan.nl/zomaar-een-zaans-minuutje-de-geneva-star-%f0%9f%8e%a5/",
       "kop": "Zomaar een Zaans minuutje: de Geneva Star 🎥",
       "tekst": null,
-      "rubriek": "LOK",
+      "rubriek": "ALG",
       "prio": 3,
       "tijd": "2026-10-22T22:00:00.000Z",
       "heeftTijd": false,
@@ -1336,7 +2628,8 @@
       "bronTitel": "Zomaar een Zaans minuutje: de Geneva Star 🎥",
       "bronLengte": 3508,
       "herkomst": "signaal",
-      "gecontroleerdOp": "2026-10-24T03:56:04.427Z"
+      "gecontroleerdOp": "2026-10-24T03:56:04.427Z",
+      "tagBron": "geen"
     },
     {
       "id": "673e61aae4-v1",
@@ -1345,7 +2638,7 @@
       "url": "https://www.deorkaan.nl/hek-om-hondenveld-zaanstad-legt-de-bal-bij-bewoners/",
       "kop": "Hek om hondenveld? Zaanstad legt de bal bij bewoners",
       "tekst": null,
-      "rubriek": "LOK",
+      "rubriek": "ALG",
       "prio": 3,
       "tijd": "2026-10-22T22:00:00.000Z",
       "heeftTijd": false,
@@ -1359,7 +2652,8 @@
       "bronTitel": "Hek om hondenveld? Zaanstad legt de bal bij bewoners",
       "bronLengte": 3978,
       "herkomst": "signaal",
-      "gecontroleerdOp": "2026-10-24T03:56:04.427Z"
+      "gecontroleerdOp": "2026-10-24T03:56:04.427Z",
+      "tagBron": "geen"
     },
     {
       "id": "feacdda073-v1",
@@ -1368,7 +2662,7 @@
       "url": "https://www.deorkaan.nl/50woordenfoto-spiegel-2/",
       "kop": "50woordenfoto: spiegeltje, spiegeltje in de bak…",
       "tekst": null,
-      "rubriek": "LOK",
+      "rubriek": "ALG",
       "prio": 3,
       "tijd": "2026-10-22T22:00:00.000Z",
       "heeftTijd": false,
@@ -1382,7 +2676,8 @@
       "bronTitel": "50woordenfoto: spiegeltje, spiegeltje in de bak…",
       "bronLengte": 595,
       "herkomst": "signaal",
-      "gecontroleerdOp": "2026-10-24T03:56:04.427Z"
+      "gecontroleerdOp": "2026-10-24T03:56:04.427Z",
+      "tagBron": "geen"
     },
     {
       "id": "34cffec683-v1",
@@ -1406,7 +2701,8 @@
       "bronLengte": 250,
       "seed": true,
       "herkomst": "officieel",
-      "gecontroleerdOp": "2026-10-24T03:56:04.427Z"
+      "gecontroleerdOp": "2026-10-24T03:56:04.427Z",
+      "tagBron": "bron"
     },
     {
       "id": "6a0f35bc23-v1",
@@ -1430,7 +2726,8 @@
       "bronLengte": 249,
       "seed": true,
       "herkomst": "officieel",
-      "gecontroleerdOp": "2026-10-24T03:56:04.427Z"
+      "gecontroleerdOp": "2026-10-24T03:56:04.427Z",
+      "tagBron": "bron"
     },
     {
       "id": "18fd5dc0ee-v1",
@@ -1439,7 +2736,7 @@
       "url": "https://www.deorkaan.nl/eigen-begroting-oppositie-zaanstad-minima-ontzien-toeristen-betalen-meer/",
       "kop": "Eigen begroting oppositie Zaanstad: minima ontzien, toeristen betalen meer",
       "tekst": null,
-      "rubriek": "LOK",
+      "rubriek": "GEM",
       "prio": 3,
       "tijd": "2026-10-21T22:00:00.000Z",
       "heeftTijd": false,
@@ -1454,7 +2751,8 @@
       "bronLengte": 248,
       "seed": true,
       "herkomst": "signaal",
-      "gecontroleerdOp": "2026-10-24T03:56:04.427Z"
+      "gecontroleerdOp": "2026-10-24T03:56:04.427Z",
+      "tagBron": "trefwoord"
     },
     {
       "id": "8004ca1445-v1",
@@ -1463,7 +2761,7 @@
       "url": "https://zaanstad.bestuurlijkeinformatie.nl/Document/View/4a399d93-ea94-4471-a6c9-9877937839c9",
       "kop": "Stand van zaken uitvoering projecten Volkshuisvestingsfonds 1",
       "tekst": null,
-      "rubriek": "BES",
+      "rubriek": "GEM",
       "prio": 3,
       "tijd": "2026-10-21T22:00:00.000Z",
       "heeftTijd": false,
@@ -1478,7 +2776,8 @@
       "bronLengte": 247,
       "seed": true,
       "herkomst": "officieel",
-      "gecontroleerdOp": "2026-10-24T03:56:04.427Z"
+      "gecontroleerdOp": "2026-10-24T03:56:04.427Z",
+      "tagBron": "bron"
     },
     {
       "id": "0ce83bffea-v1",
@@ -1487,7 +2786,7 @@
       "url": "https://zaanstad.bestuurlijkeinformatie.nl/Reports/Item/722a97c4-303f-45ab-b09b-260110a299eb",
       "kop": "GEHEIM Update intern onderzoek",
       "tekst": null,
-      "rubriek": "BES",
+      "rubriek": "GEM",
       "prio": 3,
       "tijd": "2026-10-21T22:00:00.000Z",
       "heeftTijd": false,
@@ -1502,7 +2801,8 @@
       "bronLengte": 109,
       "seed": true,
       "herkomst": "officieel",
-      "gecontroleerdOp": "2026-10-24T03:56:04.427Z"
+      "gecontroleerdOp": "2026-10-24T03:56:04.427Z",
+      "tagBron": "bron"
     },
     {
       "id": "a3680983a7-v1",
@@ -1511,7 +2811,7 @@
       "url": "https://zaanstad.bestuurlijkeinformatie.nl/Reports/Item/e5e45c3d-3de7-445b-a9fd-7cb4707859d3",
       "kop": "GEHEIM Verkenning Zuiderhout Noord",
       "tekst": null,
-      "rubriek": "BES",
+      "rubriek": "GEM",
       "prio": 3,
       "tijd": "2026-10-21T22:00:00.000Z",
       "heeftTijd": false,
@@ -1526,7 +2826,8 @@
       "bronLengte": 119,
       "seed": true,
       "herkomst": "officieel",
-      "gecontroleerdOp": "2026-10-24T03:56:04.427Z"
+      "gecontroleerdOp": "2026-10-24T03:56:04.427Z",
+      "tagBron": "bron"
     },
     {
       "id": "8327463116-v1",
@@ -1535,7 +2836,7 @@
       "url": "https://zoek.officielebekendmakingen.nl/gmb-2026-494687.html",
       "kop": "Publicatie zakelijke omschrijving anterieure overeenkomst in de zin van art. 16.138 van de Omgevingswet",
       "tekst": null,
-      "rubriek": "BES",
+      "rubriek": "GEM",
       "prio": 4,
       "tijd": "2026-10-21T22:00:00.000Z",
       "heeftTijd": false,
@@ -1550,7 +2851,8 @@
       "bronLengte": 246,
       "seed": true,
       "herkomst": "officieel",
-      "gecontroleerdOp": "2026-10-24T03:56:04.427Z"
+      "gecontroleerdOp": "2026-10-24T03:56:04.427Z",
+      "tagBron": "bron"
     },
     {
       "id": "33ae7df29b-v1",
@@ -1559,7 +2861,7 @@
       "url": "https://zoek.officielebekendmakingen.nl/gmb-2026-491144.html",
       "kop": "Ondermandaatbesluit gemeente Zaanstad 2024",
       "tekst": null,
-      "rubriek": "BES",
+      "rubriek": "GEM",
       "prio": 4,
       "tijd": "2026-10-21T22:00:00.000Z",
       "heeftTijd": false,
@@ -1574,7 +2876,8 @@
       "bronLengte": 247,
       "seed": true,
       "herkomst": "officieel",
-      "gecontroleerdOp": "2026-10-24T03:56:04.427Z"
+      "gecontroleerdOp": "2026-10-24T03:56:04.427Z",
+      "tagBron": "trefwoord"
     },
     {
       "id": "d3d3f942c9-v1",
@@ -1583,7 +2886,7 @@
       "url": "https://zoek.officielebekendmakingen.nl/gmb-2026-494648.html",
       "kop": "Publicatie zakelijke omschrijving anterieure overeenkomst in de zin van art. 16.138 van de Omgevingswet",
       "tekst": null,
-      "rubriek": "BES",
+      "rubriek": "GEM",
       "prio": 4,
       "tijd": "2026-10-21T22:00:00.000Z",
       "heeftTijd": false,
@@ -1598,7 +2901,8 @@
       "bronLengte": 249,
       "seed": true,
       "herkomst": "officieel",
-      "gecontroleerdOp": "2026-10-24T03:56:04.427Z"
+      "gecontroleerdOp": "2026-10-24T03:56:04.427Z",
+      "tagBron": "bron"
     },
     {
       "id": "187137956d-v1",
@@ -1607,7 +2911,7 @@
       "url": "https://www.deorkaan.nl/stickx-arcade-rozenhof-failliet/",
       "kop": "Stickx Arcade Rozenhof failliet",
       "tekst": null,
-      "rubriek": "LOK",
+      "rubriek": "BED",
       "prio": 3,
       "tijd": "2026-10-21T22:00:00.000Z",
       "heeftTijd": false,
@@ -1622,7 +2926,8 @@
       "bronLengte": 243,
       "seed": true,
       "herkomst": "signaal",
-      "gecontroleerdOp": "2026-10-24T03:56:04.427Z"
+      "gecontroleerdOp": "2026-10-24T03:56:04.427Z",
+      "tagBron": "trefwoord"
     },
     {
       "id": "7376beae8e-v1",
@@ -1631,7 +2936,7 @@
       "url": "https://www.deorkaan.nl/ade-gaat-vannacht-los-niet-parkeren-afsluitingen-en-uitstapverbod/",
       "kop": "ADE gaat vannacht los: niet parkeren, afsluitingen en uitstapverbod",
       "tekst": null,
-      "rubriek": "LOK",
+      "rubriek": "VER",
       "prio": 3,
       "tijd": "2026-10-21T22:00:00.000Z",
       "heeftTijd": false,
@@ -1646,7 +2951,8 @@
       "bronLengte": 246,
       "seed": true,
       "herkomst": "signaal",
-      "gecontroleerdOp": "2026-10-24T03:56:04.427Z"
+      "gecontroleerdOp": "2026-10-24T03:56:04.427Z",
+      "tagBron": "trefwoord"
     },
     {
       "id": "ad1f1161bf-v1",
@@ -1655,7 +2961,7 @@
       "url": "https://www.deorkaan.nl/tien-jaar-wonderboyz-een-uit-de-hand-gelopen-goed-idee-%f0%9f%8e%88/",
       "kop": "Tien jaar WonderboyZ: een uit de hand gelopen goed idee 🎈",
       "tekst": null,
-      "rubriek": "LOK",
+      "rubriek": "ALG",
       "prio": 3,
       "tijd": "2026-10-21T22:00:00.000Z",
       "heeftTijd": false,
@@ -1670,7 +2976,8 @@
       "bronLengte": 250,
       "seed": true,
       "herkomst": "signaal",
-      "gecontroleerdOp": "2026-10-24T03:56:04.427Z"
+      "gecontroleerdOp": "2026-10-24T03:56:04.427Z",
+      "tagBron": "geen"
     },
     {
       "id": "add0239fde-v1",
@@ -1679,7 +2986,7 @@
       "url": "https://www.deorkaan.nl/niet-heien-maar-drukken-in-de-rosmolenstraat/",
       "kop": "Niet heien maar drukken in de Rosmolenstraat…",
       "tekst": null,
-      "rubriek": "LOK",
+      "rubriek": "ALG",
       "prio": 3,
       "tijd": "2026-10-21T22:00:00.000Z",
       "heeftTijd": false,
@@ -1694,7 +3001,8 @@
       "bronLengte": 246,
       "seed": true,
       "herkomst": "signaal",
-      "gecontroleerdOp": "2026-10-24T03:56:04.427Z"
+      "gecontroleerdOp": "2026-10-24T03:56:04.427Z",
+      "tagBron": "geen"
     },
     {
       "id": "013f1e4373-v1",
@@ -1703,7 +3011,7 @@
       "url": "https://www.deorkaan.nl/na-zes-dagen-nog-altijd-onduidelijkheid-over-kpn-storing/",
       "kop": "Na week nog altijd onduidelijkheid over KPN-storing (update)",
       "tekst": null,
-      "rubriek": "LOK",
+      "rubriek": "ALG",
       "prio": 3,
       "tijd": "2026-10-21T22:00:00.000Z",
       "heeftTijd": false,
@@ -1718,7 +3026,8 @@
       "bronLengte": 246,
       "seed": true,
       "herkomst": "signaal",
-      "gecontroleerdOp": "2026-10-24T03:56:04.427Z"
+      "gecontroleerdOp": "2026-10-24T03:56:04.427Z",
+      "tagBron": "geen"
     },
     {
       "id": "107a724cb8-v1",
@@ -1727,7 +3036,7 @@
       "url": "https://www.deorkaan.nl/noodbrug-n203-tijdens-sloop-en-bouw-brug-krommenie/",
       "kop": "Noodbrug N203 tijdens sloop en bouw Brug Krommenie",
       "tekst": null,
-      "rubriek": "LOK",
+      "rubriek": "VER",
       "prio": 3,
       "tijd": "2026-10-21T22:00:00.000Z",
       "heeftTijd": false,
@@ -1742,7 +3051,8 @@
       "bronLengte": 230,
       "seed": true,
       "herkomst": "signaal",
-      "gecontroleerdOp": "2026-10-24T03:56:04.427Z"
+      "gecontroleerdOp": "2026-10-24T03:56:04.427Z",
+      "tagBron": "trefwoord"
     },
     {
       "id": "2b29c1f133-v1",
@@ -1751,7 +3061,7 @@
       "url": "https://www.deorkaan.nl/de-orkaan-in-2-minuten-22-oktober-%f0%9f%8e%a7/",
       "kop": "De Orkaan in 2 minuten: 22 oktober 🎧",
       "tekst": null,
-      "rubriek": "LOK",
+      "rubriek": "ALG",
       "prio": 3,
       "tijd": "2026-10-21T22:00:00.000Z",
       "heeftTijd": false,
@@ -1766,7 +3076,8 @@
       "bronLengte": 249,
       "seed": true,
       "herkomst": "signaal",
-      "gecontroleerdOp": "2026-10-24T03:56:04.427Z"
+      "gecontroleerdOp": "2026-10-24T03:56:04.427Z",
+      "tagBron": "geen"
     },
     {
       "id": "a797231495-v1",
@@ -1775,7 +3086,7 @@
       "url": "https://www.deorkaan.nl/re-max-vecht-sluiting-kantoor-aan/",
       "kop": "Makelaar RE/MAX vecht sluiting aan",
       "tekst": null,
-      "rubriek": "LOK",
+      "rubriek": "ALG",
       "prio": 3,
       "tijd": "2026-10-21T22:00:00.000Z",
       "heeftTijd": false,
@@ -1790,7 +3101,8 @@
       "bronLengte": 247,
       "seed": true,
       "herkomst": "signaal",
-      "gecontroleerdOp": "2026-10-24T03:56:04.427Z"
+      "gecontroleerdOp": "2026-10-24T03:56:04.427Z",
+      "tagBron": "geen"
     },
     {
       "id": "984d3666ca-v1",
@@ -1799,7 +3111,7 @@
       "url": "https://www.deorkaan.nl/hond-loslaten-in-zaanstad-lezers-zien-vooral-problemen/",
       "kop": "Hond loslaten in Zaanstad? Lezers zien vooral problemen",
       "tekst": null,
-      "rubriek": "LOK",
+      "rubriek": "ALG",
       "prio": 3,
       "tijd": "2026-10-21T22:00:00.000Z",
       "heeftTijd": false,
@@ -1814,7 +3126,8 @@
       "bronLengte": 246,
       "seed": true,
       "herkomst": "signaal",
-      "gecontroleerdOp": "2026-10-24T03:56:04.427Z"
+      "gecontroleerdOp": "2026-10-24T03:56:04.427Z",
+      "tagBron": "geen"
     },
     {
       "id": "7acccce5b3-v1",
@@ -1823,7 +3136,7 @@
       "url": "https://www.deorkaan.nl/bezwaren-tegen-verdwijnen-poller-stapelen-zich-op/",
       "kop": "Bezwaren tegen verdwijnen poller stapelen zich op",
       "tekst": null,
-      "rubriek": "LOK",
+      "rubriek": "ALG",
       "prio": 3,
       "tijd": "2026-10-21T22:00:00.000Z",
       "heeftTijd": false,
@@ -1838,7 +3151,8 @@
       "bronLengte": 250,
       "seed": true,
       "herkomst": "signaal",
-      "gecontroleerdOp": "2026-10-24T03:56:04.427Z"
+      "gecontroleerdOp": "2026-10-24T03:56:04.427Z",
+      "tagBron": "geen"
     },
     {
       "id": "fa6272750f-v1",
@@ -1847,7 +3161,7 @@
       "url": "https://www.deorkaan.nl/uitvalcijfers-buslijn-67-blijven-uit/",
       "kop": "Uitvalcijfers buslijn 67 blijven uit",
       "tekst": null,
-      "rubriek": "LOK",
+      "rubriek": "VER",
       "prio": 3,
       "tijd": "2026-10-21T22:00:00.000Z",
       "heeftTijd": false,
@@ -1862,7 +3176,8 @@
       "bronLengte": 247,
       "seed": true,
       "herkomst": "signaal",
-      "gecontroleerdOp": "2026-10-24T03:56:04.427Z"
+      "gecontroleerdOp": "2026-10-24T03:56:04.427Z",
+      "tagBron": "trefwoord"
     },
     {
       "id": "639dc2293b-v1",
@@ -1871,7 +3186,7 @@
       "url": "https://www.deorkaan.nl/kpn-krijgt-storing-niet-onder-de-knie/",
       "kop": "KPN krijgt storing niet onder controle – update",
       "tekst": null,
-      "rubriek": "LOK",
+      "rubriek": "ALG",
       "prio": 3,
       "tijd": "2026-10-21T22:00:00.000Z",
       "heeftTijd": false,
@@ -1886,7 +3201,8 @@
       "bronLengte": 240,
       "seed": true,
       "herkomst": "signaal",
-      "gecontroleerdOp": "2026-10-24T03:56:04.427Z"
+      "gecontroleerdOp": "2026-10-24T03:56:04.427Z",
+      "tagBron": "geen"
     },
     {
       "id": "7e22031d09-v1",
@@ -1910,7 +3226,8 @@
       "bronLengte": 247,
       "seed": true,
       "herkomst": "officieel",
-      "gecontroleerdOp": "2026-10-24T03:56:04.427Z"
+      "gecontroleerdOp": "2026-10-24T03:56:04.427Z",
+      "tagBron": "bron"
     },
     {
       "id": "4a763bf541-v1",
@@ -1934,7 +3251,8 @@
       "bronLengte": 249,
       "seed": true,
       "herkomst": "officieel",
-      "gecontroleerdOp": "2026-10-24T03:56:04.427Z"
+      "gecontroleerdOp": "2026-10-24T03:56:04.427Z",
+      "tagBron": "bron"
     },
     {
       "id": "95b7933386-v1",
@@ -1943,7 +3261,7 @@
       "url": "https://www.deorkaan.nl/roltrappenrepair/",
       "kop": "Roltrappenrepair",
       "tekst": null,
-      "rubriek": "LOK",
+      "rubriek": "ALG",
       "prio": 3,
       "tijd": "2026-10-20T22:00:00.000Z",
       "heeftTijd": false,
@@ -1958,7 +3276,8 @@
       "bronLengte": 241,
       "seed": true,
       "herkomst": "signaal",
-      "gecontroleerdOp": "2026-10-24T03:56:04.427Z"
+      "gecontroleerdOp": "2026-10-24T03:56:04.427Z",
+      "tagBron": "geen"
     },
     {
       "id": "e5cce52677-v1",
@@ -1967,7 +3286,7 @@
       "url": "https://www.deorkaan.nl/15-jarige-jongen-aangehouden-voor-straatroof-waarbij-wapen-is-gebruikt/",
       "kop": "15-jarige aangehouden voor straatroof waarbij wapen is gebruikt",
       "tekst": null,
-      "rubriek": "LOK",
+      "rubriek": "112",
       "prio": 3,
       "tijd": "2026-10-20T22:00:00.000Z",
       "heeftTijd": false,
@@ -1982,7 +3301,8 @@
       "bronLengte": 249,
       "seed": true,
       "herkomst": "signaal",
-      "gecontroleerdOp": "2026-10-24T03:56:04.427Z"
+      "gecontroleerdOp": "2026-10-24T03:56:04.427Z",
+      "tagBron": "trefwoord"
     },
     {
       "id": "31b0698e79-v1",
@@ -1991,7 +3311,7 @@
       "url": "https://www.deorkaan.nl/ov-staking-voorlopig-van-de-baan/",
       "kop": "OV-staking voorlopig van de baan",
       "tekst": null,
-      "rubriek": "LOK",
+      "rubriek": "VER",
       "prio": 3,
       "tijd": "2026-10-20T22:00:00.000Z",
       "heeftTijd": false,
@@ -2006,7 +3326,8 @@
       "bronLengte": 248,
       "seed": true,
       "herkomst": "signaal",
-      "gecontroleerdOp": "2026-10-24T03:56:04.427Z"
+      "gecontroleerdOp": "2026-10-24T03:56:04.427Z",
+      "tagBron": "trefwoord"
     },
     {
       "id": "c22856128c-v1",
@@ -2015,7 +3336,7 @@
       "url": "https://www.deorkaan.nl/rot-wint-finaleduel-van-hamming-bij-raad-van-state/",
       "kop": "Rot wint finaleduel van Hamming bij Raad van State – update",
       "tekst": null,
-      "rubriek": "LOK",
+      "rubriek": "ALG",
       "prio": 3,
       "tijd": "2026-10-20T22:00:00.000Z",
       "heeftTijd": false,
@@ -2030,7 +3351,8 @@
       "bronLengte": 250,
       "seed": true,
       "herkomst": "signaal",
-      "gecontroleerdOp": "2026-10-24T03:56:04.427Z"
+      "gecontroleerdOp": "2026-10-24T03:56:04.427Z",
+      "tagBron": "geen"
     },
     {
       "id": "9fc1515164-v1",
@@ -2039,7 +3361,7 @@
       "url": "https://www.deorkaan.nl/rekenkamer-twijfelt-aan-stevige-basis-sluitende-begroting-zaanstad/",
       "kop": "Rekenkamer twijfelt aan stevige basis sluitende begroting Zaanstad",
       "tekst": null,
-      "rubriek": "LOK",
+      "rubriek": "GEM",
       "prio": 3,
       "tijd": "2026-10-20T22:00:00.000Z",
       "heeftTijd": false,
@@ -2054,7 +3376,8 @@
       "bronLengte": 238,
       "seed": true,
       "herkomst": "signaal",
-      "gecontroleerdOp": "2026-10-24T03:56:04.427Z"
+      "gecontroleerdOp": "2026-10-24T03:56:04.427Z",
+      "tagBron": "trefwoord"
     },
     {
       "id": "a11672e050-v1",
@@ -2063,7 +3386,7 @@
       "url": "https://www.deorkaan.nl/russische-buurt-voert-actie-laat-de-poller-omhoog/",
       "kop": "Russische Buurt voert actie: ‘Laat de poller omhoog’",
       "tekst": null,
-      "rubriek": "LOK",
+      "rubriek": "ALG",
       "prio": 3,
       "tijd": "2026-10-20T22:00:00.000Z",
       "heeftTijd": false,
@@ -2078,7 +3401,8 @@
       "bronLengte": 248,
       "seed": true,
       "herkomst": "signaal",
-      "gecontroleerdOp": "2026-10-24T03:56:04.427Z"
+      "gecontroleerdOp": "2026-10-24T03:56:04.427Z",
+      "tagBron": "geen"
     },
     {
       "id": "a5d39f0733-v1",
@@ -2087,7 +3411,7 @@
       "url": "https://www.deorkaan.nl/php-lek-voor-dummies/",
       "kop": "PHP-lek voor dummies",
       "tekst": null,
-      "rubriek": "LOK",
+      "rubriek": "ALG",
       "prio": 3,
       "tijd": "2026-10-20T22:00:00.000Z",
       "heeftTijd": false,
@@ -2102,7 +3426,8 @@
       "bronLengte": 250,
       "seed": true,
       "herkomst": "signaal",
-      "gecontroleerdOp": "2026-10-24T03:56:04.427Z"
+      "gecontroleerdOp": "2026-10-24T03:56:04.427Z",
+      "tagBron": "geen"
     },
     {
       "id": "e0ddf0b1d3-v1",
@@ -2111,7 +3436,7 @@
       "url": "https://www.deorkaan.nl/de-orkaan-mogelijk-offline-meld-je-nu-aan-voor-onze-gratis-nieuwsbrief/",
       "kop": "De Orkaan mogelijk offline? Meld je nú aan voor onze gratis nieuwsbrief!",
       "tekst": null,
-      "rubriek": "LOK",
+      "rubriek": "ALG",
       "prio": 3,
       "tijd": "2026-10-20T22:00:00.000Z",
       "heeftTijd": false,
@@ -2126,7 +3451,8 @@
       "bronLengte": 249,
       "seed": true,
       "herkomst": "signaal",
-      "gecontroleerdOp": "2026-10-24T03:56:04.427Z"
+      "gecontroleerdOp": "2026-10-24T03:56:04.427Z",
+      "tagBron": "geen"
     },
     {
       "id": "aa933fca19-v1",
@@ -2135,7 +3461,7 @@
       "url": "https://www.deorkaan.nl/groot-online-veiligheidslek-websites-zaanstad-oostzaan-en-wormerland-al-uit-de-lucht/",
       "kop": "Online veiligheidslek: Zaanstad, Oostzaan en Wormerland offline – Update: weer terug",
       "tekst": null,
-      "rubriek": "LOK",
+      "rubriek": "ALG",
       "prio": 3,
       "tijd": "2026-10-20T22:00:00.000Z",
       "heeftTijd": false,
@@ -2150,7 +3476,8 @@
       "bronLengte": 246,
       "seed": true,
       "herkomst": "signaal",
-      "gecontroleerdOp": "2026-10-24T03:56:04.427Z"
+      "gecontroleerdOp": "2026-10-24T03:56:04.427Z",
+      "tagBron": "geen"
     },
     {
       "id": "d3369e99a5-v1",
@@ -2159,7 +3486,7 @@
       "url": "https://www.deorkaan.nl/de-orkaan-in-2-minuten-21-oktober-%f0%9f%8e%a7/",
       "kop": "De Orkaan in 2 minuten: 21 oktober 🎧",
       "tekst": null,
-      "rubriek": "LOK",
+      "rubriek": "ALG",
       "prio": 3,
       "tijd": "2026-10-20T22:00:00.000Z",
       "heeftTijd": false,
@@ -2174,7 +3501,8 @@
       "bronLengte": 248,
       "seed": true,
       "herkomst": "signaal",
-      "gecontroleerdOp": "2026-10-24T03:56:04.427Z"
+      "gecontroleerdOp": "2026-10-24T03:56:04.427Z",
+      "tagBron": "geen"
     },
     {
       "id": "a8f7a62e0b-v1",
@@ -2183,7 +3511,7 @@
       "url": "https://www.deorkaan.nl/algemene-beschouwingen-sluitende-begroting-met-addertje/",
       "kop": "Algemene beschouwingen: sluitende begroting met addertje",
       "tekst": null,
-      "rubriek": "LOK",
+      "rubriek": "GEM",
       "prio": 3,
       "tijd": "2026-10-20T22:00:00.000Z",
       "heeftTijd": false,
@@ -2198,7 +3526,8 @@
       "bronLengte": 249,
       "seed": true,
       "herkomst": "signaal",
-      "gecontroleerdOp": "2026-10-24T03:56:04.427Z"
+      "gecontroleerdOp": "2026-10-24T03:56:04.427Z",
+      "tagBron": "trefwoord"
     },
     {
       "id": "05e8e3425e-v1",
@@ -2207,7 +3536,7 @@
       "url": "https://www.deorkaan.nl/waarheen-halloween-2026-in-de-zaanstreek/",
       "kop": "Waarheen? Halloween 2026 in de Zaanstreek",
       "tekst": null,
-      "rubriek": "LOK",
+      "rubriek": "ALG",
       "prio": 3,
       "tijd": "2026-10-20T22:00:00.000Z",
       "heeftTijd": false,
@@ -2222,7 +3551,8 @@
       "bronLengte": 249,
       "seed": true,
       "herkomst": "signaal",
-      "gecontroleerdOp": "2026-10-24T03:56:04.427Z"
+      "gecontroleerdOp": "2026-10-24T03:56:04.427Z",
+      "tagBron": "geen"
     },
     {
       "id": "065adc4133-v1",
@@ -2246,7 +3576,8 @@
       "bronLengte": 244,
       "seed": true,
       "herkomst": "officieel",
-      "gecontroleerdOp": "2026-10-24T03:56:04.427Z"
+      "gecontroleerdOp": "2026-10-24T03:56:04.427Z",
+      "tagBron": "bron"
     },
     {
       "id": "84303340df-v1",
@@ -2270,7 +3601,8 @@
       "bronLengte": 235,
       "seed": true,
       "herkomst": "officieel",
-      "gecontroleerdOp": "2026-10-24T03:56:04.427Z"
+      "gecontroleerdOp": "2026-10-24T03:56:04.427Z",
+      "tagBron": "bron"
     },
     {
       "id": "3181d67de1-v1",
@@ -2279,7 +3611,7 @@
       "url": "https://zaanstad.bestuurlijkeinformatie.nl/Document/View/3f509467-a36d-4005-9e1c-7e03315522cb",
       "kop": "Brief Small Modular Reactors en kernafval",
       "tekst": null,
-      "rubriek": "BES",
+      "rubriek": "GEM",
       "prio": 4,
       "tijd": "2026-10-19T22:00:00.000Z",
       "heeftTijd": false,
@@ -2294,7 +3626,8 @@
       "bronLengte": 247,
       "seed": true,
       "herkomst": "officieel",
-      "gecontroleerdOp": "2026-10-24T03:56:04.427Z"
+      "gecontroleerdOp": "2026-10-24T03:56:04.427Z",
+      "tagBron": "bron"
     },
     {
       "id": "328788296f-v1",
@@ -2303,7 +3636,7 @@
       "url": "https://zaanstad.bestuurlijkeinformatie.nl/Document/View/fa9d224e-f44c-4c6b-ad1e-b241b088f6b6",
       "kop": "Observaties bij de Ontwerpbegroting 2027-2030 van gemeente Zaanstad",
       "tekst": null,
-      "rubriek": "BES",
+      "rubriek": "GEM",
       "prio": 4,
       "tijd": "2026-10-19T22:00:00.000Z",
       "heeftTijd": false,
@@ -2318,7 +3651,8 @@
       "bronLengte": 242,
       "seed": true,
       "herkomst": "officieel",
-      "gecontroleerdOp": "2026-10-24T03:56:04.427Z"
+      "gecontroleerdOp": "2026-10-24T03:56:04.427Z",
+      "tagBron": "trefwoord"
     },
     {
       "id": "90596bea82-v1",
@@ -2327,7 +3661,7 @@
       "url": "https://zoek.officielebekendmakingen.nl/gmb-2026-488166.html",
       "kop": "Melding toepassen grond en baggerspecie - Nabij Dorpsstraat 462 Assendelft , 43 meter richting zuiden",
       "tekst": null,
-      "rubriek": "BES",
+      "rubriek": "GEM",
       "prio": 4,
       "tijd": "2026-10-19T22:00:00.000Z",
       "heeftTijd": false,
@@ -2342,7 +3676,8 @@
       "bronLengte": 244,
       "seed": true,
       "herkomst": "officieel",
-      "gecontroleerdOp": "2026-10-24T03:56:04.427Z"
+      "gecontroleerdOp": "2026-10-24T03:56:04.427Z",
+      "tagBron": "bron"
     },
     {
       "id": "95c8fbe472-v1",
@@ -2351,7 +3686,7 @@
       "url": "https://zoek.officielebekendmakingen.nl/gmb-2026-488491.html",
       "kop": "Tarievenbesluit rioolaansluitingen Zaanstad 2027",
       "tekst": null,
-      "rubriek": "BES",
+      "rubriek": "GEM",
       "prio": 4,
       "tijd": "2026-10-19T22:00:00.000Z",
       "heeftTijd": false,
@@ -2366,7 +3701,8 @@
       "bronLengte": 245,
       "seed": true,
       "herkomst": "officieel",
-      "gecontroleerdOp": "2026-10-24T03:56:04.427Z"
+      "gecontroleerdOp": "2026-10-24T03:56:04.427Z",
+      "tagBron": "bron"
     },
     {
       "id": "48a7d9feff-v1",
@@ -2390,7 +3726,8 @@
       "bronLengte": 250,
       "seed": true,
       "herkomst": "officieel",
-      "gecontroleerdOp": "2026-10-24T03:56:04.427Z"
+      "gecontroleerdOp": "2026-10-24T03:56:04.427Z",
+      "tagBron": "bron"
     },
     {
       "id": "cb102ff917-v1",
@@ -2399,7 +3736,7 @@
       "url": "https://zaanstad.bestuurlijkeinformatie.nl/Document/View/fa45b49f-daf7-4ae8-9668-c30fa157e802",
       "kop": "Petitie en Noodkreet houd de Verkadevilla open voor hulp",
       "tekst": null,
-      "rubriek": "BES",
+      "rubriek": "GEM",
       "prio": 4,
       "tijd": "2026-10-18T22:00:00.000Z",
       "heeftTijd": false,
@@ -2414,7 +3751,8 @@
       "bronLengte": 246,
       "seed": true,
       "herkomst": "officieel",
-      "gecontroleerdOp": "2026-10-24T03:56:04.427Z"
+      "gecontroleerdOp": "2026-10-24T03:56:04.427Z",
+      "tagBron": "bron"
     },
     {
       "id": "9c8598e5b8-v1",
@@ -2423,7 +3761,7 @@
       "url": "https://zaanstad.bestuurlijkeinformatie.nl/Document/View/cc72ef74-c881-45c6-b3f1-7ed8e26e1e54",
       "kop": "Brief Infrastructuur tbv begrotingsbehandeling gemeenteraad",
       "tekst": null,
-      "rubriek": "BES",
+      "rubriek": "GEM",
       "prio": 4,
       "tijd": "2026-10-18T22:00:00.000Z",
       "heeftTijd": false,
@@ -2438,7 +3776,8 @@
       "bronLengte": 249,
       "seed": true,
       "herkomst": "officieel",
-      "gecontroleerdOp": "2026-10-24T03:56:04.427Z"
+      "gecontroleerdOp": "2026-10-24T03:56:04.427Z",
+      "tagBron": "trefwoord"
     },
     {
       "id": "43abb36481-v1",
@@ -2447,7 +3786,7 @@
       "url": "https://zoek.officielebekendmakingen.nl/gmb-2026-491005.html",
       "kop": "Aanwijzingsbesluit verlenging tijdelijk cameratoezicht Rode Zee in Zaandam",
       "tekst": null,
-      "rubriek": "BES",
+      "rubriek": "GEM",
       "prio": 4,
       "tijd": "2026-10-18T22:00:00.000Z",
       "heeftTijd": false,
@@ -2462,7 +3801,8 @@
       "bronLengte": 244,
       "seed": true,
       "herkomst": "officieel",
-      "gecontroleerdOp": "2026-10-24T03:56:04.427Z"
+      "gecontroleerdOp": "2026-10-24T03:56:04.427Z",
+      "tagBron": "bron"
     },
     {
       "id": "18aceaf474-v1",
@@ -2471,7 +3811,7 @@
       "url": "https://zoek.officielebekendmakingen.nl/gmb-2026-485636.html",
       "kop": "Melding saneren bodem - Rozengracht 20 1506SC Zaandam",
       "tekst": null,
-      "rubriek": "BES",
+      "rubriek": "GEM",
       "prio": 4,
       "tijd": "2026-10-18T22:00:00.000Z",
       "heeftTijd": false,
@@ -2486,7 +3826,8 @@
       "bronLengte": 250,
       "seed": true,
       "herkomst": "officieel",
-      "gecontroleerdOp": "2026-10-24T03:56:04.427Z"
+      "gecontroleerdOp": "2026-10-24T03:56:04.427Z",
+      "tagBron": "bron"
     },
     {
       "id": "46a246650a-v1",
@@ -2495,7 +3836,7 @@
       "url": "https://lokaleregelgeving.overheid.nl/CVDR768195/1",
       "kop": "Aanwijzingsbesluit verlenging tijdelijk cameratoezicht Rode Zee Zaandam",
       "tekst": null,
-      "rubriek": "BES",
+      "rubriek": "GEM",
       "prio": 4,
       "tijd": "2026-10-17T22:00:00.000Z",
       "heeftTijd": false,
@@ -2510,7 +3851,8 @@
       "bronLengte": 235,
       "seed": true,
       "herkomst": "officieel",
-      "gecontroleerdOp": "2026-10-24T03:56:04.427Z"
+      "gecontroleerdOp": "2026-10-24T03:56:04.427Z",
+      "tagBron": "bron"
     }
   ]
 }
