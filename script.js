@@ -10,9 +10,10 @@
 // De ZANP-tabs verversen zichzelf elke 5 minuten zolang de pagina zichtbaar
 // is; de pitchtab wordt één keer geladen.
 //
-// Opzet (ZANP, slanke versie 2026-10-29):
-//  - Nieuwsdienst: een smalle kolom per tag plus een totaalkolom (naar het ANP).
-//    Elke kolom heeft een eigen zoekveld en toont standaard de laatste drie dagen
+// Opzet (ZANP, indeling van het ANP-nieuwsscherm, 2026-10-30):
+//  - Nieuwsdienst: een kolom van 20rem per tag plus een totaalkolom (naar het ANP).
+//    Elke kolom heeft een zoek-icoon (opent een eigen zoekveld) en een menu (⋮) en
+//    toont standaard de laatste drie dagen
 //    (zoeken doorzoekt alles, "Oudere berichten" laat de rest zien). Dubbel
 //    nieuws staat als één bericht met "ook gemeld door"; berichten over dezelfde
 //    zaak (zelfde adres, ECLI, zaaknummer) verwijzen naar elkaar. Alerts staan
@@ -31,6 +32,10 @@ const TABS = ["nieuwsdienst", "agenda", "pitches"];
 const VERVERS_MS = 5 * 60 * 1000;
 const VEROUDERD_MINUTEN = 90;
 
+const ZOEK_SVG =
+  '<svg viewBox="0 0 24 24" width="24" height="24" aria-hidden="true" focusable="false"><path fill="currentColor" d="M15.5 14h-.79l-.28-.27A6.47 6.47 0 0 0 16 9.5 6.5 6.5 0 1 0 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/></svg>';
+const MENU_SVG =
+  '<svg viewBox="0 0 24 24" width="24" height="24" aria-hidden="true" focusable="false"><path fill="currentColor" d="M12 8c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2zm0 2c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm0 6c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2z"/></svg>';
 const KLOK_SVG =
   '<svg width="13" height="13" viewBox="0 0 16 16" aria-hidden="true" focusable="false">'
   + '<circle cx="8" cy="8" r="6.5" fill="none" stroke="currentColor" stroke-width="1.6"/>'
@@ -69,6 +74,7 @@ const state = {
   agendaRubriek: "",
   agendaToonAlles: false,
   zoek: {}, // kolomcode -> zoektekst
+  zoekOpen: new Set(), // kolommen waar het zoekveld open staat
   oudere: new Set(), // kolommen waar ook de berichten van vóór de laatste drie dagen staan
   mobileKolom: "ALL",
   kolommenUit: new Set(leesOpslag("zanp-kolommen-uit", [])),
@@ -250,8 +256,11 @@ function koppelTabs() {
   knoppen.forEach((knop, index) => {
     knop.addEventListener("click", () => toonTab(knop.dataset.tab));
     knop.addEventListener("keydown", (e) => {
-      if (e.key !== "ArrowRight" && e.key !== "ArrowLeft") return;
-      const volgende = (index + (e.key === "ArrowRight" ? 1 : -1) + knoppen.length) % knoppen.length;
+      const vooruit = e.key === "ArrowRight" || e.key === "ArrowDown";
+      const terug = e.key === "ArrowLeft" || e.key === "ArrowUp";
+      if (!vooruit && !terug) return;
+      e.preventDefault();
+      const volgende = (index + (vooruit ? 1 : -1) + knoppen.length) % knoppen.length;
       toonTab(knoppen[volgende].dataset.tab);
       knoppen[volgende].focus();
     });
@@ -534,11 +543,13 @@ function renderWireItem(r, kolomCode) {
   // In de totaalkolom staat de tag erbij; in een tagkolom is dat overbodig.
   const tag = kolomCode === "ALL" && r.rubriek ? `<div><dt>tag</dt><dd>${escapeHtml(r.rubriek)}</dd></div>` : "";
   return `
-    <article class="wire-item${heeftAlert ? ` heeft-alert alert-${r.alert.niveau}` : ""}" data-id="${escapeHtml(r.id)}">
-      <button type="button" class="wire-kop" aria-expanded="false" aria-controls="${escapeHtml(detailId)}">${isNieuw ? '<span class="nieuw-stip">nieuw</span> ' : ""}${escapeHtml(r.kop)}${r.versie > 1 ? ` <span class="versie-suffix">(${r.versie})</span>` : ""}</button>
+    <article class="wire-item prioriteit-${prio}${heeftAlert ? ` heeft-alert alert-${r.alert.niveau}` : ""}" data-id="${escapeHtml(r.id)}">
+      <div class="title-row">
+        <button type="button" class="wire-kop" aria-expanded="false" aria-controls="${escapeHtml(detailId)}">${isNieuw ? '<span class="nieuw-stip">nieuw</span> ' : ""}${escapeHtml(r.kop)}${r.versie > 1 ? ` <span class="versie-suffix">(${r.versie})</span>` : ""}</button>
+      </div>
       <dl class="wire-meta">
         <div><dt>tijd</dt><dd>${tijd}</dd></div>
-        <div><dt>datum</dt><dd>${dag ? escapeHtml(datumKort(dag)) : "–"}</dd></div>
+        <div><dt>${dag ? escapeHtml(dag.slice(0, 4)) : "datum"}</dt><dd>${dag ? `${escapeHtml(datumKort(dag))}.` : "–"}</dd></div>
         <div><dt>woorden</dt><dd>${woorden}</dd></div>
         <div><dt>versie</dt><dd>${r.versie || 1}</dd></div>
         <div><dt>prio</dt><dd><span class="prio-waarde prio-${prio}">${prio}</span></dd></div>
@@ -565,19 +576,30 @@ function renderWireKolom(code, naam) {
   const info = agendaVandaagInfo(code === "ALL" ? "" : code);
   const agendaTekst = info.aantal === 0
     ? "Geen agenda vandaag"
-    : `Agenda vandaag${info.bereik ? ` · ${info.bereik}` : ""}`;
+    : `Agenda vandaag: ${info.aantal}${info.bereik ? ` · ${info.bereik}` : ""}`;
+  const zoekOpen = state.zoekOpen.has(code) || Boolean(state.zoek[code]);
 
   return `
     <section class="wire-kolom${code === state.mobileKolom ? " actief" : ""}" data-kolom="${escapeHtml(code)}" aria-label="${escapeHtml(naam)}">
-      <div class="wire-kolom-kop">
-        <h2>${escapeHtml(naam)}</h2>
-        <input type="search" class="wire-zoek" data-actie="kolom-zoek" data-kolom="${escapeHtml(code)}" placeholder="Zoek" aria-label="Zoek in ${escapeHtml(naam)}" autocomplete="off" value="${escapeHtml(state.zoek[code] || "")}">
+      <div class="wire-kaart">
+        <div class="wire-kolom-kop">
+          <h2 class="column-title">${escapeHtml(naam)}</h2>
+          <div class="kolom-acties">
+            <button type="button" class="icoon-knop" data-actie="zoek-toggle" data-kolom="${escapeHtml(code)}" aria-label="Zoeken in ${escapeHtml(naam)}" aria-expanded="${zoekOpen}" title="Zoeken">${ZOEK_SVG}</button>
+            <details class="kolom-menu">
+              <summary class="icoon-knop" aria-label="Menu van ${escapeHtml(naam)}" title="Menu">${MENU_SVG}</summary>
+              <div class="kolom-menu-lijst">
+                <button type="button" data-actie="agenda-van-kolom" data-rubriek="${code === "ALL" ? "" : escapeHtml(code)}">${escapeHtml(agendaTekst)}</button>
+                <button type="button" data-actie="kolom-verberg" data-kolom="${escapeHtml(code)}">Kolom verbergen</button>
+              </div>
+            </details>
+          </div>
+        </div>
+        <div class="wire-zoek-rij"${zoekOpen ? "" : " hidden"}>
+          <input type="search" class="wire-zoek" data-actie="kolom-zoek" data-kolom="${escapeHtml(code)}" placeholder="Zoek" aria-label="Zoek in ${escapeHtml(naam)}" autocomplete="off" value="${escapeHtml(state.zoek[code] || "")}">
+        </div>
+        <div class="wire-lijst">${kolomLijstHtml(code)}</div>
       </div>
-      <button type="button" class="agenda-balk${info.aantal === 0 ? " leeg" : ""}" data-actie="agenda-van-kolom" data-rubriek="${code === "ALL" ? "" : escapeHtml(code)}">
-        <span>${escapeHtml(agendaTekst)}</span>
-        <span class="agenda-balk-pijl" aria-hidden="true">→</span>
-      </button>
-      <div class="wire-lijst">${kolomLijstHtml(code)}</div>
     </section>`;
 }
 
@@ -754,7 +776,7 @@ function renderAgenda() {
       (dag, i) => `
       <section class="agenda-dag${dag === vandaag ? " vandaag" : ""}" data-dag="${dag}" aria-label="${escapeHtml(dagMetWeekdag(dag))}">
         <h2 class="agenda-dag-kop">${escapeHtml(dagMetWeekdag(dag))}</h2>
-        ${perDag[i].length ? perDag[i].map(renderAgendaItem).join("") : '<p class="agenda-leeg">Niets gepland.</p>'}
+        <div class="wire-lijst">${perDag[i].length ? perDag[i].map(renderAgendaItem).join("") : '<p class="agenda-leeg">Niets gepland.</p>'}</div>
       </section>`
     )
     .join("");
@@ -969,6 +991,10 @@ function verbergLandelijk() {
 
 function koppelKlikken() {
   document.addEventListener("click", (e) => {
+    // Een open kolommenu sluit bij een klik ernaast.
+    document.querySelectorAll(".kolom-menu[open]").forEach((m) => {
+      if (!m.contains(e.target)) m.removeAttribute("open");
+    });
     const kop = e.target.closest(".wire-kop");
     if (kop) {
       const open = kop.getAttribute("aria-expanded") === "true";
@@ -1007,6 +1033,33 @@ function koppelKlikken() {
         state.oudere.add(el.dataset.kolom);
         renderWire();
         break;
+      case "zoek-toggle": {
+        const code = el.dataset.kolom;
+        const kolom = [...document.querySelectorAll(".wire-kolom")].find((k) => k.dataset.kolom === code);
+        const rij = kolom && kolom.querySelector(".wire-zoek-rij");
+        if (!rij) break;
+        const open = rij.hidden;
+        rij.hidden = !open;
+        el.setAttribute("aria-expanded", String(open));
+        if (open) {
+          state.zoekOpen.add(code);
+          const veld = rij.querySelector(".wire-zoek");
+          if (veld) veld.focus();
+        } else {
+          state.zoekOpen.delete(code);
+          state.zoek[code] = "";
+          const veld = rij.querySelector(".wire-zoek");
+          if (veld) veld.value = "";
+          const lijst = kolom.querySelector(".wire-lijst");
+          if (lijst) lijst.innerHTML = kolomLijstHtml(code);
+        }
+        break;
+      }
+      case "kolom-verberg":
+        state.kolommenUit.add(el.dataset.kolom);
+        bewaarOpslag("zanp-kolommen-uit", [...state.kolommenUit]);
+        renderWire();
+        break;
       case "kolom-tab":
         state.mobileKolom = el.dataset.kolom;
         renderWire();
@@ -1040,7 +1093,8 @@ function bewaarUiStaat() {
   const focus = actief && actief.dataset && actief.dataset.actie === "kolom-zoek"
     ? { kolom: actief.dataset.kolom, positie: actief.selectionStart }
     : null;
-  return { open, scroll, agendaScroll: week ? week.scrollLeft : 0, focus };
+  const kolommen = document.getElementById("wire-kolommen");
+  return { open, scroll, agendaScroll: week ? week.scrollLeft : 0, wireScroll: kolommen ? kolommen.scrollLeft : 0, focus };
 }
 
 function herstelUiStaat(staat) {
@@ -1057,6 +1111,8 @@ function herstelUiStaat(staat) {
   });
   const week = document.getElementById("agenda-week");
   if (week) week.scrollLeft = staat.agendaScroll;
+  const kolommen = document.getElementById("wire-kolommen");
+  if (kolommen) kolommen.scrollLeft = staat.wireScroll || 0;
   if (staat.focus) {
     const veld = [...document.querySelectorAll(".wire-zoek")].find((v) => v.dataset.kolom === staat.focus.kolom);
     if (veld) {

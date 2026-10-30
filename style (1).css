@@ -1,0 +1,1400 @@
+:root {
+  --kleur-achtergrond: #f7f5f0;
+  --kleur-tekst: #1f2321;
+  --kleur-accent: #2f6b4f;
+  --kleur-accent-licht: #e4efe8;
+  --kleur-rand: #d8d3c8;
+  --kleur-lokaal: #2f6b4f;
+  --kleur-landelijk: #4a5b8c;
+  --kleur-nieuws: #b83a3a;
+  --kleur-nieuws-licht: #f7e4e4;
+  --kleur-agenda: #b8860b;
+  --kleur-agenda-licht: #faf0d4;
+  --kleur-oppervlak: #ffffff;
+  --kleur-zacht: #eef3f0;
+  --kleur-donker: #1f4d38;
+  --kleur-prio-1: #b83a3a;
+  --kleur-prio-2: #c2681b;
+  --kleur-prio-3: #4a5b8c;
+  --kleur-prio-4: #7a7a7a;
+  --font: "Segoe UI", system-ui, -apple-system, sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: var(--font);
+  background: var(--kleur-achtergrond);
+  color: var(--kleur-tekst);
+  line-height: 1.5;
+}
+
+.site-header {
+  padding: 1rem 1.5rem 0.75rem;
+  background: var(--kleur-accent);
+  color: white;
+}
+
+.site-header h1 {
+  margin: 0;
+  font-size: 1.6rem;
+}
+
+.subtitel {
+  margin: 0;
+  opacity: 0.9;
+  font-size: 0.95rem;
+}
+
+.laatste-update {
+  margin: 0.4rem 0 0;
+  font-size: 0.8rem;
+  opacity: 0.8;
+  min-height: 1.2em;
+}
+
+main {
+  padding: 1rem 1rem 3rem;
+}
+
+.paneel[hidden] {
+  display: none;
+}
+
+/* De pitch-tab houdt de smalle leesbreedte van vroeger. */
+.paneel-smal {
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.paneel-smal > section {
+  margin-bottom: 2.5rem;
+}
+
+h2 {
+  border-bottom: 2px solid var(--kleur-rand);
+  padding-bottom: 0.5rem;
+  font-size: 1.25rem;
+}
+
+.uitleg {
+  color: #555;
+  font-size: 0.9rem;
+  margin-top: -0.5rem;
+}
+
+/* --- Pitchkaarten ------------------------------------------------------- */
+
+.kaarten-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+.pitch-kaart {
+  background: white;
+  border: 1px solid var(--kleur-rand);
+  border-left: 4px solid var(--kleur-accent);
+  border-radius: 6px;
+  padding: 1rem;
+}
+
+.pitch-kaart h3 {
+  margin: 0 0 0.5rem;
+  font-size: 1rem;
+}
+
+.pitch-kaart a {
+  color: var(--kleur-tekst);
+  text-decoration: none;
+}
+
+.pitch-kaart a:hover {
+  text-decoration: underline;
+}
+
+.badge {
+  display: inline-block;
+  font-size: 0.7rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+  padding: 0.15rem 0.5rem;
+  border-radius: 999px;
+  margin-bottom: 0.5rem;
+}
+
+.badge.lokaal {
+  background: var(--kleur-accent-licht);
+  color: var(--kleur-lokaal);
+}
+
+.badge.landelijk {
+  background: #e7eaf5;
+  color: var(--kleur-landelijk);
+}
+
+/* Codescore-badge: alleen nog voor agenda. De kleur geeft de band aan
+   (hoog/middel/laag), de tooltip de ruwe score. */
+.badge.pitch-score {
+  margin-left: 0.35rem;
+}
+.badge.pitch-score-hoog {
+  background: #d4edda;
+  color: #155724;
+}
+.badge.pitch-score-middel {
+  background: #f0e7c8;
+  color: #7a5a10;
+}
+.badge.pitch-score-laag {
+  background: #f8d7da;
+  color: #721c24;
+}
+
+.badge.pitch-genre {
+  background: #e7eaf5;
+  color: #4a5b8c;
+  margin-left: 0.35rem;
+}
+
+/* Pitch-samenvatting: twee of drie zinnen uit de pitch-call. */
+.pitch-samenvatting {
+  font-size: 0.9rem;
+  color: #333;
+  margin: 0.5rem 0;
+}
+
+.pitch-kern {
+  font-style: italic;
+  color: #333;
+  margin: 0.5rem 0;
+  font-size: 0.9rem;
+}
+
+.invalshoek,
+.researchvraag,
+.bronnen,
+.onderbouwing {
+  font-size: 0.85rem;
+  color: #333;
+  margin-top: 0.5rem;
+}
+
+.invalshoek {
+  font-style: italic;
+}
+
+.onderbouwing {
+  color: #666;
+}
+
+.pitch-feiten,
+.pitch-uittezoeken,
+.pitch-bellijst {
+  font-size: 0.85rem;
+  margin: 0.5rem 0;
+}
+
+.pitch-feiten ul,
+.pitch-uittezoeken ul,
+.pitch-bellijst ul {
+  margin: 0.25rem 0 0 0;
+  padding-left: 1.2rem;
+}
+
+.pitch-eerstecheck,
+.pitch-afnemer {
+  font-size: 0.8rem;
+  color: #666;
+  margin-top: 0.5rem;
+}
+
+/* --- Nieuwsfeed --------------------------------------------------------- */
+
+.feed-legenda {
+  display: inline-block;
+  font-weight: 600;
+  padding: 0 0.35rem;
+  border-radius: 3px;
+}
+.feed-legenda-nieuws {
+  color: var(--kleur-nieuws);
+  background: var(--kleur-nieuws-licht);
+}
+.feed-legenda-agenda {
+  color: var(--kleur-agenda);
+  background: var(--kleur-agenda-licht);
+}
+
+.feed-lijst {
+  margin-top: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.feed-item {
+  display: flex;
+  gap: 1rem;
+  background: white;
+  border: 1px solid var(--kleur-rand);
+  border-left: 4px solid var(--kleur-rand);
+  border-radius: 6px;
+  overflow: hidden;
+  padding: 0.75rem;
+  align-items: stretch;
+}
+
+.feed-item.feed-nieuws {
+  border-left-color: var(--kleur-nieuws);
+}
+.feed-item.feed-agenda {
+  border-left-color: var(--kleur-agenda);
+}
+
+.feed-foto {
+  flex: 0 0 140px;
+  width: 140px;
+  min-height: 95px;
+  background-color: #dcdcdc;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  color: #7a7a7a;
+  font-size: 0.7rem;
+  line-height: 1.1;
+  padding: 0.25rem;
+}
+
+.geen-foto-tekst {
+  font-style: italic;
+  opacity: 0.85;
+}
+
+.feed-tekst {
+  flex: 1 1 auto;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.feed-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  align-items: center;
+  font-size: 0.75rem;
+  color: #777;
+}
+
+.feed-soort {
+  font-size: 0.65rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  padding: 0.1rem 0.45rem;
+  border-radius: 999px;
+}
+
+.feed-soort-nieuws {
+  background: var(--kleur-nieuws-licht);
+  color: var(--kleur-nieuws);
+}
+
+.feed-soort-agenda {
+  background: var(--kleur-agenda-licht);
+  color: var(--kleur-agenda);
+}
+
+.feed-bron {
+  color: #555;
+}
+
+.feed-datum {
+  margin-left: auto;
+  color: #999;
+}
+
+.feed-titel {
+  margin: 0;
+  font-size: 1rem;
+  line-height: 1.3;
+}
+
+.feed-titel a {
+  color: var(--kleur-tekst);
+  text-decoration: none;
+}
+
+.feed-titel a:hover {
+  text-decoration: underline;
+}
+
+.feed-samenvatting {
+  margin: 0;
+  font-size: 0.85rem;
+  color: #444;
+  overflow: hidden;
+}
+
+/* --- Alle berichten ----------------------------------------------------- */
+
+.berichten-lijst {
+  margin-top: 1rem;
+}
+
+.bericht-rij {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 0.6rem 0;
+  border-bottom: 1px solid var(--kleur-rand);
+  font-size: 0.9rem;
+}
+
+.bericht-rij a {
+  color: var(--kleur-tekst);
+  flex: 1 1 auto;
+}
+
+/* Codescore in de berichtenlijst (alleen bij agenda). */
+.bericht-score {
+  font-family: monospace;
+  font-size: 0.75rem;
+  color: var(--kleur-accent);
+  flex: 0 0 auto;
+  min-width: 5em;
+}
+
+.bericht-meta {
+  color: #777;
+  white-space: nowrap;
+  font-size: 0.8rem;
+}
+
+.laden,
+.leeg,
+.foutmelding {
+  color: #777;
+  font-style: italic;
+}
+
+.foutmelding {
+  color: #a33;
+}
+
+.site-footer {
+  text-align: center;
+  padding: 1.5rem 1rem;
+  font-size: 0.8rem;
+  color: #777;
+  border-top: 1px solid var(--kleur-rand);
+}
+
+@media (max-width: 520px) {
+  .feed-item {
+    flex-direction: column;
+  }
+  .feed-foto {
+    width: 100%;
+    flex: 0 0 auto;
+    min-height: 150px;
+  }
+  .feed-datum {
+    margin-left: 0;
+  }
+}
+
+/* ======================================================================
+   ZANP: indeling van het ANP-nieuwsscherm
+   Maten uit het opmaakbestand van het ANP (zijbalk 4rem, topbalk 68px,
+   kolommen van 20rem die zijwaarts vastklikken, kolomkop 52px, berichten met
+   waarde boven label). Kleuren staan als variabelen: zet --zanp-primair op
+   #0039D8 voor het blauw van het ANP. De pitch-tab gebruikt hier niets van,
+   behalve het scrollende vlak eromheen.
+   ====================================================================== */
+
+:root {
+  --zanp-primair: var(--kleur-accent);
+  --zanp-primair-licht: var(--kleur-accent-licht);
+  --zanp-primair-licht-hover: #d3e5da;
+  --zanp-actief: #ece94a; /* icoon in de zijbalk bij hover en actief */
+  --zanp-achtergrond: #f5f8f9;
+  --zanp-lichtgrijs: #e8ecfb;
+  --zanp-hover: #e9eff2;
+  --zanp-rood-licht: #ff9191;
+  --zanp-rood-licht-hover: #ff7878;
+  --zanp-radius: 0.375rem;
+  --zanp-schaduw: 0 2px 3px 0 rgba(52, 56, 85, 0.25);
+  --zanp-font: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+}
+
+:focus-visible {
+  outline: 3px solid #1b6fd6;
+  outline-offset: 2px;
+}
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  overflow: hidden;
+}
+
+.base {
+  display: flex;
+  height: 100vh;
+  height: 100dvh;
+  font-family: var(--zanp-font);
+  font-size: 0.875em;
+  line-height: 1.1;
+  color: #1b1a1f;
+}
+
+/* Dunne scrollbalk van 5px, zoals het ANP */
+.base,
+.base * {
+  scrollbar-width: thin;
+  scrollbar-color: #adb3b9 transparent;
+}
+.base ::-webkit-scrollbar {
+  width: 5px;
+  height: 5px;
+}
+.base ::-webkit-scrollbar-thumb {
+  background-color: #adb3b9;
+  border-radius: 6px;
+  border: 2px solid transparent;
+}
+
+/* --- Zijbalk: 4rem, alleen iconen --- */
+
+.navigation-main {
+  flex: 0 0 4rem;
+  width: 4rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: var(--zanp-primair);
+  color: white;
+}
+
+.logo {
+  padding: 1.8rem 0.5rem;
+  text-align: center;
+}
+
+.merk {
+  font-weight: 800;
+  letter-spacing: 0.04em;
+  font-size: 1rem;
+}
+
+.tabs {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.tab {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 4rem;
+  padding: 0.75rem 1rem;
+  color: white;
+  background: none;
+  border: 0;
+  cursor: pointer;
+}
+
+.tab:hover,
+.tab[aria-selected="true"] {
+  color: var(--zanp-actief);
+}
+
+.tab:focus-visible {
+  outline-color: white;
+}
+
+/* --- Topbalk: 68px, wit, met schaduw --- */
+
+.content {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  min-width: 0;
+  height: 100vh;
+  height: 100dvh;
+  overflow-x: hidden;
+}
+
+.navigation-top {
+  position: relative;
+  z-index: 2;
+  flex: 0 0 auto;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  min-height: 68px;
+  padding: 1rem;
+  background: white;
+  box-shadow: 0 0.25rem 0.5rem 0 rgba(59, 63, 73, 0.15);
+}
+
+.top-titel {
+  margin: 0;
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--zanp-primair);
+}
+
+.laatste-update {
+  margin: 0 0 0 auto;
+  font-size: 0.8125rem;
+  line-height: 1.3;
+  color: #555;
+  text-align: right;
+}
+
+.laatste-update.verouderd {
+  font-weight: 700;
+  background: #fff3cd;
+  color: #664d03;
+  padding: 0.2rem 0.6rem;
+  border-radius: 4px;
+}
+
+.kolommenkiezer {
+  position: relative;
+}
+
+.kolommenkiezer summary {
+  cursor: pointer;
+  list-style: none;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--zanp-primair);
+  padding: 0.35rem 0.8rem;
+  border-radius: 999px;
+}
+
+.kolommenkiezer summary:hover {
+  background: var(--zanp-primair-licht);
+}
+
+.kolommenkiezer summary::-webkit-details-marker {
+  display: none;
+}
+
+.kolommen-opties {
+  position: absolute;
+  z-index: 10;
+  top: calc(100% + 0.25rem);
+  left: 0;
+  min-width: 15rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  padding: 0.7rem 0.9rem;
+  background: white;
+  border-radius: var(--zanp-radius);
+  box-shadow: 0 0.25rem 0.5rem 0 rgba(59, 63, 73, 0.25);
+}
+
+.vinkje {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 0.9rem;
+}
+
+/* --- Hoofdvlak --- */
+
+.main {
+  display: flex;
+  flex: 1;
+  min-height: 0;
+  padding: 0;
+  background: var(--zanp-achtergrond);
+}
+
+.paneel {
+  flex: 1;
+  min-width: 0;
+  min-height: 0;
+  overflow: auto;
+  padding: 1rem;
+}
+
+/* De pitch-tab houdt zijn eigen lettertype en leesbreedte. */
+#paneel-pitches {
+  font-family: var(--font);
+  font-size: 16px;
+  line-height: 1.5;
+}
+
+.paneel-kolommen {
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  padding: 0.5rem;
+}
+
+.paneel-kolommen[hidden] {
+  display: none;
+}
+
+.site-footer {
+  flex: 0 0 auto;
+  padding: 0.35rem 1rem;
+  font-size: 0.7rem;
+  line-height: 1.3;
+  color: #777;
+  background: white;
+  border-top: 1px solid var(--zanp-lichtgrijs);
+}
+
+.site-footer p {
+  margin: 0;
+}
+
+.knop {
+  font: inherit;
+  font-size: 0.9rem;
+  font-weight: 600;
+  padding: 0.4rem 0.8rem;
+  border: 0;
+  border-radius: 999px;
+  background: white;
+  box-shadow: var(--zanp-schaduw);
+  color: var(--zanp-primair);
+  cursor: pointer;
+}
+
+.knop:hover {
+  background: var(--zanp-primair-licht);
+}
+
+.knop[hidden] {
+  display: none;
+}
+
+.knop-klein {
+  font-size: 0.75rem;
+  padding: 0.25rem 0.7rem;
+}
+
+.uitleg {
+  color: #555;
+  font-size: 0.85rem;
+  margin: 0.25rem 0 0.75rem;
+}
+
+/* --- Nieuwsstroom: kolommen van 20rem, zijwaarts vastklikkend --- */
+
+.wire-kolommen,
+.agenda-week {
+  display: flex;
+  flex: 1;
+  flex-wrap: nowrap;
+  min-height: 0;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+}
+
+.wire-kolom {
+  flex: 0 0 20rem;
+  min-width: 20rem;
+  max-width: 20rem;
+  display: flex;
+  padding: 0.5rem;
+  scroll-snap-align: start;
+}
+
+.wire-kaart,
+.agenda-dag {
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+  background: white;
+  border-radius: var(--zanp-radius);
+  box-shadow: var(--zanp-schaduw);
+  overflow: hidden;
+}
+
+.wire-kaart {
+  width: 100%;
+  height: 100%;
+}
+
+.wire-kolom-kop,
+.agenda-dag-kop {
+  flex: 0 0 52px;
+  display: flex;
+  align-items: center;
+  height: 52px;
+  margin: 0;
+  padding: 10px 20px;
+  font-size: 0.9375em;
+  font-weight: 700;
+  line-height: 1.2;
+  text-align: left;
+  color: var(--zanp-primair);
+}
+
+.column-title {
+  flex: 1;
+  min-width: 0;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: inherit;
+  font-weight: 700;
+  color: inherit;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.kolom-acties {
+  display: flex;
+  align-items: center;
+  flex: 0 0 auto;
+}
+
+.icoon-knop {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 2rem;
+  height: 2rem;
+  padding: 0;
+  list-style: none;
+  color: var(--zanp-primair);
+  background: none;
+  border: 0;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+.icoon-knop:hover {
+  background: var(--zanp-primair-licht);
+}
+
+.icoon-knop::-webkit-details-marker {
+  display: none;
+}
+
+.kolom-menu {
+  position: relative;
+}
+
+.kolom-menu-lijst {
+  position: absolute;
+  z-index: 5;
+  top: calc(100% + 0.25rem);
+  right: 0;
+  display: flex;
+  flex-direction: column;
+  min-width: 13rem;
+  padding: 0.25rem 0;
+  background: white;
+  border-radius: var(--zanp-radius);
+  box-shadow: 0 0.25rem 0.5rem 0 rgba(59, 63, 73, 0.25);
+}
+
+.kolom-menu-lijst button {
+  font: inherit;
+  font-size: 0.875rem;
+  font-weight: 400;
+  text-align: left;
+  color: #1b1a1f;
+  background: none;
+  border: 0;
+  padding: 0.6rem 1rem;
+  cursor: pointer;
+}
+
+.kolom-menu-lijst button:hover {
+  background: var(--zanp-hover);
+}
+
+.wire-zoek-rij {
+  flex: 0 0 auto;
+  padding: 0 20px 10px;
+}
+
+.wire-zoek-rij[hidden] {
+  display: none;
+}
+
+.wire-zoek {
+  width: 100%;
+  font: inherit;
+  font-size: 0.9em;
+  padding: 0.4rem 0.6rem;
+  border: 1px solid #babfc2;
+  border-radius: var(--zanp-radius);
+  background: white;
+  color: #1b1a1f;
+}
+
+.wire-lijst {
+  flex: 1;
+  min-height: 0;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+/* --- Een bericht: kop, daaronder waarden boven hun label --- */
+
+.wire-item {
+  padding: 0.75rem 1.25rem;
+  cursor: default;
+}
+
+.wire-item:not(:last-child) {
+  border-bottom: 1px solid var(--zanp-lichtgrijs);
+}
+
+.wire-item:hover {
+  background: var(--zanp-hover);
+}
+
+.wire-item.prioriteit-1 {
+  background: var(--zanp-rood-licht);
+}
+.wire-item.prioriteit-1:hover {
+  background: var(--zanp-rood-licht-hover);
+}
+.wire-item.prioriteit-2 {
+  background: var(--zanp-primair-licht);
+}
+.wire-item.prioriteit-2:hover {
+  background: var(--zanp-primair-licht-hover);
+}
+
+.title-row {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.wire-kop {
+  display: block;
+  flex: 1;
+  width: 100%;
+  font: inherit;
+  font-size: 0.9375em;
+  font-weight: 700;
+  line-height: 1.1;
+  text-align: left;
+  word-break: break-word;
+  color: #1b1a1f;
+  background: none;
+  border: 0;
+  padding: 0;
+  cursor: pointer;
+}
+
+.wire-kop:hover {
+  text-decoration: underline;
+}
+
+.versie-suffix {
+  font-weight: 700;
+  color: var(--zanp-primair);
+}
+
+.wire-meta {
+  display: flex;
+  margin: 0;
+  color: #1b1a1f;
+}
+
+.wire-meta > div {
+  display: flex;
+  flex-direction: column-reverse;
+  flex-shrink: 1;
+  overflow: hidden;
+}
+
+.wire-meta > div:not(:last-child) {
+  margin-right: 1rem;
+}
+
+.wire-meta dd {
+  margin: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  font-size: 0.6875em;
+  line-height: 1.3;
+  font-weight: 700;
+  color: rgba(51, 51, 51, 0.88);
+}
+
+.wire-meta dt {
+  margin-top: 0.25em;
+  font-size: 0.625em;
+  text-transform: lowercase;
+}
+
+.prio-waarde {
+  display: inline;
+  padding: 0;
+  color: inherit;
+  background: none;
+}
+
+.oudere-knop {
+  display: block;
+  margin: 0 auto;
+  padding: 0.5rem 0;
+  font: inherit;
+  font-size: 0.875em;
+  color: var(--zanp-primair);
+  background: none;
+  border: 0;
+  cursor: pointer;
+}
+
+.oudere-knop:hover {
+  text-decoration: underline;
+}
+
+.wire-detail {
+  margin-top: 0.6rem;
+  padding: 0.6rem 0.75rem;
+  background: var(--zanp-achtergrond);
+  border-radius: var(--zanp-radius);
+  font-size: 0.8125em;
+  line-height: 1.5;
+}
+
+.wire-detail[hidden] {
+  display: none;
+}
+
+.wire-detail p {
+  margin: 0 0 0.5rem;
+}
+
+.wire-detail p:last-child {
+  margin-bottom: 0;
+}
+
+.wire-label {
+  display: inline-block;
+  font-size: 0.65rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  padding: 0.1rem 0.45rem;
+  border-radius: 999px;
+  margin-right: 0.4rem;
+}
+
+.wire-label.ai {
+  background: var(--kleur-agenda-licht);
+  color: var(--kleur-agenda);
+}
+
+.wire-label.signaal {
+  background: #e7eaf5;
+  color: var(--kleur-landelijk);
+}
+
+.wire-label.waarschuwing {
+  background: var(--kleur-nieuws-licht);
+  color: var(--kleur-nieuws);
+}
+
+.wire-bron-link {
+  font-weight: 600;
+  color: var(--zanp-primair);
+}
+
+.nieuw-stip {
+  display: inline-block;
+  font-size: 0.6rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: white;
+  background: var(--zanp-primair);
+  padding: 0 0.4rem;
+  border-radius: 3px;
+  vertical-align: 0.1em;
+}
+
+/* --- Chips --- */
+
+.wire-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.3rem;
+  margin-top: 0.5rem;
+}
+
+.chip {
+  display: inline-block;
+  max-width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font: inherit;
+  font-size: 0.66rem;
+  font-weight: 600;
+  line-height: 1.4;
+  padding: 0.1rem 0.5rem;
+  border: 1px solid #babfc2;
+  border-radius: 999px;
+  background: var(--zanp-achtergrond);
+  color: #444;
+}
+
+button.chip {
+  cursor: pointer;
+}
+
+button.chip:hover {
+  background: var(--zanp-primair-licht);
+}
+
+.chip-agenda,
+.chip-bericht {
+  border-color: var(--zanp-primair);
+  color: var(--zanp-primair);
+  background: white;
+}
+
+.chip-regel {
+  background: var(--kleur-agenda-licht);
+  border-color: var(--kleur-agenda);
+  color: var(--kleur-agenda);
+}
+
+.chip-grijs {
+  background: #f0f0f0;
+  color: #777;
+}
+
+.chip-t {
+  min-width: 1.5rem;
+  text-align: center;
+  font-weight: 700;
+}
+
+/* --- Alerts: een smalle rode of oranje regel --- */
+
+.alert-balk {
+  flex: 0 0 auto;
+  position: relative;
+  z-index: 3;
+}
+
+.alert-balk:empty {
+  display: none;
+}
+
+.alert {
+  display: flex;
+  align-items: stretch;
+  color: white;
+}
+
+.alert-rood {
+  background: #b3261e;
+}
+
+.alert-oranje {
+  background: #b8590f;
+}
+
+.alert-open {
+  flex: 1 1 auto;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0.25rem 0.75rem;
+  font: inherit;
+  font-size: 0.85rem;
+  text-align: left;
+  color: inherit;
+  background: none;
+  border: 0;
+  padding: 0.3rem 1rem;
+  cursor: pointer;
+}
+
+.alert-open:hover .alert-kop {
+  text-decoration: underline;
+}
+
+.alert-label {
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  font-size: 0.75rem;
+}
+
+.alert-kop {
+  font-weight: 700;
+}
+
+.alert-reden {
+  font-size: 0.8rem;
+  opacity: 0.9;
+}
+
+.alert-sluit {
+  flex: 0 0 auto;
+  font: inherit;
+  font-size: 1.2rem;
+  line-height: 1;
+  color: inherit;
+  background: none;
+  border: 0;
+  padding: 0 0.9rem;
+  cursor: pointer;
+}
+
+.alert-sluit:hover {
+  background: rgba(0, 0, 0, 0.18);
+}
+
+.alert :focus-visible {
+  outline-color: white;
+}
+
+.wire-item.heeft-alert {
+  border-left: 4px solid #b3261e;
+  padding-left: calc(1.25rem - 4px);
+}
+
+.wire-item.heeft-alert.alert-oranje {
+  border-left-color: #b8590f;
+}
+
+/* --- Agenda: dezelfde kolommen, een per dag --- */
+
+.agenda-nav {
+  display: flex;
+  flex: 0 0 auto;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.25rem 0.5rem;
+  padding: 0.5rem 0.5rem 0.75rem;
+}
+
+.weeklabel {
+  margin-left: 0.4rem;
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: #555;
+}
+
+.agenda-dag {
+  flex: 1 0 14rem;
+  max-width: 20rem;
+  margin: 0.5rem;
+  scroll-snap-align: start;
+}
+
+.agenda-dag.vandaag {
+  box-shadow: 0 0 0 2px var(--zanp-primair), var(--zanp-schaduw);
+}
+
+.agenda-dag.vandaag .agenda-dag-kop {
+  background: var(--zanp-primair);
+  color: white;
+}
+
+.agenda-item {
+  padding: 0.75rem 1.25rem;
+  font-size: 0.9375em;
+}
+
+.agenda-item:not(:last-child) {
+  border-bottom: 1px solid var(--zanp-lichtgrijs);
+}
+
+.agenda-item:hover {
+  background: var(--zanp-hover);
+}
+
+.agenda-item.gefilterd {
+  opacity: 0.6;
+  background: repeating-linear-gradient(135deg, transparent 0 8px, rgba(0, 0, 0, 0.025) 8px 16px);
+}
+
+.agenda-tijd {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.35rem;
+  font-weight: 700;
+  color: var(--zanp-primair);
+  font-size: 0.8125em;
+}
+
+.agenda-tijd.onbekend {
+  color: #888;
+  font-weight: 400;
+}
+
+.agenda-tijd svg {
+  flex: 0 0 auto;
+}
+
+.agenda-kop {
+  margin: 0.3rem 0 0;
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+.agenda-kop a {
+  color: #1b1a1f;
+  text-decoration: none;
+}
+
+.agenda-kop a:hover {
+  text-decoration: underline;
+}
+
+.agenda-status {
+  color: var(--kleur-nieuws);
+}
+
+.agenda-meta {
+  margin: 0.3rem 0 0;
+  font-size: 0.8125em;
+  color: #666;
+}
+
+.doorlopend-label {
+  display: inline-block;
+  padding: 0.1rem 0.5rem;
+  font-size: 0.65rem;
+  font-weight: 700;
+  color: white;
+  background: var(--zanp-primair);
+  border-radius: 999px;
+}
+
+.agenda-leeg {
+  margin: 0;
+  padding: 0.75rem 1.25rem;
+  font-size: 0.8125em;
+  color: #888;
+  font-style: italic;
+}
+
+/* --- Telefoon: een kolom tegelijk via tabs, de agenda onder elkaar --- */
+
+.kolom-tabs {
+  display: none;
+  flex: 0 0 auto;
+  gap: 0.4rem;
+  overflow-x: auto;
+  padding: 0.25rem 0.5rem 0.6rem;
+}
+
+.kolom-tab {
+  flex: 0 0 auto;
+  font: inherit;
+  font-size: 0.85rem;
+  font-weight: 600;
+  padding: 0.4rem 0.8rem;
+  border: 0;
+  border-radius: 999px;
+  background: white;
+  box-shadow: var(--zanp-schaduw);
+  color: #1b1a1f;
+  cursor: pointer;
+}
+
+.kolom-tab.actief {
+  background: var(--zanp-primair);
+  color: white;
+}
+
+@media (max-width: 700px) {
+  .navigation-main {
+    flex-basis: 3.25rem;
+    width: 3.25rem;
+  }
+  .tab {
+    width: 3.25rem;
+    padding: 0.75rem 0.5rem;
+  }
+  .logo {
+    padding: 1rem 0.25rem;
+  }
+  .merk {
+    font-size: 0.8rem;
+  }
+  .navigation-top {
+    flex-wrap: wrap;
+    gap: 0.25rem 0.5rem;
+    padding: 0.5rem 0.75rem;
+    min-height: 0;
+  }
+  .top-titel {
+    display: none;
+  }
+  .laatste-update {
+    flex: 1 0 100%;
+    margin: 0;
+    text-align: left;
+  }
+  .kolom-tabs {
+    display: flex;
+  }
+  .kolommenkiezer {
+    display: none;
+  }
+  .wire-kolommen {
+    scroll-snap-type: none;
+    overflow-x: hidden;
+  }
+  .wire-kolom {
+    display: none;
+    flex: 1 1 100%;
+    min-width: 0;
+    max-width: none;
+  }
+  .wire-kolom.actief {
+    display: flex;
+  }
+  #paneel-agenda {
+    overflow-y: auto;
+  }
+  .agenda-week {
+    display: block;
+    overflow: visible;
+    flex: none;
+  }
+  .agenda-dag {
+    max-width: none;
+    margin: 0 0 0.75rem;
+  }
+  .agenda-dag .wire-lijst {
+    overflow: visible;
+  }
+}

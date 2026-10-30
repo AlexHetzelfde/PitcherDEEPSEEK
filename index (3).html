@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>ZANP — Nieuwsdienst Zaanstreek-Waterland</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="base">
+    <aside class="navigation-main">
+      <div class="logo"><span class="merk">ZANP</span></div>
+      <nav class="tabs" role="tablist" aria-label="Weergave" aria-orientation="vertical">
+        <button type="button" class="tab" role="tab" id="tab-nieuwsdienst" data-tab="nieuwsdienst" aria-controls="paneel-nieuwsdienst" aria-selected="true" aria-label="Nieuwsdienst" title="Nieuwsdienst"><svg viewBox="0 0 24 24" width="24" height="24" aria-hidden="true" focusable="false"><path fill="currentColor" d="M19 3H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V5a2 2 0 0 0-2-2zm-5 14H7v-2h7v2zm3-4H7v-2h10v2zm0-4H7V7h10v2z"/></svg></button>
+        <button type="button" class="tab" role="tab" id="tab-agenda" data-tab="agenda" aria-controls="paneel-agenda" aria-selected="false" tabindex="-1" aria-label="Agenda" title="Agenda"><svg viewBox="0 0 24 24" width="24" height="24" aria-hidden="true" focusable="false"><path fill="currentColor" d="M17 12h-5v5h5v-5zM16 1v2H8V1H6v2H5c-1.11 0-1.99.9-1.99 2L3 19a2 2 0 0 0 2 2h14c1.1 0 2-.9 2-2V5a2 2 0 0 0-2-2h-1V1h-2zm3 18H5V8h14v11z"/></svg></button>
+        <button type="button" class="tab" role="tab" id="tab-pitches" data-tab="pitches" aria-controls="paneel-pitches" aria-selected="false" tabindex="-1" aria-label="Pitches" title="Pitches"><svg viewBox="0 0 24 24" width="24" height="24" aria-hidden="true" focusable="false"><path fill="currentColor" d="M9 21c0 .55.45 1 1 1h4c.55 0 1-.45 1-1v-1H9v1zm3-19C8.14 2 5 5.14 5 9c0 2.38 1.19 4.47 3 5.74V17c0 .55.45 1 1 1h6c.55 0 1-.45 1-1v-2.26c1.81-1.27 3-3.36 3-5.74 0-3.86-3.14-7-7-7z"/></svg></button>
+      </nav>
+    </aside>
+
+    <div class="content">
+      <header class="navigation-top">
+        <details class="kolommenkiezer" id="kolommenkiezer">
+          <summary>Kolommen</summary>
+          <div id="kolommen-opties" class="kolommen-opties"></div>
+        </details>
+        <h1 class="top-titel">Nieuwsdienst Zaanstreek-Waterland</h1>
+        <p id="laatste-update" class="laatste-update"></p>
+      </header>
+
+      <!-- Rode en oranje alerts; zichtbaar op elke tab. Alleen gevuld als ALERT_MODUS=aan. -->
+      <div id="alert-balk" class="alert-balk" role="region" aria-label="Alerts" aria-live="polite"></div>
+
+      <main class="main">
+        <!-- ================= Nieuwsdienst ================= -->
+        <section id="paneel-nieuwsdienst" class="paneel paneel-kolommen" role="tabpanel" aria-labelledby="tab-nieuwsdienst">
+          <nav id="kolom-tabs" class="kolom-tabs" aria-label="Kolom kiezen"></nav>
+          <div id="wire-kolommen" class="wire-kolommen"><p class="laden">Berichten laden…</p></div>
+        </section>
+
+        <!-- ================= Agenda ================= -->
+        <section id="paneel-agenda" class="paneel paneel-kolommen" role="tabpanel" aria-labelledby="tab-agenda" hidden>
+          <div class="agenda-nav">
+            <button type="button" id="agenda-vorige" class="knop" aria-label="Vorige week">‹</button>
+            <button type="button" id="agenda-vandaag" class="knop">Vandaag</button>
+            <button type="button" id="agenda-volgende" class="knop" aria-label="Volgende week">›</button>
+            <span id="agenda-weeklabel" class="weeklabel"></span>
+            <button type="button" id="agenda-filter" class="knop knop-klein" hidden></button>
+            <button type="button" id="agenda-alles" class="knop knop-klein" hidden></button>
+          </div>
+          <div id="agenda-week" class="agenda-week"><p class="laden">Agenda laden…</p></div>
+        </section>
+
+    <!-- ================= Pitches (ongewijzigd, nu een eigen tab) ================= -->
+    <section id="paneel-pitches" class="paneel paneel-smal" role="tabpanel" aria-labelledby="tab-pitches" hidden>
+      <section>
+        <h2>Top 10 pitches van vandaag</h2>
+        <p class="uitleg">Per bericht maakt de AI een korte pitch met werktitel, samenvatting, invalshoek en vraag. De nieuwste berichten staan bovenaan.</p>
+        <p id="pitch-update" class="uitleg"></p>
+        <div id="pitches-lijst" class="kaarten-grid"><p class="laden">Pitches laden…</p></div>
+      </section>
+
+      <section>
+        <h2>Nieuwsfeed</h2>
+        <p class="uitleg">Alle binnengekomen berichten op datum, nieuwste eerst. <span class="feed-legenda feed-legenda-nieuws">rood</span> = nieuws, <span class="feed-legenda feed-legenda-agenda">geel</span> = agenda/evenement.</p>
+        <div id="feed-lijst" class="feed-lijst"><p class="laden">Feed laden…</p></div>
+      </section>
+
+      <section id="lokaal-sectie">
+        <h2>Alle lokale berichten</h2>
+        <div id="lokaal-lijst" class="berichten-lijst"><p class="laden">Laden…</p></div>
+      </section>
+
+      <section id="landelijk-sectie">
+        <h2>Alle landelijke berichten</h2>
+        <div id="landelijk-lijst" class="berichten-lijst"><p class="laden">Laden…</p></div>
+      </section>
+    </section>
+      </main>
+
+      <footer class="site-footer">
+        <p>Gebouwd voor lokale journalistiek in Zaanstreek-Waterland. Teksten met het label AI zijn automatisch samengevat uit officiële bronnen en niet door een mens gecontroleerd. Artikelen van andere redacties worden alleen als kop met een link getoond.</p>
+      </footer>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
