@@ -122,7 +122,7 @@ async function main() {
   const bestaand = bronnen.find((b) => b.id === id);
   if (!bestaand && (!process.env.RUBRIEK || process.env.RUBRIEK === "behouden")) {
     stopMetFout(
-      "Bij het toevoegen van een nieuwe bron is een rubriek verplicht. Geef de RUBRIEK op (bijv. BES, CUL, ONW, LOK, PRV, REC of ALG)."
+      "Bij het toevoegen van een nieuwe bron is een rubriek verplicht. Geef de TAG op (kies uit: " + RUBRIEKEN.map((r) => r.code).join(", ") + ")."
     );
   }
 

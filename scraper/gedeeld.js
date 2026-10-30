@@ -30,7 +30,8 @@ const {
   vandaagAmsterdam,
 } = require("./hulpmiddelen");
 
-const DATA_MAP = path.join(__dirname, "..", "data");
+// ZANP_DATA_DIR bestaat alleen voor de tests; zonder die variabele is de map ../data, zoals altijd.
+const DATA_MAP = process.env.ZANP_DATA_DIR || path.join(__dirname, "..", "data");
 
 const GEEN_TEKSTOPHAAL_TYPES = new Set(["ibabs"]);
 const GEEN_TEKSTOPHAAL_BRONNEN = new Set(["OmgevingsdienstNHN"]);

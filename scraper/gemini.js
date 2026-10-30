@@ -15,11 +15,19 @@
 //   4. beslisZelfdeNieuwsfeit — voor dubbel nieuws, alleen bij twijfelgevallen.
 //
 // Sinds 2026-10-26:
-//  - ZANP draait volledig op gemini-flash-lite-latest (ruimer gratis quotum).
-//  - De pitchrun blijft op gemini-flash-latest.
+//  - ZANP draait op gemini-flash-lite-latest (ruimer gratis quotum).
 //  - Stroomonderbreker: bij een 429 stopt schrijfMeldingen direct met
 //    verdere batches, zodat we geen tijd en quota verspillen.
-//  - Teller telt alleen nog geslaagde aanroepen (melding of onvoldoende).
+//
+// Sinds 2026-10-29:
+//  - De pitchrun staat weer op gemini-flash-latest voor ALLE taken: het
+//    agenda-filter (beoordeelBerichten) had per ongeluk Flash-Lite gekregen.
+//    Pitchfuncties en -prompts zijn niet aangeraakt.
+//  - ZANP werkt in batches: tot BATCH_GROOTTE berichten per verzoek, want het
+//    quotum telt verzoeken. De cap van schrijfMeldingen en
+//    beslisZelfdeNieuwsfeit is dus een aantal VERZOEKEN. Het resultaat heeft
+//    een eigenschap "verzoeken" met het aantal beantwoorde verzoeken.
+//  - De melding bevat ook een tag (kolom) uit een gesloten lijst.
 
 const {
   KERN_CRITERIA,
@@ -29,13 +37,15 @@ const {
 } = require("./nieuwscriteria");
 
 const PROMPT_VERSIE = "2026-10-22-pitch-vier-velden";
-const PROMPT_VERSIE_WIRE = "2026-10-24-melding-checklist-agendapunten";
+const PROMPT_VERSIE_WIRE = "2026-10-29-batch-tag-checklist-agendapunten";
 
+// De pitchrun (index.js) gebruikt filter, pitch en sterker en draait op Flash.
+// ZANP gebruikt alleen "wire", op Flash-Lite met een ruimer quotum.
 const MODELLEN = {
-  filter: ["gemini-flash-lite-latest"], // ZANP-agenda filter
-  pitch: ["gemini-flash-latest"],       // Pitchrun (ongewijzigd)
-  sterker: ["gemini-flash-latest"],     // Pitchrun fallback (ongewijzigd)
-  wire: ["gemini-flash-lite-latest"],   // ZANP meldingen/analyses & clusters
+  filter: ["gemini-flash-latest"],    // pitchrun: agenda-filter (index.js)
+  pitch: ["gemini-flash-latest"],     // pitchrun
+  sterker: ["gemini-flash-latest"],   // pitchrun
+  wire: ["gemini-flash-lite-latest"], // ZANP: meldingen, analyses en dubbel nieuws
 };
 
 const MAX_OUTPUT_TOKENS = 2048;
@@ -354,11 +364,90 @@ async function genereerPitches(berichten, apiKey, cap, categorie) {
 // ---------------------------------------------------------------------------
 //
 // Twee modi per bericht:
-//   "volledig"  kop, tekst, prio + checklist + agendapunten (officiële en
+//   "volledig"  kop, tekst, prio, tag + checklist + agendapunten (officiële en
 //               organisatiebronnen die we mogen herschrijven)
-//   "analyse"   alleen checklist + agendapunten, GEEN tekst (artikelen van
-//               andere redacties en onbekende bronnen)
+//   "analyse"   alleen tag + checklist + agendapunten, GEEN tekst (artikelen
+//               van andere redacties en onbekende bronnen)
 // Alles wat de AI teruggeeft wordt in wire.js gecontroleerd tegen de bron.
+//
+// BATCHES. Het gratis quotum telt VERZOEKEN, geen tokens. Daarom gaan er per
+// verzoek maximaal BATCH_GROOTTE berichten mee (van dezelfde modus). Elk
+// bericht wordt apart gecontroleerd; een deels bruikbaar antwoord blijft
+// bruikbaar en wat ontbreekt wordt bij een volgende run opnieuw geprobeerd.
+//
+// De functies hieronder gebruiken een EIGEN aanroep (roepGeminiWire) en raken
+// de aanroepen van de pitchrun dus niet aan.
+
+const BATCH_GROOTTE = 6; // berichten per verzoek
+const BATCH_TEKENS_PER_ITEM = 3000; // brontekst per bericht in een batch
+const MAX_OUTPUT_TOKENS_BATCH = 8192; // een batch heeft meer uitvoer nodig dan één bericht
+const ZELFDE_PER_VERZOEK = 10; // twijfelparen per verzoek (dubbel nieuws)
+
+/**
+ * Eén Gemini-aanroep voor ZANP. Zelfde protocol als roepGeminiAan, maar met
+ * een eigen uitvoerlimiet en zonder iets aan de pitchrun te veranderen.
+ * Geeft { data, verzoeken } terug; "verzoeken" telt de aanroepen die Google
+ * heeft beantwoord (ook een antwoord dat geen geldige JSON bleek te zijn), want
+ * die tellen mee voor het dagquotum. Een HTTP-fout telt niet.
+ */
+async function roepGeminiWire(prompt, apiKey, maxTokens = MAX_OUTPUT_TOKENS_BATCH) {
+  let verzoeken = 0;
+  let laatsteFout;
+  for (const model of MODELLEN.wire) {
+    let tekst;
+    try {
+      const response = await fetch(
+        `https://generativelanguage.googleapis.com/v1beta/models/${model}:generateContent`,
+        {
+          method: "POST",
+          headers: { "Content-Type": "application/json", "x-goog-api-key": apiKey },
+          body: JSON.stringify({
+            contents: [{ parts: [{ text: prompt }] }],
+            generationConfig: {
+              temperature: TEMPERATUUR_WIRE,
+              responseMimeType: "application/json",
+              maxOutputTokens: maxTokens,
+            },
+          }),
+        }
+      );
+      if (!response.ok) {
+        let foutTekst = `HTTP ${response.status}`;
+        try {
+          const foutJson = await response.json();
+          if (foutJson.error && foutJson.error.message) foutTekst += `: ${foutJson.error.message}`;
+        } catch {
+          // geen JSON, laat de HTTP-status staan
+        }
+        const fout = new Error(foutTekst);
+        fout.status = response.status;
+        throw fout;
+      }
+      verzoeken++;
+      const antwoord = await response.json();
+      const kandidaat = antwoord && antwoord.candidates && antwoord.candidates[0];
+      const delen = (kandidaat && kandidaat.content && kandidaat.content.parts) || [];
+      tekst = delen
+        .filter((d) => !d.thought && typeof d.text === "string")
+        .map((d) => d.text)
+        .join("");
+      if (!tekst) {
+        throw new Error(`leeg antwoord (finishReason: ${(kandidaat && kandidaat.finishReason) || "onbekend"})`);
+      }
+    } catch (fout) {
+      laatsteFout = fout;
+      console.warn(`  Gemini (${model}) mislukte: ${fout.message}`);
+      continue;
+    }
+    const data = parseAntwoord(tekst);
+    if (data) return { data, verzoeken };
+    laatsteFout = new Error("antwoord is geen geldige JSON");
+    console.warn(`  Gemini (${model}) gaf geen geldige JSON.`);
+  }
+  const fout = laatsteFout || new Error("alle modellen faalden");
+  fout.verzoeken = verzoeken;
+  throw fout;
+}
 
 const CHECKLIST_UITLEG = `CHECKLIST (feiten uit de bron; bij twijfel false of null):
 - gevaar: true bij acuut gevaar voor mensen (brand, gaslek, instortingsgevaar, ernstig ongeval). Niet bij gewone wegwerkzaamheden.
@@ -381,21 +470,31 @@ Per punt:
   "plaats": de plaats of locatie exact zoals in de bron, of null`;
 
 const CHECKLIST_VOORBEELD = `"checklist": {
-    "gevaar": false,
-    "evacuatieOfNlAlert": false,
-    "gewondenOfDoden": false,
-    "betrokkenen": null,
-    "geldbedragEuro": null,
-    "banen": null,
-    "bestuurlijkeCrisis": false,
-    "besluitMetGrootGevolg": false,
-    "tijdkritisch": false
-  },
-  "agendapunten": []`;
+      "gevaar": false,
+      "evacuatieOfNlAlert": false,
+      "gewondenOfDoden": false,
+      "betrokkenen": null,
+      "geldbedragEuro": null,
+      "banen": null,
+      "bestuurlijkeCrisis": false,
+      "besluitMetGrootGevolg": false,
+      "tijdkritisch": false
+    },
+    "agendapunten": []`;
 
-function bronBlok(item) {
-  const tekst = (item.tekst || "").trim();
-  return `BRON:
+// De tag (kolom) van een bericht: waar gaat het OVER, niet waar komt het
+// vandaan. tags = [{ code, naam, hint }] uit rubrieken.json (zie tags.js).
+function tagUitleg(tags) {
+  if (!Array.isArray(tags) || tags.length === 0) return "";
+  const regels = tags.map((t) => `  ${t.code}: ${t.naam}${t.hint ? ` (${t.hint})` : ""}`).join("\n");
+  return `TAG (kies precies één code uit deze lijst; het gaat erom waar het bericht OVER gaat, niet om de bron):
+${regels}
+  ALG: geen van bovenstaande past`;
+}
+
+function bronBlok(item, nr) {
+  const tekst = (item.tekst || "").trim().slice(0, BATCH_TEKENS_PER_ITEM);
+  return `BRON ${nr}:
 Titel: ${item.titel || ""}
 Bron: ${item.bronNaam || ""}
 Datum: ${item.gepubliceerdOp || ""}
@@ -403,11 +502,19 @@ Tekst:
 ${tekst || "(geen tekst beschikbaar)"}`;
 }
 
-// Een prompt per bericht. Het voorbeeld is bewust verzonnen (en dus nooit een
-// echt bericht van vandaag), zodat het model het niet overneemt.
-function bouwMeldingPrompt(item) {
-  return `Je bent redacteur bij een regionale nieuwsdienst voor Zaanstreek-Waterland, in de stijl van een persbureau: kort, feitelijk en neutraal.
-Schrijf op basis van de bron hieronder een melding met een kop, een tekst, een prio, een checklist en eventueel agendapunten.
+/**
+ * Eén prompt voor een groep berichten van dezelfde modus. Het voorbeeld is
+ * bewust verzonnen, zodat het model het niet overneemt.
+ */
+function bouwMeldingBatchPrompt(items, modus = "volledig", tags = []) {
+  const volledig = modus !== "analyse";
+  const n = items.length;
+  const tag = tagUitleg(tags);
+  const tagVeld = tag ? `\n      "tag": "<code uit de lijst>",` : "";
+
+  const intro = volledig
+    ? `Je bent redacteur bij een regionale nieuwsdienst voor Zaanstreek-Waterland, in de stijl van een persbureau: kort, feitelijk en neutraal.
+Hieronder staan ${n} bron(nen). Schrijf voor ELKE bron een melding met een kop, een tekst, een prio${tag ? ", een tag" : ""}, een checklist en eventueel agendapunten. Behandel elke bron los van de andere: gebruik voor een melding alleen de tekst van die ene bron.
 
 kop
 Eis: maximaal 14 woorden, tegenwoordige tijd, feitelijk. Noem wie of wat en de kern. Geen vraag, geen aanloktaal, geen uitroepteken.
@@ -421,62 +528,64 @@ prio
 Een geheel getal van 2 tot en met 4:
   2: raakt veel inwoners of heeft direct gevolgen voor het dagelijks leven (verkeer, veiligheid, zorg, geld).
   3: relevant voor een kleinere groep, of een belangrijk besluit.
-  4: routine of administratief (vergunning, bekendmaking, persbericht van een instelling).
+  4: routine of administratief (vergunning, bekendmaking, persbericht van een instelling).`
+    : `Je analyseert berichten voor een regionale nieuwsdienst voor Zaanstreek-Waterland. Hieronder staan ${n} bron(nen). Je schrijft zelf geen tekst: je kiest ${tag ? "een tag, " : ""}vult een checklist in en haalt eventuele agendapunten uit de bron. Behandel elke bron los van de andere.`;
 
-${CHECKLIST_UITLEG}
-
-${AGENDAPUNTEN_UITLEG}
-
-REGELS:
+  const regels = volledig
+    ? `REGELS:
 - Gebruik alleen wat in de bron staat. Staat iets er niet in, laat het dan weg. Verzin geen namen, getallen, data of plaatsen.
 - Neem getallen letterlijk over; reken niets om en tel niets op.
-- Is de brontekst te kort of te onduidelijk voor een melding, antwoord dan {"onvoldoende": true}.
-- Schrijf in correct, helder Nederlands.
+- Is de brontekst te kort of te onduidelijk voor een melding, antwoord voor die bron dan {"nr": <nummer>, "onvoldoende": true}.
+- Schrijf in correct, helder Nederlands.`
+    : `REGELS:
+- Gebruik alleen wat in de bron staat. Verzin geen getallen, data of plaatsen.
+- Is de brontekst te kort of te onduidelijk, antwoord voor die bron dan {"nr": <nummer>, "onvoldoende": true}.`;
 
-Geef ALLEEN geldige JSON terug, exact dit formaat, geen markdown-fences en geen andere tekst:
-{
-  "kop": "...",
-  "tekst": "...",
-  "prio": 3,
-  ${CHECKLIST_VOORBEELD}
-}
+  const voorbeeld = volledig
+    ? `    {
+      "nr": 1,
+      "kop": "...",
+      "tekst": "...",
+      "prio": 3,${tagVeld}
+      ${CHECKLIST_VOORBEELD}
+    }`
+    : `    {
+      "nr": 1,${tagVeld}
+      ${CHECKLIST_VOORBEELD}
+    }`;
 
-${bronBlok(item)}`;
-}
+  return `${intro}
 
-// Alleen feiten en agendapunten; er wordt GEEN tekst van de bron overgenomen.
-function bouwAnalysePrompt(item) {
-  return `Je analyseert een bericht voor een regionale nieuwsdienst voor Zaanstreek-Waterland. Je schrijft zelf geen tekst: je vult alleen een checklist in en haalt eventuele agendapunten uit de bron.
-
-${CHECKLIST_UITLEG}
+${tag ? `${tag}\n\n` : ""}${CHECKLIST_UITLEG}
 
 ${AGENDAPUNTEN_UITLEG}
 
-REGELS:
-- Gebruik alleen wat in de bron staat. Verzin geen getallen, data of plaatsen.
-- Is de brontekst te kort of te onduidelijk, antwoord dan {"onvoldoende": true}.
+${regels}
 
-Geef ALLEEN geldige JSON terug, exact dit formaat, geen markdown-fences en geen andere tekst:
+Geef ALLEEN geldige JSON terug, geen markdown-fences en geen andere tekst. Precies één object per bron, met het nummer van die bron, in dezelfde volgorde:
 {
-  ${CHECKLIST_VOORBEELD}
+  "resultaten": [
+${voorbeeld}
+  ]
 }
 
-${bronBlok(item)}`;
+${items.map((item, i) => bronBlok(item, i + 1)).join("\n\n")}`;
 }
 
-// Geeft { onvoldoende: true } of { kop, tekst, prio, checklist, agendapunten }
-// terug, of null bij een onbruikbaar antwoord. Checklist en agendapunten gaan
-// ongecontroleerd door; wire.js controleert ze tegen de bron.
+// Geeft { onvoldoende: true } of { kop, tekst, prio, tag, checklist, agendapunten }
+// terug, of null bij een onbruikbaar antwoord. Checklist, agendapunten en tag
+// gaan ongecontroleerd door; wire.js controleert ze tegen de bron en de lijst.
 function valideerMelding(data, modus = "volledig") {
   if (!data || typeof data !== "object") return null;
   if (data.onvoldoende === true) return { onvoldoende: true };
 
   const checklist = data.checklist && typeof data.checklist === "object" ? data.checklist : null;
   const agendapunten = Array.isArray(data.agendapunten) ? data.agendapunten : [];
+  const tag = typeof data.tag === "string" && data.tag.trim() ? data.tag.trim() : null;
 
   if (modus === "analyse") {
     if (!checklist) return null;
-    return { checklist, agendapunten };
+    return { checklist, agendapunten, tag };
   }
 
   for (const veld of ["kop", "tekst"]) {
@@ -489,59 +598,114 @@ function valideerMelding(data, modus = "volledig") {
     kop,
     tekst: data.tekst.trim(),
     prio: Number.isInteger(prio) ? prio : null,
+    tag,
     checklist,
     agendapunten,
   };
 }
 
-async function schrijfMeldingVoorItem(item, apiKey) {
-  const modus = item.modus === "analyse" ? "analyse" : "volledig";
-  const prompt = modus === "analyse" ? bouwAnalysePrompt(item) : bouwMeldingPrompt(item);
-  const data = await roepGeminiMetFallback(MODELLEN.wire, prompt, apiKey, TEMPERATUUR_WIRE);
-  const melding = valideerMelding(data, modus);
-  if (!melding) throw new Error(modus === "analyse" ? "onvolledige analyse (checklist ontbreekt)" : "onvolledige melding (kop of tekst ontbreekt)");
-  return melding;
+// Groepeert items in batches van dezelfde modus, in de volgorde van de lijst
+// (de lijst is al op belang gesorteerd). Een batch staat op de plek van zijn
+// eerste item.
+function maakBatches(items, grootte) {
+  const batches = [];
+  const open = { volledig: null, analyse: null };
+  for (const item of items) {
+    const modus = item.modus === "analyse" ? "analyse" : "volledig";
+    let batch = open[modus];
+    if (!batch) {
+      batch = { modus, items: [] };
+      open[modus] = batch;
+      batches.push(batch);
+    }
+    batch.items.push(item);
+    if (batch.items.length >= grootte) open[modus] = null;
+  }
+  return batches;
 }
 
 /**
- * Schrijft meldingen of analyses voor een lijst items. Geeft een Map terug
- * van item.id naar { melding } | { onvoldoende: true } | { fout, status }.
- * Items voorbij de cap krijgen { fout: "overgeslagen (cap …)" }; zij worden
- * bij een volgende run opnieuw geprobeerd en behouden intussen hun kop.
+ * Schrijft meldingen of analyses voor een lijst items, in batches.
  *
- * Stroomonderbreker: bij een 429 stopt de lus met nieuwe batches. De items
- * die al verwerkt zijn blijven staan; de rest krijgt "quotum bereikt".
+ * @param {object[]} items  { id, modus, titel, tekst, bronNaam, gepubliceerdOp, ... }
+ * @param {string}   apiKey
+ * @param {number}   cap    hoogstens zoveel VERZOEKEN (niet berichten)
+ * @param {object}   [opties] { tags: [{code,naam,hint}], batchGrootte }
+ * @returns {Map} item.id naar { melding } | { onvoldoende: true } | { fout, status }.
+ *   Op de Map staat ook "verzoeken": het aantal verzoeken dat Google beantwoordde
+ *   (alleen die tellen voor het dagquotum).
+ *
+ * Items die niet aan bod kwamen (cap of quotum) krijgen { fout: "overgeslagen …" }
+ * en worden bij een volgende run opnieuw geprobeerd.
+ *
+ * Stroomonderbreker: bij een 429 starten er geen nieuwe verzoeken meer.
  */
-async function schrijfMeldingen(items, apiKey, cap) {
+async function schrijfMeldingen(items, apiKey, cap, opties = {}) {
   const resultaten = new Map();
+  resultaten.verzoeken = 0;
   if (!Array.isArray(items) || items.length === 0) return resultaten;
-  const teDoen = items.slice(0, cap);
+
+  const grootte = Math.max(1, opties.batchGrootte || BATCH_GROOTTE);
+  const tags = opties.tags || [];
+  const batches = maakBatches(items, grootte);
+  const teDoen = batches.slice(0, Math.max(0, cap));
 
   let quotaHit = false;
+
+  async function verwerkBatch(batch) {
+    const prompt = bouwMeldingBatchPrompt(batch.items, batch.modus, tags);
+    let antwoord;
+    try {
+      antwoord = await roepGeminiWire(prompt, apiKey);
+    } catch (fout) {
+      resultaten.verzoeken += fout.verzoeken || 0;
+      for (const item of batch.items) resultaten.set(item.id, { fout: fout.message, status: fout.status });
+      if (fout.status === 429) quotaHit = true;
+      return;
+    }
+    resultaten.verzoeken += antwoord.verzoeken;
+
+    let lijst = [];
+    if (Array.isArray(antwoord.data)) lijst = antwoord.data;
+    else if (Array.isArray(antwoord.data.resultaten)) lijst = antwoord.data.resultaten;
+    else if (batch.items.length === 1 && (antwoord.data.kop || antwoord.data.checklist || antwoord.data.onvoldoende)) {
+      lijst = [{ ...antwoord.data, nr: 1 }]; // het model gaf één los object
+    }
+    const perNr = new Map();
+    for (const r of lijst) {
+      const nr = Number(r && r.nr);
+      if (Number.isInteger(nr) && !perNr.has(nr)) perNr.set(nr, r);
+    }
+
+    batch.items.forEach((item, i) => {
+      const r = perNr.get(i + 1);
+      if (!r) {
+        resultaten.set(item.id, { fout: "ontbreekt in het antwoord" });
+        return;
+      }
+      const melding = valideerMelding(r, batch.modus);
+      if (!melding) {
+        resultaten.set(item.id, {
+          fout: batch.modus === "analyse" ? "onvolledige analyse (checklist ontbreekt)" : "onvolledige melding (kop of tekst ontbreekt)",
+        });
+        return;
+      }
+      resultaten.set(item.id, melding.onvoldoende ? { onvoldoende: true } : { melding });
+    });
+  }
+
   for (let i = 0; i < teDoen.length; i += PARALLEL) {
     if (quotaHit) break;
-    const batch = teDoen.slice(i, i + PARALLEL);
-    await Promise.all(
-      batch.map(async (item) => {
-        try {
-          const melding = await schrijfMeldingVoorItem(item, apiKey);
-          resultaten.set(item.id, melding.onvoldoende ? { onvoldoende: true } : { melding });
-        } catch (fout) {
-          resultaten.set(item.id, { fout: fout.message, status: fout.status });
-          if (fout.status === 429) {
-            quotaHit = true;
-          }
-        }
-      })
-    );
+    await Promise.all(teDoen.slice(i, i + PARALLEL).map(verwerkBatch));
     const gedaan = Math.min(i + PARALLEL, teDoen.length);
-    if (gedaan % 10 === 0 || gedaan === teDoen.length) {
-      console.log(`  melding: ${gedaan}/${teDoen.length} berichten`);
-    }
+    console.log(`  melding: ${gedaan}/${teDoen.length} verzoek(en), ${resultaten.size} bericht(en) verwerkt`);
   }
-  for (let i = 0; i < items.length; i++) {
-    if (!resultaten.has(items[i].id)) {
-      resultaten.set(items[i].id, { fout: quotaHit ? "overgeslagen (quotum bereikt)" : `overgeslagen (cap ${cap})` });
+
+  for (const item of items) {
+    if (!resultaten.has(item.id)) {
+      resultaten.set(item.id, {
+        fout: quotaHit ? "overgeslagen (quotum bereikt)" : `overgeslagen (cap ${cap} verzoeken)`,
+      });
     }
   }
   return resultaten;
@@ -551,51 +715,77 @@ async function schrijfMeldingen(items, apiKey, cap) {
 // Dubbel nieuws: gaat het om hetzelfde nieuwsfeit?
 // ---------------------------------------------------------------------------
 
-function bouwZelfdePrompt(paar) {
+function bouwZelfdeBatchPrompt(paren) {
   const blok = (x) => `Titel: ${x.titel || ""}\nBron: ${x.bronNaam || ""}\nTekst: ${(x.tekst || "").slice(0, 500)}`;
-  return `Twee berichten uit Zaanstreek-Waterland. Gaat het om HETZELFDE nieuwsfeit, dus dezelfde gebeurtenis of hetzelfde besluit, ook als ze anders zijn geschreven?
+  return `Hieronder staan ${paren.length} paar(en) berichten uit Zaanstreek-Waterland. Beoordeel elk paar los van de andere: gaat het om HETZELFDE nieuwsfeit, dus dezelfde gebeurtenis of hetzelfde besluit, ook als ze anders zijn geschreven?
 Antwoord alleen "zelfde": true als het over dezelfde gebeurtenis gaat. Een vervolg, een reactie, een ander aspect of een soortgelijke maar andere gebeurtenis is "zelfde": false.
 
-BERICHT A
-${blok(paar.a)}
+${paren
+  .map((p, i) => `PAAR ${i + 1}\nBERICHT A\n${blok(p.a)}\n\nBERICHT B\n${blok(p.b)}`)
+  .join("\n\n")}
 
-BERICHT B
-${blok(paar.b)}
-
-Geef ALLEEN geldige JSON terug, geen markdown-fences en geen andere tekst:
-{ "zelfde": true }`;
+Geef ALLEEN geldige JSON terug, geen markdown-fences en geen andere tekst. Precies één object per paar, met het nummer van het paar:
+{ "antwoorden": [ { "nr": 1, "zelfde": true } ] }`;
 }
 
 /**
- * Beslist voor een lijst twijfelparen of ze hetzelfde nieuwsfeit zijn.
- * Geeft een Map sleutel → true | false | null (null bij een fout of
- * overgeslagen vanwege de cap). Stopt ook bij een 429.
+ * Beslist voor een lijst twijfelparen of ze hetzelfde nieuwsfeit zijn, tot
+ * ZELFDE_PER_VERZOEK paren per verzoek.
+ *
+ * @param {object[]} paren  { sleutel, a, b }
+ * @param {string}   apiKey
+ * @param {number}   cap    hoogstens zoveel VERZOEKEN
+ * @returns {Map} sleutel naar true | false | null (null bij een fout of
+ *   overgeslagen). Op de Map staan ook "verzoeken" (beantwoorde verzoeken) en
+ *   "quotum" (true bij een 429, met de melding in "quotumTekst"). Stopt bij een 429.
  */
 async function beslisZelfdeNieuwsfeit(paren, apiKey, cap) {
   const uit = new Map();
-  const teDoen = (paren || []).slice(0, cap);
+  uit.verzoeken = 0;
+  const lijst = paren || [];
+  const groepen = [];
+  for (let i = 0; i < lijst.length; i += ZELFDE_PER_VERZOEK) groepen.push(lijst.slice(i, i + ZELFDE_PER_VERZOEK));
+  const teDoen = groepen.slice(0, Math.max(0, cap));
+
   let quotaHit = false;
+
+  async function verwerkGroep(groep) {
+    let antwoord;
+    try {
+      antwoord = await roepGeminiWire(bouwZelfdeBatchPrompt(groep), apiKey, 2048);
+    } catch (fout) {
+      uit.verzoeken += fout.verzoeken || 0;
+      for (const paar of groep) uit.set(paar.sleutel, null);
+      if (fout.status === 429) {
+        quotaHit = true;
+        uit.quotumTekst = fout.message;
+      }
+      return;
+    }
+    uit.verzoeken += antwoord.verzoeken;
+    let antwoorden = [];
+    if (Array.isArray(antwoord.data)) antwoorden = antwoord.data;
+    else if (Array.isArray(antwoord.data.antwoorden)) antwoorden = antwoord.data.antwoorden;
+    else if (groep.length === 1 && typeof antwoord.data.zelfde === "boolean") antwoorden = [{ ...antwoord.data, nr: 1 }];
+    const perNr = new Map();
+    for (const a of antwoorden) {
+      const nr = Number(a && a.nr);
+      if (Number.isInteger(nr) && !perNr.has(nr)) perNr.set(nr, a);
+    }
+    groep.forEach((paar, i) => {
+      const a = perNr.get(i + 1);
+      uit.set(paar.sleutel, a && typeof a.zelfde === "boolean" ? a.zelfde : null);
+    });
+  }
+
   for (let i = 0; i < teDoen.length; i += PARALLEL) {
     if (quotaHit) break;
-    const batch = teDoen.slice(i, i + PARALLEL);
-    await Promise.all(
-      batch.map(async (paar) => {
-        try {
-          const data = await roepGeminiMetFallback(MODELLEN.wire, bouwZelfdePrompt(paar), apiKey, TEMPERATUUR_WIRE);
-          uit.set(paar.sleutel, data && typeof data.zelfde === "boolean" ? data.zelfde : null);
-        } catch (fout) {
-          uit.set(paar.sleutel, null);
-          if (fout.status === 429) {
-            quotaHit = true;
-          }
-        }
-      })
-    );
+    await Promise.all(teDoen.slice(i, i + PARALLEL).map(verwerkGroep));
   }
-  for (const paar of (paren || []).slice(cap)) uit.set(paar.sleutel, null);
-  for (const paar of teDoen) {
+  for (const paar of lijst) {
     if (!uit.has(paar.sleutel)) uit.set(paar.sleutel, null);
   }
+  uit.quotum = quotaHit;
   return uit;
 }
 
@@ -607,11 +797,13 @@ module.exports = {
   PROMPT_VERSIE,
   PROMPT_VERSIE_WIRE,
   MODELLEN,
+  BATCH_GROOTTE,
+  ZELFDE_PER_VERZOEK,
   bouwFilterPrompt,
   bouwPitchPrompt,
-  bouwMeldingPrompt,
-  bouwAnalysePrompt,
-  bouwZelfdePrompt,
+  bouwMeldingBatchPrompt,
+  bouwZelfdeBatchPrompt,
+  maakBatches,
   valideerPitch,
   valideerMelding,
   valideerScores,

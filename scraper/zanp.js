@@ -16,27 +16,52 @@
 //  - Scrapen parallel (4 tegelijk) met een harde time-out van 45s per bron.
 //  - Agenda-horizon: 14 dagen vooruit via maxVooruitDagen op de effectieve
 //    bron. De pitchrun (index.js) houdt de oude horizon.
+//
+// Sinds 2026-10-29:
+//  - Het quotum telt VERZOEKEN. De AI werkt in batches van meerdere berichten
+//    per verzoek; ZANP_DAGCAP en ZANP_RUNCAP zijn dus aantallen verzoeken.
+//  - De quotumdag loopt volgens de Amerikaanse westkust (middernacht Pacific),
+//    zoals Google tellt, en niet volgens de Nederlandse kalenderdag.
+//  - Belangrijke berichten (signaal- en officiële bronnen, prio 3 of hoger)
+//    komen eerst aan bod; routine alleen als er ruimte over is.
+//  - Een bron die steeds niets oplevert wordt minder vaak gescrapet.
+//  - Berichten krijgen een tag (de kolom); oude records worden eenmalig omgezet.
+//  - Berichten en agendapunten worden gekoppeld op harde sleutels (koppel.js).
+//  - zanp-status.json bewaart een kwaliteitslog per dag (14 dagen).
 
 const bronnen = require("./bronnen");
 const { RUBRIEKEN, isBekendeBron, profielVoor } = require("./rubrieken");
+const { tagsVoorPrompt } = require("./tags");
+const { koppelDossiers } = require("./koppel");
 const {
   binnenVenster,
   vulBerichtenAanMetTekst,
   oorzaakTekst,
-  vandaagAmsterdam,
+  kalenderdagAmsterdam,
 } = require("./hulpmiddelen");
 const gedeeld = require("./gedeeld");
 const wire = require("./wire");
 const { REGEL_VERSIE, beoordeelAgendaRelevantie } = require("./agenda-regels");
 const { bouwClusters, pasClustersToe, clusterContext, kiesPrimair } = require("./cluster");
 const { CONFIG: ALERT_CONFIG, beoordeelAlert, beperkAlerts } = require("./alert-regels");
-const { schrijfMeldingen, beslisZelfdeNieuwsfeit, PROMPT_VERSIE_WIRE } = require("./gemini");
+const {
+  schrijfMeldingen,
+  beslisZelfdeNieuwsfeit,
+  PROMPT_VERSIE_WIRE,
+  BATCH_GROOTTE,
+  ZELFDE_PER_VERZOEK,
+} = require("./gemini");
 
 const { logFase, logDuur, schrijfJson, leesJson } = gedeeld;
 
 const UUR_MS = 3600 * 1000;
 const INTERVAL_DAG_MS = 20 * UUR_MS;
 const INTERVAL_SNEL_MS = 25 * 60 * 1000;
+// Een bron die LEEG_VANAF keer achter elkaar niets opleverde, komt steeds
+// minder vaak aan de beurt (x2, x4, x8), hooguit elke INTERVAL_MAX_LEEG_MS.
+const LEEG_VANAF = 3;
+const INTERVAL_MAX_LEEG_MS = 6 * UUR_MS;
+const KWALITEIT_DAGEN = 14;
 const HERKOMST_RANG = { officieel: 0, organisatie: 1, signaal: 2, onbekend: 3 };
 const ALERT_VENSTER_UREN = 48;
 
@@ -64,7 +89,12 @@ function leesInstellingen(env) {
 }
 
 function leegStatus() {
-  return { bronnen: {}, gemini: { dag: null, gebruikt: 0, wachtTot: null }, clusterBeslissingen: {} };
+  return {
+    bronnen: {},
+    gemini: { dag: null, gebruikt: 0, wachtTot: null },
+    clusterBeslissingen: {},
+    kwaliteit: {},
+  };
 }
 
 async function leesStatus() {
@@ -78,22 +108,84 @@ async function leesStatus() {
       s.gemini && typeof s.gemini === "object" ? s.gemini : { dag: null, gebruikt: 0, wachtTot: null },
     clusterBeslissingen:
       s.clusterBeslissingen && typeof s.clusterBeslissingen === "object" ? s.clusterBeslissingen : {},
+    kwaliteit: s.kwaliteit && typeof s.kwaliteit === "object" ? s.kwaliteit : {},
   };
 }
 
-function bronInterval(bron) {
-  return bron.soort === "agenda" || bron.rustig ? INTERVAL_DAG_MS : INTERVAL_SNEL_MS;
+// Hoe vaak een bron aan de beurt komt. Rustige bronnen en agendabronnen één
+// keer per dag, de rest elke run. Levert een bron steeds niets op, dan wordt
+// het interval langer, zodat een kapotte of trage bron niet elke run tijd kost.
+function bronInterval(bron, s) {
+  const basis = bron.soort === "agenda" || bron.rustig ? INTERVAL_DAG_MS : INTERVAL_SNEL_MS;
+  const leeg = (s && s.opeenvolgendLeeg) || 0;
+  if (leeg < LEEG_VANAF) return basis;
+  const factor = 2 ** (leeg - LEEG_VANAF + 1);
+  return Math.min(basis * factor, Math.max(basis, INTERVAL_MAX_LEEG_MS));
 }
 
 function isAanDeBeurt(bron, status, nu, alles) {
   if (alles) return true;
   const s = status.bronnen[bron.id];
   if (!s || !s.laatsteScrape) return true;
-  return nu.getTime() - new Date(s.laatsteScrape).getTime() >= bronInterval(bron);
+  // Een kleine marge: een run die om :37 begint mag een bron van :07 oppakken.
+  return nu.getTime() - new Date(s.laatsteScrape).getTime() >= bronInterval(bron, s) - 2 * 60 * 1000;
 }
 
 function uurNa(iso, uren) {
   return new Date(new Date(iso).getTime() + uren * UUR_MS).toISOString();
+}
+
+// ---------------------------------------------------------------------------
+// Quotum
+// ---------------------------------------------------------------------------
+
+// Google telt een quotumdag van middernacht tot middernacht aan de Amerikaanse
+// westkust (Pacific). De dagteller volgt dus die kalenderdag.
+const QUOTUM_TZ = "America/Los_Angeles";
+
+function quotumDag(nu) {
+  return new Intl.DateTimeFormat("sv-SE", {
+    timeZone: QUOTUM_TZ,
+    year: "numeric",
+    month: "2-digit",
+    day: "2-digit",
+  }).format(nu);
+}
+
+// Het eerstvolgende moment waarop de quotumdag wisselt (ISO), op de minuut nauwkeurig.
+function volgendeQuotumReset(nu) {
+  const dag = quotumDag(nu);
+  for (let minuten = 15; minuten <= 26 * 60; minuten += 15) {
+    const t = new Date(nu.getTime() + minuten * 60 * 1000);
+    if (quotumDag(t) !== dag) {
+      const t0 = new Date(t.getTime() - 15 * 60 * 1000);
+      for (let m = 1; m <= 15; m++) {
+        const k = new Date(t0.getTime() + m * 60 * 1000);
+        if (quotumDag(k) !== dag) return k.toISOString();
+      }
+      return t.toISOString();
+    }
+  }
+  return new Date(nu.getTime() + 12 * UUR_MS).toISOString();
+}
+
+/**
+ * Tot wanneer wachten we na een 429? Gaat het om een dagquotum, dan tot de
+ * volgende quotumdag. Noemt de melding een wachttijd ("retry in 1h2m3s"), dan
+ * die tijd. Anders een uur.
+ */
+function wachtTotNaQuotum(foutTekst, nu) {
+  const tekst = String(foutTekst || "");
+  if (/per\s*day|perday|daily/i.test(tekst)) return volgendeQuotumReset(nu);
+  const m = tekst.match(/retry in\s+((?:\d+(?:\.\d+)?\s*[hms]\s*)+)/i);
+  if (m) {
+    const uren = Number((m[1].match(/(\d+(?:\.\d+)?)\s*h/i) || [])[1] || 0);
+    const minuten = Number((m[1].match(/(\d+(?:\.\d+)?)\s*m/i) || [])[1] || 0);
+    const seconden = Number((m[1].match(/(\d+(?:\.\d+)?)\s*s/i) || [])[1] || 0);
+    const totaalMs = ((uren * 60 + minuten) * 60 + seconden) * 1000;
+    if (totaalMs > 0) return new Date(nu.getTime() + totaalMs + 60 * 1000).toISOString();
+  }
+  return new Date(nu.getTime() + UUR_MS).toISOString();
 }
 
 const NIVEAU_RANG = { rood: 0, oranje: 1 };
@@ -162,27 +254,46 @@ function bepaalAlerts(records, clusterResultaat, modus, nu) {
   });
 }
 
+// Oude records (van vóór de tags) hebben een oude rubriekcode en geen tagBron.
+// Ze krijgen eenmalig een tag op trefwoorden of de standaardtag van hun bron,
+// zodat ze meteen in de goede kolom staan.
+function migreerTag(r) {
+  if (r.tagBron !== undefined) return r;
+  const tag = wire.kiesTag({
+    kop: r.bronTitel || r.kop,
+    tekst: r.tekst || "",
+    standaard: profielVoor(r.bronId).rubriek,
+  });
+  return { ...r, rubriek: tag.tag, tagBron: tag.bron };
+}
+
 function migreerBericht(r) {
-  if (r.herkomst && !("soort" in r) && r.gecontroleerdOp) return r;
-  const { soort, ...rest } = r;
-  const profiel = profielVoor(r.bronId);
-  return {
-    ...rest,
-    herkomst: r.herkomst || (isBekendeBron(r.bronId) ? profiel.herkomst : soort) || "onbekend",
-    gecontroleerdOp: r.gecontroleerdOp || r.eerstGezienOp,
-  };
+  let uit = r;
+  if (!(r.herkomst && !("soort" in r) && r.gecontroleerdOp)) {
+    const { soort, ...rest } = r;
+    const profiel = profielVoor(r.bronId);
+    uit = {
+      ...rest,
+      herkomst: r.herkomst || (isBekendeBron(r.bronId) ? profiel.herkomst : soort) || "onbekend",
+      gecontroleerdOp: r.gecontroleerdOp || r.eerstGezienOp,
+    };
+  }
+  return migreerTag(uit);
 }
 
 function migreerAgendaItem(i) {
-  if (i.relevantie !== undefined) return i.afkomst ? i : { ...i, afkomst: "bron" };
-  const filter = profielVoor(i.bronId).agendaFilter;
+  // Een oude rubriekcode (van vóór de tags) wordt de standaardtag van de bron.
+  const heeftGeldigeTag = wire.TAG_CODES.includes(i.rubriek) || i.rubriek === "ALG";
+  const basis = heeftGeldigeTag ? i : { ...i, rubriek: profielVoor(i.bronId).rubriek };
+  if (basis.relevantie !== undefined) return basis.afkomst ? basis : { ...basis, afkomst: "bron" };
+  const filter = profielVoor(basis.bronId).agendaFilter;
   if (filter === "eerste-of-jubileum") {
-    return { ...i, afkomst: i.afkomst || "bron", zichtbaar: false, inAfwachting: true };
+    return { ...basis, afkomst: basis.afkomst || "bron", zichtbaar: false, inAfwachting: true };
   }
   return {
-    ...i,
-    afkomst: i.afkomst || "bron",
-    relevantie: beoordeelAgendaRelevantie(i.kop, "", "alles"),
+    ...basis,
+    afkomst: basis.afkomst || "bron",
+    relevantie: beoordeelAgendaRelevantie(basis.kop, "", "alles"),
     zichtbaar: true,
     inAfwachting: false,
   };
@@ -202,8 +313,13 @@ async function draai(deps = {}) {
 
   logFase("ZANP 1 — Bronnen kiezen");
   const status = await leesStatus();
-  const vandaag = vandaagAmsterdam();
-  if (status.gemini.dag !== vandaag) status.gemini = { dag: vandaag, gebruikt: 0, wachtTot: null };
+  const quotaDag = quotumDag(nu);
+  if (status.gemini.dag !== quotaDag) {
+    // Nieuwe quotumdag: de teller begint opnieuw. Een wachttijd die nog loopt
+    // (bijvoorbeeld tot de reset) blijft gelden.
+    const wachtTot = status.gemini.wachtTot && new Date(status.gemini.wachtTot) > nu ? status.gemini.wachtTot : null;
+    status.gemini = { dag: quotaDag, gebruikt: 0, wachtTot };
+  }
 
   const regionaal = bronnen.filter((b) => b.categorie !== "landelijk");
   const teScrapen = regionaal.filter((b) => isAanDeBeurt(b, status, nu, inst.alles));
@@ -372,62 +488,52 @@ async function draai(deps = {}) {
 
   logFase("ZANP 5 — Meldingen en analyses");
   let verwerkt = nieuwe.map((n) => n.record);
+  const run = { verzoeken: 0 };
+  let kwaliteitRun = null;
 
   if (status.gemini.wachtTot && new Date(status.gemini.wachtTot) > nu) {
-    console.warn(`AI overgeslagen: quotum bereikt, wacht tot ${status.gemini.wachtTot}.`);
+    console.warn(
+      `AI overgeslagen: quotum bereikt, wacht tot ${status.gemini.wachtTot}. De berichten houden hun tag en checklist uit trefwoorden en patronen.`
+    );
   } else {
-    const wacht = nieuwe
-      .filter((n) => n.invoer)
-      .sort(
-        (a, b) => (HERKOMST_RANG[a.record.herkomst] ?? 3) - (HERKOMST_RANG[b.record.herkomst] ?? 3)
-      );
+    // Belangrijke berichten eerst; routine alleen als er ruimte over is.
+    const wacht = wire.sorteerVoorAI(nieuwe.filter((n) => n.invoer));
     const dagRuimte = Math.max(0, inst.dagcap - status.gemini.gebruikt);
-    const cap = Math.min(inst.runcap, dagRuimte);
+    const cap = Math.min(inst.runcap, dagRuimte); // aantal VERZOEKEN
 
     if (!apiKey) {
-      if (wacht.length) console.log(`Geen API-sleutel: ${wacht.length} bericht(en) blijven kop + link.`);
+      if (wacht.length) console.log(`Geen API-sleutel: ${wacht.length} bericht(en) blijven kop + link (tag en checklist uit trefwoorden).`);
     } else if (wacht.length === 0) {
       console.log("Niets te schrijven.");
     } else if (cap === 0) {
       console.warn(
-        `Dagcap bereikt (${status.gemini.gebruikt}/${inst.dagcap}): ${wacht.length} bericht(en) wachten tot morgen.`
+        `Dagcap bereikt (${status.gemini.gebruikt}/${inst.dagcap} verzoeken): ${wacht.length} bericht(en) wachten tot de volgende quotumdag.`
       );
     } else {
       console.log(
-        `AI voor ${Math.min(wacht.length, cap)} van ${wacht.length} bericht(en) (cap ${cap}; vandaag al ${
-          status.gemini.gebruikt
-        }/${inst.dagcap}; prompt ${PROMPT_VERSIE_WIRE}).`
+        `AI voor hooguit ${Math.min(wacht.length, cap * BATCH_GROOTTE)} van ${wacht.length} bericht(en): ` +
+          `${cap} verzoek(en) beschikbaar, ${BATCH_GROOTTE} berichten per verzoek ` +
+          `(vandaag al ${status.gemini.gebruikt}/${inst.dagcap}; prompt ${PROMPT_VERSIE_WIRE}).`
       );
       const resultaten = await schrijf(
         wacht.map((n) => n.invoer),
         apiKey,
-        cap
+        cap,
+        { tags: tagsVoorPrompt(RUBRIEKEN) }
       );
 
-      let quotaHit = false;
-      let retryAfterText = "";
+      // Het quotum telt beantwoorde verzoeken. Een eigen schrijf-functie (bijvoorbeeld
+      // in een test) die dat niet meldt, wordt per geslaagd bericht geteld.
+      const verzoeken =
+        typeof resultaten.verzoeken === "number"
+          ? resultaten.verzoeken
+          : [...resultaten.values()].filter((r) => r.melding || r.onvoldoende).length;
+      status.gemini.gebruikt += verzoeken;
+      run.verzoeken += verzoeken;
 
-      for (const r of resultaten.values()) {
-        if (r.melding || r.onvoldoende) status.gemini.gebruikt++;
-        if (r.status === 429) {
-          quotaHit = true;
-          retryAfterText = r.fout;
-        }
-      }
-
+      const quotaHit = [...resultaten.values()].find((r) => r.status === 429);
       if (quotaHit) {
-        let wachtMinuten = 12 * 60;
-        const match = retryAfterText.match(/retry in (.*?)\./);
-        if (match) {
-          const timeStr = match[1];
-          let mins = 0;
-          const h = timeStr.match(/(\d+)h/);
-          const m = timeStr.match(/(\d+)m/);
-          if (h) mins += parseInt(h[1]) * 60;
-          if (m) mins += parseInt(m[1]);
-          if (mins > 0) wachtMinuten = mins;
-        }
-        status.gemini.wachtTot = new Date(nu.getTime() + wachtMinuten * 60000).toISOString();
+        status.gemini.wachtTot = wachtTotNaQuotum(quotaHit.fout, nu);
         console.warn(`AI-quotum bereikt. Nieuwe poging toegestaan na ${status.gemini.wachtTot}`);
       }
 
@@ -439,8 +545,16 @@ async function draai(deps = {}) {
       const telling = {};
       for (const r of verwerkt) if (r.controle) telling[r.controle] = (telling[r.controle] || 0) + 1;
       console.log(`Controle-uitkomsten: ${JSON.stringify(telling)}`);
+
+      kwaliteitRun = kwaliteitVan(nieuwe, verwerkt, resultaten);
     }
   }
+  const tagTelling = {};
+  for (const r of verwerkt) {
+    const sleutel = r.tagBron || "onbekend";
+    tagTelling[sleutel] = (tagTelling[sleutel] || 0) + 1;
+  }
+  console.log(`Tags van nieuwe berichten, naar herkomst van de keuze: ${JSON.stringify(tagTelling)}`);
 
   let records = wire.voegBerichtenSamen(bestaand, [...verwerkt, ...bijgewerkteControle], nu);
 
@@ -453,20 +567,21 @@ async function draai(deps = {}) {
   };
   try {
     if (!status.gemini.wachtTot || new Date(status.gemini.wachtTot) <= nu) {
-      const clusterRuimte = Math.max(0, Math.min(inst.clusterCap, inst.dagcap - status.gemini.gebruikt));
+      const clusterRuimte = Math.max(0, Math.min(inst.clusterCap, inst.dagcap - status.gemini.gebruikt)); // verzoeken
       const vraagAI = apiKey
         ? async (paren) => {
-            const gevraagd = paren.slice(0, clusterRuimte);
+            const gevraagd = paren.slice(0, clusterRuimte * ZELFDE_PER_VERZOEK);
             const antwoorden = await beslisZelfde(gevraagd, apiKey, clusterRuimte);
-            let successen = 0;
-            let foutOpgetreden = false;
-            for (const val of antwoorden.values()) {
-              if (val !== null) successen++;
-              else foutOpgetreden = true;
-            }
-            status.gemini.gebruikt += successen;
-            if (foutOpgetreden) {
-              status.gemini.wachtTot = new Date(nu.getTime() + 12 * 60 * 60000).toISOString();
+            const verzoeken =
+              typeof antwoorden.verzoeken === "number"
+                ? antwoorden.verzoeken
+                : [...antwoorden.values()].filter((v) => v !== null).length;
+            status.gemini.gebruikt += verzoeken;
+            run.verzoeken += verzoeken;
+            // Alleen een echte quotummelding (429) zet de AI stil, geen enkel onduidelijk antwoord.
+            if (antwoorden.quotum) {
+              status.gemini.wachtTot = wachtTotNaQuotum(antwoorden.quotumTekst, nu);
+              console.warn(`AI-quotum bereikt bij het clusteren. Nieuwe poging toegestaan na ${status.gemini.wachtTot}`);
             }
             return antwoorden;
           }
@@ -475,7 +590,7 @@ async function draai(deps = {}) {
         nu,
         beslissingen: status.clusterBeslissingen,
         vraagAI,
-        maxAI: apiKey ? clusterRuimte : 0,
+        maxAI: apiKey ? clusterRuimte * ZELFDE_PER_VERZOEK : 0,
       });
       status.clusterBeslissingen = clusterResultaat.beslissingen;
     }
@@ -510,12 +625,32 @@ async function draai(deps = {}) {
     berichtRecords: records,
     nu,
   });
-  records = wire.koppelAgendaAanBerichten(records, agenda.items);
+  let agendaItems = agenda.items;
+
+  // Koppelen op harde sleutels (adres, ECLI, zaaknummer, OLO): een bekendmaking,
+  // de hoorzitting erover en het besluit dat eruit volgt. Een fout hier mag de
+  // run niet stoppen; dan blijven de koppelingen uit de bron staan.
+  try {
+    const gekoppeld = koppelDossiers(records, agendaItems);
+    records = gekoppeld.records;
+    agendaItems = gekoppeld.agendaItems;
+    samenvatting.koppel = gekoppeld.stats;
+    console.log(`Koppelingen op harde sleutels: ${JSON.stringify(gekoppeld.stats)}`);
+  } catch (fout) {
+    console.error(`Koppelen mislukte (berichten en agenda blijven ongekoppeld): ${fout.stack || fout.message}`);
+  }
+  records = wire.koppelAgendaAanBerichten(records, agendaItems);
   samenvatting.agenda = agenda.stats;
   console.log(`Agenda: ${JSON.stringify(agenda.stats)}`);
 
+  if (kwaliteitRun) {
+    status.kwaliteit = bewaarKwaliteit(status.kwaliteit, kalenderdagAmsterdam(nu.toISOString()), kwaliteitRun);
+    samenvatting.kwaliteit = kwaliteitRun;
+    console.log(`Kwaliteit van deze run: ${JSON.stringify(kwaliteitRun)}`);
+  }
+
   const gegenereerdOp = nu.toISOString();
-  await schrijfJson("agenda.json", { gegenereerdOp, regelVersie: REGEL_VERSIE, items: agenda.items });
+  await schrijfJson("agenda.json", { gegenereerdOp, regelVersie: REGEL_VERSIE, items: agendaItems });
   await schrijfJson("berichten.json", {
     gegenereerdOp,
     promptVersie: PROMPT_VERSIE_WIRE,
@@ -530,20 +665,92 @@ async function draai(deps = {}) {
     alertModus: inst.alertModus,
     bronnen: status.bronnen,
     bronnenZonderRubriek: zonderRubriek,
-    gemini: { ...status.gemini, dagcap: inst.dagcap },
+    gemini: { ...status.gemini, dagcap: inst.dagcap, runcap: inst.runcap, verzoekenDezeRun: run.verzoeken },
     clusterBeslissingen: status.clusterBeslissingen,
+    kwaliteit: status.kwaliteit,
     laatsteRun: samenvatting,
   });
   console.log(
-    `Klaar: ${records.length} berichten, ${agenda.items.length} agenda-items, ${
+    `Klaar: ${records.length} berichten, ${agendaItems.length} agenda-items, ${
       records.filter((r) => r.ai).length
-    } met AI-tekst.`
+    } met AI-tekst, ${run.verzoeken} AI-verzoek(en).`
   );
   logDuur(startRun, "ZANP-run");
-  return { records, agenda: agenda.items, status, samenvatting };
+  return { records, agenda: agendaItems, status, samenvatting };
 }
 
-module.exports = { draai, bepaalAlerts, isAanDeBeurt, leesInstellingen, migreerBericht, migreerAgendaItem };
+// Wat de AI deze run deed, in getallen: de kwaliteitslog. Zo zie je over de
+// dagen heen hoe vaak de cijfercontrole een melding afkeurt of een antwoord
+// ontbreekt, en kun je de prompt daarop bijsturen.
+function kwaliteitVan(nieuwe, verwerkt, resultaten) {
+  const uit = {
+    verzoeken: typeof resultaten.verzoeken === "number" ? resultaten.verzoeken : 0,
+    berichten: 0,
+    ok: 0,
+    analyseOk: 0,
+    cijfersAfgekeurd: 0,
+    onvoldoende: 0,
+    fout: 0,
+    overgeslagen: 0,
+    tagAi: 0,
+    tagTrefwoord: 0,
+    tagBron: 0,
+    tagGeen: 0,
+  };
+  const recordPerId = new Map(verwerkt.map((r) => [r.id, r]));
+  for (const n of nieuwe) {
+    if (!n.invoer) continue;
+    const res = resultaten.get(n.invoer.id);
+    const rec = recordPerId.get(n.record.id);
+    if (!res) continue;
+    if (res.fout) {
+      if (/^overgeslagen/.test(res.fout)) uit.overgeslagen++;
+      else {
+        uit.berichten++;
+        uit.fout++;
+      }
+      continue;
+    }
+    uit.berichten++;
+    if (res.onvoldoende) uit.onvoldoende++;
+    else if (rec && rec.controle === "cijfers-afgekeurd") uit.cijfersAfgekeurd++;
+    else if (rec && rec.controle === "analyse-ok") uit.analyseOk++;
+    else if (rec && rec.controle === "cijfers-ok") uit.ok++;
+    if (rec && rec.tagBron === "ai") uit.tagAi++;
+    else if (rec && rec.tagBron === "trefwoord") uit.tagTrefwoord++;
+    else if (rec && rec.tagBron === "bron") uit.tagBron++;
+    else uit.tagGeen++;
+  }
+  return uit;
+}
+
+// Telt de run op bij de dag en bewaart de laatste KWALITEIT_DAGEN dagen.
+function bewaarKwaliteit(huidig, dag, run) {
+  const uit = { ...(huidig || {}) };
+  const vorige = uit[dag] || {};
+  const som = {};
+  for (const [k, v] of Object.entries(run)) som[k] = (Number(vorige[k]) || 0) + v;
+  som.runs = (Number(vorige.runs) || 0) + 1;
+  uit[dag] = som;
+  const dagen = Object.keys(uit).sort();
+  for (const d of dagen.slice(0, Math.max(0, dagen.length - KWALITEIT_DAGEN))) delete uit[d];
+  return uit;
+}
+
+module.exports = {
+  draai,
+  bepaalAlerts,
+  isAanDeBeurt,
+  bronInterval,
+  leesInstellingen,
+  migreerBericht,
+  migreerAgendaItem,
+  quotumDag,
+  volgendeQuotumReset,
+  wachtTotNaQuotum,
+  kwaliteitVan,
+  bewaarKwaliteit,
+};
 
 if (require.main === module) {
   draai().catch((fout) => {

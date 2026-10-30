@@ -1129,4 +1129,76 @@ async function vulBerichtenAanMetTekst(berichten, opties = {}) {
 
   for (const b of berichten) {
     const s = stat(b.bronId);
-    s
+    s.totaal++;
+    if (b.tekstBron === "artikel" && (b.samenvatting || "").length >= MIN_BRUIKBARE_TEKST_TEKENS) s.metTekst++;
+    if (b.foto) s.metFoto++;
+  }
+  return { perBron, tijdOp };
+}
+
+function tekstDekkingTekst(s) {
+  return `${s.metTekst} van ${s.totaal} met artikeltekst`;
+}
+
+function tekstStatistiekRegel(s) {
+  const uitLijst = Math.max(0, s.totaal - s.opgehaald);
+  const delen = [`${s.opgehaald} van de berichtpagina`];
+  if (uitLijst > 0) delen.push(`${uitLijst} uit de lijst`);
+  if (s.geenTekst) delen.push(`${s.geenTekst} pagina('s) zonder bruikbare tekst`);
+  if (s.fouten) delen.push(`${s.fouten} mislukt`);
+  if (s.overgeslagen) delen.push(`${s.overgeslagen} overgeslagen`);
+  if (s.metFoto) delen.push(`${s.metFoto} met foto`);
+  return `${s.metTekst} van ${s.totaal} met artikeltekst (${delen.join(", ")})`;
+}
+
+module.exports = {
+  haalOp,
+  startResponsCache,
+  stopResponsCache,
+  isNetwerkFout,
+  parseerRssTekst,
+  oorzaakTekst,
+  probeerKetenTeRepareren,
+  haalOpMetCookies,
+  haalDatumUitTekst,
+  haalDatumZonderJaar,
+  haalDatumBereik,
+  leesDatumEnEinde,
+  agendaUitDatums,
+  parseerDatumTekst,
+  GEBRUIKERSAGENT,
+  TZ,
+  MAX_LEEFTIJD_DAGEN,
+  AGENDA_MAX_VERLEDEN_DAGEN,
+  AGENDA_MAX_VOORUIT_DAGEN,
+  kalenderdagAmsterdam,
+  vandaagAmsterdam,
+  dagVerschil,
+  kalenderdagMinDagen,
+  binnenLeeftijdsgrens,
+  binnenAgendaVenster,
+  binnenVenster,
+  beginNieuwsVenster,
+  leeftijdInDagen,
+  volgPaginas,
+  paginaVoorbij,
+  vindVolgendePagina,
+  MAX_PAGINAS,
+  haalTekstUitHtml,
+  stripDubbeleTitel,
+  haalArtikelTekst,
+  haalRechtspraakTekst,
+  vulBerichtenAanMetTekst,
+  tekstDekkingTekst,
+  tekstStatistiekRegel,
+  haalFotoUitRssItem,
+  haalFotoUitHtml,
+  haalFotoUitItem,
+  maakAbsoluut,
+  ARTIKEL_MAX_TEKENS,
+  LIJSTTEKST_GENOEG_TEKENS,
+  MIN_BRUIKBARE_TEKST_TEKENS,
+  ID_TITEL_PATROON,
+  titelIsId,
+  kiesRssTitel,
+};

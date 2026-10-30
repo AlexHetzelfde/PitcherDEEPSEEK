@@ -1,41 +1,74 @@
 {
-  "_uitleg": "Instellingen van ZANP per bron. Sleutel = bron-id uit bronnen.js. rubriek: code uit 'rubrieken'. herkomst: officieel | organisatie | signaal | onbekend. prio: standaardprioriteit 1 (urgent) t/m 4 (routine). herschrijf: mag de AI van de brontekst een korte feitelijke tekst maken? (alleen bij officieel en organisatie; nooit bij andere redacties). agendaFilter (alleen agendabronnen): 'alles' of 'eerste-of-jubileum'. Soort (nieuws/agenda), categorie en frequentie komen uit bronnen.js.",
+  "_uitleg": "Instellingen van ZANP per bron. Sleutel = bron-id uit bronnen.js. rubriek: de standaardtag (kolom) van de bron, een code uit \"rubrieken\" (CUL, GEM, PRV, REC, BED, 112, SPO, VER, ONW) of ALG. Het bericht zelf krijgt de tag waar het over gaat (de AI kiest, anders trefwoorden); de standaardtag geldt alleen als geen van beide iets vindt. Bij ALG staat een bericht alleen in ZANP totaal. herkomst: officieel | organisatie | signaal | onbekend. prio: standaardprioriteit 1 (urgent) t/m 4 (routine). herschrijf: mag de AI van de brontekst een korte feitelijke tekst maken? (alleen bij officieel en organisatie; nooit bij andere redacties). agendaFilter (alleen agendabronnen): \"alles\" of \"eerste-of-jubileum\". Soort (nieuws/agenda), categorie en frequentie komen uit bronnen.js. De volgorde van \"rubrieken\" is de volgorde van de kolommen.",
   "rubrieken": [
-    { "code": "BES", "naam": "Bestuur & gemeente" },
-    { "code": "REC", "naam": "Rechtspraak" },
-    { "code": "PRV", "naam": "Provincie, water & omgeving" },
-    { "code": "CUL", "naam": "Cultuur & erfgoed" },
-    { "code": "ONW", "naam": "Onderwijs" },
-    { "code": "LOK", "naam": "Lokaal nieuws (signaal)" },
-    { "code": "ALG", "naam": "Overig" }
+    {
+      "code": "CUL",
+      "naam": "Cultuur"
+    },
+    {
+      "code": "GEM",
+      "naam": "Gemeente"
+    },
+    {
+      "code": "PRV",
+      "naam": "Provincie"
+    },
+    {
+      "code": "REC",
+      "naam": "Recht"
+    },
+    {
+      "code": "BED",
+      "naam": "Bedrijven"
+    },
+    {
+      "code": "112",
+      "naam": "112"
+    },
+    {
+      "code": "SPO",
+      "naam": "Sport"
+    },
+    {
+      "code": "VER",
+      "naam": "Verkeer"
+    },
+    {
+      "code": "ONW",
+      "naam": "Onderwijs"
+    },
+    {
+      "code": "ALG",
+      "naam": "Overig"
+    }
   ],
   "bronnen": {
     "bekendmakingen": {
-      "rubriek": "BES",
+      "rubriek": "GEM",
       "herkomst": "officieel",
       "prio": 4,
       "herschrijf": true
     },
     "wetenregelgeving": {
-      "rubriek": "BES",
+      "rubriek": "GEM",
       "herkomst": "officieel",
       "prio": 4,
       "herschrijf": true
     },
     "ibabs-collegeberichten": {
-      "rubriek": "BES",
+      "rubriek": "GEM",
       "herkomst": "officieel",
       "prio": 3,
       "herschrijf": true
     },
     "ibabs-ingekomen-stukken": {
-      "rubriek": "BES",
+      "rubriek": "GEM",
       "herkomst": "officieel",
       "prio": 4,
       "herschrijf": true
     },
     "zaanstad-hoorzittingen": {
-      "rubriek": "BES",
+      "rubriek": "GEM",
       "herkomst": "officieel",
       "prio": 4,
       "herschrijf": false,
@@ -54,7 +87,7 @@
       "herschrijf": true
     },
     "nh-cultuur": {
-      "rubriek": "PRV",
+      "rubriek": "CUL",
       "herkomst": "officieel",
       "prio": 4,
       "herschrijf": true
@@ -110,13 +143,13 @@
       "herschrijf": true
     },
     "DeOrkaan": {
-      "rubriek": "LOK",
+      "rubriek": "ALG",
       "herkomst": "signaal",
       "prio": 3,
       "herschrijf": false
     },
     "zaandijk-leeft": {
-      "rubriek": "LOK",
+      "rubriek": "ALG",
       "herkomst": "signaal",
       "prio": 3,
       "herschrijf": false

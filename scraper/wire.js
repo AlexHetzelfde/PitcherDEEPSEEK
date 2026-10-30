@@ -37,7 +37,7 @@
 
 const crypto = require("crypto");
 const { TZ, kalenderdagAmsterdam, vandaagAmsterdam, dagVerschil } = require("./hulpmiddelen");
-const { profielVoor } = require("./rubrieken");
+const { profielVoor, RUBRIEKEN } = require("./rubrieken");
 const {
   REGEL_VERSIE,
   beoordeelAgendaRelevantie,
@@ -47,6 +47,13 @@ const {
   titelGelijkenis,
 } = require("./agenda-regels");
 const { isRegio } = require("./alert-regels");
+const { ONBEKEND, bepaalTag } = require("./tags");
+const { checklistUitPatronen, agendapuntenUitPatronen } = require("./patronen");
+
+// De tags (kolommen) uit rubrieken.json, zonder "Overig". Het veld "rubriek"
+// van een bericht bevat de tag.
+const TAG_CODES = RUBRIEKEN.map((r) => r.code).filter((c) => c !== ONBEKEND);
+const TAG_NAMEN = Object.fromEntries(RUBRIEKEN.map((r) => [r.code, r.naam]));
 
 const DAG_MS = 24 * 60 * 60 * 1000;
 
@@ -531,9 +538,19 @@ function publicatieDagVan(b) {
   return kalenderdagAmsterdam(b.gepubliceerdOp) || vandaagAmsterdam();
 }
 
+/**
+ * De tag van een bericht: een geldige AI-tag, anders trefwoorden in kop en
+ * begin van de tekst, anders de standaardtag van de bron, anders Overig.
+ * Geeft { tag, bron } met bron "ai" | "trefwoord" | "bron" | "geen".
+ */
+function kiesTag({ kop, tekst = "", aiTag = null, standaard = ONBEKEND }) {
+  return bepaalTag({ kop, tekst, aiTag, standaard, codes: TAG_CODES, namen: TAG_NAMEN });
+}
+
 function maakBerichtRecord(b, profiel, versie, tekst, nu, opties = {}) {
   const groepId = korteId(b.url);
   const isUpdate = versie > 1;
+  const tag = kiesTag({ kop: b.titel, tekst, standaard: profiel.rubriek });
   const record = {
     id: `${groepId}-v${versie}`,
     groepId,
@@ -541,7 +558,8 @@ function maakBerichtRecord(b, profiel, versie, tekst, nu, opties = {}) {
     url: b.url,
     kop: schoneKop(b.titel),
     tekst: null,
-    rubriek: profiel.rubriek,
+    rubriek: tag.tag,
+    tagBron: tag.bron,
     herkomst: profiel.herkomst,
     prio: profiel.prio,
     // Bij een update is "tijd" het moment waarop wij de wijziging zagen.
@@ -563,6 +581,23 @@ function maakBerichtRecord(b, profiel, versie, tekst, nu, opties = {}) {
   if (!opties.seed && (profiel.herkomst === "officieel" || profiel.herkomst === "organisatie")) {
     const termijnen = termijnenUitTekst(tekst, publicatieDagVan(b));
     if (termijnen.length) record.termijnen = termijnen;
+  }
+  // Zonder AI (geen sleutel, quotum op, aanroep mislukt) bepaalt code een eerste
+  // checklist en eerste agendapunten. Dezelfde controles als bij de AI-uitvoer
+  // gelden: getallen en datums blijven alleen staan als ze in de bron staan.
+  // Een latere AI-beoordeling vervangt deze versie (verwerkMelding).
+  if (!opties.seed && tekst) {
+    const bron = `${b.titel || ""} ${tekst}`;
+    record.checklist = maakChecklist(
+      checklistUitPatronen(bron, { nu, gepubliceerdOp: isUpdate ? nu.toISOString() : b.gepubliceerdOp }),
+      bron
+    );
+    record.checklistBron = "patroon";
+    const punten = verifieerAgendapunten(agendapuntenUitPatronen(b.titel, tekst), bron, publicatieDagVan(b));
+    if (punten.length) {
+      record.agendapunten = punten;
+      record.agendapuntenBron = "patroon";
+    }
   }
   return record;
 }
@@ -801,10 +836,22 @@ function verwerkMelding({ record, invoer }, resultaat) {
 
   const m = resultaat.melding;
   const bron = `${invoer.titel} ${invoer.tekst}`;
-  const basis = { ...record, checklist: maakChecklist(m.checklist, bron) };
+  const basis = { ...record, checklist: maakChecklist(m.checklist, bron), checklistBron: "ai" };
   const agendapunten = verifieerAgendapunten(m.agendapunten, bron, invoer.publicatieDag);
+  delete basis.agendapuntenBron;
   if (agendapunten.length) basis.agendapunten = agendapunten;
   else delete basis.agendapunten;
+
+  // De tag: een geldige keuze van de AI wint; anders blijft wat trefwoorden of
+  // de bron al kozen. Een tag buiten de lijst telt niet.
+  const tag = kiesTag({
+    kop: invoer.titel,
+    tekst: invoer.tekst,
+    aiTag: m.tag,
+    standaard: profielVoor(record.bronId).rubriek,
+  });
+  basis.rubriek = tag.tag;
+  basis.tagBron = tag.bron;
 
   if (invoer.modus === "analyse") return { ...basis, analyse: true, controle: "analyse-ok" };
 
@@ -817,6 +864,32 @@ function verwerkMelding({ record, invoer }, resultaat) {
     ai: true,
     controle: "cijfers-ok",
   };
+}
+
+// ---------------------------------------------------------------------------
+// Volgorde voor de AI
+// ---------------------------------------------------------------------------
+
+/**
+ * Met een klein quotum komt niet elk bericht aan bod, dus de volgorde telt:
+ *  1. officiële en signaalberichten met prio 3 of hoger (de checklists van
+ *     signaalbronnen voeden de alerts);
+ *  2. de rest van de officiële en signaalberichten;
+ *  3. routine, zoals bekendmakingen, alleen als er ruimte over is.
+ * Binnen een groep gaat het nieuwste bericht voor. Geeft een nieuwe lijst
+ * terug; de invoer blijft ongewijzigd.
+ */
+function sorteerVoorAI(nieuwe) {
+  const rang = (n) => {
+    const r = n.record;
+    const belangrijk = (r.prio ?? 4) <= 3;
+    const wire = r.herkomst === "signaal" || r.herkomst === "officieel";
+    return (belangrijk ? 0 : 2) + (wire ? 0 : 1);
+  };
+  return nieuwe
+    .map((n, i) => ({ n, i, rang: rang(n) }))
+    .sort((a, b) => a.rang - b.rang || new Date(b.n.record.tijd) - new Date(a.n.record.tijd) || a.i - b.i)
+    .map((x) => x.n);
 }
 
 // ---------------------------------------------------------------------------
@@ -860,6 +933,10 @@ module.exports = {
   planBerichten,
   verwerkMelding,
   voegBerichtenSamen,
+  sorteerVoorAI,
+  kiesTag,
+  TAG_CODES,
+  TAG_NAMEN,
   // hieronder alleen exporteren voor tests
   cijfersKloppen,
   begrensPrio,
