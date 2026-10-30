@@ -1,5 +1,5 @@
 {
-  "gegenereerdOp": "2026-10-30T18:47:38.315Z",
+  "gegenereerdOp": "2026-10-30T22:54:33.429Z",
   "promptVersie": "2026-10-29-batch-tag-checklist-agendapunten",
   "alertModus": "log",
   "prioSchaal": "1 = urgent, 2 = belangrijk, 3 = regulier, 4 = routine. De AI geeft nooit prio 1.",
@@ -66,7 +66,7 @@
       "ai": true,
       "controle": "cijfers-ok",
       "eerstGezienOp": "2026-10-30T18:47:38.315Z",
-      "gecontroleerdOp": "2026-10-30T18:47:38.315Z",
+      "gecontroleerdOp": "2026-10-30T22:54:33.429Z",
       "bronTitel": "Stichting Centraal Bureau Fondsenwerving ontvangt predicaat Koninklijk",
       "bronLengte": 2104,
       "checklist": {
@@ -141,7 +141,7 @@
       "ai": true,
       "controle": "cijfers-ok",
       "eerstGezienOp": "2026-10-30T13:25:17.385Z",
-      "gecontroleerdOp": "2026-10-30T18:47:38.315Z",
+      "gecontroleerdOp": "2026-10-30T22:54:33.429Z",
       "bronTitel": "Voorbereidend onderzoek bij Vlotbrug ’t Zand",
       "bronLengte": 2063,
       "checklist": {
@@ -181,6 +181,44 @@
       ]
     },
     {
+      "id": "52f2f6963a-v1",
+      "groepId": "52f2f6963a",
+      "versie": 1,
+      "url": "https://www.deorkaan.nl/verkeerscontrole-oostzaan-met-drugs-door-rood-te-hard-geen-rijbewijs-of-bellend/",
+      "kop": "Verkeerscontrole Oostzaan: met drugs, door rood, te hard, geen rijbewijs of bellend…",
+      "tekst": null,
+      "rubriek": "112",
+      "tagBron": "ai",
+      "herkomst": "signaal",
+      "prio": 3,
+      "tijd": "2026-10-29T23:00:00.000Z",
+      "heeftTijd": false,
+      "woorden": 218,
+      "afgekapt": false,
+      "bronId": "DeOrkaan",
+      "bronNaam": "DeOrkaan",
+      "ai": false,
+      "controle": "analyse-ok",
+      "eerstGezienOp": "2026-10-30T22:54:33.429Z",
+      "gecontroleerdOp": "2026-10-30T22:54:33.429Z",
+      "bronTitel": "Verkeerscontrole Oostzaan: met drugs, door rood, te hard, geen rijbewijs of bellend…",
+      "bronLengte": 1505,
+      "checklist": {
+        "gevaar": false,
+        "evacuatieOfNlAlert": false,
+        "gewondenOfDoden": false,
+        "bestuurlijkeCrisis": false,
+        "besluitMetGrootGevolg": false,
+        "tijdkritisch": false,
+        "betrokkenen": null,
+        "geldbedragEuro": 63688,
+        "banen": null,
+        "inRegio": true
+      },
+      "checklistBron": "ai",
+      "analyse": true
+    },
+    {
       "id": "d01c02ae40-v1",
       "groepId": "d01c02ae40",
       "versie": 1,
@@ -200,7 +238,7 @@
       "ai": false,
       "controle": "analyse-ok",
       "eerstGezienOp": "2026-10-30T18:47:38.315Z",
-      "gecontroleerdOp": "2026-10-30T18:47:38.315Z",
+      "gecontroleerdOp": "2026-10-30T22:54:33.429Z",
       "bronTitel": "VVD Oostzaan wil woon-voorrang voor eigen inwoners (maar dat kan al) 🎧",
       "bronLengte": 3718,
       "checklist": {
@@ -238,7 +276,7 @@
       "ai": false,
       "controle": "analyse-ok",
       "eerstGezienOp": "2026-10-30T18:47:38.315Z",
-      "gecontroleerdOp": "2026-10-30T18:47:38.315Z",
+      "gecontroleerdOp": "2026-10-30T22:54:33.429Z",
       "bronTitel": "Directeur Daniëlle Brouwers na drie maanden al weg bij ZNMC",
       "bronLengte": 3191,
       "checklist": {
@@ -283,7 +321,7 @@
       "ai": false,
       "controle": "analyse-ok",
       "eerstGezienOp": "2026-10-30T13:25:17.385Z",
-      "gecontroleerdOp": "2026-10-30T18:47:38.315Z",
+      "gecontroleerdOp": "2026-10-30T22:54:33.429Z",
       "bronTitel": "Begrotingsdebat Zaanstad: van ‘scenario-B’ tot AI-dromen",
       "bronLengte": 5997,
       "checklist": {
@@ -321,7 +359,7 @@
       "ai": false,
       "controle": "analyse-ok",
       "eerstGezienOp": "2026-10-30T13:25:17.385Z",
-      "gecontroleerdOp": "2026-10-30T18:47:38.315Z",
+      "gecontroleerdOp": "2026-10-30T22:54:33.429Z",
       "bronTitel": "Dikke onvoldoende voor financiële gezondheid ZMC",
       "bronLengte": 2783,
       "checklist": {
@@ -359,7 +397,7 @@
       "ai": false,
       "controle": "analyse-ok",
       "eerstGezienOp": "2026-10-30T13:25:17.385Z",
-      "gecontroleerdOp": "2026-10-30T18:47:38.315Z",
+      "gecontroleerdOp": "2026-10-30T22:54:33.429Z",
       "bronTitel": "De Orkaan in 2 minuten: 30 oktober 🎧",
       "bronLengte": 332,
       "checklist": {
@@ -397,7 +435,7 @@
       "ai": false,
       "controle": "analyse-ok",
       "eerstGezienOp": "2026-10-30T13:25:17.385Z",
-      "gecontroleerdOp": "2026-10-30T18:47:38.315Z",
+      "gecontroleerdOp": "2026-10-30T22:54:33.429Z",
       "bronTitel": "Zeven kleine Hottentotjes zorgen voor groot geluk in Oostzaan 🦆",
       "bronLengte": 1749,
       "checklist": {
@@ -435,7 +473,7 @@
       "ai": false,
       "controle": "analyse-ok",
       "eerstGezienOp": "2026-10-30T13:25:17.385Z",
-      "gecontroleerdOp": "2026-10-30T18:47:38.315Z",
+      "gecontroleerdOp": "2026-10-30T22:54:33.429Z",
       "bronTitel": "Na sanering Kan Palen / Touwen kan Hofwijk-Noord van start",
       "bronLengte": 2872,
       "checklist": {
@@ -480,7 +518,7 @@
       "ai": false,
       "controle": "analyse-ok",
       "eerstGezienOp": "2026-10-30T13:25:17.385Z",
-      "gecontroleerdOp": "2026-10-30T18:47:38.315Z",
+      "gecontroleerdOp": "2026-10-30T22:54:33.429Z",
       "bronTitel": "Taakstraf en rijontzegging voor dodelijk ongeval",
       "bronLengte": 1628,
       "checklist": {
@@ -518,7 +556,7 @@
       "ai": false,
       "controle": "analyse-ok",
       "eerstGezienOp": "2026-10-30T13:25:17.385Z",
-      "gecontroleerdOp": "2026-10-30T18:47:38.315Z",
+      "gecontroleerdOp": "2026-10-30T22:54:33.429Z",
       "bronTitel": "Waarheen: Lichtjesavond, Bazar Westzaan, Tjum🎙",
       "bronLengte": 1328,
       "checklist": {
@@ -676,7 +714,7 @@
       "ai": false,
       "controle": "analyse-ok",
       "eerstGezienOp": "2026-10-30T08:00:10.425Z",
-      "gecontroleerdOp": "2026-10-30T18:47:38.315Z",
+      "gecontroleerdOp": "2026-10-30T22:54:33.429Z",
       "bronTitel": "Winterjassen voor taalcafé en kledingbank",
       "bronLengte": 2197,
       "checklist": {
@@ -714,7 +752,7 @@
       "ai": false,
       "controle": "analyse-ok",
       "eerstGezienOp": "2026-10-30T08:00:10.425Z",
-      "gecontroleerdOp": "2026-10-30T18:47:38.315Z",
+      "gecontroleerdOp": "2026-10-30T22:54:33.429Z",
       "bronTitel": "In Zaanstad krijgt één op de negen jongeren jeugdzorg",
       "bronLengte": 2521,
       "checklist": {
@@ -752,7 +790,7 @@
       "ai": true,
       "controle": "cijfers-ok",
       "eerstGezienOp": "2026-10-30T08:00:10.425Z",
-      "gecontroleerdOp": "2026-10-30T18:47:38.315Z",
+      "gecontroleerdOp": "2026-10-30T22:54:33.429Z",
       "bronTitel": "Terugblik op busvervoer 2025",
       "bronLengte": 1793,
       "checklist": {
@@ -789,7 +827,7 @@
       "ai": true,
       "controle": "cijfers-ok",
       "eerstGezienOp": "2026-10-30T13:25:17.385Z",
-      "gecontroleerdOp": "2026-10-30T18:47:38.315Z",
+      "gecontroleerdOp": "2026-10-30T22:54:33.429Z",
       "bronTitel": "Provincies blijven investeren in het Waddengebied",
       "bronLengte": 2515,
       "checklist": {
@@ -826,7 +864,7 @@
       "ai": true,
       "controle": "cijfers-ok",
       "eerstGezienOp": "2026-10-30T08:00:10.425Z",
-      "gecontroleerdOp": "2026-10-30T18:47:38.315Z",
+      "gecontroleerdOp": "2026-10-30T22:54:33.429Z",
       "bronTitel": "Provincie werkt aan asfalt op de N243 en N242 bij Alkmaar begin november",
       "bronLengte": 3721,
       "checklist": {
@@ -863,7 +901,7 @@
       "ai": true,
       "controle": "cijfers-ok",
       "eerstGezienOp": "2026-10-30T08:00:10.425Z",
-      "gecontroleerdOp": "2026-10-30T18:47:38.315Z",
+      "gecontroleerdOp": "2026-10-30T22:54:33.429Z",
       "bronTitel": "Werkgelegenheid in detailhandel groeit ondanks afname van winkels en winkelmeters",
       "bronLengte": 4062,
       "checklist": {
@@ -900,7 +938,7 @@
       "ai": true,
       "controle": "cijfers-ok",
       "eerstGezienOp": "2026-10-30T08:00:10.425Z",
-      "gecontroleerdOp": "2026-10-30T18:47:38.315Z",
+      "gecontroleerdOp": "2026-10-30T22:54:33.429Z",
       "bronTitel": "Komende jaren meer ruimte voor sport in Noord-Holland",
       "bronLengte": 3943,
       "checklist": {
@@ -937,7 +975,7 @@
       "ai": true,
       "controle": "cijfers-ok",
       "eerstGezienOp": "2026-10-30T08:00:10.425Z",
-      "gecontroleerdOp": "2026-10-30T18:47:38.315Z",
+      "gecontroleerdOp": "2026-10-30T22:54:33.429Z",
       "bronTitel": "Kandidaten burgemeester Schagen",
       "bronLengte": 795,
       "checklist": {
