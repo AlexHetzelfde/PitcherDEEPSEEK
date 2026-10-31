@@ -36,6 +36,8 @@ const ZOEK_SVG =
   '<svg viewBox="0 0 24 24" width="24" height="24" aria-hidden="true" focusable="false"><path fill="currentColor" d="M15.5 14h-.79l-.28-.27A6.47 6.47 0 0 0 16 9.5 6.5 6.5 0 1 0 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/></svg>';
 const MENU_SVG =
   '<svg viewBox="0 0 24 24" width="24" height="24" aria-hidden="true" focusable="false"><path fill="currentColor" d="M12 8c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2zm0 2c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm0 6c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2z"/></svg>';
+const PIJL_SVG =
+  '<svg viewBox="0 0 24 24" width="24" height="24" aria-hidden="true" focusable="false"><path fill="currentColor" d="M12 4l-1.41 1.41L16.17 11H4v2h12.17l-5.58 5.59L12 20l8-8z"/></svg>';
 const KLOK_SVG =
   '<svg width="13" height="13" viewBox="0 0 16 16" aria-hidden="true" focusable="false">'
   + '<circle cx="8" cy="8" r="6.5" fill="none" stroke="currentColor" stroke-width="1.6"/>'
@@ -248,6 +250,8 @@ function toonTab(naam, opties = {}) {
   }
   const kiezer = document.getElementById("kolommenkiezer");
   if (kiezer) kiezer.hidden = gekozen !== "nieuwsdienst";
+  const schuif = document.getElementById("scroll-controls");
+  if (schuif) schuif.hidden = gekozen === "pitches";
   if (opties.schrijfHash !== false) schrijfHash();
 }
 
@@ -574,9 +578,13 @@ function kolomLijstHtml(code) {
 
 function renderWireKolom(code, naam) {
   const info = agendaVandaagInfo(code === "ALL" ? "" : code);
-  const agendaTekst = info.aantal === 0
-    ? "Geen agenda vandaag"
-    : `Agenda vandaag: ${info.aantal}${info.bereik ? ` · ${info.bereik}` : ""}`;
+  // De blauwe balk onder de kolomkop, zoals bij het ANP: aantal, tijdbereik van vandaag, pijl.
+  const agendaBalk = `
+        <button type="button" class="live-agenda${info.aantal === 0 ? " leeg" : ""}" data-actie="agenda-van-kolom" data-rubriek="${code === "ALL" ? "" : escapeHtml(code)}">
+          <span class="agenda-aantal">${info.aantal}</span>
+          <span class="agenda-label">${info.aantal === 0 ? "Geen agenda vandaag" : `Live agenda${info.bereik ? ` ${escapeHtml(info.bereik)}` : " vandaag"}`}</span>
+          ${PIJL_SVG}
+        </button>`;
   const zoekOpen = state.zoekOpen.has(code) || Boolean(state.zoek[code]);
 
   return `
@@ -589,12 +597,12 @@ function renderWireKolom(code, naam) {
             <details class="kolom-menu">
               <summary class="icoon-knop" aria-label="Menu van ${escapeHtml(naam)}" title="Menu">${MENU_SVG}</summary>
               <div class="kolom-menu-lijst">
-                <button type="button" data-actie="agenda-van-kolom" data-rubriek="${code === "ALL" ? "" : escapeHtml(code)}">${escapeHtml(agendaTekst)}</button>
                 <button type="button" data-actie="kolom-verberg" data-kolom="${escapeHtml(code)}">Kolom verbergen</button>
               </div>
             </details>
           </div>
         </div>
+        ${agendaBalk}
         <div class="wire-zoek-rij"${zoekOpen ? "" : " hidden"}>
           <input type="search" class="wire-zoek" data-actie="kolom-zoek" data-kolom="${escapeHtml(code)}" placeholder="Zoek" aria-label="Zoek in ${escapeHtml(naam)}" autocomplete="off" value="${escapeHtml(state.zoek[code] || "")}">
         </div>
@@ -838,12 +846,12 @@ function renderStatusregel() {
   const stempel = (state.status && state.status.gegenereerdOp) || state.berichtenGegenereerdOp;
   if (stempel) {
     const minuten = Math.max(0, Math.round((Date.now() - new Date(stempel).getTime()) / 60000));
-    delen.push(`Nieuwsdienst bijgewerkt: ${formatteerDatum(stempel)}`);
-    delen.push(`${state.zichtbaar.length} berichten`);
     if (minuten > VEROUDERD_MINUTEN) {
       verouderd = true;
-      delen.push(`⚠ de stroom is ${duurTekst(minuten)} oud: de laatste ZANP-run is mislukt of vertraagd`);
+      delen.push(`⚠ Stroom ${duurTekst(minuten)} oud: laatste run mislukt of vertraagd`);
     }
+    delen.push(`Bijgewerkt ${formatteerDatum(stempel)}`);
+    delen.push(`${state.zichtbaar.length} berichten`);
   }
   if (state.status) {
     const zonderRubriek = Array.isArray(state.status.bronnenZonderRubriek) ? state.status.bronnenZonderRubriek.length : 0;
@@ -855,6 +863,7 @@ function renderStatusregel() {
     if (leeg > 0) delen.push(`${leeg} ${leeg === 1 ? "bron levert" : "bronnen leverden"} drie runs achter elkaar niets op`);
   }
   el.textContent = delen.join(" · ");
+  el.title = el.textContent; // de regel blijft op een lijn; de volledige tekst staat in de tooltip
   el.classList.toggle("verouderd", verouderd);
 }
 
@@ -1027,6 +1036,15 @@ function koppelKlikken() {
         state.agendaRubriek = state.agenda.some((i) => i.rubriek === code) ? code : "";
         renderAgenda();
         toonTab("agenda");
+        break;
+      }
+      case "scroll-links":
+      case "scroll-rechts": {
+        const vlak = document.getElementById(state.actieveTab === "agenda" ? "agenda-week" : "wire-kolommen");
+        const kolom = vlak && vlak.querySelector(".wire-kolom, .agenda-dag");
+        if (!vlak || !kolom) break;
+        const stap = kolom.getBoundingClientRect().width + (state.actieveTab === "agenda" ? 16 : 0);
+        vlak.scrollBy({ left: el.dataset.actie === "scroll-links" ? -stap : stap, behavior: "smooth" });
         break;
       }
       case "oudere":

@@ -23,8 +23,12 @@
           <summary>Kolommen</summary>
           <div id="kolommen-opties" class="kolommen-opties"></div>
         </details>
-        <h1 class="top-titel">Nieuwsdienst Zaanstreek-Waterland</h1>
+        <h1 class="top-titel sr-only">Nieuwsdienst Zaanstreek-Waterland</h1>
         <p id="laatste-update" class="laatste-update"></p>
+        <details class="info-menu" id="info-menu">
+          <summary class="icoon-knop" aria-label="Over deze nieuwsdienst" title="Over deze nieuwsdienst"><svg viewBox="0 0 24 24" width="24" height="24" aria-hidden="true" focusable="false"><path fill="currentColor" d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"/></svg></summary>
+          <div class="info-tekst">Gebouwd voor lokale journalistiek in Zaanstreek-Waterland. Teksten met het label AI zijn automatisch samengevat uit officiële bronnen en niet door een mens gecontroleerd. Artikelen van andere redacties worden alleen als kop met een link getoond.</div>
+        </details>
       </header>
 
       <!-- Rode en oranje alerts; zichtbaar op elke tab. Alleen gevuld als ALERT_MODUS=aan. -->
@@ -75,11 +79,14 @@
         <div id="landelijk-lijst" class="berichten-lijst"><p class="laden">Laden…</p></div>
       </section>
     </section>
+        <!-- Schuifknoppen zoals bij het ANP: een kolom naar links of rechts. -->
+        <div class="scroll-controls" id="scroll-controls">
+          <button type="button" class="scroll-btn" data-actie="scroll-links" aria-label="Een kolom naar links"><svg viewBox="0 0 24 24" width="24" height="24" aria-hidden="true" focusable="false"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M15 18l-6-6 6-6"/></svg></button>
+          <button type="button" class="scroll-btn" data-actie="scroll-rechts" aria-label="Een kolom naar rechts"><svg viewBox="0 0 24 24" width="24" height="24" aria-hidden="true" focusable="false"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M9 18l6-6-6-6"/></svg></button>
+        </div>
       </main>
 
-      <footer class="site-footer">
-        <p>Gebouwd voor lokale journalistiek in Zaanstreek-Waterland. Teksten met het label AI zijn automatisch samengevat uit officiële bronnen en niet door een mens gecontroleerd. Artikelen van andere redacties worden alleen als kop met een link getoond.</p>
-      </footer>
+
     </div>
   </div>
 

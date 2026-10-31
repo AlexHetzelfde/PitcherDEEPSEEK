@@ -395,14 +395,6 @@ h2 {
   color: #a33;
 }
 
-.site-footer {
-  text-align: center;
-  padding: 1.5rem 1rem;
-  font-size: 0.8rem;
-  color: #777;
-  border-top: 1px solid var(--kleur-rand);
-}
-
 @media (max-width: 520px) {
   .feed-item {
     flex-direction: column;
@@ -427,6 +419,8 @@ h2 {
    ====================================================================== */
 
 :root {
+  --zanp-goot: 0.3rem;
+  --zanp-primair-hover: #27593f;
   --zanp-primair: var(--kleur-accent);
   --zanp-primair-licht: var(--kleur-accent-licht);
   --zanp-primair-licht-hover: #d3e5da;
@@ -515,7 +509,7 @@ body {
   align-items: center;
   justify-content: center;
   width: 4rem;
-  padding: 0.75rem 1rem;
+  padding: 1rem;
   color: white;
   background: none;
   border: 0;
@@ -549,7 +543,9 @@ body {
   flex: 0 0 auto;
   display: flex;
   align-items: center;
+  flex-wrap: nowrap;
   gap: 1rem;
+  height: 68px;
   min-height: 68px;
   padding: 1rem;
   background: white;
@@ -564,11 +560,16 @@ body {
 }
 
 .laatste-update {
+  flex: 0 1 auto;
+  min-width: 0;
   margin: 0 0 0 auto;
   font-size: 0.8125rem;
   line-height: 1.3;
   color: #555;
   text-align: right;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .laatste-update.verouderd {
@@ -584,6 +585,9 @@ body {
 }
 
 .kolommenkiezer summary {
+  display: flex;
+  align-items: center;
+  height: 2.25rem;
   cursor: pointer;
   list-style: none;
   font-size: 0.9rem;
@@ -652,25 +656,18 @@ body {
   display: flex;
   flex-direction: column;
   overflow: hidden;
-  padding: 0.5rem;
+  padding: 1rem;
+}
+
+@media (min-width: 1000px) {
+  :root { --zanp-goot: 0.4rem; }
+}
+@media (min-width: 1300px) {
+  :root { --zanp-goot: 0.5rem; }
 }
 
 .paneel-kolommen[hidden] {
   display: none;
-}
-
-.site-footer {
-  flex: 0 0 auto;
-  padding: 0.35rem 1rem;
-  font-size: 0.7rem;
-  line-height: 1.3;
-  color: #777;
-  background: white;
-  border-top: 1px solid var(--zanp-lichtgrijs);
-}
-
-.site-footer p {
-  margin: 0;
 }
 
 .knop {
@@ -713,6 +710,7 @@ body {
   flex: 1;
   flex-wrap: nowrap;
   min-height: 0;
+  margin: calc(var(--zanp-goot) * -1);
   overflow-x: auto;
   scroll-snap-type: x mandatory;
 }
@@ -722,7 +720,7 @@ body {
   min-width: 20rem;
   max-width: 20rem;
   display: flex;
-  padding: 0.5rem;
+  padding: var(--zanp-goot);
   scroll-snap-align: start;
 }
 
@@ -1199,7 +1197,7 @@ button.chip:hover {
   flex-wrap: wrap;
   align-items: center;
   gap: 0.25rem 0.5rem;
-  padding: 0.5rem 0.5rem 0.75rem;
+  padding: 0 0 0.75rem;
 }
 
 .weeklabel {
@@ -1212,7 +1210,7 @@ button.chip:hover {
 .agenda-dag {
   flex: 1 0 14rem;
   max-width: 20rem;
-  margin: 0.5rem;
+  margin: var(--zanp-goot);
   scroll-snap-align: start;
 }
 
@@ -1305,6 +1303,146 @@ button.chip:hover {
   font-style: italic;
 }
 
+/* --- Agendabalk onder de kolomkop: aantal, tijdbereik van vandaag, pijl --- */
+
+.live-agenda {
+  flex: 0 0 auto;
+  display: flex;
+  align-items: center;
+  width: 100%;
+  font: inherit;
+  font-size: 0.875em;
+  text-align: left;
+  color: white;
+  background: var(--zanp-primair);
+  border: 0;
+  padding: 0.75rem 1rem 0.75rem 1.25rem;
+  cursor: pointer;
+}
+
+.live-agenda:hover {
+  background: var(--zanp-primair-hover);
+}
+
+.live-agenda svg {
+  flex: 0 0 auto;
+  margin-left: auto;
+}
+
+.live-agenda:focus-visible {
+  outline-color: white;
+  outline-offset: -3px;
+}
+
+.agenda-aantal {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex: 0 0 auto;
+  height: 1.5rem;
+  min-width: 1.5rem;
+  padding: 0 0.3rem;
+  margin-right: 0.5rem;
+  border-radius: 2rem;
+  font-size: 0.875rem;
+  line-height: 1.6;
+  color: #1b1a1f;
+  background: white;
+}
+
+.agenda-label {
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* Geen agenda vandaag: dezelfde balk, maar rustig. */
+.live-agenda.leeg {
+  color: #555;
+  background: var(--zanp-primair-licht);
+}
+
+.live-agenda.leeg:hover {
+  background: var(--zanp-primair-licht-hover);
+}
+
+.live-agenda.leeg .agenda-aantal {
+  background: white;
+  color: #777;
+}
+
+/* --- Schuifknoppen rechtsonder, zoals bij het ANP --- */
+
+.scroll-controls {
+  position: fixed;
+  right: 2rem;
+  bottom: 2rem;
+  z-index: 1000;
+  display: flex;
+  gap: 0.5rem;
+}
+
+.scroll-controls[hidden] {
+  display: none;
+}
+
+.scroll-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 3rem;
+  height: 3rem;
+  padding: 0;
+  color: #333;
+  background: white;
+  border: 1px solid #e0e0e0;
+  border-radius: 50%;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.scroll-btn:hover {
+  background: #f8f8f8;
+  transform: translateY(-1px);
+  box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15);
+}
+
+/* --- Info-popover in de topbalk (vervangt de footer) --- */
+
+.info-menu {
+  position: relative;
+  flex: 0 0 auto;
+}
+
+.info-tekst {
+  position: absolute;
+  z-index: 10;
+  top: calc(100% + 0.25rem);
+  right: 0;
+  width: min(22rem, 80vw);
+  padding: 0.75rem 1rem;
+  font-size: 0.8125rem;
+  line-height: 1.45;
+  color: #444;
+  background: white;
+  border-radius: var(--zanp-radius);
+  box-shadow: 0 0.25rem 0.5rem 0 rgba(59, 63, 73, 0.25);
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
 /* --- Telefoon: een kolom tegelijk via tabs, de agenda onder elkaar --- */
 
 .kolom-tabs {
@@ -1349,19 +1487,25 @@ button.chip:hover {
   .merk {
     font-size: 0.8rem;
   }
-  .navigation-top {
-    flex-wrap: wrap;
-    gap: 0.25rem 0.5rem;
-    padding: 0.5rem 0.75rem;
-    min-height: 0;
+  :root {
+    --zanp-goot: 0.25rem;
   }
-  .top-titel {
-    display: none;
+  .navigation-top {
+    gap: 0.5rem;
+    padding: 0.5rem 0.75rem;
+    height: auto;
+    min-height: 3rem;
   }
   .laatste-update {
-    flex: 1 0 100%;
+    flex: 1 1 0;
     margin: 0;
     text-align: left;
+  }
+  .paneel-kolommen {
+    padding: 0.5rem;
+  }
+  .scroll-controls {
+    display: none;
   }
   .kolom-tabs {
     display: flex;
@@ -1389,6 +1533,7 @@ button.chip:hover {
     display: block;
     overflow: visible;
     flex: none;
+    margin: 0;
   }
   .agenda-dag {
     max-width: none;
