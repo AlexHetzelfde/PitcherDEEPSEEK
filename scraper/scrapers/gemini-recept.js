@@ -10,7 +10,8 @@
 // naast de tekststap in index.js: heeft de scraper al een foto, dan hoeft de
 // tekststap de pagina niet meer op te halen voor de foto.
 
-const { haalDatumUitTekst, leesDatumEnEinde, volgPaginas, haalFotoUitItem } = require("../hulpmiddelen");
+const cheerio = require("cheerio");
+const { haalDatumUitTekst, haalDatumUitUrlPad, leesDatumEnEinde, volgPaginas, haalFotoUitItem, haalOp, maakAbsoluut } = require("../hulpmiddelen");
 
 /**
  * Zoekt een element BINNEN een item, maar ook het item zelf. cheerio's find()
@@ -108,7 +109,11 @@ function leesPagina($, bron, paginaUrl) {
     // Bij een agenda kan de datum een bereik zijn ("30 sep 11 okt"): dan
     // bewaren we ook de eindDatum (zie binnenAgendaVenster in hulpmiddelen.js).
     const gevonden = leesDatumEnEinde([[datumTekst, "streng"], [titel, "zoek"], [$(el).text(), "zoek"]], opties);
-    const gepubliceerdOp = gevonden.start || (agenda ? haalDatumUitTekst(nieuweUrl) : null);
+    // Bronnen met datumUitUrl: true (zie bronnen.js) zetten de datum compact in
+    // het pad, zoals /artikel/20260528-titel. Alleen dan wordt daar gekeken.
+    const gepubliceerdOp = gevonden.start
+      || (agenda ? haalDatumUitTekst(nieuweUrl) : null)
+      || (bron.datumUitUrl ? haalDatumUitUrlPad(nieuweUrl) : null);
     const eindDatum = gevonden.start ? gevonden.eind : null;
 
     berichten.push({
@@ -128,6 +133,93 @@ function leesPagina($, bron, paginaUrl) {
   return berichten;
 }
 
+/**
+ * Zet een zoekmodel (het JSON-object uit data-model) om naar formuliervelden.
+ * notatie "punt":    SearchTags[0].List=...   (ASP.NET MVC-standaard)
+ * notatie "haakjes": SearchTags[0][List]=...  (jQuery-standaard)
+ * Null wordt een leeg veld, zoals een browser dat ook verstuurt.
+ */
+function modelNaarFormulier(model, notatie) {
+  const velden = [];
+  const loop = (waarde, sleutel) => {
+    if (Array.isArray(waarde)) {
+      waarde.forEach((w, i) => loop(w, `${sleutel}[${i}]`));
+    } else if (waarde && typeof waarde === "object") {
+      for (const [k, w] of Object.entries(waarde)) {
+        loop(w, sleutel ? (notatie === "haakjes" ? `${sleutel}[${k}]` : `${sleutel}.${k}`) : k);
+      }
+    } else {
+      velden.push([sleutel, waarde === null || waarde === undefined ? "" : String(waarde)]);
+    }
+  };
+  loop(model, "");
+  return new URLSearchParams(velden).toString();
+}
+
+/**
+ * Voor lijsten die niet in de pagina staan maar via een AJAX-POST binnenkomen
+ * (de zoekpagina van de Vervoerregio, een arQive-CMS). De pagina zelf draagt in
+ * een element (standaard #SearchResult) het zoekmodel in data-model en het
+ * adres in data-action; de browser stuurt dat model door en krijgt de
+ * resultaten terug. Dat doen wij hier ook, met dezelfde filter als de pagina.
+ *
+ * De exacte verpakking van het model is niet zichtbaar in de paginabron, dus
+ * er worden drie gangbare vormen geprobeerd (JSON, MVC-formulier, jQuery-
+ * formulier). Het eerste antwoord dat bron.verzoek.herken bevat wint; welke
+ * dat was komt in het log, zodat de volgende run meteen de goede kan kiezen.
+ *
+ * Gebruik: bron.verzoek = { herken: "resultaten gevonden", url?, modelSelector? }.
+ * Zonder bron.verzoek doet deze functie niets en verandert er niets.
+ */
+async function haalLijstViaVerzoek(bron, haal = haalOp) {
+  const v = bron.verzoek;
+  const paginaHtml = await haal(bron.url);
+  const $ = cheerio.load(paginaHtml);
+  const el = $(v.modelSelector || "#SearchResult").first();
+  let model = null;
+  try {
+    model = JSON.parse(el.attr("data-model") || "null");
+  } catch {
+    model = null;
+  }
+  if (!model) {
+    throw new Error(`geen zoekmodel (data-model) gevonden op ${bron.url}; de pagina is waarschijnlijk veranderd`);
+  }
+  const actie = maakAbsoluut(el.attr("data-action") || v.url, bron.url) || v.url;
+  if (!actie) throw new Error(`geen adres (data-action) gevonden voor de resultaten van ${bron.url}`);
+
+  const varianten = [
+    { naam: "json", body: JSON.stringify(model), contentType: "application/json; charset=UTF-8" },
+    { naam: "formulier-punt", body: modelNaarFormulier(model, "punt"), contentType: "application/x-www-form-urlencoded; charset=UTF-8" },
+    { naam: "formulier-haakjes", body: modelNaarFormulier(model, "haakjes"), contentType: "application/x-www-form-urlencoded; charset=UTF-8" },
+  ];
+  const herken = String(v.herken || "").toLowerCase();
+  const fouten = [];
+  for (const variant of varianten) {
+    try {
+      const antwoord = await haal(actie, 1, {
+        methode: "POST",
+        body: variant.body,
+        headers: {
+          "Content-Type": variant.contentType,
+          "X-Requested-With": "XMLHttpRequest",
+          "Accept": "text/html, */*; q=0.01",
+          "Referer": bron.url,
+          "Origin": new URL(bron.url).origin,
+        },
+      });
+      if (!herken || String(antwoord).toLowerCase().includes(herken)) {
+        console.log(`[${bron.id}] resultaten opgehaald via ${variant.naam}.`);
+        return antwoord;
+      }
+      fouten.push(`${variant.naam}: antwoord zonder "${v.herken}"`);
+    } catch (fout) {
+      fouten.push(`${variant.naam}: ${fout.message}`);
+    }
+  }
+  throw new Error(`geen enkele verzoekvorm gaf resultaten (${fouten.join("; ")}). Stuur het "Copy as cURL" van het verzoek naar ${actie} uit de netwerktab.`);
+}
+
 async function scrapeGeminiRecept(bron) {
   if (!bron.selectors) {
     console.error(`[${bron.id}] Geen 'selectors' gevonden in bronnen.js voor dit gemini-recept-type — bron overgeslagen.`);
@@ -135,7 +227,9 @@ async function scrapeGeminiRecept(bron) {
   }
 
   // De eerste pagina plus de vervolgpagina's (zie volgPaginas in hulpmiddelen.js).
-  const { berichten } = await volgPaginas(bron, ($, paginaUrl) => leesPagina($, bron, paginaUrl));
+  const opties = {};
+  if (bron.verzoek) opties.eersteHtml = await haalLijstViaVerzoek(bron);
+  const { berichten } = await volgPaginas(bron, ($, paginaUrl) => leesPagina($, bron, paginaUrl), opties);
 
   const zonderDatum = berichten.filter((b) => !b.gepubliceerdOp).length;
   if (zonderDatum > 0) {
@@ -149,4 +243,4 @@ async function scrapeGeminiRecept(bron) {
   return berichten;
 }
 
-module.exports = { scrapeGeminiRecept, leesItem, leesPagina };
+module.exports = { scrapeGeminiRecept, leesItem, leesPagina, haalLijstViaVerzoek, modelNaarFormulier };
