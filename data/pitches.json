@@ -1,33 +1,13 @@
 {
-  "gegenereerdOp": "2026-10-26T04:05:48.240Z",
+  "gegenereerdOp": "2026-10-31T04:49:33.693Z",
   "promptVersie": "2026-10-22-pitch-vier-velden",
   "sorteerwijze": "datum",
-  "aantalBerichtenTotaal": 12,
+  "aantalBerichtenTotaal": 46,
   "drempels": {
     "lokaal": 6,
     "landelijk": 8,
     "maxLokaal": 34.5,
     "maxLandelijk": 40.5
   },
-  "topPitches": [
-    {
-      "bronId": "DeOrkaan",
-      "bronNaam": "DeOrkaan",
-      "categorie": "lokaal",
-      "titel": "Dichter bij de tijd: vol is vol",
-      "url": "https://www.deorkaan.nl/dichter-bij-de-tijd-vol-is-vol/",
-      "samenvatting": "Tijd. Een mooi rijmwoord. Zonder AI, Google of het rijmwoordenboek komen wij al tot meid, vrijt, strijd, kwijt, rijdt, mijdt en leidt. Dichters Amani Ewas, Frans Reichardt, Monique Buising, Mirjam van der Zee, Bas Holzhaus, Kees-Jan Sierhuis, Jacob Passander, Corine Gorter, Nicole Kuiper, Klaas Wezel, Roselien Brondy, Hans Kuyper, Dirk Engelage, Gert-Jan van den Bemd, Ingrid van den Oord en René Alberts kunnen dat vast beter. Zij gaan dat op vrijdag 6 november demonstreren tijdens de poëziemiddag ter gelegenheid van het vijftigjarig jubileum van het museum (en niet van de Zaanse Dichterskring zoals wij eerst dachten – bestaat die club nog eigenlijk?). Tijdens het evenement Dichter bij de tijd dragen zestien dichters een gedicht voor dat ze speciaal schreven bij een object uit onze jarige museumcollectie. De presentatie is in handen van Gea Zwart, terwijl Corine Gorter de middag organiseert. Het is op vrijdag 6 november van 14.30-17.00 uur en de toegang is gratis, wel vooraf aanmelden met een e-mail naar info@mnuurwerk.nl met als onderwerp ‘Dichter bij de tijd’. Er is maar plaats voor maximaal 25 bezoekers – en vol is vol. Bezoekers krijgen een exemplaar van de bundel ‘Dichter bij de Tijd’ met daarin alle gedichten. Door Piet Bakker op basis van persbericht en website Zaanse Tijd.",
-      "foto": "https://www.deorkaan.nl/wp-content/uploads/2022/05/museum-de-zaanse-tijd-275x190.jpg",
-      "gepubliceerdOp": "2026-10-24T22:00:00.000Z",
-      "opgehaaldOp": "2026-10-26T03:57:47.370Z",
-      "tekstBron": "artikel",
-      "aiBeoordeling": {
-        "werktitel": "Museum Zaanse Tijd viert vijftigjarig jubileum met poëzie — slechts 25 plekken beschikbaar",
-        "samenvatting": "Ter gelegenheid van het vijftigjarig jubileum van het museum vindt op vrijdag 6 november de poëziemiddag 'Dichter bij de tijd' plaats. Zestien dichters dragen tijdens het evenement werk voor dat speciaal is geschreven bij objecten uit de museumcollectie. De toegang is gratis, maar vanwege de capaciteit is er slechts plek voor maximaal 25 bezoekers.",
-        "invalshoek": "Vanuit organisator Corine Gorter en de zestien dichters die zich lieten inspireren door objecten uit de museumcollectie.",
-        "vraag": "Welke specifieke objecten uit de collectie van Museum Zaanse Tijd zijn door de zestien dichters gekozen voor hun gedicht?",
-        "centraleVraag": "Welke specifieke objecten uit de collectie van Museum Zaanse Tijd zijn door de zestien dichters gekozen voor hun gedicht?"
-      }
-    }
-  ]
+  "topPitches": []
 }
