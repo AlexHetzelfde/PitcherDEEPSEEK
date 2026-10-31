@@ -236,4 +236,77 @@ module.exports = [
       patroon: "https://www.deorkaan.nl/page/{n}/",
     },
   },
+  // ---------------------------------------------------------------------------
+  // Vier bronnen die op 2026-10-31 aan ZANP zijn toegevoegd.
+  // ---------------------------------------------------------------------------
+  {
+    id: "politie-zaanstad",
+    naam: "Politie — Nieuws Zaandam/Zaanstad",
+    categorie: "lokaal",
+    type: "gemini-recept",
+    // Het locatiefilter van politie.nl neemt ook enkele plaatsen eromheen mee.
+    url: "https://www.politie.nl/nieuws?order=datum-desc&subject=&location=Zaandam,+Zaanstad,+Noord-Holland",
+    paginering: { soort: "geen" },
+    selectors: {
+      itemSelector: "li.overview-item",
+      titelSelector: "h3",
+      linkSelector: "self",
+      datumSelector: "time",
+      datumAttribuut: "datetime",
+      samenvattingSelector: "p",
+      fotoSelector: null,
+      fotoAttribuut: null,
+    },
+  },
+  {
+    id: "zaanstad-kalender",
+    naam: "Zaanstad — Vergaderkalender (iBabs)",
+    categorie: "lokaal",
+    type: "ibabs-kalender",
+    url: "https://zaanstad.bestuurlijkeinformatie.nl/Calendar",
+    soort: "agenda",
+    rustig: true,
+  },
+  {
+    id: "vervoerregio-aanbesteding",
+    naam: "Vervoerregio — Aanbesteding OV Zaanstreek-Waterland 2024",
+    categorie: "lokaal",
+    type: "gemini-recept",
+    url: "https://vervoerregio.nl/pagina/20211222-aanbesteding-ov-zaanstreek-waterland-2024",
+    paginering: { soort: "geen" },
+    rustig: true,
+    // De berichten op deze pagina hebben de datum compact in de url: /artikel/20260528-titel
+    datumUitUrl: true,
+    selectors: {
+      itemSelector: ".cms-tekst-contents a[href*='/artikel/']",
+      titelSelector: null,
+      linkSelector: "self",
+      datumSelector: null,
+      datumAttribuut: null,
+      samenvattingSelector: null,
+      fotoSelector: null,
+      fotoAttribuut: null,
+    },
+  },
+  {
+    id: "vervoerregio-persberichten",
+    naam: "Vervoerregio — Persberichten Zaanstad",
+    categorie: "lokaal",
+    type: "gemini-recept",
+    // De lijst staat niet in de pagina maar komt via een POST binnen; zie haalLijstViaVerzoek in scrapers/gemini-recept.js.
+    url: "https://www.vervoerregio.nl/zoeken?tGebied=Zaanstad",
+    paginering: { soort: "geen" },
+    rustig: true,
+    verzoek: { herken: "resultaten gevonden" },
+    selectors: {
+      itemSelector: ".pi-gallery-item.news",
+      titelSelector: ".header.side",
+      linkSelector: "self",
+      datumSelector: ".search-results-header",
+      datumAttribuut: null,
+      samenvattingSelector: ".caption",
+      fotoSelector: ".img-container img",
+      fotoAttribuut: "src",
+    },
+  },
 ];

@@ -18,6 +18,7 @@
 
 const { scrapeWordpress } = require("./scrapers/wordpress-html");
 const { scrapeIbabs } = require("./scrapers/ibabs");
+const { scrapeIbabsKalender } = require("./scrapers/ibabs-kalender");
 const { scrapeRss } = require("./scrapers/rss");
 const { scrapeGeneriekeLijst } = require("./scrapers/generieke-lijst");
 const { scrapeGeminiRecept } = require("./scrapers/gemini-recept");
@@ -28,6 +29,7 @@ const { scrapeJsonApi } = require("./scrapers/json-api");
 const SCRAPER_PER_TYPE = {
   "wordpress-html": scrapeWordpress,
   ibabs: scrapeIbabs,
+  "ibabs-kalender": scrapeIbabsKalender, // vergader- en bijeenkomstenkalender van een iBabs-publieksportaal
   rss: scrapeRss,
   "generieke-lijst": scrapeGeneriekeLijst,
   "gemini-recept": scrapeGeminiRecept,

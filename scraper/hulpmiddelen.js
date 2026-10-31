@@ -295,6 +295,28 @@ function haalDatumUitTekst(tekst, opties = {}) {
   return null;
 }
 
+/**
+ * Leest een datum uit het pad van een url waar die compact in staat, zoals
+ * /artikel/20260528-titel-van-het-bericht (JJJJMMDD aan het begin van een
+ * padonderdeel). Alleen voor bronnen die datumUitUrl aan hebben staan; de
+ * gewone datumlezer kent deze notatie bewust niet (acht cijfers achter elkaar
+ * kunnen van alles zijn).
+ */
+function haalDatumUitUrlPad(url) {
+  let pad = String(url || "");
+  try {
+    pad = new URL(pad, "https://voorbeeld.invalid").pathname;
+  } catch {
+    /* geen geldige url: lees de tekst zoals hij is */
+  }
+  const m = pad.match(/(?:^|\/)(\d{4})(\d{2})(\d{2})(?=-|\/|$)/);
+  if (!m) return null;
+  const jaar = Number(m[1]);
+  if (jaar < 2000 || jaar > 2100) return null;
+  // Via de gewone datumlezer, zodat de uitkomst precies zo gevormd is als bij elke andere bron.
+  return haalDatumUitTekst(`${m[1]}-${m[2]}-${m[3]}`);
+}
+
 function haalDatumZonderJaar(tekst, nu = new Date()) {
   if (!tekst) return null;
   const m = String(tekst).match(new RegExp(`(?<!\\d)(\\d{1,2})\\s*(${MAAND_ALLES})\\.?(?![a-z])`, "i"));
@@ -439,6 +461,11 @@ async function haalOpEcht(url, pogingen = 3, opties = {}) {
       const timeoutId = setTimeout(() => controller.abort(), timeoutMs);
       try {
         const fetchOpties = { headers: standaardHeaders, signal: controller.signal };
+        // Alleen voor bronnen die een POST nodig hebben (bron.verzoek in bronnen.js);
+        // zonder deze opties verandert er niets aan een gewoon GET-verzoek.
+        if (opties.methode) fetchOpties.method = opties.methode;
+        if (opties.body !== undefined) fetchOpties.body = opties.body;
+        if (opties.headers) fetchOpties.headers = { ...standaardHeaders, ...opties.headers };
         if (dispatcher) fetchOpties.dispatcher = dispatcher;
         const response = await fetch(url, fetchOpties);
         if (!response.ok) {
@@ -497,9 +524,11 @@ function stopResponsCache() {
 }
 
 async function haalOp(url, pogingen = 3, opties = {}) {
-  if (responsCache && responsCache.has(url)) return responsCache.get(url);
+  // Een POST met een andere body is een ander verzoek: de body hoort bij de cachesleutel.
+  const sleutel = opties.body !== undefined ? `${opties.methode || "POST"} ${url}\n${opties.body}` : url;
+  if (responsCache && responsCache.has(sleutel)) return responsCache.get(sleutel);
   const tekst = await haalOpEcht(url, pogingen, opties);
-  if (responsCache) responsCache.set(url, tekst);
+  if (responsCache) responsCache.set(sleutel, tekst);
   return tekst;
 }
 
@@ -1181,6 +1210,7 @@ module.exports = {
   beginNieuwsVenster,
   leeftijdInDagen,
   volgPaginas,
+  haalDatumUitUrlPad,
   paginaVoorbij,
   vindVolgendePagina,
   MAX_PAGINAS,
