@@ -1,5 +1,5 @@
 {
-  "gegenereerdOp": "2026-10-30T22:54:33.429Z",
+  "gegenereerdOp": "2026-10-31T02:12:56.333Z",
   "alertModus": "log",
   "bronnen": {
     "zaansche-molen": {
@@ -38,13 +38,13 @@
       "opeenvolgendLeeg": 0
     },
     "nh-actueel": {
-      "laatsteScrape": "2026-10-30T22:54:33.429Z",
+      "laatsteScrape": "2026-10-31T02:12:56.333Z",
       "gevonden": 15,
       "opeenvolgendLeeg": 0
     },
     "nh-cultuur": {
-      "laatsteScrape": "2026-10-30T22:54:33.429Z",
-      "gevonden": 15,
+      "laatsteScrape": "2026-10-31T02:12:56.333Z",
+      "gevonden": 3,
       "opeenvolgendLeeg": 0
     },
     "zaanstad-hoorzittingen": {
@@ -78,9 +78,9 @@
       "opeenvolgendLeeg": 0
     },
     "hhnk": {
-      "laatsteScrape": "2026-10-30T22:54:33.429Z",
+      "laatsteScrape": "2026-10-31T02:12:56.333Z",
       "gevonden": 0,
-      "opeenvolgendLeeg": 4
+      "opeenvolgendLeeg": 5
     },
     "rechtspraak-noord-holland": {
       "laatsteScrape": "2026-10-30T08:00:10.425Z",
@@ -98,7 +98,7 @@
       "opeenvolgendLeeg": 0
     },
     "DeOrkaan": {
-      "laatsteScrape": "2026-10-30T22:54:33.429Z",
+      "laatsteScrape": "2026-10-31T02:12:56.333Z",
       "gevonden": 12,
       "opeenvolgendLeeg": 0
     }
@@ -110,7 +110,7 @@
     "wachtTot": null,
     "dagcap": 80,
     "runcap": 25,
-    "verzoekenDezeRun": 1
+    "verzoekenDezeRun": 0
   },
   "clusterBeslissingen": {
     "2692219228|60ef70f8ff": {
@@ -147,19 +147,19 @@
     "agenda": {
       "nieuw": 0,
       "bijgewerkt": 0,
-      "behouden": 215,
+      "behouden": 212,
       "verdwenen": 0,
-      "verlopen": 0,
+      "verlopen": 3,
       "uitBerichten": 8,
-      "zichtbaar": 35,
+      "zichtbaar": 34,
       "verborgen": 76,
-      "inAfwachting": 112
+      "inAfwachting": 110
     },
     "berichten": {
-      "nieuw": 1,
+      "nieuw": 0,
       "update": 0,
       "opnieuw": 0,
-      "ongewijzigd": 19,
+      "ongewijzigd": 14,
       "seed": 0
     },
     "cluster": {
@@ -171,25 +171,11 @@
       "uitgesteld": 0,
       "clusters": 2
     },
-    "alerts": 6,
+    "alerts": 2,
     "koppel": {
       "agendaNaarBericht": 0,
       "uitkomsten": 0,
       "berichtenGekoppeld": 0
-    },
-    "kwaliteit": {
-      "verzoeken": 1,
-      "berichten": 1,
-      "ok": 0,
-      "analyseOk": 1,
-      "cijfersAfgekeurd": 0,
-      "onvoldoende": 0,
-      "fout": 0,
-      "overgeslagen": 0,
-      "tagAi": 1,
-      "tagTrefwoord": 0,
-      "tagBron": 0,
-      "tagGeen": 0
     }
   }
 }

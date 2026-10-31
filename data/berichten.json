@@ -1,5 +1,5 @@
 {
-  "gegenereerdOp": "2026-10-30T22:54:33.429Z",
+  "gegenereerdOp": "2026-10-31T02:12:56.333Z",
   "promptVersie": "2026-10-29-batch-tag-checklist-agendapunten",
   "alertModus": "log",
   "prioSchaal": "1 = urgent, 2 = belangrijk, 3 = regulier, 4 = routine. De AI geeft nooit prio 1.",
@@ -66,7 +66,7 @@
       "ai": true,
       "controle": "cijfers-ok",
       "eerstGezienOp": "2026-10-30T18:47:38.315Z",
-      "gecontroleerdOp": "2026-10-30T22:54:33.429Z",
+      "gecontroleerdOp": "2026-10-31T02:12:56.333Z",
       "bronTitel": "Stichting Centraal Bureau Fondsenwerving ontvangt predicaat Koninklijk",
       "bronLengte": 2104,
       "checklist": {
@@ -141,7 +141,7 @@
       "ai": true,
       "controle": "cijfers-ok",
       "eerstGezienOp": "2026-10-30T13:25:17.385Z",
-      "gecontroleerdOp": "2026-10-30T22:54:33.429Z",
+      "gecontroleerdOp": "2026-10-31T02:12:56.333Z",
       "bronTitel": "Voorbereidend onderzoek bij Vlotbrug ’t Zand",
       "bronLengte": 2063,
       "checklist": {
@@ -200,7 +200,7 @@
       "ai": false,
       "controle": "analyse-ok",
       "eerstGezienOp": "2026-10-30T22:54:33.429Z",
-      "gecontroleerdOp": "2026-10-30T22:54:33.429Z",
+      "gecontroleerdOp": "2026-10-31T02:12:56.333Z",
       "bronTitel": "Verkeerscontrole Oostzaan: met drugs, door rood, te hard, geen rijbewijs of bellend…",
       "bronLengte": 1505,
       "checklist": {
@@ -238,7 +238,7 @@
       "ai": false,
       "controle": "analyse-ok",
       "eerstGezienOp": "2026-10-30T18:47:38.315Z",
-      "gecontroleerdOp": "2026-10-30T22:54:33.429Z",
+      "gecontroleerdOp": "2026-10-31T02:12:56.333Z",
       "bronTitel": "VVD Oostzaan wil woon-voorrang voor eigen inwoners (maar dat kan al) 🎧",
       "bronLengte": 3718,
       "checklist": {
@@ -276,7 +276,7 @@
       "ai": false,
       "controle": "analyse-ok",
       "eerstGezienOp": "2026-10-30T18:47:38.315Z",
-      "gecontroleerdOp": "2026-10-30T22:54:33.429Z",
+      "gecontroleerdOp": "2026-10-31T02:12:56.333Z",
       "bronTitel": "Directeur Daniëlle Brouwers na drie maanden al weg bij ZNMC",
       "bronLengte": 3191,
       "checklist": {
@@ -321,7 +321,7 @@
       "ai": false,
       "controle": "analyse-ok",
       "eerstGezienOp": "2026-10-30T13:25:17.385Z",
-      "gecontroleerdOp": "2026-10-30T22:54:33.429Z",
+      "gecontroleerdOp": "2026-10-31T02:12:56.333Z",
       "bronTitel": "Begrotingsdebat Zaanstad: van ‘scenario-B’ tot AI-dromen",
       "bronLengte": 5997,
       "checklist": {
@@ -359,7 +359,7 @@
       "ai": false,
       "controle": "analyse-ok",
       "eerstGezienOp": "2026-10-30T13:25:17.385Z",
-      "gecontroleerdOp": "2026-10-30T22:54:33.429Z",
+      "gecontroleerdOp": "2026-10-31T02:12:56.333Z",
       "bronTitel": "Dikke onvoldoende voor financiële gezondheid ZMC",
       "bronLengte": 2783,
       "checklist": {
@@ -397,7 +397,7 @@
       "ai": false,
       "controle": "analyse-ok",
       "eerstGezienOp": "2026-10-30T13:25:17.385Z",
-      "gecontroleerdOp": "2026-10-30T22:54:33.429Z",
+      "gecontroleerdOp": "2026-10-31T02:12:56.333Z",
       "bronTitel": "De Orkaan in 2 minuten: 30 oktober 🎧",
       "bronLengte": 332,
       "checklist": {
@@ -435,7 +435,7 @@
       "ai": false,
       "controle": "analyse-ok",
       "eerstGezienOp": "2026-10-30T13:25:17.385Z",
-      "gecontroleerdOp": "2026-10-30T22:54:33.429Z",
+      "gecontroleerdOp": "2026-10-31T02:12:56.333Z",
       "bronTitel": "Zeven kleine Hottentotjes zorgen voor groot geluk in Oostzaan 🦆",
       "bronLengte": 1749,
       "checklist": {
@@ -473,7 +473,7 @@
       "ai": false,
       "controle": "analyse-ok",
       "eerstGezienOp": "2026-10-30T13:25:17.385Z",
-      "gecontroleerdOp": "2026-10-30T22:54:33.429Z",
+      "gecontroleerdOp": "2026-10-31T02:12:56.333Z",
       "bronTitel": "Na sanering Kan Palen / Touwen kan Hofwijk-Noord van start",
       "bronLengte": 2872,
       "checklist": {
@@ -518,7 +518,7 @@
       "ai": false,
       "controle": "analyse-ok",
       "eerstGezienOp": "2026-10-30T13:25:17.385Z",
-      "gecontroleerdOp": "2026-10-30T22:54:33.429Z",
+      "gecontroleerdOp": "2026-10-31T02:12:56.333Z",
       "bronTitel": "Taakstraf en rijontzegging voor dodelijk ongeval",
       "bronLengte": 1628,
       "checklist": {
@@ -556,7 +556,7 @@
       "ai": false,
       "controle": "analyse-ok",
       "eerstGezienOp": "2026-10-30T13:25:17.385Z",
-      "gecontroleerdOp": "2026-10-30T22:54:33.429Z",
+      "gecontroleerdOp": "2026-10-31T02:12:56.333Z",
       "bronTitel": "Waarheen: Lichtjesavond, Bazar Westzaan, Tjum🎙",
       "bronLengte": 1328,
       "checklist": {
@@ -647,14 +647,7 @@
         "inRegio": true
       },
       "checklistBron": "ai",
-      "clusterId": "bad2467dd1",
-      "alertKandidaat": {
-        "niveau": "rood",
-        "categorie": "bestuur",
-        "reden": "besluit met groot gevolg (2 bronnen)",
-        "aangemaaktOp": "2026-10-30T08:00:10.425Z",
-        "tot": "2026-10-31T08:00:10.425Z"
-      }
+      "clusterId": "bad2467dd1"
     },
     {
       "id": "2692219228-v1",
@@ -714,7 +707,7 @@
       "ai": false,
       "controle": "analyse-ok",
       "eerstGezienOp": "2026-10-30T08:00:10.425Z",
-      "gecontroleerdOp": "2026-10-30T22:54:33.429Z",
+      "gecontroleerdOp": "2026-10-31T02:12:56.333Z",
       "bronTitel": "Winterjassen voor taalcafé en kledingbank",
       "bronLengte": 2197,
       "checklist": {
@@ -752,7 +745,7 @@
       "ai": false,
       "controle": "analyse-ok",
       "eerstGezienOp": "2026-10-30T08:00:10.425Z",
-      "gecontroleerdOp": "2026-10-30T22:54:33.429Z",
+      "gecontroleerdOp": "2026-10-31T02:12:56.333Z",
       "bronTitel": "In Zaanstad krijgt één op de negen jongeren jeugdzorg",
       "bronLengte": 2521,
       "checklist": {
@@ -1138,14 +1131,7 @@
         "banen": null,
         "inRegio": true
       },
-      "checklistBron": "ai",
-      "alertKandidaat": {
-        "niveau": "oranje",
-        "categorie": "bestuur",
-        "reden": "besluit met groot gevolg (officiële bron)",
-        "aangemaaktOp": "2026-10-30T08:00:10.425Z",
-        "tot": "2026-10-31T08:00:10.425Z"
-      }
+      "checklistBron": "ai"
     },
     {
       "id": "5f8e22d6be-v1",
@@ -1330,14 +1316,7 @@
         "banen": null,
         "inRegio": true
       },
-      "checklistBron": "ai",
-      "alertKandidaat": {
-        "niveau": "oranje",
-        "categorie": "bestuur",
-        "reden": "besluit met groot gevolg (officiële bron)",
-        "aangemaaktOp": "2026-10-30T08:00:10.425Z",
-        "tot": "2026-10-31T08:00:10.425Z"
-      }
+      "checklistBron": "ai"
     },
     {
       "id": "60ef70f8ff-v1",
@@ -1760,14 +1739,7 @@
         "inRegio": true
       },
       "checklistBron": "ai",
-      "analyse": true,
-      "alertKandidaat": {
-        "niveau": "oranje",
-        "categorie": "bestuur",
-        "reden": "besluit met groot gevolg (één bron)",
-        "aangemaaktOp": "2026-10-30T08:00:10.425Z",
-        "tot": "2026-10-31T08:00:10.425Z"
-      }
+      "analyse": true
     },
     {
       "id": "2ae378655c-v1",
