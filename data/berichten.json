@@ -1,5 +1,5 @@
 {
-  "gegenereerdOp": "2026-10-31T15:14:18.073Z",
+  "gegenereerdOp": "2026-10-31T19:29:30.885Z",
   "promptVersie": "2026-10-29-batch-tag-checklist-agendapunten",
   "alertModus": "log",
   "prioSchaal": "1 = urgent, 2 = belangrijk, 3 = regulier, 4 = routine. De AI geeft nooit prio 1.",
@@ -47,6 +47,82 @@
   ],
   "berichten": [
     {
+      "id": "2fd8416946-v1",
+      "groepId": "2fd8416946",
+      "versie": 1,
+      "url": "https://www.deorkaan.nl/laatste-koopjes-laatste-klanten-praxis-zaandam-is-dicht-%f0%9f%93%b8/",
+      "kop": "Laatste koopjes, laatste klanten: Praxis Zaandam is dicht 📸",
+      "tekst": null,
+      "rubriek": "BED",
+      "tagBron": "ai",
+      "herkomst": "signaal",
+      "prio": 3,
+      "tijd": "2026-10-30T23:00:00.000Z",
+      "heeftTijd": false,
+      "woorden": 287,
+      "afgekapt": false,
+      "bronId": "DeOrkaan",
+      "bronNaam": "DeOrkaan",
+      "ai": false,
+      "controle": "analyse-ok",
+      "eerstGezienOp": "2026-10-31T19:29:30.885Z",
+      "gecontroleerdOp": "2026-10-31T19:29:30.885Z",
+      "bronTitel": "Laatste koopjes, laatste klanten: Praxis Zaandam is dicht 📸",
+      "bronLengte": 1798,
+      "checklist": {
+        "gevaar": false,
+        "evacuatieOfNlAlert": false,
+        "gewondenOfDoden": false,
+        "bestuurlijkeCrisis": false,
+        "besluitMetGrootGevolg": false,
+        "tijdkritisch": false,
+        "betrokkenen": null,
+        "geldbedragEuro": null,
+        "banen": null,
+        "inRegio": true
+      },
+      "checklistBron": "ai",
+      "analyse": true
+    },
+    {
+      "id": "044a1b4729-v1",
+      "groepId": "044a1b4729",
+      "versie": 1,
+      "url": "https://www.deorkaan.nl/50-jaar-koperen-bel/",
+      "kop": "Terug in de tijd: 50 jaar Koperen Bel",
+      "tekst": null,
+      "rubriek": "CUL",
+      "tagBron": "ai",
+      "herkomst": "signaal",
+      "prio": 3,
+      "tijd": "2026-10-30T23:00:00.000Z",
+      "heeftTijd": false,
+      "woorden": 470,
+      "afgekapt": false,
+      "bronId": "DeOrkaan",
+      "bronNaam": "DeOrkaan",
+      "ai": false,
+      "controle": "analyse-ok",
+      "eerstGezienOp": "2026-10-31T19:29:30.885Z",
+      "gecontroleerdOp": "2026-10-31T19:29:30.885Z",
+      "bronTitel": "Terug in de tijd: 50 jaar Koperen Bel",
+      "bronLengte": 2654,
+      "checklist": {
+        "gevaar": false,
+        "evacuatieOfNlAlert": false,
+        "gewondenOfDoden": false,
+        "bestuurlijkeCrisis": false,
+        "besluitMetGrootGevolg": false,
+        "tijdkritisch": false,
+        "betrokkenen": null,
+        "geldbedragEuro": null,
+        "banen": null,
+        "inRegio": true
+      },
+      "checklistBron": "ai",
+      "analyse": true
+    },
+    {
       "id": "841756f1df-v1",
       "groepId": "841756f1df",
       "versie": 1,
@@ -66,7 +142,7 @@
       "ai": false,
       "controle": "analyse-ok",
       "eerstGezienOp": "2026-10-31T15:14:18.073Z",
-      "gecontroleerdOp": "2026-10-31T15:14:18.073Z",
+      "gecontroleerdOp": "2026-10-31T19:29:30.885Z",
       "bronTitel": "Ook Koogerpark in teken van Halloween 👻",
       "bronLengte": 331,
       "checklist": {
@@ -104,7 +180,7 @@
       "ai": false,
       "controle": "analyse-ok",
       "eerstGezienOp": "2026-10-31T15:14:18.073Z",
-      "gecontroleerdOp": "2026-10-31T15:14:18.073Z",
+      "gecontroleerdOp": "2026-10-31T19:29:30.885Z",
       "bronTitel": "Over De Dijk: na twintig jaar nog lang niet uitgezongen 🎥",
       "bronLengte": 867,
       "checklist": {
@@ -142,7 +218,7 @@
       "ai": false,
       "controle": "analyse-ok",
       "eerstGezienOp": "2026-10-31T15:14:18.073Z",
-      "gecontroleerdOp": "2026-10-31T15:14:18.073Z",
+      "gecontroleerdOp": "2026-10-31T19:29:30.885Z",
       "bronTitel": "Kernreactor, bomen en DDI in De Week van De Orkaan 🎙",
       "bronLengte": 1193,
       "checklist": {
@@ -180,7 +256,7 @@
       "ai": false,
       "controle": "analyse-ok",
       "eerstGezienOp": "2026-10-31T15:14:18.073Z",
-      "gecontroleerdOp": "2026-10-31T15:14:18.073Z",
+      "gecontroleerdOp": "2026-10-31T19:29:30.885Z",
       "bronTitel": "Vossen op de Burcht (geen echte!) 🎥 / 📸",
       "bronLengte": 756,
       "checklist": {
@@ -218,7 +294,7 @@
       "ai": false,
       "controle": "analyse-ok",
       "eerstGezienOp": "2026-10-31T15:14:18.073Z",
-      "gecontroleerdOp": "2026-10-31T15:14:18.073Z",
+      "gecontroleerdOp": "2026-10-31T19:29:30.885Z",
       "bronTitel": "Zomaar een Zaans minuutje: Twiske-mist… 🎥",
       "bronLengte": 3250,
       "checklist": {
@@ -256,7 +332,7 @@
       "ai": false,
       "controle": "analyse-ok",
       "eerstGezienOp": "2026-10-31T15:14:18.073Z",
-      "gecontroleerdOp": "2026-10-31T15:14:18.073Z",
+      "gecontroleerdOp": "2026-10-31T19:29:30.885Z",
       "bronTitel": "225 jaar geleden aan de galg in Westzaan, de molendief, de dominees en de dood",
       "bronLengte": 6000,
       "checklist": {
@@ -294,7 +370,7 @@
       "ai": false,
       "controle": "analyse-ok",
       "eerstGezienOp": "2026-10-31T15:14:18.073Z",
-      "gecontroleerdOp": "2026-10-31T15:14:18.073Z",
+      "gecontroleerdOp": "2026-10-31T19:29:30.885Z",
       "bronTitel": "Algemene Beschouwingen Wormerland en Oostzaan: bouwen, zelfstandigheid en OZB",
       "bronLengte": 3098,
       "checklist": {
@@ -354,7 +430,7 @@
       "ai": false,
       "controle": "analyse-ok",
       "eerstGezienOp": "2026-10-31T08:45:12.910Z",
-      "gecontroleerdOp": "2026-10-31T15:14:18.073Z",
+      "gecontroleerdOp": "2026-10-31T19:29:30.885Z",
       "bronTitel": "Westzanerwerf na 30 jaar gebouwd? #bouwmarathon",
       "bronLengte": 3725,
       "checklist": {
@@ -399,7 +475,7 @@
       "ai": false,
       "controle": "analyse-ok",
       "eerstGezienOp": "2026-10-31T08:45:12.910Z",
-      "gecontroleerdOp": "2026-10-31T15:14:18.073Z",
+      "gecontroleerdOp": "2026-10-31T19:29:30.885Z",
       "bronTitel": "Waarheen: Alle hens aan dek, SoulPower, Truckrun by night🎙",
       "bronLengte": 1642,
       "checklist": {
@@ -719,7 +795,7 @@
       "ai": false,
       "controle": "analyse-ok",
       "eerstGezienOp": "2026-10-31T08:45:12.910Z",
-      "gecontroleerdOp": "2026-10-31T15:14:18.073Z",
+      "gecontroleerdOp": "2026-10-31T19:29:30.885Z",
       "bronTitel": "Persoon te water bij de Burcht",
       "bronLengte": 588,
       "checklist": {
@@ -849,14 +925,7 @@
         "inRegio": true
       },
       "checklistBron": "ai",
-      "analyse": true,
-      "alertKandidaat": {
-        "niveau": "oranje",
-        "categorie": "bestuur",
-        "reden": "bestuurlijke crisis (één bron)",
-        "aangemaaktOp": "2026-10-30T18:47:38.315Z",
-        "tot": "2026-10-31T18:47:38.315Z"
-      }
+      "analyse": true
     },
     {
       "id": "7ff1086a07-v1",
@@ -1046,7 +1115,14 @@
         "inRegio": true
       },
       "checklistBron": "ai",
-      "analyse": true
+      "analyse": true,
+      "alertKandidaat": {
+        "niveau": "oranje",
+        "categorie": "bestuur",
+        "reden": "besluit met groot gevolg (één bron)",
+        "aangemaaktOp": "2026-10-31T19:29:30.885Z",
+        "tot": "2026-11-01T19:29:30.885Z"
+      }
     },
     {
       "id": "125c5ca008-v1",
