@@ -1,5 +1,5 @@
 {
-  "gegenereerdOp": "2026-10-31T22:44:17.877Z",
+  "gegenereerdOp": "2026-11-01T02:02:23.918Z",
   "alertModus": "log",
   "bronnen": {
     "zaansche-molen": {
@@ -38,13 +38,13 @@
       "opeenvolgendLeeg": 0
     },
     "nh-actueel": {
-      "laatsteScrape": "2026-10-31T22:44:17.877Z",
+      "laatsteScrape": "2026-11-01T02:02:23.918Z",
       "gevonden": 15,
       "opeenvolgendLeeg": 0
     },
     "nh-cultuur": {
-      "laatsteScrape": "2026-10-31T22:44:17.877Z",
-      "gevonden": 15,
+      "laatsteScrape": "2026-11-01T02:02:23.918Z",
+      "gevonden": 3,
       "opeenvolgendLeeg": 0
     },
     "zaanstad-hoorzittingen": {
@@ -98,14 +98,14 @@
       "opeenvolgendLeeg": 0
     },
     "DeOrkaan": {
-      "laatsteScrape": "2026-10-31T22:44:17.877Z",
+      "laatsteScrape": "2026-11-01T02:02:23.918Z",
       "gevonden": 12,
       "opeenvolgendLeeg": 0
     },
     "politie-zaanstad": {
-      "laatsteScrape": "2026-10-31T22:44:17.877Z",
+      "laatsteScrape": "2026-11-01T02:02:23.918Z",
       "gevonden": 0,
-      "opeenvolgendLeeg": 3
+      "opeenvolgendLeeg": 4
     },
     "zaanstad-kalender": {
       "laatsteScrape": "2026-10-31T15:14:18.073Z",
@@ -182,31 +182,31 @@
     "agenda": {
       "nieuw": 0,
       "bijgewerkt": 0,
-      "behouden": 239,
+      "behouden": 213,
       "verdwenen": 0,
-      "verlopen": 0,
+      "verlopen": 26,
       "uitBerichten": 10,
       "zichtbaar": 56,
-      "verborgen": 108,
-      "inAfwachting": 85
+      "verborgen": 105,
+      "inAfwachting": 62
     },
     "berichten": {
       "nieuw": 0,
       "update": 0,
       "opnieuw": 0,
-      "ongewijzigd": 12,
+      "ongewijzigd": 11,
       "seed": 0
     },
     "cluster": {
-      "vergeleken": 1830,
-      "automatisch": 1,
+      "vergeleken": 780,
+      "automatisch": 0,
       "aiGevraagd": 0,
       "aiJa": 0,
       "aiNee": 0,
       "uitgesteld": 0,
-      "clusters": 2
+      "clusters": 0
     },
-    "alerts": 3,
+    "alerts": 1,
     "koppel": {
       "agendaNaarBericht": 0,
       "uitkomsten": 0,

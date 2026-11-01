@@ -1,5 +1,5 @@
 {
-  "gegenereerdOp": "2026-10-31T22:44:17.877Z",
+  "gegenereerdOp": "2026-11-01T02:02:23.918Z",
   "promptVersie": "2026-10-29-batch-tag-checklist-agendapunten",
   "alertModus": "log",
   "prioSchaal": "1 = urgent, 2 = belangrijk, 3 = regulier, 4 = routine. De AI geeft nooit prio 1.",
@@ -66,7 +66,7 @@
       "ai": false,
       "controle": "analyse-ok",
       "eerstGezienOp": "2026-10-31T19:29:30.885Z",
-      "gecontroleerdOp": "2026-10-31T22:44:17.877Z",
+      "gecontroleerdOp": "2026-11-01T02:02:23.918Z",
       "bronTitel": "Laatste koopjes, laatste klanten: Praxis Zaandam is dicht 📸",
       "bronLengte": 1798,
       "checklist": {
@@ -104,7 +104,7 @@
       "ai": false,
       "controle": "analyse-ok",
       "eerstGezienOp": "2026-10-31T19:29:30.885Z",
-      "gecontroleerdOp": "2026-10-31T22:44:17.877Z",
+      "gecontroleerdOp": "2026-11-01T02:02:23.918Z",
       "bronTitel": "Terug in de tijd: 50 jaar Koperen Bel",
       "bronLengte": 2654,
       "checklist": {
@@ -142,7 +142,7 @@
       "ai": false,
       "controle": "analyse-ok",
       "eerstGezienOp": "2026-10-31T15:14:18.073Z",
-      "gecontroleerdOp": "2026-10-31T22:44:17.877Z",
+      "gecontroleerdOp": "2026-11-01T02:02:23.918Z",
       "bronTitel": "Ook Koogerpark in teken van Halloween 👻",
       "bronLengte": 331,
       "checklist": {
@@ -180,7 +180,7 @@
       "ai": false,
       "controle": "analyse-ok",
       "eerstGezienOp": "2026-10-31T15:14:18.073Z",
-      "gecontroleerdOp": "2026-10-31T22:44:17.877Z",
+      "gecontroleerdOp": "2026-11-01T02:02:23.918Z",
       "bronTitel": "Over De Dijk: na twintig jaar nog lang niet uitgezongen 🎥",
       "bronLengte": 867,
       "checklist": {
@@ -218,7 +218,7 @@
       "ai": false,
       "controle": "analyse-ok",
       "eerstGezienOp": "2026-10-31T15:14:18.073Z",
-      "gecontroleerdOp": "2026-10-31T22:44:17.877Z",
+      "gecontroleerdOp": "2026-11-01T02:02:23.918Z",
       "bronTitel": "Kernreactor, bomen en DDI in De Week van De Orkaan 🎙",
       "bronLengte": 1193,
       "checklist": {
@@ -256,7 +256,7 @@
       "ai": false,
       "controle": "analyse-ok",
       "eerstGezienOp": "2026-10-31T15:14:18.073Z",
-      "gecontroleerdOp": "2026-10-31T22:44:17.877Z",
+      "gecontroleerdOp": "2026-11-01T02:02:23.918Z",
       "bronTitel": "Vossen op de Burcht (geen echte!) 🎥 / 📸",
       "bronLengte": 756,
       "checklist": {
@@ -294,7 +294,7 @@
       "ai": false,
       "controle": "analyse-ok",
       "eerstGezienOp": "2026-10-31T15:14:18.073Z",
-      "gecontroleerdOp": "2026-10-31T22:44:17.877Z",
+      "gecontroleerdOp": "2026-11-01T02:02:23.918Z",
       "bronTitel": "Zomaar een Zaans minuutje: Twiske-mist… 🎥",
       "bronLengte": 3250,
       "checklist": {
@@ -332,7 +332,7 @@
       "ai": false,
       "controle": "analyse-ok",
       "eerstGezienOp": "2026-10-31T15:14:18.073Z",
-      "gecontroleerdOp": "2026-10-31T22:44:17.877Z",
+      "gecontroleerdOp": "2026-11-01T02:02:23.918Z",
       "bronTitel": "225 jaar geleden aan de galg in Westzaan, de molendief, de dominees en de dood",
       "bronLengte": 6000,
       "checklist": {
@@ -370,7 +370,7 @@
       "ai": false,
       "controle": "analyse-ok",
       "eerstGezienOp": "2026-10-31T15:14:18.073Z",
-      "gecontroleerdOp": "2026-10-31T22:44:17.877Z",
+      "gecontroleerdOp": "2026-11-01T02:02:23.918Z",
       "bronTitel": "Algemene Beschouwingen Wormerland en Oostzaan: bouwen, zelfstandigheid en OZB",
       "bronLengte": 3098,
       "checklist": {
@@ -430,7 +430,7 @@
       "ai": false,
       "controle": "analyse-ok",
       "eerstGezienOp": "2026-10-31T08:45:12.910Z",
-      "gecontroleerdOp": "2026-10-31T22:44:17.877Z",
+      "gecontroleerdOp": "2026-11-01T02:02:23.918Z",
       "bronTitel": "Westzanerwerf na 30 jaar gebouwd? #bouwmarathon",
       "bronLengte": 3725,
       "checklist": {
@@ -475,7 +475,7 @@
       "ai": false,
       "controle": "analyse-ok",
       "eerstGezienOp": "2026-10-31T08:45:12.910Z",
-      "gecontroleerdOp": "2026-10-31T22:44:17.877Z",
+      "gecontroleerdOp": "2026-11-01T02:02:23.918Z",
       "bronTitel": "Waarheen: Alle hens aan dek, SoulPower, Truckrun by night🎙",
       "bronLengte": 1642,
       "checklist": {
@@ -925,14 +925,7 @@
         "inRegio": true
       },
       "checklistBron": "ai",
-      "analyse": true,
-      "alertKandidaat": {
-        "niveau": "oranje",
-        "categorie": "bestuur",
-        "reden": "bestuurlijke crisis (één bron)",
-        "aangemaaktOp": "2026-10-31T22:44:17.877Z",
-        "tot": "2026-11-01T22:44:17.877Z"
-      }
+      "analyse": true
     },
     {
       "id": "7ff1086a07-v1",
@@ -1122,14 +1115,7 @@
         "inRegio": true
       },
       "checklistBron": "ai",
-      "analyse": true,
-      "alertKandidaat": {
-        "niveau": "oranje",
-        "categorie": "bestuur",
-        "reden": "besluit met groot gevolg (één bron)",
-        "aangemaaktOp": "2026-10-31T19:29:30.885Z",
-        "tot": "2026-11-01T19:29:30.885Z"
-      }
+      "analyse": true
     },
     {
       "id": "125c5ca008-v1",
@@ -1279,8 +1265,7 @@
         "banen": null,
         "inRegio": true
       },
-      "checklistBron": "ai",
-      "clusterId": "bad2467dd1"
+      "checklistBron": "ai"
     },
     {
       "id": "2692219228-v1",
@@ -1317,8 +1302,7 @@
         "banen": null,
         "inRegio": true
       },
-      "checklistBron": "ai",
-      "clusterId": "2692219228"
+      "checklistBron": "ai"
     },
     {
       "id": "f78cb11126-v1",
@@ -1986,8 +1970,7 @@
         "banen": null,
         "inRegio": true
       },
-      "checklistBron": "ai",
-      "clusterId": "2692219228"
+      "checklistBron": "ai"
     },
     {
       "id": "8ce4d51d16-v1",
@@ -2067,8 +2050,7 @@
         "banen": null,
         "inRegio": true
       },
-      "checklistBron": "ai",
-      "clusterId": "bad2467dd1"
+      "checklistBron": "ai"
     },
     {
       "id": "d9d4d4a35d-v1",
