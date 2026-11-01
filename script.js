@@ -24,6 +24,11 @@
 //    kleine knop "+N gefilterd" (of #agenda?alles=1). Een T bij een agendapunt
 //    opent het bericht erover.
 //  - Week en agendafilter staan in de url (#agenda?week=1&alles=1).
+//  - Bericht: een klik op een kop (of op een T bij een agendapunt, of op een
+//    "zie ook") opent het bericht in een pop-up naast de stroom, zoals bij het
+//    ANP: kop, meta-regel, tekst en een zijbalk met vorige/volgende, print, mail,
+//    versies, tags en gerelateerde berichten. Esc, de sluitknop of een klik
+//    naast de pop-up sluit hem.
 //  - Pitches: ongewijzigd.
 //  - escapeHtml escapet ook aanhalingstekens; links zijn alleen http(s).
 
@@ -42,6 +47,17 @@ const KLOK_SVG =
   '<svg width="13" height="13" viewBox="0 0 16 16" aria-hidden="true" focusable="false">'
   + '<circle cx="8" cy="8" r="6.5" fill="none" stroke="currentColor" stroke-width="1.6"/>'
   + '<path d="M8 4.5V8l2.5 1.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>';
+
+const SVG_OMHOOG =
+  '<svg viewBox="0 0 24 24" width="24" height="24" aria-hidden="true" focusable="false"><path fill="currentColor" d="M4 12l1.41 1.41L11 7.83V20h2V7.83l5.58 5.59L20 12l-8-8-8 8z"/></svg>';
+const SVG_OMLAAG =
+  '<svg viewBox="0 0 24 24" width="24" height="24" aria-hidden="true" focusable="false"><path fill="currentColor" d="M20 12l-1.41-1.41L13 16.17V4h-2v12.17l-5.58-5.59L4 12l8 8 8-8z"/></svg>';
+const SVG_PRINT =
+  '<svg viewBox="0 0 24 24" width="24" height="24" aria-hidden="true" focusable="false"><path fill="currentColor" d="M19 8H5c-1.66 0-3 1.34-3 3v6h4v4h12v-4h4v-6c0-1.66-1.34-3-3-3zm-3 11H8v-5h8v5zm3-7c-.55 0-1-.45-1-1s.45-1 1-1 1 .45 1 1-.45 1-1 1zm-1-9H6v4h12V3z"/></svg>';
+const SVG_MAIL =
+  '<svg viewBox="0 0 24 24" width="24" height="24" aria-hidden="true" focusable="false"><path fill="currentColor" d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>';
+const SVG_SLUIT =
+  '<svg viewBox="0 0 24 24" width="24" height="24" aria-hidden="true" focusable="false"><path fill="currentColor" d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>';
 
 // Voorkeuren in de browser. Mag falen (privé-modus, geblokkeerde opslag).
 function leesOpslag(sleutel, standaard) {
@@ -83,6 +99,7 @@ const state = {
   weggeklikt: new Set(leesOpslag("zanp-alerts-weg", [])),
   bezoekStart: leesOpslag("zanp-laatst-bezocht", null),
   actieveTab: "nieuwsdienst",
+  popup: null, // { id, kolom } zolang de pop-up open staat
 };
 
 // ---------------------------------------------------------------------------
@@ -541,7 +558,6 @@ function renderWireItem(r, kolomCode) {
   const tijd = r.heeftTijd ? tijdVan(r.tijd) : "–";
   const woorden = r.woorden == null ? "–" : `${r.woorden}${r.afgekapt ? "+" : ""}`;
   const prio = Number.isInteger(r.prio) ? r.prio : 3;
-  const detailId = `detail-${kolomCode}-${r.id}`;
   const heeftAlert = r.alert && state.alertModus === "aan" && new Date(r.alert.tot).getTime() > Date.now();
   const isNieuw = state.bezoekStart && String(r.eerstGezienOp) > state.bezoekStart;
   // In de totaalkolom staat de tag erbij; in een tagkolom is dat overbodig.
@@ -549,7 +565,7 @@ function renderWireItem(r, kolomCode) {
   return `
     <article class="wire-item prioriteit-${prio}${heeftAlert ? ` heeft-alert alert-${r.alert.niveau}` : ""}" data-id="${escapeHtml(r.id)}">
       <div class="title-row">
-        <button type="button" class="wire-kop" aria-expanded="false" aria-controls="${escapeHtml(detailId)}">${isNieuw ? '<span class="nieuw-stip">nieuw</span> ' : ""}${escapeHtml(r.kop)}${r.versie > 1 ? ` <span class="versie-suffix">(${r.versie})</span>` : ""}</button>
+        <button type="button" class="wire-kop" aria-haspopup="dialog">${isNieuw ? '<span class="nieuw-stip">nieuw</span> ' : ""}${escapeHtml(r.kop)}${r.versie > 1 ? ` <span class="versie-suffix">(${r.versie})</span>` : ""}</button>
       </div>
       <dl class="wire-meta">
         <div><dt>tijd</dt><dd>${tijd}</dd></div>
@@ -560,7 +576,6 @@ function renderWireItem(r, kolomCode) {
         ${tag}
       </dl>
       ${renderWireChips(r)}
-      <div class="wire-detail" id="${escapeHtml(detailId)}" hidden>${renderWireDetail(r)}</div>
     </article>`;
 }
 
@@ -624,29 +639,157 @@ function renderWire() {
   container.innerHTML = getoondeKolommen().map((k) => renderWireKolom(k.code, k.naam)).join("");
 }
 
-// Opent een bericht in de stroom: zoekvelden wissen, tab tonen, kolom kiezen, scrollen.
-function springNaarBericht(id) {
-  state.zoek = {};
-  state.oudere.add("ALL"); // het bericht kan ouder zijn dan drie dagen
-  state.kolommenUit.delete("ALL");
-  state.mobileKolom = "ALL";
-  toonTab("nieuwsdienst");
-  renderWire();
+// ---------------------------------------------------------------------------
+// Pop-up met het volledige bericht
+// ---------------------------------------------------------------------------
 
-  let item = document.querySelector(`#wire-kolommen [data-kolom="ALL"] .wire-item[data-id="${id}"]`);
-  if (!item) {
-    // Het bericht kan achter een cluster zijn weggevallen: zoek het primaire bericht.
-    const gezocht = state.berichten.find((r) => r.id === id);
-    const alt = gezocht && state.zichtbaar.find((r) => r.groepId === gezocht.groepId || (gezocht.clusterId && r.clusterId === gezocht.clusterId));
-    if (alt) item = document.querySelector(`#wire-kolommen [data-kolom="ALL"] .wire-item[data-id="${alt.id}"]`);
+let popupVorigeFocus = null;
+
+// Het getoonde record: bij voorkeur het samengevoegde bericht uit de stroom (met
+// "ook gemeld door"), anders een oudere versie uit de volledige lijst.
+function zoekBericht(id) {
+  return state.zichtbaar.find((r) => r.id === id) || state.berichten.find((r) => r.id === id) || null;
+}
+
+function popupMetaRegel(r) {
+  const d = new Date(r.tijd);
+  const dag = isNaN(d.getTime())
+    ? "datum onbekend"
+    : d.toLocaleDateString("nl-NL", { weekday: "long", day: "2-digit", month: "long", year: "numeric", timeZone: TIJDZONE });
+  const delen = [dag];
+  if (r.heeftTijd) delen.push(tijdVan(r.tijd));
+  delen.push(r.bronNaam || "bron onbekend");
+  delen.push(`Prio: ${Number.isInteger(r.prio) ? r.prio : 3}`);
+  delen.push(`Versie: ${r.versie || 1}`);
+  if (r.woorden != null) delen.push(`Woorden: ${r.woorden}${r.afgekapt ? "+" : ""}`);
+  return delen.map((t) => `<span>${escapeHtml(t)}</span>`).join("");
+}
+
+function renderPopup() {
+  const p = state.popup;
+  const r = p && zoekBericht(p.id);
+  if (!r) {
+    sluitPopup();
+    return;
   }
-  if (!item) return;
-  const kop = item.querySelector(".wire-kop");
-  kop.setAttribute("aria-expanded", "true");
-  const detail = document.getElementById(kop.getAttribute("aria-controls"));
-  if (detail) detail.hidden = false;
-  if (item.scrollIntoView) item.scrollIntoView({ block: "center" });
-  kop.focus();
+
+  // Vorige en volgende binnen de kolom waaruit de pop-up geopend is.
+  const lijst = kolomBerichten(p.kolom).lijst;
+  const i = lijst.findIndex((x) => x.groepId === r.groepId);
+  const vorige = i > 0 ? lijst[i - 1] : null;
+  const volgende = i >= 0 && i < lijst.length - 1 ? lijst[i + 1] : null;
+
+  const versies = state.berichten
+    .filter((x) => x.groepId === r.groepId)
+    .sort((a, b) => (a.versie || 1) - (b.versie || 1));
+  const versieChips = versies
+    .map((v) => {
+      const huidig = v.id === r.id;
+      return `<button type="button" class="chip chip-bericht${huidig ? " chip-actief" : ""}" data-actie="open-bericht" data-id="${escapeHtml(v.id)}"${huidig ? ' aria-current="true"' : ""}>Versie ${v.versie || 1}</button>`;
+    })
+    .join("");
+
+  const rubriek = state.rubrieken.find((x) => x.code === r.rubriek);
+  const tagChip = r.rubriek
+    ? `<span class="chip chip-tag">${escapeHtml(rubriek ? rubriek.naam : r.rubriek)}</span>`
+    : "";
+
+  const gerelateerd = renderWireChips(r);
+  const bodyTekst = [r.kop, r.tekst, r.url ? veiligeUrl(r.url) : ""].filter(Boolean).join("\n\n");
+  const mailHref = `mailto:?subject=${encodeURIComponent(r.kop || "")}&body=${encodeURIComponent(bodyTekst)}`;
+
+  const voet = [r.bronNaam, r.id, r.ai && r.tekst ? "Samengevat door AI" : ""].filter(Boolean);
+
+  document.getElementById("modal-hoofd").innerHTML = `
+    <div class="article__title">
+      <h1 id="modal-titel">${escapeHtml(r.kop)}${r.versie > 1 ? ` <span class="versie-suffix">(${r.versie})</span>` : ""}</h1>
+      ${r.bronNaam ? `<span class="article__bron">${escapeHtml(r.bronNaam)}</span>` : ""}
+    </div>
+    <div class="article__meta">${popupMetaRegel(r)}</div>
+    <div class="article__body">${renderWireDetail(r)}</div>
+    <div class="article__meta article__meta-voet">${voet.map((t) => `<span>${escapeHtml(t)}</span>`).join("")}</div>`;
+
+  document.getElementById("modal-zij").innerHTML = `
+    <div class="modal-acties">
+      <div class="modal-acties-groep">
+        <button type="button" class="modal-knop" data-actie="popup-vorige" aria-label="Vorig bericht" title="Vorig bericht"${vorige ? ` data-id="${escapeHtml(vorige.id)}"` : " disabled"}>${SVG_OMHOOG}</button>
+        <button type="button" class="modal-knop" data-actie="popup-volgende" aria-label="Volgend bericht" title="Volgend bericht"${volgende ? ` data-id="${escapeHtml(volgende.id)}"` : " disabled"}>${SVG_OMLAAG}</button>
+        <button type="button" class="modal-knop" data-actie="popup-print" aria-label="Afdrukken" title="Afdrukken">${SVG_PRINT}</button>
+        <a class="modal-knop" href="${escapeHtml(mailHref)}" aria-label="Bericht mailen" title="Bericht mailen">${SVG_MAIL}</a>
+      </div>
+      <button type="button" class="modal-knop" data-actie="popup-sluit" aria-label="Sluiten" title="Sluiten (Esc)">${SVG_SLUIT}</button>
+    </div>
+    <div class="modal-zij-inhoud">
+      <section class="modal-blok">
+        <p class="modal-blok-titel">Versies</p>
+        <div class="wire-chips">${versieChips}</div>
+      </section>
+      ${tagChip ? `<section class="modal-blok"><p class="modal-blok-titel">Tags</p><div class="wire-chips">${tagChip}</div></section>` : ""}
+      ${gerelateerd ? `<section class="modal-blok"><p class="modal-blok-titel">Gerelateerd</p>${gerelateerd}</section>` : ""}
+    </div>`;
+
+  const hoofd = document.getElementById("modal-hoofd");
+  const zij = document.getElementById("modal-zij");
+  hoofd.scrollTop = 0;
+  zij.scrollTop = 0;
+}
+
+// kolom: de kolom waaruit geopend wordt (voor vorige/volgende). Zonder kolom blijft
+// de kolom van de open pop-up gelden, anders de totaalkolom.
+function openPopup(id, kolom) {
+  const r = zoekBericht(id);
+  const modal = document.getElementById("bericht-modal");
+  if (!r || !modal) return;
+  const code = kolom || (state.popup && state.popup.kolom) || "ALL";
+  if (modal.hidden) popupVorigeFocus = document.activeElement;
+  state.popup = { id: r.id, kolom: code };
+  renderPopup();
+  if (!state.popup) return;
+  modal.hidden = false;
+  document.body.classList.add("modal-open");
+  const kaart = modal.querySelector(".modal-kaart");
+  if (kaart) kaart.focus();
+}
+
+function sluitPopup(herstelFocus = true) {
+  const modal = document.getElementById("bericht-modal");
+  state.popup = null;
+  if (!modal || modal.hidden) return;
+  modal.hidden = true;
+  document.body.classList.remove("modal-open");
+  const terug = popupVorigeFocus;
+  popupVorigeFocus = null;
+  if (herstelFocus && terug && terug.isConnected && terug.focus) terug.focus();
+}
+
+// Esc sluit, Tab blijft binnen de pop-up.
+function koppelPopup() {
+  document.addEventListener("keydown", (e) => {
+    const modal = document.getElementById("bericht-modal");
+    if (!modal || modal.hidden) return;
+    if (e.key === "Escape") {
+      e.preventDefault();
+      sluitPopup();
+      return;
+    }
+    if (e.key !== "Tab") return;
+    const kaart = modal.querySelector(".modal-kaart");
+    const focusbaar = [...kaart.querySelectorAll("a[href], button:not([disabled])")];
+    if (focusbaar.length === 0) {
+      e.preventDefault();
+      kaart.focus();
+      return;
+    }
+    const eerste = focusbaar[0];
+    const laatste = focusbaar[focusbaar.length - 1];
+    if (e.shiftKey && (document.activeElement === eerste || document.activeElement === kaart)) {
+      e.preventDefault();
+      laatste.focus();
+    } else if (!e.shiftKey && document.activeElement === laatste) {
+      e.preventDefault();
+      eerste.focus();
+    }
+  });
 }
 
 function koppelWire() {
@@ -1004,19 +1147,37 @@ function koppelKlikken() {
     document.querySelectorAll(".kolom-menu[open]").forEach((m) => {
       if (!m.contains(e.target)) m.removeAttribute("open");
     });
+    // Een klik naast de pop-up (op de donkere rand) sluit hem.
+    if (e.target.id === "bericht-modal") {
+      sluitPopup();
+      return;
+    }
     const kop = e.target.closest(".wire-kop");
     if (kop) {
-      const open = kop.getAttribute("aria-expanded") === "true";
-      kop.setAttribute("aria-expanded", open ? "false" : "true");
-      const detail = document.getElementById(kop.getAttribute("aria-controls"));
-      if (detail) detail.hidden = open;
+      const item = kop.closest(".wire-item");
+      const kolom = kop.closest(".wire-kolom");
+      if (item) openPopup(item.dataset.id, kolom && kolom.dataset.kolom ? kolom.dataset.kolom : "ALL");
       return;
     }
     const el = e.target.closest("[data-actie]");
     if (!el || el.tagName === "INPUT") return;
     switch (el.dataset.actie) {
-      case "open-bericht":
-        springNaarBericht(el.dataset.id);
+      case "open-bericht": {
+        // In de pop-up zelf blijft de kolom gelijk; vanuit de stroom of de agenda niet.
+        const kolom = el.closest(".wire-kolom");
+        const inPopup = Boolean(el.closest("#bericht-modal"));
+        openPopup(el.dataset.id, inPopup ? undefined : kolom && kolom.dataset.kolom ? kolom.dataset.kolom : "ALL");
+        break;
+      }
+      case "popup-sluit":
+        sluitPopup();
+        break;
+      case "popup-vorige":
+      case "popup-volgende":
+        if (el.dataset.id) openPopup(el.dataset.id);
+        break;
+      case "popup-print":
+        window.print();
         break;
       case "sluit-alert": {
         state.weggeklikt.add(el.dataset.sleutel);
@@ -1025,6 +1186,7 @@ function koppelKlikken() {
         break;
       }
       case "naar-agenda":
+        sluitPopup(false);
         springNaarAgenda(el.dataset.dag);
         schrijfHash();
         break;
@@ -1206,6 +1368,7 @@ async function initialiseer() {
   koppelWire();
   koppelAgenda();
   koppelKlikken();
+  koppelPopup();
 
   // Alles tegelijk ophalen; één ontbrekend bestand mag de rest niet blokkeren.
   const [berichten, agenda, status, pitches, feed, lokaal, landelijk] = await Promise.allSettled([

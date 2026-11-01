@@ -1543,3 +1543,281 @@ button.chip:hover {
     overflow: visible;
   }
 }
+
+/* ======================================================================
+   Pop-up met het volledige bericht (indeling van het ANP: tekst links,
+   zijbalk met acties, versies en tags rechts)
+   ====================================================================== */
+
+.modal {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+  background: rgba(27, 26, 31, 0.55);
+  font-family: var(--zanp-font);
+  font-size: 0.9375rem;
+  line-height: 1.5;
+  color: #1b1a1f;
+}
+
+.modal[hidden] {
+  display: none;
+}
+
+.modal,
+.modal * {
+  scrollbar-width: thin;
+  scrollbar-color: #adb3b9 transparent;
+}
+
+.modal-kaart {
+  width: min(72rem, 100%);
+  height: min(46rem, 100%);
+  overflow: hidden;
+  background: #fff;
+  border-radius: var(--zanp-radius);
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.35);
+}
+
+.modal-kaart:focus {
+  outline: none;
+}
+
+.article {
+  display: flex;
+  height: 100%;
+}
+
+.article__main {
+  flex: 1 1 auto;
+  min-width: 0;
+  padding: 1.5rem 2rem;
+  overflow-y: auto;
+}
+
+.article__title {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 1.5rem;
+  padding-bottom: 1rem;
+}
+
+.article__title h1 {
+  margin: 0;
+  font-size: 1.5rem;
+  line-height: 1.25;
+  font-weight: 700;
+  word-break: break-word;
+}
+
+.article__bron {
+  flex: 0 0 auto;
+  max-width: 12rem;
+  padding: 0.2rem 0.6rem;
+  font-size: 0.75rem;
+  font-weight: 700;
+  line-height: 1.3;
+  text-align: right;
+  color: var(--zanp-primair);
+  border: 2px solid var(--zanp-primair);
+  border-radius: 999px;
+}
+
+.article__meta {
+  display: flex;
+  flex-wrap: wrap;
+  padding: 0.6rem 0;
+  font-size: 0.8125rem;
+  text-transform: uppercase;
+  border-top: 1px solid #e3e6e8;
+  border-bottom: 1px solid #e3e6e8;
+}
+
+.article__meta span:not(:last-child)::after {
+  content: "|";
+  margin: 0 0.6rem;
+  color: #8b9298;
+}
+
+.article__body {
+  padding: 1.25rem 0 2rem;
+  font-size: 1rem;
+  line-height: 1.6;
+}
+
+.article__body p {
+  margin: 0 0 1rem;
+}
+
+.article__body p:last-child {
+  margin-bottom: 0;
+}
+
+.article__meta-voet {
+  border-bottom: 0;
+  color: #444;
+}
+
+.article__sidebar {
+  flex: 0 0 18.5rem;
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  overflow-y: auto;
+  padding: 1.5rem 1.25rem;
+  background: var(--zanp-primair-licht);
+}
+
+.modal-acties {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: -0.5rem -0.5rem 1rem;
+}
+
+.modal-acties-groep {
+  display: flex;
+  align-items: center;
+}
+
+.modal-knop {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.5rem;
+  height: 2.5rem;
+  padding: 0;
+  color: var(--zanp-primair);
+  background: none;
+  border: 0;
+  border-radius: 50%;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.modal-knop:hover {
+  background: var(--zanp-primair-licht-hover);
+}
+
+.modal-knop:disabled {
+  opacity: 0.35;
+  cursor: default;
+  background: none;
+}
+
+.modal-blok {
+  margin-bottom: 1.5rem;
+}
+
+.modal-blok-titel {
+  margin: 0 0 0.5rem;
+  font-size: 1.125rem;
+  font-weight: 700;
+}
+
+.modal-blok .wire-chips {
+  margin-top: 0;
+}
+
+.modal .chip {
+  font-size: 0.8125rem;
+  padding: 0.2rem 0.75rem;
+  border-width: 2px;
+}
+
+.modal .chip-tag {
+  border-color: var(--zanp-primair);
+  color: var(--zanp-primair);
+  background: #fff;
+}
+
+.modal .chip-actief {
+  background: var(--zanp-primair);
+  color: #fff;
+}
+
+body.modal-open {
+  overflow: hidden;
+}
+
+@media (max-width: 700px) {
+  .modal {
+    padding: 0;
+  }
+  .modal-kaart {
+    width: 100%;
+    height: 100%;
+    border-radius: 0;
+  }
+  /* Eén schuivend vlak: acties bovenaan, dan de tekst, dan versies en tags. */
+  .article {
+    flex-direction: column;
+    overflow-y: auto;
+  }
+  .article__main {
+    overflow: visible;
+    padding: 1rem;
+  }
+  .article__title h1 {
+    font-size: 1.25rem;
+  }
+  .article__title {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+  .article__bron {
+    text-align: left;
+  }
+  .article__sidebar {
+    display: contents;
+  }
+  .modal-acties {
+    order: -1;
+    position: sticky;
+    top: 0;
+    z-index: 1;
+    margin: 0;
+    padding: 0.25rem 0.5rem;
+    background: var(--zanp-primair-licht);
+  }
+  .modal-zij-inhoud {
+    padding: 1rem;
+    background: var(--zanp-primair-licht);
+  }
+}
+
+@media print {
+  body.modal-open {
+    height: auto;
+    overflow: visible;
+  }
+  body.modal-open .base {
+    display: none;
+  }
+  body.modal-open .modal {
+    position: static;
+    display: block;
+    padding: 0;
+    background: none;
+  }
+  body.modal-open .modal-kaart {
+    width: auto;
+    height: auto;
+    box-shadow: none;
+    overflow: visible;
+  }
+  body.modal-open .article,
+  body.modal-open .article__main {
+    display: block;
+    height: auto;
+    overflow: visible;
+  }
+  body.modal-open .article__sidebar {
+    display: none;
+  }
+}
