@@ -1,5 +1,5 @@
 {
-  "gegenereerdOp": "2026-11-01T20:25:29.164Z",
+  "gegenereerdOp": "2026-11-01T23:49:22.813Z",
   "promptVersie": "2026-10-29-batch-tag-checklist-agendapunten",
   "alertModus": "log",
   "prioSchaal": "1 = urgent, 2 = belangrijk, 3 = regulier, 4 = routine. De AI geeft nooit prio 1.",
@@ -47,6 +47,44 @@
   ],
   "berichten": [
     {
+      "id": "7ad3d726f6-v1",
+      "groepId": "7ad3d726f6",
+      "versie": 1,
+      "url": "https://www.deorkaan.nl/vva-weet-niet-te-scoren-tegen-koploper-de-meer-%e2%9a%bd%ef%b8%8f/",
+      "kop": "VVA weet niet te scoren tegen koploper De Meer ⚽️",
+      "tekst": null,
+      "rubriek": "SPO",
+      "tagBron": "ai",
+      "herkomst": "signaal",
+      "prio": 3,
+      "tijd": "2026-10-31T23:00:00.000Z",
+      "heeftTijd": false,
+      "woorden": 331,
+      "afgekapt": false,
+      "bronId": "DeOrkaan",
+      "bronNaam": "DeOrkaan",
+      "ai": false,
+      "controle": "analyse-ok",
+      "eerstGezienOp": "2026-11-01T23:49:22.813Z",
+      "gecontroleerdOp": "2026-11-01T23:49:22.813Z",
+      "bronTitel": "VVA weet niet te scoren tegen koploper De Meer ⚽️",
+      "bronLengte": 1870,
+      "checklist": {
+        "gevaar": false,
+        "evacuatieOfNlAlert": false,
+        "gewondenOfDoden": false,
+        "bestuurlijkeCrisis": false,
+        "besluitMetGrootGevolg": false,
+        "tijdkritisch": false,
+        "betrokkenen": null,
+        "geldbedragEuro": null,
+        "banen": null,
+        "inRegio": true
+      },
+      "checklistBron": "ai",
+      "analyse": true
+    },
+    {
       "id": "7847b2db5b-v1",
       "groepId": "7847b2db5b",
       "versie": 1,
@@ -66,7 +104,7 @@
       "ai": false,
       "controle": "analyse-ok",
       "eerstGezienOp": "2026-11-01T20:25:29.164Z",
-      "gecontroleerdOp": "2026-11-01T20:25:29.164Z",
+      "gecontroleerdOp": "2026-11-01T23:49:22.813Z",
       "bronTitel": "Inrijverbod Oostzaan blijft, pas op voor verlopen ontheffing",
       "bronLengte": 2754,
       "checklist": {
@@ -104,7 +142,7 @@
       "ai": false,
       "controle": "analyse-ok",
       "eerstGezienOp": "2026-11-01T15:55:49.908Z",
-      "gecontroleerdOp": "2026-11-01T20:25:29.164Z",
+      "gecontroleerdOp": "2026-11-01T23:49:22.813Z",
       "bronTitel": "In de rij voor de Veggiebox… 🥕🥦🍏",
       "bronLengte": 2052,
       "checklist": {
@@ -142,7 +180,7 @@
       "ai": false,
       "controle": "analyse-ok",
       "eerstGezienOp": "2026-11-01T15:55:49.908Z",
-      "gecontroleerdOp": "2026-11-01T20:25:29.164Z",
+      "gecontroleerdOp": "2026-11-01T23:49:22.813Z",
       "bronTitel": "De Zaanse Truckrun is terug… en hoe! (nog meer 🎥 & 📸)",
       "bronLengte": 1117,
       "checklist": {
@@ -180,7 +218,7 @@
       "ai": false,
       "controle": "analyse-ok",
       "eerstGezienOp": "2026-11-01T15:55:49.908Z",
-      "gecontroleerdOp": "2026-11-01T20:25:29.164Z",
+      "gecontroleerdOp": "2026-11-01T23:49:22.813Z",
       "bronTitel": "Halloween: griezelen in Wormerveer (het engste dorp van de Zaanstreek)",
       "bronLengte": 1630,
       "checklist": {
@@ -218,7 +256,7 @@
       "ai": false,
       "controle": "analyse-ok",
       "eerstGezienOp": "2026-11-01T15:55:49.908Z",
-      "gecontroleerdOp": "2026-11-01T20:25:29.164Z",
+      "gecontroleerdOp": "2026-11-01T23:49:22.813Z",
       "bronTitel": "Oekraïners uit Saendenborch: gebouw kan gesloopt #bouwmarathon",
       "bronLengte": 5077,
       "checklist": {
@@ -300,7 +338,7 @@
       "ai": false,
       "controle": "analyse-ok",
       "eerstGezienOp": "2026-11-01T09:01:54.204Z",
-      "gecontroleerdOp": "2026-11-01T20:25:29.164Z",
+      "gecontroleerdOp": "2026-11-01T23:49:22.813Z",
       "bronTitel": "Water van de Zaan, Bonifatiuskerk",
       "bronLengte": 813,
       "checklist": {
@@ -351,7 +389,7 @@
       "ai": false,
       "controle": "analyse-ok",
       "eerstGezienOp": "2026-11-01T09:01:54.204Z",
-      "gecontroleerdOp": "2026-11-01T20:25:29.164Z",
+      "gecontroleerdOp": "2026-11-01T23:49:22.813Z",
       "bronTitel": "Waarheen: Theater Terra, CONNECTED VII, Wereldvrouwen 🎙",
       "bronLengte": 1709,
       "checklist": {
@@ -807,14 +845,7 @@
         "inRegio": true
       },
       "checklistBron": "ai",
-      "analyse": true,
-      "alertKandidaat": {
-        "niveau": "oranje",
-        "categorie": "bestuur",
-        "reden": "besluit met groot gevolg (één bron)",
-        "aangemaaktOp": "2026-11-01T15:55:49.908Z",
-        "tot": "2026-11-02T15:55:49.908Z"
-      }
+      "analyse": true
     },
     {
       "id": "85fd810ae6-v1",
@@ -3167,10 +3198,6 @@
         }
       ],
       "analyse": true,
-      "agendaIds": [
-        "098d56fd91",
-        "05a1d51816"
-      ],
       "tagBron": "geen"
     },
     {
@@ -3562,10 +3589,6 @@
       "bronLengte": 1292,
       "gecontroleerdOp": "2026-10-25T14:13:42.860Z",
       "herkomst": "signaal",
-      "agendaIds": [
-        "098d56fd91",
-        "05a1d51816"
-      ],
       "tagBron": "geen"
     },
     {
