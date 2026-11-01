@@ -1,5 +1,5 @@
 {
-  "gegenereerdOp": "2026-11-01T15:55:49.908Z",
+  "gegenereerdOp": "2026-11-01T20:25:29.164Z",
   "promptVersie": "2026-10-29-batch-tag-checklist-agendapunten",
   "alertModus": "log",
   "prioSchaal": "1 = urgent, 2 = belangrijk, 3 = regulier, 4 = routine. De AI geeft nooit prio 1.",
@@ -47,6 +47,44 @@
   ],
   "berichten": [
     {
+      "id": "7847b2db5b-v1",
+      "groepId": "7847b2db5b",
+      "versie": 1,
+      "url": "https://www.deorkaan.nl/inrijverbod-oostzaan-blijft-pas-op-voor-verlopen-ontheffing/",
+      "kop": "Inrijverbod Oostzaan blijft, pas op voor verlopen ontheffing",
+      "tekst": null,
+      "rubriek": "VER",
+      "tagBron": "ai",
+      "herkomst": "signaal",
+      "prio": 3,
+      "tijd": "2026-10-31T23:00:00.000Z",
+      "heeftTijd": false,
+      "woorden": 441,
+      "afgekapt": false,
+      "bronId": "DeOrkaan",
+      "bronNaam": "DeOrkaan",
+      "ai": false,
+      "controle": "analyse-ok",
+      "eerstGezienOp": "2026-11-01T20:25:29.164Z",
+      "gecontroleerdOp": "2026-11-01T20:25:29.164Z",
+      "bronTitel": "Inrijverbod Oostzaan blijft, pas op voor verlopen ontheffing",
+      "bronLengte": 2754,
+      "checklist": {
+        "gevaar": false,
+        "evacuatieOfNlAlert": false,
+        "gewondenOfDoden": false,
+        "bestuurlijkeCrisis": false,
+        "besluitMetGrootGevolg": false,
+        "tijdkritisch": false,
+        "betrokkenen": null,
+        "geldbedragEuro": 100,
+        "banen": null,
+        "inRegio": true
+      },
+      "checklistBron": "ai",
+      "analyse": true
+    },
+    {
       "id": "b352f37a15-v1",
       "groepId": "b352f37a15",
       "versie": 1,
@@ -66,7 +104,7 @@
       "ai": false,
       "controle": "analyse-ok",
       "eerstGezienOp": "2026-11-01T15:55:49.908Z",
-      "gecontroleerdOp": "2026-11-01T15:55:49.908Z",
+      "gecontroleerdOp": "2026-11-01T20:25:29.164Z",
       "bronTitel": "In de rij voor de Veggiebox… 🥕🥦🍏",
       "bronLengte": 2052,
       "checklist": {
@@ -104,7 +142,7 @@
       "ai": false,
       "controle": "analyse-ok",
       "eerstGezienOp": "2026-11-01T15:55:49.908Z",
-      "gecontroleerdOp": "2026-11-01T15:55:49.908Z",
+      "gecontroleerdOp": "2026-11-01T20:25:29.164Z",
       "bronTitel": "De Zaanse Truckrun is terug… en hoe! (nog meer 🎥 & 📸)",
       "bronLengte": 1117,
       "checklist": {
@@ -142,7 +180,7 @@
       "ai": false,
       "controle": "analyse-ok",
       "eerstGezienOp": "2026-11-01T15:55:49.908Z",
-      "gecontroleerdOp": "2026-11-01T15:55:49.908Z",
+      "gecontroleerdOp": "2026-11-01T20:25:29.164Z",
       "bronTitel": "Halloween: griezelen in Wormerveer (het engste dorp van de Zaanstreek)",
       "bronLengte": 1630,
       "checklist": {
@@ -180,7 +218,7 @@
       "ai": false,
       "controle": "analyse-ok",
       "eerstGezienOp": "2026-11-01T15:55:49.908Z",
-      "gecontroleerdOp": "2026-11-01T15:55:49.908Z",
+      "gecontroleerdOp": "2026-11-01T20:25:29.164Z",
       "bronTitel": "Oekraïners uit Saendenborch: gebouw kan gesloopt #bouwmarathon",
       "bronLengte": 5077,
       "checklist": {
@@ -262,7 +300,7 @@
       "ai": false,
       "controle": "analyse-ok",
       "eerstGezienOp": "2026-11-01T09:01:54.204Z",
-      "gecontroleerdOp": "2026-11-01T15:55:49.908Z",
+      "gecontroleerdOp": "2026-11-01T20:25:29.164Z",
       "bronTitel": "Water van de Zaan, Bonifatiuskerk",
       "bronLengte": 813,
       "checklist": {
@@ -313,7 +351,7 @@
       "ai": false,
       "controle": "analyse-ok",
       "eerstGezienOp": "2026-11-01T09:01:54.204Z",
-      "gecontroleerdOp": "2026-11-01T15:55:49.908Z",
+      "gecontroleerdOp": "2026-11-01T20:25:29.164Z",
       "bronTitel": "Waarheen: Theater Terra, CONNECTED VII, Wereldvrouwen 🎙",
       "bronLengte": 1709,
       "checklist": {
@@ -351,7 +389,7 @@
       "ai": false,
       "controle": "analyse-ok",
       "eerstGezienOp": "2026-11-01T09:01:54.204Z",
-      "gecontroleerdOp": "2026-11-01T15:55:49.908Z",
+      "gecontroleerdOp": "2026-11-01T20:25:29.164Z",
       "bronTitel": "Truckrun terug in de Zaanstreek 📸 / 🎥",
       "bronLengte": 2786,
       "checklist": {
