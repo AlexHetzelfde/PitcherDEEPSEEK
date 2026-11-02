@@ -22,8 +22,8 @@ test("tag: AI wint, dan trefwoorden, dan de bron, dan Overig", () => {
   assert.deepEqual(wire.kiesTag({ kop: "Gewone kop", aiTag: "ALG", standaard: "ALG" }), { tag: "ALG", bron: "geen" });
 });
 
-test("alle negen tags bestaan en onderwijs is er een van", () => {
-  assert.deepEqual([...wire.TAG_CODES].sort(), ["112", "BED", "CUL", "GEM", "ONW", "PRV", "REC", "SPO", "VER"]);
+test("alle tien tags bestaan en onderwijs is er een van", () => {
+  assert.deepEqual([...wire.TAG_CODES].sort(), ["112", "BED", "CUL", "GEM", "ONW", "PRV", "REC", "SPO", "VER", "WON"]);
   assert.equal(wire.kiesTag({ kop: "Nieuwe school voor 400 leerlingen in Zaandam" }).tag, "ONW");
 });
 
