@@ -1,5 +1,5 @@
 {
-  "gegenereerdOp": "2026-11-02T05:38:59.725Z",
+  "gegenereerdOp": "2026-11-02T15:18:32.950Z",
   "promptVersie": "2026-10-29-batch-tag-checklist-agendapunten",
   "alertModus": "log",
   "prioSchaal": "1 = urgent, 2 = belangrijk, 3 = regulier, 4 = routine. De AI geeft nooit prio 1.",
@@ -11,6 +11,10 @@
     {
       "code": "GEM",
       "naam": "Gemeente"
+    },
+    {
+      "code": "WON",
+      "naam": "Wonen"
     },
     {
       "code": "PRV",
@@ -42,10 +46,508 @@
     },
     {
       "code": "ALG",
-      "naam": "Overig"
+      "naam": "Zonder tag"
     }
   ],
   "berichten": [
+    {
+      "id": "70a7bf43bd-v1",
+      "groepId": "70a7bf43bd",
+      "versie": 1,
+      "url": "https://www.noord-holland.nl/Actueel/Archief/2026/November_2026/Schoon_en_veilig_werken_zonder_motorgeronk",
+      "kop": "Provincie Noord-Holland stapt over op volledig elektrisch wagenpark voor weginspecteurs",
+      "tekst": "De provincie Noord-Holland werkt aan een volledig emissieloos wagenpark en zet in het eerste kwartaal van 2027 de laatste stappen. In totaal krijgen de weginspecteurs 27 nieuwe elektrische dienstvoertuigen van het type Ford E-Transit Custom. De provincie wil in 2030 volledig fossielvrij werken.",
+      "rubriek": "PRV",
+      "tagBron": "ai",
+      "herkomst": "officieel",
+      "prio": 4,
+      "tijd": "2026-11-02T11:54:30.000Z",
+      "heeftTijd": true,
+      "woorden": 717,
+      "afgekapt": false,
+      "bronId": "nh-actueel",
+      "bronNaam": "Provincie Noord-Holland — Actueel",
+      "ai": true,
+      "controle": "cijfers-ok",
+      "eerstGezienOp": "2026-11-02T15:18:32.950Z",
+      "gecontroleerdOp": "2026-11-02T15:18:32.950Z",
+      "bronTitel": "Schoon en veilig werken zonder motorgeronk",
+      "bronLengte": 4720,
+      "checklist": {
+        "gevaar": false,
+        "evacuatieOfNlAlert": false,
+        "gewondenOfDoden": false,
+        "bestuurlijkeCrisis": false,
+        "besluitMetGrootGevolg": false,
+        "tijdkritisch": false,
+        "betrokkenen": null,
+        "geldbedragEuro": null,
+        "banen": null,
+        "inRegio": false
+      },
+      "checklistBron": "ai"
+    },
+    {
+      "id": "371c17a61e-v1",
+      "groepId": "371c17a61e",
+      "versie": 1,
+      "url": "https://www.deorkaan.nl/vuurwerk-verstoort-allerzielen-in-oostzaan/",
+      "kop": "Vuurwerk verstoort Allerzielen in Oostzaan",
+      "tekst": null,
+      "rubriek": "112",
+      "tagBron": "ai",
+      "herkomst": "signaal",
+      "prio": 3,
+      "tijd": "2026-11-01T23:00:00.000Z",
+      "heeftTijd": false,
+      "woorden": 236,
+      "afgekapt": false,
+      "bronId": "DeOrkaan",
+      "bronNaam": "DeOrkaan",
+      "ai": false,
+      "controle": "analyse-ok",
+      "eerstGezienOp": "2026-11-02T15:18:32.950Z",
+      "gecontroleerdOp": "2026-11-02T15:18:32.950Z",
+      "bronTitel": "Vuurwerk verstoort Allerzielen in Oostzaan",
+      "bronLengte": 1597,
+      "checklist": {
+        "gevaar": false,
+        "evacuatieOfNlAlert": false,
+        "gewondenOfDoden": false,
+        "bestuurlijkeCrisis": false,
+        "besluitMetGrootGevolg": false,
+        "tijdkritisch": false,
+        "betrokkenen": null,
+        "geldbedragEuro": null,
+        "banen": null,
+        "inRegio": true
+      },
+      "checklistBron": "ai",
+      "analyse": true
+    },
+    {
+      "id": "0c8afe78aa-v1",
+      "groepId": "0c8afe78aa",
+      "versie": 1,
+      "url": "https://www.deorkaan.nl/nieuwe-wind-bij-de-kat-kempenaars-blijven-zaansche-molen-neemt-exploitatie-over/",
+      "kop": "Nieuwe wind bij De Kat: Kempenaars blijven, Zaansche Molen neemt exploitatie over",
+      "tekst": null,
+      "rubriek": "CUL",
+      "tagBron": "ai",
+      "herkomst": "signaal",
+      "prio": 3,
+      "tijd": "2026-11-01T23:00:00.000Z",
+      "heeftTijd": false,
+      "woorden": 864,
+      "afgekapt": false,
+      "bronId": "DeOrkaan",
+      "bronNaam": "DeOrkaan",
+      "ai": false,
+      "controle": "analyse-ok",
+      "eerstGezienOp": "2026-11-02T15:18:32.950Z",
+      "gecontroleerdOp": "2026-11-02T15:18:32.950Z",
+      "bronTitel": "Nieuwe wind bij De Kat: Kempenaars blijven, Zaansche Molen neemt exploitatie over",
+      "bronLengte": 5513,
+      "checklist": {
+        "gevaar": false,
+        "evacuatieOfNlAlert": false,
+        "gewondenOfDoden": false,
+        "bestuurlijkeCrisis": false,
+        "besluitMetGrootGevolg": true,
+        "tijdkritisch": false,
+        "betrokkenen": 200000,
+        "geldbedragEuro": null,
+        "banen": null,
+        "inRegio": true
+      },
+      "checklistBron": "ai",
+      "analyse": true,
+      "alertKandidaat": {
+        "niveau": "oranje",
+        "categorie": "bestuur",
+        "reden": "besluit met groot gevolg (één bron)",
+        "aangemaaktOp": "2026-11-02T15:18:32.950Z",
+        "tot": "2026-11-03T15:18:32.950Z"
+      }
+    },
+    {
+      "id": "7d36a0a144-v1",
+      "groepId": "7d36a0a144",
+      "versie": 1,
+      "url": "https://www.deorkaan.nl/peperstraat-op-de-schop-verkeersregelaars-houden-zaandam-in-beweging-%f0%9f%93%b8-%f0%9f%8e%a5/",
+      "kop": "Peperstraat op de schop: verkeersregelaars houden Zaandam in beweging 📸 🎥",
+      "tekst": null,
+      "rubriek": "VER",
+      "tagBron": "ai",
+      "herkomst": "signaal",
+      "prio": 3,
+      "tijd": "2026-11-01T23:00:00.000Z",
+      "heeftTijd": false,
+      "woorden": 312,
+      "afgekapt": false,
+      "bronId": "DeOrkaan",
+      "bronNaam": "DeOrkaan",
+      "ai": false,
+      "controle": "analyse-ok",
+      "eerstGezienOp": "2026-11-02T15:18:32.950Z",
+      "gecontroleerdOp": "2026-11-02T15:18:32.950Z",
+      "bronTitel": "Peperstraat op de schop: verkeersregelaars houden Zaandam in beweging 📸 🎥",
+      "bronLengte": 2094,
+      "checklist": {
+        "gevaar": false,
+        "evacuatieOfNlAlert": false,
+        "gewondenOfDoden": false,
+        "bestuurlijkeCrisis": false,
+        "besluitMetGrootGevolg": false,
+        "tijdkritisch": true,
+        "betrokkenen": null,
+        "geldbedragEuro": null,
+        "banen": null,
+        "inRegio": true
+      },
+      "checklistBron": "ai",
+      "analyse": true
+    },
+    {
+      "id": "da60c3e35c-v1",
+      "groepId": "da60c3e35c",
+      "versie": 1,
+      "url": "https://www.deorkaan.nl/de-orkaan-in-2-minuten-2-november-%f0%9f%8e%a7/",
+      "kop": "De Orkaan in 2 minuten: 2 november 🎧",
+      "tekst": null,
+      "rubriek": "ALG",
+      "tagBron": "geen",
+      "herkomst": "signaal",
+      "prio": 3,
+      "tijd": "2026-11-01T23:00:00.000Z",
+      "heeftTijd": false,
+      "woorden": 61,
+      "afgekapt": false,
+      "bronId": "DeOrkaan",
+      "bronNaam": "DeOrkaan",
+      "ai": false,
+      "controle": "analyse-ok",
+      "eerstGezienOp": "2026-11-02T15:18:32.950Z",
+      "gecontroleerdOp": "2026-11-02T15:18:32.950Z",
+      "bronTitel": "De Orkaan in 2 minuten: 2 november 🎧",
+      "bronLengte": 343,
+      "checklist": {
+        "gevaar": false,
+        "evacuatieOfNlAlert": false,
+        "gewondenOfDoden": false,
+        "bestuurlijkeCrisis": false,
+        "besluitMetGrootGevolg": false,
+        "tijdkritisch": false,
+        "betrokkenen": null,
+        "geldbedragEuro": null,
+        "banen": null,
+        "inRegio": true
+      },
+      "checklistBron": "ai",
+      "analyse": true
+    },
+    {
+      "id": "a1558a5e1d-v1",
+      "groepId": "a1558a5e1d",
+      "versie": 1,
+      "url": "https://www.deorkaan.nl/eerste-arend-bloem-race-70-kanoers-varen-trainingsrondje-van-overleden-kampioen/",
+      "kop": "Eerste Arend Bloem-race: 70 kanoërs varen trainingsrondje van overleden kampioen",
+      "tekst": null,
+      "rubriek": "SPO",
+      "tagBron": "ai",
+      "herkomst": "signaal",
+      "prio": 3,
+      "tijd": "2026-11-01T23:00:00.000Z",
+      "heeftTijd": false,
+      "woorden": 129,
+      "afgekapt": false,
+      "bronId": "DeOrkaan",
+      "bronNaam": "DeOrkaan",
+      "ai": false,
+      "controle": "analyse-ok",
+      "eerstGezienOp": "2026-11-02T15:18:32.950Z",
+      "gecontroleerdOp": "2026-11-02T15:18:32.950Z",
+      "bronTitel": "Eerste Arend Bloem-race: 70 kanoërs varen trainingsrondje van overleden kampioen",
+      "bronLengte": 831,
+      "checklist": {
+        "gevaar": false,
+        "evacuatieOfNlAlert": false,
+        "gewondenOfDoden": false,
+        "bestuurlijkeCrisis": false,
+        "besluitMetGrootGevolg": false,
+        "tijdkritisch": false,
+        "betrokkenen": 70,
+        "geldbedragEuro": null,
+        "banen": null,
+        "inRegio": true
+      },
+      "checklistBron": "ai",
+      "analyse": true
+    },
+    {
+      "id": "03befecbe8-v1",
+      "groepId": "03befecbe8",
+      "versie": 1,
+      "url": "https://www.deorkaan.nl/sport-spokende-volleyballers-kolkende-waterpoloers-kraaien-halen-uit/",
+      "kop": "Sport: Spokende volleyballers, kolkende waterpoloërs, Kraaien halen uit",
+      "tekst": null,
+      "rubriek": "SPO",
+      "tagBron": "ai",
+      "herkomst": "signaal",
+      "prio": 3,
+      "tijd": "2026-11-01T23:00:00.000Z",
+      "heeftTijd": false,
+      "woorden": 770,
+      "afgekapt": false,
+      "bronId": "DeOrkaan",
+      "bronNaam": "DeOrkaan",
+      "ai": false,
+      "controle": "analyse-ok",
+      "eerstGezienOp": "2026-11-02T15:18:32.950Z",
+      "gecontroleerdOp": "2026-11-02T15:18:32.950Z",
+      "bronTitel": "Sport: Spokende volleyballers, kolkende waterpoloërs, Kraaien halen uit",
+      "bronLengte": 4787,
+      "checklist": {
+        "gevaar": false,
+        "evacuatieOfNlAlert": false,
+        "gewondenOfDoden": false,
+        "bestuurlijkeCrisis": false,
+        "besluitMetGrootGevolg": false,
+        "tijdkritisch": false,
+        "betrokkenen": null,
+        "geldbedragEuro": null,
+        "banen": null,
+        "inRegio": true
+      },
+      "checklistBron": "ai",
+      "analyse": true
+    },
+    {
+      "id": "3177cf3518-v1",
+      "groepId": "3177cf3518",
+      "versie": 1,
+      "url": "https://www.deorkaan.nl/lichtjes-muziek-en-een-klein-gebaar-tijdens-allerzielen-in-oostzaan/",
+      "kop": "Lichtjes, muziek en een klein gebaar tijdens Allerzielen in Oostzaan",
+      "tekst": null,
+      "rubriek": "CUL",
+      "tagBron": "ai",
+      "herkomst": "signaal",
+      "prio": 3,
+      "tijd": "2026-11-01T23:00:00.000Z",
+      "heeftTijd": false,
+      "woorden": 306,
+      "afgekapt": false,
+      "bronId": "DeOrkaan",
+      "bronNaam": "DeOrkaan",
+      "ai": false,
+      "controle": "analyse-ok",
+      "eerstGezienOp": "2026-11-02T15:18:32.950Z",
+      "gecontroleerdOp": "2026-11-02T15:18:32.950Z",
+      "bronTitel": "Lichtjes, muziek en een klein gebaar tijdens Allerzielen in Oostzaan",
+      "bronLengte": 1897,
+      "checklist": {
+        "gevaar": false,
+        "evacuatieOfNlAlert": false,
+        "gewondenOfDoden": false,
+        "bestuurlijkeCrisis": false,
+        "besluitMetGrootGevolg": false,
+        "tijdkritisch": false,
+        "betrokkenen": null,
+        "geldbedragEuro": null,
+        "banen": null,
+        "inRegio": true
+      },
+      "checklistBron": "ai",
+      "analyse": true
+    },
+    {
+      "id": "f03e4fd59e-v1",
+      "groepId": "f03e4fd59e",
+      "versie": 1,
+      "url": "https://www.deorkaan.nl/canta-gelanceerd-door-verzakte-put-twee-gewonden/",
+      "kop": "Canta gelanceerd door verzakte put, twee gewonden",
+      "tekst": null,
+      "rubriek": "112",
+      "tagBron": "ai",
+      "herkomst": "signaal",
+      "prio": 3,
+      "tijd": "2026-11-01T23:00:00.000Z",
+      "heeftTijd": false,
+      "woorden": 250,
+      "afgekapt": false,
+      "bronId": "DeOrkaan",
+      "bronNaam": "DeOrkaan",
+      "ai": false,
+      "controle": "analyse-ok",
+      "eerstGezienOp": "2026-11-02T15:18:32.950Z",
+      "gecontroleerdOp": "2026-11-02T15:18:32.950Z",
+      "bronTitel": "Canta gelanceerd door verzakte put, twee gewonden",
+      "bronLengte": 1500,
+      "checklist": {
+        "gevaar": false,
+        "evacuatieOfNlAlert": false,
+        "gewondenOfDoden": true,
+        "bestuurlijkeCrisis": false,
+        "besluitMetGrootGevolg": false,
+        "tijdkritisch": false,
+        "betrokkenen": null,
+        "geldbedragEuro": null,
+        "banen": null,
+        "inRegio": true
+      },
+      "checklistBron": "ai",
+      "analyse": true
+    },
+    {
+      "id": "c287c51a6e-v1",
+      "groepId": "c287c51a6e",
+      "versie": 1,
+      "url": "https://www.deorkaan.nl/zaans-voor-t-hekje-pieter-latensteinstraat-moord-en-voorbije-dancefeesten/",
+      "kop": "Zaans voor ’t hekje: Pieter Latensteinstraat-moord en (voorbije) dancefeesten",
+      "tekst": null,
+      "rubriek": "REC",
+      "tagBron": "ai",
+      "herkomst": "signaal",
+      "prio": 3,
+      "tijd": "2026-11-01T23:00:00.000Z",
+      "heeftTijd": false,
+      "woorden": 759,
+      "afgekapt": false,
+      "bronId": "DeOrkaan",
+      "bronNaam": "DeOrkaan",
+      "ai": false,
+      "controle": "analyse-ok",
+      "eerstGezienOp": "2026-11-02T15:18:32.950Z",
+      "gecontroleerdOp": "2026-11-02T15:18:32.950Z",
+      "bronTitel": "Zaans voor ’t hekje: Pieter Latensteinstraat-moord en (voorbije) dancefeesten",
+      "bronLengte": 4873,
+      "checklist": {
+        "gevaar": false,
+        "evacuatieOfNlAlert": false,
+        "gewondenOfDoden": false,
+        "bestuurlijkeCrisis": false,
+        "besluitMetGrootGevolg": false,
+        "tijdkritisch": false,
+        "betrokkenen": null,
+        "geldbedragEuro": null,
+        "banen": null,
+        "inRegio": true
+      },
+      "checklistBron": "ai",
+      "analyse": true
+    },
+    {
+      "id": "159ac2e066-v1",
+      "groepId": "159ac2e066",
+      "versie": 1,
+      "url": "https://www.vervoerregio.nl/artikel/20261102-reizigers-helpen-reizigers",
+      "kop": "Vervoerregio Amsterdam en vervoerders starten nieuwe omstanderscampagne in het ov",
+      "tekst": "De Vervoerregio Amsterdam lanceert samen met vervoerders GVB, Connexxion en MeerPlus de omstanderscampagne 'In ons ov reis je nooit alleen'. De campagne stimuleert reizigers om elkaar te helpen bij onveiligheid, overlast of lastigvallen.",
+      "rubriek": "VER",
+      "tagBron": "trefwoord",
+      "herkomst": "officieel",
+      "prio": 4,
+      "tijd": "2026-11-01T23:00:00.000Z",
+      "heeftTijd": false,
+      "woorden": 46,
+      "afgekapt": false,
+      "bronId": "vervoerregio-persberichten",
+      "bronNaam": "Vervoerregio — Persberichten Zaanstad",
+      "ai": true,
+      "controle": "cijfers-ok",
+      "eerstGezienOp": "2026-11-02T15:18:32.950Z",
+      "gecontroleerdOp": "2026-11-02T15:18:32.950Z",
+      "bronTitel": "Reizigers helpen reizigers Nieuwe omstanderscampagne in het ov",
+      "bronLengte": 317,
+      "checklist": {
+        "gevaar": false,
+        "evacuatieOfNlAlert": false,
+        "gewondenOfDoden": false,
+        "bestuurlijkeCrisis": false,
+        "besluitMetGrootGevolg": false,
+        "tijdkritisch": false,
+        "betrokkenen": null,
+        "geldbedragEuro": null,
+        "banen": null,
+        "inRegio": false
+      },
+      "checklistBron": "ai"
+    },
+    {
+      "id": "a140bf396c-v1",
+      "groepId": "a140bf396c",
+      "versie": 1,
+      "url": "https://www.vervoerregio.nl/artikel/20261102-nieuwe-brittenpassage-station-amsterdam-zuid-geopend",
+      "kop": "Nieuwe Brittenpassage op station Amsterdam Zuid officieel geopend",
+      "tekst": "Vertegenwoordigers van onder meer de gemeente Amsterdam, ProRail en de Vervoerregio openden op zondag 1 november de nieuwe Brittenpassage op station Amsterdam Zuid. Tegelijkertijd werd er feestelijk afscheid genomen van de oude Minervapassage, die de komende jaren wordt vernieuwd.",
+      "rubriek": "VER",
+      "tagBron": "ai",
+      "herkomst": "officieel",
+      "prio": 3,
+      "tijd": "2026-11-01T23:00:00.000Z",
+      "heeftTijd": false,
+      "woorden": 60,
+      "afgekapt": false,
+      "bronId": "vervoerregio-persberichten",
+      "bronNaam": "Vervoerregio — Persberichten Zaanstad",
+      "ai": true,
+      "controle": "cijfers-ok",
+      "eerstGezienOp": "2026-11-02T15:18:32.950Z",
+      "gecontroleerdOp": "2026-11-02T15:18:32.950Z",
+      "bronTitel": "Nieuwe Brittenpassage station Amsterdam Zuid geopend Feestelijk afscheid van de oude Minervapassage",
+      "bronLengte": 434,
+      "checklist": {
+        "gevaar": false,
+        "evacuatieOfNlAlert": false,
+        "gewondenOfDoden": false,
+        "bestuurlijkeCrisis": false,
+        "besluitMetGrootGevolg": false,
+        "tijdkritisch": false,
+        "betrokkenen": null,
+        "geldbedragEuro": null,
+        "banen": null,
+        "inRegio": false
+      },
+      "checklistBron": "ai"
+    },
+    {
+      "id": "76ca3fe2e6-v1",
+      "groepId": "76ca3fe2e6",
+      "versie": 1,
+      "url": "https://www.deorkaan.nl/echtpaar-gewond-na-botsing-assendelft/",
+      "kop": "Echtpaar gewond na botsing Assendelft, tegenligger onder invloed",
+      "tekst": null,
+      "rubriek": "112",
+      "tagBron": "ai",
+      "herkomst": "signaal",
+      "prio": 3,
+      "tijd": "2026-10-31T23:00:00.000Z",
+      "heeftTijd": false,
+      "woorden": 147,
+      "afgekapt": false,
+      "bronId": "DeOrkaan",
+      "bronNaam": "DeOrkaan",
+      "ai": false,
+      "controle": "analyse-ok",
+      "eerstGezienOp": "2026-11-02T15:18:32.950Z",
+      "gecontroleerdOp": "2026-11-02T15:18:32.950Z",
+      "bronTitel": "Echtpaar gewond na botsing Assendelft, tegenligger onder invloed",
+      "bronLengte": 867,
+      "checklist": {
+        "gevaar": false,
+        "evacuatieOfNlAlert": false,
+        "gewondenOfDoden": true,
+        "bestuurlijkeCrisis": false,
+        "besluitMetGrootGevolg": false,
+        "tijdkritisch": false,
+        "betrokkenen": null,
+        "geldbedragEuro": null,
+        "banen": null,
+        "inRegio": true
+      },
+      "checklistBron": "ai",
+      "analyse": true
+    },
     {
       "id": "7ad3d726f6-v1",
       "groepId": "7ad3d726f6",
@@ -66,7 +568,7 @@
       "ai": false,
       "controle": "analyse-ok",
       "eerstGezienOp": "2026-11-01T23:49:22.813Z",
-      "gecontroleerdOp": "2026-11-02T05:38:59.725Z",
+      "gecontroleerdOp": "2026-11-02T15:18:32.950Z",
       "bronTitel": "VVA weet niet te scoren tegen koploper De Meer ⚽️",
       "bronLengte": 1870,
       "checklist": {
@@ -82,7 +584,8 @@
         "inRegio": true
       },
       "checklistBron": "ai",
-      "analyse": true
+      "analyse": true,
+      "tagVersie": 2
     },
     {
       "id": "7847b2db5b-v1",
@@ -120,7 +623,8 @@
         "inRegio": true
       },
       "checklistBron": "ai",
-      "analyse": true
+      "analyse": true,
+      "tagVersie": 2
     },
     {
       "id": "b352f37a15-v1",
@@ -158,7 +662,8 @@
         "inRegio": true
       },
       "checklistBron": "ai",
-      "analyse": true
+      "analyse": true,
+      "tagVersie": 2
     },
     {
       "id": "b2ec90651f-v1",
@@ -196,7 +701,8 @@
         "inRegio": true
       },
       "checklistBron": "ai",
-      "analyse": true
+      "analyse": true,
+      "tagVersie": 2
     },
     {
       "id": "68dce91f5d-v1",
@@ -234,7 +740,8 @@
         "inRegio": true
       },
       "checklistBron": "ai",
-      "analyse": true
+      "analyse": true,
+      "tagVersie": 2
     },
     {
       "id": "1e4921ae4e-v1",
@@ -256,7 +763,7 @@
       "ai": false,
       "controle": "analyse-ok",
       "eerstGezienOp": "2026-11-01T15:55:49.908Z",
-      "gecontroleerdOp": "2026-11-02T05:38:59.725Z",
+      "gecontroleerdOp": "2026-11-02T15:18:32.950Z",
       "bronTitel": "Oekraïners uit Saendenborch: gebouw kan gesloopt #bouwmarathon",
       "bronLengte": 5077,
       "checklist": {
@@ -273,6 +780,7 @@
       },
       "checklistBron": "ai",
       "analyse": true,
+      "tagVersie": 2,
       "alertKandidaat": {
         "niveau": "oranje",
         "categorie": "bestuur",
@@ -316,7 +824,8 @@
         "banen": null,
         "inRegio": true
       },
-      "checklistBron": "ai"
+      "checklistBron": "ai",
+      "tagVersie": 2
     },
     {
       "id": "462c9b249d-v1",
@@ -367,7 +876,8 @@
       "analyse": true,
       "agendaIds": [
         "4b509943ea"
-      ]
+      ],
+      "tagVersie": 2
     },
     {
       "id": "c4d8ef8798-v1",
@@ -405,7 +915,8 @@
         "inRegio": true
       },
       "checklistBron": "ai",
-      "analyse": true
+      "analyse": true,
+      "tagVersie": 2
     },
     {
       "id": "d570f90ff8-v1",
@@ -443,7 +954,8 @@
         "inRegio": true
       },
       "checklistBron": "ai",
-      "analyse": true
+      "analyse": true,
+      "tagVersie": 2
     },
     {
       "id": "2fd8416946-v1",
@@ -481,7 +993,8 @@
         "inRegio": true
       },
       "checklistBron": "ai",
-      "analyse": true
+      "analyse": true,
+      "tagVersie": 2
     },
     {
       "id": "044a1b4729-v1",
@@ -519,7 +1032,8 @@
         "inRegio": true
       },
       "checklistBron": "ai",
-      "analyse": true
+      "analyse": true,
+      "tagVersie": 2
     },
     {
       "id": "841756f1df-v1",
@@ -557,7 +1071,8 @@
         "inRegio": false
       },
       "checklistBron": "ai",
-      "analyse": true
+      "analyse": true,
+      "tagVersie": 2
     },
     {
       "id": "fc8cd5ff02-v1",
@@ -595,7 +1110,8 @@
         "inRegio": true
       },
       "checklistBron": "ai",
-      "analyse": true
+      "analyse": true,
+      "tagVersie": 2
     },
     {
       "id": "b1cd79af52-v1",
@@ -633,7 +1149,8 @@
         "inRegio": true
       },
       "checklistBron": "ai",
-      "analyse": true
+      "analyse": true,
+      "tagVersie": 2
     },
     {
       "id": "3d35612507-v1",
@@ -671,7 +1188,8 @@
         "inRegio": false
       },
       "checklistBron": "ai",
-      "analyse": true
+      "analyse": true,
+      "tagVersie": 2
     },
     {
       "id": "5b6b5fb33d-v1",
@@ -709,7 +1227,8 @@
         "inRegio": true
       },
       "checklistBron": "ai",
-      "analyse": true
+      "analyse": true,
+      "tagVersie": 2
     },
     {
       "id": "707ed3b855-v1",
@@ -747,7 +1266,8 @@
         "inRegio": true
       },
       "checklistBron": "ai",
-      "analyse": true
+      "analyse": true,
+      "tagVersie": 2
     },
     {
       "id": "273de8d4e8-v1",
@@ -807,7 +1327,8 @@
       "agendaIds": [
         "668156249a",
         "d5cb4b3e08"
-      ]
+      ],
+      "tagVersie": 2
     },
     {
       "id": "a992528a26-v1",
@@ -845,7 +1366,8 @@
         "inRegio": true
       },
       "checklistBron": "ai",
-      "analyse": true
+      "analyse": true,
+      "tagVersie": 2
     },
     {
       "id": "85fd810ae6-v1",
@@ -883,7 +1405,8 @@
         "inRegio": true
       },
       "checklistBron": "ai",
-      "analyse": true
+      "analyse": true,
+      "tagVersie": 2
     },
     {
       "id": "0a7f7cfbe8-v1",
@@ -920,7 +1443,8 @@
         "banen": null,
         "inRegio": false
       },
-      "checklistBron": "ai"
+      "checklistBron": "ai",
+      "tagVersie": 2
     },
     {
       "id": "e9463adf0f-v2",
@@ -958,7 +1482,8 @@
         "inRegio": true
       },
       "checklistBron": "ai",
-      "analyse": true
+      "analyse": true,
+      "tagVersie": 2
     },
     {
       "id": "0634ed5928-v1",
@@ -1017,7 +1542,8 @@
       "agendaIds": [
         "d37bf6192d",
         "8a3eecffee"
-      ]
+      ],
+      "tagVersie": 2
     },
     {
       "id": "5a107a4f19-v1",
@@ -1054,7 +1580,8 @@
         "banen": null,
         "inRegio": true
       },
-      "checklistBron": "ai"
+      "checklistBron": "ai",
+      "tagVersie": 2
     },
     {
       "id": "af866d7b4f-v1",
@@ -1091,7 +1618,8 @@
         "banen": null,
         "inRegio": true
       },
-      "checklistBron": "ai"
+      "checklistBron": "ai",
+      "tagVersie": 2
     },
     {
       "id": "c1b6c500d0-v1",
@@ -1128,7 +1656,8 @@
         "banen": null,
         "inRegio": true
       },
-      "checklistBron": "ai"
+      "checklistBron": "ai",
+      "tagVersie": 2
     },
     {
       "id": "56bf32cb49-v1",
@@ -1165,7 +1694,8 @@
         "banen": null,
         "inRegio": true
       },
-      "checklistBron": "ai"
+      "checklistBron": "ai",
+      "tagVersie": 2
     },
     {
       "id": "0573266f08-v1",
@@ -1203,7 +1733,8 @@
         "inRegio": true
       },
       "checklistBron": "ai",
-      "analyse": true
+      "analyse": true,
+      "tagVersie": 2
     },
     {
       "id": "52f2f6963a-v1",
@@ -1241,7 +1772,8 @@
         "inRegio": true
       },
       "checklistBron": "ai",
-      "analyse": true
+      "analyse": true,
+      "tagVersie": 2
     },
     {
       "id": "d01c02ae40-v1",
@@ -1250,8 +1782,8 @@
       "url": "https://www.deorkaan.nl/vvd-oostzaan-wil-eigen-inwoners-voorrang-geven-maar-dat-kan-al-%f0%9f%8e%a7/",
       "kop": "VVD Oostzaan wil woon-voorrang voor eigen inwoners (maar dat kan al) 🎧",
       "tekst": null,
-      "rubriek": "GEM",
-      "tagBron": "ai",
+      "rubriek": "WON",
+      "tagBron": "trefwoord",
       "herkomst": "signaal",
       "prio": 3,
       "tijd": "2026-10-29T23:00:00.000Z",
@@ -1279,7 +1811,8 @@
         "inRegio": true
       },
       "checklistBron": "ai",
-      "analyse": true
+      "analyse": true,
+      "tagVersie": 2
     },
     {
       "id": "6fa6becdf0-v1",
@@ -1317,7 +1850,8 @@
         "inRegio": true
       },
       "checklistBron": "ai",
-      "analyse": true
+      "analyse": true,
+      "tagVersie": 2
     },
     {
       "id": "7ff1086a07-v1",
@@ -1355,7 +1889,8 @@
         "inRegio": true
       },
       "checklistBron": "ai",
-      "analyse": true
+      "analyse": true,
+      "tagVersie": 2
     },
     {
       "id": "bcc084f9d4-v1",
@@ -1393,7 +1928,8 @@
         "inRegio": true
       },
       "checklistBron": "ai",
-      "analyse": true
+      "analyse": true,
+      "tagVersie": 2
     },
     {
       "id": "171171163b-v1",
@@ -1431,7 +1967,8 @@
         "inRegio": true
       },
       "checklistBron": "ai",
-      "analyse": true
+      "analyse": true,
+      "tagVersie": 2
     },
     {
       "id": "94123f16e3-v1",
@@ -1469,7 +2006,8 @@
         "inRegio": true
       },
       "checklistBron": "ai",
-      "analyse": true
+      "analyse": true,
+      "tagVersie": 2
     },
     {
       "id": "3820a2a6de-v1",
@@ -1507,7 +2045,8 @@
         "inRegio": true
       },
       "checklistBron": "ai",
-      "analyse": true
+      "analyse": true,
+      "tagVersie": 2
     },
     {
       "id": "125c5ca008-v1",
@@ -1545,7 +2084,8 @@
         "inRegio": true
       },
       "checklistBron": "ai",
-      "analyse": true
+      "analyse": true,
+      "tagVersie": 2
     },
     {
       "id": "e7816fcef1-v1",
@@ -1583,7 +2123,8 @@
         "inRegio": true
       },
       "checklistBron": "ai",
-      "analyse": true
+      "analyse": true,
+      "tagVersie": 2
     },
     {
       "id": "ccde74ed0b-v1",
@@ -1592,8 +2133,8 @@
       "url": "https://lokaleregelgeving.overheid.nl/CVDR732060/3",
       "kop": "Huisvestingsverordening gemeente Zaanstad 2025 van kracht",
       "tekst": "De Huisvestingsverordening gemeente Zaanstad 2025 is per 30 oktober 2026 in werking getreden. Deze regeling bevat onder meer definities en regels rondom woonruimteverdeling, aangepaste woningen, bed & breakfasts en betaalbare koopwoningen. De verordening is gebaseerd op regionaal beleid van de voormalige Stadsregio Amsterdam.",
-      "rubriek": "GEM",
-      "tagBron": "ai",
+      "rubriek": "WON",
+      "tagBron": "trefwoord",
       "herkomst": "officieel",
       "prio": 4,
       "tijd": "2026-10-29T23:00:00.000Z",
@@ -1620,7 +2161,8 @@
         "banen": null,
         "inRegio": true
       },
-      "checklistBron": "ai"
+      "checklistBron": "ai",
+      "tagVersie": 2
     },
     {
       "id": "f10f414ce8-v1",
@@ -1629,8 +2171,8 @@
       "url": "https://lokaleregelgeving.overheid.nl/CVDR768335/1",
       "kop": "Zaanstad stelt inkomensgrenzen vast voor sociale betaalbare koopwoningen 2026",
       "tekst": "Het college van burgemeester en wethouders heeft het besluit over inkomensgrenzen voor sociale betaalbare koopwoningen vastgesteld. Nieuwbouw koopwoningen met een koopprijs tot maximaal 365.000 euro zijn bestemd voor huishoudens met een passend inkomen. Een huisvestingsvergunning kan uitsluitend worden verleend aan koopstarters die nooit eerder een zelfstandige koopwoning bezaten.",
-      "rubriek": "GEM",
-      "tagBron": "ai",
+      "rubriek": "WON",
+      "tagBron": "trefwoord",
       "herkomst": "officieel",
       "prio": 3,
       "tijd": "2026-10-29T23:00:00.000Z",
@@ -1657,7 +2199,8 @@
         "banen": null,
         "inRegio": true
       },
-      "checklistBron": "ai"
+      "checklistBron": "ai",
+      "tagVersie": 2
     },
     {
       "id": "2692219228-v1",
@@ -1694,7 +2237,8 @@
         "banen": null,
         "inRegio": true
       },
-      "checklistBron": "ai"
+      "checklistBron": "ai",
+      "tagVersie": 2
     },
     {
       "id": "f78cb11126-v1",
@@ -1732,7 +2276,8 @@
         "inRegio": true
       },
       "checklistBron": "ai",
-      "analyse": true
+      "analyse": true,
+      "tagVersie": 2
     },
     {
       "id": "52c4814926-v1",
@@ -1770,7 +2315,8 @@
         "inRegio": true
       },
       "checklistBron": "ai",
-      "analyse": true
+      "analyse": true,
+      "tagVersie": 2
     },
     {
       "id": "c790daa75e-v1",
@@ -1807,7 +2353,8 @@
         "banen": null,
         "inRegio": false
       },
-      "checklistBron": "ai"
+      "checklistBron": "ai",
+      "tagVersie": 2
     },
     {
       "id": "151a2b0f04-v1",
@@ -1844,7 +2391,8 @@
         "banen": null,
         "inRegio": false
       },
-      "checklistBron": "ai"
+      "checklistBron": "ai",
+      "tagVersie": 2
     },
     {
       "id": "d03a376771-v1",
@@ -1881,7 +2429,8 @@
         "banen": null,
         "inRegio": false
       },
-      "checklistBron": "ai"
+      "checklistBron": "ai",
+      "tagVersie": 2
     },
     {
       "id": "23b8a9279e-v1",
@@ -1918,7 +2467,8 @@
         "banen": 166000,
         "inRegio": false
       },
-      "checklistBron": "ai"
+      "checklistBron": "ai",
+      "tagVersie": 2
     },
     {
       "id": "fe53d8bb27-v1",
@@ -1955,7 +2505,8 @@
         "banen": null,
         "inRegio": false
       },
-      "checklistBron": "ai"
+      "checklistBron": "ai",
+      "tagVersie": 2
     },
     {
       "id": "7e3e66d3e8-v1",
@@ -1992,7 +2543,8 @@
         "banen": null,
         "inRegio": false
       },
-      "checklistBron": "ai"
+      "checklistBron": "ai",
+      "tagVersie": 2
     },
     {
       "id": "58ce90fd3b-v1",
@@ -2029,7 +2581,8 @@
         "banen": null,
         "inRegio": true
       },
-      "checklistBron": "ai"
+      "checklistBron": "ai",
+      "tagVersie": 2
     },
     {
       "id": "beb9442086-v1",
@@ -2066,7 +2619,8 @@
         "banen": null,
         "inRegio": true
       },
-      "checklistBron": "ai"
+      "checklistBron": "ai",
+      "tagVersie": 2
     },
     {
       "id": "f8352cb71b-v1",
@@ -2103,7 +2657,8 @@
         "banen": null,
         "inRegio": true
       },
-      "checklistBron": "ai"
+      "checklistBron": "ai",
+      "tagVersie": 2
     },
     {
       "id": "b99a2e283e-v1",
@@ -2140,7 +2695,8 @@
         "banen": null,
         "inRegio": true
       },
-      "checklistBron": "ai"
+      "checklistBron": "ai",
+      "tagVersie": 2
     },
     {
       "id": "5f8e22d6be-v1",
@@ -2177,7 +2733,8 @@
         "banen": null,
         "inRegio": true
       },
-      "checklistBron": "ai"
+      "checklistBron": "ai",
+      "tagVersie": 2
     },
     {
       "id": "dd538db5e6-v1",
@@ -2214,7 +2771,8 @@
         "banen": null,
         "inRegio": false
       },
-      "checklistBron": "ai"
+      "checklistBron": "ai",
+      "tagVersie": 2
     },
     {
       "id": "aafaf5dd0b-v1",
@@ -2251,7 +2809,8 @@
         "banen": null,
         "inRegio": true
       },
-      "checklistBron": "ai"
+      "checklistBron": "ai",
+      "tagVersie": 2
     },
     {
       "id": "c5bb09ed0a-v1",
@@ -2288,7 +2847,8 @@
         "banen": null,
         "inRegio": false
       },
-      "checklistBron": "ai"
+      "checklistBron": "ai",
+      "tagVersie": 2
     },
     {
       "id": "5915f82b3f-v1",
@@ -2297,8 +2857,8 @@
       "url": "https://zoek.officielebekendmakingen.nl/gmb-2026-497454.html",
       "kop": "Zaanstad wijzigt Huisvestingsverordening 2025 voor betaalbare koopwoningen",
       "tekst": "De raad van de gemeente Zaanstad heeft de tweede wijziging van de Huisvestingsverordening 2025 vastgesteld. In de verordening is onder meer een definitie toegevoegd voor een betaalbare koopwoning met een maximale waarde tot de nationaal vastgestelde betaalbaarheidsgrens. Ook zijn de regels rond het werkingsgebied van particuliere huurwoningen en de bestuurlijke boetes voor het omzetten van woonruimte aangepast.",
-      "rubriek": "GEM",
-      "tagBron": "ai",
+      "rubriek": "WON",
+      "tagBron": "trefwoord",
       "herkomst": "officieel",
       "prio": 3,
       "tijd": "2026-10-28T23:00:00.000Z",
@@ -2325,7 +2885,8 @@
         "banen": null,
         "inRegio": true
       },
-      "checklistBron": "ai"
+      "checklistBron": "ai",
+      "tagVersie": 2
     },
     {
       "id": "60ef70f8ff-v1",
@@ -2334,8 +2895,8 @@
       "url": "https://zoek.officielebekendmakingen.nl/gmb-2026-497451.html",
       "kop": "College Zaanstad legt mandaat voor sociale koopwoningvergunningen vast",
       "tekst": "Het college van burgemeester en wethouders van Zaanstad heeft een mandaat- en machtigingsbesluit genomen voor huisvestingsvergunningen van sociale betaalbare koopwoningen in 2026. De bevoegdheid om vergunningen te verlenen, weigeren en in te trekken is overgedragen aan de directeur-bestuurder van Betaalbare Koopwoningen Zaanstad B.V. Eventuele bezwaren tegen besluiten worden volgens de reguliere gemeentelijke bezwarenprocedure afgehandeld.",
-      "rubriek": "GEM",
-      "tagBron": "ai",
+      "rubriek": "WON",
+      "tagBron": "trefwoord",
       "herkomst": "officieel",
       "prio": 4,
       "tijd": "2026-10-28T23:00:00.000Z",
@@ -2362,7 +2923,8 @@
         "banen": null,
         "inRegio": true
       },
-      "checklistBron": "ai"
+      "checklistBron": "ai",
+      "tagVersie": 2
     },
     {
       "id": "8ce4d51d16-v1",
@@ -2405,7 +2967,8 @@
         "banen": null,
         "inRegio": true
       },
-      "checklistBron": "ai"
+      "checklistBron": "ai",
+      "tagVersie": 2
     },
     {
       "id": "bad2467dd1-v1",
@@ -2414,8 +2977,8 @@
       "url": "https://zoek.officielebekendmakingen.nl/gmb-2026-497439.html",
       "kop": "Gemeente Zaanstad stelt inkomensgrenzen vast voor sociale betaalbare koopwoningen 2026",
       "tekst": "Het college van burgemeester en wethouders van Zaanstad heeft de inkomensgrenzen vastgesteld voor sociale betaalbare koopwoningen met een koopprijs tot 365.000 euro in 2026. De grenzen verschillen per huishoudtype en inkomensgroep voor huishoudens die in aanmerking willen komen. Een huisvestingsvergunning kan uitsluitend worden verleend aan koopstarters wier huishoudinkomen onder deze vastgestelde grenzen blijft.",
-      "rubriek": "GEM",
-      "tagBron": "ai",
+      "rubriek": "WON",
+      "tagBron": "trefwoord",
       "herkomst": "officieel",
       "prio": 3,
       "tijd": "2026-10-28T23:00:00.000Z",
@@ -2442,7 +3005,8 @@
         "banen": null,
         "inRegio": true
       },
-      "checklistBron": "ai"
+      "checklistBron": "ai",
+      "tagVersie": 2
     },
     {
       "id": "d9d4d4a35d-v1",
@@ -2480,7 +3044,8 @@
         "inRegio": true
       },
       "checklistBron": "ai",
-      "analyse": true
+      "analyse": true,
+      "tagVersie": 2
     },
     {
       "id": "d08d2a28aa-v1",
@@ -2518,7 +3083,8 @@
         "inRegio": true
       },
       "checklistBron": "ai",
-      "analyse": true
+      "analyse": true,
+      "tagVersie": 2
     },
     {
       "id": "e9463adf0f-v1",
@@ -2556,7 +3122,8 @@
         "inRegio": true
       },
       "checklistBron": "ai",
-      "analyse": true
+      "analyse": true,
+      "tagVersie": 2
     },
     {
       "id": "0a1b029e20-v1",
@@ -2594,7 +3161,8 @@
         "inRegio": true
       },
       "checklistBron": "ai",
-      "analyse": true
+      "analyse": true,
+      "tagVersie": 2
     },
     {
       "id": "249b658f6f-v1",
@@ -2632,7 +3200,8 @@
         "inRegio": true
       },
       "checklistBron": "ai",
-      "analyse": true
+      "analyse": true,
+      "tagVersie": 2
     },
     {
       "id": "0dfc395fc0-v1",
@@ -2670,7 +3239,8 @@
         "inRegio": true
       },
       "checklistBron": "ai",
-      "analyse": true
+      "analyse": true,
+      "tagVersie": 2
     },
     {
       "id": "d544752dfe-v1",
@@ -2708,7 +3278,8 @@
         "inRegio": true
       },
       "checklistBron": "ai",
-      "analyse": true
+      "analyse": true,
+      "tagVersie": 2
     },
     {
       "id": "edeec2680d-v1",
@@ -2746,7 +3317,8 @@
         "inRegio": true
       },
       "checklistBron": "ai",
-      "analyse": true
+      "analyse": true,
+      "tagVersie": 2
     },
     {
       "id": "2ae378655c-v1",
@@ -2784,7 +3356,8 @@
         "inRegio": true
       },
       "checklistBron": "ai",
-      "analyse": true
+      "analyse": true,
+      "tagVersie": 2
     },
     {
       "id": "93332513cb-v1",
@@ -2822,7 +3395,8 @@
         "inRegio": false
       },
       "checklistBron": "ai",
-      "analyse": true
+      "analyse": true,
+      "tagVersie": 2
     },
     {
       "id": "c2269f9c66-v2",
@@ -2846,7 +3420,8 @@
       "gecontroleerdOp": "2026-10-26T14:05:21.411Z",
       "bronTitel": "Dichter bij de tijd: vol is vol",
       "bronLengte": 1367,
-      "tagBron": "geen"
+      "tagBron": "geen",
+      "tagVersie": 2
     },
     {
       "id": "d7668c7cac-v1",
@@ -2870,7 +3445,8 @@
       "gecontroleerdOp": "2026-10-26T14:05:21.411Z",
       "bronTitel": "Bloembollenbedrijf Kapiteyn uit Breezand ontvangt predicaat Koninklijk",
       "bronLengte": 1717,
-      "tagBron": "bron"
+      "tagBron": "bron",
+      "tagVersie": 2
     },
     {
       "id": "fdcf6d39a1-v1",
@@ -2894,7 +3470,8 @@
       "gecontroleerdOp": "2026-10-26T14:05:21.411Z",
       "bronTitel": "Jonge verslaggevers van Obs de Voorzaan ondervragen De Orkaan",
       "bronLengte": 3678,
-      "tagBron": "geen"
+      "tagBron": "geen",
+      "tagVersie": 2
     },
     {
       "id": "9c89435878-v1",
@@ -2918,7 +3495,8 @@
       "gecontroleerdOp": "2026-10-26T14:05:21.411Z",
       "bronTitel": "Zaanse Olifantenpaadjes XXXV: Vlietsend, Krommenie",
       "bronLengte": 1637,
-      "tagBron": "geen"
+      "tagBron": "geen",
+      "tagVersie": 2
     },
     {
       "id": "8eabb519fc-v1",
@@ -2942,7 +3520,8 @@
       "gecontroleerdOp": "2026-10-26T14:05:21.411Z",
       "bronTitel": "De Orkaan in 2 minuten: 26 oktober 🎧",
       "bronLengte": 329,
-      "tagBron": "geen"
+      "tagBron": "geen",
+      "tagVersie": 2
     },
     {
       "id": "c2e8d82b1e-v1",
@@ -2966,7 +3545,8 @@
       "gecontroleerdOp": "2026-10-26T14:05:21.411Z",
       "bronTitel": "50woordenfoto: Peperbus…",
       "bronLengte": 582,
-      "tagBron": "geen"
+      "tagBron": "geen",
+      "tagVersie": 2
     },
     {
       "id": "b3efb3215c-v1",
@@ -3003,7 +3583,8 @@
         "inRegio": false
       },
       "analyse": true,
-      "tagBron": "geen"
+      "tagBron": "geen",
+      "tagVersie": 2
     },
     {
       "id": "80619494b4-v1",
@@ -3027,7 +3608,8 @@
       "gecontroleerdOp": "2026-10-26T14:05:21.411Z",
       "bronTitel": "Marina Houthavenkade vliegt binnen… #bouwmarathon",
       "bronLengte": 3519,
-      "tagBron": "geen"
+      "tagBron": "geen",
+      "tagVersie": 2
     },
     {
       "id": "1f27c8529b-v1",
@@ -3051,7 +3633,8 @@
       "gecontroleerdOp": "2026-10-26T14:05:21.411Z",
       "bronTitel": "Vrijwillige brandweer Oostzaan bestaat 100 jaar 🎧",
       "bronLengte": 1594,
-      "tagBron": "trefwoord"
+      "tagBron": "trefwoord",
+      "tagVersie": 2
     },
     {
       "id": "35a21976df-v1",
@@ -3075,7 +3658,8 @@
       "gecontroleerdOp": "2026-10-26T14:05:21.411Z",
       "bronTitel": "Sport: heren ZV de Zaan mogen door in Europa",
       "bronLengte": 5254,
-      "tagBron": "geen"
+      "tagBron": "geen",
+      "tagVersie": 2
     },
     {
       "id": "19089101d3-v1",
@@ -3143,7 +3727,8 @@
         "5a2aef5c99",
         "df48aaaba7"
       ],
-      "tagBron": "trefwoord"
+      "tagBron": "trefwoord",
+      "tagVersie": 2
     },
     {
       "id": "4b05ab7cb7-v2",
@@ -3198,7 +3783,8 @@
         }
       ],
       "analyse": true,
-      "tagBron": "geen"
+      "tagBron": "geen",
+      "tagVersie": 2
     },
     {
       "id": "34afd9913e-v1",
@@ -3222,7 +3808,8 @@
       "gecontroleerdOp": "2026-10-26T14:05:21.411Z",
       "bronTitel": "WSV’30 weet vroege achterstand niet weg te werken 🎥",
       "bronLengte": 1714,
-      "tagBron": "geen"
+      "tagBron": "geen",
+      "tagVersie": 2
     },
     {
       "id": "a2482a6def-v1",
@@ -3259,7 +3846,8 @@
         "inRegio": true
       },
       "analyse": true,
-      "tagBron": "geen"
+      "tagBron": "geen",
+      "tagVersie": 2
     },
     {
       "id": "c2269f9c66-v1",
@@ -3306,7 +3894,8 @@
         }
       ],
       "analyse": true,
-      "tagBron": "geen"
+      "tagBron": "geen",
+      "tagVersie": 2
     },
     {
       "id": "c17cec1664-v1",
@@ -3356,7 +3945,8 @@
       "agendaIds": [
         "c5055e01c4"
       ],
-      "tagBron": "geen"
+      "tagBron": "geen",
+      "tagVersie": 2
     },
     {
       "id": "0be04f0b83-v1",
@@ -3393,7 +3983,8 @@
         "inRegio": true
       },
       "analyse": true,
-      "tagBron": "geen"
+      "tagBron": "geen",
+      "tagVersie": 2
     },
     {
       "id": "03bd78e223-v1",
@@ -3430,7 +4021,8 @@
         "inRegio": true
       },
       "analyse": true,
-      "tagBron": "geen"
+      "tagBron": "geen",
+      "tagVersie": 2
     },
     {
       "id": "0e2c7a0f87-v1",
@@ -3467,7 +4059,8 @@
         "inRegio": false
       },
       "analyse": true,
-      "tagBron": "geen"
+      "tagBron": "geen",
+      "tagVersie": 2
     },
     {
       "id": "3eafffb6f4-v1",
@@ -3504,7 +4097,8 @@
         "inRegio": true
       },
       "analyse": true,
-      "tagBron": "geen"
+      "tagBron": "geen",
+      "tagVersie": 2
     },
     {
       "id": "9d669726d4-v1",
@@ -3541,7 +4135,8 @@
         "inRegio": true
       },
       "analyse": true,
-      "tagBron": "geen"
+      "tagBron": "geen",
+      "tagVersie": 2
     },
     {
       "id": "5a7b64ffac-v1",
@@ -3565,7 +4160,8 @@
       "gecontroleerdOp": "2026-10-26T06:52:11.514Z",
       "bronTitel": "Terug naar de ‘echte’ tijd: wintertijd ingegaan",
       "bronLengte": 1045,
-      "tagBron": "geen"
+      "tagBron": "geen",
+      "tagVersie": 2
     },
     {
       "id": "4b05ab7cb7-v1",
@@ -3589,7 +4185,8 @@
       "bronLengte": 1292,
       "gecontroleerdOp": "2026-10-25T14:13:42.860Z",
       "herkomst": "signaal",
-      "tagBron": "geen"
+      "tagBron": "geen",
+      "tagVersie": 2
     },
     {
       "id": "b6a8207f86-v1",
@@ -3613,7 +4210,8 @@
       "bronLengte": 628,
       "gecontroleerdOp": "2026-10-25T20:41:55.866Z",
       "herkomst": "signaal",
-      "tagBron": "geen"
+      "tagBron": "geen",
+      "tagVersie": 2
     },
     {
       "id": "eac016021c-v1",
@@ -3637,7 +4235,8 @@
       "bronLengte": 831,
       "gecontroleerdOp": "2026-10-25T20:41:55.866Z",
       "herkomst": "signaal",
-      "tagBron": "geen"
+      "tagBron": "geen",
+      "tagVersie": 2
     },
     {
       "id": "7ee3e33dae-v1",
@@ -3661,7 +4260,8 @@
       "bronLengte": 1504,
       "gecontroleerdOp": "2026-10-25T17:46:59.266Z",
       "herkomst": "signaal",
-      "tagBron": "trefwoord"
+      "tagBron": "trefwoord",
+      "tagVersie": 2
     },
     {
       "id": "364355df5f-v1",
@@ -3685,7 +4285,8 @@
       "bronLengte": 4504,
       "gecontroleerdOp": "2026-10-25T14:13:42.860Z",
       "herkomst": "signaal",
-      "tagBron": "geen"
+      "tagBron": "geen",
+      "tagVersie": 2
     },
     {
       "id": "fa5fcf97bc-v1",
@@ -3709,7 +4310,8 @@
       "bronLengte": 5773,
       "herkomst": "signaal",
       "gecontroleerdOp": "2026-10-25T03:54:47.028Z",
-      "tagBron": "geen"
+      "tagBron": "geen",
+      "tagVersie": 2
     },
     {
       "id": "5002885429-v1",
@@ -3733,7 +4335,8 @@
       "bronLengte": 333,
       "herkomst": "signaal",
       "gecontroleerdOp": "2026-10-25T03:54:47.028Z",
-      "tagBron": "trefwoord"
+      "tagBron": "trefwoord",
+      "tagVersie": 2
     },
     {
       "id": "64825a4e86-v1",
@@ -3757,7 +4360,8 @@
       "bronLengte": 1581,
       "herkomst": "signaal",
       "gecontroleerdOp": "2026-10-25T03:54:47.028Z",
-      "tagBron": "geen"
+      "tagBron": "geen",
+      "tagVersie": 2
     },
     {
       "id": "b43da00724-v1",
@@ -3781,7 +4385,8 @@
       "bronLengte": 1049,
       "herkomst": "signaal",
       "gecontroleerdOp": "2026-10-25T03:54:47.028Z",
-      "tagBron": "geen"
+      "tagBron": "geen",
+      "tagVersie": 2
     },
     {
       "id": "f0ce642901-v1",
@@ -3805,7 +4410,8 @@
       "bronLengte": 800,
       "herkomst": "officieel",
       "gecontroleerdOp": "2026-10-24T03:56:04.427Z",
-      "tagBron": "bron"
+      "tagBron": "bron",
+      "tagVersie": 2
     },
     {
       "id": "62acec1d0a-v1",
@@ -3829,7 +4435,8 @@
       "bronLengte": 1373,
       "herkomst": "officieel",
       "gecontroleerdOp": "2026-10-24T03:56:04.427Z",
-      "tagBron": "bron"
+      "tagBron": "bron",
+      "tagVersie": 2
     },
     {
       "id": "8c012f5bf4-v1",
@@ -3853,7 +4460,8 @@
       "bronLengte": 1281,
       "herkomst": "officieel",
       "gecontroleerdOp": "2026-10-24T03:56:04.427Z",
-      "tagBron": "trefwoord"
+      "tagBron": "trefwoord",
+      "tagVersie": 2
     },
     {
       "id": "bef8fb0bc9-v1",
@@ -3877,7 +4485,8 @@
       "bronLengte": 12894,
       "herkomst": "officieel",
       "gecontroleerdOp": "2026-10-24T03:56:04.427Z",
-      "tagBron": "trefwoord"
+      "tagBron": "trefwoord",
+      "tagVersie": 2
     },
     {
       "id": "e05ed520f6-v1",
@@ -3901,7 +4510,8 @@
       "bronLengte": 1161,
       "herkomst": "officieel",
       "gecontroleerdOp": "2026-10-24T03:56:04.427Z",
-      "tagBron": "bron"
+      "tagBron": "bron",
+      "tagVersie": 2
     },
     {
       "id": "75defe03a3-v1",
@@ -3925,7 +4535,8 @@
       "bronLengte": 2345,
       "herkomst": "officieel",
       "gecontroleerdOp": "2026-10-24T03:56:04.427Z",
-      "tagBron": "trefwoord"
+      "tagBron": "trefwoord",
+      "tagVersie": 2
     },
     {
       "id": "6099c65e46-v1",
@@ -3949,7 +4560,8 @@
       "bronLengte": 473,
       "herkomst": "officieel",
       "gecontroleerdOp": "2026-10-24T03:56:04.427Z",
-      "tagBron": "bron"
+      "tagBron": "bron",
+      "tagVersie": 2
     },
     {
       "id": "d1f10bffeb-v1",
@@ -3973,7 +4585,8 @@
       "bronLengte": 5992,
       "herkomst": "officieel",
       "gecontroleerdOp": "2026-10-24T03:56:04.427Z",
-      "tagBron": "bron"
+      "tagBron": "bron",
+      "tagVersie": 2
     },
     {
       "id": "cf1a79d982-v1",
@@ -3997,7 +4610,8 @@
       "bronLengte": 547,
       "herkomst": "signaal",
       "gecontroleerdOp": "2026-10-24T03:56:04.427Z",
-      "tagBron": "geen"
+      "tagBron": "geen",
+      "tagVersie": 2
     },
     {
       "id": "f59c76f7d3-v1",
@@ -4021,7 +4635,8 @@
       "bronLengte": 1590,
       "herkomst": "signaal",
       "gecontroleerdOp": "2026-10-24T03:56:04.427Z",
-      "tagBron": "geen"
+      "tagBron": "geen",
+      "tagVersie": 2
     },
     {
       "id": "2b9f249802-v1",
@@ -4045,7 +4660,8 @@
       "bronLengte": 2038,
       "herkomst": "signaal",
       "gecontroleerdOp": "2026-10-24T03:56:04.427Z",
-      "tagBron": "geen"
+      "tagBron": "geen",
+      "tagVersie": 2
     },
     {
       "id": "6270e4846a-v1",
@@ -4069,7 +4685,8 @@
       "bronLengte": 3210,
       "herkomst": "signaal",
       "gecontroleerdOp": "2026-10-24T03:56:04.427Z",
-      "tagBron": "geen"
+      "tagBron": "geen",
+      "tagVersie": 2
     },
     {
       "id": "5f5a6149be-v1",
@@ -4093,7 +4710,8 @@
       "bronLengte": 343,
       "herkomst": "signaal",
       "gecontroleerdOp": "2026-10-24T03:56:04.427Z",
-      "tagBron": "geen"
+      "tagBron": "geen",
+      "tagVersie": 2
     },
     {
       "id": "2867a2beae-v1",
@@ -4117,7 +4735,8 @@
       "bronLengte": 6000,
       "herkomst": "signaal",
       "gecontroleerdOp": "2026-10-24T03:56:04.427Z",
-      "tagBron": "geen"
+      "tagBron": "geen",
+      "tagVersie": 2
     },
     {
       "id": "57cfc33fb2-v1",
@@ -4141,7 +4760,8 @@
       "bronLengte": 5998,
       "herkomst": "signaal",
       "gecontroleerdOp": "2026-10-24T03:56:04.427Z",
-      "tagBron": "trefwoord"
+      "tagBron": "trefwoord",
+      "tagVersie": 2
     },
     {
       "id": "0bcc1e77c0-v1",
@@ -4165,7 +4785,8 @@
       "bronLengte": 3508,
       "herkomst": "signaal",
       "gecontroleerdOp": "2026-10-24T03:56:04.427Z",
-      "tagBron": "geen"
+      "tagBron": "geen",
+      "tagVersie": 2
     },
     {
       "id": "673e61aae4-v1",
@@ -4189,7 +4810,8 @@
       "bronLengte": 3978,
       "herkomst": "signaal",
       "gecontroleerdOp": "2026-10-24T03:56:04.427Z",
-      "tagBron": "geen"
+      "tagBron": "geen",
+      "tagVersie": 2
     },
     {
       "id": "feacdda073-v1",
@@ -4213,7 +4835,8 @@
       "bronLengte": 595,
       "herkomst": "signaal",
       "gecontroleerdOp": "2026-10-24T03:56:04.427Z",
-      "tagBron": "geen"
+      "tagBron": "geen",
+      "tagVersie": 2
     },
     {
       "id": "34cffec683-v1",
@@ -4238,7 +4861,8 @@
       "seed": true,
       "herkomst": "officieel",
       "gecontroleerdOp": "2026-10-24T03:56:04.427Z",
-      "tagBron": "bron"
+      "tagBron": "bron",
+      "tagVersie": 2
     },
     {
       "id": "6a0f35bc23-v1",
@@ -4263,7 +4887,8 @@
       "seed": true,
       "herkomst": "officieel",
       "gecontroleerdOp": "2026-10-24T03:56:04.427Z",
-      "tagBron": "bron"
+      "tagBron": "bron",
+      "tagVersie": 2
     },
     {
       "id": "18fd5dc0ee-v1",
@@ -4288,7 +4913,8 @@
       "seed": true,
       "herkomst": "signaal",
       "gecontroleerdOp": "2026-10-24T03:56:04.427Z",
-      "tagBron": "trefwoord"
+      "tagBron": "trefwoord",
+      "tagVersie": 2
     },
     {
       "id": "8004ca1445-v1",
@@ -4297,7 +4923,7 @@
       "url": "https://zaanstad.bestuurlijkeinformatie.nl/Document/View/4a399d93-ea94-4471-a6c9-9877937839c9",
       "kop": "Stand van zaken uitvoering projecten Volkshuisvestingsfonds 1",
       "tekst": null,
-      "rubriek": "GEM",
+      "rubriek": "WON",
       "prio": 3,
       "tijd": "2026-10-21T22:00:00.000Z",
       "heeftTijd": false,
@@ -4313,7 +4939,8 @@
       "seed": true,
       "herkomst": "officieel",
       "gecontroleerdOp": "2026-10-24T03:56:04.427Z",
-      "tagBron": "bron"
+      "tagBron": "trefwoord",
+      "tagVersie": 2
     },
     {
       "id": "0ce83bffea-v1",
@@ -4338,7 +4965,8 @@
       "seed": true,
       "herkomst": "officieel",
       "gecontroleerdOp": "2026-10-24T03:56:04.427Z",
-      "tagBron": "bron"
+      "tagBron": "bron",
+      "tagVersie": 2
     },
     {
       "id": "a3680983a7-v1",
@@ -4363,7 +4991,8 @@
       "seed": true,
       "herkomst": "officieel",
       "gecontroleerdOp": "2026-10-24T03:56:04.427Z",
-      "tagBron": "bron"
+      "tagBron": "bron",
+      "tagVersie": 2
     },
     {
       "id": "8327463116-v1",
@@ -4388,7 +5017,8 @@
       "seed": true,
       "herkomst": "officieel",
       "gecontroleerdOp": "2026-10-24T03:56:04.427Z",
-      "tagBron": "bron"
+      "tagBron": "bron",
+      "tagVersie": 2
     },
     {
       "id": "33ae7df29b-v1",
@@ -4413,7 +5043,8 @@
       "seed": true,
       "herkomst": "officieel",
       "gecontroleerdOp": "2026-10-24T03:56:04.427Z",
-      "tagBron": "trefwoord"
+      "tagBron": "trefwoord",
+      "tagVersie": 2
     },
     {
       "id": "d3d3f942c9-v1",
@@ -4438,7 +5069,8 @@
       "seed": true,
       "herkomst": "officieel",
       "gecontroleerdOp": "2026-10-24T03:56:04.427Z",
-      "tagBron": "bron"
+      "tagBron": "bron",
+      "tagVersie": 2
     },
     {
       "id": "187137956d-v1",
@@ -4463,7 +5095,8 @@
       "seed": true,
       "herkomst": "signaal",
       "gecontroleerdOp": "2026-10-24T03:56:04.427Z",
-      "tagBron": "trefwoord"
+      "tagBron": "trefwoord",
+      "tagVersie": 2
     },
     {
       "id": "7376beae8e-v1",
@@ -4488,7 +5121,8 @@
       "seed": true,
       "herkomst": "signaal",
       "gecontroleerdOp": "2026-10-24T03:56:04.427Z",
-      "tagBron": "trefwoord"
+      "tagBron": "trefwoord",
+      "tagVersie": 2
     },
     {
       "id": "ad1f1161bf-v1",
@@ -4513,7 +5147,8 @@
       "seed": true,
       "herkomst": "signaal",
       "gecontroleerdOp": "2026-10-24T03:56:04.427Z",
-      "tagBron": "geen"
+      "tagBron": "geen",
+      "tagVersie": 2
     },
     {
       "id": "add0239fde-v1",
@@ -4538,7 +5173,8 @@
       "seed": true,
       "herkomst": "signaal",
       "gecontroleerdOp": "2026-10-24T03:56:04.427Z",
-      "tagBron": "geen"
+      "tagBron": "geen",
+      "tagVersie": 2
     },
     {
       "id": "013f1e4373-v1",
@@ -4563,7 +5199,8 @@
       "seed": true,
       "herkomst": "signaal",
       "gecontroleerdOp": "2026-10-24T03:56:04.427Z",
-      "tagBron": "geen"
+      "tagBron": "geen",
+      "tagVersie": 2
     },
     {
       "id": "107a724cb8-v1",
@@ -4588,7 +5225,8 @@
       "seed": true,
       "herkomst": "signaal",
       "gecontroleerdOp": "2026-10-24T03:56:04.427Z",
-      "tagBron": "trefwoord"
+      "tagBron": "trefwoord",
+      "tagVersie": 2
     },
     {
       "id": "2b29c1f133-v1",
@@ -4613,7 +5251,8 @@
       "seed": true,
       "herkomst": "signaal",
       "gecontroleerdOp": "2026-10-24T03:56:04.427Z",
-      "tagBron": "geen"
+      "tagBron": "geen",
+      "tagVersie": 2
     },
     {
       "id": "a797231495-v1",
@@ -4638,7 +5277,8 @@
       "seed": true,
       "herkomst": "signaal",
       "gecontroleerdOp": "2026-10-24T03:56:04.427Z",
-      "tagBron": "geen"
+      "tagBron": "geen",
+      "tagVersie": 2
     },
     {
       "id": "984d3666ca-v1",
@@ -4663,7 +5303,8 @@
       "seed": true,
       "herkomst": "signaal",
       "gecontroleerdOp": "2026-10-24T03:56:04.427Z",
-      "tagBron": "geen"
+      "tagBron": "geen",
+      "tagVersie": 2
     },
     {
       "id": "7acccce5b3-v1",
@@ -4688,7 +5329,8 @@
       "seed": true,
       "herkomst": "signaal",
       "gecontroleerdOp": "2026-10-24T03:56:04.427Z",
-      "tagBron": "geen"
+      "tagBron": "geen",
+      "tagVersie": 2
     },
     {
       "id": "fa6272750f-v1",
@@ -4713,7 +5355,8 @@
       "seed": true,
       "herkomst": "signaal",
       "gecontroleerdOp": "2026-10-24T03:56:04.427Z",
-      "tagBron": "trefwoord"
+      "tagBron": "trefwoord",
+      "tagVersie": 2
     },
     {
       "id": "639dc2293b-v1",
@@ -4738,7 +5381,8 @@
       "seed": true,
       "herkomst": "signaal",
       "gecontroleerdOp": "2026-10-24T03:56:04.427Z",
-      "tagBron": "geen"
+      "tagBron": "geen",
+      "tagVersie": 2
     },
     {
       "id": "7e22031d09-v1",
@@ -4763,7 +5407,8 @@
       "seed": true,
       "herkomst": "officieel",
       "gecontroleerdOp": "2026-10-24T03:56:04.427Z",
-      "tagBron": "bron"
+      "tagBron": "bron",
+      "tagVersie": 2
     },
     {
       "id": "4a763bf541-v1",
@@ -4788,7 +5433,8 @@
       "seed": true,
       "herkomst": "officieel",
       "gecontroleerdOp": "2026-10-24T03:56:04.427Z",
-      "tagBron": "bron"
+      "tagBron": "bron",
+      "tagVersie": 2
     },
     {
       "id": "95b7933386-v1",
@@ -4813,7 +5459,8 @@
       "seed": true,
       "herkomst": "signaal",
       "gecontroleerdOp": "2026-10-24T03:56:04.427Z",
-      "tagBron": "geen"
+      "tagBron": "geen",
+      "tagVersie": 2
     },
     {
       "id": "e5cce52677-v1",
@@ -4838,7 +5485,8 @@
       "seed": true,
       "herkomst": "signaal",
       "gecontroleerdOp": "2026-10-24T03:56:04.427Z",
-      "tagBron": "trefwoord"
+      "tagBron": "trefwoord",
+      "tagVersie": 2
     },
     {
       "id": "31b0698e79-v1",
@@ -4863,7 +5511,8 @@
       "seed": true,
       "herkomst": "signaal",
       "gecontroleerdOp": "2026-10-24T03:56:04.427Z",
-      "tagBron": "trefwoord"
+      "tagBron": "trefwoord",
+      "tagVersie": 2
     },
     {
       "id": "c22856128c-v1",
@@ -4888,7 +5537,8 @@
       "seed": true,
       "herkomst": "signaal",
       "gecontroleerdOp": "2026-10-24T03:56:04.427Z",
-      "tagBron": "geen"
+      "tagBron": "geen",
+      "tagVersie": 2
     },
     {
       "id": "9fc1515164-v1",
@@ -4913,7 +5563,8 @@
       "seed": true,
       "herkomst": "signaal",
       "gecontroleerdOp": "2026-10-24T03:56:04.427Z",
-      "tagBron": "trefwoord"
+      "tagBron": "trefwoord",
+      "tagVersie": 2
     },
     {
       "id": "a11672e050-v1",
@@ -4938,7 +5589,8 @@
       "seed": true,
       "herkomst": "signaal",
       "gecontroleerdOp": "2026-10-24T03:56:04.427Z",
-      "tagBron": "geen"
+      "tagBron": "geen",
+      "tagVersie": 2
     },
     {
       "id": "a5d39f0733-v1",
@@ -4963,7 +5615,8 @@
       "seed": true,
       "herkomst": "signaal",
       "gecontroleerdOp": "2026-10-24T03:56:04.427Z",
-      "tagBron": "geen"
+      "tagBron": "geen",
+      "tagVersie": 2
     },
     {
       "id": "e0ddf0b1d3-v1",
@@ -4988,7 +5641,8 @@
       "seed": true,
       "herkomst": "signaal",
       "gecontroleerdOp": "2026-10-24T03:56:04.427Z",
-      "tagBron": "geen"
+      "tagBron": "geen",
+      "tagVersie": 2
     },
     {
       "id": "aa933fca19-v1",
@@ -5013,7 +5667,8 @@
       "seed": true,
       "herkomst": "signaal",
       "gecontroleerdOp": "2026-10-24T03:56:04.427Z",
-      "tagBron": "geen"
+      "tagBron": "geen",
+      "tagVersie": 2
     },
     {
       "id": "d3369e99a5-v1",
@@ -5038,7 +5693,8 @@
       "seed": true,
       "herkomst": "signaal",
       "gecontroleerdOp": "2026-10-24T03:56:04.427Z",
-      "tagBron": "geen"
+      "tagBron": "geen",
+      "tagVersie": 2
     },
     {
       "id": "a8f7a62e0b-v1",
@@ -5063,7 +5719,8 @@
       "seed": true,
       "herkomst": "signaal",
       "gecontroleerdOp": "2026-10-24T03:56:04.427Z",
-      "tagBron": "trefwoord"
+      "tagBron": "trefwoord",
+      "tagVersie": 2
     },
     {
       "id": "05e8e3425e-v1",
@@ -5088,7 +5745,8 @@
       "seed": true,
       "herkomst": "signaal",
       "gecontroleerdOp": "2026-10-24T03:56:04.427Z",
-      "tagBron": "geen"
+      "tagBron": "geen",
+      "tagVersie": 2
     },
     {
       "id": "065adc4133-v1",
@@ -5113,7 +5771,8 @@
       "seed": true,
       "herkomst": "officieel",
       "gecontroleerdOp": "2026-10-24T03:56:04.427Z",
-      "tagBron": "bron"
+      "tagBron": "bron",
+      "tagVersie": 2
     },
     {
       "id": "84303340df-v1",
@@ -5138,7 +5797,8 @@
       "seed": true,
       "herkomst": "officieel",
       "gecontroleerdOp": "2026-10-24T03:56:04.427Z",
-      "tagBron": "bron"
+      "tagBron": "bron",
+      "tagVersie": 2
     },
     {
       "id": "3181d67de1-v1",
@@ -5163,7 +5823,8 @@
       "seed": true,
       "herkomst": "officieel",
       "gecontroleerdOp": "2026-10-24T03:56:04.427Z",
-      "tagBron": "bron"
+      "tagBron": "bron",
+      "tagVersie": 2
     },
     {
       "id": "328788296f-v1",
@@ -5188,7 +5849,8 @@
       "seed": true,
       "herkomst": "officieel",
       "gecontroleerdOp": "2026-10-24T03:56:04.427Z",
-      "tagBron": "trefwoord"
+      "tagBron": "trefwoord",
+      "tagVersie": 2
     },
     {
       "id": "90596bea82-v1",
@@ -5213,7 +5875,8 @@
       "seed": true,
       "herkomst": "officieel",
       "gecontroleerdOp": "2026-10-24T03:56:04.427Z",
-      "tagBron": "bron"
+      "tagBron": "bron",
+      "tagVersie": 2
     },
     {
       "id": "95c8fbe472-v1",
@@ -5238,7 +5901,8 @@
       "seed": true,
       "herkomst": "officieel",
       "gecontroleerdOp": "2026-10-24T03:56:04.427Z",
-      "tagBron": "bron"
+      "tagBron": "bron",
+      "tagVersie": 2
     },
     {
       "id": "48a7d9feff-v1",
@@ -5263,7 +5927,8 @@
       "seed": true,
       "herkomst": "officieel",
       "gecontroleerdOp": "2026-10-24T03:56:04.427Z",
-      "tagBron": "bron"
+      "tagBron": "bron",
+      "tagVersie": 2
     },
     {
       "id": "cb102ff917-v1",
@@ -5288,7 +5953,8 @@
       "seed": true,
       "herkomst": "officieel",
       "gecontroleerdOp": "2026-10-24T03:56:04.427Z",
-      "tagBron": "bron"
+      "tagBron": "bron",
+      "tagVersie": 2
     },
     {
       "id": "9c8598e5b8-v1",
@@ -5313,7 +5979,8 @@
       "seed": true,
       "herkomst": "officieel",
       "gecontroleerdOp": "2026-10-24T03:56:04.427Z",
-      "tagBron": "trefwoord"
+      "tagBron": "trefwoord",
+      "tagVersie": 2
     },
     {
       "id": "43abb36481-v1",
@@ -5338,7 +6005,8 @@
       "seed": true,
       "herkomst": "officieel",
       "gecontroleerdOp": "2026-10-24T03:56:04.427Z",
-      "tagBron": "bron"
+      "tagBron": "bron",
+      "tagVersie": 2
     },
     {
       "id": "18aceaf474-v1",
@@ -5363,7 +6031,8 @@
       "seed": true,
       "herkomst": "officieel",
       "gecontroleerdOp": "2026-10-24T03:56:04.427Z",
-      "tagBron": "bron"
+      "tagBron": "bron",
+      "tagVersie": 2
     },
     {
       "id": "46a246650a-v1",
@@ -5388,7 +6057,8 @@
       "seed": true,
       "herkomst": "officieel",
       "gecontroleerdOp": "2026-10-24T03:56:04.427Z",
-      "tagBron": "bron"
+      "tagBron": "bron",
+      "tagVersie": 2
     }
   ]
 }
