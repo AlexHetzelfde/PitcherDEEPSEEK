@@ -10,6 +10,10 @@
       "naam": "Gemeente"
     },
     {
+      "code": "WON",
+      "naam": "Wonen"
+    },
+    {
       "code": "PRV",
       "naam": "Provincie"
     },
@@ -39,7 +43,7 @@
     },
     {
       "code": "ALG",
-      "naam": "Overig"
+      "naam": "Zonder tag"
     }
   ],
   "bronnen": {

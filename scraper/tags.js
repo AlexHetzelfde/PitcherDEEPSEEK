@@ -11,7 +11,7 @@
 //   2. Zonder AI-tag (geen sleutel, quotum op, aanroep mislukt) kiest een
 //      trefwoordenlijst (hieronder), op de kop en het begin van de tekst.
 //   3. Geen treffer: de standaardtag van de bron (rubrieken.json).
-//   4. Ook die ontbreekt: ALG. Zo'n bericht staat alleen in "ZANP totaal".
+//   4. Ook die ontbreekt: ALG (geen tag). Zo'n bericht staat alleen in "ZANP totaal".
 //
 // Welke tags bestaan, staat in rubrieken.json (de lijst "rubrieken"); hier
 // staan alleen de uitleg en trefwoorden per tag. Een tag zonder trefwoorden
@@ -21,10 +21,17 @@
 // een woord (brand, brandweer, brandstichting). Zonder haken moet het hele
 // woord kloppen (file, ns, bus).
 
+// Versie van de tagregels. Een record zonder deze versie wordt eenmalig opnieuw
+// bekeken (zie migreerTag in zanp.js). Versie 2: de tag Wonen.
+const TAG_VERSIE = 2;
+
+// ALG is geen tag en geen kolom: een bericht zonder passende tag staat alleen
+// in "ZANP totaal".
 const ONBEKEND = "ALG";
 
 // De uitleg die de AI in de prompt krijgt, en de volgorde bij gelijke score
-// (de eerste wint). GEM staat laatst: "gemeente" komt in veel koppen voor.
+// (de eerste wint). WON staat vóór GEM, en GEM staat laatst: "gemeente" komt in
+// veel koppen voor en een woonbesluit van de gemeente is nieuws over wonen.
 const TAGS = {
   112: {
     hint: "brand, ongeval met hulpdiensten, politie, misdrijf, ontruiming, vermissing, noodsituatie",
@@ -97,12 +104,22 @@ const TAGS = {
       "[monument]", "[zaanse schans]", "[podium]", "[cabaret]", "[boekpresentatie]",
     ],
   },
+  WON: {
+    hint: "wonen, woningbouw, huur en koop, woningcorporaties, volkshuisvesting, woningnood; ook als de gemeente het besluit neemt",
+    woorden: [
+      "[woningbouw]", "[woningen]", "[huurwoning]", "[koopwoning]", "[starterswoning]", "[nieuwbouw]",
+      "[volkshuisvesting]", "[huisvestingsverordening]", "[woningcorporatie]", "[corporatie]", "[woningnood]",
+      "[woningmarkt]", "[woningzoekend]", "[spoedzoeker]", "[huurder]", "[huurprijs]", "[huurverhoging]",
+      "[sociale huur]", "[sociale koop]", "[middenhuur]", "[woonruimte]", "[woonwijk]", "[woonvergunning]",
+      "[wonen]", "[woon-]", "[hypotheek]", "[bouwplan]", "[bouwproject]",
+    ],
+  },
   GEM: {
     hint: "gemeente, gemeenteraad, college, burgemeester, wethouder, besluiten, vergunningen en bekendmakingen",
     woorden: [
       "[gemeente]", "[gemeenteraad]", "[raadsvergadering]", "[college van b]", "[burgemeester]", "[wethouder]",
       "[bestemmingsplan]", "[omgevingsvergunning]", "[verordening]", "[begroting]", "[zienswijze]", "[coalitie]",
-      "[raadslid]", "[raadsvoorstel]", "[raadsinformatiebrief]", "[ozb]", "[woningbouw]", "[bouwplan]", "[wijkraad]",
+      "[raadslid]", "[raadsvoorstel]", "[raadsinformatiebrief]", "[ozb]", "[wijkraad]",
       "[inspraak]", "[collegeberichten]", "[ingekomen stukken]",
     ],
   },
@@ -202,4 +219,4 @@ function tagsVoorPrompt(rubrieken) {
     .map((r) => ({ code: r.code, naam: r.naam, hint: (TAGS[r.code] && TAGS[r.code].hint) || "" }));
 }
 
-module.exports = { ONBEKEND, TAGS, VOLGORDE, kiesTagUitTekst, bepaalTag, tagUitAntwoord, tagsVoorPrompt };
+module.exports = { ONBEKEND, TAG_VERSIE, TAGS, VOLGORDE, kiesTagUitTekst, bepaalTag, tagUitAntwoord, tagsVoorPrompt };

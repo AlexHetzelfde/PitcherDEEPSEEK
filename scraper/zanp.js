@@ -31,7 +31,7 @@
 
 const bronnen = require("./bronnen");
 const { RUBRIEKEN, isBekendeBron, profielVoor } = require("./rubrieken");
-const { tagsVoorPrompt } = require("./tags");
+const { tagsVoorPrompt, TAG_VERSIE, kiesTagUitTekst } = require("./tags");
 const { koppelDossiers } = require("./koppel");
 const {
   binnenVenster,
@@ -258,13 +258,31 @@ function bepaalAlerts(records, clusterResultaat, modus, nu) {
 // Ze krijgen eenmalig een tag op trefwoorden of de standaardtag van hun bron,
 // zodat ze meteen in de goede kolom staan.
 function migreerTag(r) {
-  if (r.tagBron !== undefined) return r;
-  const tag = wire.kiesTag({
-    kop: r.bronTitel || r.kop,
-    tekst: r.tekst || "",
-    standaard: profielVoor(r.bronId).rubriek,
-  });
-  return { ...r, rubriek: tag.tag, tagBron: tag.bron };
+  let uit = r;
+  if (r.tagBron === undefined) {
+    const tag = wire.kiesTag({
+      kop: r.bronTitel || r.kop,
+      tekst: r.tekst || "",
+      standaard: profielVoor(r.bronId).rubriek,
+    });
+    uit = { ...r, rubriek: tag.tag, tagBron: tag.bron };
+  }
+  return migreerNaarWonen(uit);
+}
+
+// Tagversie 2 (de tag Wonen): een record van vóór die versie kon nooit Wonen
+// krijgen. Wijzen de trefwoorden in de kop duidelijk naar Wonen en stond het
+// bericht onder Gemeente of zonder tag (ook als de AI dat koos, want Wonen stond
+// toen niet in zijn lijst), dan gaat het eenmalig naar Wonen. Andere tags
+// blijven staan. Daarna krijgt het record de versie en gebeurt dit niet meer.
+function migreerNaarWonen(r) {
+  if (r.tagVersie === TAG_VERSIE) return r;
+  const treffer = kiesTagUitTekst(r.bronTitel || r.kop, "", ["WON"]);
+  const vorigeTagKwam = r.rubriek === "GEM" || r.rubriek === "ALG";
+  if (treffer && vorigeTagKwam && wire.TAG_CODES.includes("WON")) {
+    return { ...r, rubriek: "WON", tagBron: "trefwoord", tagVersie: TAG_VERSIE };
+  }
+  return { ...r, tagVersie: TAG_VERSIE };
 }
 
 function migreerBericht(r) {
