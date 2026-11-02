@@ -416,10 +416,12 @@ function renderAlertBalk() {
 
 // --- kolommen ---------------------------------------------------------------
 
-// Alle kolommen die er kunnen zijn: totaal + rubrieken met berichten.
+// Alle kolommen die er kunnen zijn: totaal + rubrieken met berichten (zonder ALG).
 function alleKolommen() {
   const lijst = [{ code: "ALL", naam: "ZANP totaal" }];
   for (const rubriek of state.rubrieken) {
+    // ALG (geen tag) is geen kolom: die berichten staan alleen in ZANP totaal.
+    if (rubriek.code === "ALG") continue;
     if (state.zichtbaar.some((r) => r.rubriek === rubriek.code)) lijst.push(rubriek);
   }
   return lijst;
@@ -561,7 +563,7 @@ function renderWireItem(r, kolomCode) {
   const heeftAlert = r.alert && state.alertModus === "aan" && new Date(r.alert.tot).getTime() > Date.now();
   const isNieuw = state.bezoekStart && String(r.eerstGezienOp) > state.bezoekStart;
   // In de totaalkolom staat de tag erbij; in een tagkolom is dat overbodig.
-  const tag = kolomCode === "ALL" && r.rubriek ? `<div><dt>tag</dt><dd>${escapeHtml(r.rubriek)}</dd></div>` : "";
+  const tag = kolomCode === "ALL" && r.rubriek && r.rubriek !== "ALG" ? `<div><dt>tag</dt><dd>${escapeHtml(r.rubriek)}</dd></div>` : "";
   return `
     <article class="wire-item prioriteit-${prio}${heeftAlert ? ` heeft-alert alert-${r.alert.niveau}` : ""}" data-id="${escapeHtml(r.id)}">
       <div class="title-row">
@@ -690,7 +692,7 @@ function renderPopup() {
     .join("");
 
   const rubriek = state.rubrieken.find((x) => x.code === r.rubriek);
-  const tagChip = r.rubriek
+  const tagChip = r.rubriek && r.rubriek !== "ALG"
     ? `<span class="chip chip-tag">${escapeHtml(rubriek ? rubriek.naam : r.rubriek)}</span>`
     : "";
 
