@@ -1,13 +1,188 @@
 {
-  "gegenereerdOp": "2026-11-01T07:23:34.438Z",
+  "gegenereerdOp": "2026-11-02T07:58:06.859Z",
   "promptVersie": "2026-10-22-pitch-vier-velden",
   "sorteerwijze": "datum",
-  "aantalBerichtenTotaal": 35,
+  "aantalBerichtenTotaal": 14,
   "drempels": {
     "lokaal": 6,
     "landelijk": 8,
     "maxLokaal": 34.5,
     "maxLandelijk": 40.5
   },
-  "topPitches": []
+  "topPitches": [
+    {
+      "bronId": "DeOrkaan",
+      "bronNaam": "DeOrkaan",
+      "categorie": "lokaal",
+      "titel": "Zaans voor ’t hekje: Pieter Latensteinstraat-moord en (voorbije) dancefeesten",
+      "url": "https://www.deorkaan.nl/zaans-voor-t-hekje-pieter-latensteinstraat-moord-en-voorbije-dancefeesten/",
+      "samenvatting": "Deze week behandelen de rechtbanken in Alkmaar en Haarlem en de bezwaarschriftencommissie van Zaanstad meerdere Zaanse zaken. Op de agenda staan onder meer de pro-formazitting rond de dood van de 34-jarige Zaandamse Ana Maria Vasiliu-Stoica en bezwaren tegen de dancefeesten JOY x FLOW en SONA presents Chris Stussy (die feesten zijn inmiddels al lang achter de rug). Hieronder een overzicht van de zittingen die gepland staan voor verschillende kamers: Meervoudige kamer Alkmaar Woensdag 4 november moet iemand voor de meervoudige kamer in Haarlem verschijnen tijdens een pro-formazitting* in de zaak rond de dood van de 34-jarige Roemeense vrouw Ana Maria Vasiliu-Stoica. Zij werd op 7 september 2024 door een schot in het hoofd om het leven gebracht in haar woning aan de Pieter Latensteinstraat. (Normaal noemen we de naam van slachtoffers niet, maar in deze zaak is haar identiteit al uitgebreid gepubliceerd in zowel lokale als landelijke media.) Politierechter Alkmaar Het wordt een druk weekje voor de politierechter in Alkmaar, met flink wat Zaanse zaken op de agenda. Op dinsdag 3 november moet iemand voor de rechter verschijnen voor een poging tot zware mishandeling van twee personen in Oostzaan. Een dag later staat iemand terecht voor de mishandeling van zijn of haar levenspartner in Wormerveer. Daarna volgt een zaak over een poging tot zware mishandeling in Wormer. Ook moet iemand zich verantwoorden voor drugs- en wapenbezit in Krommenie en Zaandam. Politierechter Haarlem In vergelijking met de politierechter in Alkmaar is het vandaag – maandag 2 november – in de Noord-Hollandse hoofdstad Haarlem een stuk rustiger met Zaanse zaken. Er staan die dag drie zaken op de agenda. Eerst moet iemand voor de rechter verschijnen omdat die in Zaandam onder invloed van alcohol achter het stuur zou hebben gezeten. Daarna is het de beurt aan iemand die eveneens in Zaandam zou hebben gereden, maar dan onder invloed van zowel drank als drugs. Tot slot moet iemand zich verantwoorden voor het niet op tijd publiceren van de jaarstukken over 2022. Die hadden uiterlijk binnen twaalf maanden na afloop van het boekjaar openbaar gemaakt moeten worden. Ook deze zaak speelt in Zaandam. Bestuursrechter Haarlem Ook bij de bestuursrechter in Haarlem staan komende week twee Zaanse zaken op de agenda. Vandaag – maandag 2 november – gaat het over het verhuren van kamers zonder de benodigde vergunning in Zaanstad. Zo’n vergunning is soms nodig als een woning wordt opgedeeld in kamers voor verhuur. Morgen – dinsdag 3 november – draait het om een last onder dwangsom voor het sluiten van een woning in Zaanstad. Dat betekent dat iemand een boete moet betalen als die zich niet aan de opgelegde verplichting houdt. In beide zaken moet de rechter beoordelen of de gemeente juist heeft gehandeld. Bezwaarhoorzitting Zaanstad De bezwarencommissie van de gemeente Zaanstad heeft op dinsdag 3 en woensdag 4 november zeven zaken op de agenda staan. Van een laadpaal in Assendelft tot festivaloverlast en kamerverhuur in Zaandam. Dinsdag begint met een bezwaar tegen een laadpaal aan de Olympus in Assendelft. Daarna komen twee evenementen aan bod waar al veel over te doen is geweest. Eerst gaat het over de vergunning voor JOY x FLOW van 11 juli op het Hembrugterrein. Zowel omwonenden als ondernemers klaagden over overlast, verkeerschaos, fout rijdende taxi’s en wildplassers. De Orkaan schreef hier al uitgebreid over. Ook de vergunning voor SONA presents Chris Stussy van 15 augustus wordt besproken. Rond dit dancefeest bij Taets was eerder veel discussie over verkeer, veiligheid en een door de gemeente opgelegde last onder dwangsom. Volgens de gemeente verliep het feest uiteindelijk zonder grote problemen. Woensdag gaat het verder met een dwangsom voor een verbouwing zonder vergunning aan het Schoolpad in Zaandijk. Daarna volgen een geweigerde vergunning voor een uitweg bij Waterbies in Assendelft en de langdurige afsluiting van de Westerwateringtunnel bij het Dik Trompad in Zaandam. Tot slot komt een bestuurlijke boete voor kamerverhuur aan Spitsbergen 28 in Zaandam aan bod. Tijden, details en de adressen van rechtbanken zijn te vinden op de site van de Rechtbank Noord-Holland. Voor bezwaarhoorzittingen bij Zaanstad kunnen gegevens worden geraadpleegd op de site van de gemeente Zaanstad. * Een pro-forma zitting is een formele, voorbereidende rechtszitting waarbij de zaak nog niet inhoudelijk wordt behandeld. Dit wordt vaak gedaan om de voortgang van de zaak te bewaken en bijvoorbeeld de voorlopige hechtenis van de verdachte te verlengen. Tijdens een pro-forma zitting worden nog geen bewijzen besproken of oordelen geveld, maar wordt de zaak uitgesteld naar een latere datum voor een inhoudelijke behandeling. Door Nick Boeske, met informatie uit zittingsrooster rechtbank Noord-Holland en bezwaarhoorzittingen Zaanstad. Foto van Michel Schermer.",
+      "foto": "https://www.deorkaan.nl/wp-content/uploads/2024/09/latensteinstraat-overleden-persoon-8-8-24-DB-3-275x190.jpg",
+      "gepubliceerdOp": "2026-11-01T23:00:00.000Z",
+      "opgehaaldOp": "2026-11-02T07:35:42.052Z",
+      "tekstBron": "artikel",
+      "aiBeoordeling": {
+        "werktitel": "Drukke week voor Zaanse rechters: moordzaak Pieter Latensteinstraat voor ’t hekje",
+        "samenvatting": "De rechtbanken in Alkmaar en Haarlem en de bezwaarschriftencommissie van Zaanstad behandelen deze week diverse Zaanse zaken. Onder meer de pro-formazitting over de dood van de 34-jarige Ana Maria Vasiliu-Stoica aan de Pieter Latensteinstraat en bezwaarschriften tegen dancefeesten op het Hembrugterrein staan op de rol.",
+        "invalshoek": "Lokaal: de impact van ernstige incidenten en overlast op omwonenden in de Pieter Latensteinstraat en rond het Hembrugterrein in Zaandam.",
+        "vraag": "Wanneer start de inhoudelijke behandeling van de rechtszaak rond de dood van Ana Maria Vasiliu-Stoica aan de Pieter Latensteinstraat?",
+        "centraleVraag": "Wanneer start de inhoudelijke behandeling van de rechtszaak rond de dood van Ana Maria Vasiliu-Stoica aan de Pieter Latensteinstraat?"
+      }
+    },
+    {
+      "bronId": "WaarheenAgenda",
+      "bronNaam": "Waarheen Agenda (De Orkaan)",
+      "categorie": "lokaal",
+      "titel": "Lichtjesavond en wensconcert Koger begraafplaats",
+      "url": "https://waarheen.deorkaan.nl/agenda/lichtjesavond-koger-begraafplaats/",
+      "samenvatting": "Lichtjes… Op maandagavond 2 november, de avond van Allerzielen, zijn de Koger Begraafplaats en de Kogerkerk open. De historische begraafplaats is verlicht met honderden lichtjes. Deze natuurlijke stilteplek laat via de vele verhalen die eraan verbonden zijn de rijke historie van Koog-Zaandijk spreken. In de kerk kan iedereen zelf een kaarsje aansteken om een familielid, vriend of vriendin te herdenken. Van 19.00 uur tot 20.00 uur is er een ‘Wensconcert’. Organist Bas Westerhof bedacht dit unieke concept, waarbij hij verzoeknummers speelt op het monumentale orgel. Titels van muziek – van pop tot klassiek- die u graag wilt horen, kun je u tot 28 oktober mailen naar b.westerhof@upcmail.nl.",
+      "foto": "https://waarheen.deorkaan.nl/wp-content/uploads/2024/10/Lichtjesavond-Koog-aan-de-Zaan-2-810x560.jpg",
+      "gepubliceerdOp": "2026-11-01T23:00:00.000Z",
+      "opgehaaldOp": "2026-11-02T07:34:14.508Z",
+      "tekstBron": "artikel",
+      "aiBeoordeling": {
+        "scores": {
+          "belang": 1,
+          "omvang": 1,
+          "afwijking": 1,
+          "inzicht": 0,
+          "gevolgen": 0,
+          "wie": 1,
+          "nieuwsVanMorgen": 1,
+          "voorHetEerst": 0,
+          "primeur": 0,
+          "amusement": 0
+        },
+        "score": 6.5,
+        "onderbouwing": "Het betreft een lokaal herdenkingsevenement rond Allerzielen op de Koger begraafplaats en in de Kogerkerk. Het raakt vooral directe nabestaanden en buurtbewoners (tientallen tot honderden mensen). Het wensconcert met popnummers op het kerkorgel door organist Bas Westerhof is een sympathiek en licht afwijkend element, maar het heeft geen maatschappelijke impact of structurele gevolgen.",
+        "centraleVraag": "Welke verzoeknummers heeft organist Bas Westerhof binnengekregen voor het wensconcert in de Kogerkerk?",
+        "invalshoek": "Vanuit dorpsbewoners die een overleden dierbare herdenken met een eigen verzoeknummer in de Kogerkerk.",
+        "bronnen": [
+          "Organist Bas Westerhof",
+          "Beheer / vrijwilligers Koger Begraafplaats",
+          "Kerkbestuur Kogerkerk"
+        ],
+        "citaatControle": {
+          "heeftCitaat": false,
+          "citaat": ""
+        },
+        "werktitel": "Honderden lichtjes en een orgel-wensconcert: Allerzielen op de Koger begraafplaats",
+        "samenvatting": "Op maandagavond 2 november openen de Koger Begraafplaats en de Kogerkerk de deuren voor Allerzielen. De historische begraafplaats wordt verlicht met honderden lichtjes en in de kerk kunnen bezoekers een kaarsje branden voor een dierbare. Organist Bas Westerhof verzorgt aansluitend een wensconcert op het monumentale orgel met nummers aangedragen door het publiek.",
+        "vraag": "Welke verzoeknummers heeft organist Bas Westerhof binnengekregen voor het wensconcert in de Kogerkerk?"
+      }
+    },
+    {
+      "bronId": "wetenregelgeving",
+      "bronNaam": "Lokale regelgeving — Zaanstad",
+      "categorie": "lokaal",
+      "titel": "Uitvoeringsbesluit Parkeerbelastingen Zaanstad",
+      "url": "https://lokaleregelgeving.overheid.nl/CVDR757595/2",
+      "samenvatting": "Permalink Printen Permanente link Naar de actuele versie van de regeling https://lokaleregelgeving.overheid.nl/CVDR757595 Naar de door u bekeken versie https://lokaleregelgeving.overheid.nl/CVDR757595/2 Uitvoeringsbesluit bij de Verordening Parkeerbelastingen Zaanstad 2026 Geldend van 01-11-2026 t/m heden Intitulé Uitvoeringsbesluit bij de Verordening Parkeerbelastingen Zaanstad 2026 Het college van burgemeester en wethouders van de gemeente Zaanstad; gelet op - artikel 225 van de Gemeentewet - de Parkeerverordening Zaanstad 2017 - de Verordening Parkeerbelastingen Zaanstad 2026 besluit vast te stellen het: Uitvoeringsbesluit bij de Verordening parkeerbelastingen Zaanstad 2026 Artikel 1 Begrippen In dit besluit wordt verstaan onder: a. Tariefzone: gebied waarbinnen een éénvormig parkeertarief geldt; b. Feestdagen: Nieuwjaarsdag, Koningsdag, Bevrijdingsdag, Hemelvaartsdag, Eerste Paasdag, Tweede Paasdag, Eerste Pinksterdag, Tweede Pinksterdag, Eerste Kerstdag, Tweede Kerstdag en Oudjaarsdag. c. Verordening: Verordening Parkeerbelastingen Zaanstad 2026 Artikel 2 Algemene bepaling Tegen betaling van de belasting als bedoeld in artikel 2, onder a, van de Verordening mag worden geparkeerd op de parkeerapparatuurplaatsen in de tariefzones I en II met in achtneming van het tijdstip en de wijze waarop, zoals hieronder en in de Verordening, op de parkeerkaart of op of bij de parkeerapparatuur is aangegeven. In de tariefzones I en II kan tevens de wielklem zoals bedoeld in artikel 8 van de Verordening worden toegepast. Artikel 3 Tariefzones Specificatie van de tariefzones in Zaandam, zie figuur 1. Figuur 1 Overzicht tariefzones Zaandam Artikel 4 Parkeertijden, parkeerduur en de wijze waarop 1. In geheel tariefzone I: Betaald parkeren op ° Maandag tot en met zaterdag van 9.00 uur – 23.00 uur; met uitzondering van Feestdagen; ° Zondag van 12.00 – 17.00 uur, met uitzondering van Feestdagen; 2. In geheel tariefzone II, behalve voor de straat Ebbehout: Betaald parkeren op ° Maandag tot en met zaterdag van 9.00 uur – 19.00 uur, met uitzondering van Feestdagen. ° In tariefzone II voor de straat Ebbehout: Maandag tot en met zaterdag van 9:00 uur – 23:00 uur, met uitzondering van Feestdagen. 3. In vergunninggebied Gouwpark: Vergunning parkeren op ° Maandag tot en met zaterdag van 9.00 uur – 19.00 uur met uitzondering van Feestdagen. ° Het gebied Oostzijderveld is uitgezonderd van betaald parkeren tot het moment dat –de mogelijk gefaseerde- plaatsing van bebording die het betaald parkeergebied aangeeft en de parkeerapparatuur op straat heeft plaatsgevonden en in werking is gesteld. 4. Ter zake van het betaald parkeren geschiedt het in werking stellen van de parkeerapparatuur door het opgeven van het kenteken van het te parkeren motorvoertuig en de opgave van de gewenste parkeerduur. Betaling geschiedt langs elektronische weg. Dit op de wijze die op of bij de parkeerapparatuur is vermeld of uit de parkeerapparatuur blijkt. 5. In afwijking van het vierde lid kan het in werking stellen van de parkeerapparatuur tevens geschieden door het via een mobiele telefoon of ander communicatiemiddel aanmelden bij de centrale computer van het bedrijf waarmee de gemeente Zaanstad een overeenkomst heeft gesloten. Artikel 5 Gebieden met dagkaartentarief De gebieden zoals aangegeven in de specificatie van artikel 3, Burcht en Behouden Haven, kennen een dagkaartentarief. Artikel 6 Plaats waarnaar voertuigen kunnen worden overgebracht De navolgende plaats is op grond van artikel 8, lid 3 van de Verordening aangewezen als plaats waar een voertuig, 24 uur na het aanbrengen van een wielklem, ter bewaring kan worden overgebracht: Hoogwout Berging Ambacht 24-F 1511 JZ Oostzaan Artikel 7 Overgangsrecht en inwerkingtreding 1. Dit besluit treedt in werking op 1 november 2026. 2. Het Uitvoeringsbesluit bij de Verordening Parkeerbelastingen Zaanstad 2026, zoals vastgesteld door het college op 16 december 2025 blijft van toepassing op de belastbare feiten die zich voor de datum van inwerkingtreding hebben voorgedaan. Artikel 8 Citeertitel Dit besluit wordt aangeduid als ‘Uitvoeringsbesluit Parkeerbelastingen Zaanstad’. Ondertekening Aldus vastgesteld in de vergadering van het college van burgemeester en wethouders van Zaanstad op 6 januari 2026. Burgemeester en wethouders van Zaanstad drs. J. Hamming, burgemeester mr. L. Graaff, gemeentesecretaris Ziet u een fout in deze regeling? Bent u van mening dat de inhoud niet juist is? Neem dan contact op met de organisatie die de regelgeving heeft gepubliceerd. Deze organisatie is namelijk zelf verantwoordelijk voor de inhoud van de regelgeving. De naam van de organisatie ziet u bovenaan de regelgeving. De contactgegevens van de organisatie kunt u hier opzoeken: organisaties.overheid.nl. Werkt de website of een link niet goed? Stuur dan een e-mail naar regelgeving@overheid.nl",
+      "gepubliceerdOp": "2026-10-31T23:00:00.000Z",
+      "opgehaaldOp": "2026-11-02T07:35:41.268Z",
+      "tekstBron": "artikel",
+      "aiBeoordeling": {
+        "werktitel": "Parkeerregels in Zaandam op de schop: dit verandert er voor Gouwpark, Ebbehout en het centrum",
+        "samenvatting": "Het college van burgemeester en wethouders van Zaanstad heeft het nieuwe Uitvoeringsbesluit Parkeerbelastingen vastgesteld, dat op 1 november 2026 ingaat. Daarin zijn de exacte tijden voor betaald parkeren in de tariefzones en vergunningparkeren in Gouwpark vastgelegd, evenals een tijdelijke uitzondering voor Oostzijderveld. Ook is geregeld dat voertuigen met een wielklem na 24 uur worden overgebracht naar bergingsbedrijf Hoogwout in Oostzaan.",
+        "invalshoek": "Lokaal: vanuit de bewoners en bezoekers van Gouwpark, Ebbehout en het centrum van Zaandam die te maken krijgen met de vastgestelde venstertijden en regels.",
+        "vraag": "Wanneer worden de bebording en parkeerautomaten in Oostzijderveld definitief geplaatst en in werking gesteld?",
+        "centraleVraag": "Wanneer worden de bebording en parkeerautomaten in Oostzijderveld definitief geplaatst en in werking gesteld?"
+      }
+    },
+    {
+      "bronId": "DeOrkaan",
+      "bronNaam": "DeOrkaan",
+      "categorie": "lokaal",
+      "titel": "Echtpaar gewond na botsing Assendelft, tegenligger onder invloed",
+      "url": "https://www.deorkaan.nl/echtpaar-gewond-na-botsing-assendelft/",
+      "samenvatting": "Een echtpaar dat uit de richting Assendelft over de Noorderveenweg naar de A8 reed, werd ter hoogte van het viaduct over de N246 geraakt door een tegenligger en kwam daardoor van de weg. Hun Opel Corsa belandde zo’n 15 meter lager in de berm langs het fietspad. Het ongeluk gebeurde rond 21.30 uur. Het echtpaar reed richting de A8 het viaduct op en raakte daar de tegenligger die richting Assendelft reed. Bij deze Nissan brak door de botsing het linker voorwiel af. De auto van het echtpaar reed na de botsing naar beneden door het gras. Het echtpaar is naar het ziekenhuis gebracht met onbekend letsel. De chauffeur die richting Assendelft reed werd aangehouden door de politie omdat hij onder invloed van drank of drugs zou hebben gereden. Vanaf de A8 was de weg richting Assendelft tijdens de afhandeling van het incident afgesloten. Door 112-redactie De Orkaan.",
+      "foto": "https://www.deorkaan.nl/wp-content/uploads/2026/11/ongeluk-assendelft-N246-A8-nov-2026-5-275x190.jpeg",
+      "gepubliceerdOp": "2026-10-31T23:00:00.000Z",
+      "opgehaaldOp": "2026-11-02T07:35:42.053Z",
+      "tekstBron": "artikel",
+      "aiBeoordeling": {
+        "werktitel": "Echtpaar gewond na zware crash op Noorderveenweg bij Assendelft: auto belandt 15 meter lager",
+        "samenvatting": "Op de Noorderveenweg bij het viaduct over de N246 is een echtpaar met hun auto vijftien meter lager in de berm beland na een aanrijding met een tegenligger. De twee inzittenden zijn met onbekend letsel overgebracht naar het ziekenhuis. De politie heeft de andere bestuurder aangehouden op verdenking van rijden onder invloed van alcohol of drugs.",
+        "invalshoek": "Vanuit het lokale perspectief op de verkeersveiligheid rond het viaduct van de Noorderveenweg bij Assendelft.",
+        "vraag": "Hoe ernstig is het letsel van het echtpaar dat na de crash op de Noorderveenweg naar het ziekenhuis is gebracht?",
+        "centraleVraag": "Hoe ernstig is het letsel van het echtpaar dat na de crash op de Noorderveenweg naar het ziekenhuis is gebracht?"
+      }
+    },
+    {
+      "bronId": "DeOrkaan",
+      "bronNaam": "DeOrkaan",
+      "categorie": "lokaal",
+      "titel": "Inrijverbod Oostzaan blijft, pas op voor verlopen ontheffing",
+      "url": "https://www.deorkaan.nl/inrijverbod-oostzaan-blijft-pas-op-voor-verlopen-ontheffing/",
+      "samenvatting": "Er is heel wat te doen geweest over de maatregelen tegen sluipverkeer in Oostzaan. Rechtszaken, boetes en veel discussie. Inmiddels is duidelijk dat de inrijverboden gewoon blijven gelden. Maar wie een ontheffing heeft, moet zelf goed opletten wanneer die verloopt. Anders kan het alsnog een dure rit worden. Op 25 juni 2024 oordeelde de rechter voorlopig dat Oostzaan niet bevoegd was om zelf boetes van 100 euro op te leggen voor het negeren van het inrijverbod. Op 20 augustus volgde de definitieve uitspraak. De gemeente had de verkeersboetes niet via haar eigen regels mogen innen. Dat moest via de landelijke verkeerswetgeving gebeuren. Het experiment met gemeentelijke boetes mislukte daarmee. Automobilisten die tijdig bezwaar hadden gemaakt, kregen hun boete terug. Wie geen bezwaar had gemaakt, viste achter het net. Dat werd in augustus 2025 nog eens door de rechter bevestigd. Voor automobilisten veranderde uiteindelijk weinig. De inrijverboden bleven van kracht en overtredingen worden nog steeds beboet. Alleen worden de boetes nu weer via het Centraal Justitieel Incassobureau (CJIB) afgehandeld, in plaats van door de gemeente zelf. Hoe zat het ook alweer? In Oostzaan geldt nog steeds een inrijverbod voor motorvoertuigen met meer dan twee wielen op de Kerkstraat en De Haal. Dat verbod geldt van maandag tot en met vrijdag op de volgende tijden: Kerkstraat: richting het centrum van Oostzaan van 07.00 tot 09.00 uur en richting Zaandam van 16.00 tot 19.00 uur. De Haal: richting Purmerend van 16.00 tot 19.00 uur. Inwoners van Oostzaan kunnen een ontheffing aanvragen. Wie buiten Oostzaan woont, komt daarvoor alleen onder bepaalde voorwaarden in aanmerking. Bijvoorbeeld als iemand in Oostzaan werkt, mantelzorg verleent of een kind heeft dat er naar school gaat. Let op de vervaldatum! Een ontheffing voor inwoners van Oostzaan is vijf jaar geldig. Voor mensen die buiten de gemeente wonen, is dat slechts één jaar. En daar zit een addertje onder het gras: wie een ontheffing heeft, moet zelf in de gaten houden wanneer die verloopt. Zet de datum dus vooral in de agenda. Een nieuwe aanvraag of verlenging kost 14,20 euro en kan digitaal met DigiD worden geregeld. Aanvragen kan ook aan de balie van het gemeentehuis, na het maken van een afspraak via 075 651 21 00. Wacht niet tot het laatste moment. Het kan na de aanvraag maximaal veertien werkdagen duren voordat de ontheffing actief is in het camerasysteem. Ook wie een andere auto of tijdelijk een leenauto gebruikt, moet erop letten dat het juiste kenteken geregistreerd staat. Want wie zonder geldige ontheffing tijdens de verboden uren toch doorrijdt, riskeert een boete. En dat is een stuk duurder dan op tijd verlengen. Door: Barbara van Wijk. Foto uit het Orkaan-archief.",
+      "foto": "https://www.deorkaan.nl/wp-content/uploads/2025/10/oostzaan-zaanstad-bord-orkaan-okt-2025-2-e1793035041816-275x190.jpg",
+      "gepubliceerdOp": "2026-10-31T23:00:00.000Z",
+      "opgehaaldOp": "2026-11-02T07:35:42.055Z",
+      "tekstBron": "artikel",
+      "aiBeoordeling": {
+        "werktitel": "Inrijverbod Oostzaan blijft van kracht: let op de vervaldatum van je ontheffing",
+        "samenvatting": "De inrijverboden op de Kerkstraat en De Haal in Oostzaan blijven van kracht, waarbij boetes na eerdere rechtszaken nu via het Centraal Justitieel Incassobureau worden geïnd. Automobilisten moeten zelf de vervaldatum van hun ontheffing bewaken, die voor inwoners vijf jaar en voor mensen van buiten het dorp slechts één jaar geldig is. Wie zonder geldige registratie tijdens de spitsuren rijdt, riskeert een verkeersboete.",
+        "invalshoek": "Vanuit forenzen en bezoekers van buiten Oostzaan die jaarlijks hun ontheffing voor de Kerkstraat en De Haal moeten vernieuwen om een boete te voorkomen.",
+        "vraag": "Hoeveel boetes heeft het CJIB op de Kerkstraat en De Haal uitgeschreven sinds het experiment met gemeentelijke boetes strandde?",
+        "centraleVraag": "Hoeveel boetes heeft het CJIB op de Kerkstraat en De Haal uitgeschreven sinds het experiment met gemeentelijke boetes strandde?"
+      }
+    },
+    {
+      "bronId": "DeOrkaan",
+      "bronNaam": "DeOrkaan",
+      "categorie": "lokaal",
+      "titel": "Halloween: griezelen in Wormerveer (het engste dorp van de Zaanstreek)",
+      "url": "https://www.deorkaan.nl/halloween-griezelen-in-wormerveer-het-engste-dorp-van-de-zaanstreek/",
+      "samenvatting": "In Wormerveer konden griezelliefhebbers kiezen uit waar ze de stuipen op het lijf gejaagd wilden hebben. Een spooktocht bij Terror Island bij De Jungle of een speurtocht voor kinderen naar een versteende parkwachter in het Wilhelminapark. In het Wilhelminapark konden kinderen tot 10 jaar zaterdagavond griezelen tijdens Halloween. Voor de hekken aan de Wandelweg verzamelden ze zih om de tocht te beginnen in de woning van de parkwachter. Daar kregen ze te horen dat de parkwachter ‘kwijt’ is, deze zou versteend op een bankje ergens in het park zitten. Om erachter komen waar moesten de kinderen mysteries oplossen, waarbij ze magische lichtjes en elixer moesten zoeken. Het werd voor de kinderen een spannende avond in het park vol met lichtjes en griezelige ontmoetingen. Met wat er werd verzameld én de spreuk kon de verstening van de parkwachter weer ongedaan gemaakt worden. Tien foto’s in de slideshow: klik of swipe. Terror Island bij De Jungle beloofde dit jaar nog spannender én enger te worden dan vorig jaar. Daar bleek geen woord aan gelogen. Zo’n 1100 bezoekers, van jong tot oud, liepen door elf verschillende Scare Zones met griezels. Zombies, clowns en alle andere soorten enge creaties joegen iedereen de stuipen op het lijf. De Jungle was omgetoverd tot een angstaanjagend eiland. Overal werd er gegild, zelfs door de stoerste jongens. De spooktocht eindigde bij het terras met kampvuur, terwijl binnen de DJ ervoor zorgde dat de voetjes van de vloer gingen. Dankzij de vele vrijwilligers van Halloween aan de Watering Wormerveer en De Jungle was het Halloweenfeest weer een groot succes. Door Michel Schermer.",
+      "foto": "https://www.deorkaan.nl/wp-content/uploads/2026/11/Halloween-Terror-Island-Michel-Schermer-Orkaan-31-okt-2026-7-275x190.jpg",
+      "gepubliceerdOp": "2026-10-31T23:00:00.000Z",
+      "opgehaaldOp": "2026-11-02T07:35:42.058Z",
+      "tekstBron": "artikel",
+      "aiBeoordeling": {
+        "werktitel": "Wormerveer als griezelhoofdstad: ruim 1100 bezoekers trotseren Terror Island en Wilhelminapark",
+        "samenvatting": "Tijdens Halloween vonden in Wormerveer twee grote griezelactiviteiten plaats in het Wilhelminapark en bij De Jungle. Kinderen tot tien jaar losten mysteries op in het park om een versteende parkwachter te redden, terwijl Terror Island zo'n 1100 bezoekers trok langs elf verschillende Scare Zones. Het evenement werd georganiseerd door vrijwilligers van Halloween aan de Watering Wormerveer en De Jungle.",
+        "invalshoek": "Lokaal: vanuit de vrijwilligers van Halloween aan de Watering Wormerveer en De Jungle die het dorp omtoverden tot griezeldecor.",
+        "vraag": "Hoeveel vrijwilligers van De Jungle en Halloween aan de Watering Wormerveer waren er dit jaar nodig om het evenement voor de 1100 bezoekers neer te zetten?",
+        "centraleVraag": "Hoeveel vrijwilligers van De Jungle en Halloween aan de Watering Wormerveer waren er dit jaar nodig om het evenement voor de 1100 bezoekers neer te zetten?"
+      }
+    },
+    {
+      "bronId": "DeOrkaan",
+      "bronNaam": "DeOrkaan",
+      "categorie": "lokaal",
+      "titel": "Water van de Zaan, Bonifatiuskerk",
+      "url": "https://www.deorkaan.nl/water-van-de-zaan/",
+      "samenvatting": "Goede wijn behoeft geen krans en uitmuntend water al helemaal niet. Wie Zaans water kent, heeft het door de aderen vloeien. Water Het kan geen toeval zijn dat water-fotografe Daniëlle van der Erve zich in Zaanstad heeft gevestigd. Elke maand deelt ze water met ons. Uit de rivier, een sloot, een meer of een plas, maar altijd Zaans. Daniëlle: ‘Ook fotografie is afhankelijk van weersomstandigheden. Staande aan de Westkade in Zaandam op een zonnige dag met ruim wind kun je dit beeld tegen komen. De klokkentoren van de Sint-Bonifatiuskerk wordt uit een gedreven in het blauw van lucht. Het goud van de cijfers en wijzers resoneert wat door het felle zonlicht.’ Op zondag 1 november is T*art 8.0 van 13.00-17.00 uur bij Zaansgroen, Zeemansstraat 54 in Zaandam. Met foto’s van Daniëlle. Door Daniëlle van der Erve.",
+      "foto": "https://www.deorkaan.nl/wp-content/uploads/2026/10/water-aan-de-zaan-nov-2026.jpg-275x190.jpeg",
+      "gepubliceerdOp": "2026-10-31T23:00:00.000Z",
+      "opgehaaldOp": "2026-11-02T07:35:42.059Z",
+      "tekstBron": "artikel",
+      "aiBeoordeling": {
+        "werktitel": "Zaans water door de lens: Daniëlle van der Erve exposeert bij Zaansgroen",
+        "samenvatting": "Fotografe Daniëlle van der Erve legt maandelijks Zaans water vast en maakte recent een foto van de Sint-Bonifatiuskerk vanaf de Westkade in Zaandam. Haar werk is op zondag 1 november van 13.00 tot 17.00 uur te zien tijdens T*art 8.0 bij Zaansgroen aan de Zeemansstraat.",
+        "invalshoek": "Menselijk: vanuit fotografe Daniëlle van der Erve die haar beelden van Zaans water tentoonstelt in Zaandam.",
+        "vraag": "Welke andere Zaanse waterlocaties exposeert Daniëlle van der Erve tijdens T*art 8.0 bij Zaansgroen?",
+        "centraleVraag": "Welke andere Zaanse waterlocaties exposeert Daniëlle van der Erve tijdens T*art 8.0 bij Zaansgroen?"
+      }
+    },
+    {
+      "bronId": "DeOrkaan",
+      "bronNaam": "DeOrkaan",
+      "categorie": "lokaal",
+      "titel": "Waarheen: Theater Terra, CONNECTED VII, Wereldvrouwen 🎙",
+      "url": "https://www.deorkaan.nl/waarheen-theater-terra-connected-vii-wereldvrouwen-%f0%9f%8e%99/",
+      "samenvatting": "Deze zondag zit er muziek in de Zaanstreek. Franklin Brown treedt op met de Blue Tone Big Band, drie Zaanse leerlingorkesten spelen samen en in Assendelft en Wormerveer valt muzikaal ook genoeg te beleven. Wie liever kijkt of op pad gaat, kan naar theater, kunst, een klankbeleving of een excursie langs overwinterende vogels. Ook wordt het 150-jarig bestaan van het Noordzeekanaal gevierd met een lezing en fietstocht. Je leest het allemaal in Waarheen, de veelzijdige uitgaansagenda van De Orkaan. Naar Waarheen kun je ook luisteren. In een paar minuten praten we je bij over de leukste Zaanse uitjes. Onder de podcast nog meer tips! De Orkaan podcast (Zaans nieuws) · Waarheen – Zaanse uitgaanstips van De Orkaan (30 oktober – 1 november) Zondag: Klank in de buurt bij De Vuister Koog aan de Zaan, Sam & Julia op avontuur in Theater De Kaasfabriek Wormer, Dé Cabaretvoorstelling Vermaning Wormerveer, lezing en fietstocht 150 jaar Noordzeekanaal Cultureel Raadhuis Assendelft, Theater Terra in De KunstGreep Oostzaan, O Tree in de Doopsgezinde Vermaning Zaandam, muziekfeest Buurtcentrum A3 Assendelft, drie Zaanse leerlingorkesten bij De Horn Krommeniedijk, Percossa in het Zaantheater, Le Moulin des Mélodies in de Vermaning Wormerveer, CONNECTED VII Het Weefhuis Zaandijk, Blue Tone Big Band & Franklin Brown in de Bullekerk, WereldVrouwen Zingen Samen in De Poelenburcht (Zaandam), ZaanFolk Sessie in Café De Melterij in Wormerveer met Decade Later… en nog veel meer. Kijk maar in onze uitgaansagenda. Je vindt ‘m hier: De selectie en interpretatie van Dorine Kat en Di-Lan Sun uit het brede aanbod van Zaans vermaak. De foto is een compilatie van de verschillende evenementen die georganiseerd worden.",
+      "foto": "https://www.deorkaan.nl/wp-content/uploads/2026/10/waarheen_011126-275x190.jpg",
+      "gepubliceerdOp": "2026-10-31T23:00:00.000Z",
+      "opgehaaldOp": "2026-11-02T07:35:42.059Z",
+      "tekstBron": "artikel",
+      "aiBeoordeling": {
+        "werktitel": "Van 150 jaar Noordzeekanaal tot bigband in de Bullekerk: bomvolle culturele zondag in de Zaanstreek",
+        "samenvatting": "Nieuwssite De Orkaan presenteert in de uitgaansagenda Waarheen een overzicht van culturele en muzikale activiteiten in de Zaanstreek. Op het programma staan onder meer muziekoptredens, theater en een fietstocht en lezing rond het 150-jarig bestaan van het Noordzeekanaal.",
+        "invalshoek": "Vanuit de Zaanse cultuurliefhebber die kan kiezen uit uiteenlopende activiteiten verspreid over onder meer Assendelft, Wormerveer, Oostzaan en Zaandam.",
+        "vraag": "Hoeveel deelnemers doen er mee aan de fietstocht rond het 150-jarig bestaan van het Noordzeekanaal bij het Cultureel Raadhuis in Assendelft?",
+        "centraleVraag": "Hoeveel deelnemers doen er mee aan de fietstocht rond het 150-jarig bestaan van het Noordzeekanaal bij het Cultureel Raadhuis in Assendelft?"
+      }
+    }
+  ]
 }
