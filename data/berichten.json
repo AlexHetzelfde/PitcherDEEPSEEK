@@ -1,5 +1,5 @@
 {
-  "gegenereerdOp": "2026-11-03T22:15:52.895Z",
+  "gegenereerdOp": "2026-11-03T23:00:50.778Z",
   "promptVersie": "2026-10-29-batch-tag-checklist-agendapunten",
   "alertModus": "log",
   "prioSchaal": "1 = urgent, 2 = belangrijk, 3 = regulier, 4 = routine. De AI geeft nooit prio 1.",
@@ -50,6 +50,43 @@
     }
   ],
   "berichten": [
+    {
+      "id": "f2ec380ca4-v1",
+      "groepId": "f2ec380ca4",
+      "versie": 1,
+      "url": "https://vervoerregio.bestuurlijkeinformatie.nl/Reports/Item/8653c4c8-9cef-494b-9e5d-95e049aba320",
+      "kop": "Regioraadsleden stellen schriftelijke vragen over rituitval bij busvervoerder EBS",
+      "tekst": "Regioraadsleden uit onder meer Zaanstad en Wormerland hebben schriftelijke vragen gesteld over de rituitval en de verdeling daarvan over buslijnen bij vervoerder EBS. Aanleiding is een krantenartikel over buslijn 800 naar de Zaanse Schans, die volgens onderzoek aanzienlijk minder rituitval kende dan het gemiddelde binnen de concessie Zaanstreek-Waterland. De raadsleden willen onder meer weten hoeveel ritten er op afzonderlijke lijnen zijn uitgevallen en hoe de Vervoerregio toezicht houdt.",
+      "rubriek": "VER",
+      "tagBron": "ai",
+      "herkomst": "officieel",
+      "prio": 3,
+      "tijd": "2026-11-03T23:00:00.000Z",
+      "heeftTijd": false,
+      "woorden": 711,
+      "afgekapt": false,
+      "bronId": "vervoerregio-overzichten",
+      "bronNaam": "Vervoerregio: Overzichten (iBabs)",
+      "ai": true,
+      "controle": "cijfers-ok",
+      "eerstGezienOp": "2026-11-03T23:00:50.778Z",
+      "gecontroleerdOp": "2026-11-03T23:00:50.778Z",
+      "bronTitel": "Inzicht in rituitval EBS en de verdeling daarvan over buslijnen",
+      "bronLengte": 4879,
+      "checklist": {
+        "gevaar": false,
+        "evacuatieOfNlAlert": false,
+        "gewondenOfDoden": false,
+        "bestuurlijkeCrisis": false,
+        "besluitMetGrootGevolg": false,
+        "tijdkritisch": false,
+        "betrokkenen": null,
+        "geldbedragEuro": null,
+        "banen": null,
+        "inRegio": true
+      },
+      "checklistBron": "ai"
+    },
     {
       "id": "6b001b9460-v1",
       "groepId": "6b001b9460",
@@ -635,7 +672,8 @@
       "analyse": true,
       "agendaIds": [
         "9b69809160",
-        "0182847555"
+        "0182847555",
+        "fd3599b689"
       ],
       "tagVersie": 2
     },
@@ -1285,14 +1323,7 @@
       },
       "checklistBron": "ai",
       "analyse": true,
-      "tagVersie": 2,
-      "alertKandidaat": {
-        "niveau": "oranje",
-        "categorie": "bestuur",
-        "reden": "besluit met groot gevolg (één bron)",
-        "aangemaaktOp": "2026-11-03T16:58:05.874Z",
-        "tot": "2026-11-04T16:58:05.874Z"
-      }
+      "tagVersie": 2
     },
     {
       "id": "7d36a0a144-v1",
@@ -4850,8 +4881,6 @@
       ],
       "analyse": true,
       "agendaIds": [
-        "b6fb147654",
-        "5a2aef5c99",
         "df48aaaba7"
       ],
       "tagBron": "trefwoord",
