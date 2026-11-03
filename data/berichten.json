@@ -1,5 +1,5 @@
 {
-  "gegenereerdOp": "2026-11-03T16:00:52.806Z",
+  "gegenereerdOp": "2026-11-03T16:58:05.874Z",
   "promptVersie": "2026-10-29-batch-tag-checklist-agendapunten",
   "alertModus": "log",
   "prioSchaal": "1 = urgent, 2 = belangrijk, 3 = regulier, 4 = routine. De AI geeft nooit prio 1.",
@@ -240,6 +240,44 @@
       },
       "checklistBron": "ai",
       "tagVersie": 2
+    },
+    {
+      "id": "ecd638ef9c-v1",
+      "groepId": "ecd638ef9c",
+      "versie": 1,
+      "url": "https://www.deorkaan.nl/nieuwe-hondenverboden-bij-de-tref-bewoners-begrijpen-er-weinig-van/",
+      "kop": "Nieuwe hondenverboden bij De Tref: bewoners begrijpen er weinig van",
+      "tekst": null,
+      "rubriek": "GEM",
+      "tagBron": "ai",
+      "herkomst": "signaal",
+      "prio": 3,
+      "tijd": "2026-11-02T23:00:00.000Z",
+      "heeftTijd": false,
+      "woorden": 551,
+      "afgekapt": false,
+      "bronId": "DeOrkaan",
+      "bronNaam": "DeOrkaan",
+      "ai": false,
+      "controle": "analyse-ok",
+      "eerstGezienOp": "2026-11-03T16:58:05.874Z",
+      "gecontroleerdOp": "2026-11-03T16:58:05.874Z",
+      "bronTitel": "Nieuwe hondenverboden bij De Tref: bewoners begrijpen er weinig van",
+      "bronLengte": 3461,
+      "checklist": {
+        "gevaar": false,
+        "evacuatieOfNlAlert": false,
+        "gewondenOfDoden": false,
+        "bestuurlijkeCrisis": false,
+        "besluitMetGrootGevolg": false,
+        "tijdkritisch": false,
+        "betrokkenen": null,
+        "geldbedragEuro": null,
+        "banen": null,
+        "inRegio": true
+      },
+      "checklistBron": "ai",
+      "analyse": true
     },
     {
       "id": "952fd237d2-v1",
@@ -1246,7 +1284,14 @@
       },
       "checklistBron": "ai",
       "analyse": true,
-      "tagVersie": 2
+      "tagVersie": 2,
+      "alertKandidaat": {
+        "niveau": "oranje",
+        "categorie": "bestuur",
+        "reden": "besluit met groot gevolg (één bron)",
+        "aangemaaktOp": "2026-11-03T16:58:05.874Z",
+        "tot": "2026-11-04T16:58:05.874Z"
+      }
     },
     {
       "id": "7d36a0a144-v1",
