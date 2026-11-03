@@ -1,5 +1,5 @@
 {
-  "gegenereerdOp": "2026-11-03T08:56:18.414Z",
+  "gegenereerdOp": "2026-11-03T09:00:50.689Z",
   "promptVersie": "2026-10-29-batch-tag-checklist-agendapunten",
   "alertModus": "log",
   "prioSchaal": "1 = urgent, 2 = belangrijk, 3 = regulier, 4 = routine. De AI geeft nooit prio 1.",
@@ -117,7 +117,8 @@
         "2727f298ba",
         "760f892e07",
         "fad1614beb"
-      ]
+      ],
+      "tagVersie": 2
     },
     {
       "id": "6394f7cdc6-v1",
@@ -155,7 +156,8 @@
         "inRegio": true
       },
       "checklistBron": "ai",
-      "analyse": true
+      "analyse": true,
+      "tagVersie": 2
     },
     {
       "id": "70a7bf43bd-v1",
@@ -230,7 +232,8 @@
         "banen": null,
         "inRegio": false
       },
-      "checklistBron": "ai"
+      "checklistBron": "ai",
+      "tagVersie": 2
     },
     {
       "id": "6203f6c3a9-v1",
@@ -267,7 +270,8 @@
         "banen": null,
         "inRegio": true
       },
-      "checklistBron": "ai"
+      "checklistBron": "ai",
+      "tagVersie": 2
     },
     {
       "id": "583a70bfa9-v1",
