@@ -1,5 +1,5 @@
 {
-  "gegenereerdOp": "2026-11-03T09:00:50.689Z",
+  "gegenereerdOp": "2026-11-03T10:00:50.624Z",
   "alertModus": "log",
   "bronnen": {
     "zaansche-molen": {
@@ -38,13 +38,13 @@
       "opeenvolgendLeeg": 0
     },
     "nh-actueel": {
-      "laatsteScrape": "2026-11-03T08:56:18.414Z",
+      "laatsteScrape": "2026-11-03T10:00:50.624Z",
       "gevonden": 15,
       "opeenvolgendLeeg": 0
     },
     "nh-cultuur": {
-      "laatsteScrape": "2026-11-03T08:56:18.414Z",
-      "gevonden": 3,
+      "laatsteScrape": "2026-11-03T10:00:50.624Z",
+      "gevonden": 15,
       "opeenvolgendLeeg": 0
     },
     "zaanstad-hoorzittingen": {
@@ -98,7 +98,7 @@
       "opeenvolgendLeeg": 0
     },
     "DeOrkaan": {
-      "laatsteScrape": "2026-11-03T08:56:18.414Z",
+      "laatsteScrape": "2026-11-03T10:00:50.624Z",
       "gevonden": 12,
       "opeenvolgendLeeg": 0
     },
@@ -123,7 +123,7 @@
       "opeenvolgendLeeg": 0
     },
     "vervoerregio-overzichten": {
-      "laatsteScrape": "2026-11-03T08:56:18.414Z",
+      "laatsteScrape": "2026-11-03T10:00:50.624Z",
       "gevonden": 2,
       "opeenvolgendLeeg": 0
     }
@@ -214,18 +214,18 @@
     },
     "2026-11-03": {
       "verzoeken": 4,
-      "berichten": 8,
+      "berichten": 9,
       "ok": 2,
       "analyseOk": 6,
       "cijfersAfgekeurd": 0,
       "onvoldoende": 0,
-      "fout": 0,
+      "fout": 1,
       "overgeslagen": 0,
       "tagAi": 8,
       "tagTrefwoord": 0,
       "tagBron": 0,
       "tagGeen": 0,
-      "runs": 3
+      "runs": 4
     }
   },
   "laatsteRun": {
@@ -241,14 +241,14 @@
       "inAfwachting": 9
     },
     "berichten": {
-      "nieuw": 0,
+      "nieuw": 1,
       "update": 0,
       "opnieuw": 0,
       "ongewijzigd": 0,
       "seed": 0
     },
     "cluster": {
-      "vergeleken": 435,
+      "vergeleken": 465,
       "automatisch": 0,
       "aiGevraagd": 0,
       "aiJa": 0,
@@ -261,6 +261,20 @@
       "agendaNaarBericht": 0,
       "uitkomsten": 0,
       "berichtenGekoppeld": 0
+    },
+    "kwaliteit": {
+      "verzoeken": 0,
+      "berichten": 1,
+      "ok": 0,
+      "analyseOk": 0,
+      "cijfersAfgekeurd": 0,
+      "onvoldoende": 0,
+      "fout": 1,
+      "overgeslagen": 0,
+      "tagAi": 0,
+      "tagTrefwoord": 0,
+      "tagBron": 0,
+      "tagGeen": 0
     }
   }
 }

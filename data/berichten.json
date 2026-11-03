@@ -1,5 +1,5 @@
 {
-  "gegenereerdOp": "2026-11-03T09:00:50.689Z",
+  "gegenereerdOp": "2026-11-03T10:00:50.624Z",
   "promptVersie": "2026-10-29-batch-tag-checklist-agendapunten",
   "alertModus": "log",
   "prioSchaal": "1 = urgent, 2 = belangrijk, 3 = regulier, 4 = routine. De AI geeft nooit prio 1.",
@@ -50,6 +50,43 @@
     }
   ],
   "berichten": [
+    {
+      "id": "e8c3310818-v1",
+      "groepId": "e8c3310818",
+      "versie": 1,
+      "url": "https://www.deorkaan.nl/veel-minder-woningen-uit-oude-panden-in-zaanstad-en-wormerland/",
+      "kop": "Veel minder woningen uit oude panden in Zaanstad en Wormerland",
+      "tekst": null,
+      "rubriek": "WON",
+      "tagBron": "trefwoord",
+      "herkomst": "signaal",
+      "prio": 3,
+      "tijd": "2026-11-02T23:00:00.000Z",
+      "heeftTijd": false,
+      "woorden": 442,
+      "afgekapt": false,
+      "bronId": "DeOrkaan",
+      "bronNaam": "DeOrkaan",
+      "ai": false,
+      "controle": "ai-fout",
+      "eerstGezienOp": "2026-11-03T10:00:50.624Z",
+      "gecontroleerdOp": "2026-11-03T10:00:50.624Z",
+      "bronTitel": "Veel minder woningen uit oude panden in Zaanstad en Wormerland",
+      "bronLengte": 2712,
+      "checklist": {
+        "gevaar": false,
+        "evacuatieOfNlAlert": false,
+        "gewondenOfDoden": false,
+        "bestuurlijkeCrisis": false,
+        "besluitMetGrootGevolg": false,
+        "tijdkritisch": false,
+        "betrokkenen": 114,
+        "geldbedragEuro": null,
+        "banen": null,
+        "inRegio": true
+      },
+      "checklistBron": "patroon"
+    },
     {
       "id": "6fab0bab21-v1",
       "groepId": "6fab0bab21",
