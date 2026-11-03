@@ -178,13 +178,114 @@ function parseerDetail(html, basisUrl) {
   return { velden, bijlagen };
 }
 
-async function leesPdfTekst(url) {
-  if (!pdfParse) return null;
-  const buffer = await haalOp(url, "buffer");
-  if (buffer.subarray(0, 4).toString("latin1") !== "%PDF") return null;
+/**
+ * Probeert een URL als PDF te lezen. Geeft { buffer } bij succes, anders
+ * { reden } met wat er terugkwam (voor de log).
+ */
+async function probeerPdf(url) {
+  const controller = new AbortController();
+  const timer = setTimeout(() => controller.abort(), REQUEST_TIMEOUT_MS);
+  try {
+    const response = await fetch(url, {
+      headers: { "User-Agent": GEBRUIKERSAGENT, "Accept-Language": "nl" },
+      signal: controller.signal,
+    });
+    const type = (response.headers.get("content-type") || "onbekend type").split(";")[0];
+    if (!response.ok) return { reden: `HTTP ${response.status}` };
+    const buffer = Buffer.from(await response.arrayBuffer());
+    if (buffer.subarray(0, 4).toString("latin1") !== "%PDF") return { reden: `geen PDF (${type})` };
+    return { buffer };
+  } catch (fout) {
+    return { reden: fout.name === "AbortError" ? "time-out" : fout.message };
+  } finally {
+    clearTimeout(timer);
+  }
+}
+
+/**
+ * De bijlagelink van een Overzichten-item (/Reports/Document/<item>?documentId=)
+ * geeft GEEN PDF maar een HTML-pagina met een viewer. Het script dat die viewer
+ * laadt (/Script/LoadDocument/<documentId>) bevat het echte adres. Deze functie
+ * haalt daar de bruikbare adressen uit.
+ */
+function adressenUitViewerScript(js, documentId, origin) {
+  const gevonden = new Set();
+  const letterlijk = /["'`]((?:https?:\/\/[^"'`\s]+)|(?:\/[^"'`\s]+))["'`]/g;
+  let m;
+  while ((m = letterlijk.exec(js)) !== null) {
+    const pad = m[1];
+    if (/\.(js|css|png|jpe?g|gif|svg|woff2?|ico)(\?|$)/i.test(pad)) continue;
+    if (pad.includes(documentId) || /(document|download|view|pdf|file)/i.test(pad)) {
+      try {
+        gevonden.add(new URL(pad, origin).toString());
+      } catch {
+        // geen geldig adres, overslaan
+      }
+    }
+  }
+  return [...gevonden].slice(0, 6);
+}
+
+/**
+ * Haalt de PDF-tekst van een bijlage op. Probeert eerst de bekende adressen
+ * en kijkt daarna in het viewer-script. Logt welk adres werkte, of anders
+ * per adres waarom het niet lukte, zodat een stille mislukking niet meer kan.
+ */
+async function leesPdfTekst(bijlage, bronId) {
+  if (!pdfParse) {
+    console.warn(`[${bronId}] pdf-parse is niet geïnstalleerd, bijlagen worden niet gelezen.`);
+    return null;
+  }
+  const origin = new URL(bijlage.url).origin;
+  const documentId = (bijlage.url.match(/documentId=([0-9a-f-]{36})/i) || [])[1] || null;
+
+  const pogingen = [];
+  const probeer = async (url) => {
+    const uitkomst = await probeerPdf(url);
+    pogingen.push(`${url} (${uitkomst.reden || "ok"})`);
+    return uitkomst.buffer || null;
+  };
+
+  let buffer = await probeer(bijlage.url);
+  if (!buffer && documentId) {
+    for (const url of [`${origin}/Document/View/${documentId}`, `${origin}/Reports/Document/${documentId}`]) {
+      buffer = await probeer(url);
+      if (buffer) break;
+    }
+  }
+  if (!buffer && documentId) {
+    try {
+      const js = await haalOp(`${origin}/Script/LoadDocument/${documentId}`);
+      for (const url of adressenUitViewerScript(js, documentId, origin)) {
+        if (pogingen.some((p) => p.startsWith(url + " "))) continue;
+        buffer = await probeer(url);
+        if (buffer) break;
+      }
+    } catch (fout) {
+      pogingen.push(`viewer-script (${fout.message})`);
+    }
+  }
+
+  if (!buffer) {
+    console.warn(`[${bronId}] Geen PDF gevonden voor bijlage "${bijlage.naam}". Geprobeerd: ${pogingen.join("; ")}`);
+    return null;
+  }
+  console.log(`[${bronId}] PDF "${bijlage.naam}" gelezen via ${pogingen[pogingen.length - 1].replace(/ \(ok\)$/, "")}`);
+
   const resultaat = await pdfParse(buffer);
   const tekst = schoon(resultaat && resultaat.text);
   return tekst || null;
+}
+
+/**
+ * "Datum antwoord" is voor een AI dubbelzinnig: er kan staan dat het antwoord
+ * er al is of nog komt. Daarom zetten we er een duidelijk werkwoord bij.
+ */
+function antwoordLabel(waarde, vandaag = vandaagAmsterdam()) {
+  const iso = parseerDashboardDatum(waarde, vandaag);
+  const vandaagIso = parseerDashboardDatum("Vandaag", vandaag);
+  if (!iso || !vandaagIso) return "Datum antwoord";
+  return iso <= vandaagIso ? "Antwoord al gegeven op" : "Antwoord verwacht op";
 }
 
 async function verrijkMetDetail(item, bron) {
@@ -195,7 +296,10 @@ async function verrijkMetDetail(item, bron) {
 
     const delen = [];
     if (item.soort) delen.push(`Soort: ${item.soort}.`);
-    for (const [label, waarde] of velden) delen.push(`${label}: ${waarde}.`);
+    for (const [label, waarde] of velden) {
+      const naam = label.toLowerCase() === "datum antwoord" ? antwoordLabel(waarde) : label;
+      delen.push(`${naam}: ${waarde}.`);
+    }
     let samenvatting = delen.join(" ");
 
     let pdfsGelezen = 0;
@@ -203,7 +307,7 @@ async function verrijkMetDetail(item, bron) {
       if (pdfsGelezen >= MAX_PDFS_PER_ITEM) break;
       if (samenvatting.length >= MAX_TEKST_LENGTE) break;
       try {
-        const tekst = await leesPdfTekst(bijlage.url);
+        const tekst = await leesPdfTekst(bijlage, bron.id);
         if (!tekst) continue;
         const ruimte = MAX_TEKST_LENGTE - samenvatting.length - 100;
         if (ruimte <= 0) break;
@@ -268,4 +372,6 @@ module.exports = {
   parseerDashboard,
   parseerDashboardDatum,
   parseerDetail,
+  adressenUitViewerScript,
+  antwoordLabel,
 };
