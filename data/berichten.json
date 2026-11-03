@@ -1,5 +1,5 @@
 {
-  "gegenereerdOp": "2026-11-03T15:00:54.379Z",
+  "gegenereerdOp": "2026-11-03T16:00:52.806Z",
   "promptVersie": "2026-10-29-batch-tag-checklist-agendapunten",
   "alertModus": "log",
   "prioSchaal": "1 = urgent, 2 = belangrijk, 3 = regulier, 4 = routine. De AI geeft nooit prio 1.",
@@ -70,7 +70,7 @@
       "ai": true,
       "controle": "cijfers-ok",
       "eerstGezienOp": "2026-11-03T13:01:08.430Z",
-      "gecontroleerdOp": "2026-11-03T13:01:08.430Z",
+      "gecontroleerdOp": "2026-11-03T16:00:52.806Z",
       "bronTitel": "Provincie geeft subsidie aan veehouders die willen stoppen",
       "bronLengte": 2229,
       "checklist": {
@@ -147,7 +147,7 @@
       "ai": true,
       "controle": "cijfers-ok",
       "eerstGezienOp": "2026-11-03T11:00:54.646Z",
-      "gecontroleerdOp": "2026-11-03T13:01:08.430Z",
+      "gecontroleerdOp": "2026-11-03T16:00:52.806Z",
       "bronTitel": "Dienstregeling en rituitval EBS",
       "bronLengte": 7702,
       "checklist": {
@@ -185,7 +185,7 @@
       "ai": true,
       "controle": "cijfers-ok",
       "eerstGezienOp": "2026-11-03T11:00:54.646Z",
-      "gecontroleerdOp": "2026-11-03T13:01:08.430Z",
+      "gecontroleerdOp": "2026-11-03T16:00:52.806Z",
       "bronTitel": "Inzicht in rituitval EBS en de verdeling daarvan over buslijnen",
       "bronLengte": 4889,
       "checklist": {
@@ -277,7 +277,8 @@
         "inRegio": true
       },
       "checklistBron": "ai",
-      "analyse": true
+      "analyse": true,
+      "tagVersie": 2
     },
     {
       "id": "522d975d8b-v1",
@@ -299,7 +300,7 @@
       "ai": false,
       "controle": "analyse-ok",
       "eerstGezienOp": "2026-11-03T14:00:51.025Z",
-      "gecontroleerdOp": "2026-11-03T14:00:51.025Z",
+      "gecontroleerdOp": "2026-11-03T16:00:52.806Z",
       "bronTitel": "Museum Zaanse Tijd in de strijd om Erfgoedvrijwilligersprijs",
       "bronLengte": 1997,
       "checklist": {
@@ -338,7 +339,7 @@
       "ai": false,
       "controle": "analyse-ok",
       "eerstGezienOp": "2026-11-03T14:00:51.025Z",
-      "gecontroleerdOp": "2026-11-03T14:00:51.025Z",
+      "gecontroleerdOp": "2026-11-03T16:00:52.806Z",
       "bronTitel": "Veldpark wacht forse opknapbeurt",
       "bronLengte": 922,
       "checklist": {
@@ -397,7 +398,7 @@
       "ai": false,
       "controle": "analyse-ok",
       "eerstGezienOp": "2026-11-03T13:01:08.430Z",
-      "gecontroleerdOp": "2026-11-03T13:01:08.430Z",
+      "gecontroleerdOp": "2026-11-03T16:00:52.806Z",
       "bronTitel": "De Orkaan in 2 minuten: 3 november 🎧",
       "bronLengte": 376,
       "checklist": {
@@ -550,7 +551,7 @@
       "ai": false,
       "controle": "analyse-ok",
       "eerstGezienOp": "2026-11-03T11:00:54.646Z",
-      "gecontroleerdOp": "2026-11-03T13:01:08.430Z",
+      "gecontroleerdOp": "2026-11-03T16:00:52.806Z",
       "bronTitel": "Praten over ‘de Laatste Levensfase’",
       "bronLengte": 1757,
       "checklist": {
@@ -619,7 +620,7 @@
       "ai": false,
       "controle": "analyse-ok",
       "eerstGezienOp": "2026-11-03T10:00:50.624Z",
-      "gecontroleerdOp": "2026-11-03T13:01:08.430Z",
+      "gecontroleerdOp": "2026-11-03T16:00:52.806Z",
       "bronTitel": "Veel minder woningen uit oude panden in Zaanstad en Wormerland",
       "bronLengte": 2712,
       "checklist": {
@@ -658,7 +659,7 @@
       "ai": false,
       "controle": "analyse-ok",
       "eerstGezienOp": "2026-11-03T08:56:18.414Z",
-      "gecontroleerdOp": "2026-11-03T13:01:08.430Z",
+      "gecontroleerdOp": "2026-11-03T16:00:52.806Z",
       "bronTitel": "Wanneer zijn de Sinterklaasintochten van 2026?",
       "bronLengte": 5998,
       "checklist": {
@@ -728,7 +729,7 @@
       "ai": false,
       "controle": "analyse-ok",
       "eerstGezienOp": "2026-11-03T08:56:18.414Z",
-      "gecontroleerdOp": "2026-11-03T13:01:08.430Z",
+      "gecontroleerdOp": "2026-11-03T16:00:52.806Z",
       "bronTitel": "Buurman voorkomt erger bij vermoedelijke brandstichting in Assendelft 📸",
       "bronLengte": 755,
       "checklist": {
@@ -1033,7 +1034,7 @@
       "ai": false,
       "controle": "analyse-ok",
       "eerstGezienOp": "2026-11-03T03:59:31.191Z",
-      "gecontroleerdOp": "2026-11-03T13:01:08.430Z",
+      "gecontroleerdOp": "2026-11-03T16:00:52.806Z",
       "bronTitel": "Automobilist schept fietsster, vrouw raakt ernstig gewond",
       "bronLengte": 953,
       "checklist": {
@@ -1072,7 +1073,7 @@
       "ai": false,
       "controle": "analyse-ok",
       "eerstGezienOp": "2026-11-02T23:11:19.130Z",
-      "gecontroleerdOp": "2026-11-03T13:01:08.430Z",
+      "gecontroleerdOp": "2026-11-03T16:00:52.806Z",
       "bronTitel": "🎙️ Voetbalweekend ⚽️ Blauw Wit scoort erop los",
       "bronLengte": 938,
       "checklist": {
@@ -1245,14 +1246,7 @@
       },
       "checklistBron": "ai",
       "analyse": true,
-      "tagVersie": 2,
-      "alertKandidaat": {
-        "niveau": "oranje",
-        "categorie": "bestuur",
-        "reden": "besluit met groot gevolg (één bron)",
-        "aangemaaktOp": "2026-11-02T15:18:32.950Z",
-        "tot": "2026-11-03T15:18:32.950Z"
-      }
+      "tagVersie": 2
     },
     {
       "id": "7d36a0a144-v1",
