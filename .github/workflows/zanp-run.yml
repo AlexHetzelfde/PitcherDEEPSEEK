@@ -1,11 +1,11 @@
 # .github/workflows/zanp-run.yml
 #
-# De half-uurlijkse run van ZANP, de nieuwsdienst. Staat LOS van de
+# De uurlijkse run van ZANP, de nieuwsdienst. Staat LOS van de
 # dagelijkse pitchrun (dagelijkse-run.yml):
 #
 #              | dagelijkse run (pitch)             | deze run (ZANP)
 #   ---------- | ---------------------------------- | ------------------------------
-#   draait     | elke nacht                         | elk half uur
+#   draait     | elke nacht                         | elk uur
 #   schrijft   | pitches, feed, nieuws-lokaal,      | berichten, agenda,
 #              | nieuws-landelijk, bron-gezondheid  | zanp-status
 #
@@ -39,7 +39,7 @@ on:
         type: boolean
         default: false
   schedule:
-    - cron: "7,37 * * * *"
+    - cron: "7 * * * *"
 
 # Eén ZANP-run tegelijk. Een nieuwe run wacht op de lopende; wachten er al
 # meer, dan blijft alleen de nieuwste over (oude gegevens zijn niet nuttig).
