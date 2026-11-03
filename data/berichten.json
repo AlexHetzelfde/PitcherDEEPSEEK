@@ -1,5 +1,5 @@
 {
-  "gegenereerdOp": "2026-11-03T14:00:51.025Z",
+  "gegenereerdOp": "2026-11-03T15:00:54.379Z",
   "promptVersie": "2026-10-29-batch-tag-checklist-agendapunten",
   "alertModus": "log",
   "prioSchaal": "1 = urgent, 2 = belangrijk, 3 = regulier, 4 = routine. De AI geeft nooit prio 1.",
@@ -108,7 +108,7 @@
       "ai": false,
       "controle": "analyse-ok",
       "eerstGezienOp": "2026-11-03T12:00:51.615Z",
-      "gecontroleerdOp": "2026-11-03T12:00:51.615Z",
+      "gecontroleerdOp": "2026-11-03T15:00:54.379Z",
       "bronTitel": "50woordenfoto: Erasmusbrug bij Zaanse Schans…",
       "bronLengte": 606,
       "checklist": {
@@ -242,6 +242,44 @@
       "tagVersie": 2
     },
     {
+      "id": "952fd237d2-v1",
+      "groepId": "952fd237d2",
+      "versie": 1,
+      "url": "https://www.deorkaan.nl/audi-alleen-gelaten/",
+      "kop": "Audi alleen gelaten…",
+      "tekst": null,
+      "rubriek": "ALG",
+      "tagBron": "geen",
+      "herkomst": "signaal",
+      "prio": 3,
+      "tijd": "2026-11-02T23:00:00.000Z",
+      "heeftTijd": false,
+      "woorden": 83,
+      "afgekapt": false,
+      "bronId": "DeOrkaan",
+      "bronNaam": "DeOrkaan",
+      "ai": false,
+      "controle": "analyse-ok",
+      "eerstGezienOp": "2026-11-03T15:00:54.379Z",
+      "gecontroleerdOp": "2026-11-03T15:00:54.379Z",
+      "bronTitel": "Audi alleen gelaten…",
+      "bronLengte": 534,
+      "checklist": {
+        "gevaar": false,
+        "evacuatieOfNlAlert": false,
+        "gewondenOfDoden": false,
+        "bestuurlijkeCrisis": false,
+        "besluitMetGrootGevolg": false,
+        "tijdkritisch": false,
+        "betrokkenen": null,
+        "geldbedragEuro": null,
+        "banen": null,
+        "inRegio": true
+      },
+      "checklistBron": "ai",
+      "analyse": true
+    },
+    {
       "id": "522d975d8b-v1",
       "groepId": "522d975d8b",
       "versie": 1,
@@ -277,7 +315,8 @@
         "inRegio": true
       },
       "checklistBron": "ai",
-      "analyse": true
+      "analyse": true,
+      "tagVersie": 2
     },
     {
       "id": "f656cec6f6-v1",
@@ -326,16 +365,17 @@
         }
       ],
       "analyse": true,
+      "agendaIds": [
+        "1ca946c807"
+      ],
+      "tagVersie": 2,
       "alertKandidaat": {
         "niveau": "oranje",
         "categorie": "bestuur",
         "reden": "besluit met groot gevolg (één bron)",
         "aangemaaktOp": "2026-11-03T14:00:51.025Z",
         "tot": "2026-11-04T14:00:51.025Z"
-      },
-      "agendaIds": [
-        "1ca946c807"
-      ]
+      }
     },
     {
       "id": "57b1adf5f8-v1",
