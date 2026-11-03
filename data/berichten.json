@@ -1,5 +1,5 @@
 {
-  "gegenereerdOp": "2026-11-03T12:00:51.615Z",
+  "gegenereerdOp": "2026-11-03T13:01:08.430Z",
   "promptVersie": "2026-10-29-batch-tag-checklist-agendapunten",
   "alertModus": "log",
   "prioSchaal": "1 = urgent, 2 = belangrijk, 3 = regulier, 4 = routine. De AI geeft nooit prio 1.",
@@ -51,6 +51,43 @@
   ],
   "berichten": [
     {
+      "id": "6b001b9460-v1",
+      "groepId": "6b001b9460",
+      "versie": 1,
+      "url": "https://www.noord-holland.nl/Actueel/Archief/2026/November_2026/Provincie_geeft_subsidie_aan_veehouders_die_willen_stoppen",
+      "kop": "Provincie Noord-Holland stelt ruim 8 miljoen euro beschikbaar voor stoppende veehouders",
+      "tekst": "Noord-Hollandse veehouders rond Natura 2000-gebieden die vrijwillig hun bedrijf willen beëindigen, kunnen hiervoor subsidie aanvragen bij de provincie. Er is in totaal ruim 8 miljoen euro beschikbaar voor onder meer het waardeverlies van productiecapaciteit en sloopkosten. De subsidie is aan te vragen van 1 december 2026 tot en met 13 mei 2027.",
+      "rubriek": "PRV",
+      "tagBron": "ai",
+      "herkomst": "officieel",
+      "prio": 3,
+      "tijd": "2026-11-03T13:24:54.000Z",
+      "heeftTijd": true,
+      "woorden": 320,
+      "afgekapt": false,
+      "bronId": "nh-actueel",
+      "bronNaam": "Provincie Noord-Holland — Actueel",
+      "ai": true,
+      "controle": "cijfers-ok",
+      "eerstGezienOp": "2026-11-03T13:01:08.430Z",
+      "gecontroleerdOp": "2026-11-03T13:01:08.430Z",
+      "bronTitel": "Provincie geeft subsidie aan veehouders die willen stoppen",
+      "bronLengte": 2229,
+      "checklist": {
+        "gevaar": false,
+        "evacuatieOfNlAlert": false,
+        "gewondenOfDoden": false,
+        "bestuurlijkeCrisis": false,
+        "besluitMetGrootGevolg": false,
+        "tijdkritisch": false,
+        "betrokkenen": null,
+        "geldbedragEuro": 8000000,
+        "banen": null,
+        "inRegio": false
+      },
+      "checklistBron": "ai"
+    },
+    {
       "id": "c2e8d82b1e-v2",
       "groepId": "c2e8d82b1e",
       "versie": 2,
@@ -86,7 +123,8 @@
         "inRegio": true
       },
       "checklistBron": "ai",
-      "analyse": true
+      "analyse": true,
+      "tagVersie": 2
     },
     {
       "id": "b1d76fdd82-v2",
@@ -108,7 +146,7 @@
       "ai": true,
       "controle": "cijfers-ok",
       "eerstGezienOp": "2026-11-03T11:00:54.646Z",
-      "gecontroleerdOp": "2026-11-03T11:00:54.646Z",
+      "gecontroleerdOp": "2026-11-03T13:01:08.430Z",
       "bronTitel": "Dienstregeling en rituitval EBS",
       "bronLengte": 7702,
       "checklist": {
@@ -146,7 +184,7 @@
       "ai": true,
       "controle": "cijfers-ok",
       "eerstGezienOp": "2026-11-03T11:00:54.646Z",
-      "gecontroleerdOp": "2026-11-03T11:00:54.646Z",
+      "gecontroleerdOp": "2026-11-03T13:01:08.430Z",
       "bronTitel": "Inzicht in rituitval EBS en de verdeling daarvan over buslijnen",
       "bronLengte": 4889,
       "checklist": {
@@ -199,7 +237,46 @@
         "banen": null,
         "inRegio": false
       },
-      "checklistBron": "ai"
+      "checklistBron": "ai",
+      "tagVersie": 2
+    },
+    {
+      "id": "57b1adf5f8-v1",
+      "groepId": "57b1adf5f8",
+      "versie": 1,
+      "url": "https://www.deorkaan.nl/de-orkaan-in-2-minuten-3-november-%f0%9f%8e%a7/",
+      "kop": "De Orkaan in 2 minuten: 3 november 🎧",
+      "tekst": null,
+      "rubriek": "112",
+      "tagBron": "ai",
+      "herkomst": "signaal",
+      "prio": 3,
+      "tijd": "2026-11-02T23:00:00.000Z",
+      "heeftTijd": false,
+      "woorden": 63,
+      "afgekapt": false,
+      "bronId": "DeOrkaan",
+      "bronNaam": "DeOrkaan",
+      "ai": false,
+      "controle": "analyse-ok",
+      "eerstGezienOp": "2026-11-03T13:01:08.430Z",
+      "gecontroleerdOp": "2026-11-03T13:01:08.430Z",
+      "bronTitel": "De Orkaan in 2 minuten: 3 november 🎧",
+      "bronLengte": 376,
+      "checklist": {
+        "gevaar": false,
+        "evacuatieOfNlAlert": false,
+        "gewondenOfDoden": false,
+        "bestuurlijkeCrisis": false,
+        "besluitMetGrootGevolg": false,
+        "tijdkritisch": false,
+        "betrokkenen": null,
+        "geldbedragEuro": null,
+        "banen": null,
+        "inRegio": true
+      },
+      "checklistBron": "ai",
+      "analyse": true
     },
     {
       "id": "ff3c73751f-v1",
@@ -236,7 +313,8 @@
         "banen": null,
         "inRegio": true
       },
-      "checklistBron": "ai"
+      "checklistBron": "ai",
+      "tagVersie": 2
     },
     {
       "id": "0bb59494cc-v1",
@@ -273,7 +351,8 @@
         "banen": null,
         "inRegio": true
       },
-      "checklistBron": "ai"
+      "checklistBron": "ai",
+      "tagVersie": 2
     },
     {
       "id": "39f21c4a04-v1",
@@ -310,7 +389,8 @@
         "banen": null,
         "inRegio": true
       },
-      "checklistBron": "ai"
+      "checklistBron": "ai",
+      "tagVersie": 2
     },
     {
       "id": "2dc21b80dd-v1",
@@ -332,7 +412,7 @@
       "ai": false,
       "controle": "analyse-ok",
       "eerstGezienOp": "2026-11-03T11:00:54.646Z",
-      "gecontroleerdOp": "2026-11-03T11:00:54.646Z",
+      "gecontroleerdOp": "2026-11-03T13:01:08.430Z",
       "bronTitel": "Praten over ‘de Laatste Levensfase’",
       "bronLengte": 1757,
       "checklist": {
@@ -401,7 +481,7 @@
       "ai": false,
       "controle": "analyse-ok",
       "eerstGezienOp": "2026-11-03T10:00:50.624Z",
-      "gecontroleerdOp": "2026-11-03T11:00:54.646Z",
+      "gecontroleerdOp": "2026-11-03T13:01:08.430Z",
       "bronTitel": "Veel minder woningen uit oude panden in Zaanstad en Wormerland",
       "bronLengte": 2712,
       "checklist": {
@@ -440,7 +520,7 @@
       "ai": false,
       "controle": "analyse-ok",
       "eerstGezienOp": "2026-11-03T08:56:18.414Z",
-      "gecontroleerdOp": "2026-11-03T11:00:54.646Z",
+      "gecontroleerdOp": "2026-11-03T13:01:08.430Z",
       "bronTitel": "Wanneer zijn de Sinterklaasintochten van 2026?",
       "bronLengte": 5998,
       "checklist": {
@@ -510,7 +590,7 @@
       "ai": false,
       "controle": "analyse-ok",
       "eerstGezienOp": "2026-11-03T08:56:18.414Z",
-      "gecontroleerdOp": "2026-11-03T11:00:54.646Z",
+      "gecontroleerdOp": "2026-11-03T13:01:08.430Z",
       "bronTitel": "Buurman voorkomt erger bij vermoedelijke brandstichting in Assendelft 📸",
       "bronLengte": 755,
       "checklist": {
@@ -549,7 +629,7 @@
       "ai": true,
       "controle": "cijfers-ok",
       "eerstGezienOp": "2026-11-02T15:18:32.950Z",
-      "gecontroleerdOp": "2026-11-03T11:00:54.646Z",
+      "gecontroleerdOp": "2026-11-03T13:01:08.430Z",
       "bronTitel": "Schoon en veilig werken zonder motorgeronk",
       "bronLengte": 4720,
       "checklist": {
@@ -602,7 +682,8 @@
         "banen": null,
         "inRegio": true
       },
-      "checklistBron": "ai"
+      "checklistBron": "ai",
+      "tagVersie": 2
     },
     {
       "id": "3bd0580a11-v1",
@@ -639,7 +720,8 @@
         "banen": null,
         "inRegio": true
       },
-      "checklistBron": "ai"
+      "checklistBron": "ai",
+      "tagVersie": 2
     },
     {
       "id": "899f7923e6-v1",
@@ -676,7 +758,8 @@
         "banen": null,
         "inRegio": true
       },
-      "checklistBron": "ai"
+      "checklistBron": "ai",
+      "tagVersie": 2
     },
     {
       "id": "77b1b7be12-v1",
@@ -713,7 +796,8 @@
         "banen": null,
         "inRegio": true
       },
-      "checklistBron": "ai"
+      "checklistBron": "ai",
+      "tagVersie": 2
     },
     {
       "id": "b1d76fdd82-v1",
@@ -811,7 +895,7 @@
       "ai": false,
       "controle": "analyse-ok",
       "eerstGezienOp": "2026-11-03T03:59:31.191Z",
-      "gecontroleerdOp": "2026-11-03T11:00:54.646Z",
+      "gecontroleerdOp": "2026-11-03T13:01:08.430Z",
       "bronTitel": "Automobilist schept fietsster, vrouw raakt ernstig gewond",
       "bronLengte": 953,
       "checklist": {
@@ -850,7 +934,7 @@
       "ai": false,
       "controle": "analyse-ok",
       "eerstGezienOp": "2026-11-02T23:11:19.130Z",
-      "gecontroleerdOp": "2026-11-03T11:00:54.646Z",
+      "gecontroleerdOp": "2026-11-03T13:01:08.430Z",
       "bronTitel": "🎙️ Voetbalweekend ⚽️ Blauw Wit scoort erop los",
       "bronLengte": 938,
       "checklist": {
@@ -889,7 +973,7 @@
       "ai": false,
       "controle": "analyse-ok",
       "eerstGezienOp": "2026-11-02T23:11:19.130Z",
-      "gecontroleerdOp": "2026-11-03T11:00:54.646Z",
+      "gecontroleerdOp": "2026-11-03T13:01:08.430Z",
       "bronTitel": "De Rietkraag krijgt gezondheidsprijs ondanks schimmel en slechte lucht",
       "bronLengte": 4131,
       "checklist": {
@@ -928,7 +1012,7 @@
       "ai": false,
       "controle": "analyse-ok",
       "eerstGezienOp": "2026-11-02T23:11:19.130Z",
-      "gecontroleerdOp": "2026-11-03T11:00:54.646Z",
+      "gecontroleerdOp": "2026-11-03T13:01:08.430Z",
       "bronTitel": "Oosterveld en Wezelstraat dicht voor auto’s",
       "bronLengte": 1573,
       "checklist": {
@@ -967,7 +1051,7 @@
       "ai": false,
       "controle": "analyse-ok",
       "eerstGezienOp": "2026-11-02T15:18:32.950Z",
-      "gecontroleerdOp": "2026-11-03T11:00:54.646Z",
+      "gecontroleerdOp": "2026-11-03T13:01:08.430Z",
       "bronTitel": "Vuurwerk verstoort Allerzielen in Oostzaan",
       "bronLengte": 1597,
       "checklist": {
@@ -1006,7 +1090,7 @@
       "ai": false,
       "controle": "analyse-ok",
       "eerstGezienOp": "2026-11-02T15:18:32.950Z",
-      "gecontroleerdOp": "2026-11-03T11:00:54.646Z",
+      "gecontroleerdOp": "2026-11-03T13:01:08.430Z",
       "bronTitel": "Nieuwe wind bij De Kat: Kempenaars blijven, Zaansche Molen neemt exploitatie over",
       "bronLengte": 5513,
       "checklist": {
