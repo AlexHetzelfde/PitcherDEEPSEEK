@@ -71,6 +71,12 @@
       "prio": 4,
       "herschrijf": true
     },
+    "vervoerregio-overzichten": {
+      "rubriek": "VER",
+      "herkomst": "officieel",
+      "prio": 4,
+      "herschrijf": true
+    },
     "zaanstad-hoorzittingen": {
       "rubriek": "GEM",
       "herkomst": "officieel",

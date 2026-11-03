@@ -29,7 +29,9 @@
 //  - Berichten en agendapunten worden gekoppeld op harde sleutels (koppel.js).
 //  - zanp-status.json bewaart een kwaliteitslog per dag (14 dagen).
 
-const bronnen = require("./bronnen");
+// Bronnen die alleen ZANP gebruikt staan in zanp-bronnen.js, zodat de
+// nachtelijke pitchrun (index.js) ze niet meeneemt.
+const bronnen = [...require("./bronnen"), ...require("./zanp-bronnen")];
 const { RUBRIEKEN, isBekendeBron, profielVoor } = require("./rubrieken");
 const { tagsVoorPrompt, TAG_VERSIE, kiesTagUitTekst } = require("./tags");
 const { koppelDossiers } = require("./koppel");
@@ -118,6 +120,7 @@ async function leesStatus() {
 function bronInterval(bron, s) {
   const basis = bron.soort === "agenda" || bron.rustig ? INTERVAL_DAG_MS : INTERVAL_SNEL_MS;
   const leeg = (s && s.opeenvolgendLeeg) || 0;
+  if (bron.nooitVertragen) return basis; // bron met weinig, maar tijdgevoelig nieuws: nooit minder vaak kijken
   if (leeg < LEEG_VANAF) return basis;
   const factor = 2 ** (leeg - LEEG_VANAF + 1);
   return Math.min(basis * factor, Math.max(basis, INTERVAL_MAX_LEEG_MS));
@@ -127,7 +130,7 @@ function isAanDeBeurt(bron, status, nu, alles) {
   if (alles) return true;
   const s = status.bronnen[bron.id];
   if (!s || !s.laatsteScrape) return true;
-  // Een kleine marge: een run die om :37 begint mag een bron van :07 oppakken.
+  // Een kleine marge: een run die iets eerder begint dan de vorige mag een bron alvast oppakken.
   return nu.getTime() - new Date(s.laatsteScrape).getTime() >= bronInterval(bron, s) - 2 * 60 * 1000;
 }
 
