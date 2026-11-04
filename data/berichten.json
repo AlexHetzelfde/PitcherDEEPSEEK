@@ -1,5 +1,5 @@
 {
-  "gegenereerdOp": "2026-11-04T10:46:22.507Z",
+  "gegenereerdOp": "2026-11-04T11:01:02.167Z",
   "promptVersie": "2026-10-29-batch-tag-checklist-agendapunten",
   "alertModus": "log",
   "prioSchaal": "1 = urgent, 2 = belangrijk, 3 = regulier, 4 = routine. De AI geeft nooit prio 1.",
@@ -85,7 +85,8 @@
         "banen": null,
         "inRegio": false
       },
-      "checklistBron": "ai"
+      "checklistBron": "ai",
+      "tagVersie": 2
     },
     {
       "id": "8cbbe8fd8d-v1",
@@ -162,6 +163,7 @@
       },
       "checklistBron": "ai",
       "analyse": true,
+      "tagVersie": 2,
       "alertKandidaat": {
         "niveau": "oranje",
         "categorie": "bestuur",
