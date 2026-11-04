@@ -1,5 +1,5 @@
 {
-  "gegenereerdOp": "2026-11-04T13:00:54.268Z",
+  "gegenereerdOp": "2026-11-04T14:00:55.970Z",
   "promptVersie": "2026-10-29-batch-tag-checklist-agendapunten",
   "alertModus": "log",
   "prioSchaal": "1 = urgent, 2 = belangrijk, 3 = regulier, 4 = routine. De AI geeft nooit prio 1.",
@@ -108,7 +108,7 @@
       "ai": true,
       "controle": "cijfers-ok",
       "eerstGezienOp": "2026-11-04T09:00:49.606Z",
-      "gecontroleerdOp": "2026-11-04T12:00:52.250Z",
+      "gecontroleerdOp": "2026-11-04T14:00:55.970Z",
       "bronTitel": "Een comfortabeler monument met hetzelfde karakter",
       "bronLengte": 5997,
       "checklist": {
@@ -125,6 +125,51 @@
       },
       "checklistBron": "ai",
       "tagVersie": 2
+    },
+    {
+      "id": "955f4f71a1-v1",
+      "groepId": "955f4f71a1",
+      "versie": 1,
+      "url": "https://www.deorkaan.nl/begrotingsdebat-wormerland-zonder-cup-maar-met-heeft-u-misschien-een-schaar-voor-mij/",
+      "kop": "Begrotingsdebat Wormerland: zonder CUP maar met ‘heeft u misschien een schaar voor mij?’",
+      "tekst": null,
+      "rubriek": "GEM",
+      "tagBron": "ai",
+      "herkomst": "signaal",
+      "prio": 3,
+      "tijd": "2026-11-03T23:00:00.000Z",
+      "heeftTijd": false,
+      "woorden": 819,
+      "afgekapt": false,
+      "bronId": "DeOrkaan",
+      "bronNaam": "DeOrkaan",
+      "ai": false,
+      "controle": "analyse-ok",
+      "eerstGezienOp": "2026-11-04T14:00:55.970Z",
+      "gecontroleerdOp": "2026-11-04T14:00:55.970Z",
+      "bronTitel": "Begrotingsdebat Wormerland: zonder CUP maar met ‘heeft u misschien een schaar voor mij?’",
+      "bronLengte": 5361,
+      "checklist": {
+        "gevaar": false,
+        "evacuatieOfNlAlert": false,
+        "gewondenOfDoden": false,
+        "bestuurlijkeCrisis": false,
+        "besluitMetGrootGevolg": true,
+        "tijdkritisch": false,
+        "betrokkenen": null,
+        "geldbedragEuro": 650000,
+        "banen": null,
+        "inRegio": true
+      },
+      "checklistBron": "ai",
+      "analyse": true,
+      "alertKandidaat": {
+        "niveau": "oranje",
+        "categorie": "bestuur",
+        "reden": "besluit met groot gevolg (één bron)",
+        "aangemaaktOp": "2026-11-04T14:00:55.970Z",
+        "tot": "2026-11-05T14:00:55.970Z"
+      }
     },
     {
       "id": "5cbd12cc8e-v1",
@@ -162,7 +207,8 @@
         "inRegio": true
       },
       "checklistBron": "ai",
-      "analyse": true
+      "analyse": true,
+      "tagVersie": 2
     },
     {
       "id": "210f9f8aab-v1",
@@ -184,7 +230,7 @@
       "ai": false,
       "controle": "analyse-ok",
       "eerstGezienOp": "2026-11-04T12:00:52.250Z",
-      "gecontroleerdOp": "2026-11-04T12:00:52.250Z",
+      "gecontroleerdOp": "2026-11-04T14:00:55.970Z",
       "bronTitel": "De Orkaan in 2 minuten: 4 november 🎧",
       "bronLengte": 339,
       "checklist": {
@@ -223,7 +269,7 @@
       "ai": false,
       "controle": "analyse-ok",
       "eerstGezienOp": "2026-11-04T12:00:52.250Z",
-      "gecontroleerdOp": "2026-11-04T12:00:52.250Z",
+      "gecontroleerdOp": "2026-11-04T14:00:55.970Z",
       "bronTitel": "Martin Rep: Beatles-pelgrim op het zebrapad",
       "bronLengte": 5997,
       "checklist": {
@@ -347,7 +393,7 @@
       "ai": false,
       "controle": "analyse-ok",
       "eerstGezienOp": "2026-11-04T09:00:49.606Z",
-      "gecontroleerdOp": "2026-11-04T12:00:52.250Z",
+      "gecontroleerdOp": "2026-11-04T14:00:55.970Z",
       "bronTitel": "AZ -19 weerstaat Turkse furie en gaat door in Youth League ⚽️/ 🎧",
       "bronLengte": 2572,
       "checklist": {
@@ -425,7 +471,7 @@
       "ai": false,
       "controle": "analyse-ok",
       "eerstGezienOp": "2026-11-04T07:00:48.066Z",
-      "gecontroleerdOp": "2026-11-04T12:00:52.250Z",
+      "gecontroleerdOp": "2026-11-04T14:00:55.970Z",
       "bronTitel": "50woordenfoto: herfst…",
       "bronLengte": 608,
       "checklist": {
@@ -815,7 +861,7 @@
       "ai": false,
       "controle": "analyse-ok",
       "eerstGezienOp": "2026-11-04T07:00:48.066Z",
-      "gecontroleerdOp": "2026-11-04T12:00:52.250Z",
+      "gecontroleerdOp": "2026-11-04T14:00:55.970Z",
       "bronTitel": "Cameratoezicht Elzenstraat wéér verlengd",
       "bronLengte": 1618,
       "checklist": {
@@ -1002,14 +1048,7 @@
       "agendaIds": [
         "1ca946c807"
       ],
-      "tagVersie": 2,
-      "alertKandidaat": {
-        "niveau": "oranje",
-        "categorie": "bestuur",
-        "reden": "besluit met groot gevolg (één bron)",
-        "aangemaaktOp": "2026-11-03T14:00:51.025Z",
-        "tot": "2026-11-04T14:00:51.025Z"
-      }
+      "tagVersie": 2
     },
     {
       "id": "57b1adf5f8-v1",
