@@ -1,5 +1,5 @@
 {
-  "gegenereerdOp": "2026-11-04T14:00:55.970Z",
+  "gegenereerdOp": "2026-11-04T15:00:57.998Z",
   "promptVersie": "2026-10-29-batch-tag-checklist-agendapunten",
   "alertModus": "log",
   "prioSchaal": "1 = urgent, 2 = belangrijk, 3 = regulier, 4 = routine. De AI geeft nooit prio 1.",
@@ -70,7 +70,7 @@
       "ai": true,
       "controle": "cijfers-ok",
       "eerstGezienOp": "2026-11-04T10:46:22.507Z",
-      "gecontroleerdOp": "2026-11-04T13:00:54.268Z",
+      "gecontroleerdOp": "2026-11-04T15:00:57.998Z",
       "bronTitel": "Provincie verwijdert zieke en doden bomen langs verschillende N-wegen",
       "bronLengte": 2375,
       "checklist": {
@@ -127,6 +127,74 @@
       "tagVersie": 2
     },
     {
+      "id": "c5c63a3c12-v1",
+      "groepId": "c5c63a3c12",
+      "versie": 1,
+      "url": "https://www.deorkaan.nl/topkolf-in-t-moriaanshoofd-in-wormer/",
+      "kop": "Topkolf in ’t Moriaanshoofd in Wormer",
+      "tekst": null,
+      "rubriek": "CUL",
+      "tagBron": "ai",
+      "herkomst": "signaal",
+      "prio": 3,
+      "tijd": "2026-11-03T23:00:00.000Z",
+      "heeftTijd": false,
+      "woorden": 291,
+      "afgekapt": false,
+      "bronId": "DeOrkaan",
+      "bronNaam": "DeOrkaan",
+      "ai": false,
+      "controle": "analyse-ok",
+      "eerstGezienOp": "2026-11-04T15:00:57.998Z",
+      "gecontroleerdOp": "2026-11-04T15:00:57.998Z",
+      "bronTitel": "Topkolf in ’t Moriaanshoofd in Wormer",
+      "bronLengte": 1782,
+      "checklist": {
+        "gevaar": false,
+        "evacuatieOfNlAlert": false,
+        "gewondenOfDoden": false,
+        "bestuurlijkeCrisis": false,
+        "besluitMetGrootGevolg": false,
+        "tijdkritisch": false,
+        "betrokkenen": null,
+        "geldbedragEuro": null,
+        "banen": null,
+        "inRegio": true
+      },
+      "checklistBron": "ai",
+      "agendapunten": [
+        {
+          "titel": "Open Wormer Kolftoernooi - eerste speeldag",
+          "dag": "2026-11-04",
+          "start": "2026-11-04T18:30:00.000Z",
+          "eind": null,
+          "plaats": "Herberg ‘t Moriaanshoofd",
+          "zekerheid": "afgeleid"
+        },
+        {
+          "titel": "Open Wormer Kolftoernooi",
+          "dag": "2026-11-06",
+          "start": "2026-11-06T09:00:00.000Z",
+          "eind": null,
+          "plaats": "Herberg ‘t Moriaanshoofd",
+          "zekerheid": "afgeleid"
+        },
+        {
+          "titel": "Open Wormer Kolftoernooi - finale",
+          "dag": "2026-11-08",
+          "start": "2026-11-08T12:00:00.000Z",
+          "eind": null,
+          "plaats": "Herberg ‘t Moriaanshoofd",
+          "zekerheid": "afgeleid"
+        }
+      ],
+      "analyse": true,
+      "agendaIds": [
+        "0908fbbdb6",
+        "01bc20615a"
+      ]
+    },
+    {
       "id": "955f4f71a1-v1",
       "groepId": "955f4f71a1",
       "versie": 1,
@@ -163,6 +231,7 @@
       },
       "checklistBron": "ai",
       "analyse": true,
+      "tagVersie": 2,
       "alertKandidaat": {
         "niveau": "oranje",
         "categorie": "bestuur",
@@ -191,7 +260,7 @@
       "ai": false,
       "controle": "analyse-ok",
       "eerstGezienOp": "2026-11-04T13:00:54.268Z",
-      "gecontroleerdOp": "2026-11-04T13:00:54.268Z",
+      "gecontroleerdOp": "2026-11-04T15:00:57.998Z",
       "bronTitel": "Tienduizend joints gevonden na tip Meld Misdaad Anoniem",
       "bronLengte": 1097,
       "checklist": {
@@ -308,7 +377,7 @@
       "ai": false,
       "controle": "analyse-ok",
       "eerstGezienOp": "2026-11-04T10:46:22.507Z",
-      "gecontroleerdOp": "2026-11-04T13:00:54.268Z",
+      "gecontroleerdOp": "2026-11-04T15:00:57.998Z",
       "bronTitel": "Begrotingsdebat Zaanstad Beraad #2: ‘eerlijk antwoord’ en ‘juiste feiten’",
       "bronLengte": 6000,
       "checklist": {
@@ -354,7 +423,7 @@
       "ai": false,
       "controle": "analyse-ok",
       "eerstGezienOp": "2026-11-04T10:00:52.994Z",
-      "gecontroleerdOp": "2026-11-04T13:00:54.268Z",
+      "gecontroleerdOp": "2026-11-04T15:00:57.998Z",
       "bronTitel": "Chris Stussy dreunt na: felle botsing tussen bewoners, gemeente, SONA en Taets",
       "bronLengte": 5995,
       "checklist": {
@@ -432,7 +501,7 @@
       "ai": false,
       "controle": "analyse-ok",
       "eerstGezienOp": "2026-11-04T08:00:49.559Z",
-      "gecontroleerdOp": "2026-11-04T13:00:54.268Z",
+      "gecontroleerdOp": "2026-11-04T15:00:57.998Z",
       "bronTitel": "JOY x FLOW onder vuur: 96 boetes, verkeerschaos en toch ‘ordentelijk verlopen’?",
       "bronLengte": 5999,
       "checklist": {
@@ -510,7 +579,7 @@
       "ai": true,
       "controle": "cijfers-ok",
       "eerstGezienOp": "2026-11-03T23:00:50.778Z",
-      "gecontroleerdOp": "2026-11-04T13:00:54.268Z",
+      "gecontroleerdOp": "2026-11-04T15:00:57.998Z",
       "bronTitel": "Inzicht in rituitval EBS en de verdeling daarvan over buslijnen",
       "bronLengte": 4879,
       "checklist": {
@@ -901,7 +970,7 @@
       "ai": false,
       "controle": "analyse-ok",
       "eerstGezienOp": "2026-11-03T16:58:05.874Z",
-      "gecontroleerdOp": "2026-11-04T13:00:54.268Z",
+      "gecontroleerdOp": "2026-11-04T15:00:57.998Z",
       "bronTitel": "Nieuwe hondenverboden bij De Tref: bewoners begrijpen er weinig van",
       "bronLengte": 3461,
       "checklist": {
@@ -1048,7 +1117,14 @@
       "agendaIds": [
         "1ca946c807"
       ],
-      "tagVersie": 2
+      "tagVersie": 2,
+      "alertKandidaat": {
+        "niveau": "oranje",
+        "categorie": "bestuur",
+        "reden": "besluit met groot gevolg (één bron)",
+        "aangemaaktOp": "2026-11-04T15:00:57.998Z",
+        "tot": "2026-11-05T15:00:57.998Z"
+      }
     },
     {
       "id": "57b1adf5f8-v1",
