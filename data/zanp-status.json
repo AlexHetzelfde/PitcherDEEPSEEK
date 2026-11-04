@@ -1,5 +1,5 @@
 {
-  "gegenereerdOp": "2026-11-04T18:34:28.698Z",
+  "gegenereerdOp": "2026-11-04T19:00:52.904Z",
   "alertModus": "log",
   "bronnen": {
     "zaansche-molen": {
@@ -38,13 +38,13 @@
       "opeenvolgendLeeg": 0
     },
     "nh-actueel": {
-      "laatsteScrape": "2026-11-04T18:34:28.698Z",
+      "laatsteScrape": "2026-11-04T19:00:52.904Z",
       "gevonden": 15,
       "opeenvolgendLeeg": 0
     },
     "nh-cultuur": {
-      "laatsteScrape": "2026-11-04T18:34:28.698Z",
-      "gevonden": 15,
+      "laatsteScrape": "2026-11-04T19:00:52.904Z",
+      "gevonden": 3,
       "opeenvolgendLeeg": 0
     },
     "zaanstad-hoorzittingen": {
@@ -98,7 +98,7 @@
       "opeenvolgendLeeg": 0
     },
     "DeOrkaan": {
-      "laatsteScrape": "2026-11-04T18:34:28.698Z",
+      "laatsteScrape": "2026-11-04T19:00:52.904Z",
       "gevonden": 12,
       "opeenvolgendLeeg": 0
     },
@@ -123,7 +123,7 @@
       "opeenvolgendLeeg": 0
     },
     "vervoerregio-overzichten": {
-      "laatsteScrape": "2026-11-04T18:34:28.698Z",
+      "laatsteScrape": "2026-11-04T19:00:52.904Z",
       "gevonden": 1,
       "opeenvolgendLeeg": 0
     }
