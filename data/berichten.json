@@ -1,5 +1,5 @@
 {
-  "gegenereerdOp": "2026-11-04T15:00:57.998Z",
+  "gegenereerdOp": "2026-11-04T16:00:53.153Z",
   "promptVersie": "2026-10-29-batch-tag-checklist-agendapunten",
   "alertModus": "log",
   "prioSchaal": "1 = urgent, 2 = belangrijk, 3 = regulier, 4 = routine. De AI geeft nooit prio 1.",
@@ -127,6 +127,51 @@
       "tagVersie": 2
     },
     {
+      "id": "c25dfcec5b-v1",
+      "groepId": "c25dfcec5b",
+      "versie": 1,
+      "url": "https://www.deorkaan.nl/wel-miljoenen-voor-bushaltes-geen-cijfers-over-uitvallende-ebs-bussen/",
+      "kop": "Wel miljoenen voor bushaltes, geen cijfers over uitvallende EBS-bussen",
+      "tekst": null,
+      "rubriek": "VER",
+      "tagBron": "ai",
+      "herkomst": "signaal",
+      "prio": 3,
+      "tijd": "2026-11-03T23:00:00.000Z",
+      "heeftTijd": false,
+      "woorden": 837,
+      "afgekapt": false,
+      "bronId": "DeOrkaan",
+      "bronNaam": "DeOrkaan",
+      "ai": false,
+      "controle": "analyse-ok",
+      "eerstGezienOp": "2026-11-04T16:00:53.153Z",
+      "gecontroleerdOp": "2026-11-04T16:00:53.153Z",
+      "bronTitel": "Wel miljoenen voor bushaltes, geen cijfers over uitvallende EBS-bussen",
+      "bronLengte": 5434,
+      "checklist": {
+        "gevaar": false,
+        "evacuatieOfNlAlert": false,
+        "gewondenOfDoden": false,
+        "bestuurlijkeCrisis": false,
+        "besluitMetGrootGevolg": false,
+        "tijdkritisch": false,
+        "betrokkenen": null,
+        "geldbedragEuro": 4000000,
+        "banen": null,
+        "inRegio": true
+      },
+      "checklistBron": "ai",
+      "analyse": true,
+      "alertKandidaat": {
+        "niveau": "oranje",
+        "categorie": "economie",
+        "reden": "bedrag van 4 miljoen euro (één bron)",
+        "aangemaaktOp": "2026-11-04T16:00:53.153Z",
+        "tot": "2026-11-05T16:00:53.153Z"
+      }
+    },
+    {
       "id": "c5c63a3c12-v1",
       "groepId": "c5c63a3c12",
       "versie": 1,
@@ -192,7 +237,8 @@
       "agendaIds": [
         "0908fbbdb6",
         "01bc20615a"
-      ]
+      ],
+      "tagVersie": 2
     },
     {
       "id": "955f4f71a1-v1",
