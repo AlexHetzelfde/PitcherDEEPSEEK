@@ -1,5 +1,5 @@
 {
-  "gegenereerdOp": "2026-11-04T09:00:49.606Z",
+  "gegenereerdOp": "2026-11-04T10:00:52.994Z",
   "promptVersie": "2026-10-29-batch-tag-checklist-agendapunten",
   "alertModus": "log",
   "prioSchaal": "1 = urgent, 2 = belangrijk, 3 = regulier, 4 = routine. De AI geeft nooit prio 1.",
@@ -85,7 +85,46 @@
         "banen": null,
         "inRegio": false
       },
-      "checklistBron": "ai"
+      "checklistBron": "ai",
+      "tagVersie": 2
+    },
+    {
+      "id": "afa774125b-v1",
+      "groepId": "afa774125b",
+      "versie": 1,
+      "url": "https://www.deorkaan.nl/chris-stussy-dreunt-na-felle-botsing-tussen-bewoners-gemeente-sona-en-taets/",
+      "kop": "Chris Stussy dreunt na: felle botsing tussen bewoners, gemeente, SONA en Taets",
+      "tekst": null,
+      "rubriek": "CUL",
+      "tagBron": "ai",
+      "herkomst": "signaal",
+      "prio": 3,
+      "tijd": "2026-11-03T23:00:00.000Z",
+      "heeftTijd": false,
+      "woorden": 933,
+      "afgekapt": true,
+      "bronId": "DeOrkaan",
+      "bronNaam": "DeOrkaan",
+      "ai": false,
+      "controle": "analyse-ok",
+      "eerstGezienOp": "2026-11-04T10:00:52.994Z",
+      "gecontroleerdOp": "2026-11-04T10:00:52.994Z",
+      "bronTitel": "Chris Stussy dreunt na: felle botsing tussen bewoners, gemeente, SONA en Taets",
+      "bronLengte": 5995,
+      "checklist": {
+        "gevaar": false,
+        "evacuatieOfNlAlert": false,
+        "gewondenOfDoden": false,
+        "bestuurlijkeCrisis": false,
+        "besluitMetGrootGevolg": false,
+        "tijdkritisch": false,
+        "betrokkenen": null,
+        "geldbedragEuro": null,
+        "banen": null,
+        "inRegio": true
+      },
+      "checklistBron": "ai",
+      "analyse": true
     },
     {
       "id": "d54f3d027a-v1",
@@ -123,7 +162,8 @@
         "inRegio": false
       },
       "checklistBron": "ai",
-      "analyse": true
+      "analyse": true,
+      "tagVersie": 2
     },
     {
       "id": "aa7e41d90d-v1",
@@ -145,7 +185,7 @@
       "ai": false,
       "controle": "analyse-ok",
       "eerstGezienOp": "2026-11-04T08:00:49.559Z",
-      "gecontroleerdOp": "2026-11-04T08:00:49.559Z",
+      "gecontroleerdOp": "2026-11-04T10:00:52.994Z",
       "bronTitel": "JOY x FLOW onder vuur: 96 boetes, verkeerschaos en toch ‘ordentelijk verlopen’?",
       "bronLengte": 5999,
       "checklist": {
@@ -223,7 +263,7 @@
       "ai": true,
       "controle": "cijfers-ok",
       "eerstGezienOp": "2026-11-03T23:00:50.778Z",
-      "gecontroleerdOp": "2026-11-04T08:00:49.559Z",
+      "gecontroleerdOp": "2026-11-04T10:00:52.994Z",
       "bronTitel": "Inzicht in rituitval EBS en de verdeling daarvan over buslijnen",
       "bronLengte": 4879,
       "checklist": {
@@ -261,7 +301,7 @@
       "ai": true,
       "controle": "cijfers-ok",
       "eerstGezienOp": "2026-11-03T13:01:08.430Z",
-      "gecontroleerdOp": "2026-11-04T08:00:49.559Z",
+      "gecontroleerdOp": "2026-11-04T10:00:52.994Z",
       "bronTitel": "Provincie geeft subsidie aan veehouders die willen stoppen",
       "bronLengte": 2229,
       "checklist": {
@@ -299,7 +339,7 @@
       "ai": false,
       "controle": "analyse-ok",
       "eerstGezienOp": "2026-11-03T12:00:51.615Z",
-      "gecontroleerdOp": "2026-11-04T08:00:49.559Z",
+      "gecontroleerdOp": "2026-11-04T10:00:52.994Z",
       "bronTitel": "50woordenfoto: Erasmusbrug bij Zaanse Schans…",
       "bronLengte": 606,
       "checklist": {
@@ -614,7 +654,7 @@
       "ai": false,
       "controle": "analyse-ok",
       "eerstGezienOp": "2026-11-03T16:58:05.874Z",
-      "gecontroleerdOp": "2026-11-04T08:00:49.559Z",
+      "gecontroleerdOp": "2026-11-04T10:00:52.994Z",
       "bronTitel": "Nieuwe hondenverboden bij De Tref: bewoners begrijpen er weinig van",
       "bronLengte": 3461,
       "checklist": {
@@ -653,7 +693,7 @@
       "ai": false,
       "controle": "analyse-ok",
       "eerstGezienOp": "2026-11-03T15:00:54.379Z",
-      "gecontroleerdOp": "2026-11-04T08:00:49.559Z",
+      "gecontroleerdOp": "2026-11-04T10:00:52.994Z",
       "bronTitel": "Audi alleen gelaten…",
       "bronLengte": 534,
       "checklist": {
@@ -692,7 +732,7 @@
       "ai": false,
       "controle": "analyse-ok",
       "eerstGezienOp": "2026-11-03T14:00:51.025Z",
-      "gecontroleerdOp": "2026-11-04T08:00:49.559Z",
+      "gecontroleerdOp": "2026-11-04T10:00:52.994Z",
       "bronTitel": "Museum Zaanse Tijd in de strijd om Erfgoedvrijwilligersprijs",
       "bronLengte": 1997,
       "checklist": {
@@ -731,7 +771,7 @@
       "ai": false,
       "controle": "analyse-ok",
       "eerstGezienOp": "2026-11-03T14:00:51.025Z",
-      "gecontroleerdOp": "2026-11-04T08:00:49.559Z",
+      "gecontroleerdOp": "2026-11-04T10:00:52.994Z",
       "bronTitel": "Veldpark wacht forse opknapbeurt",
       "bronLengte": 922,
       "checklist": {
@@ -790,7 +830,7 @@
       "ai": false,
       "controle": "analyse-ok",
       "eerstGezienOp": "2026-11-03T13:01:08.430Z",
-      "gecontroleerdOp": "2026-11-04T08:00:49.559Z",
+      "gecontroleerdOp": "2026-11-04T10:00:52.994Z",
       "bronTitel": "De Orkaan in 2 minuten: 3 november 🎧",
       "bronLengte": 376,
       "checklist": {
@@ -943,7 +983,7 @@
       "ai": false,
       "controle": "analyse-ok",
       "eerstGezienOp": "2026-11-03T11:00:54.646Z",
-      "gecontroleerdOp": "2026-11-04T08:00:49.559Z",
+      "gecontroleerdOp": "2026-11-04T10:00:52.994Z",
       "bronTitel": "Praten over ‘de Laatste Levensfase’",
       "bronLengte": 1757,
       "checklist": {
