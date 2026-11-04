@@ -1,5 +1,5 @@
 {
-  "gegenereerdOp": "2026-11-04T08:00:49.559Z",
+  "gegenereerdOp": "2026-11-04T09:00:49.606Z",
   "promptVersie": "2026-10-29-batch-tag-checklist-agendapunten",
   "alertModus": "log",
   "prioSchaal": "1 = urgent, 2 = belangrijk, 3 = regulier, 4 = routine. De AI geeft nooit prio 1.",
@@ -51,6 +51,81 @@
   ],
   "berichten": [
     {
+      "id": "8cbbe8fd8d-v1",
+      "groepId": "8cbbe8fd8d",
+      "versie": 1,
+      "url": "https://www.noord-holland.nl/Actueel/Archief/2026/November_2026/Een_comfortabeler_monument_met_hetzelfde_karakter",
+      "kop": "Provincie verduurzaamt monumentaal Paviljoen Welgelegen in Haarlem",
+      "tekst": "De provincie Noord-Holland werkt aan het verduurzamen van het monumentale Paviljoen Welgelegen in Haarlem. Het doel is om het gebouw vóór 2030 aardgasvrij te maken met behoud van het historische karakter. Experts en projectleiders onderzoeken onder meer isolatie en het dichten van kieren om energieverlies tegen te gaan.",
+      "rubriek": "PRV",
+      "tagBron": "ai",
+      "herkomst": "officieel",
+      "prio": 4,
+      "tijd": "2026-11-04T08:15:14.000Z",
+      "heeftTijd": true,
+      "woorden": 885,
+      "afgekapt": true,
+      "bronId": "nh-actueel",
+      "bronNaam": "Provincie Noord-Holland — Actueel",
+      "ai": true,
+      "controle": "cijfers-ok",
+      "eerstGezienOp": "2026-11-04T09:00:49.606Z",
+      "gecontroleerdOp": "2026-11-04T09:00:49.606Z",
+      "bronTitel": "Een comfortabeler monument met hetzelfde karakter",
+      "bronLengte": 5997,
+      "checklist": {
+        "gevaar": false,
+        "evacuatieOfNlAlert": false,
+        "gewondenOfDoden": false,
+        "bestuurlijkeCrisis": false,
+        "besluitMetGrootGevolg": false,
+        "tijdkritisch": false,
+        "betrokkenen": null,
+        "geldbedragEuro": null,
+        "banen": null,
+        "inRegio": false
+      },
+      "checklistBron": "ai"
+    },
+    {
+      "id": "d54f3d027a-v1",
+      "groepId": "d54f3d027a",
+      "versie": 1,
+      "url": "https://www.deorkaan.nl/az-19-weerstaat-turkse-furie-en-gaat-door-in-youth-league-%e2%9a%bd%ef%b8%8f-%f0%9f%8e%a7/",
+      "kop": "AZ -19 weerstaat Turkse furie en gaat door in Youth League ⚽️/ 🎧",
+      "tekst": null,
+      "rubriek": "SPO",
+      "tagBron": "ai",
+      "herkomst": "signaal",
+      "prio": 3,
+      "tijd": "2026-11-03T23:00:00.000Z",
+      "heeftTijd": false,
+      "woorden": 444,
+      "afgekapt": false,
+      "bronId": "DeOrkaan",
+      "bronNaam": "DeOrkaan",
+      "ai": false,
+      "controle": "analyse-ok",
+      "eerstGezienOp": "2026-11-04T09:00:49.606Z",
+      "gecontroleerdOp": "2026-11-04T09:00:49.606Z",
+      "bronTitel": "AZ -19 weerstaat Turkse furie en gaat door in Youth League ⚽️/ 🎧",
+      "bronLengte": 2572,
+      "checklist": {
+        "gevaar": false,
+        "evacuatieOfNlAlert": false,
+        "gewondenOfDoden": false,
+        "bestuurlijkeCrisis": false,
+        "besluitMetGrootGevolg": false,
+        "tijdkritisch": false,
+        "betrokkenen": null,
+        "geldbedragEuro": null,
+        "banen": null,
+        "inRegio": false
+      },
+      "checklistBron": "ai",
+      "analyse": true
+    },
+    {
       "id": "aa7e41d90d-v1",
       "groepId": "aa7e41d90d",
       "versie": 1,
@@ -86,7 +161,8 @@
         "inRegio": true
       },
       "checklistBron": "ai",
-      "analyse": true
+      "analyse": true,
+      "tagVersie": 2
     },
     {
       "id": "7996481e07-v1",
@@ -108,7 +184,7 @@
       "ai": false,
       "controle": "analyse-ok",
       "eerstGezienOp": "2026-11-04T07:00:48.066Z",
-      "gecontroleerdOp": "2026-11-04T07:00:48.066Z",
+      "gecontroleerdOp": "2026-11-04T09:00:49.606Z",
       "bronTitel": "50woordenfoto: herfst…",
       "bronLengte": 608,
       "checklist": {
@@ -392,6 +468,7 @@
         "inRegio": true
       },
       "checklistBron": "ai",
+      "tagVersie": 2,
       "alertKandidaat": {
         "niveau": "oranje",
         "categorie": "bestuur",
@@ -435,7 +512,8 @@
         "banen": null,
         "inRegio": true
       },
-      "checklistBron": "ai"
+      "checklistBron": "ai",
+      "tagVersie": 2
     },
     {
       "id": "a40204adea-v1",
@@ -473,7 +551,8 @@
         "inRegio": true
       },
       "checklistBron": "ai",
-      "clusterId": "6ed1a85c02"
+      "clusterId": "6ed1a85c02",
+      "tagVersie": 2
     },
     {
       "id": "6ed1a85c02-v1",
@@ -495,7 +574,7 @@
       "ai": false,
       "controle": "analyse-ok",
       "eerstGezienOp": "2026-11-04T07:00:48.066Z",
-      "gecontroleerdOp": "2026-11-04T07:00:48.066Z",
+      "gecontroleerdOp": "2026-11-04T09:00:49.606Z",
       "bronTitel": "Cameratoezicht Elzenstraat wéér verlengd",
       "bronLengte": 1618,
       "checklist": {
