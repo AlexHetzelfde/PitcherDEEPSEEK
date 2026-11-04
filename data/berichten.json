@@ -1,5 +1,5 @@
 {
-  "gegenereerdOp": "2026-11-04T21:00:51.224Z",
+  "gegenereerdOp": "2026-11-04T22:00:53.090Z",
   "promptVersie": "2026-10-29-batch-tag-checklist-agendapunten",
   "alertModus": "log",
   "prioSchaal": "1 = urgent, 2 = belangrijk, 3 = regulier, 4 = routine. De AI geeft nooit prio 1.",
@@ -108,7 +108,7 @@
       "ai": true,
       "controle": "cijfers-ok",
       "eerstGezienOp": "2026-11-04T09:00:49.606Z",
-      "gecontroleerdOp": "2026-11-04T20:00:50.916Z",
+      "gecontroleerdOp": "2026-11-04T22:00:53.090Z",
       "bronTitel": "Een comfortabeler monument met hetzelfde karakter",
       "bronLengte": 5997,
       "checklist": {
@@ -146,7 +146,7 @@
       "ai": false,
       "controle": "analyse-ok",
       "eerstGezienOp": "2026-11-04T20:00:50.916Z",
-      "gecontroleerdOp": "2026-11-04T20:00:50.916Z",
+      "gecontroleerdOp": "2026-11-04T22:00:53.090Z",
       "bronTitel": "In memoriam: Rita Melk (1957–2026), onvermoeibaar voor de Zaanse natuur",
       "bronLengte": 5311,
       "checklist": {
@@ -300,7 +300,7 @@
       "ai": false,
       "controle": "analyse-ok",
       "eerstGezienOp": "2026-11-04T14:00:55.970Z",
-      "gecontroleerdOp": "2026-11-04T20:00:50.916Z",
+      "gecontroleerdOp": "2026-11-04T22:00:53.090Z",
       "bronTitel": "Begrotingsdebat Wormerland: zonder CUP maar met ‘heeft u misschien een schaar voor mij?’",
       "bronLengte": 5361,
       "checklist": {
@@ -385,7 +385,7 @@
       "ai": false,
       "controle": "analyse-ok",
       "eerstGezienOp": "2026-11-04T12:00:52.250Z",
-      "gecontroleerdOp": "2026-11-04T20:00:50.916Z",
+      "gecontroleerdOp": "2026-11-04T22:00:53.090Z",
       "bronTitel": "De Orkaan in 2 minuten: 4 november 🎧",
       "bronLengte": 339,
       "checklist": {
@@ -424,7 +424,7 @@
       "ai": false,
       "controle": "analyse-ok",
       "eerstGezienOp": "2026-11-04T12:00:52.250Z",
-      "gecontroleerdOp": "2026-11-04T20:00:50.916Z",
+      "gecontroleerdOp": "2026-11-04T22:00:53.090Z",
       "bronTitel": "Martin Rep: Beatles-pelgrim op het zebrapad",
       "bronLengte": 5997,
       "checklist": {
@@ -548,7 +548,7 @@
       "ai": false,
       "controle": "analyse-ok",
       "eerstGezienOp": "2026-11-04T09:00:49.606Z",
-      "gecontroleerdOp": "2026-11-04T20:00:50.916Z",
+      "gecontroleerdOp": "2026-11-04T22:00:53.090Z",
       "bronTitel": "AZ -19 weerstaat Turkse furie en gaat door in Youth League ⚽️/ 🎧",
       "bronLengte": 2572,
       "checklist": {
@@ -626,7 +626,7 @@
       "ai": false,
       "controle": "analyse-ok",
       "eerstGezienOp": "2026-11-04T07:00:48.066Z",
-      "gecontroleerdOp": "2026-11-04T20:00:50.916Z",
+      "gecontroleerdOp": "2026-11-04T22:00:53.090Z",
       "bronTitel": "50woordenfoto: herfst…",
       "bronLengte": 608,
       "checklist": {
