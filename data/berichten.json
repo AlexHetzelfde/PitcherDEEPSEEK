@@ -1,5 +1,5 @@
 {
-  "gegenereerdOp": "2026-11-03T23:00:50.778Z",
+  "gegenereerdOp": "2026-11-04T00:00:52.027Z",
   "promptVersie": "2026-10-29-batch-tag-checklist-agendapunten",
   "alertModus": "log",
   "prioSchaal": "1 = urgent, 2 = belangrijk, 3 = regulier, 4 = routine. De AI geeft nooit prio 1.",
@@ -85,7 +85,8 @@
         "banen": null,
         "inRegio": true
       },
-      "checklistBron": "ai"
+      "checklistBron": "ai",
+      "tagVersie": 2
     },
     {
       "id": "6b001b9460-v1",
@@ -107,7 +108,7 @@
       "ai": true,
       "controle": "cijfers-ok",
       "eerstGezienOp": "2026-11-03T13:01:08.430Z",
-      "gecontroleerdOp": "2026-11-03T21:00:52.598Z",
+      "gecontroleerdOp": "2026-11-04T00:00:52.027Z",
       "bronTitel": "Provincie geeft subsidie aan veehouders die willen stoppen",
       "bronLengte": 2229,
       "checklist": {
@@ -145,7 +146,7 @@
       "ai": false,
       "controle": "analyse-ok",
       "eerstGezienOp": "2026-11-03T12:00:51.615Z",
-      "gecontroleerdOp": "2026-11-03T21:00:52.598Z",
+      "gecontroleerdOp": "2026-11-04T00:00:52.027Z",
       "bronTitel": "50woordenfoto: Erasmusbrug bij Zaanse Schans…",
       "bronLengte": 606,
       "checklist": {
@@ -298,7 +299,7 @@
       "ai": false,
       "controle": "analyse-ok",
       "eerstGezienOp": "2026-11-03T16:58:05.874Z",
-      "gecontroleerdOp": "2026-11-03T21:00:52.598Z",
+      "gecontroleerdOp": "2026-11-04T00:00:52.027Z",
       "bronTitel": "Nieuwe hondenverboden bij De Tref: bewoners begrijpen er weinig van",
       "bronLengte": 3461,
       "checklist": {
@@ -337,7 +338,7 @@
       "ai": false,
       "controle": "analyse-ok",
       "eerstGezienOp": "2026-11-03T15:00:54.379Z",
-      "gecontroleerdOp": "2026-11-03T21:00:52.598Z",
+      "gecontroleerdOp": "2026-11-04T00:00:52.027Z",
       "bronTitel": "Audi alleen gelaten…",
       "bronLengte": 534,
       "checklist": {
@@ -376,7 +377,7 @@
       "ai": false,
       "controle": "analyse-ok",
       "eerstGezienOp": "2026-11-03T14:00:51.025Z",
-      "gecontroleerdOp": "2026-11-03T21:00:52.598Z",
+      "gecontroleerdOp": "2026-11-04T00:00:52.027Z",
       "bronTitel": "Museum Zaanse Tijd in de strijd om Erfgoedvrijwilligersprijs",
       "bronLengte": 1997,
       "checklist": {
@@ -415,7 +416,7 @@
       "ai": false,
       "controle": "analyse-ok",
       "eerstGezienOp": "2026-11-03T14:00:51.025Z",
-      "gecontroleerdOp": "2026-11-03T21:00:52.598Z",
+      "gecontroleerdOp": "2026-11-04T00:00:52.027Z",
       "bronTitel": "Veldpark wacht forse opknapbeurt",
       "bronLengte": 922,
       "checklist": {
@@ -474,7 +475,7 @@
       "ai": false,
       "controle": "analyse-ok",
       "eerstGezienOp": "2026-11-03T13:01:08.430Z",
-      "gecontroleerdOp": "2026-11-03T21:00:52.598Z",
+      "gecontroleerdOp": "2026-11-04T00:00:52.027Z",
       "bronTitel": "De Orkaan in 2 minuten: 3 november 🎧",
       "bronLengte": 376,
       "checklist": {
@@ -627,7 +628,7 @@
       "ai": false,
       "controle": "analyse-ok",
       "eerstGezienOp": "2026-11-03T11:00:54.646Z",
-      "gecontroleerdOp": "2026-11-03T21:00:52.598Z",
+      "gecontroleerdOp": "2026-11-04T00:00:52.027Z",
       "bronTitel": "Praten over ‘de Laatste Levensfase’",
       "bronLengte": 1757,
       "checklist": {
@@ -697,7 +698,7 @@
       "ai": false,
       "controle": "analyse-ok",
       "eerstGezienOp": "2026-11-03T10:00:50.624Z",
-      "gecontroleerdOp": "2026-11-03T21:00:52.598Z",
+      "gecontroleerdOp": "2026-11-04T00:00:52.027Z",
       "bronTitel": "Veel minder woningen uit oude panden in Zaanstad en Wormerland",
       "bronLengte": 2712,
       "checklist": {
@@ -736,7 +737,7 @@
       "ai": false,
       "controle": "analyse-ok",
       "eerstGezienOp": "2026-11-03T08:56:18.414Z",
-      "gecontroleerdOp": "2026-11-03T21:00:52.598Z",
+      "gecontroleerdOp": "2026-11-04T00:00:52.027Z",
       "bronTitel": "Wanneer zijn de Sinterklaasintochten van 2026?",
       "bronLengte": 5998,
       "checklist": {
@@ -806,7 +807,7 @@
       "ai": false,
       "controle": "analyse-ok",
       "eerstGezienOp": "2026-11-03T08:56:18.414Z",
-      "gecontroleerdOp": "2026-11-03T21:00:52.598Z",
+      "gecontroleerdOp": "2026-11-04T00:00:52.027Z",
       "bronTitel": "Buurman voorkomt erger bij vermoedelijke brandstichting in Assendelft 📸",
       "bronLengte": 755,
       "checklist": {
