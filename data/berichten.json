@@ -1,5 +1,5 @@
 {
-  "gegenereerdOp": "2026-11-04T19:00:52.904Z",
+  "gegenereerdOp": "2026-11-04T20:00:50.916Z",
   "promptVersie": "2026-10-29-batch-tag-checklist-agendapunten",
   "alertModus": "log",
   "prioSchaal": "1 = urgent, 2 = belangrijk, 3 = regulier, 4 = routine. De AI geeft nooit prio 1.",
@@ -108,7 +108,7 @@
       "ai": true,
       "controle": "cijfers-ok",
       "eerstGezienOp": "2026-11-04T09:00:49.606Z",
-      "gecontroleerdOp": "2026-11-04T17:00:53.392Z",
+      "gecontroleerdOp": "2026-11-04T20:00:50.916Z",
       "bronTitel": "Een comfortabeler monument met hetzelfde karakter",
       "bronLengte": 5997,
       "checklist": {
@@ -125,6 +125,44 @@
       },
       "checklistBron": "ai",
       "tagVersie": 2
+    },
+    {
+      "id": "2b9f0c8de8-v1",
+      "groepId": "2b9f0c8de8",
+      "versie": 1,
+      "url": "https://www.deorkaan.nl/in-memoriam-rita-melk-1957-2026-onvermoeibaar-voor-de-zaanse-natuur/",
+      "kop": "In memoriam: Rita Melk (1957–2026), onvermoeibaar voor de Zaanse natuur",
+      "tekst": null,
+      "rubriek": "PRV",
+      "tagBron": "ai",
+      "herkomst": "signaal",
+      "prio": 3,
+      "tijd": "2026-11-03T23:00:00.000Z",
+      "heeftTijd": false,
+      "woorden": 856,
+      "afgekapt": false,
+      "bronId": "DeOrkaan",
+      "bronNaam": "DeOrkaan",
+      "ai": false,
+      "controle": "analyse-ok",
+      "eerstGezienOp": "2026-11-04T20:00:50.916Z",
+      "gecontroleerdOp": "2026-11-04T20:00:50.916Z",
+      "bronTitel": "In memoriam: Rita Melk (1957–2026), onvermoeibaar voor de Zaanse natuur",
+      "bronLengte": 5311,
+      "checklist": {
+        "gevaar": false,
+        "evacuatieOfNlAlert": false,
+        "gewondenOfDoden": false,
+        "bestuurlijkeCrisis": false,
+        "besluitMetGrootGevolg": false,
+        "tijdkritisch": false,
+        "betrokkenen": null,
+        "geldbedragEuro": null,
+        "banen": null,
+        "inRegio": true
+      },
+      "checklistBron": "ai",
+      "analyse": true
     },
     {
       "id": "c25dfcec5b-v1",
@@ -261,7 +299,7 @@
       "ai": false,
       "controle": "analyse-ok",
       "eerstGezienOp": "2026-11-04T14:00:55.970Z",
-      "gecontroleerdOp": "2026-11-04T17:00:53.392Z",
+      "gecontroleerdOp": "2026-11-04T20:00:50.916Z",
       "bronTitel": "Begrotingsdebat Wormerland: zonder CUP maar met ‘heeft u misschien een schaar voor mij?’",
       "bronLengte": 5361,
       "checklist": {
@@ -346,7 +384,7 @@
       "ai": false,
       "controle": "analyse-ok",
       "eerstGezienOp": "2026-11-04T12:00:52.250Z",
-      "gecontroleerdOp": "2026-11-04T17:00:53.392Z",
+      "gecontroleerdOp": "2026-11-04T20:00:50.916Z",
       "bronTitel": "De Orkaan in 2 minuten: 4 november 🎧",
       "bronLengte": 339,
       "checklist": {
@@ -385,7 +423,7 @@
       "ai": false,
       "controle": "analyse-ok",
       "eerstGezienOp": "2026-11-04T12:00:52.250Z",
-      "gecontroleerdOp": "2026-11-04T17:00:53.392Z",
+      "gecontroleerdOp": "2026-11-04T20:00:50.916Z",
       "bronTitel": "Martin Rep: Beatles-pelgrim op het zebrapad",
       "bronLengte": 5997,
       "checklist": {
@@ -509,7 +547,7 @@
       "ai": false,
       "controle": "analyse-ok",
       "eerstGezienOp": "2026-11-04T09:00:49.606Z",
-      "gecontroleerdOp": "2026-11-04T17:00:53.392Z",
+      "gecontroleerdOp": "2026-11-04T20:00:50.916Z",
       "bronTitel": "AZ -19 weerstaat Turkse furie en gaat door in Youth League ⚽️/ 🎧",
       "bronLengte": 2572,
       "checklist": {
@@ -587,7 +625,7 @@
       "ai": false,
       "controle": "analyse-ok",
       "eerstGezienOp": "2026-11-04T07:00:48.066Z",
-      "gecontroleerdOp": "2026-11-04T17:00:53.392Z",
+      "gecontroleerdOp": "2026-11-04T20:00:50.916Z",
       "bronTitel": "50woordenfoto: herfst…",
       "bronLengte": 608,
       "checklist": {
