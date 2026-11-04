@@ -1,5 +1,5 @@
 {
-  "gegenereerdOp": "2026-11-04T10:00:52.994Z",
+  "gegenereerdOp": "2026-11-04T10:46:22.507Z",
   "promptVersie": "2026-10-29-batch-tag-checklist-agendapunten",
   "alertModus": "log",
   "prioSchaal": "1 = urgent, 2 = belangrijk, 3 = regulier, 4 = routine. De AI geeft nooit prio 1.",
@@ -51,6 +51,43 @@
   ],
   "berichten": [
     {
+      "id": "65a001ee37-v1",
+      "groepId": "65a001ee37",
+      "versie": 1,
+      "url": "https://www.noord-holland.nl/Actueel/Archief/2026/November_2026/Provincie_verwijdert_zieke_en_doden_bomen_langs_verschillende_N_wegen",
+      "kop": "Provincie kapt vanaf medio januari 2027 zieke en dode bomen langs N-wegen",
+      "tekst": "De provincie Noord-Holland verwijdert vanaf medio januari 2027 in totaal 137 zieke en dode bomen langs provinciale wegen in Alkmaar en omgeving, West-Friesland en Zuid-Kennemerland. De werkzaamheden duren naar verwachting drie weken en zijn nodig voor de verkeersveiligheid. Na afronding plant de provincie op een later moment nieuwe jonge bomen terug.",
+      "rubriek": "PRV",
+      "tagBron": "ai",
+      "herkomst": "officieel",
+      "prio": 3,
+      "tijd": "2026-11-04T11:18:42.000Z",
+      "heeftTijd": true,
+      "woorden": 377,
+      "afgekapt": false,
+      "bronId": "nh-actueel",
+      "bronNaam": "Provincie Noord-Holland — Actueel",
+      "ai": true,
+      "controle": "cijfers-ok",
+      "eerstGezienOp": "2026-11-04T10:46:22.507Z",
+      "gecontroleerdOp": "2026-11-04T10:46:22.507Z",
+      "bronTitel": "Provincie verwijdert zieke en doden bomen langs verschillende N-wegen",
+      "bronLengte": 2375,
+      "checklist": {
+        "gevaar": false,
+        "evacuatieOfNlAlert": false,
+        "gewondenOfDoden": false,
+        "bestuurlijkeCrisis": false,
+        "besluitMetGrootGevolg": false,
+        "tijdkritisch": false,
+        "betrokkenen": null,
+        "geldbedragEuro": null,
+        "banen": null,
+        "inRegio": false
+      },
+      "checklistBron": "ai"
+    },
+    {
       "id": "8cbbe8fd8d-v1",
       "groepId": "8cbbe8fd8d",
       "versie": 1,
@@ -89,6 +126,51 @@
       "tagVersie": 2
     },
     {
+      "id": "1b2560bc11-v1",
+      "groepId": "1b2560bc11",
+      "versie": 1,
+      "url": "https://www.deorkaan.nl/begrotingsdebat-zaanstad-beraad-2-eerlijk-antwoord-en-juiste-feiten/",
+      "kop": "Begrotingsdebat Zaanstad Beraad #2: ‘eerlijk antwoord’ en ‘juiste feiten’",
+      "tekst": null,
+      "rubriek": "GEM",
+      "tagBron": "ai",
+      "herkomst": "signaal",
+      "prio": 3,
+      "tijd": "2026-11-03T23:00:00.000Z",
+      "heeftTijd": false,
+      "woorden": 932,
+      "afgekapt": true,
+      "bronId": "DeOrkaan",
+      "bronNaam": "DeOrkaan",
+      "ai": false,
+      "controle": "analyse-ok",
+      "eerstGezienOp": "2026-11-04T10:46:22.507Z",
+      "gecontroleerdOp": "2026-11-04T10:46:22.507Z",
+      "bronTitel": "Begrotingsdebat Zaanstad Beraad #2: ‘eerlijk antwoord’ en ‘juiste feiten’",
+      "bronLengte": 6000,
+      "checklist": {
+        "gevaar": false,
+        "evacuatieOfNlAlert": false,
+        "gewondenOfDoden": false,
+        "bestuurlijkeCrisis": false,
+        "besluitMetGrootGevolg": true,
+        "tijdkritisch": false,
+        "betrokkenen": null,
+        "geldbedragEuro": 10900000,
+        "banen": null,
+        "inRegio": true
+      },
+      "checklistBron": "ai",
+      "analyse": true,
+      "alertKandidaat": {
+        "niveau": "oranje",
+        "categorie": "bestuur",
+        "reden": "besluit met groot gevolg (één bron)",
+        "aangemaaktOp": "2026-11-04T10:46:22.507Z",
+        "tot": "2026-11-05T10:46:22.507Z"
+      }
+    },
+    {
       "id": "afa774125b-v1",
       "groepId": "afa774125b",
       "versie": 1,
@@ -124,7 +206,8 @@
         "inRegio": true
       },
       "checklistBron": "ai",
-      "analyse": true
+      "analyse": true,
+      "tagVersie": 2
     },
     {
       "id": "d54f3d027a-v1",
