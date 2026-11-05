@@ -1,5 +1,5 @@
 {
-  "gegenereerdOp": "2026-11-05T00:18:15.212Z",
+  "gegenereerdOp": "2026-11-05T01:00:52.567Z",
   "alertModus": "log",
   "bronnen": {
     "zaansche-molen": {
@@ -38,12 +38,12 @@
       "opeenvolgendLeeg": 0
     },
     "nh-actueel": {
-      "laatsteScrape": "2026-11-05T00:00:52.776Z",
+      "laatsteScrape": "2026-11-05T01:00:52.567Z",
       "gevonden": 15,
       "opeenvolgendLeeg": 0
     },
     "nh-cultuur": {
-      "laatsteScrape": "2026-11-05T00:00:52.776Z",
+      "laatsteScrape": "2026-11-05T01:00:52.567Z",
       "gevonden": 3,
       "opeenvolgendLeeg": 0
     },
@@ -98,7 +98,7 @@
       "opeenvolgendLeeg": 0
     },
     "DeOrkaan": {
-      "laatsteScrape": "2026-11-05T00:00:52.776Z",
+      "laatsteScrape": "2026-11-05T01:00:52.567Z",
       "gevonden": 12,
       "opeenvolgendLeeg": 0
     },
@@ -123,9 +123,9 @@
       "opeenvolgendLeeg": 0
     },
     "vervoerregio-overzichten": {
-      "laatsteScrape": "2026-11-05T00:00:52.776Z",
+      "laatsteScrape": "2026-11-05T01:00:52.567Z",
       "gevonden": 0,
-      "opeenvolgendLeeg": 1
+      "opeenvolgendLeeg": 2
     }
   },
   "bronnenZonderRubriek": [],
@@ -263,7 +263,7 @@
       "nieuw": 0,
       "update": 0,
       "opnieuw": 0,
-      "ongewijzigd": 0,
+      "ongewijzigd": 14,
       "seed": 0
     },
     "cluster": {
