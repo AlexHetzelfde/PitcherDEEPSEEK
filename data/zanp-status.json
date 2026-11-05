@@ -1,5 +1,5 @@
 {
-  "gegenereerdOp": "2026-11-05T22:38:38.800Z",
+  "gegenereerdOp": "2026-11-05T23:00:55.719Z",
   "alertModus": "log",
   "bronnen": {
     "zaansche-molen": {
@@ -266,31 +266,31 @@
     "agenda": {
       "nieuw": 0,
       "bijgewerkt": 0,
-      "behouden": 252,
+      "behouden": 247,
       "verdwenen": 0,
-      "verlopen": 0,
-      "uitBerichten": 22,
-      "zichtbaar": 94,
-      "verborgen": 176,
+      "verlopen": 5,
+      "uitBerichten": 21,
+      "zichtbaar": 92,
+      "verborgen": 172,
       "inAfwachting": 0
     },
     "berichten": {
       "nieuw": 0,
       "update": 0,
-      "opnieuw": 6,
-      "ongewijzigd": 1,
+      "opnieuw": 0,
+      "ongewijzigd": 0,
       "seed": 0
     },
     "cluster": {
-      "vergeleken": 3321,
+      "vergeleken": 2145,
       "automatisch": 0,
       "aiGevraagd": 0,
       "aiJa": 0,
       "aiNee": 0,
       "uitgesteld": 0,
-      "clusters": 1
+      "clusters": 0
     },
-    "alerts": 5,
+    "alerts": 1,
     "koppel": {
       "agendaNaarBericht": 0,
       "uitkomsten": 0,
@@ -299,41 +299,27 @@
     "prioriteit": {
       "modus": "schaduw",
       "tekst": {
-        "werklijst": 0,
+        "werklijst": 1,
         "lokaal": 0,
-        "opgehaald": 0,
+        "opgehaald": 1,
         "mislukt": 0,
         "uitgesteld": 0
       },
       "vergeten": 0,
-      "stukken": 306,
-      "kandidaten": 104,
-      "metAnker": 104,
+      "stukken": 307,
+      "kandidaten": 99,
+      "metAnker": 99,
       "zonderAnker": 0,
       "tau": 0.5,
       "besluit": {
-        "boven": 0,
-        "wacht": 0,
+        "boven": 3,
+        "wacht": 3,
         "onderdrukt": 0,
         "veto": 0,
         "nieuwRood": 0,
         "noodrem": false
       },
       "rood": 4
-    },
-    "kwaliteit": {
-      "verzoeken": 0,
-      "berichten": 6,
-      "ok": 0,
-      "analyseOk": 0,
-      "cijfersAfgekeurd": 0,
-      "onvoldoende": 0,
-      "fout": 6,
-      "overgeslagen": 0,
-      "tagAi": 0,
-      "tagTrefwoord": 0,
-      "tagBron": 0,
-      "tagGeen": 0
     }
   }
 }

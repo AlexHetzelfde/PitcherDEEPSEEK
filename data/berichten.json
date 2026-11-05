@@ -1,5 +1,5 @@
 {
-  "gegenereerdOp": "2026-11-05T22:38:38.800Z",
+  "gegenereerdOp": "2026-11-05T23:00:55.719Z",
   "promptVersie": "2026-10-29-batch-tag-checklist-agendapunten",
   "alertModus": "log",
   "prioSchaal": "1 = urgent, 2 = belangrijk, 3 = regulier, 4 = routine. De AI geeft nooit prio 1.",
@@ -1285,14 +1285,7 @@
         "inRegio": true
       },
       "checklistBron": "patroon",
-      "tagVersie": 2,
-      "alertKandidaat": {
-        "niveau": "oranje",
-        "categorie": "bestuur",
-        "reden": "besluit met groot gevolg (officiële bron)",
-        "aangemaaktOp": "2026-11-05T04:00:52.742Z",
-        "tot": "2026-11-06T04:00:52.742Z"
-      }
+      "tagVersie": 2
     },
     {
       "id": "b110c0705c-v1",
@@ -2067,14 +2060,7 @@
       },
       "checklistBron": "ai",
       "analyse": true,
-      "tagVersie": 2,
-      "alertKandidaat": {
-        "niveau": "oranje",
-        "categorie": "economie",
-        "reden": "bedrag van 4 miljoen euro (één bron)",
-        "aangemaaktOp": "2026-11-05T16:23:54.784Z",
-        "tot": "2026-11-06T16:23:54.784Z"
-      }
+      "tagVersie": 2
     },
     {
       "id": "c5c63a3c12-v1",
@@ -2182,14 +2168,7 @@
       },
       "checklistBron": "ai",
       "analyse": true,
-      "tagVersie": 2,
-      "alertKandidaat": {
-        "niveau": "oranje",
-        "categorie": "bestuur",
-        "reden": "besluit met groot gevolg (één bron)",
-        "aangemaaktOp": "2026-11-05T15:01:00.596Z",
-        "tot": "2026-11-06T15:01:00.596Z"
-      }
+      "tagVersie": 2
     },
     {
       "id": "5cbd12cc8e-v1",
@@ -2345,14 +2324,7 @@
       },
       "checklistBron": "ai",
       "analyse": true,
-      "tagVersie": 2,
-      "alertKandidaat": {
-        "niveau": "oranje",
-        "categorie": "bestuur",
-        "reden": "besluit met groot gevolg (één bron)",
-        "aangemaaktOp": "2026-11-05T12:00:57.086Z",
-        "tot": "2026-11-06T12:00:57.086Z"
-      }
+      "tagVersie": 2
     },
     {
       "id": "afa774125b-v1",
@@ -2851,7 +2823,6 @@
         "inRegio": true
       },
       "checklistBron": "ai",
-      "clusterId": "6ed1a85c02",
       "tagVersie": 2
     },
     {
@@ -2891,8 +2862,7 @@
       },
       "checklistBron": "ai",
       "analyse": true,
-      "tagVersie": 2,
-      "clusterId": "6ed1a85c02"
+      "tagVersie": 2
     },
     {
       "id": "ecd638ef9c-v1",
@@ -7489,9 +7459,6 @@
         }
       ],
       "analyse": true,
-      "agendaIds": [
-        "df48aaaba7"
-      ],
       "tagBron": "trefwoord",
       "tagVersie": 2
     },
