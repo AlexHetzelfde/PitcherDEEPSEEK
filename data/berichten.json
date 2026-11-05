@@ -1,5 +1,5 @@
 {
-  "gegenereerdOp": "2026-11-05T14:01:02.793Z",
+  "gegenereerdOp": "2026-11-05T15:01:00.596Z",
   "promptVersie": "2026-10-29-batch-tag-checklist-agendapunten",
   "alertModus": "log",
   "prioSchaal": "1 = urgent, 2 = belangrijk, 3 = regulier, 4 = routine. De AI geeft nooit prio 1.",
@@ -70,7 +70,7 @@
       "ai": false,
       "controle": "ai-fout",
       "eerstGezienOp": "2026-11-05T12:00:57.086Z",
-      "gecontroleerdOp": "2026-11-05T14:01:02.793Z",
+      "gecontroleerdOp": "2026-11-05T15:01:00.596Z",
       "bronTitel": "€11,5 miljoen extra voor agrarisch natuurbeheer: gerichte bescherming van Natura 2000-gebieden en de grutto",
       "bronLengte": 1917,
       "checklist": {
@@ -108,7 +108,7 @@
       "ai": false,
       "controle": "ai-fout",
       "eerstGezienOp": "2026-11-05T11:00:58.033Z",
-      "gecontroleerdOp": "2026-11-05T14:01:02.793Z",
+      "gecontroleerdOp": "2026-11-05T15:01:00.596Z",
       "bronTitel": "Bevrijdingspop Haarlem kan in 2027 doorgaan dankzij steun provincie en gemeente",
       "bronLengte": 2768,
       "checklist": {
@@ -146,7 +146,7 @@
       "ai": false,
       "controle": "ai-fout",
       "eerstGezienOp": "2026-11-05T10:01:01.472Z",
-      "gecontroleerdOp": "2026-11-05T14:01:02.793Z",
+      "gecontroleerdOp": "2026-11-05T15:01:00.596Z",
       "bronTitel": "Oog voor verbinding tijdens ambtsbezoek aan gemeente Zaanstad",
       "bronLengte": 4992,
       "checklist": {
@@ -163,6 +163,43 @@
       },
       "checklistBron": "patroon",
       "tagVersie": 2
+    },
+    {
+      "id": "f21c3a35f6-v1",
+      "groepId": "f21c3a35f6",
+      "versie": 1,
+      "url": "https://www.deorkaan.nl/waarheen-topkolf-erfgoed-fontana-blue/",
+      "kop": "Waarheen: topkolf, erfgoed, Fontana Blue",
+      "tekst": null,
+      "rubriek": "CUL",
+      "tagBron": "trefwoord",
+      "herkomst": "signaal",
+      "prio": 3,
+      "tijd": "2026-11-04T23:00:00.000Z",
+      "heeftTijd": false,
+      "woorden": 245,
+      "afgekapt": false,
+      "bronId": "DeOrkaan",
+      "bronNaam": "DeOrkaan",
+      "ai": false,
+      "controle": "ai-fout",
+      "eerstGezienOp": "2026-11-05T15:01:00.596Z",
+      "gecontroleerdOp": "2026-11-05T15:01:00.596Z",
+      "bronTitel": "Waarheen: topkolf, erfgoed, Fontana Blue",
+      "bronLengte": 1578,
+      "checklist": {
+        "gevaar": false,
+        "evacuatieOfNlAlert": false,
+        "gewondenOfDoden": false,
+        "bestuurlijkeCrisis": false,
+        "besluitMetGrootGevolg": false,
+        "tijdkritisch": false,
+        "betrokkenen": null,
+        "geldbedragEuro": null,
+        "banen": null,
+        "inRegio": true
+      },
+      "checklistBron": "patroon"
     },
     {
       "id": "cf925d4863-v1",
@@ -184,7 +221,7 @@
       "ai": false,
       "controle": "ai-fout",
       "eerstGezienOp": "2026-11-05T14:01:02.793Z",
-      "gecontroleerdOp": "2026-11-05T14:01:02.793Z",
+      "gecontroleerdOp": "2026-11-05T15:01:00.596Z",
       "bronTitel": "Carree Architecten verdwijnt, maar niet uit het Zaanse straatbeeld",
       "bronLengte": 2943,
       "checklist": {
@@ -199,7 +236,8 @@
         "banen": null,
         "inRegio": true
       },
-      "checklistBron": "patroon"
+      "checklistBron": "patroon",
+      "tagVersie": 2
     },
     {
       "id": "6e7ee94036-v1",
@@ -221,7 +259,7 @@
       "ai": false,
       "controle": "ai-fout",
       "eerstGezienOp": "2026-11-05T12:00:57.086Z",
-      "gecontroleerdOp": "2026-11-05T14:01:02.793Z",
+      "gecontroleerdOp": "2026-11-05T15:01:00.596Z",
       "bronTitel": "Vrouw naar ziekenhuis na brand in droger in Zaandijk",
       "bronLengte": 702,
       "checklist": {
@@ -259,7 +297,7 @@
       "ai": false,
       "controle": "ai-fout",
       "eerstGezienOp": "2026-11-05T12:00:57.086Z",
-      "gecontroleerdOp": "2026-11-05T14:01:02.793Z",
+      "gecontroleerdOp": "2026-11-05T15:01:00.596Z",
       "bronTitel": "De Orkaan in 2 minuten: 5 november 🎧",
       "bronLengte": 314,
       "checklist": {
@@ -297,7 +335,7 @@
       "ai": false,
       "controle": "ai-fout",
       "eerstGezienOp": "2026-11-05T11:00:58.033Z",
-      "gecontroleerdOp": "2026-11-05T14:01:02.793Z",
+      "gecontroleerdOp": "2026-11-05T15:01:00.596Z",
       "bronTitel": "Tweede aanhouding straatroof Assendelft: 17-jarige jongen opgepakt",
       "bronLengte": 1228,
       "checklist": {
@@ -335,7 +373,7 @@
       "ai": false,
       "controle": "ai-fout",
       "eerstGezienOp": "2026-11-05T11:00:58.033Z",
-      "gecontroleerdOp": "2026-11-05T14:01:02.793Z",
+      "gecontroleerdOp": "2026-11-05T15:01:00.596Z",
       "bronTitel": "50woordenvideo: smikkelslak…",
       "bronLengte": 606,
       "checklist": {
@@ -360,8 +398,8 @@
       "url": "https://www.deorkaan.nl/jac-89-en-dochter-jose-maken-samen-scheurkalender/",
       "kop": "Jac (89) en dochter Jose maken samen scheurkalender",
       "tekst": null,
-      "rubriek": "ALG",
-      "tagBron": "geen",
+      "rubriek": "CUL",
+      "tagBron": "ai",
       "herkomst": "signaal",
       "prio": 3,
       "tijd": "2026-11-04T23:00:00.000Z",
@@ -371,9 +409,9 @@
       "bronId": "DeOrkaan",
       "bronNaam": "DeOrkaan",
       "ai": false,
-      "controle": "ai-fout",
+      "controle": "analyse-ok",
       "eerstGezienOp": "2026-11-05T11:00:58.033Z",
-      "gecontroleerdOp": "2026-11-05T14:01:02.793Z",
+      "gecontroleerdOp": "2026-11-05T15:01:00.596Z",
       "bronTitel": "Jac (89) en dochter Jose maken samen scheurkalender",
       "bronLengte": 3176,
       "checklist": {
@@ -388,8 +426,9 @@
         "banen": null,
         "inRegio": false
       },
-      "checklistBron": "patroon",
-      "tagVersie": 2
+      "checklistBron": "ai",
+      "tagVersie": 2,
+      "analyse": true
     },
     {
       "id": "6ac78fac7e-v1",
@@ -824,7 +863,7 @@
       "ai": false,
       "controle": "analyse-ok",
       "eerstGezienOp": "2026-11-05T07:51:42.539Z",
-      "gecontroleerdOp": "2026-11-05T13:00:56.293Z",
+      "gecontroleerdOp": "2026-11-05T15:01:00.596Z",
       "bronTitel": "380 kV Assendelft lijkt gelopen race; kabinet: geen andere haalbare locatie",
       "bronLengte": 3602,
       "checklist": {
@@ -1949,7 +1988,14 @@
       },
       "checklistBron": "ai",
       "analyse": true,
-      "tagVersie": 2
+      "tagVersie": 2,
+      "alertKandidaat": {
+        "niveau": "oranje",
+        "categorie": "bestuur",
+        "reden": "besluit met groot gevolg (één bron)",
+        "aangemaaktOp": "2026-11-05T15:01:00.596Z",
+        "tot": "2026-11-06T15:01:00.596Z"
+      }
     },
     {
       "id": "5cbd12cc8e-v1",

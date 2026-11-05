@@ -1,5 +1,5 @@
 {
-  "gegenereerdOp": "2026-11-05T14:01:02.793Z",
+  "gegenereerdOp": "2026-11-05T15:01:00.596Z",
   "alertModus": "log",
   "bronnen": {
     "zaansche-molen": {
@@ -38,13 +38,13 @@
       "opeenvolgendLeeg": 0
     },
     "nh-actueel": {
-      "laatsteScrape": "2026-11-05T14:01:02.793Z",
+      "laatsteScrape": "2026-11-05T15:01:00.596Z",
       "gevonden": 15,
       "opeenvolgendLeeg": 0
     },
     "nh-cultuur": {
-      "laatsteScrape": "2026-11-05T14:01:02.793Z",
-      "gevonden": 15,
+      "laatsteScrape": "2026-11-05T15:01:00.596Z",
+      "gevonden": 3,
       "opeenvolgendLeeg": 0
     },
     "zaanstad-hoorzittingen": {
@@ -98,7 +98,7 @@
       "opeenvolgendLeeg": 0
     },
     "DeOrkaan": {
-      "laatsteScrape": "2026-11-05T14:01:02.793Z",
+      "laatsteScrape": "2026-11-05T15:01:00.596Z",
       "gevonden": 12,
       "opeenvolgendLeeg": 0
     },
@@ -123,15 +123,15 @@
       "opeenvolgendLeeg": 0
     },
     "vervoerregio-overzichten": {
-      "laatsteScrape": "2026-11-05T14:01:02.793Z",
+      "laatsteScrape": "2026-11-05T15:01:00.596Z",
       "gevonden": 0,
-      "opeenvolgendLeeg": 17
+      "opeenvolgendLeeg": 18
     }
   },
   "bronnenZonderRubriek": [],
   "gemini": {
     "dag": "2026-11-05",
-    "gebruikt": 3,
+    "gebruikt": 4,
     "wachtTot": null,
     "dagcap": 80,
     "runcap": 25,
@@ -247,19 +247,19 @@
       "runs": 12
     },
     "2026-11-05": {
-      "verzoeken": 8,
-      "berichten": 79,
+      "verzoeken": 9,
+      "berichten": 89,
       "ok": 9,
-      "analyseOk": 4,
+      "analyseOk": 5,
       "cijfersAfgekeurd": 0,
       "onvoldoende": 10,
-      "fout": 56,
+      "fout": 65,
       "overgeslagen": 0,
-      "tagAi": 11,
+      "tagAi": 12,
       "tagTrefwoord": 2,
       "tagBron": 9,
       "tagGeen": 1,
-      "runs": 11
+      "runs": 12
     }
   },
   "laatsteRun": {
@@ -278,11 +278,11 @@
       "nieuw": 1,
       "update": 0,
       "opnieuw": 9,
-      "ongewijzigd": 4,
+      "ongewijzigd": 1,
       "seed": 0
     },
     "cluster": {
-      "vergeleken": 2926,
+      "vergeleken": 3003,
       "automatisch": 0,
       "aiGevraagd": 0,
       "aiJa": 0,
@@ -290,7 +290,7 @@
       "uitgesteld": 0,
       "clusters": 1
     },
-    "alerts": 4,
+    "alerts": 5,
     "koppel": {
       "agendaNaarBericht": 0,
       "uitkomsten": 0,
@@ -306,7 +306,7 @@
         "uitgesteld": 0
       },
       "vergeten": 0,
-      "stukken": 301,
+      "stukken": 302,
       "kandidaten": 101,
       "metAnker": 101,
       "zonderAnker": 0,
@@ -330,10 +330,10 @@
       "onvoldoende": 0,
       "fout": 9,
       "overgeslagen": 0,
-      "tagAi": 0,
+      "tagAi": 1,
       "tagTrefwoord": 0,
       "tagBron": 0,
-      "tagGeen": 1
+      "tagGeen": 0
     }
   }
 }

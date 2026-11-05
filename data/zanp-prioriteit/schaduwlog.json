@@ -1,5 +1,5 @@
 {
-  "gegenereerdOp": "2026-11-05T14:01:02.793Z",
+  "gegenereerdOp": "2026-11-05T15:01:00.596Z",
   "modus": "schaduw",
   "tau": 0.5,
   "stats": {
@@ -12,7 +12,7 @@
       "uitgesteld": 0
     },
     "vergeten": 0,
-    "stukken": 301,
+    "stukken": 302,
     "kandidaten": 101,
     "metAnker": 101,
     "zonderAnker": 0,
@@ -394,8 +394,8 @@
       "key": "n:https://zoek.officielebekendmakingen.nl/gmb-2026-508923.html",
       "soort": "nieuws",
       "kop": "Verkeersbesluit, instellen stopverlichting fietsverkeer Themapad Assendelft",
-      "S": 0.41,
-      "Sa": 0.41,
+      "S": 0.4,
+      "Sa": 0.4,
       "Sp": 0,
       "route": "aanhoudend",
       "K": 0.94,
@@ -464,8 +464,8 @@
       "key": "n:https://zaanstad.bestuurlijkeinformatie.nl/Reports/Item/ca542b04-ff0c-4e5e-b854-c8a6e61461d0",
       "soort": "nieuws",
       "kop": "Platform31 Nieuwsbrief | 29 oktober 2026",
-      "S": 0.37,
-      "Sa": 0.37,
+      "S": 0.36,
+      "Sa": 0.36,
       "Sp": 0,
       "route": "aanhoudend",
       "K": 0.28,
@@ -752,8 +752,8 @@
       "key": "n:https://www.deorkaan.nl/chris-stussy-dreunt-na-felle-botsing-tussen-bewoners-gemeente-sona-en-taets/",
       "soort": "nieuws",
       "kop": "Chris Stussy dreunt na: felle botsing tussen bewoners, gemeente, SONA en Taets",
-      "S": 0.22,
-      "Sa": 0.22,
+      "S": 0.21,
+      "Sa": 0.21,
       "Sp": 0,
       "route": "aanhoudend",
       "K": 0.94,
@@ -784,8 +784,8 @@
       "key": "n:https://www.deorkaan.nl/begrotingsdebat-zaanstad-beraad-2-eerlijk-antwoord-en-juiste-feiten/",
       "soort": "nieuws",
       "kop": "Begrotingsdebat Zaanstad Beraad #2: ‘eerlijk antwoord’ en ‘juiste feiten’",
-      "S": 0.22,
-      "Sa": 0.22,
+      "S": 0.21,
+      "Sa": 0.21,
       "Sp": 0,
       "route": "aanhoudend",
       "K": 1,
@@ -813,6 +813,37 @@
           "c": 0.86,
           "plek": "kop",
           "titel": "Begrotingsdebat Zaanstad: van ‘scenario-B’ tot AI-dromen"
+        }
+      ]
+    },
+    {
+      "key": "n:https://www.deorkaan.nl/topkolf-in-t-moriaanshoofd-in-wormer/",
+      "soort": "nieuws",
+      "kop": "Topkolf in ’t Moriaanshoofd in Wormer",
+      "S": 0.2,
+      "Sa": 0.2,
+      "Sp": 0,
+      "route": "aanhoudend",
+      "K": 0.15,
+      "n": 1,
+      "dagen": 1,
+      "bronnen": 1,
+      "ankers": [
+        "morianshofd",
+        "topkolf",
+        "aberkrom",
+        "kolfvereniging",
+        "togido",
+        "kolftoernoi",
+        "herberg"
+      ],
+      "bewijs": [
+        {
+          "bron": "DeOrkaan",
+          "datum": "2026-11-04T23:00:00.000Z",
+          "c": 0.9,
+          "plek": "kop",
+          "titel": "Waarheen: topkolf, erfgoed, Fontana Blue"
         }
       ]
     },
@@ -851,8 +882,8 @@
       "key": "n:https://zaanstad.bestuurlijkeinformatie.nl/Document/View/1fbec0bf-504f-4014-8808-dbf1b37dc6b9",
       "soort": "nieuws",
       "kop": "Gemeente Den Haag geeft het voorbeeld",
-      "S": 0.2,
-      "Sa": 0.2,
+      "S": 0.19,
+      "Sa": 0.19,
       "Sp": 0,
       "route": "aanhoudend",
       "K": 0.57,
@@ -927,7 +958,7 @@
       "Sa": 0.17,
       "Sp": 0,
       "route": "aanhoudend",
-      "K": 0.28,
+      "K": 0.27,
       "n": 1,
       "dagen": 1,
       "bronnen": 1,
@@ -1253,6 +1284,38 @@
       ]
     },
     {
+      "key": "a:c201808017",
+      "soort": "agenda",
+      "kop": "De Fabriek: George Michael",
+      "S": 0.11,
+      "Sa": 0.11,
+      "Sp": 0,
+      "route": "aanhoudend",
+      "K": 0,
+      "n": 1,
+      "dagen": 1,
+      "bronnen": 1,
+      "ankers": [
+        "fabriek",
+        "georg",
+        "michael",
+        "faith",
+        "palais",
+        "omnisport",
+        "paris",
+        "bercy"
+      ],
+      "bewijs": [
+        {
+          "bron": "DeOrkaan",
+          "datum": "2026-11-04T23:00:00.000Z",
+          "c": 0.36,
+          "plek": "tekst",
+          "titel": "Waarheen: topkolf, erfgoed, Fontana Blue"
+        }
+      ]
+    },
+    {
       "key": "a:9326732905",
       "soort": "agenda",
       "kop": "Bestuurlijke boete kamerverhuur Spitbergen 28 te Zaandam",
@@ -1364,8 +1427,8 @@
       "key": "n:https://zaanstad.bestuurlijkeinformatie.nl/Reports/Item/9df187bf-c385-4b57-8208-2cb708b1a398",
       "soort": "nieuws",
       "kop": "Nieuwsbrief week 43: Gesprekken met minister & inschrijven Dag voor de Raad",
-      "S": 0.09,
-      "Sa": 0.09,
+      "S": 0.08,
+      "Sa": 0.08,
       "Sp": 0,
       "route": "aanhoudend",
       "K": 0,
@@ -1443,67 +1506,6 @@
           "c": 1,
           "plek": "kop",
           "titel": "Verkeersbesluit plaatsen laadpaal voor electrische auto's Matsmanzoom te Koog a/d Zaan"
-        }
-      ]
-    },
-    {
-      "key": "n:https://www.deorkaan.nl/tweede-aanhouding-straatroof-assendelft-17-jarige-jongen-opgepakt/",
-      "soort": "nieuws",
-      "kop": "Tweede aanhouding straatroof Assendelft: 17-jarige jongen opgepakt",
-      "S": 0.06,
-      "Sa": 0.06,
-      "Sp": 0,
-      "route": "aanhoudend",
-      "K": 0.35,
-      "n": 1,
-      "dagen": 1,
-      "bronnen": 1,
-      "ankers": [
-        "opgepakt",
-        "anhouding",
-        "stratrof",
-        "jarig",
-        "zwart",
-        "gewelddadig",
-        "arrestati",
-        "gelijkend"
-      ],
-      "bewijs": [
-        {
-          "bron": "DeOrkaan",
-          "datum": "2026-10-20T22:00:00.000Z",
-          "c": 0.97,
-          "plek": "kop",
-          "titel": "15-jarige aangehouden voor straatroof waarbij wapen is gebruikt"
-        }
-      ]
-    },
-    {
-      "key": "n:https://www.deorkaan.nl/tienduizend-joints-gevonden-na-tip-meld-misdaad-anoniem/",
-      "soort": "nieuws",
-      "kop": "Tienduizend joints gevonden na tip Meld Misdaad Anoniem",
-      "S": 0.03,
-      "Sa": 0.03,
-      "Sp": 0,
-      "route": "aanhoudend",
-      "K": 0.08,
-      "n": 1,
-      "dagen": 1,
-      "bronnen": 1,
-      "ankers": [
-        "misdad",
-        "anoniem",
-        "tienduizend",
-        "joint",
-        "gevond"
-      ],
-      "bewijs": [
-        {
-          "bron": "DeOrkaan",
-          "datum": "2026-10-20T22:00:00.000Z",
-          "c": 0.34,
-          "plek": "tekst",
-          "titel": "15-jarige aangehouden voor straatroof waarbij wapen is gebruikt"
         }
       ]
     }
