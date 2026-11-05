@@ -1,5 +1,5 @@
 {
-  "gegenereerdOp": "2026-11-05T08:00:52.495Z",
+  "gegenereerdOp": "2026-11-05T09:00:52.176Z",
   "promptVersie": "2026-10-29-batch-tag-checklist-agendapunten",
   "alertModus": "log",
   "prioSchaal": "1 = urgent, 2 = belangrijk, 3 = regulier, 4 = routine. De AI geeft nooit prio 1.",
@@ -50,6 +50,75 @@
     }
   ],
   "berichten": [
+    {
+      "id": "1b798342db-v1",
+      "groepId": "1b798342db",
+      "versie": 1,
+      "url": "https://www.deorkaan.nl/jarige-zaans-erfgoed-viert-feestje-met-markt-en-glossy-%f0%9f%8e%a7/",
+      "kop": "Jarig Zaans Erfgoed viert feestje met markt en glossy 🎧",
+      "tekst": null,
+      "rubriek": "CUL",
+      "tagBron": "ai",
+      "herkomst": "signaal",
+      "prio": 3,
+      "tijd": "2026-11-04T23:00:00.000Z",
+      "heeftTijd": false,
+      "woorden": 460,
+      "afgekapt": false,
+      "bronId": "DeOrkaan",
+      "bronNaam": "DeOrkaan",
+      "ai": false,
+      "controle": "analyse-ok",
+      "eerstGezienOp": "2026-11-05T09:00:52.176Z",
+      "gecontroleerdOp": "2026-11-05T09:00:52.176Z",
+      "bronTitel": "Jarig Zaans Erfgoed viert feestje met markt en glossy 🎧",
+      "bronLengte": 2769,
+      "checklist": {
+        "gevaar": false,
+        "evacuatieOfNlAlert": false,
+        "gewondenOfDoden": false,
+        "bestuurlijkeCrisis": false,
+        "besluitMetGrootGevolg": false,
+        "tijdkritisch": false,
+        "betrokkenen": null,
+        "geldbedragEuro": null,
+        "banen": null,
+        "inRegio": true
+      },
+      "checklistBron": "ai",
+      "agendapunten": [
+        {
+          "titel": "Erfgoedmarkt",
+          "dag": "2026-11-07",
+          "start": null,
+          "eind": null,
+          "plaats": "Grote Kerk van Westzaan",
+          "zekerheid": "afgeleid"
+        },
+        {
+          "titel": "De Zaanse pophistorie",
+          "dag": "2026-11-07",
+          "start": "2026-11-07T09:00:00.000Z",
+          "eind": null,
+          "plaats": "consistorie van de kerk",
+          "zekerheid": "afgeleid"
+        },
+        {
+          "titel": "Den Otter. Historie van een herberg, plek vol Zaans Erfgoed",
+          "dag": "2026-11-07",
+          "start": "2026-11-07T10:00:00.000Z",
+          "eind": null,
+          "plaats": "consistorie van de kerk",
+          "zekerheid": "afgeleid"
+        }
+      ],
+      "analyse": true,
+      "agendaIds": [
+        "d28e6b7a58",
+        "285a68652c",
+        "42e4466347"
+      ]
+    },
     {
       "id": "f5ce24b6b9-v1",
       "groepId": "f5ce24b6b9",
@@ -129,7 +198,7 @@
       "ai": true,
       "controle": "cijfers-ok",
       "eerstGezienOp": "2026-11-04T10:46:22.507Z",
-      "gecontroleerdOp": "2026-11-05T06:00:52.098Z",
+      "gecontroleerdOp": "2026-11-05T09:00:52.176Z",
       "bronTitel": "Provincie verwijdert zieke en doden bomen langs verschillende N-wegen",
       "bronLengte": 2375,
       "checklist": {
@@ -986,7 +1055,7 @@
       "ai": false,
       "controle": "analyse-ok",
       "eerstGezienOp": "2026-11-04T20:00:50.916Z",
-      "gecontroleerdOp": "2026-11-05T06:00:52.098Z",
+      "gecontroleerdOp": "2026-11-05T09:00:52.176Z",
       "bronTitel": "In memoriam: Rita Melk (1957–2026), onvermoeibaar voor de Zaanse natuur",
       "bronLengte": 5311,
       "checklist": {
@@ -1025,7 +1094,7 @@
       "ai": false,
       "controle": "analyse-ok",
       "eerstGezienOp": "2026-11-04T16:00:53.153Z",
-      "gecontroleerdOp": "2026-11-05T06:00:52.098Z",
+      "gecontroleerdOp": "2026-11-05T09:00:52.176Z",
       "bronTitel": "Wel miljoenen voor bushaltes, geen cijfers over uitvallende EBS-bussen",
       "bronLengte": 5434,
       "checklist": {
@@ -1071,7 +1140,7 @@
       "ai": false,
       "controle": "analyse-ok",
       "eerstGezienOp": "2026-11-04T15:00:57.998Z",
-      "gecontroleerdOp": "2026-11-05T06:00:52.098Z",
+      "gecontroleerdOp": "2026-11-05T09:00:52.176Z",
       "bronTitel": "Topkolf in ’t Moriaanshoofd in Wormer",
       "bronLengte": 1782,
       "checklist": {
@@ -1140,7 +1209,7 @@
       "ai": false,
       "controle": "analyse-ok",
       "eerstGezienOp": "2026-11-04T14:00:55.970Z",
-      "gecontroleerdOp": "2026-11-05T06:00:52.098Z",
+      "gecontroleerdOp": "2026-11-05T09:00:52.176Z",
       "bronTitel": "Begrotingsdebat Wormerland: zonder CUP maar met ‘heeft u misschien een schaar voor mij?’",
       "bronLengte": 5361,
       "checklist": {
@@ -1186,7 +1255,7 @@
       "ai": false,
       "controle": "analyse-ok",
       "eerstGezienOp": "2026-11-04T13:00:54.268Z",
-      "gecontroleerdOp": "2026-11-05T06:00:52.098Z",
+      "gecontroleerdOp": "2026-11-05T09:00:52.176Z",
       "bronTitel": "Tienduizend joints gevonden na tip Meld Misdaad Anoniem",
       "bronLengte": 1097,
       "checklist": {
@@ -1225,7 +1294,7 @@
       "ai": false,
       "controle": "analyse-ok",
       "eerstGezienOp": "2026-11-04T12:00:52.250Z",
-      "gecontroleerdOp": "2026-11-05T06:00:52.098Z",
+      "gecontroleerdOp": "2026-11-05T09:00:52.176Z",
       "bronTitel": "De Orkaan in 2 minuten: 4 november 🎧",
       "bronLengte": 339,
       "checklist": {
@@ -1264,7 +1333,7 @@
       "ai": false,
       "controle": "analyse-ok",
       "eerstGezienOp": "2026-11-04T12:00:52.250Z",
-      "gecontroleerdOp": "2026-11-05T06:00:52.098Z",
+      "gecontroleerdOp": "2026-11-05T09:00:52.176Z",
       "bronTitel": "Martin Rep: Beatles-pelgrim op het zebrapad",
       "bronLengte": 5997,
       "checklist": {
@@ -1303,7 +1372,7 @@
       "ai": false,
       "controle": "analyse-ok",
       "eerstGezienOp": "2026-11-04T10:46:22.507Z",
-      "gecontroleerdOp": "2026-11-05T06:00:52.098Z",
+      "gecontroleerdOp": "2026-11-05T09:00:52.176Z",
       "bronTitel": "Begrotingsdebat Zaanstad Beraad #2: ‘eerlijk antwoord’ en ‘juiste feiten’",
       "bronLengte": 6000,
       "checklist": {
@@ -1349,7 +1418,7 @@
       "ai": false,
       "controle": "analyse-ok",
       "eerstGezienOp": "2026-11-04T10:00:52.994Z",
-      "gecontroleerdOp": "2026-11-05T06:00:52.098Z",
+      "gecontroleerdOp": "2026-11-05T09:00:52.176Z",
       "bronTitel": "Chris Stussy dreunt na: felle botsing tussen bewoners, gemeente, SONA en Taets",
       "bronLengte": 5995,
       "checklist": {
