@@ -1,5 +1,5 @@
 {
-  "gegenereerdOp": "2026-11-05T13:00:56.293Z",
+  "gegenereerdOp": "2026-11-05T14:01:02.793Z",
   "promptVersie": "2026-10-29-batch-tag-checklist-agendapunten",
   "alertModus": "log",
   "prioSchaal": "1 = urgent, 2 = belangrijk, 3 = regulier, 4 = routine. De AI geeft nooit prio 1.",
@@ -70,7 +70,7 @@
       "ai": false,
       "controle": "ai-fout",
       "eerstGezienOp": "2026-11-05T12:00:57.086Z",
-      "gecontroleerdOp": "2026-11-05T13:00:56.293Z",
+      "gecontroleerdOp": "2026-11-05T14:01:02.793Z",
       "bronTitel": "€11,5 miljoen extra voor agrarisch natuurbeheer: gerichte bescherming van Natura 2000-gebieden en de grutto",
       "bronLengte": 1917,
       "checklist": {
@@ -108,7 +108,7 @@
       "ai": false,
       "controle": "ai-fout",
       "eerstGezienOp": "2026-11-05T11:00:58.033Z",
-      "gecontroleerdOp": "2026-11-05T13:00:56.293Z",
+      "gecontroleerdOp": "2026-11-05T14:01:02.793Z",
       "bronTitel": "Bevrijdingspop Haarlem kan in 2027 doorgaan dankzij steun provincie en gemeente",
       "bronLengte": 2768,
       "checklist": {
@@ -146,7 +146,7 @@
       "ai": false,
       "controle": "ai-fout",
       "eerstGezienOp": "2026-11-05T10:01:01.472Z",
-      "gecontroleerdOp": "2026-11-05T13:00:56.293Z",
+      "gecontroleerdOp": "2026-11-05T14:01:02.793Z",
       "bronTitel": "Oog voor verbinding tijdens ambtsbezoek aan gemeente Zaanstad",
       "bronLengte": 4992,
       "checklist": {
@@ -163,6 +163,43 @@
       },
       "checklistBron": "patroon",
       "tagVersie": 2
+    },
+    {
+      "id": "cf925d4863-v1",
+      "groepId": "cf925d4863",
+      "versie": 1,
+      "url": "https://www.deorkaan.nl/carree-architecten-verdwijnt-maar-niet-uit-het-zaanse-straatbeeld/",
+      "kop": "Carree Architecten verdwijnt, maar niet uit het Zaanse straatbeeld",
+      "tekst": null,
+      "rubriek": "ALG",
+      "tagBron": "geen",
+      "herkomst": "signaal",
+      "prio": 3,
+      "tijd": "2026-11-04T23:00:00.000Z",
+      "heeftTijd": false,
+      "woorden": 440,
+      "afgekapt": false,
+      "bronId": "DeOrkaan",
+      "bronNaam": "DeOrkaan",
+      "ai": false,
+      "controle": "ai-fout",
+      "eerstGezienOp": "2026-11-05T14:01:02.793Z",
+      "gecontroleerdOp": "2026-11-05T14:01:02.793Z",
+      "bronTitel": "Carree Architecten verdwijnt, maar niet uit het Zaanse straatbeeld",
+      "bronLengte": 2943,
+      "checklist": {
+        "gevaar": false,
+        "evacuatieOfNlAlert": false,
+        "gewondenOfDoden": false,
+        "bestuurlijkeCrisis": false,
+        "besluitMetGrootGevolg": false,
+        "tijdkritisch": false,
+        "betrokkenen": null,
+        "geldbedragEuro": null,
+        "banen": null,
+        "inRegio": true
+      },
+      "checklistBron": "patroon"
     },
     {
       "id": "6e7ee94036-v1",
@@ -184,7 +221,7 @@
       "ai": false,
       "controle": "ai-fout",
       "eerstGezienOp": "2026-11-05T12:00:57.086Z",
-      "gecontroleerdOp": "2026-11-05T13:00:56.293Z",
+      "gecontroleerdOp": "2026-11-05T14:01:02.793Z",
       "bronTitel": "Vrouw naar ziekenhuis na brand in droger in Zaandijk",
       "bronLengte": 702,
       "checklist": {
@@ -222,7 +259,7 @@
       "ai": false,
       "controle": "ai-fout",
       "eerstGezienOp": "2026-11-05T12:00:57.086Z",
-      "gecontroleerdOp": "2026-11-05T13:00:56.293Z",
+      "gecontroleerdOp": "2026-11-05T14:01:02.793Z",
       "bronTitel": "De Orkaan in 2 minuten: 5 november 🎧",
       "bronLengte": 314,
       "checklist": {
@@ -260,7 +297,7 @@
       "ai": false,
       "controle": "ai-fout",
       "eerstGezienOp": "2026-11-05T11:00:58.033Z",
-      "gecontroleerdOp": "2026-11-05T13:00:56.293Z",
+      "gecontroleerdOp": "2026-11-05T14:01:02.793Z",
       "bronTitel": "Tweede aanhouding straatroof Assendelft: 17-jarige jongen opgepakt",
       "bronLengte": 1228,
       "checklist": {
@@ -298,7 +335,7 @@
       "ai": false,
       "controle": "ai-fout",
       "eerstGezienOp": "2026-11-05T11:00:58.033Z",
-      "gecontroleerdOp": "2026-11-05T13:00:56.293Z",
+      "gecontroleerdOp": "2026-11-05T14:01:02.793Z",
       "bronTitel": "50woordenvideo: smikkelslak…",
       "bronLengte": 606,
       "checklist": {
@@ -336,7 +373,7 @@
       "ai": false,
       "controle": "ai-fout",
       "eerstGezienOp": "2026-11-05T11:00:58.033Z",
-      "gecontroleerdOp": "2026-11-05T13:00:56.293Z",
+      "gecontroleerdOp": "2026-11-05T14:01:02.793Z",
       "bronTitel": "Jac (89) en dochter Jose maken samen scheurkalender",
       "bronLengte": 3176,
       "checklist": {
@@ -372,9 +409,9 @@
       "bronId": "DeOrkaan",
       "bronNaam": "DeOrkaan",
       "ai": false,
-      "controle": "ai-fout",
+      "controle": "analyse-ok",
       "eerstGezienOp": "2026-11-05T10:01:01.472Z",
-      "gecontroleerdOp": "2026-11-05T13:00:56.293Z",
+      "gecontroleerdOp": "2026-11-05T14:01:02.793Z",
       "bronTitel": "Playstation winnen? Trap er niet in…",
       "bronLengte": 3131,
       "checklist": {
@@ -389,8 +426,9 @@
         "banen": null,
         "inRegio": false
       },
-      "checklistBron": "patroon",
-      "tagVersie": 2
+      "checklistBron": "ai",
+      "tagVersie": 2,
+      "analyse": true
     },
     {
       "id": "73a331918f-v1",
@@ -716,7 +754,7 @@
       "ai": false,
       "controle": "analyse-ok",
       "eerstGezienOp": "2026-11-05T09:00:52.176Z",
-      "gecontroleerdOp": "2026-11-05T11:00:58.033Z",
+      "gecontroleerdOp": "2026-11-05T14:01:02.793Z",
       "bronTitel": "Jarig Zaans Erfgoed viert feestje met markt en glossy 🎧",
       "bronLengte": 2769,
       "checklist": {
@@ -959,7 +997,7 @@
       "ai": false,
       "controle": "analyse-ok",
       "eerstGezienOp": "2026-11-05T07:00:58.731Z",
-      "gecontroleerdOp": "2026-11-05T12:00:57.086Z",
+      "gecontroleerdOp": "2026-11-05T14:01:02.793Z",
       "bronTitel": "Plannen voor vijf jaar begeleid wonen aan Esdoornlaan in Wormerveer",
       "bronLengte": 3289,
       "checklist": {
@@ -1740,7 +1778,7 @@
       "ai": false,
       "controle": "analyse-ok",
       "eerstGezienOp": "2026-11-04T20:00:50.916Z",
-      "gecontroleerdOp": "2026-11-05T11:00:58.033Z",
+      "gecontroleerdOp": "2026-11-05T14:01:02.793Z",
       "bronTitel": "In memoriam: Rita Melk (1957–2026), onvermoeibaar voor de Zaanse natuur",
       "bronLengte": 5311,
       "checklist": {
@@ -1779,7 +1817,7 @@
       "ai": false,
       "controle": "analyse-ok",
       "eerstGezienOp": "2026-11-04T16:00:53.153Z",
-      "gecontroleerdOp": "2026-11-05T11:00:58.033Z",
+      "gecontroleerdOp": "2026-11-05T14:01:02.793Z",
       "bronTitel": "Wel miljoenen voor bushaltes, geen cijfers over uitvallende EBS-bussen",
       "bronLengte": 5434,
       "checklist": {
@@ -1911,14 +1949,7 @@
       },
       "checklistBron": "ai",
       "analyse": true,
-      "tagVersie": 2,
-      "alertKandidaat": {
-        "niveau": "oranje",
-        "categorie": "bestuur",
-        "reden": "besluit met groot gevolg (één bron)",
-        "aangemaaktOp": "2026-11-04T14:00:55.970Z",
-        "tot": "2026-11-05T14:00:55.970Z"
-      }
+      "tagVersie": 2
     },
     {
       "id": "5cbd12cc8e-v1",

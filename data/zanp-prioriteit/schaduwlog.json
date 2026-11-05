@@ -1,20 +1,20 @@
 {
-  "gegenereerdOp": "2026-11-05T13:00:56.293Z",
+  "gegenereerdOp": "2026-11-05T14:01:02.793Z",
   "modus": "schaduw",
   "tau": 0.5,
   "stats": {
     "modus": "schaduw",
     "tekst": {
-      "werklijst": 4,
-      "lokaal": 0,
-      "opgehaald": 4,
+      "werklijst": 1,
+      "lokaal": 1,
+      "opgehaald": 0,
       "mislukt": 0,
       "uitgesteld": 0
     },
     "vergeten": 0,
-    "stukken": 300,
-    "kandidaten": 104,
-    "metAnker": 104,
+    "stukken": 301,
+    "kandidaten": 101,
+    "metAnker": 101,
     "zonderAnker": 0,
     "tau": 0.5,
     "besluit": {
@@ -356,69 +356,6 @@
       ]
     },
     {
-      "key": "n:https://www.deorkaan.nl/de-orkaan-in-2-minuten-3-november-%f0%9f%8e%a7/",
-      "soort": "nieuws",
-      "kop": "De Orkaan in 2 minuten: 3 november 🎧",
-      "S": 0.43,
-      "Sa": 0.43,
-      "Sp": 0,
-      "route": "aanhoudend",
-      "K": 0.36,
-      "n": 9,
-      "dagen": 9,
-      "bronnen": 1,
-      "ankers": [
-        "minut",
-        "fietster",
-        "geschept",
-        "50wordenvideo",
-        "ruzie",
-        "vorbij",
-        "brand",
-        "vorkom",
-        "razendsnel",
-        "bijprat",
-        "dagelijk"
-      ],
-      "bewijs": [
-        {
-          "bron": "DeOrkaan",
-          "datum": "2026-11-03T23:00:00.000Z",
-          "c": 0.9,
-          "plek": "kop",
-          "titel": "De Orkaan in 2 minuten: 4 november 🎧"
-        },
-        {
-          "bron": "DeOrkaan",
-          "datum": "2026-11-01T23:00:00.000Z",
-          "c": 0.9,
-          "plek": "kop",
-          "titel": "De Orkaan in 2 minuten: 2 november 🎧"
-        },
-        {
-          "bron": "DeOrkaan",
-          "datum": "2026-10-29T23:00:00.000Z",
-          "c": 0.9,
-          "plek": "kop",
-          "titel": "De Orkaan in 2 minuten: 30 oktober 🎧"
-        },
-        {
-          "bron": "DeOrkaan",
-          "datum": "2026-10-28T23:00:00.000Z",
-          "c": 0.9,
-          "plek": "kop",
-          "titel": "De Orkaan in 2 minuten: 29 oktober 🎧"
-        },
-        {
-          "bron": "DeOrkaan",
-          "datum": "2026-10-25T23:00:00.000Z",
-          "c": 0.9,
-          "plek": "kop",
-          "titel": "De Orkaan in 2 minuten: 26 oktober 🎧"
-        }
-      ]
-    },
-    {
       "key": "n:https://zoek.officielebekendmakingen.nl/gmb-2026-508877.html",
       "soort": "nieuws",
       "kop": "Verkeersbesluit, instellen stopverplichting fietsverkeer Stijlpad Assendelft",
@@ -492,8 +429,8 @@
       "key": "a:f833a15399",
       "soort": "agenda",
       "kop": "GEANNULEERD: Technische sessie Vervoerregio Amsterdam",
-      "S": 0.39,
-      "Sa": 0.39,
+      "S": 0.38,
+      "Sa": 0.38,
       "Sp": 0,
       "route": "aanhoudend",
       "K": 0.52,
@@ -1457,8 +1394,8 @@
       "key": "n:https://zaanstad.bestuurlijkeinformatie.nl/Reports/Item/ba379db2-8d98-40ec-b29c-c081d662f580",
       "soort": "nieuws",
       "kop": "Laat jij je de mond snoeren? Doe mee aan de enquête!",
-      "S": 0.09,
-      "Sa": 0.09,
+      "S": 0.08,
+      "Sa": 0.08,
       "Sp": 0,
       "route": "aanhoudend",
       "K": 0,
@@ -1537,6 +1474,35 @@
           "datum": "2026-10-20T22:00:00.000Z",
           "c": 0.97,
           "plek": "kop",
+          "titel": "15-jarige aangehouden voor straatroof waarbij wapen is gebruikt"
+        }
+      ]
+    },
+    {
+      "key": "n:https://www.deorkaan.nl/tienduizend-joints-gevonden-na-tip-meld-misdaad-anoniem/",
+      "soort": "nieuws",
+      "kop": "Tienduizend joints gevonden na tip Meld Misdaad Anoniem",
+      "S": 0.03,
+      "Sa": 0.03,
+      "Sp": 0,
+      "route": "aanhoudend",
+      "K": 0.08,
+      "n": 1,
+      "dagen": 1,
+      "bronnen": 1,
+      "ankers": [
+        "misdad",
+        "anoniem",
+        "tienduizend",
+        "joint",
+        "gevond"
+      ],
+      "bewijs": [
+        {
+          "bron": "DeOrkaan",
+          "datum": "2026-10-20T22:00:00.000Z",
+          "c": 0.34,
+          "plek": "tekst",
           "titel": "15-jarige aangehouden voor straatroof waarbij wapen is gebruikt"
         }
       ]
