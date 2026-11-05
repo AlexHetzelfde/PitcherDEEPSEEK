@@ -1,44 +1,44 @@
 {
-  "gegenereerdOp": "2026-11-05T10:01:01.472Z",
+  "gegenereerdOp": "2026-11-05T11:00:58.033Z",
   "modus": "schaduw",
   "tau": 0.5,
   "stats": {
     "modus": "schaduw",
     "tekst": {
-      "werklijst": 165,
-      "lokaal": 2,
+      "werklijst": 94,
+      "lokaal": 4,
       "opgehaald": 73,
       "mislukt": 7,
-      "uitgesteld": 83
+      "uitgesteld": 10
     },
     "vergeten": 0,
-    "stukken": 210,
-    "kandidaten": 109,
-    "metAnker": 109,
+    "stukken": 287,
+    "kandidaten": 110,
+    "metAnker": 110,
     "zonderAnker": 0,
     "tau": 0.5,
     "besluit": {
-      "boven": 6,
-      "wacht": 1,
-      "onderdrukt": 2,
+      "boven": 1,
+      "wacht": 0,
+      "onderdrukt": 0,
       "veto": 0,
-      "nieuwRood": 3,
+      "nieuwRood": 1,
       "noodrem": false
     },
-    "rood": 3
+    "rood": 4
   },
   "top": [
     {
       "key": "a:04d5e7cb5d",
       "soort": "agenda",
       "kop": "Raadsvergadering: Begroting",
-      "S": 0.9,
-      "Sa": 0.9,
-      "Sp": 0.83,
+      "S": 0.96,
+      "Sa": 0.96,
+      "Sp": 0.85,
       "route": "aanhoudend",
-      "K": 0.96,
-      "n": 10,
-      "dagen": 7,
+      "K": 1,
+      "n": 14,
+      "dagen": 10,
       "bronnen": 3,
       "ankers": [
         "radsvergadering",
@@ -62,23 +62,23 @@
         {
           "bron": "ibabs-ingekomen-stukken",
           "datum": "2026-11-03T23:00:00.000Z",
-          "c": 0.92,
+          "c": 0.91,
           "plek": "kop",
           "titel": "Begroting voor de deur: wat vragen we van onze ambtenaren?"
         },
         {
           "bron": "DeOrkaan",
           "datum": "2026-10-28T23:00:00.000Z",
-          "c": 0.92,
+          "c": 0.91,
           "plek": "kop",
           "titel": "Zaanse begroting ronde twee: van AI tot gemeentehuis"
         },
         {
           "bron": "DeOrkaan",
-          "datum": "2026-10-28T23:00:00.000Z",
-          "c": 0.72,
-          "plek": "intro",
-          "titel": "Raad Zaanstad druk met Algemene Beschouwingen"
+          "datum": "2026-10-21T22:00:00.000Z",
+          "c": 0.91,
+          "plek": "kop",
+          "titel": "Eigen begroting oppositie Zaanstad: minima ontzien, toeristen betalen meer"
         }
       ]
     },
@@ -86,11 +86,11 @@
       "key": "n:https://zaanstad.bestuurlijkeinformatie.nl/Reports/Item/e824ca7c-cc27-463f-90b6-2ff61a2b5047",
       "soort": "nieuws",
       "kop": "Gemeente Den Haag geeft het voorbeeld",
-      "S": 0.63,
-      "Sa": 0.63,
+      "S": 0.64,
+      "Sa": 0.64,
       "Sp": 0.54,
       "route": "aanhoudend",
-      "K": 0.76,
+      "K": 0.78,
       "n": 6,
       "dagen": 5,
       "bronnen": 4,
@@ -138,79 +138,29 @@
       ]
     },
     {
-      "key": "n:https://vervoerregio.bestuurlijkeinformatie.nl/Reports/Item/c996f16f-b73e-4a25-a3ab-d5d09ea9848e",
-      "soort": "nieuws",
-      "kop": "Inzicht in rituitval EBS en de verdeling daarvan over buslijnen",
-      "S": 0.62,
-      "Sa": 0.44,
-      "Sp": 0.62,
-      "route": "piek",
-      "K": 0.62,
-      "n": 3,
-      "dagen": 1,
-      "bronnen": 2,
-      "ankers": [
-        "verdeling",
-        "buslijn",
-        "inzicht",
-        "rituitval",
-        "landsmer",
-        "ebs",
-        "vervoerregio",
-        "waterland",
-        "krantenbericht",
-        "toeristenbuslijn",
-        "opheldering",
-        "busvervoerder"
-      ],
-      "bewijs": [
-        {
-          "bron": "vervoerregio-overzichten",
-          "datum": "2026-11-03T23:00:00.000Z",
-          "c": 1,
-          "plek": "kop",
-          "titel": "Inzicht in rituitval EBS en de verdeling daarvan over buslijnen"
-        },
-        {
-          "bron": "DeOrkaan",
-          "datum": "2026-11-03T23:00:00.000Z",
-          "c": 0.96,
-          "plek": "kop",
-          "titel": "Wel miljoenen voor bushaltes, geen cijfers over uitvallende EBS-bussen"
-        },
-        {
-          "bron": "vervoerregio-overzichten",
-          "datum": "2026-11-03T11:00:54.646Z",
-          "c": 0.86,
-          "plek": "kop",
-          "titel": "Dienstregeling en rituitval EBS"
-        }
-      ]
-    },
-    {
       "key": "n:https://vervoerregio.bestuurlijkeinformatie.nl/Reports/Item/8653c4c8-9cef-494b-9e5d-95e049aba320",
       "soort": "nieuws",
       "kop": "Inzicht in rituitval EBS en de verdeling daarvan over buslijnen",
-      "S": 0.57,
-      "Sa": 0.39,
-      "Sp": 0.57,
-      "route": "piek",
+      "S": 0.46,
+      "Sa": 0.46,
+      "Sp": 0,
+      "route": "aanhoudend",
       "K": 0.6,
       "n": 2,
-      "dagen": 1,
+      "dagen": 2,
       "bronnen": 2,
       "ankers": [
         "verdeling",
-        "buslijn",
         "inzicht",
         "rituitval",
+        "buslijn",
         "ebs",
         "vervoerregio",
         "schan",
-        "waterland",
-        "gesteld",
         "krantenartikel",
         "kende",
+        "waterland",
+        "gesteld",
         "vervoerder"
       ],
       "bewijs": [
@@ -227,116 +177,6 @@
           "c": 0.92,
           "plek": "kop",
           "titel": "Wel miljoenen voor bushaltes, geen cijfers over uitvallende EBS-bussen"
-        }
-      ]
-    },
-    {
-      "key": "n:https://vervoerregio.bestuurlijkeinformatie.nl/Reports/Item/96843b06-b125-478f-8098-687022126403",
-      "soort": "nieuws",
-      "kop": "Dienstregeling en rituitval EBS",
-      "S": 0.57,
-      "Sa": 0.38,
-      "Sp": 0.57,
-      "route": "piek",
-      "K": 0.61,
-      "n": 2,
-      "dagen": 1,
-      "bronnen": 2,
-      "ankers": [
-        "dienstregeling",
-        "rituitval",
-        "ebs",
-        "waterland",
-        "tegenstrijdig",
-        "tijdlijn",
-        "toegestan",
-        "regiorad",
-        "busvervoerder",
-        "rijdt"
-      ],
-      "bewijs": [
-        {
-          "bron": "DeOrkaan",
-          "datum": "2026-11-03T23:00:00.000Z",
-          "c": 0.94,
-          "plek": "kop",
-          "titel": "Wel miljoenen voor bushaltes, geen cijfers over uitvallende EBS-bussen"
-        },
-        {
-          "bron": "vervoerregio-overzichten",
-          "datum": "2026-11-03T11:00:54.646Z",
-          "c": 0.88,
-          "plek": "kop",
-          "titel": "Inzicht in rituitval EBS en de verdeling daarvan over buslijnen"
-        }
-      ]
-    },
-    {
-      "key": "a:f833a15399",
-      "soort": "agenda",
-      "kop": "GEANNULEERD: Technische sessie Vervoerregio Amsterdam",
-      "S": 0.52,
-      "Sa": 0.33,
-      "Sp": 0.52,
-      "route": "piek",
-      "K": 0.53,
-      "n": 2,
-      "dagen": 1,
-      "bronnen": 2,
-      "ankers": [
-        "geannulerd",
-        "technisch",
-        "vervoerregio",
-        "sessi"
-      ],
-      "bewijs": [
-        {
-          "bron": "vervoerregio-overzichten",
-          "datum": "2026-11-03T11:00:54.646Z",
-          "c": 0.73,
-          "plek": "intro",
-          "titel": "Inzicht in rituitval EBS en de verdeling daarvan over buslijnen"
-        },
-        {
-          "bron": "DeOrkaan",
-          "datum": "2026-11-03T23:00:00.000Z",
-          "c": 0.68,
-          "plek": "intro",
-          "titel": "Wel miljoenen voor bushaltes, geen cijfers over uitvallende EBS-bussen"
-        }
-      ]
-    },
-    {
-      "key": "n:https://www.deorkaan.nl/cameratoezicht-elzenstraat-weer-verlengd/",
-      "soort": "nieuws",
-      "kop": "Cameratoezicht Elzenstraat wéér verlengd",
-      "S": 0.42,
-      "Sa": 0.42,
-      "Sp": 0,
-      "route": "aanhoudend",
-      "K": 0.54,
-      "n": 2,
-      "dagen": 2,
-      "bronnen": 2,
-      "ankers": [
-        "elzenstrat",
-        "verlengd",
-        "cameratoezicht"
-      ],
-      "bewijs": [
-        {
-          "bron": "ibabs-collegeberichten",
-          "datum": "2026-11-03T23:00:00.000Z",
-          "c": 0.9,
-          "plek": "kop",
-          "titel": "Kennisgeving Burgemeester J. Hamming: Incident Elzenstraat"
-        },
-        {
-          "bron": "bekendmakingen",
-          "datum": "2026-11-02T23:00:00.000Z",
-          "c": 0.86,
-          "plek": "kop",
-          "titel": "Aanwijzingsbesluit verlenging tijdelijk cameratoezicht Elzenstraat in Wormerveer"
         }
       ]
     },
@@ -411,11 +251,172 @@
       ]
     },
     {
+      "key": "a:f833a15399",
+      "soort": "agenda",
+      "kop": "GEANNULEERD: Technische sessie Vervoerregio Amsterdam",
+      "S": 0.39,
+      "Sa": 0.39,
+      "Sp": 0,
+      "route": "aanhoudend",
+      "K": 0.53,
+      "n": 2,
+      "dagen": 2,
+      "bronnen": 2,
+      "ankers": [
+        "geannulerd",
+        "technisch",
+        "vervoerregio",
+        "sessi"
+      ],
+      "bewijs": [
+        {
+          "bron": "vervoerregio-overzichten",
+          "datum": "2026-11-03T11:00:54.646Z",
+          "c": 0.73,
+          "plek": "intro",
+          "titel": "Inzicht in rituitval EBS en de verdeling daarvan over buslijnen"
+        },
+        {
+          "bron": "DeOrkaan",
+          "datum": "2026-11-03T23:00:00.000Z",
+          "c": 0.68,
+          "plek": "intro",
+          "titel": "Wel miljoenen voor bushaltes, geen cijfers over uitvallende EBS-bussen"
+        }
+      ]
+    },
+    {
+      "key": "n:https://www.deorkaan.nl/de-orkaan-in-2-minuten-4-november%f0%9f%8e%a7/",
+      "soort": "nieuws",
+      "kop": "De Orkaan in 2 minuten: 4 november 🎧",
+      "S": 0.39,
+      "Sa": 0.39,
+      "Sp": 0,
+      "route": "aanhoudend",
+      "K": 0.34,
+      "n": 8,
+      "dagen": 8,
+      "bronnen": 1,
+      "ankers": [
+        "rekenkamer",
+        "minut",
+        "platje",
+        "hembrugterrein",
+        "bezuiniging",
+        "razendsnel",
+        "bijprat",
+        "dagelijk",
+        "bulletin",
+        "redacti",
+        "spelt"
+      ],
+      "bewijs": [
+        {
+          "bron": "DeOrkaan",
+          "datum": "2026-11-02T23:00:00.000Z",
+          "c": 1,
+          "plek": "kop",
+          "titel": "De Orkaan in 2 minuten: 3 november 🎧"
+        },
+        {
+          "bron": "DeOrkaan",
+          "datum": "2026-11-01T23:00:00.000Z",
+          "c": 1,
+          "plek": "kop",
+          "titel": "De Orkaan in 2 minuten: 2 november 🎧"
+        },
+        {
+          "bron": "DeOrkaan",
+          "datum": "2026-10-29T23:00:00.000Z",
+          "c": 1,
+          "plek": "kop",
+          "titel": "De Orkaan in 2 minuten: 30 oktober 🎧"
+        },
+        {
+          "bron": "DeOrkaan",
+          "datum": "2026-10-28T23:00:00.000Z",
+          "c": 1,
+          "plek": "kop",
+          "titel": "De Orkaan in 2 minuten: 29 oktober 🎧"
+        },
+        {
+          "bron": "DeOrkaan",
+          "datum": "2026-10-25T23:00:00.000Z",
+          "c": 1,
+          "plek": "kop",
+          "titel": "De Orkaan in 2 minuten: 26 oktober 🎧"
+        }
+      ]
+    },
+    {
+      "key": "n:https://www.deorkaan.nl/de-orkaan-in-2-minuten-3-november-%f0%9f%8e%a7/",
+      "soort": "nieuws",
+      "kop": "De Orkaan in 2 minuten: 3 november 🎧",
+      "S": 0.38,
+      "Sa": 0.38,
+      "Sp": 0,
+      "route": "aanhoudend",
+      "K": 0.36,
+      "n": 8,
+      "dagen": 8,
+      "bronnen": 1,
+      "ankers": [
+        "minut",
+        "fietster",
+        "geschept",
+        "50wordenvideo",
+        "ruzie",
+        "vorbij",
+        "brand",
+        "vorkom",
+        "razendsnel",
+        "bijprat",
+        "dagelijk"
+      ],
+      "bewijs": [
+        {
+          "bron": "DeOrkaan",
+          "datum": "2026-11-03T23:00:00.000Z",
+          "c": 0.9,
+          "plek": "kop",
+          "titel": "De Orkaan in 2 minuten: 4 november 🎧"
+        },
+        {
+          "bron": "DeOrkaan",
+          "datum": "2026-11-01T23:00:00.000Z",
+          "c": 0.9,
+          "plek": "kop",
+          "titel": "De Orkaan in 2 minuten: 2 november 🎧"
+        },
+        {
+          "bron": "DeOrkaan",
+          "datum": "2026-10-29T23:00:00.000Z",
+          "c": 0.9,
+          "plek": "kop",
+          "titel": "De Orkaan in 2 minuten: 30 oktober 🎧"
+        },
+        {
+          "bron": "DeOrkaan",
+          "datum": "2026-10-28T23:00:00.000Z",
+          "c": 0.9,
+          "plek": "kop",
+          "titel": "De Orkaan in 2 minuten: 29 oktober 🎧"
+        },
+        {
+          "bron": "DeOrkaan",
+          "datum": "2026-10-25T23:00:00.000Z",
+          "c": 0.9,
+          "plek": "kop",
+          "titel": "De Orkaan in 2 minuten: 26 oktober 🎧"
+        }
+      ]
+    },
+    {
       "key": "n:https://zoek.officielebekendmakingen.nl/gmb-2026-517023.html",
       "soort": "nieuws",
       "kop": "Aanwijzingsbesluit verlenging tijdelijk cameratoezicht Elzenstraat in Wormerveer",
-      "S": 0.37,
-      "Sa": 0.37,
+      "S": 0.38,
+      "Sa": 0.38,
       "Sp": 0,
       "route": "aanhoudend",
       "K": 0.59,
@@ -432,14 +433,14 @@
         {
           "bron": "ibabs-collegeberichten",
           "datum": "2026-11-03T23:00:00.000Z",
-          "c": 0.94,
+          "c": 0.97,
           "plek": "kop",
           "titel": "Kennisgeving Burgemeester J. Hamming: Incident Elzenstraat"
         },
         {
           "bron": "DeOrkaan",
           "datum": "2026-11-02T23:00:00.000Z",
-          "c": 0.9,
+          "c": 0.91,
           "plek": "kop",
           "titel": "Cameratoezicht Elzenstraat wéér verlengd"
         }
@@ -550,8 +551,8 @@
       "bronnen": 1,
       "ankers": [
         "filmopnam",
-        "internet",
-        "uitgezond"
+        "uitgezond",
+        "internet"
       ],
       "bewijs": [
         {
@@ -598,8 +599,8 @@
       "bronnen": 1,
       "ankers": [
         "filmopnam",
-        "internet",
-        "uitgezond"
+        "uitgezond",
+        "internet"
       ],
       "bewijs": [
         {
@@ -646,8 +647,8 @@
       "bronnen": 1,
       "ankers": [
         "filmopnam",
-        "internet",
-        "uitgezond"
+        "uitgezond",
+        "internet"
       ],
       "bewijs": [
         {
@@ -684,8 +685,8 @@
       "key": "n:https://zoek.officielebekendmakingen.nl/gmb-2026-511143.html",
       "soort": "nieuws",
       "kop": "Melding graven bodem - Nabij Vinkenstraat 1 Zaandam , 7 meter richting zuiden",
-      "S": 0.35,
-      "Sa": 0.35,
+      "S": 0.34,
+      "Sa": 0.34,
       "Sp": 0,
       "route": "aanhoudend",
       "K": 0.24,
@@ -736,116 +737,45 @@
       ]
     },
     {
-      "key": "n:https://www.deorkaan.nl/de-orkaan-in-2-minuten-4-november%f0%9f%8e%a7/",
+      "key": "n:https://www.noord-holland.nl/Actueel/Archief/2026/November_2026/Oog_voor_verbinding_tijdens_ambtsbezoek_aan_gemeente_Zaanstad",
       "soort": "nieuws",
-      "kop": "De Orkaan in 2 minuten: 4 november 🎧",
-      "S": 0.31,
-      "Sa": 0.31,
-      "Sp": 0,
-      "route": "aanhoudend",
-      "K": 0.28,
-      "n": 4,
-      "dagen": 4,
-      "bronnen": 1,
-      "ankers": [
-        "rekenkamer",
-        "minut",
-        "hembrugterrein",
-        "belangrijk",
-        "platje",
-        "bezuiniging",
-        "razendsnel",
-        "bijprat",
-        "redacti",
-        "dagelijk",
-        "bulletin",
-        "spelt"
-      ],
-      "bewijs": [
-        {
-          "bron": "DeOrkaan",
-          "datum": "2026-11-02T23:00:00.000Z",
-          "c": 1,
-          "plek": "kop",
-          "titel": "De Orkaan in 2 minuten: 3 november 🎧"
-        },
-        {
-          "bron": "DeOrkaan",
-          "datum": "2026-11-01T23:00:00.000Z",
-          "c": 1,
-          "plek": "kop",
-          "titel": "De Orkaan in 2 minuten: 2 november 🎧"
-        },
-        {
-          "bron": "DeOrkaan",
-          "datum": "2026-10-29T23:00:00.000Z",
-          "c": 1,
-          "plek": "kop",
-          "titel": "De Orkaan in 2 minuten: 30 oktober 🎧"
-        },
-        {
-          "bron": "DeOrkaan",
-          "datum": "2026-10-28T23:00:00.000Z",
-          "c": 1,
-          "plek": "kop",
-          "titel": "De Orkaan in 2 minuten: 29 oktober 🎧"
-        }
-      ]
-    },
-    {
-      "key": "n:https://www.deorkaan.nl/de-orkaan-in-2-minuten-3-november-%f0%9f%8e%a7/",
-      "soort": "nieuws",
-      "kop": "De Orkaan in 2 minuten: 3 november 🎧",
+      "kop": "Oog voor verbinding tijdens ambtsbezoek aan gemeente Zaanstad",
       "S": 0.3,
       "Sa": 0.3,
       "Sp": 0,
       "route": "aanhoudend",
-      "K": 0.3,
-      "n": 4,
-      "dagen": 4,
-      "bronnen": 1,
+      "K": 0.34,
+      "n": 2,
+      "dagen": 2,
+      "bronnen": 2,
       "ankers": [
-        "minut",
-        "fietster",
-        "50wordenvideo",
-        "belangrijk",
-        "geschept",
-        "brand",
-        "ruzie",
-        "vorbij",
-        "vorkom",
-        "razendsnel",
-        "bijprat",
-        "redacti"
+        "ambtsbezoek",
+        "dorpshuis",
+        "verbinding",
+        "commissaris",
+        "arthur",
+        "koning",
+        "krommeniedijk",
+        "hamming",
+        "og",
+        "thema",
+        "besturskracht",
+        "central"
       ],
       "bewijs": [
         {
-          "bron": "DeOrkaan",
-          "datum": "2026-11-03T23:00:00.000Z",
-          "c": 0.91,
+          "bron": "zaanstad-kalender",
+          "datum": "2026-11-01T15:55:49.908Z",
+          "c": 0.92,
           "plek": "kop",
-          "titel": "De Orkaan in 2 minuten: 4 november 🎧"
+          "titel": "Ambtsbezoek: Ambtsbezoek Commissaris van de Koning"
         },
         {
-          "bron": "DeOrkaan",
-          "datum": "2026-11-01T23:00:00.000Z",
-          "c": 0.91,
+          "bron": "nh-actueel",
+          "datum": "2026-10-30T16:54:29.000Z",
+          "c": 0.86,
           "plek": "kop",
-          "titel": "De Orkaan in 2 minuten: 2 november 🎧"
-        },
-        {
-          "bron": "DeOrkaan",
-          "datum": "2026-10-29T23:00:00.000Z",
-          "c": 0.91,
-          "plek": "kop",
-          "titel": "De Orkaan in 2 minuten: 30 oktober 🎧"
-        },
-        {
-          "bron": "DeOrkaan",
-          "datum": "2026-10-28T23:00:00.000Z",
-          "c": 0.91,
-          "plek": "kop",
-          "titel": "De Orkaan in 2 minuten: 29 oktober 🎧"
+          "titel": "Stichting Centraal Bureau Fondsenwerving ontvangt predicaat Koninklijk"
         }
       ]
     },
@@ -853,11 +783,11 @@
       "key": "a:de101efce4",
       "soort": "agenda",
       "kop": "Ambtsbezoek: Ambtsbezoek Commissaris van de Koning",
-      "S": 0.3,
-      "Sa": 0.3,
+      "S": 0.29,
+      "Sa": 0.29,
       "Sp": 0,
       "route": "aanhoudend",
-      "K": 0.35,
+      "K": 0.34,
       "n": 1,
       "dagen": 1,
       "bronnen": 1,
@@ -870,9 +800,82 @@
         {
           "bron": "nh-actueel",
           "datum": "2026-11-05T08:59:23.000Z",
-          "c": 0.94,
+          "c": 0.91,
           "plek": "kop",
           "titel": "Oog voor verbinding tijdens ambtsbezoek aan gemeente Zaanstad"
+        }
+      ]
+    },
+    {
+      "key": "n:https://zaanstad.bestuurlijkeinformatie.nl/Document/View/b1eb289d-70f2-4060-901f-714d244fe301",
+      "soort": "nieuws",
+      "kop": "DRINGEND: Onveilige situatie voor hondenbezitters en gezinnen bij Drielse Wetering / De Tref ('t Kalf)",
+      "S": 0.27,
+      "Sa": 0.27,
+      "Sp": 0,
+      "route": "aanhoudend",
+      "K": 0.82,
+      "n": 1,
+      "dagen": 1,
+      "bronnen": 1,
+      "ankers": [
+        "dringend",
+        "driels",
+        "wetering",
+        "gezin",
+        "onveilig",
+        "hondenbezitter",
+        "situati",
+        "tref"
+      ],
+      "bewijs": [
+        {
+          "bron": "DeOrkaan",
+          "datum": "2026-11-02T23:00:00.000Z",
+          "c": 1,
+          "plek": "kop",
+          "titel": "Nieuwe hondenverboden bij De Tref: bewoners begrijpen er weinig van"
+        }
+      ]
+    },
+    {
+      "key": "n:https://zoek.officielebekendmakingen.nl/gmb-2026-508744.html",
+      "soort": "nieuws",
+      "kop": "Melding graven bodem - Nabij Zeemansstraat 73 Zaandam , 10 meter richting zuidwesten",
+      "S": 0.27,
+      "Sa": 0.27,
+      "Sp": 0,
+      "route": "aanhoudend",
+      "K": 0.23,
+      "n": 3,
+      "dagen": 3,
+      "bronnen": 1,
+      "ankers": [
+        "zemansstrat",
+        "zuidwest",
+        "bodem"
+      ],
+      "bewijs": [
+        {
+          "bron": "bekendmakingen",
+          "datum": "2026-10-29T23:00:00.000Z",
+          "c": 0.98,
+          "plek": "kop",
+          "titel": "Melding graven bodem - Nabij Wezelstraat 1 Koog aan de Zaan , 86 meter richting zuidwesten"
+        },
+        {
+          "bron": "bekendmakingen",
+          "datum": "2026-11-03T23:00:00.000Z",
+          "c": 0.91,
+          "plek": "kop",
+          "titel": "Melding graven bodem - Nabij Militaireweg 158 Krommenie , 17 meter richting zuidwesten"
+        },
+        {
+          "bron": "bekendmakingen",
+          "datum": "2026-11-02T23:00:00.000Z",
+          "c": 0.91,
+          "plek": "kop",
+          "titel": "Melding graven bodem - Nabij Vinkenstraat 1 Zaandam , 7 meter richting zuiden"
         }
       ]
     },
@@ -903,36 +906,6 @@
       ]
     },
     {
-      "key": "n:https://zaanstad.bestuurlijkeinformatie.nl/Document/View/b1eb289d-70f2-4060-901f-714d244fe301",
-      "soort": "nieuws",
-      "kop": "DRINGEND: Onveilige situatie voor hondenbezitters en gezinnen bij Drielse Wetering / De Tref ('t Kalf)",
-      "S": 0.23,
-      "Sa": 0.23,
-      "Sp": 0,
-      "route": "aanhoudend",
-      "K": 0.78,
-      "n": 1,
-      "dagen": 1,
-      "bronnen": 1,
-      "ankers": [
-        "dringend",
-        "driels",
-        "wetering",
-        "gezin",
-        "hondenbezitter",
-        "onveilig"
-      ],
-      "bewijs": [
-        {
-          "bron": "DeOrkaan",
-          "datum": "2026-11-02T23:00:00.000Z",
-          "c": 0.77,
-          "plek": "intro",
-          "titel": "Nieuwe hondenverboden bij De Tref: bewoners begrijpen er weinig van"
-        }
-      ]
-    },
-    {
       "key": "n:https://www.deorkaan.nl/chris-stussy-dreunt-na-felle-botsing-tussen-bewoners-gemeente-sona-en-taets/",
       "soort": "nieuws",
       "kop": "Chris Stussy dreunt na: felle botsing tussen bewoners, gemeente, SONA en Taets",
@@ -958,7 +931,7 @@
         {
           "bron": "DeOrkaan",
           "datum": "2026-11-01T23:00:00.000Z",
-          "c": 0.69,
+          "c": 0.66,
           "plek": "intro",
           "titel": "Zaans voor ’t hekje: Pieter Latensteinstraat-moord en (voorbije) dancefeesten"
         }
@@ -981,14 +954,14 @@
         "begrotingsdebat",
         "antword",
         "juist",
-        "feit",
         "begrotingscarrousel",
         "stort",
         "stokpardje",
         "vervolgrond",
         "dossier",
         "onzekerheid",
-        "gemoeder"
+        "gemoeder",
+        "gebiedsontwikkeling"
       ],
       "bewijs": [
         {
@@ -1017,8 +990,8 @@
         "monument",
         "karakter",
         "hetzelfd",
-        "paviljo",
         "welgeleg",
+        "paviljo",
         "klimatwek"
       ],
       "bewijs": [
@@ -1047,12 +1020,12 @@
         "vorbeld",
         "orlog",
         "antisemitism",
-        "warschuwing",
         "subject",
         "categorie",
+        "warschuwing",
         "radsgriffi",
-        "overheid",
         "hag",
+        "overheid",
         "racism",
         "discriminati",
         "nadeorlog"
@@ -1068,35 +1041,65 @@
       ]
     },
     {
-      "key": "n:https://zoek.officielebekendmakingen.nl/gmb-2026-508744.html",
+      "key": "n:https://zaanstad.bestuurlijkeinformatie.nl/Document/View/e8f55ebc-2c96-4064-87ff-1b8a8409c37a",
       "soort": "nieuws",
-      "kop": "Melding graven bodem - Nabij Zeemansstraat 73 Zaandam , 10 meter richting zuidwesten",
-      "S": 0.19,
-      "Sa": 0.19,
+      "kop": "Het laatste nieuws uit Zaanstad",
+      "S": 0.2,
+      "Sa": 0.2,
       "Sp": 0,
       "route": "aanhoudend",
-      "K": 0.21,
-      "n": 2,
-      "dagen": 2,
+      "K": 0.31,
+      "n": 1,
+      "dagen": 1,
       "bronnen": 1,
       "ankers": [
-        "zemansstrat",
-        "zuidwest"
+        "subject",
+        "categorie",
+        "radsgriffi",
+        "blader",
+        "bladkorv",
+        "gemakkelijker",
+        "bladafval",
+        "weggoi",
+        "opruim",
+        "hierin",
+        "stoep",
+        "journal"
       ],
       "bewijs": [
         {
-          "bron": "bekendmakingen",
-          "datum": "2026-10-29T23:00:00.000Z",
-          "c": 0.98,
-          "plek": "kop",
-          "titel": "Melding graven bodem - Nabij Wezelstraat 1 Koog aan de Zaan , 86 meter richting zuidwesten"
-        },
-        {
-          "bron": "bekendmakingen",
+          "bron": "ibabs-ingekomen-stukken",
           "datum": "2026-11-03T23:00:00.000Z",
-          "c": 0.91,
+          "c": 0.7,
+          "plek": "intro",
+          "titel": "Het laatste nieuws uit Zaanstad"
+        }
+      ]
+    },
+    {
+      "key": "n:https://www.deorkaan.nl/cameratoezicht-elzenstraat-weer-verlengd/",
+      "soort": "nieuws",
+      "kop": "Cameratoezicht Elzenstraat wéér verlengd",
+      "S": 0.18,
+      "Sa": 0.18,
+      "Sp": 0,
+      "route": "aanhoudend",
+      "K": 0.28,
+      "n": 1,
+      "dagen": 1,
+      "bronnen": 1,
+      "ankers": [
+        "elzenstrat",
+        "verlengd",
+        "cameratoezicht"
+      ],
+      "bewijs": [
+        {
+          "bron": "ibabs-collegeberichten",
+          "datum": "2026-11-03T23:00:00.000Z",
+          "c": 0.87,
           "plek": "kop",
-          "titel": "Melding graven bodem - Nabij Militaireweg 158 Krommenie , 17 meter richting zuidwesten"
+          "titel": "Kennisgeving Burgemeester J. Hamming: Incident Elzenstraat"
         }
       ]
     },
@@ -1104,8 +1107,8 @@
       "key": "n:https://zoek.officielebekendmakingen.nl/gmb-2026-517656.html",
       "soort": "nieuws",
       "kop": "Machtiging tekenbevoegdheid burgemeestersbesluiten 10045012",
-      "S": 0.18,
-      "Sa": 0.18,
+      "S": 0.17,
+      "Sa": 0.17,
       "Sp": 0,
       "route": "aanhoudend",
       "K": 0.16,
@@ -1170,71 +1173,69 @@
       ]
     },
     {
-      "key": "n:https://www.noord-holland.nl/Actueel/Archief/2026/November_2026/Oog_voor_verbinding_tijdens_ambtsbezoek_aan_gemeente_Zaanstad",
+      "key": "n:https://zoek.officielebekendmakingen.nl/gmb-2026-512951.html",
       "soort": "nieuws",
-      "kop": "Oog voor verbinding tijdens ambtsbezoek aan gemeente Zaanstad",
-      "S": 0.16,
-      "Sa": 0.16,
+      "kop": "Melding graven bodem - Nabij Militaireweg 158 Krommenie , 17 meter richting zuidwesten",
+      "S": 0.17,
+      "Sa": 0.17,
       "Sp": 0,
       "route": "aanhoudend",
-      "K": 0.34,
-      "n": 1,
-      "dagen": 1,
-      "bronnen": 1,
-      "ankers": [
-        "ambtsbezoek",
-        "verbinding",
-        "dorpshuis",
-        "commissaris",
-        "arthur",
-        "koning",
-        "krommeniedijk",
-        "gesprek",
-        "hamming",
-        "og",
-        "thema",
-        "gementebestur"
-      ],
-      "bewijs": [
-        {
-          "bron": "zaanstad-kalender",
-          "datum": "2026-11-01T15:55:49.908Z",
-          "c": 0.96,
-          "plek": "kop",
-          "titel": "Ambtsbezoek: Ambtsbezoek Commissaris van de Koning"
-        }
-      ]
-    },
-    {
-      "key": "a:7f80a7d896",
-      "soort": "agenda",
-      "kop": "Webinar ‘De wooncoöperatie’",
-      "S": 0.15,
-      "Sa": 0.15,
-      "Sp": 0,
-      "route": "aanhoudend",
-      "K": 0,
+      "K": 0.2,
       "n": 2,
       "dagen": 2,
       "bronnen": 1,
       "ankers": [
-        "woncoperati",
-        "digital"
+        "militaireweg",
+        "zuidwest"
       ],
       "bewijs": [
         {
-          "bron": "zaanstad-kalender",
-          "datum": "2026-11-01T15:55:49.908Z",
-          "c": 0.78,
-          "plek": "intro",
-          "titel": "Uitnodiging en aanmeldlink voor deelname aan de Webinar raadsleden"
+          "bron": "bekendmakingen",
+          "datum": "2026-11-01T23:00:00.000Z",
+          "c": 0.92,
+          "plek": "kop",
+          "titel": "Melding graven bodem - Nabij Zeemansstraat 73 Zaandam , 10 meter richting zuidwesten"
         },
         {
-          "bron": "zaanstad-kalender",
-          "datum": "2026-11-03T12:00:51.615Z",
-          "c": 0.76,
-          "plek": "intro",
-          "titel": "lunchwebinar: dilemma’s voorleggen aan inwoners"
+          "bron": "bekendmakingen",
+          "datum": "2026-10-29T23:00:00.000Z",
+          "c": 0.92,
+          "plek": "kop",
+          "titel": "Melding graven bodem - Nabij Wezelstraat 1 Koog aan de Zaan , 86 meter richting zuidwesten"
+        }
+      ]
+    },
+    {
+      "key": "n:https://zoek.officielebekendmakingen.nl/gmb-2026-515500.html",
+      "soort": "nieuws",
+      "kop": "Melding toepassen grond en baggerspecie - Nabij Grote Tocht 33 Zaandam , 251 meter richting oosten",
+      "S": 0.15,
+      "Sa": 0.15,
+      "Sp": 0,
+      "route": "aanhoudend",
+      "K": 0.2,
+      "n": 2,
+      "dagen": 2,
+      "bronnen": 1,
+      "ankers": [
+        "tocht",
+        "baggerspeci",
+        "toepas"
+      ],
+      "bewijs": [
+        {
+          "bron": "bekendmakingen",
+          "datum": "2026-11-02T23:00:00.000Z",
+          "c": 0.86,
+          "plek": "kop",
+          "titel": "Melding toepassen grond en baggerspecie - Nabij Weiver 36 Krommenie , 58 meter richting noorden"
+        },
+        {
+          "bron": "bekendmakingen",
+          "datum": "2026-10-22T22:00:00.000Z",
+          "c": 0.86,
+          "plek": "kop",
+          "titel": "Melding toepassen grond en baggerspecie - Nabij Fortuinweg 1 Zaandijk , 17 meter richting noordoosten"
         }
       ]
     },
@@ -1324,53 +1325,17 @@
         "wijziging",
         "vornem",
         "anpassing",
-        "implementati",
         "technisch",
-        "kennisgeving",
-        "omgevingswet"
+        "implementati",
+        "kennisgeving"
       ],
       "bewijs": [
         {
           "bron": "bekendmakingen",
           "datum": "2026-10-28T23:00:00.000Z",
-          "c": 0.89,
+          "c": 0.9,
           "plek": "kop",
           "titel": "Kennisgeving vaststelling wijziging omgevingsplan gemeente Zaanstad – TAM-Omgevingsplan 22e Krommeniedijk 75"
-        }
-      ]
-    },
-    {
-      "key": "a:777fef6fda",
-      "soort": "agenda",
-      "kop": "Uitnodiging en aanmeldlink voor deelname aan de Webinar raadsleden",
-      "S": 0.12,
-      "Sa": 0.12,
-      "Sp": 0,
-      "route": "aanhoudend",
-      "K": 0,
-      "n": 2,
-      "dagen": 2,
-      "bronnen": 1,
-      "ankers": [
-        "anmeldlink",
-        "delnam",
-        "digital",
-        "onlin"
-      ],
-      "bewijs": [
-        {
-          "bron": "zaanstad-kalender",
-          "datum": "2026-11-01T15:55:49.908Z",
-          "c": 0.69,
-          "plek": "intro",
-          "titel": "Webinar ‘De wooncoöperatie’"
-        },
-        {
-          "bron": "zaanstad-kalender",
-          "datum": "2026-11-03T12:00:51.615Z",
-          "c": 0.67,
-          "plek": "intro",
-          "titel": "lunchwebinar: dilemma’s voorleggen aan inwoners"
         }
       ]
     },
@@ -1402,68 +1367,6 @@
       ]
     },
     {
-      "key": "n:https://zoek.officielebekendmakingen.nl/gmb-2026-515500.html",
-      "soort": "nieuws",
-      "kop": "Melding toepassen grond en baggerspecie - Nabij Grote Tocht 33 Zaandam , 251 meter richting oosten",
-      "S": 0.12,
-      "Sa": 0.12,
-      "Sp": 0,
-      "route": "aanhoudend",
-      "K": 0.19,
-      "n": 1,
-      "dagen": 1,
-      "bronnen": 1,
-      "ankers": [
-        "tocht",
-        "baggerspeci",
-        "toepas"
-      ],
-      "bewijs": [
-        {
-          "bron": "bekendmakingen",
-          "datum": "2026-11-02T23:00:00.000Z",
-          "c": 0.89,
-          "plek": "kop",
-          "titel": "Melding toepassen grond en baggerspecie - Nabij Weiver 36 Krommenie , 58 meter richting noorden"
-        }
-      ]
-    },
-    {
-      "key": "a:3acacdce09",
-      "soort": "agenda",
-      "kop": "lunchwebinar: dilemma’s voorleggen aan inwoners",
-      "S": 0.1,
-      "Sa": 0.1,
-      "Sp": 0,
-      "route": "aanhoudend",
-      "K": 0,
-      "n": 2,
-      "dagen": 1,
-      "bronnen": 1,
-      "ankers": [
-        "lunchwebinar",
-        "dilemma",
-        "vorleg",
-        "digital"
-      ],
-      "bewijs": [
-        {
-          "bron": "zaanstad-kalender",
-          "datum": "2026-11-01T15:55:49.908Z",
-          "c": 0.66,
-          "plek": "intro",
-          "titel": "Uitnodiging en aanmeldlink voor deelname aan de Webinar raadsleden"
-        },
-        {
-          "bron": "zaanstad-kalender",
-          "datum": "2026-11-01T15:55:49.908Z",
-          "c": 0.66,
-          "plek": "intro",
-          "titel": "Webinar ‘De wooncoöperatie’"
-        }
-      ]
-    },
-    {
       "key": "a:9326732905",
       "soort": "agenda",
       "kop": "Bestuurlijke boete kamerverhuur Spitbergen 28 te Zaandam",
@@ -1483,7 +1386,7 @@
         {
           "bron": "zaanstad-hoorzittingen",
           "datum": "2026-10-30T08:00:10.425Z",
-          "c": 0.97,
+          "c": 0.99,
           "plek": "kop",
           "titel": "Bestuurlijke boete kamerverhuur Klipperstraat 37 te Zaandam - Microsoft Teams"
         }
@@ -1506,8 +1409,7 @@
         "begroting",
         "sprektijd",
         "agendapunt",
-        "opening",
-        "verslag"
+        "opening"
       ],
       "bewijs": [
         {
@@ -1516,6 +1418,58 @@
           "c": 0.92,
           "plek": "kop",
           "titel": "Raadsvergadering: Reservedatum begroting"
+        }
+      ]
+    },
+    {
+      "key": "a:d1eae07b85",
+      "soort": "agenda",
+      "kop": "Brandweer Oostzaan viert 100-jarig jubileum",
+      "S": 0.09,
+      "Sa": 0.09,
+      "Sp": 0,
+      "route": "aanhoudend",
+      "K": 0.36,
+      "n": 1,
+      "dagen": 1,
+      "bronnen": 1,
+      "ankers": [
+        "brandwer",
+        "jubileum",
+        "viert"
+      ],
+      "bewijs": [
+        {
+          "bron": "DeOrkaan",
+          "datum": "2026-10-25T23:00:00.000Z",
+          "c": 0.87,
+          "plek": "kop",
+          "titel": "Vrijwillige brandweer Oostzaan bestaat 100 jaar 🎧"
+        }
+      ]
+    },
+    {
+      "key": "a:bd39f8159e",
+      "soort": "agenda",
+      "kop": "Dichter bij de tijd",
+      "S": 0.09,
+      "Sa": 0.09,
+      "Sp": 0,
+      "route": "aanhoudend",
+      "K": 0,
+      "n": 1,
+      "dagen": 1,
+      "bronnen": 1,
+      "ankers": [
+        "dichter"
+      ],
+      "bewijs": [
+        {
+          "bron": "DeOrkaan",
+          "datum": "2026-10-26T14:05:21.411Z",
+          "c": 0.94,
+          "plek": "kop",
+          "titel": "Dichter bij de tijd: vol is vol"
         }
       ]
     },
@@ -1534,8 +1488,8 @@
       "ankers": [
         "inschrijv",
         "minister",
-        "gesprek",
         "nieuwsbrief",
+        "gesprek",
         "vereniging",
         "tuhuljtk"
       ],
@@ -1546,6 +1500,35 @@
           "c": 0.72,
           "plek": "intro",
           "titel": "Laat jij je de mond snoeren? Doe mee aan de enquête!"
+        }
+      ]
+    },
+    {
+      "key": "n:https://zaanstad.bestuurlijkeinformatie.nl/Reports/Item/ba379db2-8d98-40ec-b29c-c081d662f580",
+      "soort": "nieuws",
+      "kop": "Laat jij je de mond snoeren? Doe mee aan de enquête!",
+      "S": 0.09,
+      "Sa": 0.09,
+      "Sp": 0,
+      "route": "aanhoudend",
+      "K": 0,
+      "n": 1,
+      "dagen": 1,
+      "bronnen": 1,
+      "ankers": [
+        "snoer",
+        "enquet",
+        "vereniging",
+        "mond",
+        "tukihhyk"
+      ],
+      "bewijs": [
+        {
+          "bron": "ibabs-ingekomen-stukken",
+          "datum": "2026-11-03T23:00:00.000Z",
+          "c": 0.71,
+          "plek": "intro",
+          "titel": "Nieuwsbrief week 43: Gesprekken met minister & inschrijven Dag voor de Raad"
         }
       ]
     }
@@ -1593,10 +1576,10 @@
     "2026-11-05": {
       "a:04d5e7cb5d": {
         "kop": "Raadsvergadering: Begroting",
-        "S": 0.9,
+        "S": 0.96,
         "route": "aanhoudend",
-        "K": 0.96,
-        "n": 10,
+        "K": 1,
+        "n": 14,
         "bronnen": 3
       },
       "a:f833a15399": {
@@ -1607,6 +1590,14 @@
         "n": 4,
         "bronnen": 3
       },
+      "n:https://zaanstad.bestuurlijkeinformatie.nl/Reports/Item/e824ca7c-cc27-463f-90b6-2ff61a2b5047": {
+        "kop": "Gemeente Den Haag geeft het voorbeeld",
+        "S": 0.64,
+        "route": "aanhoudend",
+        "K": 0.78,
+        "n": 6,
+        "bronnen": 4
+      },
       "n:https://vervoerregio.bestuurlijkeinformatie.nl/Reports/Item/c996f16f-b73e-4a25-a3ab-d5d09ea9848e": {
         "kop": "Inzicht in rituitval EBS en de verdeling daarvan over buslijnen",
         "S": 0.63,
@@ -1614,14 +1605,6 @@
         "K": 0.62,
         "n": 3,
         "bronnen": 2
-      },
-      "n:https://zaanstad.bestuurlijkeinformatie.nl/Reports/Item/e824ca7c-cc27-463f-90b6-2ff61a2b5047": {
-        "kop": "Gemeente Den Haag geeft het voorbeeld",
-        "S": 0.63,
-        "route": "aanhoudend",
-        "K": 0.76,
-        "n": 6,
-        "bronnen": 4
       },
       "a:f317521e28": {
         "kop": "Raadsvergadering: Begroting",
@@ -1703,12 +1686,36 @@
         "n": 5,
         "bronnen": 1
       },
+      "n:https://www.deorkaan.nl/de-orkaan-in-2-minuten-4-november%f0%9f%8e%a7/": {
+        "kop": "De Orkaan in 2 minuten: 4 november 🎧",
+        "S": 0.39,
+        "route": "aanhoudend",
+        "K": 0.34,
+        "n": 8,
+        "bronnen": 1
+      },
       "n:https://zoek.officielebekendmakingen.nl/gmb-2026-512951.html": {
         "kop": "Melding graven bodem - Nabij Militaireweg 158 Krommenie , 17 meter richting zuidwesten",
         "S": 0.38,
         "route": "aanhoudend",
         "K": 0.25,
         "n": 5,
+        "bronnen": 1
+      },
+      "n:https://zoek.officielebekendmakingen.nl/gmb-2026-517023.html": {
+        "kop": "Aanwijzingsbesluit verlenging tijdelijk cameratoezicht Elzenstraat in Wormerveer",
+        "S": 0.38,
+        "route": "aanhoudend",
+        "K": 0.59,
+        "n": 2,
+        "bronnen": 2
+      },
+      "n:https://www.deorkaan.nl/de-orkaan-in-2-minuten-3-november-%f0%9f%8e%a7/": {
+        "kop": "De Orkaan in 2 minuten: 3 november 🎧",
+        "S": 0.38,
+        "route": "aanhoudend",
+        "K": 0.36,
+        "n": 8,
         "bronnen": 1
       },
       "n:https://zoek.officielebekendmakingen.nl/gmb-2026-515500.html": {
@@ -1718,14 +1725,6 @@
         "K": 0.25,
         "n": 5,
         "bronnen": 1
-      },
-      "n:https://zoek.officielebekendmakingen.nl/gmb-2026-517023.html": {
-        "kop": "Aanwijzingsbesluit verlenging tijdelijk cameratoezicht Elzenstraat in Wormerveer",
-        "S": 0.37,
-        "route": "aanhoudend",
-        "K": 0.58,
-        "n": 2,
-        "bronnen": 2
       },
       "n:https://zaanstad.bestuurlijkeinformatie.nl/Reports/Item/ca542b04-ff0c-4e5e-b854-c8a6e61461d0": {
         "kop": "Platform31 Nieuwsbrief | 29 oktober 2026",
@@ -1774,22 +1773,6 @@
         "K": 0.23,
         "n": 2,
         "bronnen": 2
-      },
-      "n:https://www.deorkaan.nl/de-orkaan-in-2-minuten-4-november%f0%9f%8e%a7/": {
-        "kop": "De Orkaan in 2 minuten: 4 november 🎧",
-        "S": 0.31,
-        "route": "aanhoudend",
-        "K": 0.28,
-        "n": 4,
-        "bronnen": 1
-      },
-      "n:https://www.deorkaan.nl/de-orkaan-in-2-minuten-3-november-%f0%9f%8e%a7/": {
-        "kop": "De Orkaan in 2 minuten: 3 november 🎧",
-        "S": 0.3,
-        "route": "aanhoudend",
-        "K": 0.3,
-        "n": 4,
-        "bronnen": 1
       }
     }
   }
