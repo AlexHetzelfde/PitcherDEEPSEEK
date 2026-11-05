@@ -1,12 +1,12 @@
 {
-  "gegenereerdOp": "2026-11-05T20:00:58.200Z",
+  "gegenereerdOp": "2026-11-05T21:00:53.837Z",
   "modus": "schaduw",
   "tau": 0.5,
   "stats": {
     "modus": "schaduw",
     "tekst": {
-      "werklijst": 1,
-      "lokaal": 1,
+      "werklijst": 0,
+      "lokaal": 0,
       "opgehaald": 0,
       "mislukt": 0,
       "uitgesteld": 0
@@ -88,9 +88,9 @@
       "kop": "Gemeente Den Haag geeft het voorbeeld",
       "S": 0.65,
       "Sa": 0.65,
-      "Sp": 0.55,
+      "Sp": 0.54,
       "route": "aanhoudend",
-      "K": 0.8,
+      "K": 0.79,
       "n": 7,
       "dagen": 7,
       "bronnen": 4,
@@ -190,8 +190,8 @@
       "key": "n:https://vervoerregio.bestuurlijkeinformatie.nl/Reports/Item/8653c4c8-9cef-494b-9e5d-95e049aba320",
       "soort": "nieuws",
       "kop": "Inzicht in rituitval EBS en de verdeling daarvan over buslijnen",
-      "S": 0.45,
-      "Sa": 0.45,
+      "S": 0.44,
+      "Sa": 0.44,
       "Sp": 0,
       "route": "aanhoudend",
       "K": 0.59,
@@ -552,34 +552,6 @@
       ]
     },
     {
-      "key": "a:40371c7c74",
-      "soort": "agenda",
-      "kop": "Verkeersbesluit langdurige afsluiting Westerwateringtunnel , Dik Trompad Zaandam",
-      "S": 0.34,
-      "Sa": 0.34,
-      "Sp": 0,
-      "route": "aanhoudend",
-      "K": 0.98,
-      "n": 1,
-      "dagen": 1,
-      "bronnen": 1,
-      "ankers": [
-        "westerwateringtunnel",
-        "trompad",
-        "langdurig",
-        "dik"
-      ],
-      "bewijs": [
-        {
-          "bron": "DeOrkaan",
-          "datum": "2026-11-05T20:00:58.200Z",
-          "c": 0.97,
-          "plek": "kop",
-          "titel": "Fietsersbond wil afsluiting Westerwateringtunnel ‘niet onnodig lang’"
-        }
-      ]
-    },
-    {
       "key": "a:9f19133212",
       "soort": "agenda",
       "kop": "Zaanstad Beraad",
@@ -720,6 +692,34 @@
           "c": 0.75,
           "plek": "intro",
           "titel": "Raadsvergadering: Begroting"
+        }
+      ]
+    },
+    {
+      "key": "a:40371c7c74",
+      "soort": "agenda",
+      "kop": "Verkeersbesluit langdurige afsluiting Westerwateringtunnel , Dik Trompad Zaandam",
+      "S": 0.34,
+      "Sa": 0.34,
+      "Sp": 0,
+      "route": "aanhoudend",
+      "K": 0.98,
+      "n": 1,
+      "dagen": 1,
+      "bronnen": 1,
+      "ankers": [
+        "westerwateringtunnel",
+        "trompad",
+        "langdurig",
+        "dik"
+      ],
+      "bewijs": [
+        {
+          "bron": "DeOrkaan",
+          "datum": "2026-11-05T20:00:58.200Z",
+          "c": 0.97,
+          "plek": "kop",
+          "titel": "Fietsersbond wil afsluiting Westerwateringtunnel ‘niet onnodig lang’"
         }
       ]
     },
