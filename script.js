@@ -565,7 +565,7 @@ function renderWireItem(r, kolomCode) {
   // In de totaalkolom staat de tag erbij; in een tagkolom is dat overbodig.
   const tag = kolomCode === "ALL" && r.rubriek && r.rubriek !== "ALG" ? `<div><dt>tag</dt><dd>${escapeHtml(r.rubriek)}</dd></div>` : "";
   return `
-    <article class="wire-item prioriteit-${prio}${heeftAlert ? ` heeft-alert alert-${r.alert.niveau}` : ""}" data-id="${escapeHtml(r.id)}">
+    <article class="wire-item prioriteit-${prio}${r.rood ? " rood-prio" : ""}${heeftAlert ? ` heeft-alert alert-${r.alert.niveau}` : ""}" data-id="${escapeHtml(r.id)}"${r.rood ? ` title="${escapeHtml(r.rood.reden || "Groot onderwerp")}"` : ""}>
       <div class="title-row">
         <button type="button" class="wire-kop" aria-haspopup="dialog">${isNieuw ? '<span class="nieuw-stip">nieuw</span> ' : ""}${escapeHtml(r.kop)}${r.versie > 1 ? ` <span class="versie-suffix">(${r.versie})</span>` : ""}</button>
       </div>
@@ -861,6 +861,8 @@ function renderAgendaItem(item) {
   const regel = item.relevantie && item.relevantie.regel;
   if (regel === "eerste-keer") chips.push('<span class="chip chip-regel" title="Eerste keer volgens de bron">eerste keer</span>');
   if (regel === "jubileum") chips.push('<span class="chip chip-regel" title="Jubileum of herdenking volgens de bron">jubileum</span>');
+  // Rood: het onderwerp leeft groot (berekend door ZANP, zie scraper/prioriteit/). De reden staat in de tooltip.
+  if (item.rood) chips.push(`<span class="chip chip-rood" title="${escapeHtml(item.rood.reden || "Groot onderwerp")}">groot onderwerp</span>`);
   // Het bericht erover (T), eventueel meer berichten over dezelfde zaak, en de uitkomst.
   const titel = item.afkomst === "termijn" ? "Termijn uit bericht" : item.afkomst === "bericht" ? "Agendapunt uit bericht" : "Bericht over dit agendapunt";
   const eigen = berichtKnop(item.berichtId, titel);
@@ -872,7 +874,7 @@ function renderAgendaItem(item) {
   if (uitkomst) chips.push(uitkomst);
 
   return `
-    <article class="agenda-item${gefilterd ? " gefilterd" : ""}">
+    <article class="agenda-item${gefilterd ? " gefilterd" : ""}${item.rood ? " rood" : ""}">
       ${tijdHtml}
       <p class="agenda-kop">${status}<a href="${escapeHtml(veiligeUrl(item.url))}" target="_blank" rel="noopener">${escapeHtml(item.kop)}</a></p>
       ${meta ? `<p class="agenda-meta">${escapeHtml(meta)}</p>` : ""}

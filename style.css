@@ -886,6 +886,13 @@ body {
 .wire-item.prioriteit-2:hover {
   background: var(--zanp-primair-licht-hover);
 }
+/* Rood door de prioriteitsfunctie van ZANP (veld "rood"); wint van prioriteit 2. */
+.wire-item.rood-prio {
+  background: var(--zanp-rood-licht);
+}
+.wire-item.rood-prio:hover {
+  background: var(--zanp-rood-licht-hover);
+}
 
 .title-row {
   display: flex;
@@ -1234,6 +1241,20 @@ button.chip:hover {
 
 .agenda-item:hover {
   background: var(--zanp-hover);
+}
+
+.agenda-item.rood {
+  background: var(--zanp-rood-licht);
+}
+
+.agenda-item.rood:hover {
+  background: var(--zanp-rood-licht-hover);
+}
+
+.chip-rood {
+  background: white;
+  border-color: var(--kleur-prio-1);
+  color: var(--kleur-prio-1);
 }
 
 .agenda-item.gefilterd {

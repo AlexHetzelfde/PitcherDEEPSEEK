@@ -117,6 +117,29 @@ Afronding: handmatige run, daarna de site in een echte browser controleren (tot 
 
 ---
 
+## Fase 4: Prioriteit (rood kleuren)
+
+Doel: agenda-items en nieuwsberichten rood kleuren als het onderwerp groot leeft (veel erover geschreven en besproken, bij impact). Eén nieuwe functie in de ZANP-run, verder verandert er niets aan ZANP. Alle bronnen wegen gelijk.
+Bestanden: `scraper/prioriteit/` (instellingen, taal, impact, analyse, score, beslis, geheugen, tekst, index), een haakje in `scraper/zanp.js` (ZANP 9), `maxTekens` in `scraper/hulpmiddelen.js`, `script.js`, `style.css`, `.github/workflows/zanp-run.yml`.
+Data (eigen map, raakt het pitchdeel niet): `data/zanp-prioriteit/geheugen.json`, `schaduwlog.json`, `teksten-JJJJ-MM-DD.jsonl`.
+
+Ontwerp (vastgesteld):
+- Volledige tekst van alle agenda-items en berichten wordt opgehaald (ook Zaanstad-hoorzittingen, de iBabs-kalender, Waarheen, De Orkaan), zonder afkapping op 6.000 tekens. Per stuk blijft een vingerafdruk (termen, positie, impact) 30 dagen in het geheugen.
+- Twee routes naar een score: aanhoudend (volume x duur x diepte) en piek (laatste 48 uur, alleen met impact-signaal). Verval met halfwaardetijd 7 dagen.
+- Drempel tau = max(0,50; mediaan + 3 x MAD), dagelijks opnieuw. Rood na bevestiging in 2 runs. Rood is rood.
+- Agenda-items altijd; van nieuws alleen een vers bericht, hooguit één per onderwerp per 24 uur. Noodrem bij meer dan 10 nieuw rood in één run.
+- `prio` van berichten blijft ongemoeid; het resultaat staat in het veld `rood` (met reden).
+- Modus via variabele `ZANP_PRIORITEIT_MODUS`: `uit`, `schaduw` (standaard, niets kleuren) of `aan`.
+
+- [x] Module gebouwd en in `zanp.js` gehangen (NIET getest: bouwen eerst, bugs later).
+- [ ] Eerste runs controleren: log van ZANP 9, `schaduwlog.json`, hoeveel teksten zijn opgehaald (`stats.tekst`).
+- [ ] Kloppen de teksten van de hoorzittingen en de iBabs-kalender? (de iBabs-pagina's zijn nog niet bekeken; de reserve neemt de hoofdtekst van de pagina)
+- [ ] Constanten en de impactlijst (`impact.js`) bijstellen op de schaduwlog (minstens 2 weken).
+- [ ] AI-veto als laatste controle (haak `aiVeto` staat klaar in `beslis.js`, nog niet aangesloten op Gemini).
+- [ ] Modus op `aan` zetten.
+
+---
+
 ## Backlog (nog niet ingepland)
 
 Pas oppakken na Fase 3, per stuk beslissen.
@@ -141,3 +164,4 @@ Pas oppakken na Fase 3, per stuk beslissen.
 - Fase 1: open
 - Fase 2: open
 - Fase 3: open
+- Fase 4 (prioriteit, rood): gebouwd, nog niet getest; draait in schaduwmodus
