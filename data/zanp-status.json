@@ -1,5 +1,5 @@
 {
-  "gegenereerdOp": "2026-11-05T22:00:54.881Z",
+  "gegenereerdOp": "2026-11-05T22:38:38.800Z",
   "alertModus": "log",
   "bronnen": {
     "zaansche-molen": {
@@ -38,12 +38,12 @@
       "opeenvolgendLeeg": 0
     },
     "nh-actueel": {
-      "laatsteScrape": "2026-11-05T22:00:54.881Z",
+      "laatsteScrape": "2026-11-05T22:38:38.800Z",
       "gevonden": 15,
       "opeenvolgendLeeg": 0
     },
     "nh-cultuur": {
-      "laatsteScrape": "2026-11-05T22:00:54.881Z",
+      "laatsteScrape": "2026-11-05T22:38:38.800Z",
       "gevonden": 3,
       "opeenvolgendLeeg": 0
     },
@@ -98,7 +98,7 @@
       "opeenvolgendLeeg": 0
     },
     "DeOrkaan": {
-      "laatsteScrape": "2026-11-05T22:00:54.881Z",
+      "laatsteScrape": "2026-11-05T22:38:38.800Z",
       "gevonden": 12,
       "opeenvolgendLeeg": 0
     },
@@ -123,9 +123,9 @@
       "opeenvolgendLeeg": 0
     },
     "vervoerregio-overzichten": {
-      "laatsteScrape": "2026-11-05T22:00:54.881Z",
+      "laatsteScrape": "2026-11-05T22:38:38.800Z",
       "gevonden": 0,
-      "opeenvolgendLeeg": 25
+      "opeenvolgendLeeg": 26
     }
   },
   "bronnenZonderRubriek": [],
@@ -248,18 +248,18 @@
     },
     "2026-11-05": {
       "verzoeken": 12,
-      "berichten": 150,
+      "berichten": 156,
       "ok": 13,
       "analyseOk": 8,
       "cijfersAfgekeurd": 0,
       "onvoldoende": 10,
-      "fout": 119,
+      "fout": 125,
       "overgeslagen": 0,
       "tagAi": 17,
       "tagTrefwoord": 2,
       "tagBron": 9,
       "tagGeen": 3,
-      "runs": 19
+      "runs": 20
     }
   },
   "laatsteRun": {
@@ -278,7 +278,7 @@
       "nieuw": 0,
       "update": 0,
       "opnieuw": 6,
-      "ongewijzigd": 8,
+      "ongewijzigd": 1,
       "seed": 0
     },
     "cluster": {
