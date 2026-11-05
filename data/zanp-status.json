@@ -1,5 +1,5 @@
 {
-  "gegenereerdOp": "2026-11-05T12:00:57.086Z",
+  "gegenereerdOp": "2026-11-05T13:00:56.293Z",
   "alertModus": "log",
   "bronnen": {
     "zaansche-molen": {
@@ -38,12 +38,12 @@
       "opeenvolgendLeeg": 0
     },
     "nh-actueel": {
-      "laatsteScrape": "2026-11-05T12:00:57.086Z",
+      "laatsteScrape": "2026-11-05T13:00:56.293Z",
       "gevonden": 15,
       "opeenvolgendLeeg": 0
     },
     "nh-cultuur": {
-      "laatsteScrape": "2026-11-05T12:00:57.086Z",
+      "laatsteScrape": "2026-11-05T13:00:56.293Z",
       "gevonden": 3,
       "opeenvolgendLeeg": 0
     },
@@ -98,7 +98,7 @@
       "opeenvolgendLeeg": 0
     },
     "DeOrkaan": {
-      "laatsteScrape": "2026-11-05T12:00:57.086Z",
+      "laatsteScrape": "2026-11-05T13:00:56.293Z",
       "gevonden": 12,
       "opeenvolgendLeeg": 0
     },
@@ -123,9 +123,9 @@
       "opeenvolgendLeeg": 0
     },
     "vervoerregio-overzichten": {
-      "laatsteScrape": "2026-11-05T12:00:57.086Z",
+      "laatsteScrape": "2026-11-05T13:00:56.293Z",
       "gevonden": 0,
-      "opeenvolgendLeeg": 15
+      "opeenvolgendLeeg": 16
     }
   },
   "bronnenZonderRubriek": [],
@@ -248,18 +248,18 @@
     },
     "2026-11-05": {
       "verzoeken": 7,
-      "berichten": 60,
+      "berichten": 69,
       "ok": 9,
       "analyseOk": 3,
       "cijfersAfgekeurd": 0,
       "onvoldoende": 10,
-      "fout": 38,
+      "fout": 47,
       "overgeslagen": 0,
       "tagAi": 11,
       "tagTrefwoord": 2,
       "tagBron": 9,
       "tagGeen": 0,
-      "runs": 9
+      "runs": 10
     }
   },
   "laatsteRun": {
@@ -275,9 +275,9 @@
       "inAfwachting": 0
     },
     "berichten": {
-      "nieuw": 3,
+      "nieuw": 0,
       "update": 0,
-      "opnieuw": 6,
+      "opnieuw": 9,
       "ongewijzigd": 1,
       "seed": 0
     },
@@ -299,10 +299,10 @@
     "prioriteit": {
       "modus": "schaduw",
       "tekst": {
-        "werklijst": 18,
-        "lokaal": 3,
-        "opgehaald": 6,
-        "mislukt": 9,
+        "werklijst": 4,
+        "lokaal": 0,
+        "opgehaald": 4,
+        "mislukt": 0,
         "uitgesteld": 0
       },
       "vergeten": 0,

@@ -1,5 +1,5 @@
 {
-  "gegenereerdOp": "2026-11-05T12:00:57.086Z",
+  "gegenereerdOp": "2026-11-05T13:00:56.293Z",
   "promptVersie": "2026-10-29-batch-tag-checklist-agendapunten",
   "alertModus": "log",
   "prioSchaal": "1 = urgent, 2 = belangrijk, 3 = regulier, 4 = routine. De AI geeft nooit prio 1.",
@@ -70,7 +70,7 @@
       "ai": false,
       "controle": "ai-fout",
       "eerstGezienOp": "2026-11-05T12:00:57.086Z",
-      "gecontroleerdOp": "2026-11-05T12:00:57.086Z",
+      "gecontroleerdOp": "2026-11-05T13:00:56.293Z",
       "bronTitel": "€11,5 miljoen extra voor agrarisch natuurbeheer: gerichte bescherming van Natura 2000-gebieden en de grutto",
       "bronLengte": 1917,
       "checklist": {
@@ -85,7 +85,8 @@
         "banen": null,
         "inRegio": false
       },
-      "checklistBron": "patroon"
+      "checklistBron": "patroon",
+      "tagVersie": 2
     },
     {
       "id": "c78456aea2-v1",
@@ -107,7 +108,7 @@
       "ai": false,
       "controle": "ai-fout",
       "eerstGezienOp": "2026-11-05T11:00:58.033Z",
-      "gecontroleerdOp": "2026-11-05T12:00:57.086Z",
+      "gecontroleerdOp": "2026-11-05T13:00:56.293Z",
       "bronTitel": "Bevrijdingspop Haarlem kan in 2027 doorgaan dankzij steun provincie en gemeente",
       "bronLengte": 2768,
       "checklist": {
@@ -145,7 +146,7 @@
       "ai": false,
       "controle": "ai-fout",
       "eerstGezienOp": "2026-11-05T10:01:01.472Z",
-      "gecontroleerdOp": "2026-11-05T12:00:57.086Z",
+      "gecontroleerdOp": "2026-11-05T13:00:56.293Z",
       "bronTitel": "Oog voor verbinding tijdens ambtsbezoek aan gemeente Zaanstad",
       "bronLengte": 4992,
       "checklist": {
@@ -183,7 +184,7 @@
       "ai": false,
       "controle": "ai-fout",
       "eerstGezienOp": "2026-11-05T12:00:57.086Z",
-      "gecontroleerdOp": "2026-11-05T12:00:57.086Z",
+      "gecontroleerdOp": "2026-11-05T13:00:56.293Z",
       "bronTitel": "Vrouw naar ziekenhuis na brand in droger in Zaandijk",
       "bronLengte": 702,
       "checklist": {
@@ -198,7 +199,8 @@
         "banen": null,
         "inRegio": true
       },
-      "checklistBron": "patroon"
+      "checklistBron": "patroon",
+      "tagVersie": 2
     },
     {
       "id": "ac80e24f20-v1",
@@ -220,7 +222,7 @@
       "ai": false,
       "controle": "ai-fout",
       "eerstGezienOp": "2026-11-05T12:00:57.086Z",
-      "gecontroleerdOp": "2026-11-05T12:00:57.086Z",
+      "gecontroleerdOp": "2026-11-05T13:00:56.293Z",
       "bronTitel": "De Orkaan in 2 minuten: 5 november 🎧",
       "bronLengte": 314,
       "checklist": {
@@ -235,7 +237,8 @@
         "banen": null,
         "inRegio": true
       },
-      "checklistBron": "patroon"
+      "checklistBron": "patroon",
+      "tagVersie": 2
     },
     {
       "id": "8d439e8e5d-v1",
@@ -257,7 +260,7 @@
       "ai": false,
       "controle": "ai-fout",
       "eerstGezienOp": "2026-11-05T11:00:58.033Z",
-      "gecontroleerdOp": "2026-11-05T12:00:57.086Z",
+      "gecontroleerdOp": "2026-11-05T13:00:56.293Z",
       "bronTitel": "Tweede aanhouding straatroof Assendelft: 17-jarige jongen opgepakt",
       "bronLengte": 1228,
       "checklist": {
@@ -295,7 +298,7 @@
       "ai": false,
       "controle": "ai-fout",
       "eerstGezienOp": "2026-11-05T11:00:58.033Z",
-      "gecontroleerdOp": "2026-11-05T12:00:57.086Z",
+      "gecontroleerdOp": "2026-11-05T13:00:56.293Z",
       "bronTitel": "50woordenvideo: smikkelslak…",
       "bronLengte": 606,
       "checklist": {
@@ -333,7 +336,7 @@
       "ai": false,
       "controle": "ai-fout",
       "eerstGezienOp": "2026-11-05T11:00:58.033Z",
-      "gecontroleerdOp": "2026-11-05T12:00:57.086Z",
+      "gecontroleerdOp": "2026-11-05T13:00:56.293Z",
       "bronTitel": "Jac (89) en dochter Jose maken samen scheurkalender",
       "bronLengte": 3176,
       "checklist": {
@@ -371,7 +374,7 @@
       "ai": false,
       "controle": "ai-fout",
       "eerstGezienOp": "2026-11-05T10:01:01.472Z",
-      "gecontroleerdOp": "2026-11-05T12:00:57.086Z",
+      "gecontroleerdOp": "2026-11-05T13:00:56.293Z",
       "bronTitel": "Playstation winnen? Trap er niet in…",
       "bronLengte": 3131,
       "checklist": {
@@ -783,7 +786,7 @@
       "ai": false,
       "controle": "analyse-ok",
       "eerstGezienOp": "2026-11-05T07:51:42.539Z",
-      "gecontroleerdOp": "2026-11-05T10:01:01.472Z",
+      "gecontroleerdOp": "2026-11-05T13:00:56.293Z",
       "bronTitel": "380 kV Assendelft lijkt gelopen race; kabinet: geen andere haalbare locatie",
       "bronLengte": 3602,
       "checklist": {

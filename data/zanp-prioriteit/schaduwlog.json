@@ -1,14 +1,14 @@
 {
-  "gegenereerdOp": "2026-11-05T12:00:57.086Z",
+  "gegenereerdOp": "2026-11-05T13:00:56.293Z",
   "modus": "schaduw",
   "tau": 0.5,
   "stats": {
     "modus": "schaduw",
     "tekst": {
-      "werklijst": 18,
-      "lokaal": 3,
-      "opgehaald": 6,
-      "mislukt": 9,
+      "werklijst": 4,
+      "lokaal": 0,
+      "opgehaald": 4,
+      "mislukt": 0,
       "uitgesteld": 0
     },
     "vergeten": 0,
@@ -86,11 +86,11 @@
       "key": "n:https://zaanstad.bestuurlijkeinformatie.nl/Reports/Item/e824ca7c-cc27-463f-90b6-2ff61a2b5047",
       "soort": "nieuws",
       "kop": "Gemeente Den Haag geeft het voorbeeld",
-      "S": 0.67,
-      "Sa": 0.67,
+      "S": 0.66,
+      "Sa": 0.66,
       "Sp": 0.55,
       "route": "aanhoudend",
-      "K": 0.81,
+      "K": 0.8,
       "n": 7,
       "dagen": 7,
       "bronnen": 4,
@@ -141,11 +141,11 @@
       "key": "n:https://zoek.officielebekendmakingen.nl/gmb-2026-517023.html",
       "soort": "nieuws",
       "kop": "Aanwijzingsbesluit verlenging tijdelijk cameratoezicht Elzenstraat in Wormerveer",
-      "S": 0.46,
-      "Sa": 0.46,
+      "S": 0.49,
+      "Sa": 0.49,
       "Sp": 0,
       "route": "aanhoudend",
-      "K": 0.62,
+      "K": 0.65,
       "n": 4,
       "dagen": 4,
       "bronnen": 4,
@@ -164,9 +164,16 @@
           "titel": "Aanwijzingsbesluit verlenging tijdelijk cameratoezicht Rode Zee Zaandam"
         },
         {
+          "bron": "bekendmakingen",
+          "datum": "2026-10-18T22:00:00.000Z",
+          "c": 1,
+          "plek": "kop",
+          "titel": "Aanwijzingsbesluit verlenging tijdelijk cameratoezicht Rode Zee in Zaandam"
+        },
+        {
           "bron": "ibabs-collegeberichten",
           "datum": "2026-11-03T23:00:00.000Z",
-          "c": 0.95,
+          "c": 0.98,
           "plek": "kop",
           "titel": "Kennisgeving Burgemeester J. Hamming: Incident Elzenstraat"
         },
@@ -176,13 +183,6 @@
           "c": 0.91,
           "plek": "kop",
           "titel": "Cameratoezicht Elzenstraat wéér verlengd"
-        },
-        {
-          "bron": "bekendmakingen",
-          "datum": "2026-10-18T22:00:00.000Z",
-          "c": 0.9,
-          "plek": "kop",
-          "titel": "Aanwijzingsbesluit verlenging tijdelijk cameratoezicht Rode Zee in Zaandam"
         }
       ]
     },
@@ -190,8 +190,8 @@
       "key": "n:https://vervoerregio.bestuurlijkeinformatie.nl/Reports/Item/8653c4c8-9cef-494b-9e5d-95e049aba320",
       "soort": "nieuws",
       "kop": "Inzicht in rituitval EBS en de verdeling daarvan over buslijnen",
-      "S": 0.46,
-      "Sa": 0.46,
+      "S": 0.45,
+      "Sa": 0.45,
       "Sp": 0,
       "route": "aanhoudend",
       "K": 0.6,
@@ -359,8 +359,8 @@
       "key": "n:https://www.deorkaan.nl/de-orkaan-in-2-minuten-3-november-%f0%9f%8e%a7/",
       "soort": "nieuws",
       "kop": "De Orkaan in 2 minuten: 3 november 🎧",
-      "S": 0.44,
-      "Sa": 0.44,
+      "S": 0.43,
+      "Sa": 0.43,
       "Sp": 0,
       "route": "aanhoudend",
       "K": 0.36,
@@ -496,7 +496,7 @@
       "Sa": 0.39,
       "Sp": 0,
       "route": "aanhoudend",
-      "K": 0.53,
+      "K": 0.52,
       "n": 2,
       "dagen": 2,
       "bronnen": 2,
@@ -618,8 +618,8 @@
       "key": "a:9f19133212",
       "soort": "agenda",
       "kop": "Zaanstad Beraad",
-      "S": 0.35,
-      "Sa": 0.35,
+      "S": 0.34,
+      "Sa": 0.34,
       "Sp": 0,
       "route": "aanhoudend",
       "K": 0.17,
@@ -666,8 +666,8 @@
       "key": "a:a40d7a33f0",
       "soort": "agenda",
       "kop": "Zaanstad Beraad",
-      "S": 0.35,
-      "Sa": 0.35,
+      "S": 0.34,
+      "Sa": 0.34,
       "Sp": 0,
       "route": "aanhoudend",
       "K": 0.17,
@@ -714,8 +714,8 @@
       "key": "a:4a5ff898e2",
       "soort": "agenda",
       "kop": "Zaanstad Beraad",
-      "S": 0.35,
-      "Sa": 0.35,
+      "S": 0.34,
+      "Sa": 0.34,
       "Sp": 0,
       "route": "aanhoudend",
       "K": 0.17,
@@ -887,7 +887,7 @@
       "Sa": 0.2,
       "Sp": 0,
       "route": "aanhoudend",
-      "K": 0.58,
+      "K": 0.57,
       "n": 1,
       "dagen": 1,
       "bronnen": 1,
@@ -1112,6 +1112,47 @@
       ]
     },
     {
+      "key": "n:https://zoek.officielebekendmakingen.nl/gmb-2026-515500.html",
+      "soort": "nieuws",
+      "kop": "Melding toepassen grond en baggerspecie - Nabij Grote Tocht 33 Zaandam , 251 meter richting oosten",
+      "S": 0.17,
+      "Sa": 0.17,
+      "Sp": 0,
+      "route": "aanhoudend",
+      "K": 0.2,
+      "n": 3,
+      "dagen": 3,
+      "bronnen": 1,
+      "ankers": [
+        "tocht",
+        "baggerspeci",
+        "toepas"
+      ],
+      "bewijs": [
+        {
+          "bron": "bekendmakingen",
+          "datum": "2026-11-02T23:00:00.000Z",
+          "c": 0.86,
+          "plek": "kop",
+          "titel": "Melding toepassen grond en baggerspecie - Nabij Weiver 36 Krommenie , 58 meter richting noorden"
+        },
+        {
+          "bron": "bekendmakingen",
+          "datum": "2026-10-22T22:00:00.000Z",
+          "c": 0.86,
+          "plek": "kop",
+          "titel": "Melding toepassen grond en baggerspecie - Nabij Fortuinweg 1 Zaandijk , 17 meter richting noordoosten"
+        },
+        {
+          "bron": "bekendmakingen",
+          "datum": "2026-10-19T22:00:00.000Z",
+          "c": 0.86,
+          "plek": "kop",
+          "titel": "Melding toepassen grond en baggerspecie - Nabij Dorpsstraat 462 Assendelft , 43 meter richting zuiden"
+        }
+      ]
+    },
+    {
       "key": "n:https://www.noord-holland.nl/Actueel/Archief/2026/November_2026/Oog_voor_verbinding_tijdens_ambtsbezoek_aan_gemeente_Zaanstad",
       "soort": "nieuws",
       "kop": "Oog voor verbinding tijdens ambtsbezoek aan gemeente Zaanstad",
@@ -1144,47 +1185,6 @@
           "c": 0.96,
           "plek": "kop",
           "titel": "Ambtsbezoek: Ambtsbezoek Commissaris van de Koning"
-        }
-      ]
-    },
-    {
-      "key": "n:https://zoek.officielebekendmakingen.nl/gmb-2026-515500.html",
-      "soort": "nieuws",
-      "kop": "Melding toepassen grond en baggerspecie - Nabij Grote Tocht 33 Zaandam , 251 meter richting oosten",
-      "S": 0.16,
-      "Sa": 0.16,
-      "Sp": 0,
-      "route": "aanhoudend",
-      "K": 0.2,
-      "n": 3,
-      "dagen": 3,
-      "bronnen": 1,
-      "ankers": [
-        "tocht",
-        "baggerspeci",
-        "toepas"
-      ],
-      "bewijs": [
-        {
-          "bron": "bekendmakingen",
-          "datum": "2026-11-02T23:00:00.000Z",
-          "c": 0.86,
-          "plek": "kop",
-          "titel": "Melding toepassen grond en baggerspecie - Nabij Weiver 36 Krommenie , 58 meter richting noorden"
-        },
-        {
-          "bron": "bekendmakingen",
-          "datum": "2026-10-22T22:00:00.000Z",
-          "c": 0.86,
-          "plek": "kop",
-          "titel": "Melding toepassen grond en baggerspecie - Nabij Fortuinweg 1 Zaandijk , 17 meter richting noordoosten"
-        },
-        {
-          "bron": "bekendmakingen",
-          "datum": "2026-10-19T22:00:00.000Z",
-          "c": 0.85,
-          "plek": "kop",
-          "titel": "Melding toepassen grond en baggerspecie - Nabij Dorpsstraat 462 Assendelft , 43 meter richting zuiden"
         }
       ]
     },
@@ -1641,9 +1641,9 @@
       },
       "n:https://zoek.officielebekendmakingen.nl/gmb-2026-517023.html": {
         "kop": "Aanwijzingsbesluit verlenging tijdelijk cameratoezicht Elzenstraat in Wormerveer",
-        "S": 0.46,
+        "S": 0.49,
         "route": "aanhoudend",
-        "K": 0.62,
+        "K": 0.65,
         "n": 4,
         "bronnen": 4
       },
