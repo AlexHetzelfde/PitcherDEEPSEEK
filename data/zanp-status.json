@@ -1,5 +1,5 @@
 {
-  "gegenereerdOp": "2026-11-05T19:00:55.247Z",
+  "gegenereerdOp": "2026-11-05T20:00:58.200Z",
   "alertModus": "log",
   "bronnen": {
     "zaansche-molen": {
@@ -38,13 +38,13 @@
       "opeenvolgendLeeg": 0
     },
     "nh-actueel": {
-      "laatsteScrape": "2026-11-05T19:00:55.247Z",
+      "laatsteScrape": "2026-11-05T20:00:58.200Z",
       "gevonden": 15,
       "opeenvolgendLeeg": 0
     },
     "nh-cultuur": {
-      "laatsteScrape": "2026-11-05T19:00:55.247Z",
-      "gevonden": 15,
+      "laatsteScrape": "2026-11-05T20:00:58.200Z",
+      "gevonden": 3,
       "opeenvolgendLeeg": 0
     },
     "zaanstad-hoorzittingen": {
@@ -98,7 +98,7 @@
       "opeenvolgendLeeg": 0
     },
     "DeOrkaan": {
-      "laatsteScrape": "2026-11-05T19:00:55.247Z",
+      "laatsteScrape": "2026-11-05T20:00:58.200Z",
       "gevonden": 12,
       "opeenvolgendLeeg": 0
     },
@@ -123,15 +123,15 @@
       "opeenvolgendLeeg": 0
     },
     "vervoerregio-overzichten": {
-      "laatsteScrape": "2026-11-05T19:00:55.247Z",
+      "laatsteScrape": "2026-11-05T20:00:58.200Z",
       "gevonden": 0,
-      "opeenvolgendLeeg": 22
+      "opeenvolgendLeeg": 23
     }
   },
   "bronnenZonderRubriek": [],
   "gemini": {
     "dag": "2026-11-05",
-    "gebruikt": 6,
+    "gebruikt": 7,
     "wachtTot": null,
     "dagcap": 80,
     "runcap": 25,
@@ -247,19 +247,19 @@
       "runs": 12
     },
     "2026-11-05": {
-      "verzoeken": 11,
-      "berichten": 131,
+      "verzoeken": 12,
+      "berichten": 138,
       "ok": 13,
-      "analyseOk": 7,
+      "analyseOk": 8,
       "cijfersAfgekeurd": 0,
       "onvoldoende": 10,
-      "fout": 101,
+      "fout": 107,
       "overgeslagen": 0,
       "tagAi": 17,
       "tagTrefwoord": 2,
       "tagBron": 9,
-      "tagGeen": 2,
-      "runs": 16
+      "tagGeen": 3,
+      "runs": 17
     }
   },
   "laatsteRun": {
@@ -275,10 +275,10 @@
       "inAfwachting": 0
     },
     "berichten": {
-      "nieuw": 1,
-      "update": 0,
-      "opnieuw": 9,
-      "ongewijzigd": 4,
+      "nieuw": 0,
+      "update": 1,
+      "opnieuw": 6,
+      "ongewijzigd": 0,
       "seed": 0
     },
     "cluster": {
@@ -323,17 +323,17 @@
     },
     "kwaliteit": {
       "verzoeken": 1,
-      "berichten": 10,
-      "ok": 4,
-      "analyseOk": 0,
+      "berichten": 7,
+      "ok": 0,
+      "analyseOk": 1,
       "cijfersAfgekeurd": 0,
       "onvoldoende": 0,
       "fout": 6,
       "overgeslagen": 0,
-      "tagAi": 4,
+      "tagAi": 0,
       "tagTrefwoord": 0,
       "tagBron": 0,
-      "tagGeen": 0
+      "tagGeen": 1
     }
   }
 }

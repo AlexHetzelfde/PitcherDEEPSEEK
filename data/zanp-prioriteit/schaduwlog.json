@@ -1,5 +1,5 @@
 {
-  "gegenereerdOp": "2026-11-05T19:00:55.247Z",
+  "gegenereerdOp": "2026-11-05T20:00:58.200Z",
   "modus": "schaduw",
   "tau": 0.5,
   "stats": {
@@ -522,7 +522,7 @@
       "Sa": 0.34,
       "Sp": 0,
       "route": "aanhoudend",
-      "K": 0.58,
+      "K": 0.57,
       "n": 2,
       "dagen": 1,
       "bronnen": 2,
@@ -548,6 +548,34 @@
           "c": 0.88,
           "plek": "kop",
           "titel": "Cameratoezicht Elzenstraat wéér verlengd"
+        }
+      ]
+    },
+    {
+      "key": "a:40371c7c74",
+      "soort": "agenda",
+      "kop": "Verkeersbesluit langdurige afsluiting Westerwateringtunnel , Dik Trompad Zaandam",
+      "S": 0.34,
+      "Sa": 0.34,
+      "Sp": 0,
+      "route": "aanhoudend",
+      "K": 0.98,
+      "n": 1,
+      "dagen": 1,
+      "bronnen": 1,
+      "ankers": [
+        "westerwateringtunnel",
+        "trompad",
+        "langdurig",
+        "dik"
+      ],
+      "bewijs": [
+        {
+          "bron": "DeOrkaan",
+          "datum": "2026-11-05T20:00:58.200Z",
+          "c": 0.97,
+          "plek": "kop",
+          "titel": "Fietsersbond wil afsluiting Westerwateringtunnel ‘niet onnodig lang’"
         }
       ]
     },
@@ -696,34 +724,6 @@
       ]
     },
     {
-      "key": "a:40371c7c74",
-      "soort": "agenda",
-      "kop": "Verkeersbesluit langdurige afsluiting Westerwateringtunnel , Dik Trompad Zaandam",
-      "S": 0.32,
-      "Sa": 0.32,
-      "Sp": 0,
-      "route": "aanhoudend",
-      "K": 0.97,
-      "n": 1,
-      "dagen": 1,
-      "bronnen": 1,
-      "ankers": [
-        "westerwateringtunnel",
-        "trompad",
-        "langdurig",
-        "dik"
-      ],
-      "bewijs": [
-        {
-          "bron": "DeOrkaan",
-          "datum": "2026-11-04T23:00:00.000Z",
-          "c": 0.97,
-          "plek": "kop",
-          "titel": "Fietsersbond wil dat afsluiting Westerwateringtunnel ‘niet onnodig lang’ duurt"
-        }
-      ]
-    },
-    {
       "key": "a:de101efce4",
       "soort": "agenda",
       "kop": "Ambtsbezoek: Ambtsbezoek Commissaris van de Koning",
@@ -754,8 +754,8 @@
       "key": "a:55db5c0d37",
       "soort": "agenda",
       "kop": "Raadsvergadering: Reservedatum begroting",
-      "S": 0.25,
-      "Sa": 0.25,
+      "S": 0.24,
+      "Sa": 0.24,
       "Sp": 0,
       "route": "aanhoudend",
       "K": 0.17,
@@ -1078,8 +1078,8 @@
       "key": "n:https://zoek.officielebekendmakingen.nl/gmb-2026-512951.html",
       "soort": "nieuws",
       "kop": "Melding graven bodem - Nabij Militaireweg 158 Krommenie , 17 meter richting zuidwesten",
-      "S": 0.17,
-      "Sa": 0.17,
+      "S": 0.16,
+      "Sa": 0.16,
       "Sp": 0,
       "route": "aanhoudend",
       "K": 0.2,
@@ -1257,8 +1257,8 @@
       "key": "n:https://zoek.officielebekendmakingen.nl/gmb-2026-503010.html",
       "soort": "nieuws",
       "kop": "Kennisgeving voornemen Wijziging omgevingsplan technische aanpassingen",
-      "S": 0.13,
-      "Sa": 0.13,
+      "S": 0.12,
+      "Sa": 0.12,
       "Sp": 0,
       "route": "aanhoudend",
       "K": 0.16,
