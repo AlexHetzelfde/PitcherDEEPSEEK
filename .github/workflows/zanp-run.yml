@@ -94,6 +94,8 @@ jobs:
           # Leeg betekent: de standaard uit zanp.js (80 per dag, 25 per run).
           ZANP_DAGCAP: ${{ vars.ZANP_DAGCAP }}
           ZANP_RUNCAP: ${{ vars.ZANP_RUNCAP }}
+          # Prioriteit (rood kleuren): uit, schaduw of aan. Leeg = schaduw (rekenen en loggen, niets kleuren).
+          ZANP_PRIORITEIT_MODUS: ${{ vars.ZANP_PRIORITEIT_MODUS }}
         run: node zanp.js
 
       # Alleen de eigen bestanden van ZANP, nooit data/*.json: de pitchrun
@@ -102,7 +104,7 @@ jobs:
         run: |
           git config user.name "nieuwsaggregator-bot"
           git config user.email "actions@users.noreply.github.com"
-          git add data/berichten.json data/agenda.json data/zanp-status.json
+          git add data/berichten.json data/agenda.json data/zanp-status.json data/zanp-prioriteit
           git diff --quiet --cached || git commit -m "ZANP: $(TZ='Europe/Amsterdam' date '+%Y-%m-%d %H:%M')"
           # De dagelijkse run of "Bron toevoegen" kan tussentijds hebben gepusht:
           # eerst rebasen, bij een mislukte push opnieuw proberen.
