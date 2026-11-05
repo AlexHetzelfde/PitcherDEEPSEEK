@@ -1,5 +1,5 @@
 {
-  "gegenereerdOp": "2026-11-05T17:00:54.546Z",
+  "gegenereerdOp": "2026-11-05T18:00:59.721Z",
   "alertModus": "log",
   "bronnen": {
     "zaansche-molen": {
@@ -38,13 +38,13 @@
       "opeenvolgendLeeg": 0
     },
     "nh-actueel": {
-      "laatsteScrape": "2026-11-05T17:00:54.546Z",
+      "laatsteScrape": "2026-11-05T18:00:59.721Z",
       "gevonden": 15,
       "opeenvolgendLeeg": 0
     },
     "nh-cultuur": {
-      "laatsteScrape": "2026-11-05T17:00:54.546Z",
-      "gevonden": 15,
+      "laatsteScrape": "2026-11-05T18:00:59.721Z",
+      "gevonden": 3,
       "opeenvolgendLeeg": 0
     },
     "zaanstad-hoorzittingen": {
@@ -98,7 +98,7 @@
       "opeenvolgendLeeg": 0
     },
     "DeOrkaan": {
-      "laatsteScrape": "2026-11-05T17:00:54.546Z",
+      "laatsteScrape": "2026-11-05T18:00:59.721Z",
       "gevonden": 12,
       "opeenvolgendLeeg": 0
     },
@@ -123,9 +123,9 @@
       "opeenvolgendLeeg": 0
     },
     "vervoerregio-overzichten": {
-      "laatsteScrape": "2026-11-05T17:00:54.546Z",
+      "laatsteScrape": "2026-11-05T18:00:59.721Z",
       "gevonden": 0,
-      "opeenvolgendLeeg": 20
+      "opeenvolgendLeeg": 21
     }
   },
   "bronnenZonderRubriek": [],
@@ -135,7 +135,7 @@
     "wachtTot": null,
     "dagcap": 80,
     "runcap": 25,
-    "verzoekenDezeRun": 1
+    "verzoekenDezeRun": 0
   },
   "clusterBeslissingen": {
     "2692219228|60ef70f8ff": {
@@ -248,18 +248,18 @@
     },
     "2026-11-05": {
       "verzoeken": 10,
-      "berichten": 111,
+      "berichten": 121,
       "ok": 9,
       "analyseOk": 7,
       "cijfersAfgekeurd": 0,
       "onvoldoende": 10,
-      "fout": 85,
+      "fout": 95,
       "overgeslagen": 0,
       "tagAi": 13,
       "tagTrefwoord": 2,
       "tagBron": 9,
       "tagGeen": 2,
-      "runs": 14
+      "runs": 15
     }
   },
   "laatsteRun": {
@@ -275,7 +275,7 @@
       "inAfwachting": 0
     },
     "berichten": {
-      "nieuw": 2,
+      "nieuw": 0,
       "update": 0,
       "opnieuw": 10,
       "ongewijzigd": 2,
@@ -299,8 +299,8 @@
     "prioriteit": {
       "modus": "schaduw",
       "tekst": {
-        "werklijst": 2,
-        "lokaal": 2,
+        "werklijst": 0,
+        "lokaal": 0,
         "opgehaald": 0,
         "mislukt": 0,
         "uitgesteld": 0
@@ -322,18 +322,18 @@
       "rood": 4
     },
     "kwaliteit": {
-      "verzoeken": 1,
-      "berichten": 12,
+      "verzoeken": 0,
+      "berichten": 10,
       "ok": 0,
-      "analyseOk": 2,
+      "analyseOk": 0,
       "cijfersAfgekeurd": 0,
       "onvoldoende": 0,
       "fout": 10,
       "overgeslagen": 0,
-      "tagAi": 1,
+      "tagAi": 0,
       "tagTrefwoord": 0,
       "tagBron": 0,
-      "tagGeen": 1
+      "tagGeen": 0
     }
   }
 }
