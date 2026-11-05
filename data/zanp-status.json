@@ -1,5 +1,5 @@
 {
-  "gegenereerdOp": "2026-11-05T07:00:58.731Z",
+  "gegenereerdOp": "2026-11-05T07:51:42.539Z",
   "alertModus": "log",
   "bronnen": {
     "zaansche-molen": {
@@ -38,13 +38,13 @@
       "opeenvolgendLeeg": 0
     },
     "nh-actueel": {
-      "laatsteScrape": "2026-11-05T07:00:58.731Z",
+      "laatsteScrape": "2026-11-05T07:51:42.539Z",
       "gevonden": 15,
       "opeenvolgendLeeg": 0
     },
     "nh-cultuur": {
-      "laatsteScrape": "2026-11-05T07:00:58.731Z",
-      "gevonden": 15,
+      "laatsteScrape": "2026-11-05T07:51:42.539Z",
+      "gevonden": 3,
       "opeenvolgendLeeg": 0
     },
     "zaanstad-hoorzittingen": {
@@ -98,7 +98,7 @@
       "opeenvolgendLeeg": 0
     },
     "DeOrkaan": {
-      "laatsteScrape": "2026-11-05T07:00:58.731Z",
+      "laatsteScrape": "2026-11-05T07:51:42.539Z",
       "gevonden": 12,
       "opeenvolgendLeeg": 0
     },
@@ -123,15 +123,15 @@
       "opeenvolgendLeeg": 0
     },
     "vervoerregio-overzichten": {
-      "laatsteScrape": "2026-11-05T07:00:58.731Z",
+      "laatsteScrape": "2026-11-05T07:51:42.539Z",
       "gevonden": 0,
-      "opeenvolgendLeeg": 8
+      "opeenvolgendLeeg": 9
     }
   },
   "bronnenZonderRubriek": [],
   "gemini": {
     "dag": "2026-11-04",
-    "gebruikt": 18,
+    "gebruikt": 19,
     "wachtTot": null,
     "dagcap": 80,
     "runcap": 25,
@@ -247,19 +247,19 @@
       "runs": 12
     },
     "2026-11-05": {
-      "verzoeken": 4,
-      "berichten": 20,
+      "verzoeken": 5,
+      "berichten": 21,
       "ok": 3,
-      "analyseOk": 1,
+      "analyseOk": 2,
       "cijfersAfgekeurd": 0,
       "onvoldoende": 10,
       "fout": 6,
       "overgeslagen": 0,
-      "tagAi": 4,
+      "tagAi": 5,
       "tagTrefwoord": 2,
       "tagBron": 8,
       "tagGeen": 0,
-      "runs": 2
+      "runs": 3
     }
   },
   "laatsteRun": {
@@ -269,8 +269,8 @@
       "behouden": 256,
       "verdwenen": 0,
       "verlopen": 0,
-      "uitBerichten": 18,
-      "zichtbaar": 91,
+      "uitBerichten": 19,
+      "zichtbaar": 92,
       "verborgen": 176,
       "inAfwachting": 4
     },
@@ -282,7 +282,7 @@
       "seed": 0
     },
     "cluster": {
-      "vergeleken": 1596,
+      "vergeleken": 1653,
       "automatisch": 0,
       "aiGevraagd": 0,
       "aiJa": 0,
@@ -290,7 +290,7 @@
       "uitgesteld": 0,
       "clusters": 1
     },
-    "alerts": 4,
+    "alerts": 5,
     "koppel": {
       "agendaNaarBericht": 0,
       "uitkomsten": 0,

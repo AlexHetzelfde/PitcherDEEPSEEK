@@ -1,5 +1,5 @@
 {
-  "gegenereerdOp": "2026-11-05T07:00:58.731Z",
+  "gegenereerdOp": "2026-11-05T07:51:42.539Z",
   "promptVersie": "2026-10-29-batch-tag-checklist-agendapunten",
   "alertModus": "log",
   "prioSchaal": "1 = urgent, 2 = belangrijk, 3 = regulier, 4 = routine. De AI geeft nooit prio 1.",
@@ -50,6 +50,64 @@
     }
   ],
   "berichten": [
+    {
+      "id": "f5ce24b6b9-v1",
+      "groepId": "f5ce24b6b9",
+      "versie": 1,
+      "url": "https://www.deorkaan.nl/380-kv-assendelft-lijkt-gelopen-race-kabinet-geen-andere-haalbare-locatie/",
+      "kop": "380 kV Assendelft lijkt gelopen race; kabinet: geen andere haalbare locatie",
+      "tekst": null,
+      "rubriek": "PRV",
+      "tagBron": "ai",
+      "herkomst": "signaal",
+      "prio": 3,
+      "tijd": "2026-11-04T23:00:00.000Z",
+      "heeftTijd": false,
+      "woorden": 522,
+      "afgekapt": false,
+      "bronId": "DeOrkaan",
+      "bronNaam": "DeOrkaan",
+      "ai": false,
+      "controle": "analyse-ok",
+      "eerstGezienOp": "2026-11-05T07:51:42.539Z",
+      "gecontroleerdOp": "2026-11-05T07:51:42.539Z",
+      "bronTitel": "380 kV Assendelft lijkt gelopen race; kabinet: geen andere haalbare locatie",
+      "bronLengte": 3602,
+      "checklist": {
+        "gevaar": false,
+        "evacuatieOfNlAlert": false,
+        "gewondenOfDoden": false,
+        "bestuurlijkeCrisis": false,
+        "besluitMetGrootGevolg": true,
+        "tijdkritisch": false,
+        "betrokkenen": null,
+        "geldbedragEuro": null,
+        "banen": null,
+        "inRegio": true
+      },
+      "checklistBron": "ai",
+      "agendapunten": [
+        {
+          "titel": "inloopbijeenkomst ministerie en netbeheerder TenneT",
+          "dag": "2026-11-05",
+          "start": null,
+          "eind": null,
+          "plaats": "Assendelft",
+          "zekerheid": "letterlijk"
+        }
+      ],
+      "analyse": true,
+      "alertKandidaat": {
+        "niveau": "oranje",
+        "categorie": "bestuur",
+        "reden": "besluit met groot gevolg (één bron)",
+        "aangemaaktOp": "2026-11-05T07:51:42.539Z",
+        "tot": "2026-11-06T07:51:42.539Z"
+      },
+      "agendaIds": [
+        "c4b4eeafc4"
+      ]
+    },
     {
       "id": "65a001ee37-v1",
       "groepId": "65a001ee37",
@@ -162,7 +220,8 @@
         "inRegio": true
       },
       "checklistBron": "ai",
-      "analyse": true
+      "analyse": true,
+      "tagVersie": 2
     },
     {
       "id": "b38aa580d7-v1",
