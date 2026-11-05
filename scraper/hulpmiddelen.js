@@ -5,6 +5,11 @@
 //  - ARTIKEL_MAX_TEKENS van 3.000 naar 6.000, zodat lange onderzoeksartikelen
 //    niet worden afgekapt voordat de AI de conclusie ziet (afspraak 8).
 //
+// Sinds 2026-11-04 (ZANP-prioriteit):
+//  - haalTekstUitHtml / haalArtikelTekst accepteren opties.maxTekens. Zonder
+//    die optie blijft de grens ARTIKEL_MAX_TEKENS (6.000), dus de pitchrun en de
+//    bestaande ZANP-tekststap werken ongewijzigd.
+//
 // Sinds 2026-10-26:
 //  - binnenAgendaVenster en binnenVenster krijgen een maxVooruit-parameter.
 //  - paginaVoorbij kijkt voor agenda-bronnen vooruit tot bron.maxVooruitDagen.
@@ -986,13 +991,14 @@ function haalTekstUitHtml(html, opties = {}) {
     }
     if (langste.length >= MIN_BRUIKBARE_TEKST_TEKENS) {
       const schoon = opties.titel ? stripDubbeleTitel(langste, opties.titel) : langste;
-      tekst = kortAf(schoon, ARTIKEL_MAX_TEKENS);
+      // maxTekens: alleen de prioriteitsfunctie van ZANP geeft dit mee; zonder blijft het 6.000.
+      tekst = kortAf(schoon, opties.maxTekens || ARTIKEL_MAX_TEKENS);
       break;
     }
   }
   if (!tekst && metaTeksten[0] && metaTeksten[0].length >= MIN_BRUIKBARE_TEKST_TEKENS) {
     const schoon = opties.titel ? stripDubbeleTitel(metaTeksten[0], opties.titel) : metaTeksten[0];
-    tekst = kortAf(schoon, ARTIKEL_MAX_TEKENS);
+    tekst = kortAf(schoon, opties.maxTekens || ARTIKEL_MAX_TEKENS);
   }
 
   if (!tekst && !foto) return null;

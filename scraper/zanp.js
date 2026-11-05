@@ -4,6 +4,8 @@
 //   data/berichten.json    de nieuwsstroom
 //   data/agenda.json       de weekagenda
 //   data/zanp-status.json  per bron laatste scrape, dagteller Gemini, enz.
+//   data/zanp-prioriteit/  geheugen, schaduwlog en teksten van de prioriteitsfunctie
+//                          (rood kleuren, scraper/prioriteit/)
 // Leest verder alleen bronnen.js, rubrieken.json en (bij de allereerste run,
 // voor de startvulling) data/feed.json. De pitch-bestanden blijven van
 // index.js.
@@ -43,6 +45,16 @@ const {
 } = require("./hulpmiddelen");
 const gedeeld = require("./gedeeld");
 const wire = require("./wire");
+
+// ZANP-prioriteit (2026-11-04): agenda-items en berichten rood kleuren als een
+// onderwerp groot leeft. Staat in scraper/prioriteit/. Een fout bij het laden
+// mag de run nooit breken: dan draait ZANP gewoon zonder.
+let prioriteit = null;
+try {
+  prioriteit = require("./prioriteit");
+} catch (fout) {
+  console.error(`Prioriteitsmodule niet geladen (ZANP draait gewoon door): ${fout.stack || fout.message}`);
+}
 const { REGEL_VERSIE, beoordeelAgendaRelevantie } = require("./agenda-regels");
 const { bouwClusters, pasClustersToe, clusterContext, kiesPrimair } = require("./cluster");
 const { CONFIG: ALERT_CONFIG, beoordeelAlert, beperkAlerts } = require("./alert-regels");
@@ -663,6 +675,29 @@ async function draai(deps = {}) {
   records = wire.koppelAgendaAanBerichten(records, agendaItems);
   samenvatting.agenda = agenda.stats;
   console.log(`Agenda: ${JSON.stringify(agenda.stats)}`);
+
+  // Prioriteit: de modus staat in ZANP_PRIORITEIT_MODUS (uit, schaduw, aan; standaard
+  // schaduw = rekenen en loggen, niets kleuren). Niet bij de tests (die geven scrape mee).
+  if (prioriteit && !deps.scrape) {
+    logFase("ZANP 9 — Prioriteit (rood)");
+    try {
+      const uit = await prioriteit.draaiPrioriteit({
+        records,
+        agendaItems,
+        ruwe,
+        nu,
+        env,
+        bronPerId,
+        nietOphalen: (bronId) => opties.nietOphalen({ bronId }),
+      });
+      records = uit.records;
+      agendaItems = uit.agendaItems;
+      samenvatting.prioriteit = uit.stats;
+      console.log(`Prioriteit: ${JSON.stringify(uit.stats)}`);
+    } catch (fout) {
+      console.error(`Prioriteit bepalen mislukte (ZANP gaat door zonder rood): ${fout.stack || fout.message}`);
+    }
+  }
 
   if (kwaliteitRun) {
     status.kwaliteit = bewaarKwaliteit(status.kwaliteit, kalenderdagAmsterdam(nu.toISOString()), kwaliteitRun);
