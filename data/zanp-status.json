@@ -1,5 +1,5 @@
 {
-  "gegenereerdOp": "2026-11-05T16:00:58.553Z",
+  "gegenereerdOp": "2026-11-05T16:23:54.784Z",
   "alertModus": "log",
   "bronnen": {
     "zaansche-molen": {
@@ -275,9 +275,9 @@
       "inAfwachting": 0
     },
     "berichten": {
-      "nieuw": 1,
+      "nieuw": 0,
       "update": 0,
-      "opnieuw": 9,
+      "opnieuw": 0,
       "ongewijzigd": 0,
       "seed": 0
     },
@@ -290,7 +290,7 @@
       "uitgesteld": 0,
       "clusters": 1
     },
-    "alerts": 4,
+    "alerts": 5,
     "koppel": {
       "agendaNaarBericht": 0,
       "uitkomsten": 0,
@@ -299,8 +299,8 @@
     "prioriteit": {
       "modus": "schaduw",
       "tekst": {
-        "werklijst": 1,
-        "lokaal": 1,
+        "werklijst": 0,
+        "lokaal": 0,
         "opgehaald": 0,
         "mislukt": 0,
         "uitgesteld": 0
@@ -320,20 +320,6 @@
         "noodrem": false
       },
       "rood": 4
-    },
-    "kwaliteit": {
-      "verzoeken": 0,
-      "berichten": 10,
-      "ok": 0,
-      "analyseOk": 0,
-      "cijfersAfgekeurd": 0,
-      "onvoldoende": 0,
-      "fout": 10,
-      "overgeslagen": 0,
-      "tagAi": 0,
-      "tagTrefwoord": 0,
-      "tagBron": 0,
-      "tagGeen": 0
     }
   }
 }
