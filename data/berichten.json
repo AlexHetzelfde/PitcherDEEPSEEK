@@ -1,5 +1,5 @@
 {
-  "gegenereerdOp": "2026-11-05T11:00:58.033Z",
+  "gegenereerdOp": "2026-11-05T12:00:57.086Z",
   "promptVersie": "2026-10-29-batch-tag-checklist-agendapunten",
   "alertModus": "log",
   "prioSchaal": "1 = urgent, 2 = belangrijk, 3 = regulier, 4 = routine. De AI geeft nooit prio 1.",
@@ -51,6 +51,43 @@
   ],
   "berichten": [
     {
+      "id": "633edb0e48-v1",
+      "groepId": "633edb0e48",
+      "versie": 1,
+      "url": "https://www.noord-holland.nl/Actueel/Archief/2026/November_2026/11_5_miljoen_extra_voor_agrarisch_natuurbeheer_gerichte_bescherming_van_Natura_2000_gebieden_en_de_grutto",
+      "kop": "€11,5 miljoen extra voor agrarisch natuurbeheer: gerichte bescherming van Natura 2000-gebieden en de grutto",
+      "tekst": null,
+      "rubriek": "PRV",
+      "tagBron": "trefwoord",
+      "herkomst": "officieel",
+      "prio": 3,
+      "tijd": "2026-11-05T12:00:28.000Z",
+      "heeftTijd": true,
+      "woorden": 270,
+      "afgekapt": false,
+      "bronId": "nh-actueel",
+      "bronNaam": "Provincie Noord-Holland — Actueel",
+      "ai": false,
+      "controle": "ai-fout",
+      "eerstGezienOp": "2026-11-05T12:00:57.086Z",
+      "gecontroleerdOp": "2026-11-05T12:00:57.086Z",
+      "bronTitel": "€11,5 miljoen extra voor agrarisch natuurbeheer: gerichte bescherming van Natura 2000-gebieden en de grutto",
+      "bronLengte": 1917,
+      "checklist": {
+        "gevaar": false,
+        "evacuatieOfNlAlert": false,
+        "gewondenOfDoden": false,
+        "bestuurlijkeCrisis": false,
+        "besluitMetGrootGevolg": false,
+        "tijdkritisch": false,
+        "betrokkenen": null,
+        "geldbedragEuro": 11500000,
+        "banen": null,
+        "inRegio": false
+      },
+      "checklistBron": "patroon"
+    },
+    {
       "id": "c78456aea2-v1",
       "groepId": "c78456aea2",
       "versie": 1,
@@ -70,7 +107,7 @@
       "ai": false,
       "controle": "ai-fout",
       "eerstGezienOp": "2026-11-05T11:00:58.033Z",
-      "gecontroleerdOp": "2026-11-05T11:00:58.033Z",
+      "gecontroleerdOp": "2026-11-05T12:00:57.086Z",
       "bronTitel": "Bevrijdingspop Haarlem kan in 2027 doorgaan dankzij steun provincie en gemeente",
       "bronLengte": 2768,
       "checklist": {
@@ -85,7 +122,8 @@
         "banen": null,
         "inRegio": false
       },
-      "checklistBron": "patroon"
+      "checklistBron": "patroon",
+      "tagVersie": 2
     },
     {
       "id": "bc1aa449b0-v1",
@@ -107,7 +145,7 @@
       "ai": false,
       "controle": "ai-fout",
       "eerstGezienOp": "2026-11-05T10:01:01.472Z",
-      "gecontroleerdOp": "2026-11-05T11:00:58.033Z",
+      "gecontroleerdOp": "2026-11-05T12:00:57.086Z",
       "bronTitel": "Oog voor verbinding tijdens ambtsbezoek aan gemeente Zaanstad",
       "bronLengte": 4992,
       "checklist": {
@@ -124,6 +162,80 @@
       },
       "checklistBron": "patroon",
       "tagVersie": 2
+    },
+    {
+      "id": "6e7ee94036-v1",
+      "groepId": "6e7ee94036",
+      "versie": 1,
+      "url": "https://www.deorkaan.nl/vrouw-naar-ziekenhuis-na-brand-in-droger-in-zaandijk/",
+      "kop": "Vrouw naar ziekenhuis na brand in droger in Zaandijk",
+      "tekst": null,
+      "rubriek": "112",
+      "tagBron": "trefwoord",
+      "herkomst": "signaal",
+      "prio": 3,
+      "tijd": "2026-11-04T23:00:00.000Z",
+      "heeftTijd": false,
+      "woorden": 115,
+      "afgekapt": false,
+      "bronId": "DeOrkaan",
+      "bronNaam": "DeOrkaan",
+      "ai": false,
+      "controle": "ai-fout",
+      "eerstGezienOp": "2026-11-05T12:00:57.086Z",
+      "gecontroleerdOp": "2026-11-05T12:00:57.086Z",
+      "bronTitel": "Vrouw naar ziekenhuis na brand in droger in Zaandijk",
+      "bronLengte": 702,
+      "checklist": {
+        "gevaar": false,
+        "evacuatieOfNlAlert": false,
+        "gewondenOfDoden": false,
+        "bestuurlijkeCrisis": false,
+        "besluitMetGrootGevolg": false,
+        "tijdkritisch": false,
+        "betrokkenen": null,
+        "geldbedragEuro": null,
+        "banen": null,
+        "inRegio": true
+      },
+      "checklistBron": "patroon"
+    },
+    {
+      "id": "ac80e24f20-v1",
+      "groepId": "ac80e24f20",
+      "versie": 1,
+      "url": "https://www.deorkaan.nl/de-orkaan-in-2-minuten-5-november-%f0%9f%8e%a7/",
+      "kop": "De Orkaan in 2 minuten: 5 november 🎧",
+      "tekst": null,
+      "rubriek": "ALG",
+      "tagBron": "geen",
+      "herkomst": "signaal",
+      "prio": 3,
+      "tijd": "2026-11-04T23:00:00.000Z",
+      "heeftTijd": false,
+      "woorden": 54,
+      "afgekapt": false,
+      "bronId": "DeOrkaan",
+      "bronNaam": "DeOrkaan",
+      "ai": false,
+      "controle": "ai-fout",
+      "eerstGezienOp": "2026-11-05T12:00:57.086Z",
+      "gecontroleerdOp": "2026-11-05T12:00:57.086Z",
+      "bronTitel": "De Orkaan in 2 minuten: 5 november 🎧",
+      "bronLengte": 314,
+      "checklist": {
+        "gevaar": false,
+        "evacuatieOfNlAlert": false,
+        "gewondenOfDoden": false,
+        "bestuurlijkeCrisis": false,
+        "besluitMetGrootGevolg": false,
+        "tijdkritisch": false,
+        "betrokkenen": null,
+        "geldbedragEuro": null,
+        "banen": null,
+        "inRegio": true
+      },
+      "checklistBron": "patroon"
     },
     {
       "id": "8d439e8e5d-v1",
@@ -145,7 +257,7 @@
       "ai": false,
       "controle": "ai-fout",
       "eerstGezienOp": "2026-11-05T11:00:58.033Z",
-      "gecontroleerdOp": "2026-11-05T11:00:58.033Z",
+      "gecontroleerdOp": "2026-11-05T12:00:57.086Z",
       "bronTitel": "Tweede aanhouding straatroof Assendelft: 17-jarige jongen opgepakt",
       "bronLengte": 1228,
       "checklist": {
@@ -160,7 +272,8 @@
         "banen": null,
         "inRegio": true
       },
-      "checklistBron": "patroon"
+      "checklistBron": "patroon",
+      "tagVersie": 2
     },
     {
       "id": "4c7b0c483a-v1",
@@ -182,7 +295,7 @@
       "ai": false,
       "controle": "ai-fout",
       "eerstGezienOp": "2026-11-05T11:00:58.033Z",
-      "gecontroleerdOp": "2026-11-05T11:00:58.033Z",
+      "gecontroleerdOp": "2026-11-05T12:00:57.086Z",
       "bronTitel": "50woordenvideo: smikkelslak…",
       "bronLengte": 606,
       "checklist": {
@@ -197,7 +310,8 @@
         "banen": null,
         "inRegio": false
       },
-      "checklistBron": "patroon"
+      "checklistBron": "patroon",
+      "tagVersie": 2
     },
     {
       "id": "7d6d633215-v1",
@@ -219,7 +333,7 @@
       "ai": false,
       "controle": "ai-fout",
       "eerstGezienOp": "2026-11-05T11:00:58.033Z",
-      "gecontroleerdOp": "2026-11-05T11:00:58.033Z",
+      "gecontroleerdOp": "2026-11-05T12:00:57.086Z",
       "bronTitel": "Jac (89) en dochter Jose maken samen scheurkalender",
       "bronLengte": 3176,
       "checklist": {
@@ -234,7 +348,8 @@
         "banen": null,
         "inRegio": false
       },
-      "checklistBron": "patroon"
+      "checklistBron": "patroon",
+      "tagVersie": 2
     },
     {
       "id": "6ac78fac7e-v1",
@@ -256,7 +371,7 @@
       "ai": false,
       "controle": "ai-fout",
       "eerstGezienOp": "2026-11-05T10:01:01.472Z",
-      "gecontroleerdOp": "2026-11-05T11:00:58.033Z",
+      "gecontroleerdOp": "2026-11-05T12:00:57.086Z",
       "bronTitel": "Playstation winnen? Trap er niet in…",
       "bronLengte": 3131,
       "checklist": {
@@ -841,7 +956,7 @@
       "ai": false,
       "controle": "analyse-ok",
       "eerstGezienOp": "2026-11-05T07:00:58.731Z",
-      "gecontroleerdOp": "2026-11-05T09:08:17.921Z",
+      "gecontroleerdOp": "2026-11-05T12:00:57.086Z",
       "bronTitel": "Plannen voor vijf jaar begeleid wonen aan Esdoornlaan in Wormerveer",
       "bronLengte": 3289,
       "checklist": {
@@ -1956,7 +2071,14 @@
       },
       "checklistBron": "ai",
       "analyse": true,
-      "tagVersie": 2
+      "tagVersie": 2,
+      "alertKandidaat": {
+        "niveau": "oranje",
+        "categorie": "bestuur",
+        "reden": "besluit met groot gevolg (één bron)",
+        "aangemaaktOp": "2026-11-05T12:00:57.086Z",
+        "tot": "2026-11-06T12:00:57.086Z"
+      }
     },
     {
       "id": "afa774125b-v1",
