@@ -1,5 +1,5 @@
 {
-  "gegenereerdOp": "2026-11-05T21:00:53.837Z",
+  "gegenereerdOp": "2026-11-05T22:00:54.881Z",
   "promptVersie": "2026-10-29-batch-tag-checklist-agendapunten",
   "alertModus": "log",
   "prioSchaal": "1 = urgent, 2 = belangrijk, 3 = regulier, 4 = routine. De AI geeft nooit prio 1.",
@@ -70,7 +70,7 @@
       "ai": false,
       "controle": "ai-fout",
       "eerstGezienOp": "2026-11-05T20:00:58.200Z",
-      "gecontroleerdOp": "2026-11-05T21:00:53.837Z",
+      "gecontroleerdOp": "2026-11-05T22:00:54.881Z",
       "bronTitel": "Fietsersbond wil afsluiting Westerwateringtunnel ‘niet onnodig lang’",
       "bronLengte": 3747,
       "checklist": {
@@ -108,7 +108,7 @@
       "ai": true,
       "controle": "cijfers-ok",
       "eerstGezienOp": "2026-11-05T17:00:54.546Z",
-      "gecontroleerdOp": "2026-11-05T19:00:55.247Z",
+      "gecontroleerdOp": "2026-11-05T22:00:54.881Z",
       "bronTitel": "Vergunningaanvragen voor 8 windturbines in havengebied Amsterdam",
       "bronLengte": 3043,
       "checklist": {
@@ -146,7 +146,7 @@
       "ai": true,
       "controle": "cijfers-ok",
       "eerstGezienOp": "2026-11-05T12:00:57.086Z",
-      "gecontroleerdOp": "2026-11-05T19:00:55.247Z",
+      "gecontroleerdOp": "2026-11-05T22:00:54.881Z",
       "bronTitel": "€11,5 miljoen extra voor agrarisch natuurbeheer: gerichte bescherming van Natura 2000-gebieden en de grutto",
       "bronLengte": 1917,
       "checklist": {
@@ -184,7 +184,7 @@
       "ai": true,
       "controle": "cijfers-ok",
       "eerstGezienOp": "2026-11-05T11:00:58.033Z",
-      "gecontroleerdOp": "2026-11-05T19:00:55.247Z",
+      "gecontroleerdOp": "2026-11-05T22:00:54.881Z",
       "bronTitel": "Bevrijdingspop Haarlem kan in 2027 doorgaan dankzij steun provincie en gemeente",
       "bronLengte": 2768,
       "checklist": {
@@ -222,7 +222,7 @@
       "ai": true,
       "controle": "cijfers-ok",
       "eerstGezienOp": "2026-11-05T10:01:01.472Z",
-      "gecontroleerdOp": "2026-11-05T19:00:55.247Z",
+      "gecontroleerdOp": "2026-11-05T22:00:54.881Z",
       "bronTitel": "Oog voor verbinding tijdens ambtsbezoek aan gemeente Zaanstad",
       "bronLengte": 4992,
       "checklist": {
@@ -260,7 +260,7 @@
       "ai": false,
       "controle": "ai-fout",
       "eerstGezienOp": "2026-11-05T19:00:55.247Z",
-      "gecontroleerdOp": "2026-11-05T21:00:53.837Z",
+      "gecontroleerdOp": "2026-11-05T22:00:54.881Z",
       "bronTitel": "Bernhardbrug in storing",
       "bronLengte": 294,
       "checklist": {
@@ -336,7 +336,7 @@
       "ai": false,
       "controle": "ai-fout",
       "eerstGezienOp": "2026-11-05T16:00:58.553Z",
-      "gecontroleerdOp": "2026-11-05T21:00:53.837Z",
+      "gecontroleerdOp": "2026-11-05T22:00:54.881Z",
       "bronTitel": "Muizen: schattig, maar je wilt ze niet als huisgenoot",
       "bronLengte": 3997,
       "checklist": {
@@ -374,7 +374,7 @@
       "ai": false,
       "controle": "ai-fout",
       "eerstGezienOp": "2026-11-05T15:01:00.596Z",
-      "gecontroleerdOp": "2026-11-05T21:00:53.837Z",
+      "gecontroleerdOp": "2026-11-05T22:00:54.881Z",
       "bronTitel": "Waarheen: topkolf, erfgoed, Fontana Blue",
       "bronLengte": 1578,
       "checklist": {
@@ -412,7 +412,7 @@
       "ai": false,
       "controle": "ai-fout",
       "eerstGezienOp": "2026-11-05T14:01:02.793Z",
-      "gecontroleerdOp": "2026-11-05T21:00:53.837Z",
+      "gecontroleerdOp": "2026-11-05T22:00:54.881Z",
       "bronTitel": "Carree Architecten verdwijnt, maar niet uit het Zaanse straatbeeld",
       "bronLengte": 2943,
       "checklist": {
@@ -450,7 +450,7 @@
       "ai": false,
       "controle": "ai-fout",
       "eerstGezienOp": "2026-11-05T12:00:57.086Z",
-      "gecontroleerdOp": "2026-11-05T21:00:53.837Z",
+      "gecontroleerdOp": "2026-11-05T22:00:54.881Z",
       "bronTitel": "Vrouw naar ziekenhuis na brand in droger in Zaandijk",
       "bronLengte": 702,
       "checklist": {
@@ -527,7 +527,7 @@
       "ai": false,
       "controle": "analyse-ok",
       "eerstGezienOp": "2026-11-05T11:00:58.033Z",
-      "gecontroleerdOp": "2026-11-05T19:00:55.247Z",
+      "gecontroleerdOp": "2026-11-05T22:00:54.881Z",
       "bronTitel": "Tweede aanhouding straatroof Assendelft: 17-jarige jongen opgepakt",
       "bronLengte": 1228,
       "checklist": {
@@ -566,7 +566,7 @@
       "ai": false,
       "controle": "analyse-ok",
       "eerstGezienOp": "2026-11-05T11:00:58.033Z",
-      "gecontroleerdOp": "2026-11-05T19:00:55.247Z",
+      "gecontroleerdOp": "2026-11-05T22:00:54.881Z",
       "bronTitel": "50woordenvideo: smikkelslak…",
       "bronLengte": 606,
       "checklist": {
@@ -644,7 +644,7 @@
       "ai": false,
       "controle": "analyse-ok",
       "eerstGezienOp": "2026-11-05T10:01:01.472Z",
-      "gecontroleerdOp": "2026-11-05T19:00:55.247Z",
+      "gecontroleerdOp": "2026-11-05T22:00:54.881Z",
       "bronTitel": "Playstation winnen? Trap er niet in…",
       "bronLengte": 3131,
       "checklist": {
@@ -987,7 +987,7 @@
       "ai": false,
       "controle": "analyse-ok",
       "eerstGezienOp": "2026-11-05T09:00:52.176Z",
-      "gecontroleerdOp": "2026-11-05T19:00:55.247Z",
+      "gecontroleerdOp": "2026-11-05T22:00:54.881Z",
       "bronTitel": "Jarig Zaans Erfgoed viert feestje met markt en glossy 🎧",
       "bronLengte": 2769,
       "checklist": {

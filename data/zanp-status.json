@@ -1,5 +1,5 @@
 {
-  "gegenereerdOp": "2026-11-05T21:00:53.837Z",
+  "gegenereerdOp": "2026-11-05T22:00:54.881Z",
   "alertModus": "log",
   "bronnen": {
     "zaansche-molen": {
@@ -38,12 +38,12 @@
       "opeenvolgendLeeg": 0
     },
     "nh-actueel": {
-      "laatsteScrape": "2026-11-05T21:00:53.837Z",
+      "laatsteScrape": "2026-11-05T22:00:54.881Z",
       "gevonden": 15,
       "opeenvolgendLeeg": 0
     },
     "nh-cultuur": {
-      "laatsteScrape": "2026-11-05T21:00:53.837Z",
+      "laatsteScrape": "2026-11-05T22:00:54.881Z",
       "gevonden": 3,
       "opeenvolgendLeeg": 0
     },
@@ -78,9 +78,9 @@
       "opeenvolgendLeeg": 0
     },
     "hhnk": {
-      "laatsteScrape": "2026-11-05T16:00:58.553Z",
+      "laatsteScrape": "2026-11-05T22:00:54.881Z",
       "gevonden": 0,
-      "opeenvolgendLeeg": 25
+      "opeenvolgendLeeg": 26
     },
     "rechtspraak-noord-holland": {
       "laatsteScrape": "2026-11-05T09:17:12.287Z",
@@ -98,14 +98,14 @@
       "opeenvolgendLeeg": 0
     },
     "DeOrkaan": {
-      "laatsteScrape": "2026-11-05T21:00:53.837Z",
+      "laatsteScrape": "2026-11-05T22:00:54.881Z",
       "gevonden": 12,
       "opeenvolgendLeeg": 0
     },
     "politie-zaanstad": {
-      "laatsteScrape": "2026-11-05T16:00:58.553Z",
+      "laatsteScrape": "2026-11-05T22:00:54.881Z",
       "gevonden": 0,
-      "opeenvolgendLeeg": 21
+      "opeenvolgendLeeg": 22
     },
     "zaanstad-kalender": {
       "laatsteScrape": "2026-11-05T09:17:12.287Z",
@@ -123,9 +123,9 @@
       "opeenvolgendLeeg": 0
     },
     "vervoerregio-overzichten": {
-      "laatsteScrape": "2026-11-05T21:00:53.837Z",
+      "laatsteScrape": "2026-11-05T22:00:54.881Z",
       "gevonden": 0,
-      "opeenvolgendLeeg": 24
+      "opeenvolgendLeeg": 25
     }
   },
   "bronnenZonderRubriek": [],
@@ -248,18 +248,18 @@
     },
     "2026-11-05": {
       "verzoeken": 12,
-      "berichten": 144,
+      "berichten": 150,
       "ok": 13,
       "analyseOk": 8,
       "cijfersAfgekeurd": 0,
       "onvoldoende": 10,
-      "fout": 113,
+      "fout": 119,
       "overgeslagen": 0,
       "tagAi": 17,
       "tagTrefwoord": 2,
       "tagBron": 9,
       "tagGeen": 3,
-      "runs": 18
+      "runs": 19
     }
   },
   "laatsteRun": {
@@ -278,7 +278,7 @@
       "nieuw": 0,
       "update": 0,
       "opnieuw": 6,
-      "ongewijzigd": 1,
+      "ongewijzigd": 8,
       "seed": 0
     },
     "cluster": {
