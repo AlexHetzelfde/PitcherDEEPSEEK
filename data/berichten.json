@@ -1,5 +1,5 @@
 {
-  "gegenereerdOp": "2026-11-05T15:01:00.596Z",
+  "gegenereerdOp": "2026-11-05T16:00:58.553Z",
   "promptVersie": "2026-10-29-batch-tag-checklist-agendapunten",
   "alertModus": "log",
   "prioSchaal": "1 = urgent, 2 = belangrijk, 3 = regulier, 4 = routine. De AI geeft nooit prio 1.",
@@ -70,7 +70,7 @@
       "ai": false,
       "controle": "ai-fout",
       "eerstGezienOp": "2026-11-05T12:00:57.086Z",
-      "gecontroleerdOp": "2026-11-05T15:01:00.596Z",
+      "gecontroleerdOp": "2026-11-05T16:00:58.553Z",
       "bronTitel": "€11,5 miljoen extra voor agrarisch natuurbeheer: gerichte bescherming van Natura 2000-gebieden en de grutto",
       "bronLengte": 1917,
       "checklist": {
@@ -108,7 +108,7 @@
       "ai": false,
       "controle": "ai-fout",
       "eerstGezienOp": "2026-11-05T11:00:58.033Z",
-      "gecontroleerdOp": "2026-11-05T15:01:00.596Z",
+      "gecontroleerdOp": "2026-11-05T16:00:58.553Z",
       "bronTitel": "Bevrijdingspop Haarlem kan in 2027 doorgaan dankzij steun provincie en gemeente",
       "bronLengte": 2768,
       "checklist": {
@@ -146,7 +146,7 @@
       "ai": false,
       "controle": "ai-fout",
       "eerstGezienOp": "2026-11-05T10:01:01.472Z",
-      "gecontroleerdOp": "2026-11-05T15:01:00.596Z",
+      "gecontroleerdOp": "2026-11-05T16:00:58.553Z",
       "bronTitel": "Oog voor verbinding tijdens ambtsbezoek aan gemeente Zaanstad",
       "bronLengte": 4992,
       "checklist": {
@@ -163,6 +163,43 @@
       },
       "checklistBron": "patroon",
       "tagVersie": 2
+    },
+    {
+      "id": "812792da8e-v1",
+      "groepId": "812792da8e",
+      "versie": 1,
+      "url": "https://www.deorkaan.nl/muizen-schattig-maar-je-wilt-ze-niet-als-huisgenoot/",
+      "kop": "Muizen: schattig, maar je wilt ze niet als huisgenoot",
+      "tekst": null,
+      "rubriek": "ALG",
+      "tagBron": "geen",
+      "herkomst": "signaal",
+      "prio": 3,
+      "tijd": "2026-11-04T23:00:00.000Z",
+      "heeftTijd": false,
+      "woorden": 648,
+      "afgekapt": false,
+      "bronId": "DeOrkaan",
+      "bronNaam": "DeOrkaan",
+      "ai": false,
+      "controle": "ai-fout",
+      "eerstGezienOp": "2026-11-05T16:00:58.553Z",
+      "gecontroleerdOp": "2026-11-05T16:00:58.553Z",
+      "bronTitel": "Muizen: schattig, maar je wilt ze niet als huisgenoot",
+      "bronLengte": 3997,
+      "checklist": {
+        "gevaar": false,
+        "evacuatieOfNlAlert": false,
+        "gewondenOfDoden": false,
+        "bestuurlijkeCrisis": false,
+        "besluitMetGrootGevolg": false,
+        "tijdkritisch": false,
+        "betrokkenen": null,
+        "geldbedragEuro": null,
+        "banen": null,
+        "inRegio": true
+      },
+      "checklistBron": "patroon"
     },
     {
       "id": "f21c3a35f6-v1",
@@ -184,7 +221,7 @@
       "ai": false,
       "controle": "ai-fout",
       "eerstGezienOp": "2026-11-05T15:01:00.596Z",
-      "gecontroleerdOp": "2026-11-05T15:01:00.596Z",
+      "gecontroleerdOp": "2026-11-05T16:00:58.553Z",
       "bronTitel": "Waarheen: topkolf, erfgoed, Fontana Blue",
       "bronLengte": 1578,
       "checklist": {
@@ -199,7 +236,8 @@
         "banen": null,
         "inRegio": true
       },
-      "checklistBron": "patroon"
+      "checklistBron": "patroon",
+      "tagVersie": 2
     },
     {
       "id": "cf925d4863-v1",
@@ -221,7 +259,7 @@
       "ai": false,
       "controle": "ai-fout",
       "eerstGezienOp": "2026-11-05T14:01:02.793Z",
-      "gecontroleerdOp": "2026-11-05T15:01:00.596Z",
+      "gecontroleerdOp": "2026-11-05T16:00:58.553Z",
       "bronTitel": "Carree Architecten verdwijnt, maar niet uit het Zaanse straatbeeld",
       "bronLengte": 2943,
       "checklist": {
@@ -259,7 +297,7 @@
       "ai": false,
       "controle": "ai-fout",
       "eerstGezienOp": "2026-11-05T12:00:57.086Z",
-      "gecontroleerdOp": "2026-11-05T15:01:00.596Z",
+      "gecontroleerdOp": "2026-11-05T16:00:58.553Z",
       "bronTitel": "Vrouw naar ziekenhuis na brand in droger in Zaandijk",
       "bronLengte": 702,
       "checklist": {
@@ -297,7 +335,7 @@
       "ai": false,
       "controle": "ai-fout",
       "eerstGezienOp": "2026-11-05T12:00:57.086Z",
-      "gecontroleerdOp": "2026-11-05T15:01:00.596Z",
+      "gecontroleerdOp": "2026-11-05T16:00:58.553Z",
       "bronTitel": "De Orkaan in 2 minuten: 5 november 🎧",
       "bronLengte": 314,
       "checklist": {
@@ -335,7 +373,7 @@
       "ai": false,
       "controle": "ai-fout",
       "eerstGezienOp": "2026-11-05T11:00:58.033Z",
-      "gecontroleerdOp": "2026-11-05T15:01:00.596Z",
+      "gecontroleerdOp": "2026-11-05T16:00:58.553Z",
       "bronTitel": "Tweede aanhouding straatroof Assendelft: 17-jarige jongen opgepakt",
       "bronLengte": 1228,
       "checklist": {
@@ -373,7 +411,7 @@
       "ai": false,
       "controle": "ai-fout",
       "eerstGezienOp": "2026-11-05T11:00:58.033Z",
-      "gecontroleerdOp": "2026-11-05T15:01:00.596Z",
+      "gecontroleerdOp": "2026-11-05T16:00:58.553Z",
       "bronTitel": "50woordenvideo: smikkelslak…",
       "bronLengte": 606,
       "checklist": {
@@ -1873,14 +1911,7 @@
       },
       "checklistBron": "ai",
       "analyse": true,
-      "tagVersie": 2,
-      "alertKandidaat": {
-        "niveau": "oranje",
-        "categorie": "economie",
-        "reden": "bedrag van 4 miljoen euro (één bron)",
-        "aangemaaktOp": "2026-11-04T16:00:53.153Z",
-        "tot": "2026-11-05T16:00:53.153Z"
-      }
+      "tagVersie": 2
     },
     {
       "id": "c5c63a3c12-v1",
