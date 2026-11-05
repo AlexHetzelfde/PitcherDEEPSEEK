@@ -1,20 +1,20 @@
 {
-  "gegenereerdOp": "2026-11-05T18:00:59.721Z",
+  "gegenereerdOp": "2026-11-05T19:00:55.247Z",
   "modus": "schaduw",
   "tau": 0.5,
   "stats": {
     "modus": "schaduw",
     "tekst": {
-      "werklijst": 0,
-      "lokaal": 0,
+      "werklijst": 1,
+      "lokaal": 1,
       "opgehaald": 0,
       "mislukt": 0,
       "uitgesteld": 0
     },
     "vergeten": 0,
-    "stukken": 305,
-    "kandidaten": 103,
-    "metAnker": 103,
+    "stukken": 306,
+    "kandidaten": 104,
+    "metAnker": 104,
     "zonderAnker": 0,
     "tau": 0.5,
     "besluit": {
@@ -86,8 +86,8 @@
       "key": "n:https://zaanstad.bestuurlijkeinformatie.nl/Reports/Item/e824ca7c-cc27-463f-90b6-2ff61a2b5047",
       "soort": "nieuws",
       "kop": "Gemeente Den Haag geeft het voorbeeld",
-      "S": 0.66,
-      "Sa": 0.66,
+      "S": 0.65,
+      "Sa": 0.65,
       "Sp": 0.55,
       "route": "aanhoudend",
       "K": 0.8,
@@ -145,7 +145,7 @@
       "Sa": 0.48,
       "Sp": 0,
       "route": "aanhoudend",
-      "K": 0.65,
+      "K": 0.64,
       "n": 4,
       "dagen": 4,
       "bronnen": 4,
@@ -194,7 +194,7 @@
       "Sa": 0.45,
       "Sp": 0,
       "route": "aanhoudend",
-      "K": 0.6,
+      "K": 0.59,
       "n": 2,
       "dagen": 2,
       "bronnen": 2,
@@ -233,8 +233,8 @@
       "key": "n:https://www.deorkaan.nl/de-orkaan-in-2-minuten-4-november%f0%9f%8e%a7/",
       "soort": "nieuws",
       "kop": "De Orkaan in 2 minuten: 4 november 🎧",
-      "S": 0.44,
-      "Sa": 0.44,
+      "S": 0.43,
+      "Sa": 0.43,
       "Sp": 0,
       "route": "aanhoudend",
       "K": 0.33,
@@ -251,8 +251,8 @@
         "bijprat",
         "bulletin",
         "dagelijk",
-        "redacti",
-        "spelt"
+        "spelt",
+        "opvallend"
       ],
       "bewijs": [
         {
@@ -313,9 +313,9 @@
         "bijprat",
         "bulletin",
         "dagelijk",
-        "redacti",
         "spelt",
-        "opvallend"
+        "opvallend",
+        "redacti"
       ],
       "bewijs": [
         {
@@ -879,8 +879,8 @@
       "key": "n:https://www.noord-holland.nl/Actueel/Archief/2026/November_2026/Een_comfortabeler_monument_met_hetzelfde_karakter",
       "soort": "nieuws",
       "kop": "Een comfortabeler monument met hetzelfde karakter",
-      "S": 0.2,
-      "Sa": 0.2,
+      "S": 0.19,
+      "Sa": 0.19,
       "Sp": 0,
       "route": "aanhoudend",
       "K": 0.57,
@@ -1347,8 +1347,8 @@
       "key": "a:9326732905",
       "soort": "agenda",
       "kop": "Bestuurlijke boete kamerverhuur Spitbergen 28 te Zaandam",
-      "S": 0.1,
-      "Sa": 0.1,
+      "S": 0.09,
+      "Sa": 0.09,
       "Sp": 0,
       "route": "aanhoudend",
       "K": 0.16,
