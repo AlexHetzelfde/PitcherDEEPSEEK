@@ -1,5 +1,5 @@
 {
-  "gegenereerdOp": "2026-11-06T03:00:57.978Z",
+  "gegenereerdOp": "2026-11-06T03:21:49.290Z",
   "alertModus": "log",
   "bronnen": {
     "zaansche-molen": {
@@ -293,7 +293,7 @@
       "nieuw": 0,
       "update": 0,
       "opnieuw": 0,
-      "ongewijzigd": 16,
+      "ongewijzigd": 0,
       "seed": 0
     },
     "cluster": {
