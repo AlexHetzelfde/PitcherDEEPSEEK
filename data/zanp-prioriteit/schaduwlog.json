@@ -1,13 +1,13 @@
 {
-  "gegenereerdOp": "2026-11-06T14:00:58.360Z",
+  "gegenereerdOp": "2026-11-06T15:00:57.605Z",
   "modus": "schaduw",
   "tau": 0.5,
   "stats": {
     "modus": "schaduw",
     "ai": true,
     "tekst": {
-      "werklijst": 2,
-      "lokaal": 2,
+      "werklijst": 0,
+      "lokaal": 0,
       "opgehaald": 0,
       "mislukt": 0,
       "uitgesteld": 0
@@ -338,8 +338,8 @@
       "key": "n:https://zoek.officielebekendmakingen.nl/gmb-2026-517673.html",
       "soort": "nieuws",
       "kop": "Machtiging tekenbevoegdheid collegestukken",
-      "S": 0.22,
-      "Sa": 0.22,
+      "S": 0.21,
+      "Sa": 0.21,
       "Sp": 0,
       "route": "aanhoudend",
       "K": 0.17,
@@ -980,8 +980,8 @@
       "key": "n:https://www.deorkaan.nl/tweede-aanhouding-straatroof-assendelft-17-jarige-jongen-opgepakt/",
       "soort": "nieuws",
       "kop": "Tweede aanhouding straatroof Assendelft: 17-jarige jongen opgepakt",
-      "S": 0.06,
-      "Sa": 0.06,
+      "S": 0.05,
+      "Sa": 0.05,
       "Sp": 0,
       "route": "aanhoudend",
       "K": 0.35,
