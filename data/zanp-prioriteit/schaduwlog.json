@@ -1,21 +1,21 @@
 {
-  "gegenereerdOp": "2026-11-06T15:00:57.605Z",
+  "gegenereerdOp": "2026-11-06T16:00:54.503Z",
   "modus": "schaduw",
   "tau": 0.5,
   "stats": {
     "modus": "schaduw",
     "ai": true,
     "tekst": {
-      "werklijst": 0,
-      "lokaal": 0,
+      "werklijst": 1,
+      "lokaal": 1,
       "opgehaald": 0,
       "mislukt": 0,
       "uitgesteld": 0
     },
     "vergeten": 0,
-    "stukken": 327,
-    "kandidaten": 102,
-    "metAnker": 102,
+    "stukken": 328,
+    "kandidaten": 101,
+    "metAnker": 101,
     "zonderAnker": 0,
     "afgelast": 1,
     "dubbel": 1,
@@ -70,8 +70,8 @@
       "key": "n:https://www.noord-holland.nl/Actueel/Archief/2026/November_2026/Warmtekansen_in_de_kassen",
       "soort": "nieuws",
       "kop": "Warmtekansen in de kassen",
-      "S": 0.36,
-      "Sa": 0.36,
+      "S": 0.35,
+      "Sa": 0.35,
       "Sp": 0,
       "route": "aanhoudend",
       "K": 0.69,
@@ -370,7 +370,7 @@
       "Sa": 0.21,
       "Sp": 0,
       "route": "aanhoudend",
-      "K": 0.82,
+      "K": 0.81,
       "Kp": 0.47,
       "n": 1,
       "dagen": 1,
@@ -388,38 +388,6 @@
           "c": 0.63,
           "plek": "intro",
           "titel": "Verkeersbesluit, voetpad De Krimp te Zaandam"
-        }
-      ]
-    },
-    {
-      "key": "n:https://www.deorkaan.nl/topkolf-in-t-moriaanshoofd-in-wormer/",
-      "soort": "nieuws",
-      "kop": "Topkolf in ’t Moriaanshoofd in Wormer",
-      "S": 0.19,
-      "Sa": 0.19,
-      "Sp": 0,
-      "route": "aanhoudend",
-      "K": 0.15,
-      "Kp": 0.15,
-      "n": 1,
-      "dagen": 1,
-      "bronnen": 1,
-      "ankers": [
-        "morianshofd",
-        "topkolf",
-        "aberkrom",
-        "kolfvereniging",
-        "togido",
-        "kolftoernoi",
-        "herberg"
-      ],
-      "bewijs": [
-        {
-          "bron": "DeOrkaan",
-          "datum": "2026-11-04T23:00:00.000Z",
-          "c": 0.9,
-          "plek": "kop",
-          "titel": "Waarheen: topkolf, erfgoed, Fontana Blue"
         }
       ]
     },
@@ -1192,6 +1160,28 @@
         "zuiderhofdstrat",
         "realiser",
         "dakterras"
+      ],
+      "bewijs": []
+    },
+    {
+      "key": "a:1a746de3ba",
+      "soort": "agenda",
+      "kop": "Uitnodiging NZKG-Jaarcongres 12 november 'De kracht van het Noordzeekanaalgebied (NZKG) & 150 jaar Noordzeekanaal'",
+      "S": 0,
+      "Sa": 0,
+      "Sp": 0,
+      "route": "geen",
+      "K": 0,
+      "Kp": 0,
+      "n": 0,
+      "dagen": 0,
+      "bronnen": 0,
+      "ankers": [
+        "jarcongre",
+        "nordzekanal",
+        "kracht",
+        "nzkg",
+        "nzkanal"
       ],
       "bewijs": []
     }
