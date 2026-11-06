@@ -1,5 +1,5 @@
 {
-  "gegenereerdOp": "2026-11-06T04:00:51.469Z",
+  "gegenereerdOp": "2026-11-06T05:00:51.865Z",
   "alertModus": "log",
   "bronnen": {
     "zaansche-molen": {
@@ -38,12 +38,12 @@
       "opeenvolgendLeeg": 0
     },
     "nh-actueel": {
-      "laatsteScrape": "2026-11-06T04:00:51.469Z",
+      "laatsteScrape": "2026-11-06T05:00:51.865Z",
       "gevonden": 15,
       "opeenvolgendLeeg": 0
     },
     "nh-cultuur": {
-      "laatsteScrape": "2026-11-06T04:00:51.469Z",
+      "laatsteScrape": "2026-11-06T05:00:51.865Z",
       "gevonden": 3,
       "opeenvolgendLeeg": 0
     },
@@ -98,7 +98,7 @@
       "opeenvolgendLeeg": 0
     },
     "DeOrkaan": {
-      "laatsteScrape": "2026-11-06T04:00:51.469Z",
+      "laatsteScrape": "2026-11-06T05:00:51.865Z",
       "gevonden": 12,
       "opeenvolgendLeeg": 0
     },
@@ -123,9 +123,9 @@
       "opeenvolgendLeeg": 0
     },
     "vervoerregio-overzichten": {
-      "laatsteScrape": "2026-11-06T04:00:51.469Z",
+      "laatsteScrape": "2026-11-06T05:00:51.865Z",
       "gevonden": 0,
-      "opeenvolgendLeeg": 31
+      "opeenvolgendLeeg": 32
     }
   },
   "bronnenZonderRubriek": [],
