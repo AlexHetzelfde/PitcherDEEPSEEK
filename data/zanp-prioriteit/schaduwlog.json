@@ -1,28 +1,28 @@
 {
-  "gegenereerdOp": "2026-11-06T16:00:54.503Z",
+  "gegenereerdOp": "2026-11-06T17:01:00.473Z",
   "modus": "schaduw",
   "tau": 0.5,
   "stats": {
     "modus": "schaduw",
     "ai": true,
     "tekst": {
-      "werklijst": 1,
-      "lokaal": 1,
+      "werklijst": 2,
+      "lokaal": 2,
       "opgehaald": 0,
       "mislukt": 0,
       "uitgesteld": 0
     },
     "vergeten": 0,
-    "stukken": 328,
-    "kandidaten": 101,
-    "metAnker": 101,
+    "stukken": 330,
+    "kandidaten": 103,
+    "metAnker": 103,
     "zonderAnker": 0,
     "afgelast": 1,
     "dubbel": 1,
     "tau": 0.5,
     "besluit": {
-      "boven": 0,
-      "wacht": 0,
+      "boven": 1,
+      "wacht": 1,
       "onderdrukt": 0,
       "veto": 0,
       "nieuwRood": 0,
@@ -31,6 +31,88 @@
     "rood": 8
   },
   "top": [
+    {
+      "key": "n:https://zaanstad.bestuurlijkeinformatie.nl/Document/View/27931bc8-9e76-438d-82ba-f51af593bb38",
+      "soort": "nieuws",
+      "kop": "Kennisgeving burgemeester Hamming: incident Jaspersstraat",
+      "S": 0.56,
+      "Sa": 0.41,
+      "Sp": 0.56,
+      "route": "piek",
+      "K": 0.74,
+      "Kp": 0.58,
+      "n": 2,
+      "dagen": 1,
+      "bronnen": 2,
+      "ankers": [
+        "jaspersstrat",
+        "kennisgeving",
+        "incident",
+        "hamming",
+        "telefon"
+      ],
+      "bewijs": [
+        {
+          "bron": "DeOrkaan",
+          "datum": "2026-11-05T23:00:00.000Z",
+          "c": 0.87,
+          "plek": "kop",
+          "titel": "Cameratoezicht Zuiddijk en Jaspersstraat verlengd"
+        },
+        {
+          "bron": "wetenregelgeving",
+          "datum": "2026-11-05T23:00:00.000Z",
+          "c": 0.85,
+          "plek": "kop",
+          "titel": "Aanwijzingsbesluit verlenging tijdelijk cameratoezicht Jaspersstraat Zaandam"
+        }
+      ]
+    },
+    {
+      "key": "n:https://zaanstad.bestuurlijkeinformatie.nl/Document/View/3efd6010-3187-4635-81ad-6abea4b1acda",
+      "soort": "nieuws",
+      "kop": "Kennisgeving Burgemeester J. Hamming: Incident Elzenstraat",
+      "S": 0.47,
+      "Sa": 0.47,
+      "Sp": 0,
+      "route": "aanhoudend",
+      "K": 0.69,
+      "Kp": 0.53,
+      "n": 3,
+      "dagen": 2,
+      "bronnen": 2,
+      "ankers": [
+        "elzenstrat",
+        "kennisgeving",
+        "incident",
+        "hamming",
+        "telefon",
+        "geacht"
+      ],
+      "bewijs": [
+        {
+          "bron": "bekendmakingen",
+          "datum": "2026-11-02T23:00:00.000Z",
+          "c": 0.88,
+          "plek": "kop",
+          "titel": "Aanwijzingsbesluit verlenging tijdelijk cameratoezicht Elzenstraat in Wormerveer"
+        },
+        {
+          "bron": "DeOrkaan",
+          "datum": "2026-11-02T23:00:00.000Z",
+          "c": 0.88,
+          "plek": "kop",
+          "titel": "Cameratoezicht Elzenstraat wéér verlengd"
+        },
+        {
+          "bron": "DeOrkaan",
+          "datum": "2026-11-05T23:00:00.000Z",
+          "c": 0.69,
+          "plek": "intro",
+          "titel": "Cameratoezicht Zuiddijk en Jaspersstraat verlengd"
+        }
+      ]
+    },
     {
       "key": "n:https://lokaleregelgeving.overheid.nl/CVDR768780/1",
       "soort": "nieuws",
@@ -47,13 +129,15 @@
       "ankers": [
         "jaspersstrat",
         "anwijzingsbesluit",
-        "cvdr768780"
+        "cvdr768780",
+        "verlenging",
+        "cameratoezicht"
       ],
       "bewijs": [
         {
           "bron": "bekendmakingen",
           "datum": "2026-11-02T23:00:00.000Z",
-          "c": 0.91,
+          "c": 0.92,
           "plek": "kop",
           "titel": "Aanwijzingsbesluit verlenging tijdelijk cameratoezicht Elzenstraat in Wormerveer"
         },
@@ -158,72 +242,6 @@
       ]
     },
     {
-      "key": "n:https://zaanstad.bestuurlijkeinformatie.nl/Document/View/3efd6010-3187-4635-81ad-6abea4b1acda",
-      "soort": "nieuws",
-      "kop": "Kennisgeving Burgemeester J. Hamming: Incident Elzenstraat",
-      "S": 0.32,
-      "Sa": 0.32,
-      "Sp": 0,
-      "route": "aanhoudend",
-      "K": 0.57,
-      "Kp": 0.42,
-      "n": 2,
-      "dagen": 1,
-      "bronnen": 2,
-      "ankers": [
-        "elzenstrat",
-        "kennisgeving",
-        "incident",
-        "hamming",
-        "telefon"
-      ],
-      "bewijs": [
-        {
-          "bron": "bekendmakingen",
-          "datum": "2026-11-02T23:00:00.000Z",
-          "c": 0.89,
-          "plek": "kop",
-          "titel": "Aanwijzingsbesluit verlenging tijdelijk cameratoezicht Elzenstraat in Wormerveer"
-        },
-        {
-          "bron": "DeOrkaan",
-          "datum": "2026-11-02T23:00:00.000Z",
-          "c": 0.88,
-          "plek": "kop",
-          "titel": "Cameratoezicht Elzenstraat wéér verlengd"
-        }
-      ]
-    },
-    {
-      "key": "n:https://zaanstad.bestuurlijkeinformatie.nl/Document/View/27931bc8-9e76-438d-82ba-f51af593bb38",
-      "soort": "nieuws",
-      "kop": "Kennisgeving burgemeester Hamming: incident Jaspersstraat",
-      "S": 0.29,
-      "Sa": 0.29,
-      "Sp": 0,
-      "route": "aanhoudend",
-      "K": 0.66,
-      "Kp": 0.5,
-      "n": 1,
-      "dagen": 1,
-      "bronnen": 1,
-      "ankers": [
-        "jaspersstrat",
-        "kennisgeving",
-        "incident",
-        "hamming"
-      ],
-      "bewijs": [
-        {
-          "bron": "wetenregelgeving",
-          "datum": "2026-11-05T23:00:00.000Z",
-          "c": 0.86,
-          "plek": "kop",
-          "titel": "Aanwijzingsbesluit verlenging tijdelijk cameratoezicht Jaspersstraat Zaandam"
-        }
-      ]
-    },
-    {
       "key": "n:https://zaanstad.bestuurlijkeinformatie.nl/Document/View/0c06a5b5-5ff0-4908-8c05-cefd51385e97",
       "soort": "nieuws",
       "kop": "Inkoop specialistische jeugdhulp 2027",
@@ -260,7 +278,7 @@
       "Sp": 0,
       "route": "aanhoudend",
       "K": 0.38,
-      "Kp": 0.22,
+      "Kp": 0.21,
       "n": 1,
       "dagen": 1,
       "bronnen": 1,
@@ -460,11 +478,11 @@
       "key": "a:4d3692245e",
       "soort": "agenda",
       "kop": "Zaanstad Beraad Raadzaal: TEST",
-      "S": 0.16,
-      "Sa": 0.16,
+      "S": 0.15,
+      "Sa": 0.15,
       "Sp": 0,
       "route": "aanhoudend",
-      "K": 0.23,
+      "K": 0.22,
       "Kp": 0.08,
       "n": 2,
       "dagen": 1,
@@ -494,8 +512,8 @@
       "key": "n:https://www.noord-holland.nl/Actueel/Archief/2026/November_2026/Oog_voor_verbinding_tijdens_ambtsbezoek_aan_gemeente_Zaanstad",
       "soort": "nieuws",
       "kop": "Oog voor verbinding tijdens ambtsbezoek aan gemeente Zaanstad",
-      "S": 0.15,
-      "Sa": 0.15,
+      "S": 0.14,
+      "Sa": 0.14,
       "Sp": 0,
       "route": "aanhoudend",
       "K": 0.33,
@@ -597,8 +615,8 @@
       "key": "a:1ebd6e1ddf",
       "soort": "agenda",
       "kop": "Verkeersbesluit plaatsen laadpaal voor electrische auto's Matsmanzoom te Koog a/d Zaan",
-      "S": 0.11,
-      "Sa": 0.11,
+      "S": 0.1,
+      "Sa": 0.1,
       "Sp": 0,
       "route": "aanhoudend",
       "K": 0.16,
@@ -1481,6 +1499,14 @@
         "n": 7,
         "bronnen": 4
       },
+      "n:https://zaanstad.bestuurlijkeinformatie.nl/Document/View/27931bc8-9e76-438d-82ba-f51af593bb38": {
+        "kop": "Kennisgeving burgemeester Hamming: incident Jaspersstraat",
+        "S": 0.56,
+        "route": "piek",
+        "K": 0.74,
+        "n": 2,
+        "bronnen": 2
+      },
       "n:https://zaanstad.bestuurlijkeinformatie.nl/Document/View/3efd6010-3187-4635-81ad-6abea4b1acda": {
         "kop": "Kennisgeving Burgemeester J. Hamming: Incident Elzenstraat",
         "S": 0.51,
@@ -1496,14 +1522,6 @@
         "K": 0.73,
         "n": 4,
         "bronnen": 3
-      },
-      "n:https://zaanstad.bestuurlijkeinformatie.nl/Document/View/27931bc8-9e76-438d-82ba-f51af593bb38": {
-        "kop": "Kennisgeving burgemeester Hamming: incident Jaspersstraat",
-        "S": 0.47,
-        "route": "aanhoudend",
-        "K": 0.7,
-        "n": 2,
-        "bronnen": 2
       },
       "n:https://www.deorkaan.nl/de-orkaan-in-2-minuten-4-november%f0%9f%8e%a7/": {
         "kop": "De Orkaan in 2 minuten: 4 november 🎧",
