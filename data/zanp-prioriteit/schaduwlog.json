@@ -1,13 +1,13 @@
 {
-  "gegenereerdOp": "2026-11-06T17:01:00.473Z",
+  "gegenereerdOp": "2026-11-06T18:00:55.883Z",
   "modus": "schaduw",
   "tau": 0.5,
   "stats": {
     "modus": "schaduw",
     "ai": true,
     "tekst": {
-      "werklijst": 2,
-      "lokaal": 2,
+      "werklijst": 0,
+      "lokaal": 0,
       "opgehaald": 0,
       "mislukt": 0,
       "uitgesteld": 0
@@ -22,13 +22,13 @@
     "tau": 0.5,
     "besluit": {
       "boven": 1,
-      "wacht": 1,
+      "wacht": 0,
       "onderdrukt": 0,
       "veto": 0,
-      "nieuwRood": 0,
+      "nieuwRood": 1,
       "noodrem": false
     },
-    "rood": 8
+    "rood": 9
   },
   "top": [
     {
@@ -40,7 +40,7 @@
       "Sp": 0.56,
       "route": "piek",
       "K": 0.74,
-      "Kp": 0.58,
+      "Kp": 0.57,
       "n": 2,
       "dagen": 1,
       "bronnen": 2,
@@ -296,6 +296,34 @@
       ]
     },
     {
+      "key": "n:https://zoek.officielebekendmakingen.nl/gmb-2026-517656.html",
+      "soort": "nieuws",
+      "kop": "Machtiging tekenbevoegdheid burgemeestersbesluiten 10045012",
+      "S": 0.22,
+      "Sa": 0.22,
+      "Sp": 0,
+      "route": "aanhoudend",
+      "K": 0.16,
+      "Kp": 0,
+      "n": 1,
+      "dagen": 1,
+      "bronnen": 1,
+      "ankers": [
+        "machtiging",
+        "burgemestersbesluit",
+        "tekenbevoegdheid"
+      ],
+      "bewijs": [
+        {
+          "bron": "wetenregelgeving",
+          "datum": "2026-11-05T23:00:00.000Z",
+          "c": 0.91,
+          "plek": "kop",
+          "titel": "Machtiging tekenbevoegdheid collegestukken"
+        }
+      ]
+    },
+    {
       "key": "n:https://zoek.officielebekendmakingen.nl/gmb-2026-508877.html",
       "soort": "nieuws",
       "kop": "Verkeersbesluit, instellen stopverplichting fietsverkeer Stijlpad Assendelft",
@@ -321,34 +349,6 @@
           "c": 0.66,
           "plek": "intro",
           "titel": "Verkeersbesluit, voetpad De Krimp te Zaandam"
-        }
-      ]
-    },
-    {
-      "key": "n:https://zoek.officielebekendmakingen.nl/gmb-2026-517656.html",
-      "soort": "nieuws",
-      "kop": "Machtiging tekenbevoegdheid burgemeestersbesluiten 10045012",
-      "S": 0.22,
-      "Sa": 0.22,
-      "Sp": 0,
-      "route": "aanhoudend",
-      "K": 0.16,
-      "Kp": 0,
-      "n": 1,
-      "dagen": 1,
-      "bronnen": 1,
-      "ankers": [
-        "machtiging",
-        "burgemestersbesluit",
-        "tekenbevoegdheid"
-      ],
-      "bewijs": [
-        {
-          "bron": "wetenregelgeving",
-          "datum": "2026-11-05T23:00:00.000Z",
-          "c": 0.91,
-          "plek": "kop",
-          "titel": "Machtiging tekenbevoegdheid collegestukken"
         }
       ]
     },
@@ -818,8 +818,8 @@
       "key": "a:e26813c04c",
       "soort": "agenda",
       "kop": "Geweigerde huisvestingsvergunning Klipperstraat 37 te Zaandam - Microsoft Teams",
-      "S": 0.08,
-      "Sa": 0.08,
+      "S": 0.07,
+      "Sa": 0.07,
       "Sp": 0,
       "route": "aanhoudend",
       "K": 0.16,
