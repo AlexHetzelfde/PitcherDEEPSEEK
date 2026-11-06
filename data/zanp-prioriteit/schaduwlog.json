@@ -1,25 +1,25 @@
 {
-  "gegenereerdOp": "2026-11-06T05:00:51.865Z",
+  "gegenereerdOp": "2026-11-06T06:01:00.574Z",
   "modus": "schaduw",
   "tau": 0.5,
   "stats": {
     "modus": "schaduw",
     "tekst": {
-      "werklijst": 0,
-      "lokaal": 0,
-      "opgehaald": 0,
+      "werklijst": 7,
+      "lokaal": 6,
+      "opgehaald": 1,
       "mislukt": 0,
       "uitgesteld": 0
     },
     "vergeten": 0,
-    "stukken": 307,
-    "kandidaten": 99,
-    "metAnker": 99,
+    "stukken": 314,
+    "kandidaten": 106,
+    "metAnker": 106,
     "zonderAnker": 0,
     "tau": 0.5,
     "besluit": {
-      "boven": 0,
-      "wacht": 0,
+      "boven": 3,
+      "wacht": 3,
       "onderdrukt": 0,
       "veto": 0,
       "nieuwRood": 0,
@@ -32,14 +32,14 @@
       "key": "a:04d5e7cb5d",
       "soort": "agenda",
       "kop": "Raadsvergadering: Begroting",
-      "S": 0.94,
-      "Sa": 0.94,
-      "Sp": 0,
+      "S": 0.99,
+      "Sa": 0.99,
+      "Sp": 0.68,
       "route": "aanhoudend",
       "K": 1,
-      "n": 15,
+      "n": 16,
       "dagen": 10,
-      "bronnen": 3,
+      "bronnen": 4,
       "ankers": [
         "radsvergadering",
         "begroting"
@@ -83,161 +83,58 @@
       ]
     },
     {
-      "key": "a:9f19133212",
-      "soort": "agenda",
-      "kop": "Zaanstad Beraad",
-      "S": 0.71,
-      "Sa": 0.71,
+      "key": "n:https://zoek.officielebekendmakingen.nl/gmb-2026-517023.html",
+      "soort": "nieuws",
+      "kop": "Aanwijzingsbesluit verlenging tijdelijk cameratoezicht Elzenstraat in Wormerveer",
+      "S": 0.67,
+      "Sa": 0.67,
       "Sp": 0,
       "route": "aanhoudend",
-      "K": 1,
-      "n": 7,
-      "dagen": 4,
-      "bronnen": 2,
+      "K": 0.74,
+      "n": 5,
+      "dagen": 5,
+      "bronnen": 4,
       "ankers": [
-        "berad"
+        "elzenstrat",
+        "anwijzingsbesluit",
+        "cameratoezicht",
+        "verlenging"
       ],
       "bewijs": [
         {
-          "bron": "zaanstad-kalender",
-          "datum": "2026-11-01T15:55:49.908Z",
+          "bron": "wetenregelgeving",
+          "datum": "2026-10-17T22:00:00.000Z",
           "c": 1,
           "plek": "kop",
-          "titel": "Zaanstad Beraad"
+          "titel": "Aanwijzingsbesluit verlenging tijdelijk cameratoezicht Rode Zee Zaandam"
         },
         {
-          "bron": "zaanstad-kalender",
-          "datum": "2026-11-01T15:55:49.908Z",
+          "bron": "bekendmakingen",
+          "datum": "2026-10-18T22:00:00.000Z",
           "c": 1,
           "plek": "kop",
-          "titel": "Zaanstad Beraad"
+          "titel": "Aanwijzingsbesluit verlenging tijdelijk cameratoezicht Rode Zee in Zaandam"
+        },
+        {
+          "bron": "wetenregelgeving",
+          "datum": "2026-11-05T23:00:00.000Z",
+          "c": 1,
+          "plek": "kop",
+          "titel": "Aanwijzingsbesluit verlenging tijdelijk cameratoezicht Jaspersstraat Zaandam"
+        },
+        {
+          "bron": "ibabs-collegeberichten",
+          "datum": "2026-11-03T23:00:00.000Z",
+          "c": 0.95,
+          "plek": "kop",
+          "titel": "Kennisgeving Burgemeester J. Hamming: Incident Elzenstraat"
         },
         {
           "bron": "DeOrkaan",
-          "datum": "2026-11-03T23:00:00.000Z",
-          "c": 0.92,
+          "datum": "2026-11-02T23:00:00.000Z",
+          "c": 0.91,
           "plek": "kop",
-          "titel": "Begrotingsdebat Zaanstad Beraad #2: ‘eerlijk antwoord’ en ‘juiste feiten’"
-        },
-        {
-          "bron": "zaanstad-kalender",
-          "datum": "2026-11-01T15:55:49.908Z",
-          "c": 0.78,
-          "plek": "intro",
-          "titel": "Raadsvergadering: Reservedatum begroting"
-        },
-        {
-          "bron": "zaanstad-kalender",
-          "datum": "2026-11-01T15:55:49.908Z",
-          "c": 0.73,
-          "plek": "intro",
-          "titel": "Werkbezoek: Werkom"
-        }
-      ]
-    },
-    {
-      "key": "a:a40d7a33f0",
-      "soort": "agenda",
-      "kop": "Zaanstad Beraad",
-      "S": 0.71,
-      "Sa": 0.71,
-      "Sp": 0,
-      "route": "aanhoudend",
-      "K": 1,
-      "n": 7,
-      "dagen": 4,
-      "bronnen": 2,
-      "ankers": [
-        "berad"
-      ],
-      "bewijs": [
-        {
-          "bron": "zaanstad-kalender",
-          "datum": "2026-11-01T15:55:49.908Z",
-          "c": 1,
-          "plek": "kop",
-          "titel": "Zaanstad Beraad"
-        },
-        {
-          "bron": "zaanstad-kalender",
-          "datum": "2026-11-01T15:55:49.908Z",
-          "c": 1,
-          "plek": "kop",
-          "titel": "Zaanstad Beraad"
-        },
-        {
-          "bron": "DeOrkaan",
-          "datum": "2026-11-03T23:00:00.000Z",
-          "c": 0.92,
-          "plek": "kop",
-          "titel": "Begrotingsdebat Zaanstad Beraad #2: ‘eerlijk antwoord’ en ‘juiste feiten’"
-        },
-        {
-          "bron": "zaanstad-kalender",
-          "datum": "2026-11-01T15:55:49.908Z",
-          "c": 0.78,
-          "plek": "intro",
-          "titel": "Raadsvergadering: Reservedatum begroting"
-        },
-        {
-          "bron": "zaanstad-kalender",
-          "datum": "2026-11-01T15:55:49.908Z",
-          "c": 0.73,
-          "plek": "intro",
-          "titel": "Werkbezoek: Werkom"
-        }
-      ]
-    },
-    {
-      "key": "a:4a5ff898e2",
-      "soort": "agenda",
-      "kop": "Zaanstad Beraad",
-      "S": 0.71,
-      "Sa": 0.71,
-      "Sp": 0,
-      "route": "aanhoudend",
-      "K": 1,
-      "n": 7,
-      "dagen": 4,
-      "bronnen": 2,
-      "ankers": [
-        "berad"
-      ],
-      "bewijs": [
-        {
-          "bron": "zaanstad-kalender",
-          "datum": "2026-11-01T15:55:49.908Z",
-          "c": 1,
-          "plek": "kop",
-          "titel": "Zaanstad Beraad"
-        },
-        {
-          "bron": "zaanstad-kalender",
-          "datum": "2026-11-01T15:55:49.908Z",
-          "c": 1,
-          "plek": "kop",
-          "titel": "Zaanstad Beraad"
-        },
-        {
-          "bron": "DeOrkaan",
-          "datum": "2026-11-03T23:00:00.000Z",
-          "c": 0.92,
-          "plek": "kop",
-          "titel": "Begrotingsdebat Zaanstad Beraad #2: ‘eerlijk antwoord’ en ‘juiste feiten’"
-        },
-        {
-          "bron": "zaanstad-kalender",
-          "datum": "2026-11-01T15:55:49.908Z",
-          "c": 0.78,
-          "plek": "intro",
-          "titel": "Raadsvergadering: Reservedatum begroting"
-        },
-        {
-          "bron": "zaanstad-kalender",
-          "datum": "2026-11-01T15:55:49.908Z",
-          "c": 0.73,
-          "plek": "intro",
-          "titel": "Werkbezoek: Werkom"
+          "titel": "Cameratoezicht Elzenstraat wéér verlengd"
         }
       ]
     },
@@ -249,7 +146,7 @@
       "Sa": 0.63,
       "Sp": 0,
       "route": "aanhoudend",
-      "K": 0.78,
+      "K": 0.83,
       "n": 7,
       "dagen": 6,
       "bronnen": 4,
@@ -297,22 +194,64 @@
       ]
     },
     {
-      "key": "n:https://zoek.officielebekendmakingen.nl/gmb-2026-517023.html",
+      "key": "n:https://zaanstad.bestuurlijkeinformatie.nl/Document/View/3efd6010-3187-4635-81ad-6abea4b1acda",
       "soort": "nieuws",
-      "kop": "Aanwijzingsbesluit verlenging tijdelijk cameratoezicht Elzenstraat in Wormerveer",
-      "S": 0.47,
-      "Sa": 0.47,
+      "kop": "Kennisgeving Burgemeester J. Hamming: Incident Elzenstraat",
+      "S": 0.51,
+      "Sa": 0.51,
       "Sp": 0,
       "route": "aanhoudend",
-      "K": 0.64,
-      "n": 4,
-      "dagen": 4,
-      "bronnen": 4,
+      "K": 0.65,
+      "n": 3,
+      "dagen": 2,
+      "bronnen": 3,
       "ankers": [
         "elzenstrat",
+        "kennisgeving",
+        "incident",
+        "hamming",
+        "telefon"
+      ],
+      "bewijs": [
+        {
+          "bron": "ibabs-collegeberichten",
+          "datum": "2026-11-04T23:00:00.000Z",
+          "c": 1,
+          "plek": "kop",
+          "titel": "Kennisgeving burgemeester Hamming: incident Jaspersstraat"
+        },
+        {
+          "bron": "bekendmakingen",
+          "datum": "2026-11-02T23:00:00.000Z",
+          "c": 0.89,
+          "plek": "kop",
+          "titel": "Aanwijzingsbesluit verlenging tijdelijk cameratoezicht Elzenstraat in Wormerveer"
+        },
+        {
+          "bron": "DeOrkaan",
+          "datum": "2026-11-02T23:00:00.000Z",
+          "c": 0.88,
+          "plek": "kop",
+          "titel": "Cameratoezicht Elzenstraat wéér verlengd"
+        }
+      ]
+    },
+    {
+      "key": "n:https://lokaleregelgeving.overheid.nl/CVDR768780/1",
+      "soort": "nieuws",
+      "kop": "Aanwijzingsbesluit verlenging tijdelijk cameratoezicht Jaspersstraat Zaandam",
+      "S": 0.51,
+      "Sa": 0.51,
+      "Sp": 0,
+      "route": "aanhoudend",
+      "K": 0.73,
+      "n": 4,
+      "dagen": 4,
+      "bronnen": 3,
+      "ankers": [
+        "jaspersstrat",
         "anwijzingsbesluit",
-        "cameratoezicht",
-        "verlenging"
+        "cvdr768780"
       ],
       "bewijs": [
         {
@@ -324,150 +263,224 @@
         },
         {
           "bron": "bekendmakingen",
+          "datum": "2026-11-02T23:00:00.000Z",
+          "c": 0.91,
+          "plek": "kop",
+          "titel": "Aanwijzingsbesluit verlenging tijdelijk cameratoezicht Elzenstraat in Wormerveer"
+        },
+        {
+          "bron": "bekendmakingen",
           "datum": "2026-10-18T22:00:00.000Z",
-          "c": 1,
+          "c": 0.91,
           "plek": "kop",
           "titel": "Aanwijzingsbesluit verlenging tijdelijk cameratoezicht Rode Zee in Zaandam"
         },
         {
           "bron": "ibabs-collegeberichten",
+          "datum": "2026-11-04T23:00:00.000Z",
+          "c": 0.85,
+          "plek": "kop",
+          "titel": "Kennisgeving burgemeester Hamming: incident Jaspersstraat"
+        }
+      ]
+    },
+    {
+      "key": "n:https://zaanstad.bestuurlijkeinformatie.nl/Document/View/27931bc8-9e76-438d-82ba-f51af593bb38",
+      "soort": "nieuws",
+      "kop": "Kennisgeving burgemeester Hamming: incident Jaspersstraat",
+      "S": 0.47,
+      "Sa": 0.47,
+      "Sp": 0,
+      "route": "aanhoudend",
+      "K": 0.7,
+      "n": 2,
+      "dagen": 2,
+      "bronnen": 2,
+      "ankers": [
+        "jaspersstrat",
+        "kennisgeving",
+        "incident",
+        "hamming"
+      ],
+      "bewijs": [
+        {
+          "bron": "ibabs-collegeberichten",
           "datum": "2026-11-03T23:00:00.000Z",
-          "c": 0.98,
+          "c": 1,
           "plek": "kop",
           "titel": "Kennisgeving Burgemeester J. Hamming: Incident Elzenstraat"
         },
         {
-          "bron": "DeOrkaan",
-          "datum": "2026-11-02T23:00:00.000Z",
-          "c": 0.91,
+          "bron": "wetenregelgeving",
+          "datum": "2026-11-05T23:00:00.000Z",
+          "c": 0.86,
           "plek": "kop",
-          "titel": "Cameratoezicht Elzenstraat wéér verlengd"
+          "titel": "Aanwijzingsbesluit verlenging tijdelijk cameratoezicht Jaspersstraat Zaandam"
         }
       ]
     },
     {
-      "key": "n:https://www.deorkaan.nl/de-orkaan-in-2-minuten-4-november%f0%9f%8e%a7/",
-      "soort": "nieuws",
-      "kop": "De Orkaan in 2 minuten: 4 november 🎧",
-      "S": 0.42,
-      "Sa": 0.42,
+      "key": "a:9f19133212",
+      "soort": "agenda",
+      "kop": "Zaanstad Beraad",
+      "S": 0.4,
+      "Sa": 0.4,
       "Sp": 0,
       "route": "aanhoudend",
-      "K": 0.32,
-      "n": 9,
-      "dagen": 9,
+      "K": 0.17,
+      "n": 5,
+      "dagen": 3,
       "bronnen": 1,
       "ankers": [
-        "rekenkamer",
-        "minut",
-        "platje",
-        "hembrugterrein",
-        "bezuiniging",
-        "razendsnel",
-        "bijprat",
-        "bulletin",
-        "dagelijk",
-        "spelt",
-        "opvallend"
+        "filmopnam",
+        "uitgezond",
+        "internet"
       ],
       "bewijs": [
         {
-          "bron": "DeOrkaan",
-          "datum": "2026-11-02T23:00:00.000Z",
-          "c": 1,
-          "plek": "kop",
-          "titel": "De Orkaan in 2 minuten: 3 november 🎧"
+          "bron": "zaanstad-kalender",
+          "datum": "2026-11-01T15:55:49.908Z",
+          "c": 0.8,
+          "plek": "intro",
+          "titel": "Raadsvergadering: Reservedatum begroting"
         },
         {
-          "bron": "DeOrkaan",
-          "datum": "2026-11-01T23:00:00.000Z",
-          "c": 1,
-          "plek": "kop",
-          "titel": "De Orkaan in 2 minuten: 2 november 🎧"
+          "bron": "zaanstad-kalender",
+          "datum": "2026-11-01T15:55:49.908Z",
+          "c": 0.8,
+          "plek": "intro",
+          "titel": "Zaanstad Beraad"
         },
         {
-          "bron": "DeOrkaan",
-          "datum": "2026-10-29T23:00:00.000Z",
-          "c": 1,
-          "plek": "kop",
-          "titel": "De Orkaan in 2 minuten: 30 oktober 🎧"
+          "bron": "zaanstad-kalender",
+          "datum": "2026-11-01T15:55:49.908Z",
+          "c": 0.8,
+          "plek": "intro",
+          "titel": "Zaanstad Beraad"
         },
         {
-          "bron": "DeOrkaan",
-          "datum": "2026-10-28T23:00:00.000Z",
-          "c": 1,
-          "plek": "kop",
-          "titel": "De Orkaan in 2 minuten: 29 oktober 🎧"
+          "bron": "zaanstad-kalender",
+          "datum": "2026-11-06T06:01:00.574Z",
+          "c": 0.8,
+          "plek": "intro",
+          "titel": "Zaanstad Beraad Raadzaal: TEST"
         },
         {
-          "bron": "DeOrkaan",
-          "datum": "2026-10-25T23:00:00.000Z",
-          "c": 1,
-          "plek": "kop",
-          "titel": "De Orkaan in 2 minuten: 26 oktober 🎧"
+          "bron": "zaanstad-kalender",
+          "datum": "2026-11-05T04:00:52.742Z",
+          "c": 0.75,
+          "plek": "intro",
+          "titel": "Raadsvergadering: Begroting"
         }
       ]
     },
     {
-      "key": "n:https://www.deorkaan.nl/de-orkaan-in-2-minuten-5-november-%f0%9f%8e%a7/",
-      "soort": "nieuws",
-      "kop": "De Orkaan in 2 minuten: 5 november 🎧",
-      "S": 0.42,
-      "Sa": 0.42,
+      "key": "a:a40d7a33f0",
+      "soort": "agenda",
+      "kop": "Zaanstad Beraad",
+      "S": 0.4,
+      "Sa": 0.4,
       "Sp": 0,
       "route": "aanhoudend",
-      "K": 0.32,
-      "n": 9,
-      "dagen": 9,
+      "K": 0.17,
+      "n": 5,
+      "dagen": 3,
       "bronnen": 1,
       "ankers": [
-        "minut",
-        "joint",
-        "glossy",
-        "duizend",
-        "razendsnel",
-        "bijprat",
-        "bulletin",
-        "dagelijk",
-        "spelt",
-        "opvallend",
-        "redacti"
+        "filmopnam",
+        "uitgezond",
+        "internet"
       ],
       "bewijs": [
         {
-          "bron": "DeOrkaan",
-          "datum": "2026-11-03T23:00:00.000Z",
-          "c": 1,
-          "plek": "kop",
-          "titel": "De Orkaan in 2 minuten: 4 november 🎧"
+          "bron": "zaanstad-kalender",
+          "datum": "2026-11-01T15:55:49.908Z",
+          "c": 0.8,
+          "plek": "intro",
+          "titel": "Raadsvergadering: Reservedatum begroting"
         },
         {
-          "bron": "DeOrkaan",
-          "datum": "2026-11-02T23:00:00.000Z",
-          "c": 1,
-          "plek": "kop",
-          "titel": "De Orkaan in 2 minuten: 3 november 🎧"
+          "bron": "zaanstad-kalender",
+          "datum": "2026-11-01T15:55:49.908Z",
+          "c": 0.8,
+          "plek": "intro",
+          "titel": "Zaanstad Beraad"
         },
         {
-          "bron": "DeOrkaan",
-          "datum": "2026-11-01T23:00:00.000Z",
-          "c": 1,
-          "plek": "kop",
-          "titel": "De Orkaan in 2 minuten: 2 november 🎧"
+          "bron": "zaanstad-kalender",
+          "datum": "2026-11-01T15:55:49.908Z",
+          "c": 0.8,
+          "plek": "intro",
+          "titel": "Zaanstad Beraad"
         },
         {
-          "bron": "DeOrkaan",
-          "datum": "2026-10-29T23:00:00.000Z",
-          "c": 1,
-          "plek": "kop",
-          "titel": "De Orkaan in 2 minuten: 30 oktober 🎧"
+          "bron": "zaanstad-kalender",
+          "datum": "2026-11-06T06:01:00.574Z",
+          "c": 0.8,
+          "plek": "intro",
+          "titel": "Zaanstad Beraad Raadzaal: TEST"
         },
         {
-          "bron": "DeOrkaan",
-          "datum": "2026-10-28T23:00:00.000Z",
-          "c": 1,
-          "plek": "kop",
-          "titel": "De Orkaan in 2 minuten: 29 oktober 🎧"
+          "bron": "zaanstad-kalender",
+          "datum": "2026-11-05T04:00:52.742Z",
+          "c": 0.75,
+          "plek": "intro",
+          "titel": "Raadsvergadering: Begroting"
+        }
+      ]
+    },
+    {
+      "key": "a:4a5ff898e2",
+      "soort": "agenda",
+      "kop": "Zaanstad Beraad",
+      "S": 0.4,
+      "Sa": 0.4,
+      "Sp": 0,
+      "route": "aanhoudend",
+      "K": 0.17,
+      "n": 5,
+      "dagen": 3,
+      "bronnen": 1,
+      "ankers": [
+        "filmopnam",
+        "uitgezond",
+        "internet"
+      ],
+      "bewijs": [
+        {
+          "bron": "zaanstad-kalender",
+          "datum": "2026-11-01T15:55:49.908Z",
+          "c": 0.8,
+          "plek": "intro",
+          "titel": "Raadsvergadering: Reservedatum begroting"
+        },
+        {
+          "bron": "zaanstad-kalender",
+          "datum": "2026-11-01T15:55:49.908Z",
+          "c": 0.8,
+          "plek": "intro",
+          "titel": "Zaanstad Beraad"
+        },
+        {
+          "bron": "zaanstad-kalender",
+          "datum": "2026-11-01T15:55:49.908Z",
+          "c": 0.8,
+          "plek": "intro",
+          "titel": "Zaanstad Beraad"
+        },
+        {
+          "bron": "zaanstad-kalender",
+          "datum": "2026-11-06T06:01:00.574Z",
+          "c": 0.8,
+          "plek": "intro",
+          "titel": "Zaanstad Beraad Raadzaal: TEST"
+        },
+        {
+          "bron": "zaanstad-kalender",
+          "datum": "2026-11-05T04:00:52.742Z",
+          "c": 0.75,
+          "plek": "intro",
+          "titel": "Raadsvergadering: Begroting"
         }
       ]
     },
@@ -507,6 +520,68 @@
       ]
     },
     {
+      "key": "n:https://www.deorkaan.nl/de-orkaan-in-2-minuten-4-november%f0%9f%8e%a7/",
+      "soort": "nieuws",
+      "kop": "De Orkaan in 2 minuten: 4 november 🎧",
+      "S": 0.39,
+      "Sa": 0.39,
+      "Sp": 0,
+      "route": "aanhoudend",
+      "K": 0.28,
+      "n": 9,
+      "dagen": 9,
+      "bronnen": 1,
+      "ankers": [
+        "rekenkamer",
+        "hembrugterrein",
+        "platje",
+        "bezuiniging",
+        "razendsnel",
+        "bijprat",
+        "bulletin",
+        "dagelijk",
+        "spelt",
+        "opvallend"
+      ],
+      "bewijs": [
+        {
+          "bron": "DeOrkaan",
+          "datum": "2026-11-02T23:00:00.000Z",
+          "c": 0.8,
+          "plek": "intro",
+          "titel": "De Orkaan in 2 minuten: 3 november 🎧"
+        },
+        {
+          "bron": "DeOrkaan",
+          "datum": "2026-11-01T23:00:00.000Z",
+          "c": 0.8,
+          "plek": "intro",
+          "titel": "De Orkaan in 2 minuten: 2 november 🎧"
+        },
+        {
+          "bron": "DeOrkaan",
+          "datum": "2026-10-29T23:00:00.000Z",
+          "c": 0.8,
+          "plek": "intro",
+          "titel": "De Orkaan in 2 minuten: 30 oktober 🎧"
+        },
+        {
+          "bron": "DeOrkaan",
+          "datum": "2026-10-28T23:00:00.000Z",
+          "c": 0.8,
+          "plek": "intro",
+          "titel": "De Orkaan in 2 minuten: 29 oktober 🎧"
+        },
+        {
+          "bron": "DeOrkaan",
+          "datum": "2026-10-25T23:00:00.000Z",
+          "c": 0.8,
+          "plek": "intro",
+          "titel": "De Orkaan in 2 minuten: 26 oktober 🎧"
+        }
+      ]
+    },
+    {
       "key": "n:https://zoek.officielebekendmakingen.nl/gmb-2026-508923.html",
       "soort": "nieuws",
       "kop": "Verkeersbesluit, instellen stopverlichting fietsverkeer Themapad Assendelft",
@@ -538,6 +613,102 @@
           "c": 0.63,
           "plek": "intro",
           "titel": "Verkeersbesluit, voetpad De Krimp te Zaandam"
+        }
+      ]
+    },
+    {
+      "key": "n:https://www.deorkaan.nl/de-orkaan-in-2-minuten-5-november-%f0%9f%8e%a7/",
+      "soort": "nieuws",
+      "kop": "De Orkaan in 2 minuten: 5 november 🎧",
+      "S": 0.39,
+      "Sa": 0.39,
+      "Sp": 0,
+      "route": "aanhoudend",
+      "K": 0.28,
+      "n": 9,
+      "dagen": 9,
+      "bronnen": 1,
+      "ankers": [
+        "joint",
+        "glossy",
+        "duizend",
+        "razendsnel",
+        "bijprat",
+        "bulletin",
+        "dagelijk",
+        "spelt",
+        "opvallend",
+        "redacti"
+      ],
+      "bewijs": [
+        {
+          "bron": "DeOrkaan",
+          "datum": "2026-11-03T23:00:00.000Z",
+          "c": 0.8,
+          "plek": "intro",
+          "titel": "De Orkaan in 2 minuten: 4 november 🎧"
+        },
+        {
+          "bron": "DeOrkaan",
+          "datum": "2026-11-02T23:00:00.000Z",
+          "c": 0.8,
+          "plek": "intro",
+          "titel": "De Orkaan in 2 minuten: 3 november 🎧"
+        },
+        {
+          "bron": "DeOrkaan",
+          "datum": "2026-11-01T23:00:00.000Z",
+          "c": 0.8,
+          "plek": "intro",
+          "titel": "De Orkaan in 2 minuten: 2 november 🎧"
+        },
+        {
+          "bron": "DeOrkaan",
+          "datum": "2026-10-29T23:00:00.000Z",
+          "c": 0.8,
+          "plek": "intro",
+          "titel": "De Orkaan in 2 minuten: 30 oktober 🎧"
+        },
+        {
+          "bron": "DeOrkaan",
+          "datum": "2026-10-28T23:00:00.000Z",
+          "c": 0.8,
+          "plek": "intro",
+          "titel": "De Orkaan in 2 minuten: 29 oktober 🎧"
+        }
+      ]
+    },
+    {
+      "key": "n:https://zoek.officielebekendmakingen.nl/gmb-2026-517656.html",
+      "soort": "nieuws",
+      "kop": "Machtiging tekenbevoegdheid burgemeestersbesluiten 10045012",
+      "S": 0.37,
+      "Sa": 0.37,
+      "Sp": 0,
+      "route": "aanhoudend",
+      "K": 0.17,
+      "n": 2,
+      "dagen": 2,
+      "bronnen": 2,
+      "ankers": [
+        "machtiging",
+        "burgemestersbesluit",
+        "tekenbevoegdheid"
+      ],
+      "bewijs": [
+        {
+          "bron": "wetenregelgeving",
+          "datum": "2026-11-05T23:00:00.000Z",
+          "c": 0.91,
+          "plek": "kop",
+          "titel": "Machtiging tekenbevoegdheid collegestukken"
+        },
+        {
+          "bron": "bekendmakingen",
+          "datum": "2026-11-04T23:00:00.000Z",
+          "c": 0.87,
+          "plek": "kop",
+          "titel": "Machtiging tekenbevoegdheid collegestukken"
         }
       ]
     },
@@ -596,43 +767,6 @@
       ]
     },
     {
-      "key": "n:https://zaanstad.bestuurlijkeinformatie.nl/Document/View/3efd6010-3187-4635-81ad-6abea4b1acda",
-      "soort": "nieuws",
-      "kop": "Kennisgeving Burgemeester J. Hamming: Incident Elzenstraat",
-      "S": 0.33,
-      "Sa": 0.33,
-      "Sp": 0,
-      "route": "aanhoudend",
-      "K": 0.57,
-      "n": 2,
-      "dagen": 1,
-      "bronnen": 2,
-      "ankers": [
-        "elzenstrat",
-        "kennisgeving",
-        "incident",
-        "hamming",
-        "telefon",
-        "geacht"
-      ],
-      "bewijs": [
-        {
-          "bron": "bekendmakingen",
-          "datum": "2026-11-02T23:00:00.000Z",
-          "c": 0.89,
-          "plek": "kop",
-          "titel": "Aanwijzingsbesluit verlenging tijdelijk cameratoezicht Elzenstraat in Wormerveer"
-        },
-        {
-          "bron": "DeOrkaan",
-          "datum": "2026-11-02T23:00:00.000Z",
-          "c": 0.88,
-          "plek": "kop",
-          "titel": "Cameratoezicht Elzenstraat wéér verlengd"
-        }
-      ]
-    },
-    {
       "key": "a:f833a15399",
       "soort": "agenda",
       "kop": "GEANNULEERD: Technische sessie Vervoerregio Amsterdam",
@@ -668,6 +802,101 @@
       ]
     },
     {
+      "key": "n:https://zaanstad.bestuurlijkeinformatie.nl/Document/View/0c06a5b5-5ff0-4908-8c05-cefd51385e97",
+      "soort": "nieuws",
+      "kop": "Inkoop specialistische jeugdhulp 2027",
+      "S": 0.27,
+      "Sa": 0.27,
+      "Sp": 0,
+      "route": "aanhoudend",
+      "K": 0.53,
+      "n": 1,
+      "dagen": 1,
+      "bronnen": 1,
+      "ankers": [
+        "specialistisch",
+        "inkop",
+        "jeugdhulp"
+      ],
+      "bewijs": [
+        {
+          "bron": "ibabs-collegeberichten",
+          "datum": "2026-11-04T23:00:00.000Z",
+          "c": 0.68,
+          "plek": "intro",
+          "titel": "Septembercirculaire 2026"
+        }
+      ]
+    },
+    {
+      "key": "a:4d3692245e",
+      "soort": "agenda",
+      "kop": "Zaanstad Beraad Raadzaal: TEST",
+      "S": 0.27,
+      "Sa": 0.27,
+      "Sp": 0,
+      "route": "aanhoudend",
+      "K": 0.16,
+      "n": 2,
+      "dagen": 2,
+      "bronnen": 1,
+      "ankers": [
+        "radzal",
+        "test"
+      ],
+      "bewijs": [
+        {
+          "bron": "zaanstad-kalender",
+          "datum": "2026-11-01T15:55:49.908Z",
+          "c": 0.76,
+          "plek": "intro",
+          "titel": "Raadsvergadering: Reservedatum begroting"
+        },
+        {
+          "bron": "zaanstad-kalender",
+          "datum": "2026-11-05T04:00:52.742Z",
+          "c": 0.69,
+          "plek": "intro",
+          "titel": "Raadsvergadering: Begroting"
+        }
+      ]
+    },
+    {
+      "key": "n:https://lokaleregelgeving.overheid.nl/CVDR699867/2",
+      "soort": "nieuws",
+      "kop": "Machtiging tekenbevoegdheid collegestukken",
+      "S": 0.26,
+      "Sa": 0.26,
+      "Sp": 0,
+      "route": "aanhoudend",
+      "K": 0.17,
+      "n": 2,
+      "dagen": 1,
+      "bronnen": 1,
+      "ankers": [
+        "machtiging",
+        "collegestuk",
+        "tekenbevoegdheid",
+        "cvdr699867"
+      ],
+      "bewijs": [
+        {
+          "bron": "bekendmakingen",
+          "datum": "2026-11-04T23:00:00.000Z",
+          "c": 0.89,
+          "plek": "kop",
+          "titel": "Machtiging tekenbevoegdheid burgemeestersbesluiten 10045012"
+        },
+        {
+          "bron": "bekendmakingen",
+          "datum": "2026-11-04T23:00:00.000Z",
+          "c": 0.88,
+          "plek": "kop",
+          "titel": "Machtiging tekenbevoegdheid collegestukken"
+        }
+      ]
+    },
+    {
       "key": "a:55db5c0d37",
       "soort": "agenda",
       "kop": "Raadsvergadering: Reservedatum begroting",
@@ -694,38 +923,29 @@
       ]
     },
     {
-      "key": "n:https://www.deorkaan.nl/begrotingsdebat-zaanstad-beraad-2-eerlijk-antwoord-en-juiste-feiten/",
+      "key": "n:https://zoek.officielebekendmakingen.nl/gmb-2026-517673.html",
       "soort": "nieuws",
-      "kop": "Begrotingsdebat Zaanstad Beraad #2: ‘eerlijk antwoord’ en ‘juiste feiten’",
-      "S": 0.21,
-      "Sa": 0.21,
+      "kop": "Machtiging tekenbevoegdheid collegestukken",
+      "S": 0.22,
+      "Sa": 0.22,
       "Sp": 0,
       "route": "aanhoudend",
-      "K": 1,
+      "K": 0.17,
       "n": 1,
       "dagen": 1,
       "bronnen": 1,
       "ankers": [
-        "berad",
-        "erlijk",
-        "begrotingsdebat",
-        "antword",
-        "juist",
-        "begrotingscarrousel",
-        "stort",
-        "stokpardje",
-        "vervolgrond",
-        "dossier",
-        "onzekerheid",
-        "gemoeder"
+        "machtiging",
+        "collegestuk",
+        "tekenbevoegdheid"
       ],
       "bewijs": [
         {
-          "bron": "DeOrkaan",
-          "datum": "2026-10-29T23:00:00.000Z",
-          "c": 0.91,
+          "bron": "wetenregelgeving",
+          "datum": "2026-11-05T23:00:00.000Z",
+          "c": 0.88,
           "plek": "kop",
-          "titel": "Begrotingsdebat Zaanstad: van ‘scenario-B’ tot AI-dromen"
+          "titel": "Machtiging tekenbevoegdheid collegestukken"
         }
       ]
     },
@@ -762,6 +982,42 @@
       ]
     },
     {
+      "key": "n:https://www.deorkaan.nl/begrotingsdebat-zaanstad-beraad-2-eerlijk-antwoord-en-juiste-feiten/",
+      "soort": "nieuws",
+      "kop": "Begrotingsdebat Zaanstad Beraad #2: ‘eerlijk antwoord’ en ‘juiste feiten’",
+      "S": 0.2,
+      "Sa": 0.2,
+      "Sp": 0,
+      "route": "aanhoudend",
+      "K": 1,
+      "n": 1,
+      "dagen": 1,
+      "bronnen": 1,
+      "ankers": [
+        "erlijk",
+        "begrotingsdebat",
+        "antword",
+        "juist",
+        "begrotingscarrousel",
+        "stort",
+        "stokpardje",
+        "vervolgrond",
+        "dossier",
+        "onzekerheid",
+        "gemoeder",
+        "baren"
+      ],
+      "bewijs": [
+        {
+          "bron": "DeOrkaan",
+          "datum": "2026-10-29T23:00:00.000Z",
+          "c": 0.86,
+          "plek": "kop",
+          "titel": "Begrotingsdebat Zaanstad: van ‘scenario-B’ tot AI-dromen"
+        }
+      ]
+    },
+    {
       "key": "n:https://www.deorkaan.nl/topkolf-in-t-moriaanshoofd-in-wormer/",
       "soort": "nieuws",
       "kop": "Topkolf in ’t Moriaanshoofd in Wormer",
@@ -789,6 +1045,42 @@
           "c": 0.9,
           "plek": "kop",
           "titel": "Waarheen: topkolf, erfgoed, Fontana Blue"
+        }
+      ]
+    },
+    {
+      "key": "n:https://zaanstad.bestuurlijkeinformatie.nl/Document/View/e8f55ebc-2c96-4064-87ff-1b8a8409c37a",
+      "soort": "nieuws",
+      "kop": "Het laatste nieuws uit Zaanstad",
+      "S": 0.19,
+      "Sa": 0.19,
+      "Sp": 0,
+      "route": "aanhoudend",
+      "K": 0.31,
+      "n": 1,
+      "dagen": 1,
+      "bronnen": 1,
+      "ankers": [
+        "subject",
+        "categorie",
+        "radsgriffi",
+        "blader",
+        "bladkorv",
+        "gemakkelijker",
+        "bladafval",
+        "weggoi",
+        "opruim",
+        "stoep",
+        "journal",
+        "nieuwsblad"
+      ],
+      "bewijs": [
+        {
+          "bron": "ibabs-ingekomen-stukken",
+          "datum": "2026-11-03T23:00:00.000Z",
+          "c": 0.73,
+          "plek": "intro",
+          "titel": "Het laatste nieuws uit Zaanstad"
         }
       ]
     },
@@ -827,8 +1119,8 @@
       "key": "n:https://zaanstad.bestuurlijkeinformatie.nl/Document/View/1fbec0bf-504f-4014-8808-dbf1b37dc6b9",
       "soort": "nieuws",
       "kop": "Gemeente Den Haag geeft het voorbeeld",
-      "S": 0.19,
-      "Sa": 0.19,
+      "S": 0.18,
+      "Sa": 0.18,
       "Sp": 0,
       "route": "aanhoudend",
       "K": 0.56,
@@ -853,72 +1145,9 @@
         {
           "bron": "ibabs-ingekomen-stukken",
           "datum": "2026-11-03T23:00:00.000Z",
-          "c": 0.68,
+          "c": 0.69,
           "plek": "intro",
           "titel": "Aanbieding Kwaliteitscriteria Gezinshuizen 2026 | Verzoek registratie als ingekomen stuk"
-        }
-      ]
-    },
-    {
-      "key": "n:https://zaanstad.bestuurlijkeinformatie.nl/Document/View/e8f55ebc-2c96-4064-87ff-1b8a8409c37a",
-      "soort": "nieuws",
-      "kop": "Het laatste nieuws uit Zaanstad",
-      "S": 0.18,
-      "Sa": 0.18,
-      "Sp": 0,
-      "route": "aanhoudend",
-      "K": 0.3,
-      "n": 1,
-      "dagen": 1,
-      "bronnen": 1,
-      "ankers": [
-        "subject",
-        "categorie",
-        "radsgriffi",
-        "blader",
-        "bladkorv",
-        "gemakkelijker",
-        "bladafval",
-        "weggoi",
-        "opruim",
-        "hierin",
-        "stoep",
-        "journal"
-      ],
-      "bewijs": [
-        {
-          "bron": "ibabs-ingekomen-stukken",
-          "datum": "2026-11-03T23:00:00.000Z",
-          "c": 0.7,
-          "plek": "intro",
-          "titel": "Het laatste nieuws uit Zaanstad"
-        }
-      ]
-    },
-    {
-      "key": "n:https://zoek.officielebekendmakingen.nl/gmb-2026-517656.html",
-      "soort": "nieuws",
-      "kop": "Machtiging tekenbevoegdheid burgemeestersbesluiten 10045012",
-      "S": 0.16,
-      "Sa": 0.16,
-      "Sp": 0,
-      "route": "aanhoudend",
-      "K": 0.16,
-      "n": 1,
-      "dagen": 1,
-      "bronnen": 1,
-      "ankers": [
-        "machtiging",
-        "burgemestersbesluit",
-        "tekenbevoegdheid"
-      ],
-      "bewijs": [
-        {
-          "bron": "bekendmakingen",
-          "datum": "2026-11-04T23:00:00.000Z",
-          "c": 0.88,
-          "plek": "kop",
-          "titel": "Machtiging tekenbevoegdheid collegestukken"
         }
       ]
     },
@@ -930,7 +1159,7 @@
       "Sa": 0.16,
       "Sp": 0,
       "route": "aanhoudend",
-      "K": 0.27,
+      "K": 0.26,
       "n": 1,
       "dagen": 1,
       "bronnen": 1,
@@ -1073,7 +1302,7 @@
       "Sa": 0.15,
       "Sp": 0,
       "route": "aanhoudend",
-      "K": 0.34,
+      "K": 0.33,
       "n": 1,
       "dagen": 1,
       "bronnen": 1,
@@ -1085,10 +1314,10 @@
         "arthur",
         "koning",
         "krommeniedijk",
-        "hamming",
         "og",
         "thema",
         "besturskracht",
+        "hamming",
         "gesprek"
       ],
       "bewijs": [
@@ -1261,35 +1490,6 @@
       ]
     },
     {
-      "key": "a:f317521e28",
-      "soort": "agenda",
-      "kop": "Raadsvergadering: Begroting",
-      "S": 0.08,
-      "Sa": 0.08,
-      "Sp": 0,
-      "route": "aanhoudend",
-      "K": 0.17,
-      "n": 1,
-      "dagen": 1,
-      "bronnen": 1,
-      "ankers": [
-        "radsvergadering",
-        "begroting",
-        "sprektijd",
-        "agendapunt",
-        "opening"
-      ],
-      "bewijs": [
-        {
-          "bron": "zaanstad-kalender",
-          "datum": "2026-11-01T15:55:49.908Z",
-          "c": 0.92,
-          "plek": "kop",
-          "titel": "Raadsvergadering: Reservedatum begroting"
-        }
-      ]
-    },
-    {
       "key": "a:d1eae07b85",
       "soort": "agenda",
       "kop": "Brandweer Oostzaan viert 100-jarig jubileum",
@@ -1318,6 +1518,35 @@
       ]
     },
     {
+      "key": "a:f317521e28",
+      "soort": "agenda",
+      "kop": "Raadsvergadering: Begroting",
+      "S": 0.08,
+      "Sa": 0.08,
+      "Sp": 0,
+      "route": "aanhoudend",
+      "K": 0.16,
+      "n": 1,
+      "dagen": 1,
+      "bronnen": 1,
+      "ankers": [
+        "radsvergadering",
+        "begroting",
+        "sprektijd",
+        "agendapunt",
+        "opening"
+      ],
+      "bewijs": [
+        {
+          "bron": "zaanstad-kalender",
+          "datum": "2026-11-01T15:55:49.908Z",
+          "c": 0.89,
+          "plek": "kop",
+          "titel": "Raadsvergadering: Reservedatum begroting"
+        }
+      ]
+    },
+    {
       "key": "a:bd39f8159e",
       "soort": "agenda",
       "kop": "Dichter bij de tijd",
@@ -1341,171 +1570,6 @@
           "titel": "Dichter bij de tijd: vol is vol"
         }
       ]
-    },
-    {
-      "key": "n:https://zaanstad.bestuurlijkeinformatie.nl/Reports/Item/9df187bf-c385-4b57-8208-2cb708b1a398",
-      "soort": "nieuws",
-      "kop": "Nieuwsbrief week 43: Gesprekken met minister & inschrijven Dag voor de Raad",
-      "S": 0.08,
-      "Sa": 0.08,
-      "Sp": 0,
-      "route": "aanhoudend",
-      "K": 0,
-      "n": 1,
-      "dagen": 1,
-      "bronnen": 1,
-      "ankers": [
-        "inschrijv",
-        "minister",
-        "nieuwsbrief",
-        "gesprek",
-        "vereniging",
-        "tuhuljtk"
-      ],
-      "bewijs": [
-        {
-          "bron": "ibabs-ingekomen-stukken",
-          "datum": "2026-11-03T23:00:00.000Z",
-          "c": 0.72,
-          "plek": "intro",
-          "titel": "Laat jij je de mond snoeren? Doe mee aan de enquête!"
-        }
-      ]
-    },
-    {
-      "key": "n:https://zaanstad.bestuurlijkeinformatie.nl/Reports/Item/ba379db2-8d98-40ec-b29c-c081d662f580",
-      "soort": "nieuws",
-      "kop": "Laat jij je de mond snoeren? Doe mee aan de enquête!",
-      "S": 0.08,
-      "Sa": 0.08,
-      "Sp": 0,
-      "route": "aanhoudend",
-      "K": 0,
-      "n": 1,
-      "dagen": 1,
-      "bronnen": 1,
-      "ankers": [
-        "snoer",
-        "enquet",
-        "vereniging",
-        "mond",
-        "tukihhyk"
-      ],
-      "bewijs": [
-        {
-          "bron": "ibabs-ingekomen-stukken",
-          "datum": "2026-11-03T23:00:00.000Z",
-          "c": 0.71,
-          "plek": "intro",
-          "titel": "Nieuwsbrief week 43: Gesprekken met minister & inschrijven Dag voor de Raad"
-        }
-      ]
-    },
-    {
-      "key": "a:54bf0d34fe",
-      "soort": "agenda",
-      "kop": "Verkeersbesluit plaatsen laadpaal voor elektrische auto's locatie Kaaikhof te Assendelft",
-      "S": 0.06,
-      "Sa": 0.06,
-      "Sp": 0,
-      "route": "aanhoudend",
-      "K": 0.16,
-      "n": 1,
-      "dagen": 1,
-      "bronnen": 1,
-      "ankers": [
-        "kaikhof",
-        "ladpal",
-        "elektrisch"
-      ],
-      "bewijs": [
-        {
-          "bron": "zaanstad-hoorzittingen",
-          "datum": "2026-10-24T03:56:04.357Z",
-          "c": 1,
-          "plek": "kop",
-          "titel": "Verkeersbesluit plaatsen laadpaal voor electrische auto's Matsmanzoom te Koog a/d Zaan"
-        }
-      ]
-    },
-    {
-      "key": "n:https://www.deorkaan.nl/tweede-aanhouding-straatroof-assendelft-17-jarige-jongen-opgepakt/",
-      "soort": "nieuws",
-      "kop": "Tweede aanhouding straatroof Assendelft: 17-jarige jongen opgepakt",
-      "S": 0.06,
-      "Sa": 0.06,
-      "Sp": 0,
-      "route": "aanhoudend",
-      "K": 0.35,
-      "n": 1,
-      "dagen": 1,
-      "bronnen": 1,
-      "ankers": [
-        "opgepakt",
-        "anhouding",
-        "stratrof",
-        "jarig",
-        "zwart",
-        "gewelddadig",
-        "arrestati",
-        "gelijkend"
-      ],
-      "bewijs": [
-        {
-          "bron": "DeOrkaan",
-          "datum": "2026-10-20T22:00:00.000Z",
-          "c": 0.97,
-          "plek": "kop",
-          "titel": "15-jarige aangehouden voor straatroof waarbij wapen is gebruikt"
-        }
-      ]
-    },
-    {
-      "key": "n:https://www.deorkaan.nl/tienduizend-joints-gevonden-na-tip-meld-misdaad-anoniem/",
-      "soort": "nieuws",
-      "kop": "Tienduizend joints gevonden na tip Meld Misdaad Anoniem",
-      "S": 0.03,
-      "Sa": 0.03,
-      "Sp": 0,
-      "route": "aanhoudend",
-      "K": 0.08,
-      "n": 1,
-      "dagen": 1,
-      "bronnen": 1,
-      "ankers": [
-        "misdad",
-        "anoniem",
-        "tienduizend",
-        "joint",
-        "gevond"
-      ],
-      "bewijs": [
-        {
-          "bron": "DeOrkaan",
-          "datum": "2026-10-20T22:00:00.000Z",
-          "c": 0.34,
-          "plek": "tekst",
-          "titel": "15-jarige aangehouden voor straatroof waarbij wapen is gebruikt"
-        }
-      ]
-    },
-    {
-      "key": "a:4fb0913382",
-      "soort": "agenda",
-      "kop": "Uitnodiging Informatieve themabijeenkomst II Raadsleden en leden Zaanse Versnellingstafel",
-      "S": 0,
-      "Sa": 0,
-      "Sp": 0,
-      "route": "geen",
-      "K": 0,
-      "n": 0,
-      "dagen": 0,
-      "bronnen": 0,
-      "ankers": [
-        "versnellingstafel",
-        "lab44"
-      ],
-      "bewijs": []
     }
   ],
   "formule": {
@@ -1753,11 +1817,11 @@
     "2026-11-06": {
       "a:04d5e7cb5d": {
         "kop": "Raadsvergadering: Begroting",
-        "S": 0.95,
+        "S": 0.99,
         "route": "aanhoudend",
         "K": 1,
-        "n": 15,
-        "bronnen": 3
+        "n": 16,
+        "bronnen": 4
       },
       "a:9f19133212": {
         "kop": "Zaanstad Beraad",
@@ -1783,6 +1847,14 @@
         "n": 7,
         "bronnen": 2
       },
+      "n:https://zoek.officielebekendmakingen.nl/gmb-2026-517023.html": {
+        "kop": "Aanwijzingsbesluit verlenging tijdelijk cameratoezicht Elzenstraat in Wormerveer",
+        "S": 0.67,
+        "route": "aanhoudend",
+        "K": 0.74,
+        "n": 5,
+        "bronnen": 4
+      },
       "n:https://zaanstad.bestuurlijkeinformatie.nl/Reports/Item/e824ca7c-cc27-463f-90b6-2ff61a2b5047": {
         "kop": "Gemeente Den Haag geeft het voorbeeld",
         "S": 0.64,
@@ -1791,13 +1863,29 @@
         "n": 7,
         "bronnen": 4
       },
-      "n:https://zoek.officielebekendmakingen.nl/gmb-2026-517023.html": {
-        "kop": "Aanwijzingsbesluit verlenging tijdelijk cameratoezicht Elzenstraat in Wormerveer",
-        "S": 0.48,
+      "n:https://zaanstad.bestuurlijkeinformatie.nl/Document/View/3efd6010-3187-4635-81ad-6abea4b1acda": {
+        "kop": "Kennisgeving Burgemeester J. Hamming: Incident Elzenstraat",
+        "S": 0.51,
         "route": "aanhoudend",
-        "K": 0.64,
+        "K": 0.65,
+        "n": 3,
+        "bronnen": 3
+      },
+      "n:https://lokaleregelgeving.overheid.nl/CVDR768780/1": {
+        "kop": "Aanwijzingsbesluit verlenging tijdelijk cameratoezicht Jaspersstraat Zaandam",
+        "S": 0.51,
+        "route": "aanhoudend",
+        "K": 0.73,
         "n": 4,
-        "bronnen": 4
+        "bronnen": 3
+      },
+      "n:https://zaanstad.bestuurlijkeinformatie.nl/Document/View/27931bc8-9e76-438d-82ba-f51af593bb38": {
+        "kop": "Kennisgeving burgemeester Hamming: incident Jaspersstraat",
+        "S": 0.47,
+        "route": "aanhoudend",
+        "K": 0.7,
+        "n": 2,
+        "bronnen": 2
       },
       "n:https://www.deorkaan.nl/de-orkaan-in-2-minuten-4-november%f0%9f%8e%a7/": {
         "kop": "De Orkaan in 2 minuten: 4 november 🎧",
@@ -1831,6 +1919,14 @@
         "n": 2,
         "bronnen": 1
       },
+      "n:https://zoek.officielebekendmakingen.nl/gmb-2026-517656.html": {
+        "kop": "Machtiging tekenbevoegdheid burgemeestersbesluiten 10045012",
+        "S": 0.37,
+        "route": "aanhoudend",
+        "K": 0.17,
+        "n": 2,
+        "bronnen": 2
+      },
       "n:https://zaanstad.bestuurlijkeinformatie.nl/Reports/Item/ca542b04-ff0c-4e5e-b854-c8a6e61461d0": {
         "kop": "Platform31 Nieuwsbrief | 29 oktober 2026",
         "S": 0.36,
@@ -1839,14 +1935,6 @@
         "n": 6,
         "bronnen": 1
       },
-      "n:https://zaanstad.bestuurlijkeinformatie.nl/Document/View/3efd6010-3187-4635-81ad-6abea4b1acda": {
-        "kop": "Kennisgeving Burgemeester J. Hamming: Incident Elzenstraat",
-        "S": 0.34,
-        "route": "aanhoudend",
-        "K": 0.57,
-        "n": 2,
-        "bronnen": 2
-      },
       "a:f833a15399": {
         "kop": "GEANNULEERD: Technische sessie Vervoerregio Amsterdam",
         "S": 0.31,
@@ -1854,6 +1942,30 @@
         "K": 0.51,
         "n": 2,
         "bronnen": 2
+      },
+      "n:https://zaanstad.bestuurlijkeinformatie.nl/Document/View/0c06a5b5-5ff0-4908-8c05-cefd51385e97": {
+        "kop": "Inkoop specialistische jeugdhulp 2027",
+        "S": 0.27,
+        "route": "aanhoudend",
+        "K": 0.53,
+        "n": 1,
+        "bronnen": 1
+      },
+      "a:4d3692245e": {
+        "kop": "Zaanstad Beraad Raadzaal: TEST",
+        "S": 0.27,
+        "route": "aanhoudend",
+        "K": 0.16,
+        "n": 2,
+        "bronnen": 1
+      },
+      "n:https://lokaleregelgeving.overheid.nl/CVDR699867/2": {
+        "kop": "Machtiging tekenbevoegdheid collegestukken",
+        "S": 0.26,
+        "route": "aanhoudend",
+        "K": 0.17,
+        "n": 2,
+        "bronnen": 1
       },
       "a:55db5c0d37": {
         "kop": "Raadsvergadering: Reservedatum begroting",
@@ -1868,6 +1980,14 @@
         "S": 0.22,
         "route": "aanhoudend",
         "K": 1,
+        "n": 1,
+        "bronnen": 1
+      },
+      "n:https://zoek.officielebekendmakingen.nl/gmb-2026-517673.html": {
+        "kop": "Machtiging tekenbevoegdheid collegestukken",
+        "S": 0.22,
+        "route": "aanhoudend",
+        "K": 0.17,
         "n": 1,
         "bronnen": 1
       },
@@ -1893,62 +2013,6 @@
         "route": "aanhoudend",
         "K": 0.57,
         "n": 1,
-        "bronnen": 1
-      },
-      "n:https://zaanstad.bestuurlijkeinformatie.nl/Document/View/1fbec0bf-504f-4014-8808-dbf1b37dc6b9": {
-        "kop": "Gemeente Den Haag geeft het voorbeeld",
-        "S": 0.19,
-        "route": "aanhoudend",
-        "K": 0.57,
-        "n": 1,
-        "bronnen": 1
-      },
-      "n:https://zaanstad.bestuurlijkeinformatie.nl/Document/View/e8f55ebc-2c96-4064-87ff-1b8a8409c37a": {
-        "kop": "Het laatste nieuws uit Zaanstad",
-        "S": 0.19,
-        "route": "aanhoudend",
-        "K": 0.3,
-        "n": 1,
-        "bronnen": 1
-      },
-      "n:https://zoek.officielebekendmakingen.nl/gmb-2026-517656.html": {
-        "kop": "Machtiging tekenbevoegdheid burgemeestersbesluiten 10045012",
-        "S": 0.17,
-        "route": "aanhoudend",
-        "K": 0.16,
-        "n": 1,
-        "bronnen": 1
-      },
-      "n:https://www.deorkaan.nl/cameratoezicht-elzenstraat-weer-verlengd/": {
-        "kop": "Cameratoezicht Elzenstraat wéér verlengd",
-        "S": 0.17,
-        "route": "aanhoudend",
-        "K": 0.27,
-        "n": 1,
-        "bronnen": 1
-      },
-      "a:e26813c04c": {
-        "kop": "Geweigerde huisvestingsvergunning Klipperstraat 37 te Zaandam - Microsoft Teams",
-        "S": 0.17,
-        "route": "aanhoudend",
-        "K": 0.17,
-        "n": 3,
-        "bronnen": 1
-      },
-      "n:https://zoek.officielebekendmakingen.nl/gmb-2026-512951.html": {
-        "kop": "Melding graven bodem - Nabij Militaireweg 158 Krommenie , 17 meter richting zuidwesten",
-        "S": 0.16,
-        "route": "aanhoudend",
-        "K": 0.2,
-        "n": 2,
-        "bronnen": 1
-      },
-      "n:https://zoek.officielebekendmakingen.nl/gmb-2026-515500.html": {
-        "kop": "Melding toepassen grond en baggerspecie - Nabij Grote Tocht 33 Zaandam , 251 meter richting oosten",
-        "S": 0.16,
-        "route": "aanhoudend",
-        "K": 0.2,
-        "n": 3,
         "bronnen": 1
       }
     }
