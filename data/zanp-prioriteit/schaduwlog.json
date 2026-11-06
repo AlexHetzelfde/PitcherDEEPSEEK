@@ -1,19 +1,19 @@
 {
-  "gegenereerdOp": "2026-11-06T08:00:56.228Z",
+  "gegenereerdOp": "2026-11-06T09:00:53.862Z",
   "modus": "schaduw",
   "tau": 0.5,
   "stats": {
     "modus": "schaduw",
     "ai": true,
     "tekst": {
-      "werklijst": 1,
-      "lokaal": 1,
+      "werklijst": 2,
+      "lokaal": 2,
       "opgehaald": 0,
       "mislukt": 0,
       "uitgesteld": 0
     },
     "vergeten": 0,
-    "stukken": 316,
+    "stukken": 318,
     "kandidaten": 100,
     "metAnker": 100,
     "zonderAnker": 0,
@@ -31,6 +31,61 @@
     "rood": 8
   },
   "top": [
+    {
+      "key": "a:04d5e7cb5d",
+      "soort": "agenda",
+      "kop": "Raadsvergadering: Begroting",
+      "S": 0.92,
+      "Sa": 0.92,
+      "Sp": 0.58,
+      "route": "aanhoudend",
+      "K": 0.95,
+      "Kp": 0.61,
+      "n": 15,
+      "dagen": 9,
+      "bronnen": 3,
+      "ankers": [
+        "radsvergadering",
+        "begroting"
+      ],
+      "bewijs": [
+        {
+          "bron": "DeOrkaan",
+          "datum": "2026-11-04T23:00:00.000Z",
+          "c": 1,
+          "plek": "kop",
+          "titel": "Protest tegen statushouders in Oostzaan: raadsvergadering tijdelijk geschorst 📸 🎥"
+        },
+        {
+          "bron": "ibabs-ingekomen-stukken",
+          "datum": "2026-11-03T23:00:00.000Z",
+          "c": 0.91,
+          "plek": "kop",
+          "titel": "Begroting voor de deur: wat vragen we van onze ambtenaren?"
+        },
+        {
+          "bron": "DeOrkaan",
+          "datum": "2026-10-28T23:00:00.000Z",
+          "c": 0.91,
+          "plek": "kop",
+          "titel": "Zaanse begroting ronde twee: van AI tot gemeentehuis"
+        },
+        {
+          "bron": "DeOrkaan",
+          "datum": "2026-10-21T22:00:00.000Z",
+          "c": 0.91,
+          "plek": "kop",
+          "titel": "Eigen begroting oppositie Zaanstad: minima ontzien, toeristen betalen meer"
+        },
+        {
+          "bron": "DeOrkaan",
+          "datum": "2026-10-20T22:00:00.000Z",
+          "c": 0.91,
+          "plek": "kop",
+          "titel": "Rekenkamer twijfelt aan stevige basis sluitende begroting Zaanstad"
+        }
+      ]
+    },
     {
       "key": "n:https://lokaleregelgeving.overheid.nl/CVDR768780/1",
       "soort": "nieuws",
@@ -212,32 +267,6 @@
           "c": 0.68,
           "plek": "intro",
           "titel": "Septembercirculaire 2026"
-        }
-      ]
-    },
-    {
-      "key": "a:04d5e7cb5d",
-      "soort": "agenda",
-      "kop": "Raadsvergadering: Begroting",
-      "S": 0.23,
-      "Sa": 0.23,
-      "Sp": 0,
-      "route": "aanhoudend",
-      "K": 0.38,
-      "Kp": 0.22,
-      "n": 1,
-      "dagen": 1,
-      "bronnen": 1,
-      "ankers": [
-        "radsvergadering"
-      ],
-      "bewijs": [
-        {
-          "bron": "DeOrkaan",
-          "datum": "2026-11-04T23:00:00.000Z",
-          "c": 1,
-          "plek": "kop",
-          "titel": "Protest tegen statushouders in Oostzaan: raadsvergadering tijdelijk geschorst 📸 🎥"
         }
       ]
     },
@@ -458,43 +487,11 @@
       ]
     },
     {
-      "key": "n:https://www.noord-holland.nl/Actueel/Archief/2026/November_2026/Een_comfortabeler_monument_met_hetzelfde_karakter",
-      "soort": "nieuws",
-      "kop": "Een comfortabeler monument met hetzelfde karakter",
-      "S": 0.19,
-      "Sa": 0.19,
-      "Sp": 0,
-      "route": "aanhoudend",
-      "K": 0.56,
-      "Kp": 0.42,
-      "n": 1,
-      "dagen": 1,
-      "bronnen": 1,
-      "ankers": [
-        "comfortabeler",
-        "monument",
-        "karakter",
-        "hetzelfd",
-        "welgeleg",
-        "paviljo",
-        "klimatwek"
-      ],
-      "bewijs": [
-        {
-          "bron": "nh-actueel",
-          "datum": "2026-11-02T11:54:30.000Z",
-          "c": 0.63,
-          "plek": "intro",
-          "titel": "Schoon en veilig werken zonder motorgeronk"
-        }
-      ]
-    },
-    {
       "key": "n:https://lokaleregelgeving.overheid.nl/CVDR699867/2",
       "soort": "nieuws",
       "kop": "Machtiging tekenbevoegdheid collegestukken",
-      "S": 0.19,
-      "Sa": 0.19,
+      "S": 0.18,
+      "Sa": 0.18,
       "Sp": 0,
       "route": "aanhoudend",
       "K": 0.16,
@@ -548,7 +545,7 @@
         {
           "bron": "ibabs-ingekomen-stukken",
           "datum": "2026-11-03T23:00:00.000Z",
-          "c": 0.69,
+          "c": 0.68,
           "plek": "intro",
           "titel": "Aanbieding Kwaliteitscriteria Gezinshuizen 2026 | Verzoek registratie als ingekomen stuk"
         }
@@ -1219,6 +1216,29 @@
         "lezing",
         "zevenberg",
         "humor"
+      ],
+      "bewijs": []
+    },
+    {
+      "key": "a:4150f4ffc4",
+      "soort": "agenda",
+      "kop": "Ontdek hoe een kaartspel nieuwe gesprekken over de toekomst opent!",
+      "S": 0,
+      "Sa": 0,
+      "Sp": 0,
+      "route": "geen",
+      "K": 0,
+      "Kp": 0,
+      "n": 0,
+      "dagen": 0,
+      "bronnen": 0,
+      "ankers": [
+        "ontdek",
+        "kartspel",
+        "opent",
+        "atelier2100",
+        "toekomst",
+        "reminder"
       ],
       "bewijs": []
     }
