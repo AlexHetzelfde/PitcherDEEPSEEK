@@ -794,6 +794,7 @@ module.exports = {
   genereerPitches,
   schrijfMeldingen,
   beslisZelfdeNieuwsfeit,
+  roepGeminiWire, // ook voor de AI-controle van de prioriteitsfunctie (prioriteit/ai.js)
   PROMPT_VERSIE,
   PROMPT_VERSIE_WIRE,
   MODELLEN,

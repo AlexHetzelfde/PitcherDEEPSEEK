@@ -61,6 +61,7 @@ const { CONFIG: ALERT_CONFIG, beoordeelAlert, beperkAlerts } = require("./alert-
 const {
   schrijfMeldingen,
   beslisZelfdeNieuwsfeit,
+  roepGeminiWire,
   PROMPT_VERSIE_WIRE,
   BATCH_GROOTTE,
   ZELFDE_PER_VERZOEK,
@@ -681,7 +682,27 @@ async function draai(deps = {}) {
   if (prioriteit && !deps.scrape) {
     logFase("ZANP 9 — Prioriteit (rood)");
     try {
+      // De AI-controle (alleen tegenhouden, nooit rood maken) gebruikt het gewone
+      // quotum van ZANP. Zonder sleutel, bij een quotumstop of zonder dagruimte
+      // beslist de berekening alleen.
+      const aiRuimte = Math.max(0, inst.dagcap - status.gemini.gebruikt);
+      const aiVeto =
+        apiKey && prioriteit.maakAiVeto && aiRuimte > 0 && !(status.gemini.wachtTot && new Date(status.gemini.wachtTot) > nu)
+          ? prioriteit.maakAiVeto({
+              roep: roepGeminiWire,
+              apiKey,
+              ruimte: aiRuimte,
+              telVerzoeken: (n) => {
+                status.gemini.gebruikt += n;
+                run.verzoeken += n;
+              },
+              bijQuotum: (tekst) => {
+                status.gemini.wachtTot = wachtTotNaQuotum(tekst, nu);
+              },
+            })
+          : null;
       const uit = await prioriteit.draaiPrioriteit({
+        aiVeto,
         records,
         agendaItems,
         ruwe,
