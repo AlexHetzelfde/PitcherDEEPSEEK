@@ -7,6 +7,9 @@
 //   uit      de functie doet niets
 //   schaduw  (standaard) rekenen, bewaren en loggen, maar NIETS kleuren
 //   aan      rood wordt ook echt op agenda-items en berichten gezet
+//
+// AI-CONTROLE (omgevingsvariabele ZANP_PRIORITEIT_AI): 0 zet de AI-controle uit,
+// alles anders (ook niets) laat hem aan. Zonder AI beslist de berekening.
 
 "use strict";
 
@@ -35,6 +38,8 @@ const FORMULE = Object.freeze({
   templateMinDocs: 15, // een bron met minstens zoveel stukken kan sjabloonwoorden hebben
   templateAandeel: 0.3, // een woord in 30% van de stukken van één bron is sjabloon
   templateMinTreffers: 8,
+  ankerMinLetters: 4, // een anker (of een deel van een naamcombinatie) heeft minstens 4 letters
+  reeksJaccard: 0.4, // zelfde bron en minstens zoveel gelijkenis in de kop = reeks (zie analyse.js)
   soortAandeel: 0.025, // een woord in 2,5% van de agenda-koppen is een "soortwoord"
   soortMin: 3,
   termenPerDoc: 100, // hoeveel termen per stuk bewaard blijven
@@ -48,7 +53,7 @@ const FORMULE = Object.freeze({
   weegBreedte: 0.3,
   weegImpact: 0.3,
   weegImpactPiek: 0.6,
-  impactDrempelPiek: 0.3, // de piekroute werkt alleen bij een impact-signaal
+  impactDrempelPiek: 0.3, // de piekroute werkt alleen bij een impact-signaal (orde, conflict, aantal, geld)
   pieksVensterDagen: 2,
 
   // De drempel tau (zie score.js, bepaalTau)
@@ -61,6 +66,10 @@ const FORMULE = Object.freeze({
   bevestigRuns: 2, // score boven tau in 2 opeenvolgende runs
   hysterese: 0.05,
   noodremMax: 10, // meer dan zoveel nieuw rood in één run = verdacht
+
+  // AI-controle (zie ai.js): mag alleen tegenhouden, nooit rood maken
+  aiVerzoekenMax: 2, // hoogstens zoveel AI-verzoeken per run
+  aiPerVerzoek: 6, // zoveel items per verzoek
 });
 
 function getal(env, naam, standaard) {
@@ -74,6 +83,7 @@ function leesInstellingen(env = process.env) {
   const modus = ["uit", "schaduw", "aan"].includes(gevraagd) ? gevraagd : "schaduw";
   return {
     modus,
+    ai: getal(env, "ZANP_PRIORITEIT_AI", 1) > 0,
     formule: FORMULE,
     // Tekst ophalen (tekst.js)
     tekstMaxPerRun: getal(env, "ZANP_PRIORITEIT_TEKST_MAX", 80),

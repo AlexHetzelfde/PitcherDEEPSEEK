@@ -83,6 +83,16 @@ const SOORT_SEED = new Set(
     .map((w) => stam(schoon(w)))
 );
 
+// Organisaties die stukken publiceren. Hun naam staat in al hun stukken en zegt
+// dus niets over het onderwerp: zo'n woord is nooit een anker (zie analyse.js).
+const ORG_SEED = new Set(
+  `vervoerregio omgevingsdienst noordzeekanaalgebied hhnk bkz hoogheemraadschap hollands noorderkwartier rechtspraak
+  rechtbank rijksoverheid ibabs deorkaan orkaan waarheen`
+    .split(/\s+/)
+    .filter(Boolean)
+    .map((w) => stam(schoon(w)))
+);
+
 // Hoofdwoorden voor het splitsen van samenstellingen (Westerwateringtunnel =
 // Westerwatering + tunnel).
 const KOPPEN = [
@@ -183,6 +193,8 @@ function telImpact(stamLijst, bedragMax, getroffenMax) {
   return uit;
 }
 
+const AFGELAST = /\b(geannuleerd|afgelast|gaat niet door)\b/;
+
 /**
  * Analyseert één stuk (kop + volledige tekst).
  * Geeft de termen terug waarmee gematcht en gerekend wordt.
@@ -218,13 +230,18 @@ function analyseer({ kop = "", tekst = "" }) {
 
   const zin = (lichaam.match(/[^.!?\n]{40,}[.!?]/) || [""])[0].trim().slice(0, 200);
 
-  return { woorden, telling, kopStammen, introStammen, namen, impact, bedragMax, getroffenMax, kern: zin };
+  // Geannuleerd of afgelast, volgens de kop of de eerste regels van het stuk zelf.
+  const afgelast = AFGELAST.test(schoon(`${kopTekst} ${lichaam.slice(0, 400)}`));
+
+  return { woorden, telling, kopStammen, introStammen, namen, impact, bedragMax, getroffenMax, kern: zin, afgelast };
 }
 
 module.exports = {
   STOP,
   ALGEMEEN,
+  ORG_SEED,
   SOORT_SEED,
+  AFGELAST,
   schoon,
   stam,
   stammen,

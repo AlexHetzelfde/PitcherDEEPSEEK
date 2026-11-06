@@ -5,10 +5,11 @@
 //   bouwContext        zeldzaamheid van woorden over alle bewaarde stukken
 //   bouwZoekvraag      de zoekwoorden van één item (agenda-item of bericht)
 //   zoekEvidentie      welke bewaarde stukken gaan over dat item, en hoe centraal
+//   pasReeksregelToe   stukken van dezelfde reeks (sjabloon) tellen niet als bewijs
 
 "use strict";
 
-const { stammen, deelTermen, ALGEMEEN, SOORT_SEED } = require("./taal");
+const { stammen, deelTermen, ALGEMEEN, ORG_SEED, SOORT_SEED } = require("./taal");
 
 /**
  * De vingerafdruk: genoeg om later opnieuw te kunnen rekenen, te klein om
@@ -39,6 +40,7 @@ function maakVingerafdruk(a, meta, F) {
     bedrag: a.bedragMax || 0,
     getroffen: a.getroffenMax || 0,
     kern: a.kern || "",
+    afgelast: Boolean(a.afgelast),
     volledig: Boolean(meta.volledig),
     pogingen: meta.pogingen || 0,
     methode: meta.methode || "",
@@ -109,7 +111,15 @@ function bouwContext(vingerafdrukken, agendaKoppen, F) {
   for (const [t, n] of tel) if (n >= grens) soort.add(t);
 
   const idf = (t) => Math.log((N + 1) / ((df.get(t) || 0) + 1)) + 1;
-  return { N, df, template, soort, idf };
+  return { N, df, template, soort, org: ORG_SEED, idf };
+}
+
+// Een anker moet het onderwerp zelf noemen. Niet: een organisatie die al haar
+// stukken met haar naam vult, en niets korter dan ankerMinLetters letters
+// (ook niet als deel van een naamcombinatie als "dik_trompad").
+function geldigAnker(term, ctx, F) {
+  const delen = term.includes("_") ? term.split("_") : [term];
+  return delen.every((d) => d.length >= F.ankerMinLetters && !ctx.org.has(d));
 }
 
 function factor(t, a, ctx) {
@@ -155,7 +165,11 @@ function bouwZoekvraag(a, ctx, F) {
       term,
       w,
       delen: deelTermen(term),
-      anker: w >= F.ankerRelatief * maxW && w >= F.ankerMinGewicht && (ctx.df.get(term) || 0) <= dfGrens,
+      anker:
+        w >= F.ankerRelatief * maxW &&
+        w >= F.ankerMinGewicht &&
+        (ctx.df.get(term) || 0) <= dfGrens &&
+        geldigAnker(term, ctx, F),
     }));
   return { groepen, ankers: groepen.filter((g) => g.anker).map((g) => g.term) };
 }
@@ -233,7 +247,49 @@ function zoekEvidentie(vraag, vingerafdrukken, uitsluiten, F) {
       dekking,
       plek,
       treffers,
+      kop: sets.kop,
     });
+  }
+  return uit;
+}
+
+function titelGelijkenis(a, b) {
+  if (!a.size || !b.size) return 0;
+  let gemeen = 0;
+  for (const t of a) if (b.has(t)) gemeen++;
+  return gemeen / (a.size + b.size - gemeen);
+}
+
+/**
+ * De reeksregel. Een bron die steeds hetzelfde soort stuk publiceert (een
+ * reeks verkeersbesluiten, een reeks bekendmakingen over graven) laat de
+ * stukken op elkaar lijken zonder dat ze over hetzelfde onderwerp gaan. Twee
+ * stukken van dezelfde bron met bijna dezelfde kop (kopgelijkenis van minstens
+ * reeksJaccard) zijn daarom één reeks:
+ *   - een stuk uit de reeks van het item zelf telt niet als bewijs;
+ *   - van de rest telt per reeks alleen het meest centrale stuk.
+ * Andere bronnen tellen gewoon apart mee: hetzelfde nieuws via meer bronnen
+ * is meer bewijs. Stukken onder minCentraliteit vallen hier ook af.
+ *
+ * @param {object[]} evidentie  uit zoekEvidentie
+ * @param {{bron: string, kop: Iterable<string>}} eigen  bron en kopstammen van het item
+ */
+function pasReeksregelToe(evidentie, eigen, F) {
+  const eigenKop = new Set(eigen && eigen.kop ? eigen.kop : []);
+  const eigenBron = eigen && eigen.bron;
+  const zelfdeReeks = (bronA, kopA, bronB, kopB) =>
+    bronA && bronA === bronB && titelGelijkenis(kopA, kopB) >= F.reeksJaccard;
+
+  const rij = evidentie
+    .filter((e) => e.c >= F.minCentraliteit)
+    .filter((e) => !zelfdeReeks(eigenBron, eigenKop, e.bron, e.kop))
+    .sort((x, y) => y.c - x.c);
+  const gezien = [];
+  const uit = [];
+  for (const e of rij) {
+    const dubbel = gezien.some((g) => zelfdeReeks(g.bron, g.kop, e.bron, e.kop));
+    gezien.push(e);
+    if (!dubbel) uit.push(e);
   }
   return uit;
 }
@@ -244,4 +300,5 @@ module.exports = {
   bouwContext,
   bouwZoekvraag,
   zoekEvidentie,
+  pasReeksregelToe,
 };

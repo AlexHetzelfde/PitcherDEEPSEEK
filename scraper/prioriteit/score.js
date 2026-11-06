@@ -12,7 +12,11 @@
 //   PIEK        veel in de laatste 48 uur, uit meerdere bronnen, MET impact:
 //               kern = (intensiteit x breedte x diepte)^(1/3), x (1 + 0,60 impact)
 //               Zonder impact-signaal telt deze route niet: een incident met
-//               veel artikelen is dan nog geen groot onderwerp.
+//               veel artikelen is dan nog geen groot onderwerp. Voor de piek
+//               telt alleen echte impact (orde, conflict, aantal getroffenen,
+//               geld). Ambtelijke woorden als "besluit" of "voorziening" zijn
+//               geen reden voor een piek: drie officiële stukken over een
+//               gewoon verkeersbesluit zijn geen groot onderwerp.
 //
 // Alle bronnen wegen gelijk. Elk stuk telt één keer (één per url, ook als het
 // bericht bijgewerkt wordt). Een extra stuk kan de score nooit verlagen.
@@ -27,6 +31,9 @@ const IMPACT_GEWICHT = Object.freeze({
   geld: 0.2,
   besluit: 0.2,
 });
+
+// De categorieën die de piekroute openen en versterken.
+const PIEK_CATS = Object.freeze(["orde", "conflict", "aantal", "geld"]);
 
 const DAG_MS = 24 * 3600 * 1000;
 
@@ -46,32 +53,39 @@ function verval(leeftijd, F) {
 
 /**
  * Impact-signaal K (0 tot 1): hoeveel impactwoorden staan er in het item zelf
- * en in de stukken erover, naar centraliteit en verval.
+ * en in de stukken erover, naar centraliteit en verval. Standaard over alle
+ * categorieën; met `cats` alleen over de genoemde (zie PIEK_CATS).
  */
-function berekenImpact(eigenImpact, evidentie, nu, F) {
+function berekenImpact(eigenImpact, evidentie, nu, F, cats = null) {
+  const lijst = cats || Object.keys(IMPACT_GEWICHT);
   const som = {};
-  for (const cat of Object.keys(IMPACT_GEWICHT)) som[cat] = 0;
+  for (const cat of lijst) som[cat] = 0;
   const tel = (impact, gewicht) => {
-    for (const cat of Object.keys(IMPACT_GEWICHT)) {
+    for (const cat of lijst) {
       som[cat] += gewicht * Math.min(3, (impact && impact[cat]) || 0);
     }
   };
   if (eigenImpact) tel(eigenImpact, 1);
   for (const e of evidentie) tel(e.impact, e.c * verval(leeftijdDagen(e.datum, nu), F));
   let K = 0;
-  for (const [cat, gewicht] of Object.entries(IMPACT_GEWICHT)) K += gewicht * sat(som[cat], 1.0);
+  for (const cat of lijst) K += IMPACT_GEWICHT[cat] * sat(som[cat], 1.0);
   return Math.min(1, K);
 }
 
-function leegScore(K) {
-  return { S: 0, Sa: 0, Sp: 0, route: "geen", n: 0, dagen: 0, bronnen: 0, K: K || 0 };
+function leegScore(K, Kp) {
+  return { S: 0, Sa: 0, Sp: 0, route: "geen", n: 0, dagen: 0, bronnen: 0, K: K || 0, Kp: Kp || 0 };
 }
 
-function berekenScore(evidentie, K, nu, F) {
+/**
+ * @param {number} K   impact over alle categorieën (versterkt de aanhoudende route)
+ * @param {number} [Kp] impact over PIEK_CATS (opent en versterkt de piekroute);
+ *                      zonder opgave geldt K
+ */
+function berekenScore(evidentie, K, nu, F, Kp = K) {
   const A = evidentie
     .filter((e) => e.c >= F.minCentraliteit)
     .map((e) => ({ ...e, leeftijd: leeftijdDagen(e.datum, nu) }));
-  if (!A.length) return leegScore(K);
+  if (!A.length) return leegScore(K, Kp);
 
   let nEff = 0;
   let dEff = 0;
@@ -95,7 +109,7 @@ function berekenScore(evidentie, K, nu, F) {
 
   let Sp = 0;
   const recent = A.filter((a) => a.leeftijd <= F.pieksVensterDagen);
-  if (recent.length && K >= F.impactDrempelPiek) {
+  if (recent.length && Kp >= F.impactDrempelPiek) {
     let nI = 0;
     let dI = 0;
     const bI = new Set();
@@ -106,7 +120,7 @@ function berekenScore(evidentie, K, nu, F) {
     }
     Sp =
       Math.cbrt(sat(nI, F.kPiek) * sat(bI.size - 1, F.kBreedte) * sat(dI, F.kDiepte)) *
-      (1 + F.weegImpactPiek * K);
+      (1 + F.weegImpactPiek * Kp);
   }
 
   return {
@@ -118,6 +132,7 @@ function berekenScore(evidentie, K, nu, F) {
     dagen: dag.size,
     bronnen: bronnen.size,
     K,
+    Kp,
   };
 }
 
@@ -141,4 +156,4 @@ function bepaalTau(scores, F) {
   return Math.min(F.tauMax, Math.max(F.tauMin, med + F.tauMadFactor * mad));
 }
 
-module.exports = { IMPACT_GEWICHT, sat, leeftijdDagen, berekenImpact, berekenScore, bepaalTau };
+module.exports = { IMPACT_GEWICHT, PIEK_CATS, sat, leeftijdDagen, berekenImpact, berekenScore, bepaalTau };

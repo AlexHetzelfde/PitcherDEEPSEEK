@@ -10,8 +10,10 @@
 //  - Noodrem: worden er in één run meer dan noodremMax items nieuw rood, dan
 //    blijven alleen de hoogste scores over en komt er een waarschuwing in het
 //    log. Drie of vier tegelijk is gewoon.
-//  - De AI mag alleen veto uitspreken (nooit rood maken). Is er geen aiVeto,
-//    dan beslist alleen de berekening.
+//  - De AI mag alleen veto uitspreken (nooit rood maken, zie ai.js). Is er geen
+//    aiVeto, of mislukt hij, dan beslist alleen de berekening. Een veto blijft
+//    gelden zolang het item boven de drempel blijft; zakt het ruim eronder,
+//    dan begint het opnieuw.
 
 "use strict";
 
@@ -67,7 +69,18 @@ async function beslis({ kandidaten, tau, geheugen, nu, F, aiVeto = null, log = c
   let toegestaan = gekozen;
   if (aiVeto && gekozen.length) {
     try {
-      const uitslag = await aiVeto(gekozen.map((k) => ({ key: k.key, soort: k.soort, kop: k.kop, reden: k.reden })));
+      const uitslag = await aiVeto(
+        gekozen.map((k) => ({
+          key: k.key,
+          soort: k.soort,
+          kop: k.kop,
+          kern: k.kern,
+          ankers: k.ankers,
+          reden: k.reden,
+          bewijs: k.bewijs,
+        })),
+        { maxVerzoeken: F.aiVerzoekenMax, perVerzoek: F.aiPerVerzoek }
+      );
       toegestaan = gekozen.filter((k) => {
         const v = uitslag && typeof uitslag.get === "function" ? uitslag.get(k.key) : null;
         if (v === false) {

@@ -8,8 +8,11 @@
 //     en per stuk een vingerafdruk bewaren (analyse.js). De tekst zelf wordt
 //     alleen in data/zanp-prioriteit/teksten-*.jsonl bewaard.
 //  2. Voor elk item dat rood kan worden: zoekwoorden bepalen, de bewaarde
-//     stukken erover zoeken, impact meten, de score berekenen (score.js).
-//  3. De drempel tau bepalen en beslissen (beslis.js).
+//     stukken erover zoeken, reeksen van dezelfde bron tot één stuk
+//     samenvoegen, impact meten, de score berekenen (score.js). Geannuleerde
+//     agenda-items doen niet mee en dubbele agenda-items tellen als één.
+//  3. De drempel tau bepalen en beslissen (beslis.js), met als laatste stap
+//     een optionele AI-controle die alleen kan tegenhouden (ai.js).
 //  4. In modus "aan": het veld `rood` op de items zetten. In modus "schaduw"
 //     alleen rekenen en loggen.
 //
@@ -20,9 +23,17 @@
 
 const { kalenderdagAmsterdam } = require("../hulpmiddelen");
 const { leesInstellingen } = require("./instellingen");
-const { analyseer } = require("./taal");
-const { maakVingerafdruk, analyseUitVingerafdruk, bouwContext, bouwZoekvraag, zoekEvidentie } = require("./analyse");
-const { berekenImpact, berekenScore, bepaalTau } = require("./score");
+const { analyseer, schoon, AFGELAST } = require("./taal");
+const {
+  maakVingerafdruk,
+  analyseUitVingerafdruk,
+  bouwContext,
+  bouwZoekvraag,
+  zoekEvidentie,
+  pasReeksregelToe,
+} = require("./analyse");
+const { berekenImpact, berekenScore, bepaalTau, PIEK_CATS } = require("./score");
+const { maakAiVeto } = require("./ai");
 const { beslis } = require("./beslis");
 const { maakWerklijst, haalTeksten, agendaKomt, laatstePerGroep } = require("./tekst");
 const { mapVan, leesGeheugen, schrijfGeheugen, ruimOp, schrijfSchaduwlog, voegTekstenToe } = require("./geheugen");
@@ -45,13 +56,20 @@ function openbaar(e) {
   return { sinds: e.sinds, score: e.score, route: e.route, reden: e.reden };
 }
 
+// Dezelfde kop op dezelfde startdag is hetzelfde agenda-item, ook als meer
+// bronnen het melden.
+function dubbelSleutel(i) {
+  const kop = schoon(i.kop || "").replace(/[^a-z0-9]+/g, " ").trim();
+  return `${kop}|${i.startDag || ""}`;
+}
+
 function maakReden(k, s, evidentie, F) {
   const meetellend = evidentie.filter((e) => e.c >= F.minCentraliteit);
   const bronnen = [...new Set(meetellend.map((e) => e.bron))].slice(0, 3).join(", ");
   return (
     `${s.n} stuk(ken) over ${k.ankers.slice(0, 3).join(", ")} in ${s.dagen} dag(en) uit ${s.bronnen} bron(nen)` +
     `${bronnen ? ` (${bronnen})` : ""}; ${s.route === "piek" ? "piek in de laatste 48 uur" : "aanhoudend"}; ` +
-    `impact ${s.K.toFixed(2)}; score ${s.S.toFixed(2)}`
+    `impact ${(s.route === "piek" ? s.Kp : s.K).toFixed(2)}; score ${s.S.toFixed(2)}`
   );
 }
 
@@ -70,7 +88,7 @@ async function draaiPrioriteit(opties) {
 
   const inst = leesInstellingen(env);
   const F = inst.formule;
-  const stats = { modus: inst.modus };
+  const stats = { modus: inst.modus, ai: Boolean(aiVeto) && inst.ai };
   if (inst.modus === "uit") return { records, agendaItems, stats };
 
   const map = mapVan(env);
@@ -137,15 +155,45 @@ async function draaiPrioriteit(opties) {
   // 2. Kandidaten: wat kan rood worden?
   const kandidaten = [];
   const nieuwsGrens = nu.getTime() - F.nieuwsVersUren * 3600 * 1000;
+  // Agenda: geannuleerde items doen niet mee, dubbele items worden één kandidaat.
+  const aliasVan = new Map(); // sleutel van een dubbel item -> sleutel van de kandidaat
+  const dubbelGroepen = new Map();
+  let afgelast = 0;
   for (const i of agendaItems) {
     if (!agendaKomt(i, vandaag, F)) continue;
+    const sleutel = `a:${i.id}`;
+    const fp = geheugen.docs[sleutel];
+    if (i.status === "VERVALLEN" || AFGELAST.test(schoon(i.kop || "")) || (fp && fp.afgelast)) {
+      afgelast++;
+      continue;
+    }
+    const dk = dubbelSleutel(i);
+    if (!dubbelGroepen.has(dk)) dubbelGroepen.set(dk, []);
+    dubbelGroepen.get(dk).push({ i, sleutel, fp });
+  }
+  let dubbel = 0;
+  for (const lijst of dubbelGroepen.values()) {
+    // Voorkeur: het item dat al rood is, daarna het item met de meeste tekst.
+    lijst.sort(
+      (x, y) =>
+        Number(Boolean(geheugen.rood[y.sleutel])) - Number(Boolean(geheugen.rood[x.sleutel])) ||
+        ((y.fp && y.fp.woorden) || 0) - ((x.fp && x.fp.woorden) || 0)
+    );
+    const { i, sleutel, fp } = lijst[0];
+    const gelijk = new Set(lijst.map((x) => x.sleutel));
+    for (const x of lijst.slice(1)) {
+      aliasVan.set(x.sleutel, sleutel);
+      dubbel++;
+    }
     kandidaten.push({
-      key: `a:${i.id}`,
+      key: sleutel,
       soort: "agenda",
       kop: i.kop || "",
       url: i.url,
+      bron: i.bronId,
       tot: i.eindDag,
       groepen: eigenGroepen(i),
+      gelijk,
     });
   }
   for (const r of laatstePerGroep(records)) {
@@ -157,8 +205,10 @@ async function draaiPrioriteit(opties) {
       soort: "nieuws",
       kop: r.bronTitel || r.kop || "",
       url: r.url,
+      bron: r.bronId,
       tot: null,
       groepen: new Set([r.groepId || r.id]),
+      gelijk: new Set([`n:${r.url}`]),
     });
   }
 
@@ -175,10 +225,14 @@ async function draaiPrioriteit(opties) {
       zonderAnker++;
       continue;
     }
-    const uitsluiten = (ander) => ander.k === k.key || ander.url === k.url || (ander.groep && k.groepen.has(ander.groep));
-    const evidentie = zoekEvidentie(vraag, vingerafdrukken, uitsluiten, F);
+    const uitsluiten = (ander) =>
+      k.gelijk.has(ander.k) || ander.url === k.url || (ander.groep && k.groepen.has(ander.groep));
+    const ruw = zoekEvidentie(vraag, vingerafdrukken, uitsluiten, F);
+    const evidentie = pasReeksregelToe(ruw, { bron: (fp && fp.bron) || k.bron, kop: a.kopStammen }, F);
     const K = berekenImpact(a.impact, evidentie, nu, F);
-    const score = berekenScore(evidentie, K, nu, F);
+    const Kp = berekenImpact(a.impact, evidentie, nu, F, PIEK_CATS);
+    const score = berekenScore(evidentie, K, nu, F, Kp);
+    k.kern = (fp && fp.kern) || "";
     k.ankers = vraag.ankers;
     k.score = score;
     k.reden = maakReden(k, score, evidentie, F);
@@ -193,10 +247,20 @@ async function draaiPrioriteit(opties) {
   const tau = bepaalTau(gescoord.map((k) => k.score.S), F);
 
   // 4. Beslissen
-  const besluit = await beslis({ kandidaten: gescoord, tau, geheugen, nu, F, aiVeto, log });
+  const besluit = await beslis({
+    kandidaten: gescoord,
+    tau,
+    geheugen,
+    nu,
+    F,
+    aiVeto: inst.ai ? aiVeto : null,
+    log,
+  });
   stats.kandidaten = kandidaten.length;
   stats.metAnker = gescoord.length;
   stats.zonderAnker = zonderAnker;
+  stats.afgelast = afgelast;
+  stats.dubbel = dubbel;
   stats.tau = afronden(tau);
   stats.besluit = besluit.stats;
   stats.rood = Object.keys(geheugen.rood).length;
@@ -217,6 +281,7 @@ async function draaiPrioriteit(opties) {
       Sp: afronden(k.score.Sp),
       route: k.score.route,
       K: afronden(k.score.K),
+      Kp: afronden(k.score.Kp),
       n: k.score.n,
       dagen: k.score.dagen,
       bronnen: k.score.bronnen,
@@ -237,10 +302,11 @@ async function draaiPrioriteit(opties) {
     return e ? { ...r, rood: openbaar(e) } : r;
   });
   const nieuweAgenda = agendaItems.map((i) => {
-    const e = geheugen.rood[`a:${i.id}`];
+    const sleutel = `a:${i.id}`;
+    const e = geheugen.rood[sleutel] || geheugen.rood[aliasVan.get(sleutel)];
     return e ? { ...i, rood: openbaar(e) } : i;
   });
   return { records: nieuweRecords, agendaItems: nieuweAgenda, stats };
 }
 
-module.exports = { draaiPrioriteit, leesInstellingen };
+module.exports = { draaiPrioriteit, leesInstellingen, maakAiVeto };
