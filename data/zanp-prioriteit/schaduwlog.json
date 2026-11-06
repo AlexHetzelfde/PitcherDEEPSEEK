@@ -1,5 +1,5 @@
 {
-  "gegenereerdOp": "2026-11-06T19:00:56.461Z",
+  "gegenereerdOp": "2026-11-06T19:15:35.910Z",
   "modus": "schaduw",
   "tau": 0.5,
   "stats": {
@@ -299,8 +299,8 @@
       "key": "n:https://zoek.officielebekendmakingen.nl/gmb-2026-517656.html",
       "soort": "nieuws",
       "kop": "Machtiging tekenbevoegdheid burgemeestersbesluiten 10045012",
-      "S": 0.22,
-      "Sa": 0.22,
+      "S": 0.21,
+      "Sa": 0.21,
       "Sp": 0,
       "route": "aanhoudend",
       "K": 0.16,
@@ -327,8 +327,8 @@
       "key": "n:https://zoek.officielebekendmakingen.nl/gmb-2026-508877.html",
       "soort": "nieuws",
       "kop": "Verkeersbesluit, instellen stopverplichting fietsverkeer Stijlpad Assendelft",
-      "S": 0.22,
-      "Sa": 0.22,
+      "S": 0.21,
+      "Sa": 0.21,
       "Sp": 0,
       "route": "aanhoudend",
       "K": 0.82,
