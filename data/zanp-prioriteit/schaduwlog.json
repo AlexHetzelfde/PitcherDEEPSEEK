@@ -1,5 +1,5 @@
 {
-  "gegenereerdOp": "2026-11-06T18:00:55.883Z",
+  "gegenereerdOp": "2026-11-06T19:00:56.461Z",
   "modus": "schaduw",
   "tau": 0.5,
   "stats": {
@@ -21,11 +21,11 @@
     "dubbel": 1,
     "tau": 0.5,
     "besluit": {
-      "boven": 1,
+      "boven": 0,
       "wacht": 0,
       "onderdrukt": 0,
       "veto": 0,
-      "nieuwRood": 1,
+      "nieuwRood": 0,
       "noodrem": false
     },
     "rood": 9
@@ -583,8 +583,8 @@
       "key": "n:https://zoek.officielebekendmakingen.nl/gmb-2026-503010.html",
       "soort": "nieuws",
       "kop": "Kennisgeving voornemen Wijziging omgevingsplan technische aanpassingen",
-      "S": 0.12,
-      "Sa": 0.12,
+      "S": 0.11,
+      "Sa": 0.11,
       "Sp": 0,
       "route": "aanhoudend",
       "K": 0.16,
@@ -938,8 +938,8 @@
       "key": "a:54bf0d34fe",
       "soort": "agenda",
       "kop": "Verkeersbesluit plaatsen laadpaal voor elektrische auto's locatie Kaaikhof te Assendelft",
-      "S": 0.06,
-      "Sa": 0.06,
+      "S": 0.05,
+      "Sa": 0.05,
       "Sp": 0,
       "route": "aanhoudend",
       "K": 0.16,
