@@ -1,13 +1,13 @@
 {
-  "gegenereerdOp": "2026-11-05T23:00:55.719Z",
+  "gegenereerdOp": "2026-11-06T00:00:55.879Z",
   "modus": "schaduw",
   "tau": 0.5,
   "stats": {
     "modus": "schaduw",
     "tekst": {
-      "werklijst": 1,
+      "werklijst": 0,
       "lokaal": 0,
-      "opgehaald": 1,
+      "opgehaald": 0,
       "mislukt": 0,
       "uitgesteld": 0
     },
@@ -19,13 +19,13 @@
     "tau": 0.5,
     "besluit": {
       "boven": 3,
-      "wacht": 3,
+      "wacht": 0,
       "onderdrukt": 0,
       "veto": 0,
-      "nieuwRood": 0,
+      "nieuwRood": 3,
       "noodrem": false
     },
-    "rood": 4
+    "rood": 7
   },
   "top": [
     {
@@ -510,8 +510,8 @@
       "key": "n:https://zoek.officielebekendmakingen.nl/gmb-2026-508923.html",
       "soort": "nieuws",
       "kop": "Verkeersbesluit, instellen stopverlichting fietsverkeer Themapad Assendelft",
-      "S": 0.4,
-      "Sa": 0.4,
+      "S": 0.39,
+      "Sa": 0.39,
       "Sp": 0,
       "route": "aanhoudend",
       "K": 0.94,
@@ -953,8 +953,8 @@
       "key": "a:e26813c04c",
       "soort": "agenda",
       "kop": "Geweigerde huisvestingsvergunning Klipperstraat 37 te Zaandam - Microsoft Teams",
-      "S": 0.17,
-      "Sa": 0.17,
+      "S": 0.16,
+      "Sa": 0.16,
       "Sp": 0,
       "route": "aanhoudend",
       "K": 0.17,
