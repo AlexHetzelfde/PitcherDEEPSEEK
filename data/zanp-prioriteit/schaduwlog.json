@@ -1,5 +1,5 @@
 {
-  "gegenereerdOp": "2026-11-06T00:00:55.879Z",
+  "gegenereerdOp": "2026-11-06T01:00:53.276Z",
   "modus": "schaduw",
   "tau": 0.5,
   "stats": {
@@ -18,11 +18,11 @@
     "zonderAnker": 0,
     "tau": 0.5,
     "besluit": {
-      "boven": 3,
+      "boven": 0,
       "wacht": 0,
       "onderdrukt": 0,
       "veto": 0,
-      "nieuwRood": 3,
+      "nieuwRood": 0,
       "noodrem": false
     },
     "rood": 7
@@ -32,8 +32,8 @@
       "key": "a:04d5e7cb5d",
       "soort": "agenda",
       "kop": "Raadsvergadering: Begroting",
-      "S": 0.95,
-      "Sa": 0.95,
+      "S": 0.94,
+      "Sa": 0.94,
       "Sp": 0,
       "route": "aanhoudend",
       "K": 1,
@@ -83,11 +83,64 @@
       ]
     },
     {
+      "key": "a:4a5ff898e2",
+      "soort": "agenda",
+      "kop": "Zaanstad Beraad",
+      "S": 0.71,
+      "Sa": 0.71,
+      "Sp": 0,
+      "route": "aanhoudend",
+      "K": 1,
+      "n": 7,
+      "dagen": 4,
+      "bronnen": 2,
+      "ankers": [
+        "berad"
+      ],
+      "bewijs": [
+        {
+          "bron": "zaanstad-kalender",
+          "datum": "2026-11-01T15:55:49.908Z",
+          "c": 1,
+          "plek": "kop",
+          "titel": "Zaanstad Beraad"
+        },
+        {
+          "bron": "zaanstad-kalender",
+          "datum": "2026-11-01T15:55:49.908Z",
+          "c": 1,
+          "plek": "kop",
+          "titel": "Zaanstad Beraad"
+        },
+        {
+          "bron": "DeOrkaan",
+          "datum": "2026-11-03T23:00:00.000Z",
+          "c": 0.92,
+          "plek": "kop",
+          "titel": "Begrotingsdebat Zaanstad Beraad #2: ‘eerlijk antwoord’ en ‘juiste feiten’"
+        },
+        {
+          "bron": "zaanstad-kalender",
+          "datum": "2026-11-01T15:55:49.908Z",
+          "c": 0.78,
+          "plek": "intro",
+          "titel": "Raadsvergadering: Reservedatum begroting"
+        },
+        {
+          "bron": "zaanstad-kalender",
+          "datum": "2026-11-01T15:55:49.908Z",
+          "c": 0.73,
+          "plek": "intro",
+          "titel": "Werkbezoek: Werkom"
+        }
+      ]
+    },
+    {
       "key": "a:9f19133212",
       "soort": "agenda",
       "kop": "Zaanstad Beraad",
-      "S": 0.72,
-      "Sa": 0.72,
+      "S": 0.71,
+      "Sa": 0.71,
       "Sp": 0,
       "route": "aanhoudend",
       "K": 1,
@@ -139,61 +192,8 @@
       "key": "a:a40d7a33f0",
       "soort": "agenda",
       "kop": "Zaanstad Beraad",
-      "S": 0.72,
-      "Sa": 0.72,
-      "Sp": 0,
-      "route": "aanhoudend",
-      "K": 1,
-      "n": 7,
-      "dagen": 4,
-      "bronnen": 2,
-      "ankers": [
-        "berad"
-      ],
-      "bewijs": [
-        {
-          "bron": "zaanstad-kalender",
-          "datum": "2026-11-01T15:55:49.908Z",
-          "c": 1,
-          "plek": "kop",
-          "titel": "Zaanstad Beraad"
-        },
-        {
-          "bron": "zaanstad-kalender",
-          "datum": "2026-11-01T15:55:49.908Z",
-          "c": 1,
-          "plek": "kop",
-          "titel": "Zaanstad Beraad"
-        },
-        {
-          "bron": "DeOrkaan",
-          "datum": "2026-11-03T23:00:00.000Z",
-          "c": 0.92,
-          "plek": "kop",
-          "titel": "Begrotingsdebat Zaanstad Beraad #2: ‘eerlijk antwoord’ en ‘juiste feiten’"
-        },
-        {
-          "bron": "zaanstad-kalender",
-          "datum": "2026-11-01T15:55:49.908Z",
-          "c": 0.78,
-          "plek": "intro",
-          "titel": "Raadsvergadering: Reservedatum begroting"
-        },
-        {
-          "bron": "zaanstad-kalender",
-          "datum": "2026-11-01T15:55:49.908Z",
-          "c": 0.73,
-          "plek": "intro",
-          "titel": "Werkbezoek: Werkom"
-        }
-      ]
-    },
-    {
-      "key": "a:4a5ff898e2",
-      "soort": "agenda",
-      "kop": "Zaanstad Beraad",
-      "S": 0.72,
-      "Sa": 0.72,
+      "S": 0.71,
+      "Sa": 0.71,
       "Sp": 0,
       "route": "aanhoudend",
       "K": 1,
@@ -300,8 +300,8 @@
       "key": "n:https://zoek.officielebekendmakingen.nl/gmb-2026-517023.html",
       "soort": "nieuws",
       "kop": "Aanwijzingsbesluit verlenging tijdelijk cameratoezicht Elzenstraat in Wormerveer",
-      "S": 0.48,
-      "Sa": 0.48,
+      "S": 0.47,
+      "Sa": 0.47,
       "Sp": 0,
       "route": "aanhoudend",
       "K": 0.64,
@@ -545,8 +545,8 @@
       "key": "n:https://zaanstad.bestuurlijkeinformatie.nl/Reports/Item/ca542b04-ff0c-4e5e-b854-c8a6e61461d0",
       "soort": "nieuws",
       "kop": "Platform31 Nieuwsbrief | 29 oktober 2026",
-      "S": 0.36,
-      "Sa": 0.36,
+      "S": 0.35,
+      "Sa": 0.35,
       "Sp": 0,
       "route": "aanhoudend",
       "K": 0.27,
@@ -697,8 +697,8 @@
       "key": "n:https://www.deorkaan.nl/begrotingsdebat-zaanstad-beraad-2-eerlijk-antwoord-en-juiste-feiten/",
       "soort": "nieuws",
       "kop": "Begrotingsdebat Zaanstad Beraad #2: ‘eerlijk antwoord’ en ‘juiste feiten’",
-      "S": 0.22,
-      "Sa": 0.22,
+      "S": 0.21,
+      "Sa": 0.21,
       "Sp": 0,
       "route": "aanhoudend",
       "K": 1,
@@ -765,8 +765,8 @@
       "key": "n:https://www.deorkaan.nl/topkolf-in-t-moriaanshoofd-in-wormer/",
       "soort": "nieuws",
       "kop": "Topkolf in ’t Moriaanshoofd in Wormer",
-      "S": 0.2,
-      "Sa": 0.2,
+      "S": 0.19,
+      "Sa": 0.19,
       "Sp": 0,
       "route": "aanhoudend",
       "K": 0.15,
@@ -800,7 +800,7 @@
       "Sa": 0.19,
       "Sp": 0,
       "route": "aanhoudend",
-      "K": 0.57,
+      "K": 0.56,
       "n": 1,
       "dagen": 1,
       "bronnen": 1,
@@ -1209,7 +1209,7 @@
       "Sa": 0.11,
       "Sp": 0,
       "route": "aanhoudend",
-      "K": 0.17,
+      "K": 0.16,
       "n": 1,
       "dagen": 1,
       "bronnen": 1,
