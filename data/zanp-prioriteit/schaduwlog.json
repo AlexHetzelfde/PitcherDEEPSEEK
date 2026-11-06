@@ -1,21 +1,21 @@
 {
-  "gegenereerdOp": "2026-11-06T10:00:58.177Z",
+  "gegenereerdOp": "2026-11-06T11:00:53.337Z",
   "modus": "schaduw",
   "tau": 0.5,
   "stats": {
     "modus": "schaduw",
     "ai": true,
     "tekst": {
-      "werklijst": 2,
-      "lokaal": 2,
+      "werklijst": 1,
+      "lokaal": 1,
       "opgehaald": 0,
       "mislukt": 0,
       "uitgesteld": 0
     },
     "vergeten": 0,
-    "stukken": 320,
-    "kandidaten": 101,
-    "metAnker": 101,
+    "stukken": 321,
+    "kandidaten": 100,
+    "metAnker": 100,
     "zonderAnker": 0,
     "afgelast": 1,
     "dubbel": 1,
@@ -31,61 +31,6 @@
     "rood": 8
   },
   "top": [
-    {
-      "key": "a:04d5e7cb5d",
-      "soort": "agenda",
-      "kop": "Raadsvergadering: Begroting",
-      "S": 0.92,
-      "Sa": 0.92,
-      "Sp": 0.58,
-      "route": "aanhoudend",
-      "K": 0.95,
-      "Kp": 0.61,
-      "n": 15,
-      "dagen": 9,
-      "bronnen": 3,
-      "ankers": [
-        "radsvergadering",
-        "begroting"
-      ],
-      "bewijs": [
-        {
-          "bron": "DeOrkaan",
-          "datum": "2026-11-04T23:00:00.000Z",
-          "c": 1,
-          "plek": "kop",
-          "titel": "Protest tegen statushouders in Oostzaan: raadsvergadering tijdelijk geschorst 📸 🎥"
-        },
-        {
-          "bron": "ibabs-ingekomen-stukken",
-          "datum": "2026-11-03T23:00:00.000Z",
-          "c": 0.91,
-          "plek": "kop",
-          "titel": "Begroting voor de deur: wat vragen we van onze ambtenaren?"
-        },
-        {
-          "bron": "DeOrkaan",
-          "datum": "2026-10-28T23:00:00.000Z",
-          "c": 0.91,
-          "plek": "kop",
-          "titel": "Zaanse begroting ronde twee: van AI tot gemeentehuis"
-        },
-        {
-          "bron": "DeOrkaan",
-          "datum": "2026-10-21T22:00:00.000Z",
-          "c": 0.91,
-          "plek": "kop",
-          "titel": "Eigen begroting oppositie Zaanstad: minima ontzien, toeristen betalen meer"
-        },
-        {
-          "bron": "DeOrkaan",
-          "datum": "2026-10-20T22:00:00.000Z",
-          "c": 0.91,
-          "plek": "kop",
-          "titel": "Rekenkamer twijfelt aan stevige basis sluitende begroting Zaanstad"
-        }
-      ]
-    },
     {
       "key": "n:https://lokaleregelgeving.overheid.nl/CVDR768780/1",
       "soort": "nieuws",
@@ -282,8 +227,8 @@
       "key": "n:https://zaanstad.bestuurlijkeinformatie.nl/Document/View/0c06a5b5-5ff0-4908-8c05-cefd51385e97",
       "soort": "nieuws",
       "kop": "Inkoop specialistische jeugdhulp 2027",
-      "S": 0.27,
-      "Sa": 0.27,
+      "S": 0.26,
+      "Sa": 0.26,
       "Sp": 0,
       "route": "aanhoudend",
       "K": 0.53,
@@ -303,6 +248,32 @@
           "c": 0.68,
           "plek": "intro",
           "titel": "Septembercirculaire 2026"
+        }
+      ]
+    },
+    {
+      "key": "a:04d5e7cb5d",
+      "soort": "agenda",
+      "kop": "Raadsvergadering: Begroting",
+      "S": 0.23,
+      "Sa": 0.23,
+      "Sp": 0,
+      "route": "aanhoudend",
+      "K": 0.38,
+      "Kp": 0.22,
+      "n": 1,
+      "dagen": 1,
+      "bronnen": 1,
+      "ankers": [
+        "radsvergadering"
+      ],
+      "bewijs": [
+        {
+          "bron": "DeOrkaan",
+          "datum": "2026-11-04T23:00:00.000Z",
+          "c": 1,
+          "plek": "kop",
+          "titel": "Protest tegen statushouders in Oostzaan: raadsvergadering tijdelijk geschorst 📸 🎥"
         }
       ]
     },
@@ -417,43 +388,6 @@
           "c": 0.63,
           "plek": "intro",
           "titel": "Verkeersbesluit, voetpad De Krimp te Zaandam"
-        }
-      ]
-    },
-    {
-      "key": "n:https://www.deorkaan.nl/begrotingsdebat-zaanstad-beraad-2-eerlijk-antwoord-en-juiste-feiten/",
-      "soort": "nieuws",
-      "kop": "Begrotingsdebat Zaanstad Beraad #2: ‘eerlijk antwoord’ en ‘juiste feiten’",
-      "S": 0.2,
-      "Sa": 0.2,
-      "Sp": 0,
-      "route": "aanhoudend",
-      "K": 1,
-      "Kp": 0.76,
-      "n": 1,
-      "dagen": 1,
-      "bronnen": 1,
-      "ankers": [
-        "erlijk",
-        "begrotingsdebat",
-        "antword",
-        "juist",
-        "begrotingscarrousel",
-        "stort",
-        "stokpardje",
-        "vervolgrond",
-        "dossier",
-        "onzekerheid",
-        "gemoeder",
-        "baren"
-      ],
-      "bewijs": [
-        {
-          "bron": "DeOrkaan",
-          "datum": "2026-10-29T23:00:00.000Z",
-          "c": 0.86,
-          "plek": "kop",
-          "titel": "Begrotingsdebat Zaanstad: van ‘scenario-B’ tot AI-dromen"
         }
       ]
     },
@@ -1084,8 +1018,8 @@
       "Sa": 0.03,
       "Sp": 0,
       "route": "aanhoudend",
-      "K": 0.08,
-      "Kp": 0.08,
+      "K": 0.07,
+      "Kp": 0.07,
       "n": 1,
       "dagen": 1,
       "bronnen": 1,
@@ -1249,6 +1183,25 @@
         "atelier2100",
         "toekomst",
         "reminder"
+      ],
+      "bewijs": []
+    },
+    {
+      "key": "a:da1fdf516e",
+      "soort": "agenda",
+      "kop": "Aanwijsbesluit plaatsen camera locatie Perim te Zaandam",
+      "S": 0,
+      "Sa": 0,
+      "Sp": 0,
+      "route": "geen",
+      "K": 0.15,
+      "Kp": 0,
+      "n": 0,
+      "dagen": 0,
+      "bronnen": 0,
+      "ankers": [
+        "anwijsbesluit",
+        "perim"
       ],
       "bewijs": []
     }
