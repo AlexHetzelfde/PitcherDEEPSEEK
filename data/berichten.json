@@ -1,5 +1,5 @@
 {
-  "gegenereerdOp": "2026-11-06T09:00:53.862Z",
+  "gegenereerdOp": "2026-11-06T10:00:58.177Z",
   "promptVersie": "2026-10-29-batch-tag-checklist-agendapunten",
   "alertModus": "log",
   "prioSchaal": "1 = urgent, 2 = belangrijk, 3 = regulier, 4 = routine. De AI geeft nooit prio 1.",
@@ -51,6 +51,81 @@
   ],
   "berichten": [
     {
+      "id": "b8d848126c-v1",
+      "groepId": "b8d848126c",
+      "versie": 1,
+      "url": "https://www.noord-holland.nl/Actueel/Archief/2026/November_2026/Warmtekansen_in_de_kassen",
+      "kop": "Provincie belicht verduurzaming van glastuinbouw tijdens de landelijke Klimaatweek",
+      "tekst": "Van 2 tot 8 november is het Klimaatweek, waarin de provincie Noord-Holland stilstaat bij klimaatverandering en drie projecten belicht. In aflevering drie staat de verduurzaming van de glastuinbouw centraal, waarbij ondernemers worden geholpen met onder meer energie-experts en subsidies. Zo werkt het Altongebied tussen Heerhugowaard en Alkmaar aan de ambitie om in 2030 te telen zonder fossiele brandstoffen.",
+      "rubriek": "PRV",
+      "tagBron": "ai",
+      "herkomst": "officieel",
+      "prio": 4,
+      "tijd": "2026-11-06T10:25:42.000Z",
+      "heeftTijd": true,
+      "woorden": 858,
+      "afgekapt": false,
+      "bronId": "nh-actueel",
+      "bronNaam": "Provincie Noord-Holland — Actueel",
+      "ai": true,
+      "controle": "cijfers-ok",
+      "eerstGezienOp": "2026-11-06T10:00:58.177Z",
+      "gecontroleerdOp": "2026-11-06T10:00:58.177Z",
+      "bronTitel": "Warmtekansen in de kassen",
+      "bronLengte": 5709,
+      "checklist": {
+        "gevaar": false,
+        "evacuatieOfNlAlert": false,
+        "gewondenOfDoden": false,
+        "bestuurlijkeCrisis": false,
+        "besluitMetGrootGevolg": false,
+        "tijdkritisch": false,
+        "betrokkenen": null,
+        "geldbedragEuro": null,
+        "banen": null,
+        "inRegio": false
+      },
+      "checklistBron": "ai"
+    },
+    {
+      "id": "430c13f72f-v1",
+      "groepId": "430c13f72f",
+      "versie": 1,
+      "url": "https://www.deorkaan.nl/wisselstoring-geen-treinverkeer-zaandam-amsterdam/",
+      "kop": "Wisselstoring: geen treinverkeer Zaandam – Amsterdam, update: opgelost",
+      "tekst": null,
+      "rubriek": "VER",
+      "tagBron": "ai",
+      "herkomst": "signaal",
+      "prio": 3,
+      "tijd": "2026-11-05T23:00:00.000Z",
+      "heeftTijd": false,
+      "woorden": 87,
+      "afgekapt": false,
+      "bronId": "DeOrkaan",
+      "bronNaam": "DeOrkaan",
+      "ai": false,
+      "controle": "analyse-ok",
+      "eerstGezienOp": "2026-11-06T10:00:58.177Z",
+      "gecontroleerdOp": "2026-11-06T10:00:58.177Z",
+      "bronTitel": "Wisselstoring: geen treinverkeer Zaandam – Amsterdam, update: opgelost",
+      "bronLengte": 581,
+      "checklist": {
+        "gevaar": false,
+        "evacuatieOfNlAlert": false,
+        "gewondenOfDoden": false,
+        "bestuurlijkeCrisis": false,
+        "besluitMetGrootGevolg": false,
+        "tijdkritisch": false,
+        "betrokkenen": null,
+        "geldbedragEuro": null,
+        "banen": null,
+        "inRegio": true
+      },
+      "checklistBron": "ai",
+      "analyse": true
+    },
+    {
       "id": "f40d6678b7-v1",
       "groepId": "f40d6678b7",
       "versie": 1,
@@ -86,7 +161,8 @@
         "inRegio": true
       },
       "checklistBron": "ai",
-      "analyse": true
+      "analyse": true,
+      "tagVersie": 2
     },
     {
       "id": "3f583e41be-v1",
@@ -124,7 +200,8 @@
         "inRegio": true
       },
       "checklistBron": "ai",
-      "analyse": true
+      "analyse": true,
+      "tagVersie": 2
     },
     {
       "id": "00ff20e2b9-v1",
@@ -146,7 +223,7 @@
       "ai": false,
       "controle": "analyse-ok",
       "eerstGezienOp": "2026-11-06T08:00:56.228Z",
-      "gecontroleerdOp": "2026-11-06T08:00:56.228Z",
+      "gecontroleerdOp": "2026-11-06T10:00:58.177Z",
       "bronTitel": "Waarheen: Janneke de Bijl, Natuurwerkdag, Wina Ricardo🎙",
       "bronLengte": 1373,
       "checklist": {
@@ -461,7 +538,7 @@
       "ai": false,
       "controle": "analyse-ok",
       "eerstGezienOp": "2026-11-06T07:00:55.032Z",
-      "gecontroleerdOp": "2026-11-06T07:00:55.032Z",
+      "gecontroleerdOp": "2026-11-06T10:00:58.177Z",
       "bronTitel": "Protest tegen statushouders in Oostzaan: raadsvergadering tijdelijk geschorst 📸 🎥",
       "bronLengte": 1959,
       "checklist": {

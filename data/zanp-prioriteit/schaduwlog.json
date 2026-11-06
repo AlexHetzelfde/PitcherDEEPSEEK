@@ -1,5 +1,5 @@
 {
-  "gegenereerdOp": "2026-11-06T09:00:53.862Z",
+  "gegenereerdOp": "2026-11-06T10:00:58.177Z",
   "modus": "schaduw",
   "tau": 0.5,
   "stats": {
@@ -13,9 +13,9 @@
       "uitgesteld": 0
     },
     "vergeten": 0,
-    "stukken": 318,
-    "kandidaten": 100,
-    "metAnker": 100,
+    "stukken": 320,
+    "kandidaten": 101,
+    "metAnker": 101,
     "zonderAnker": 0,
     "afgelast": 1,
     "dubbel": 1,
@@ -118,6 +118,42 @@
           "c": 0.85,
           "plek": "kop",
           "titel": "Kennisgeving burgemeester Hamming: incident Jaspersstraat"
+        }
+      ]
+    },
+    {
+      "key": "n:https://www.noord-holland.nl/Actueel/Archief/2026/November_2026/Warmtekansen_in_de_kassen",
+      "soort": "nieuws",
+      "kop": "Warmtekansen in de kassen",
+      "S": 0.36,
+      "Sa": 0.36,
+      "Sp": 0,
+      "route": "aanhoudend",
+      "K": 0.7,
+      "Kp": 0.56,
+      "n": 2,
+      "dagen": 2,
+      "bronnen": 1,
+      "ankers": [
+        "warmtekans",
+        "klimatwek",
+        "durzam",
+        "glastuinbouw"
+      ],
+      "bewijs": [
+        {
+          "bron": "nh-actueel",
+          "datum": "2026-11-02T11:54:30.000Z",
+          "c": 0.65,
+          "plek": "intro",
+          "titel": "Schoon en veilig werken zonder motorgeronk"
+        },
+        {
+          "bron": "nh-actueel",
+          "datum": "2026-11-04T08:15:14.000Z",
+          "c": 0.64,
+          "plek": "intro",
+          "titel": "Een comfortabeler monument met hetzelfde karakter"
         }
       ]
     },
@@ -422,39 +458,6 @@
       ]
     },
     {
-      "key": "n:https://www.deorkaan.nl/chris-stussy-dreunt-na-felle-botsing-tussen-bewoners-gemeente-sona-en-taets/",
-      "soort": "nieuws",
-      "kop": "Chris Stussy dreunt na: felle botsing tussen bewoners, gemeente, SONA en Taets",
-      "S": 0.2,
-      "Sa": 0.2,
-      "Sp": 0,
-      "route": "aanhoudend",
-      "K": 0.92,
-      "Kp": 0.57,
-      "n": 1,
-      "dagen": 1,
-      "bronnen": 1,
-      "ankers": [
-        "chris",
-        "stussy",
-        "dreunt",
-        "felle",
-        "botsing",
-        "verenigd",
-        "koninkrijk",
-        "sona"
-      ],
-      "bewijs": [
-        {
-          "bron": "DeOrkaan",
-          "datum": "2026-11-01T23:00:00.000Z",
-          "c": 0.66,
-          "plek": "intro",
-          "titel": "Zaans voor ’t hekje: Pieter Latensteinstraat-moord en (voorbije) dancefeesten"
-        }
-      ]
-    },
-    {
       "key": "n:https://www.deorkaan.nl/topkolf-in-t-moriaanshoofd-in-wormer/",
       "soort": "nieuws",
       "kop": "Topkolf in ’t Moriaanshoofd in Wormer",
@@ -548,6 +551,40 @@
           "c": 0.68,
           "plek": "intro",
           "titel": "Aanbieding Kwaliteitscriteria Gezinshuizen 2026 | Verzoek registratie als ingekomen stuk"
+        }
+      ]
+    },
+    {
+      "key": "a:4d3692245e",
+      "soort": "agenda",
+      "kop": "Zaanstad Beraad Raadzaal: TEST",
+      "S": 0.16,
+      "Sa": 0.16,
+      "Sp": 0,
+      "route": "aanhoudend",
+      "K": 0.23,
+      "Kp": 0.09,
+      "n": 2,
+      "dagen": 1,
+      "bronnen": 1,
+      "ankers": [
+        "radzal",
+        "test"
+      ],
+      "bewijs": [
+        {
+          "bron": "zaanstad-kalender",
+          "datum": "2026-11-01T15:55:49.908Z",
+          "c": 0.76,
+          "plek": "intro",
+          "titel": "Raadsvergadering: Reservedatum begroting"
+        },
+        {
+          "bron": "zaanstad-kalender",
+          "datum": "2026-11-01T15:55:49.908Z",
+          "c": 0.64,
+          "plek": "intro",
+          "titel": "Ambtsbezoek: Ambtsbezoek Commissaris van de Koning"
         }
       ]
     },
@@ -973,33 +1010,6 @@
           "bron": "zaanstad-kalender",
           "datum": "2026-11-01T15:55:49.908Z",
           "c": 0.8,
-          "plek": "intro",
-          "titel": "Raadsvergadering: Reservedatum begroting"
-        }
-      ]
-    },
-    {
-      "key": "a:4d3692245e",
-      "soort": "agenda",
-      "kop": "Zaanstad Beraad Raadzaal: TEST",
-      "S": 0.07,
-      "Sa": 0.07,
-      "Sp": 0,
-      "route": "aanhoudend",
-      "K": 0.14,
-      "Kp": 0,
-      "n": 1,
-      "dagen": 1,
-      "bronnen": 1,
-      "ankers": [
-        "radzal",
-        "test"
-      ],
-      "bewijs": [
-        {
-          "bron": "zaanstad-kalender",
-          "datum": "2026-11-01T15:55:49.908Z",
-          "c": 0.76,
           "plek": "intro",
           "titel": "Raadsvergadering: Reservedatum begroting"
         }
@@ -1610,6 +1620,14 @@
         "n": 6,
         "bronnen": 1
       },
+      "n:https://www.noord-holland.nl/Actueel/Archief/2026/November_2026/Warmtekansen_in_de_kassen": {
+        "kop": "Warmtekansen in de kassen",
+        "S": 0.36,
+        "route": "aanhoudend",
+        "K": 0.7,
+        "n": 2,
+        "bronnen": 1
+      },
       "a:f833a15399": {
         "kop": "GEANNULEERD: Technische sessie Vervoerregio Amsterdam",
         "S": 0.31,
@@ -1679,14 +1697,6 @@
         "S": 0.2,
         "route": "aanhoudend",
         "K": 0.15,
-        "n": 1,
-        "bronnen": 1
-      },
-      "n:https://www.noord-holland.nl/Actueel/Archief/2026/November_2026/Een_comfortabeler_monument_met_hetzelfde_karakter": {
-        "kop": "Een comfortabeler monument met hetzelfde karakter",
-        "S": 0.19,
-        "route": "aanhoudend",
-        "K": 0.57,
         "n": 1,
         "bronnen": 1
       }
