@@ -1,5 +1,5 @@
 {
-  "gegenereerdOp": "2026-11-06T11:00:53.337Z",
+  "gegenereerdOp": "2026-11-06T11:59:05.014Z",
   "promptVersie": "2026-10-29-batch-tag-checklist-agendapunten",
   "alertModus": "log",
   "prioSchaal": "1 = urgent, 2 = belangrijk, 3 = regulier, 4 = routine. De AI geeft nooit prio 1.",
@@ -51,6 +51,50 @@
   ],
   "berichten": [
     {
+      "id": "d29da656b9-v1",
+      "groepId": "d29da656b9",
+      "versie": 1,
+      "url": "https://www.noord-holland.nl/Actueel/Archief/2026/November_2026/Gedeputeerde_Staten_stellen_concept_Omgevingsvisie_Noord_Holland_vast",
+      "kop": "Gedeputeerde Staten stellen concept-Omgevingsvisie Noord-Holland vast voor keuzes tot 2050",
+      "tekst": "Gedeputeerde Staten hebben de concept-Omgevingsvisie Noord-Holland vastgesteld. De visie geeft richting aan keuzes over de inrichting van de provincie tot 2030 en 2050. Provinciale Staten besluiten naar verwachting in december 2026 over de definitieve omgevingsvisie.",
+      "rubriek": "PRV",
+      "tagBron": "ai",
+      "herkomst": "officieel",
+      "prio": 3,
+      "tijd": "2026-11-06T10:28:53.000Z",
+      "heeftTijd": true,
+      "woorden": 612,
+      "afgekapt": false,
+      "bronId": "nh-actueel",
+      "bronNaam": "Provincie Noord-Holland — Actueel",
+      "ai": true,
+      "controle": "cijfers-ok",
+      "eerstGezienOp": "2026-11-06T11:59:05.014Z",
+      "gecontroleerdOp": "2026-11-06T11:59:05.014Z",
+      "bronTitel": "Gedeputeerde Staten stellen concept-Omgevingsvisie Noord-Holland vast",
+      "bronLengte": 4460,
+      "checklist": {
+        "gevaar": false,
+        "evacuatieOfNlAlert": false,
+        "gewondenOfDoden": false,
+        "bestuurlijkeCrisis": false,
+        "besluitMetGrootGevolg": true,
+        "tijdkritisch": false,
+        "betrokkenen": null,
+        "geldbedragEuro": null,
+        "banen": null,
+        "inRegio": true
+      },
+      "checklistBron": "ai",
+      "alertKandidaat": {
+        "niveau": "oranje",
+        "categorie": "bestuur",
+        "reden": "besluit met groot gevolg (officiële bron)",
+        "aangemaaktOp": "2026-11-06T11:59:05.014Z",
+        "tot": "2026-11-07T11:59:05.014Z"
+      }
+    },
+    {
       "id": "b8d848126c-v1",
       "groepId": "b8d848126c",
       "versie": 1,
@@ -89,6 +133,103 @@
       "tagVersie": 2
     },
     {
+      "id": "7db1f83da4-v1",
+      "groepId": "7db1f83da4",
+      "versie": 1,
+      "url": "https://www.deorkaan.nl/de-orkaan-in-2-minuten-6-november-%f0%9f%8e%a7/",
+      "kop": "De Orkaan in 2 minuten: 6 november 🎧",
+      "tekst": null,
+      "rubriek": "ALG",
+      "tagBron": "geen",
+      "herkomst": "signaal",
+      "prio": 3,
+      "tijd": "2026-11-05T23:00:00.000Z",
+      "heeftTijd": false,
+      "woorden": 57,
+      "afgekapt": false,
+      "bronId": "DeOrkaan",
+      "bronNaam": "DeOrkaan",
+      "ai": false,
+      "controle": "analyse-ok",
+      "eerstGezienOp": "2026-11-06T11:59:05.014Z",
+      "gecontroleerdOp": "2026-11-06T11:59:05.014Z",
+      "bronTitel": "De Orkaan in 2 minuten: 6 november 🎧",
+      "bronLengte": 342,
+      "checklist": {
+        "gevaar": false,
+        "evacuatieOfNlAlert": false,
+        "gewondenOfDoden": false,
+        "bestuurlijkeCrisis": false,
+        "besluitMetGrootGevolg": false,
+        "tijdkritisch": false,
+        "betrokkenen": null,
+        "geldbedragEuro": null,
+        "banen": null,
+        "inRegio": true
+      },
+      "checklistBron": "ai",
+      "analyse": true
+    },
+    {
+      "id": "fa6039797c-v1",
+      "groepId": "fa6039797c",
+      "versie": 1,
+      "url": "https://www.deorkaan.nl/volgend-weekend-den-uylbrug-afgesloten/",
+      "kop": "Volgend weekend (13-16 november) Den Uylbrug afgesloten",
+      "tekst": null,
+      "rubriek": "VER",
+      "tagBron": "ai",
+      "herkomst": "signaal",
+      "prio": 3,
+      "tijd": "2026-11-05T23:00:00.000Z",
+      "heeftTijd": false,
+      "woorden": 218,
+      "afgekapt": false,
+      "bronId": "DeOrkaan",
+      "bronNaam": "DeOrkaan",
+      "ai": false,
+      "controle": "analyse-ok",
+      "eerstGezienOp": "2026-11-06T11:59:05.014Z",
+      "gecontroleerdOp": "2026-11-06T11:59:05.014Z",
+      "bronTitel": "Volgend weekend (13-16 november) Den Uylbrug afgesloten",
+      "bronLengte": 1367,
+      "checklist": {
+        "gevaar": false,
+        "evacuatieOfNlAlert": false,
+        "gewondenOfDoden": false,
+        "bestuurlijkeCrisis": false,
+        "besluitMetGrootGevolg": false,
+        "tijdkritisch": false,
+        "betrokkenen": null,
+        "geldbedragEuro": null,
+        "banen": null,
+        "inRegio": true
+      },
+      "checklistBron": "ai",
+      "agendapunten": [
+        {
+          "titel": "Afsluiting Den Uylbrug Zaandam",
+          "dag": "2026-11-13",
+          "start": "2026-11-13T19:00:00.000Z",
+          "eind": null,
+          "plaats": "Den Uylbrug in Zaandam",
+          "zekerheid": "afgeleid"
+        },
+        {
+          "titel": "Afsluiting Den Uylbrug weekend december",
+          "dag": "2026-12-11",
+          "start": "2026-12-11T19:00:00.000Z",
+          "eind": null,
+          "plaats": "Den Uylbrug",
+          "zekerheid": "afgeleid"
+        }
+      ],
+      "analyse": true,
+      "agendaIds": [
+        "f9d7a5c9f7"
+      ]
+    },
+    {
       "id": "d20493c626-v1",
       "groepId": "d20493c626",
       "versie": 1,
@@ -125,6 +266,7 @@
       },
       "checklistBron": "ai",
       "analyse": true,
+      "tagVersie": 2,
       "alertKandidaat": {
         "niveau": "oranje",
         "categorie": "bestuur",
@@ -192,7 +334,7 @@
       "ai": false,
       "controle": "analyse-ok",
       "eerstGezienOp": "2026-11-06T09:00:53.862Z",
-      "gecontroleerdOp": "2026-11-06T09:00:53.862Z",
+      "gecontroleerdOp": "2026-11-06T11:59:05.014Z",
       "bronTitel": "Nieuwe hondenborden, maar geen nieuwe verboden: Zaanstad legt uit",
       "bronLengte": 2968,
       "checklist": {
@@ -231,7 +373,7 @@
       "ai": false,
       "controle": "analyse-ok",
       "eerstGezienOp": "2026-11-06T09:00:53.862Z",
-      "gecontroleerdOp": "2026-11-06T09:00:53.862Z",
+      "gecontroleerdOp": "2026-11-06T11:59:05.014Z",
       "bronTitel": "Pinnen bij Kruidvat in Zaandam? De hele winkel kan meekijken",
       "bronLengte": 2687,
       "checklist": {
@@ -387,7 +529,7 @@
       "ai": false,
       "controle": "analyse-ok",
       "eerstGezienOp": "2026-11-05T20:00:58.200Z",
-      "gecontroleerdOp": "2026-11-06T09:00:53.862Z",
+      "gecontroleerdOp": "2026-11-06T11:59:05.014Z",
       "bronTitel": "Fietsersbond wil afsluiting Westerwateringtunnel ‘niet onnodig lang’",
       "bronLengte": 3747,
       "checklist": {
@@ -433,7 +575,7 @@
       "ai": true,
       "controle": "cijfers-ok",
       "eerstGezienOp": "2026-11-05T17:00:54.546Z",
-      "gecontroleerdOp": "2026-11-06T09:00:53.862Z",
+      "gecontroleerdOp": "2026-11-06T11:59:05.014Z",
       "bronTitel": "Vergunningaanvragen voor 8 windturbines in havengebied Amsterdam",
       "bronLengte": 3043,
       "checklist": {
@@ -471,7 +613,7 @@
       "ai": true,
       "controle": "cijfers-ok",
       "eerstGezienOp": "2026-11-05T12:00:57.086Z",
-      "gecontroleerdOp": "2026-11-06T09:00:53.862Z",
+      "gecontroleerdOp": "2026-11-06T11:59:05.014Z",
       "bronTitel": "€11,5 miljoen extra voor agrarisch natuurbeheer: gerichte bescherming van Natura 2000-gebieden en de grutto",
       "bronLengte": 1917,
       "checklist": {
@@ -797,7 +939,7 @@
       "ai": false,
       "controle": "analyse-ok",
       "eerstGezienOp": "2026-11-05T19:00:55.247Z",
-      "gecontroleerdOp": "2026-11-06T09:00:53.862Z",
+      "gecontroleerdOp": "2026-11-06T11:59:05.014Z",
       "bronTitel": "Bernhardbrug in storing",
       "bronLengte": 294,
       "checklist": {
@@ -874,7 +1016,7 @@
       "ai": false,
       "controle": "analyse-ok",
       "eerstGezienOp": "2026-11-05T16:00:58.553Z",
-      "gecontroleerdOp": "2026-11-06T09:00:53.862Z",
+      "gecontroleerdOp": "2026-11-06T11:59:05.014Z",
       "bronTitel": "Muizen: schattig, maar je wilt ze niet als huisgenoot",
       "bronLengte": 3997,
       "checklist": {
@@ -913,7 +1055,7 @@
       "ai": false,
       "controle": "analyse-ok",
       "eerstGezienOp": "2026-11-05T15:01:00.596Z",
-      "gecontroleerdOp": "2026-11-06T09:00:53.862Z",
+      "gecontroleerdOp": "2026-11-06T11:59:05.014Z",
       "bronTitel": "Waarheen: topkolf, erfgoed, Fontana Blue",
       "bronLengte": 1578,
       "checklist": {
