@@ -1,13 +1,13 @@
 {
-  "gegenereerdOp": "2026-11-06T20:00:52.041Z",
+  "gegenereerdOp": "2026-11-06T21:00:54.481Z",
   "modus": "schaduw",
   "tau": 0.5,
   "stats": {
     "modus": "schaduw",
     "ai": true,
     "tekst": {
-      "werklijst": 1,
-      "lokaal": 1,
+      "werklijst": 0,
+      "lokaal": 0,
       "opgehaald": 0,
       "mislukt": 0,
       "uitgesteld": 0
@@ -249,7 +249,7 @@
       "Sa": 0.26,
       "Sp": 0,
       "route": "aanhoudend",
-      "K": 0.53,
+      "K": 0.52,
       "Kp": 0.36,
       "n": 1,
       "dagen": 1,
@@ -442,8 +442,8 @@
       "key": "n:https://zaanstad.bestuurlijkeinformatie.nl/Document/View/1fbec0bf-504f-4014-8808-dbf1b37dc6b9",
       "soort": "nieuws",
       "kop": "Gemeente Den Haag geeft het voorbeeld",
-      "S": 0.18,
-      "Sa": 0.18,
+      "S": 0.17,
+      "Sa": 0.17,
       "Sp": 0,
       "route": "aanhoudend",
       "K": 0.56,
