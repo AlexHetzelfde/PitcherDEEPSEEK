@@ -1,5 +1,5 @@
 {
-  "gegenereerdOp": "2026-11-06T13:00:53.038Z",
+  "gegenereerdOp": "2026-11-06T14:00:58.360Z",
   "promptVersie": "2026-10-29-batch-tag-checklist-agendapunten",
   "alertModus": "log",
   "prioSchaal": "1 = urgent, 2 = belangrijk, 3 = regulier, 4 = routine. De AI geeft nooit prio 1.",
@@ -51,6 +51,44 @@
   ],
   "berichten": [
     {
+      "id": "3f583e41be-v2",
+      "groepId": "3f583e41be",
+      "versie": 2,
+      "url": "https://www.deorkaan.nl/pinnen-bij-kruidvat-in-zaandam-de-hele-winkel-kan-meekijken/",
+      "kop": "Pinnen bij Kruidvat in Zaandam? Winkel kan meekijken – update",
+      "tekst": null,
+      "rubriek": "BED",
+      "tagBron": "ai",
+      "herkomst": "signaal",
+      "prio": 3,
+      "tijd": "2026-11-06T14:00:58.360Z",
+      "heeftTijd": true,
+      "woorden": 536,
+      "afgekapt": false,
+      "bronId": "DeOrkaan",
+      "bronNaam": "DeOrkaan",
+      "ai": false,
+      "controle": "analyse-ok",
+      "eerstGezienOp": "2026-11-06T14:00:58.360Z",
+      "gecontroleerdOp": "2026-11-06T14:00:58.360Z",
+      "bronTitel": "Pinnen bij Kruidvat in Zaandam? Winkel kan meekijken – update",
+      "bronLengte": 3460,
+      "checklist": {
+        "gevaar": false,
+        "evacuatieOfNlAlert": false,
+        "gewondenOfDoden": false,
+        "bestuurlijkeCrisis": false,
+        "besluitMetGrootGevolg": false,
+        "tijdkritisch": false,
+        "betrokkenen": null,
+        "geldbedragEuro": null,
+        "banen": null,
+        "inRegio": true
+      },
+      "checklistBron": "ai",
+      "analyse": true
+    },
+    {
       "id": "d29da656b9-v1",
       "groepId": "d29da656b9",
       "versie": 1,
@@ -70,7 +108,7 @@
       "ai": true,
       "controle": "cijfers-ok",
       "eerstGezienOp": "2026-11-06T11:59:05.014Z",
-      "gecontroleerdOp": "2026-11-06T11:59:05.014Z",
+      "gecontroleerdOp": "2026-11-06T14:00:58.360Z",
       "bronTitel": "Gedeputeerde Staten stellen concept-Omgevingsvisie Noord-Holland vast",
       "bronLengte": 4460,
       "checklist": {
@@ -134,6 +172,44 @@
       "tagVersie": 2
     },
     {
+      "id": "ccf449bf38-v1",
+      "groepId": "ccf449bf38",
+      "versie": 1,
+      "url": "https://www.deorkaan.nl/geen-straf-voor-scooterrijdster-die-zwaargewonde-hardloper-achterliet/",
+      "kop": "Geen straf voor scooterrijdster die zwaargewonde hardloper achterliet",
+      "tekst": null,
+      "rubriek": "REC",
+      "tagBron": "ai",
+      "herkomst": "signaal",
+      "prio": 3,
+      "tijd": "2026-11-05T23:00:00.000Z",
+      "heeftTijd": false,
+      "woorden": 550,
+      "afgekapt": false,
+      "bronId": "DeOrkaan",
+      "bronNaam": "DeOrkaan",
+      "ai": false,
+      "controle": "analyse-ok",
+      "eerstGezienOp": "2026-11-06T14:00:58.360Z",
+      "gecontroleerdOp": "2026-11-06T14:00:58.360Z",
+      "bronTitel": "Geen straf voor scooterrijdster die zwaargewonde hardloper achterliet",
+      "bronLengte": 3356,
+      "checklist": {
+        "gevaar": false,
+        "evacuatieOfNlAlert": false,
+        "gewondenOfDoden": true,
+        "bestuurlijkeCrisis": false,
+        "besluitMetGrootGevolg": false,
+        "tijdkritisch": false,
+        "betrokkenen": null,
+        "geldbedragEuro": null,
+        "banen": null,
+        "inRegio": false
+      },
+      "checklistBron": "ai",
+      "analyse": true
+    },
+    {
       "id": "51d7447585-v1",
       "groepId": "51d7447585",
       "versie": 1,
@@ -169,7 +245,8 @@
         "inRegio": true
       },
       "checklistBron": "ai",
-      "analyse": true
+      "analyse": true,
+      "tagVersie": 2
     },
     {
       "id": "7db1f83da4-v1",
@@ -191,7 +268,7 @@
       "ai": false,
       "controle": "analyse-ok",
       "eerstGezienOp": "2026-11-06T11:59:05.014Z",
-      "gecontroleerdOp": "2026-11-06T11:59:05.014Z",
+      "gecontroleerdOp": "2026-11-06T14:00:58.360Z",
       "bronTitel": "De Orkaan in 2 minuten: 6 november 🎧",
       "bronLengte": 342,
       "checklist": {
@@ -230,7 +307,7 @@
       "ai": false,
       "controle": "analyse-ok",
       "eerstGezienOp": "2026-11-06T11:59:05.014Z",
-      "gecontroleerdOp": "2026-11-06T11:59:05.014Z",
+      "gecontroleerdOp": "2026-11-06T14:00:58.360Z",
       "bronTitel": "Volgend weekend (13-16 november) Den Uylbrug afgesloten",
       "bronLengte": 1367,
       "checklist": {
@@ -290,7 +367,7 @@
       "ai": false,
       "controle": "analyse-ok",
       "eerstGezienOp": "2026-11-06T11:00:53.337Z",
-      "gecontroleerdOp": "2026-11-06T11:00:53.337Z",
+      "gecontroleerdOp": "2026-11-06T14:00:58.360Z",
       "bronTitel": "VVD Oostzaan als enige tegen begroting: ‘Te veel rekeningen in de keukenlade’",
       "bronLengte": 5080,
       "checklist": {
@@ -375,7 +452,7 @@
       "ai": false,
       "controle": "analyse-ok",
       "eerstGezienOp": "2026-11-06T09:00:53.862Z",
-      "gecontroleerdOp": "2026-11-06T11:59:05.014Z",
+      "gecontroleerdOp": "2026-11-06T14:00:58.360Z",
       "bronTitel": "Nieuwe hondenborden, maar geen nieuwe verboden: Zaanstad legt uit",
       "bronLengte": 2968,
       "checklist": {
@@ -570,7 +647,7 @@
       "ai": false,
       "controle": "analyse-ok",
       "eerstGezienOp": "2026-11-05T20:00:58.200Z",
-      "gecontroleerdOp": "2026-11-06T11:59:05.014Z",
+      "gecontroleerdOp": "2026-11-06T14:00:58.360Z",
       "bronTitel": "Fietsersbond wil afsluiting Westerwateringtunnel ‘niet onnodig lang’",
       "bronLengte": 3747,
       "checklist": {
@@ -616,7 +693,7 @@
       "ai": true,
       "controle": "cijfers-ok",
       "eerstGezienOp": "2026-11-05T17:00:54.546Z",
-      "gecontroleerdOp": "2026-11-06T11:59:05.014Z",
+      "gecontroleerdOp": "2026-11-06T14:00:58.360Z",
       "bronTitel": "Vergunningaanvragen voor 8 windturbines in havengebied Amsterdam",
       "bronLengte": 3043,
       "checklist": {
@@ -745,7 +822,8 @@
         "banen": null,
         "inRegio": false
       },
-      "checklistBron": "ai"
+      "checklistBron": "ai",
+      "tagVersie": 2
     },
     {
       "id": "bc1aa449b0-v1",
@@ -1017,7 +1095,7 @@
       "ai": false,
       "controle": "analyse-ok",
       "eerstGezienOp": "2026-11-05T19:00:55.247Z",
-      "gecontroleerdOp": "2026-11-06T11:59:05.014Z",
+      "gecontroleerdOp": "2026-11-06T14:00:58.360Z",
       "bronTitel": "Bernhardbrug in storing",
       "bronLengte": 294,
       "checklist": {

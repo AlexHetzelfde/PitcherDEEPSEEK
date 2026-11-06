@@ -1,5 +1,5 @@
 {
-  "gegenereerdOp": "2026-11-06T13:00:53.038Z",
+  "gegenereerdOp": "2026-11-06T14:00:58.360Z",
   "modus": "schaduw",
   "tau": 0.5,
   "stats": {
@@ -7,15 +7,15 @@
     "ai": true,
     "tekst": {
       "werklijst": 2,
-      "lokaal": 1,
-      "opgehaald": 1,
+      "lokaal": 2,
+      "opgehaald": 0,
       "mislukt": 0,
       "uitgesteld": 0
     },
     "vergeten": 0,
-    "stukken": 326,
-    "kandidaten": 103,
-    "metAnker": 103,
+    "stukken": 327,
+    "kandidaten": 102,
+    "metAnker": 102,
     "zonderAnker": 0,
     "afgelast": 1,
     "dubbel": 1,
@@ -35,8 +35,8 @@
       "key": "n:https://lokaleregelgeving.overheid.nl/CVDR768780/1",
       "soort": "nieuws",
       "kop": "Aanwijzingsbesluit verlenging tijdelijk cameratoezicht Jaspersstraat Zaandam",
-      "S": 0.42,
-      "Sa": 0.42,
+      "S": 0.41,
+      "Sa": 0.41,
       "Sp": 0,
       "route": "aanhoudend",
       "K": 0.7,
@@ -74,7 +74,7 @@
       "Sa": 0.36,
       "Sp": 0,
       "route": "aanhoudend",
-      "K": 0.7,
+      "K": 0.69,
       "Kp": 0.55,
       "n": 2,
       "dagen": 2,
@@ -868,8 +868,8 @@
       "key": "a:9f19133212",
       "soort": "agenda",
       "kop": "Zaanstad Beraad",
-      "S": 0.08,
-      "Sa": 0.08,
+      "S": 0.07,
+      "Sa": 0.07,
       "Sp": 0,
       "route": "aanhoudend",
       "K": 0.14,
@@ -896,8 +896,8 @@
       "key": "a:a40d7a33f0",
       "soort": "agenda",
       "kop": "Zaanstad Beraad",
-      "S": 0.08,
-      "Sa": 0.08,
+      "S": 0.07,
+      "Sa": 0.07,
       "Sp": 0,
       "route": "aanhoudend",
       "K": 0.14,
@@ -924,8 +924,8 @@
       "key": "a:4a5ff898e2",
       "soort": "agenda",
       "kop": "Zaanstad Beraad",
-      "S": 0.08,
-      "Sa": 0.08,
+      "S": 0.07,
+      "Sa": 0.07,
       "Sp": 0,
       "route": "aanhoudend",
       "K": 0.14,
@@ -1005,36 +1005,6 @@
           "datum": "2026-10-20T22:00:00.000Z",
           "c": 0.97,
           "plek": "kop",
-          "titel": "15-jarige aangehouden voor straatroof waarbij wapen is gebruikt"
-        }
-      ]
-    },
-    {
-      "key": "n:https://www.deorkaan.nl/tienduizend-joints-gevonden-na-tip-meld-misdaad-anoniem/",
-      "soort": "nieuws",
-      "kop": "Tienduizend joints gevonden na tip Meld Misdaad Anoniem",
-      "S": 0.03,
-      "Sa": 0.03,
-      "Sp": 0,
-      "route": "aanhoudend",
-      "K": 0.07,
-      "Kp": 0.07,
-      "n": 1,
-      "dagen": 1,
-      "bronnen": 1,
-      "ankers": [
-        "misdad",
-        "anoniem",
-        "tienduizend",
-        "joint",
-        "gevond"
-      ],
-      "bewijs": [
-        {
-          "bron": "DeOrkaan",
-          "datum": "2026-10-20T22:00:00.000Z",
-          "c": 0.34,
-          "plek": "tekst",
           "titel": "15-jarige aangehouden voor straatroof waarbij wapen is gebruikt"
         }
       ]
@@ -1201,6 +1171,27 @@
       "ankers": [
         "anwijsbesluit",
         "perim"
+      ],
+      "bewijs": []
+    },
+    {
+      "key": "a:abb742a017",
+      "soort": "agenda",
+      "kop": "Omgevingsvergunning O2026055913 realiseren dakterras op woning Zuiderhoofdstraat 78 te Krommenie",
+      "S": 0,
+      "Sa": 0,
+      "Sp": 0,
+      "route": "geen",
+      "K": 0.15,
+      "Kp": 0,
+      "n": 0,
+      "dagen": 0,
+      "bronnen": 0,
+      "ankers": [
+        "o2026055913",
+        "zuiderhofdstrat",
+        "realiser",
+        "dakterras"
       ],
       "bewijs": []
     }
