@@ -1,19 +1,19 @@
 {
-  "gegenereerdOp": "2026-11-06T22:00:52.881Z",
+  "gegenereerdOp": "2026-11-06T23:00:52.854Z",
   "modus": "schaduw",
   "tau": 0.5,
   "stats": {
     "modus": "schaduw",
     "ai": true,
     "tekst": {
-      "werklijst": 0,
+      "werklijst": 1,
       "lokaal": 0,
-      "opgehaald": 0,
+      "opgehaald": 1,
       "mislukt": 0,
       "uitgesteld": 0
     },
     "vergeten": 0,
-    "stukken": 330,
+    "stukken": 331,
     "kandidaten": 102,
     "metAnker": 102,
     "zonderAnker": 0,
@@ -194,8 +194,8 @@
       "Sa": 0.33,
       "Sp": 0,
       "route": "aanhoudend",
-      "K": 0.18,
-      "Kp": 0.18,
+      "K": 0.17,
+      "Kp": 0.17,
       "n": 6,
       "dagen": 1,
       "bronnen": 1,
@@ -245,8 +245,8 @@
       "key": "n:https://zaanstad.bestuurlijkeinformatie.nl/Document/View/0c06a5b5-5ff0-4908-8c05-cefd51385e97",
       "soort": "nieuws",
       "kop": "Inkoop specialistische jeugdhulp 2027",
-      "S": 0.26,
-      "Sa": 0.26,
+      "S": 0.25,
+      "Sa": 0.25,
       "Sp": 0,
       "route": "aanhoudend",
       "K": 0.52,
@@ -996,25 +996,6 @@
       ]
     },
     {
-      "key": "a:4fb0913382",
-      "soort": "agenda",
-      "kop": "Uitnodiging Informatieve themabijeenkomst II Raadsleden en leden Zaanse Versnellingstafel",
-      "S": 0,
-      "Sa": 0,
-      "Sp": 0,
-      "route": "geen",
-      "K": 0,
-      "Kp": 0,
-      "n": 0,
-      "dagen": 0,
-      "bronnen": 0,
-      "ankers": [
-        "versnellingstafel",
-        "lab44"
-      ],
-      "bewijs": []
-    },
-    {
       "key": "a:5428adfb95",
       "soort": "agenda",
       "kop": "Slotbijeenkomst Klimaatweek Zaanstad",
@@ -1112,7 +1093,6 @@
       "ankers": [
         "lering",
         "vermak",
-        "lezing",
         "zevenberg",
         "humor"
       ],
@@ -1200,6 +1180,25 @@
         "kracht",
         "nzkg",
         "nzkanal"
+      ],
+      "bewijs": []
+    },
+    {
+      "key": "a:55db5c0d37",
+      "soort": "agenda",
+      "kop": "Raadsvergadering: Reservedatum begroting",
+      "S": 0,
+      "Sa": 0,
+      "Sp": 0,
+      "route": "geen",
+      "K": 0.15,
+      "Kp": 0,
+      "n": 0,
+      "dagen": 0,
+      "bronnen": 0,
+      "ankers": [
+        "reservedatum",
+        "radsvergadering"
       ],
       "bewijs": []
     }
@@ -1649,6 +1648,208 @@
         "route": "aanhoudend",
         "K": 0.15,
         "n": 1,
+        "bronnen": 1
+      }
+    },
+    "2026-11-07": {
+      "n:https://zaanstad.bestuurlijkeinformatie.nl/Document/View/27931bc8-9e76-438d-82ba-f51af593bb38": {
+        "kop": "Kennisgeving burgemeester Hamming: incident Jaspersstraat",
+        "S": 0.56,
+        "route": "piek",
+        "K": 0.74,
+        "n": 2,
+        "bronnen": 2
+      },
+      "n:https://zaanstad.bestuurlijkeinformatie.nl/Document/View/3efd6010-3187-4635-81ad-6abea4b1acda": {
+        "kop": "Kennisgeving Burgemeester J. Hamming: Incident Elzenstraat",
+        "S": 0.46,
+        "route": "aanhoudend",
+        "K": 0.69,
+        "n": 3,
+        "bronnen": 2
+      },
+      "n:https://lokaleregelgeving.overheid.nl/CVDR768780/1": {
+        "kop": "Aanwijzingsbesluit verlenging tijdelijk cameratoezicht Jaspersstraat Zaandam",
+        "S": 0.4,
+        "route": "aanhoudend",
+        "K": 0.7,
+        "n": 2,
+        "bronnen": 2
+      },
+      "n:https://www.noord-holland.nl/Actueel/Archief/2026/November_2026/Warmtekansen_in_de_kassen": {
+        "kop": "Warmtekansen in de kassen",
+        "S": 0.35,
+        "route": "aanhoudend",
+        "K": 0.69,
+        "n": 2,
+        "bronnen": 1
+      },
+      "n:https://zaanstad.bestuurlijkeinformatie.nl/Reports/Item/ca542b04-ff0c-4e5e-b854-c8a6e61461d0": {
+        "kop": "Platform31 Nieuwsbrief | 29 oktober 2026",
+        "S": 0.33,
+        "route": "aanhoudend",
+        "K": 0.17,
+        "n": 6,
+        "bronnen": 1
+      },
+      "n:https://zaanstad.bestuurlijkeinformatie.nl/Document/View/0c06a5b5-5ff0-4908-8c05-cefd51385e97": {
+        "kop": "Inkoop specialistische jeugdhulp 2027",
+        "S": 0.25,
+        "route": "aanhoudend",
+        "K": 0.52,
+        "n": 1,
+        "bronnen": 1
+      },
+      "a:04d5e7cb5d": {
+        "kop": "Raadsvergadering: Begroting",
+        "S": 0.22,
+        "route": "aanhoudend",
+        "K": 0.38,
+        "n": 1,
+        "bronnen": 1
+      },
+      "n:https://zoek.officielebekendmakingen.nl/gmb-2026-517656.html": {
+        "kop": "Machtiging tekenbevoegdheid burgemeestersbesluiten 10045012",
+        "S": 0.21,
+        "route": "aanhoudend",
+        "K": 0.16,
+        "n": 1,
+        "bronnen": 1
+      },
+      "n:https://zoek.officielebekendmakingen.nl/gmb-2026-508877.html": {
+        "kop": "Verkeersbesluit, instellen stopverplichting fietsverkeer Stijlpad Assendelft",
+        "S": 0.21,
+        "route": "aanhoudend",
+        "K": 0.82,
+        "n": 1,
+        "bronnen": 1
+      },
+      "n:https://zoek.officielebekendmakingen.nl/gmb-2026-517673.html": {
+        "kop": "Machtiging tekenbevoegdheid collegestukken",
+        "S": 0.21,
+        "route": "aanhoudend",
+        "K": 0.17,
+        "n": 1,
+        "bronnen": 1
+      },
+      "n:https://zoek.officielebekendmakingen.nl/gmb-2026-508923.html": {
+        "kop": "Verkeersbesluit, instellen stopverlichting fietsverkeer Themapad Assendelft",
+        "S": 0.21,
+        "route": "aanhoudend",
+        "K": 0.81,
+        "n": 1,
+        "bronnen": 1
+      },
+      "n:https://lokaleregelgeving.overheid.nl/CVDR699867/2": {
+        "kop": "Machtiging tekenbevoegdheid collegestukken",
+        "S": 0.18,
+        "route": "aanhoudend",
+        "K": 0.16,
+        "n": 1,
+        "bronnen": 1
+      },
+      "n:https://zaanstad.bestuurlijkeinformatie.nl/Document/View/1fbec0bf-504f-4014-8808-dbf1b37dc6b9": {
+        "kop": "Gemeente Den Haag geeft het voorbeeld",
+        "S": 0.17,
+        "route": "aanhoudend",
+        "K": 0.56,
+        "n": 1,
+        "bronnen": 1
+      },
+      "a:4d3692245e": {
+        "kop": "Zaanstad Beraad Raadzaal: TEST",
+        "S": 0.15,
+        "route": "aanhoudend",
+        "K": 0.22,
+        "n": 2,
+        "bronnen": 1
+      },
+      "n:https://www.noord-holland.nl/Actueel/Archief/2026/November_2026/Oog_voor_verbinding_tijdens_ambtsbezoek_aan_gemeente_Zaanstad": {
+        "kop": "Oog voor verbinding tijdens ambtsbezoek aan gemeente Zaanstad",
+        "S": 0.14,
+        "route": "aanhoudend",
+        "K": 0.33,
+        "n": 1,
+        "bronnen": 1
+      },
+      "a:e205032688": {
+        "kop": "Geweigerde omgevingsvergunning voor aanleggen van een in- of uitrit locatie Raaigras 88 Assendelft",
+        "S": 0.12,
+        "route": "aanhoudend",
+        "K": 0.17,
+        "n": 2,
+        "bronnen": 1
+      },
+      "n:https://zoek.officielebekendmakingen.nl/gmb-2026-503010.html": {
+        "kop": "Kennisgeving voornemen Wijziging omgevingsplan technische aanpassingen",
+        "S": 0.11,
+        "route": "aanhoudend",
+        "K": 0.16,
+        "n": 1,
+        "bronnen": 1
+      },
+      "a:1ebd6e1ddf": {
+        "kop": "Verkeersbesluit plaatsen laadpaal voor electrische auto's Matsmanzoom te Koog a/d Zaan",
+        "S": 0.1,
+        "route": "aanhoudend",
+        "K": 0.16,
+        "n": 1,
+        "bronnen": 1
+      },
+      "a:c201808017": {
+        "kop": "De Fabriek: George Michael",
+        "S": 0.1,
+        "route": "aanhoudend",
+        "K": 0,
+        "n": 1,
+        "bronnen": 1
+      },
+      "n:https://zaanstad.bestuurlijkeinformatie.nl/Reports/Item/e824ca7c-cc27-463f-90b6-2ff61a2b5047": {
+        "kop": "Gemeente Den Haag geeft het voorbeeld",
+        "S": 0.09,
+        "route": "aanhoudend",
+        "K": 0.22,
+        "n": 1,
+        "bronnen": 1
+      },
+      "a:d1eae07b85": {
+        "kop": "Brandweer Oostzaan viert 100-jarig jubileum",
+        "S": 0.08,
+        "route": "aanhoudend",
+        "K": 0.36,
+        "n": 1,
+        "bronnen": 1
+      },
+      "a:bd39f8159e": {
+        "kop": "Dichter bij de tijd",
+        "S": 0.08,
+        "route": "aanhoudend",
+        "K": 0,
+        "n": 1,
+        "bronnen": 1
+      },
+      "n:https://zaanstad.bestuurlijkeinformatie.nl/Reports/Item/9df187bf-c385-4b57-8208-2cb708b1a398": {
+        "kop": "Nieuwsbrief week 43: Gesprekken met minister & inschrijven Dag voor de Raad",
+        "S": 0.08,
+        "route": "aanhoudend",
+        "K": 0,
+        "n": 1,
+        "bronnen": 1
+      },
+      "n:https://zaanstad.bestuurlijkeinformatie.nl/Reports/Item/ba379db2-8d98-40ec-b29c-c081d662f580": {
+        "kop": "Laat jij je de mond snoeren? Doe mee aan de enquête!",
+        "S": 0.08,
+        "route": "aanhoudend",
+        "K": 0,
+        "n": 1,
+        "bronnen": 1
+      },
+      "a:e26813c04c": {
+        "kop": "Geweigerde huisvestingsvergunning Klipperstraat 37 te Zaandam - Microsoft Teams",
+        "S": 0.07,
+        "route": "aanhoudend",
+        "K": 0.16,
+        "n": 2,
         "bronnen": 1
       }
     }

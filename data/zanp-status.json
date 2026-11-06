@@ -1,5 +1,5 @@
 {
-  "gegenereerdOp": "2026-11-06T22:00:52.881Z",
+  "gegenereerdOp": "2026-11-06T23:00:52.854Z",
   "alertModus": "log",
   "bronnen": {
     "zaansche-molen": {
@@ -38,13 +38,13 @@
       "opeenvolgendLeeg": 0
     },
     "nh-actueel": {
-      "laatsteScrape": "2026-11-06T22:00:52.881Z",
+      "laatsteScrape": "2026-11-06T23:00:52.854Z",
       "gevonden": 15,
       "opeenvolgendLeeg": 0
     },
     "nh-cultuur": {
-      "laatsteScrape": "2026-11-06T22:00:52.881Z",
-      "gevonden": 15,
+      "laatsteScrape": "2026-11-06T23:00:52.854Z",
+      "gevonden": 3,
       "opeenvolgendLeeg": 0
     },
     "zaanstad-hoorzittingen": {
@@ -98,7 +98,7 @@
       "opeenvolgendLeeg": 0
     },
     "DeOrkaan": {
-      "laatsteScrape": "2026-11-06T22:00:52.881Z",
+      "laatsteScrape": "2026-11-06T23:00:52.854Z",
       "gevonden": 12,
       "opeenvolgendLeeg": 0
     },
@@ -123,9 +123,9 @@
       "opeenvolgendLeeg": 0
     },
     "vervoerregio-overzichten": {
-      "laatsteScrape": "2026-11-06T22:00:52.881Z",
+      "laatsteScrape": "2026-11-06T23:00:52.854Z",
       "gevonden": 0,
-      "opeenvolgendLeeg": 49
+      "opeenvolgendLeeg": 50
     }
   },
   "bronnenZonderRubriek": [],
@@ -281,23 +281,23 @@
     "agenda": {
       "nieuw": 0,
       "bijgewerkt": 0,
-      "behouden": 255,
+      "behouden": 234,
       "verdwenen": 0,
-      "verlopen": 0,
+      "verlopen": 21,
       "uitBerichten": 23,
-      "zichtbaar": 95,
-      "verborgen": 179,
+      "zichtbaar": 86,
+      "verborgen": 167,
       "inAfwachting": 0
     },
     "berichten": {
       "nieuw": 0,
       "update": 0,
       "opnieuw": 0,
-      "ongewijzigd": 14,
+      "ongewijzigd": 0,
       "seed": 0
     },
     "cluster": {
-      "vergeleken": 3403,
+      "vergeleken": 1176,
       "automatisch": 1,
       "aiGevraagd": 0,
       "aiJa": 0,
@@ -305,7 +305,7 @@
       "uitgesteld": 0,
       "clusters": 2
     },
-    "alerts": 6,
+    "alerts": 4,
     "koppel": {
       "agendaNaarBericht": 0,
       "uitkomsten": 0,
@@ -315,14 +315,14 @@
       "modus": "schaduw",
       "ai": true,
       "tekst": {
-        "werklijst": 0,
+        "werklijst": 1,
         "lokaal": 0,
-        "opgehaald": 0,
+        "opgehaald": 1,
         "mislukt": 0,
         "uitgesteld": 0
       },
       "vergeten": 0,
-      "stukken": 330,
+      "stukken": 331,
       "kandidaten": 102,
       "metAnker": 102,
       "zonderAnker": 0,
