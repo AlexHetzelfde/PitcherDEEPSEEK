@@ -1,93 +1,39 @@
 {
-  "gegenereerdOp": "2026-11-06T06:01:00.574Z",
+  "gegenereerdOp": "2026-11-06T07:00:55.032Z",
   "modus": "schaduw",
   "tau": 0.5,
   "stats": {
     "modus": "schaduw",
     "tekst": {
-      "werklijst": 7,
-      "lokaal": 6,
-      "opgehaald": 1,
+      "werklijst": 1,
+      "lokaal": 1,
+      "opgehaald": 0,
       "mislukt": 0,
       "uitgesteld": 0
     },
     "vergeten": 0,
-    "stukken": 314,
-    "kandidaten": 106,
-    "metAnker": 106,
+    "stukken": 315,
+    "kandidaten": 105,
+    "metAnker": 105,
     "zonderAnker": 0,
     "tau": 0.5,
     "besluit": {
       "boven": 3,
-      "wacht": 3,
-      "onderdrukt": 0,
+      "wacht": 0,
+      "onderdrukt": 2,
       "veto": 0,
-      "nieuwRood": 0,
+      "nieuwRood": 1,
       "noodrem": false
     },
-    "rood": 7
+    "rood": 8
   },
   "top": [
-    {
-      "key": "a:04d5e7cb5d",
-      "soort": "agenda",
-      "kop": "Raadsvergadering: Begroting",
-      "S": 0.99,
-      "Sa": 0.99,
-      "Sp": 0.68,
-      "route": "aanhoudend",
-      "K": 1,
-      "n": 16,
-      "dagen": 10,
-      "bronnen": 4,
-      "ankers": [
-        "radsvergadering",
-        "begroting"
-      ],
-      "bewijs": [
-        {
-          "bron": "zaanstad-kalender",
-          "datum": "2026-11-05T04:00:52.742Z",
-          "c": 1,
-          "plek": "kop",
-          "titel": "Raadsvergadering: Begroting"
-        },
-        {
-          "bron": "zaanstad-kalender",
-          "datum": "2026-11-01T15:55:49.908Z",
-          "c": 1,
-          "plek": "kop",
-          "titel": "Raadsvergadering: Reservedatum begroting"
-        },
-        {
-          "bron": "ibabs-ingekomen-stukken",
-          "datum": "2026-11-03T23:00:00.000Z",
-          "c": 0.91,
-          "plek": "kop",
-          "titel": "Begroting voor de deur: wat vragen we van onze ambtenaren?"
-        },
-        {
-          "bron": "DeOrkaan",
-          "datum": "2026-10-28T23:00:00.000Z",
-          "c": 0.91,
-          "plek": "kop",
-          "titel": "Zaanse begroting ronde twee: van AI tot gemeentehuis"
-        },
-        {
-          "bron": "DeOrkaan",
-          "datum": "2026-10-21T22:00:00.000Z",
-          "c": 0.91,
-          "plek": "kop",
-          "titel": "Eigen begroting oppositie Zaanstad: minima ontzien, toeristen betalen meer"
-        }
-      ]
-    },
     {
       "key": "n:https://zoek.officielebekendmakingen.nl/gmb-2026-517023.html",
       "soort": "nieuws",
       "kop": "Aanwijzingsbesluit verlenging tijdelijk cameratoezicht Elzenstraat in Wormerveer",
-      "S": 0.67,
-      "Sa": 0.67,
+      "S": 0.66,
+      "Sa": 0.66,
       "Sp": 0,
       "route": "aanhoudend",
       "K": 0.74,
@@ -281,6 +227,45 @@
           "c": 0.85,
           "plek": "kop",
           "titel": "Kennisgeving burgemeester Hamming: incident Jaspersstraat"
+        }
+      ]
+    },
+    {
+      "key": "a:04d5e7cb5d",
+      "soort": "agenda",
+      "kop": "Raadsvergadering: Begroting",
+      "S": 0.5,
+      "Sa": 0.46,
+      "Sp": 0.5,
+      "route": "piek",
+      "K": 0.4,
+      "n": 3,
+      "dagen": 2,
+      "bronnen": 2,
+      "ankers": [
+        "radsvergadering"
+      ],
+      "bewijs": [
+        {
+          "bron": "zaanstad-kalender",
+          "datum": "2026-11-05T04:00:52.742Z",
+          "c": 1,
+          "plek": "kop",
+          "titel": "Raadsvergadering: Begroting"
+        },
+        {
+          "bron": "zaanstad-kalender",
+          "datum": "2026-11-01T15:55:49.908Z",
+          "c": 1,
+          "plek": "kop",
+          "titel": "Raadsvergadering: Reservedatum begroting"
+        },
+        {
+          "bron": "DeOrkaan",
+          "datum": "2026-11-04T23:00:00.000Z",
+          "c": 1,
+          "plek": "kop",
+          "titel": "Protest tegen statushouders in Oostzaan: raadsvergadering tijdelijk geschorst 📸 🎥"
         }
       ]
     },
@@ -540,8 +525,8 @@
         "bijprat",
         "bulletin",
         "dagelijk",
-        "spelt",
-        "opvallend"
+        "opvallend",
+        "redacti"
       ],
       "bewijs": [
         {
@@ -636,9 +621,9 @@
         "bijprat",
         "bulletin",
         "dagelijk",
-        "spelt",
         "opvallend",
-        "redacti"
+        "redacti",
+        "spelt"
       ],
       "bewijs": [
         {
@@ -720,7 +705,7 @@
       "Sa": 0.35,
       "Sp": 0,
       "route": "aanhoudend",
-      "K": 0.27,
+      "K": 0.26,
       "n": 6,
       "dagen": 1,
       "bronnen": 1,
@@ -770,8 +755,8 @@
       "key": "a:f833a15399",
       "soort": "agenda",
       "kop": "GEANNULEERD: Technische sessie Vervoerregio Amsterdam",
-      "S": 0.31,
-      "Sa": 0.31,
+      "S": 0.3,
+      "Sa": 0.3,
       "Sp": 0,
       "route": "aanhoudend",
       "K": 0.51,
@@ -865,8 +850,8 @@
       "key": "n:https://lokaleregelgeving.overheid.nl/CVDR699867/2",
       "soort": "nieuws",
       "kop": "Machtiging tekenbevoegdheid collegestukken",
-      "S": 0.26,
-      "Sa": 0.26,
+      "S": 0.25,
+      "Sa": 0.25,
       "Sp": 0,
       "route": "aanhoudend",
       "K": 0.17,
@@ -957,7 +942,7 @@
       "Sa": 0.2,
       "Sp": 0,
       "route": "aanhoudend",
-      "K": 0.94,
+      "K": 0.93,
       "n": 1,
       "dagen": 1,
       "bronnen": 1,
@@ -1148,33 +1133,6 @@
           "c": 0.69,
           "plek": "intro",
           "titel": "Aanbieding Kwaliteitscriteria Gezinshuizen 2026 | Verzoek registratie als ingekomen stuk"
-        }
-      ]
-    },
-    {
-      "key": "n:https://www.deorkaan.nl/cameratoezicht-elzenstraat-weer-verlengd/",
-      "soort": "nieuws",
-      "kop": "Cameratoezicht Elzenstraat wéér verlengd",
-      "S": 0.16,
-      "Sa": 0.16,
-      "Sp": 0,
-      "route": "aanhoudend",
-      "K": 0.26,
-      "n": 1,
-      "dagen": 1,
-      "bronnen": 1,
-      "ankers": [
-        "elzenstrat",
-        "verlengd",
-        "cameratoezicht"
-      ],
-      "bewijs": [
-        {
-          "bron": "ibabs-collegeberichten",
-          "datum": "2026-11-03T23:00:00.000Z",
-          "c": 0.86,
-          "plek": "kop",
-          "titel": "Kennisgeving Burgemeester J. Hamming: Incident Elzenstraat"
         }
       ]
     },
@@ -1531,7 +1489,6 @@
       "bronnen": 1,
       "ankers": [
         "radsvergadering",
-        "begroting",
         "sprektijd",
         "agendapunt",
         "opening"
@@ -1568,6 +1525,36 @@
           "c": 0.94,
           "plek": "kop",
           "titel": "Dichter bij de tijd: vol is vol"
+        }
+      ]
+    },
+    {
+      "key": "n:https://zaanstad.bestuurlijkeinformatie.nl/Reports/Item/9df187bf-c385-4b57-8208-2cb708b1a398",
+      "soort": "nieuws",
+      "kop": "Nieuwsbrief week 43: Gesprekken met minister & inschrijven Dag voor de Raad",
+      "S": 0.08,
+      "Sa": 0.08,
+      "Sp": 0,
+      "route": "aanhoudend",
+      "K": 0,
+      "n": 1,
+      "dagen": 1,
+      "bronnen": 1,
+      "ankers": [
+        "inschrijv",
+        "minister",
+        "nieuwsbrief",
+        "gesprek",
+        "vereniging",
+        "tuhuljtk"
+      ],
+      "bewijs": [
+        {
+          "bron": "ibabs-ingekomen-stukken",
+          "datum": "2026-11-03T23:00:00.000Z",
+          "c": 0.72,
+          "plek": "intro",
+          "titel": "Laat jij je de mond snoeren? Doe mee aan de enquête!"
         }
       ]
     }
