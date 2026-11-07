@@ -1,28 +1,28 @@
 {
-  "gegenereerdOp": "2026-11-07T01:00:50.860Z",
+  "gegenereerdOp": "2026-11-07T02:00:51.170Z",
   "modus": "schaduw",
   "tau": 0.5,
   "stats": {
     "modus": "schaduw",
     "ai": true,
     "tekst": {
-      "werklijst": 0,
-      "lokaal": 0,
-      "opgehaald": 0,
-      "mislukt": 0,
+      "werklijst": 10,
+      "lokaal": 4,
+      "opgehaald": 4,
+      "mislukt": 2,
       "uitgesteld": 0
     },
     "vergeten": 0,
-    "stukken": 331,
-    "kandidaten": 102,
-    "metAnker": 102,
-    "zonderAnker": 0,
+    "stukken": 341,
+    "kandidaten": 112,
+    "metAnker": 109,
+    "zonderAnker": 3,
     "afgelast": 1,
     "dubbel": 1,
     "tau": 0.5,
     "besluit": {
-      "boven": 0,
-      "wacht": 0,
+      "boven": 3,
+      "wacht": 3,
       "onderdrukt": 0,
       "veto": 0,
       "nieuwRood": 0,
@@ -32,104 +32,126 @@
   },
   "top": [
     {
-      "key": "n:https://zaanstad.bestuurlijkeinformatie.nl/Document/View/27931bc8-9e76-438d-82ba-f51af593bb38",
-      "soort": "nieuws",
-      "kop": "Kennisgeving burgemeester Hamming: incident Jaspersstraat",
-      "S": 0.56,
-      "Sa": 0.4,
-      "Sp": 0.56,
-      "route": "piek",
-      "K": 0.74,
-      "Kp": 0.57,
-      "n": 2,
-      "dagen": 1,
-      "bronnen": 2,
+      "key": "a:04d5e7cb5d",
+      "soort": "agenda",
+      "kop": "Raadsvergadering: Begroting",
+      "S": 0.96,
+      "Sa": 0.96,
+      "Sp": 0,
+      "route": "aanhoudend",
+      "K": 0.95,
+      "Kp": 0.62,
+      "n": 16,
+      "dagen": 10,
+      "bronnen": 3,
       "ankers": [
-        "jaspersstrat",
-        "kennisgeving",
-        "incident",
-        "hamming",
-        "telefon"
+        "radsvergadering",
+        "begroting"
       ],
       "bewijs": [
         {
           "bron": "DeOrkaan",
+          "datum": "2026-11-04T23:00:00.000Z",
+          "c": 1,
+          "plek": "kop",
+          "titel": "Protest tegen statushouders in Oostzaan: raadsvergadering tijdelijk geschorst 📸 🎥"
+        },
+        {
+          "bron": "ibabs-ingekomen-stukken",
+          "datum": "2026-11-03T23:00:00.000Z",
+          "c": 0.91,
+          "plek": "kop",
+          "titel": "Begroting voor de deur: wat vragen we van onze ambtenaren?"
+        },
+        {
+          "bron": "DeOrkaan",
+          "datum": "2026-10-28T23:00:00.000Z",
+          "c": 0.91,
+          "plek": "kop",
+          "titel": "Zaanse begroting ronde twee: van AI tot gemeentehuis"
+        },
+        {
+          "bron": "DeOrkaan",
+          "datum": "2026-10-21T22:00:00.000Z",
+          "c": 0.91,
+          "plek": "kop",
+          "titel": "Eigen begroting oppositie Zaanstad: minima ontzien, toeristen betalen meer"
+        },
+        {
+          "bron": "DeOrkaan",
+          "datum": "2026-10-20T22:00:00.000Z",
+          "c": 0.91,
+          "plek": "kop",
+          "titel": "Rekenkamer twijfelt aan stevige basis sluitende begroting Zaanstad"
+        }
+      ]
+    },
+    {
+      "key": "n:https://zaanstad.bestuurlijkeinformatie.nl/Document/View/27931bc8-9e76-438d-82ba-f51af593bb38",
+      "soort": "nieuws",
+      "kop": "Kennisgeving burgemeester Hamming: incident Jaspersstraat",
+      "S": 0.78,
+      "Sa": 0.54,
+      "Sp": 0.78,
+      "route": "piek",
+      "K": 0.79,
+      "Kp": 0.61,
+      "n": 4,
+      "dagen": 1,
+      "bronnen": 3,
+      "ankers": [
+        "jaspersstrat",
+        "kennisgeving",
+        "incident",
+        "hamming"
+      ],
+      "bewijs": [
+        {
+          "bron": "ibabs-collegeberichten",
           "datum": "2026-11-05T23:00:00.000Z",
-          "c": 0.87,
+          "c": 0.98,
+          "plek": "kop",
+          "titel": "Kennisgeving burgemeester Hamming: Verlenging sluiting woning Zuiddijk 172 en cameratoezicht"
+        },
+        {
+          "bron": "ibabs-collegeberichten",
+          "datum": "2026-11-05T23:00:00.000Z",
+          "c": 0.93,
+          "plek": "kop",
+          "titel": "Kennisgeving wethouder Groenewoud: Aanvraag windturbines Westelijk Havengebied"
+        },
+        {
+          "bron": "DeOrkaan",
+          "datum": "2026-11-05T23:00:00.000Z",
+          "c": 0.88,
           "plek": "kop",
           "titel": "Cameratoezicht Zuiddijk en Jaspersstraat verlengd"
         },
         {
           "bron": "wetenregelgeving",
           "datum": "2026-11-05T23:00:00.000Z",
-          "c": 0.85,
+          "c": 0.86,
           "plek": "kop",
           "titel": "Aanwijzingsbesluit verlenging tijdelijk cameratoezicht Jaspersstraat Zaandam"
         }
       ]
     },
     {
-      "key": "n:https://zaanstad.bestuurlijkeinformatie.nl/Document/View/3efd6010-3187-4635-81ad-6abea4b1acda",
+      "key": "n:https://lokaleregelgeving.overheid.nl/CVDR769019/1",
       "soort": "nieuws",
-      "kop": "Kennisgeving Burgemeester J. Hamming: Incident Elzenstraat",
-      "S": 0.46,
-      "Sa": 0.46,
-      "Sp": 0,
+      "kop": "Aanwijzingsbesluit verlenging tijdelijk cameratoezicht Zuiddijk te Zaandam",
+      "S": 0.67,
+      "Sa": 0.67,
+      "Sp": 0.52,
       "route": "aanhoudend",
-      "K": 0.69,
-      "Kp": 0.53,
-      "n": 3,
-      "dagen": 2,
-      "bronnen": 2,
+      "K": 0.77,
+      "Kp": 0.6,
+      "n": 5,
+      "dagen": 3,
+      "bronnen": 3,
       "ankers": [
-        "elzenstrat",
-        "kennisgeving",
-        "incident",
-        "hamming",
-        "telefon",
-        "geacht"
-      ],
-      "bewijs": [
-        {
-          "bron": "bekendmakingen",
-          "datum": "2026-11-02T23:00:00.000Z",
-          "c": 0.88,
-          "plek": "kop",
-          "titel": "Aanwijzingsbesluit verlenging tijdelijk cameratoezicht Elzenstraat in Wormerveer"
-        },
-        {
-          "bron": "DeOrkaan",
-          "datum": "2026-11-02T23:00:00.000Z",
-          "c": 0.88,
-          "plek": "kop",
-          "titel": "Cameratoezicht Elzenstraat wéér verlengd"
-        },
-        {
-          "bron": "DeOrkaan",
-          "datum": "2026-11-05T23:00:00.000Z",
-          "c": 0.69,
-          "plek": "intro",
-          "titel": "Cameratoezicht Zuiddijk en Jaspersstraat verlengd"
-        }
-      ]
-    },
-    {
-      "key": "n:https://lokaleregelgeving.overheid.nl/CVDR768780/1",
-      "soort": "nieuws",
-      "kop": "Aanwijzingsbesluit verlenging tijdelijk cameratoezicht Jaspersstraat Zaandam",
-      "S": 0.4,
-      "Sa": 0.4,
-      "Sp": 0,
-      "route": "aanhoudend",
-      "K": 0.7,
-      "Kp": 0.53,
-      "n": 2,
-      "dagen": 2,
-      "bronnen": 2,
-      "ankers": [
-        "jaspersstrat",
+        "zuiddijk",
         "anwijzingsbesluit",
-        "cvdr768780",
         "verlenging",
         "cameratoezicht"
       ],
@@ -137,16 +159,148 @@
         {
           "bron": "bekendmakingen",
           "datum": "2026-11-02T23:00:00.000Z",
-          "c": 0.92,
+          "c": 1,
           "plek": "kop",
           "titel": "Aanwijzingsbesluit verlenging tijdelijk cameratoezicht Elzenstraat in Wormerveer"
         },
         {
           "bron": "ibabs-collegeberichten",
-          "datum": "2026-11-04T23:00:00.000Z",
-          "c": 0.85,
+          "datum": "2026-11-05T23:00:00.000Z",
+          "c": 1,
           "plek": "kop",
-          "titel": "Kennisgeving burgemeester Hamming: incident Jaspersstraat"
+          "titel": "Kennisgeving burgemeester Hamming: Verlenging sluiting woning Zuiddijk 172 en cameratoezicht"
+        },
+        {
+          "bron": "DeOrkaan",
+          "datum": "2026-11-05T23:00:00.000Z",
+          "c": 0.93,
+          "plek": "kop",
+          "titel": "Cameratoezicht Zuiddijk en Jaspersstraat verlengd"
+        },
+        {
+          "bron": "DeOrkaan",
+          "datum": "2026-11-02T23:00:00.000Z",
+          "c": 0.89,
+          "plek": "kop",
+          "titel": "Cameratoezicht Elzenstraat wéér verlengd"
+        },
+        {
+          "bron": "ibabs-collegeberichten",
+          "datum": "2026-11-03T23:00:00.000Z",
+          "c": 0.8,
+          "plek": "intro",
+          "titel": "Kennisgeving Burgemeester J. Hamming: Incident Elzenstraat"
+        }
+      ]
+    },
+    {
+      "key": "n:https://zaanstad.bestuurlijkeinformatie.nl/Document/View/3efd6010-3187-4635-81ad-6abea4b1acda",
+      "soort": "nieuws",
+      "kop": "Kennisgeving Burgemeester J. Hamming: Incident Elzenstraat",
+      "S": 0.62,
+      "Sa": 0.62,
+      "Sp": 0.59,
+      "route": "aanhoudend",
+      "K": 0.77,
+      "Kp": 0.59,
+      "n": 5,
+      "dagen": 2,
+      "bronnen": 3,
+      "ankers": [
+        "elzenstrat",
+        "kennisgeving",
+        "incident",
+        "hamming"
+      ],
+      "bewijs": [
+        {
+          "bron": "ibabs-collegeberichten",
+          "datum": "2026-11-05T23:00:00.000Z",
+          "c": 0.98,
+          "plek": "kop",
+          "titel": "Kennisgeving burgemeester Hamming: Verlenging sluiting woning Zuiddijk 172 en cameratoezicht"
+        },
+        {
+          "bron": "ibabs-collegeberichten",
+          "datum": "2026-11-05T23:00:00.000Z",
+          "c": 0.93,
+          "plek": "kop",
+          "titel": "Kennisgeving wethouder Groenewoud: Aanvraag windturbines Westelijk Havengebied"
+        },
+        {
+          "bron": "bekendmakingen",
+          "datum": "2026-11-02T23:00:00.000Z",
+          "c": 0.89,
+          "plek": "kop",
+          "titel": "Aanwijzingsbesluit verlenging tijdelijk cameratoezicht Elzenstraat in Wormerveer"
+        },
+        {
+          "bron": "DeOrkaan",
+          "datum": "2026-11-02T23:00:00.000Z",
+          "c": 0.89,
+          "plek": "kop",
+          "titel": "Cameratoezicht Elzenstraat wéér verlengd"
+        },
+        {
+          "bron": "DeOrkaan",
+          "datum": "2026-11-05T23:00:00.000Z",
+          "c": 0.7,
+          "plek": "intro",
+          "titel": "Cameratoezicht Zuiddijk en Jaspersstraat verlengd"
+        }
+      ]
+    },
+    {
+      "key": "n:https://zaanstad.bestuurlijkeinformatie.nl/Document/View/8b899045-41e2-48f7-b963-2762303ae520",
+      "soort": "nieuws",
+      "kop": "Kennisgeving burgemeester Hamming: Verlenging sluiting woning Zuiddijk 172 en cameratoezicht",
+      "S": 0.56,
+      "Sa": 0.56,
+      "Sp": 0.49,
+      "route": "aanhoudend",
+      "K": 0.7,
+      "Kp": 0.53,
+      "n": 4,
+      "dagen": 3,
+      "bronnen": 2,
+      "ankers": [
+        "kennisgeving",
+        "zuiddijk",
+        "verlenging",
+        "hamming",
+        "sluiting",
+        "cameratoezicht",
+        "telefon",
+        "geacht"
+      ],
+      "bewijs": [
+        {
+          "bron": "ibabs-collegeberichten",
+          "datum": "2026-11-03T23:00:00.000Z",
+          "c": 1,
+          "plek": "kop",
+          "titel": "Kennisgeving Burgemeester J. Hamming: Incident Elzenstraat"
+        },
+        {
+          "bron": "ibabs-collegeberichten",
+          "datum": "2026-11-05T23:00:00.000Z",
+          "c": 0.92,
+          "plek": "kop",
+          "titel": "Kennisgeving wethouder Groenewoud: Aanvraag windturbines Westelijk Havengebied"
+        },
+        {
+          "bron": "DeOrkaan",
+          "datum": "2026-11-02T23:00:00.000Z",
+          "c": 0.91,
+          "plek": "kop",
+          "titel": "Cameratoezicht Elzenstraat wéér verlengd"
+        },
+        {
+          "bron": "DeOrkaan",
+          "datum": "2026-11-05T23:00:00.000Z",
+          "c": 0.88,
+          "plek": "kop",
+          "titel": "Cameratoezicht Zuiddijk en Jaspersstraat verlengd"
         }
       ]
     },
@@ -159,7 +313,7 @@
       "Sp": 0,
       "route": "aanhoudend",
       "K": 0.68,
-      "Kp": 0.55,
+      "Kp": 0.54,
       "n": 2,
       "dagen": 2,
       "bronnen": 1,
@@ -183,6 +337,43 @@
           "c": 0.64,
           "plek": "intro",
           "titel": "Een comfortabeler monument met hetzelfde karakter"
+        }
+      ]
+    },
+    {
+      "key": "n:https://zaanstad.bestuurlijkeinformatie.nl/Document/View/e44deb13-3764-4b20-b7a9-900727754fcd",
+      "soort": "nieuws",
+      "kop": "Kennisgeving wethouder Groenewoud: Aanvraag windturbines Westelijk Havengebied",
+      "S": 0.34,
+      "Sa": 0.34,
+      "Sp": 0,
+      "route": "aanhoudend",
+      "K": 0.61,
+      "Kp": 0.44,
+      "n": 2,
+      "dagen": 2,
+      "bronnen": 1,
+      "ankers": [
+        "groenewoud",
+        "westelijk",
+        "havengebied",
+        "kennisgeving",
+        "windturbine"
+      ],
+      "bewijs": [
+        {
+          "bron": "ibabs-collegeberichten",
+          "datum": "2026-11-03T23:00:00.000Z",
+          "c": 0.87,
+          "plek": "kop",
+          "titel": "Kennisgeving Burgemeester J. Hamming: Incident Elzenstraat"
+        },
+        {
+          "bron": "ibabs-collegeberichten",
+          "datum": "2026-11-05T23:00:00.000Z",
+          "c": 0.87,
+          "plek": "kop",
+          "titel": "Kennisgeving burgemeester Hamming: Verlenging sluiting woning Zuiddijk 172 en cameratoezicht"
         }
       ]
     },
@@ -270,28 +461,62 @@
       ]
     },
     {
-      "key": "a:04d5e7cb5d",
-      "soort": "agenda",
-      "kop": "Raadsvergadering: Begroting",
-      "S": 0.22,
-      "Sa": 0.22,
+      "key": "n:https://lokaleregelgeving.overheid.nl/CVDR768780/1",
+      "soort": "nieuws",
+      "kop": "Aanwijzingsbesluit verlenging tijdelijk cameratoezicht Jaspersstraat Zaandam",
+      "S": 0.23,
+      "Sa": 0.23,
       "Sp": 0,
       "route": "aanhoudend",
-      "K": 0.38,
-      "Kp": 0.21,
+      "K": 0.64,
+      "Kp": 0.47,
       "n": 1,
       "dagen": 1,
       "bronnen": 1,
       "ankers": [
-        "radsvergadering"
+        "jaspersstrat",
+        "anwijzingsbesluit",
+        "cvdr768780"
       ],
       "bewijs": [
         {
-          "bron": "DeOrkaan",
-          "datum": "2026-11-04T23:00:00.000Z",
+          "bron": "bekendmakingen",
+          "datum": "2026-11-02T23:00:00.000Z",
+          "c": 0.91,
+          "plek": "kop",
+          "titel": "Aanwijzingsbesluit verlenging tijdelijk cameratoezicht Elzenstraat in Wormerveer"
+        }
+      ]
+    },
+    {
+      "key": "n:https://www.vervoerregio.nl/artikel/20261106-negen-overheidspartijen-zetten-volgende-stap-voor-ni",
+      "soort": "nieuws",
+      "kop": "Negen overheidspartijen zetten volgende stap voor nieuwe doorfietsroutes",
+      "S": 0.22,
+      "Sa": 0.22,
+      "Sp": 0,
+      "route": "aanhoudend",
+      "K": 0.18,
+      "Kp": 0,
+      "n": 1,
+      "dagen": 1,
+      "bronnen": 1,
+      "ankers": [
+        "overheidspartij",
+        "dorfietsroute",
+        "negen",
+        "hillegom",
+        "bollenstrek",
+        "harlemmermer",
+        "samenwerkingsoverenkomst"
+      ],
+      "bewijs": [
+        {
+          "bron": "nh-actueel",
+          "datum": "2026-11-05T10:34:53.000Z",
           "c": 1,
           "plek": "kop",
-          "titel": "Protest tegen statushouders in Oostzaan: raadsvergadering tijdelijk geschorst 📸 🎥"
+          "titel": "9 overheidspartijen zetten volgende stap voor nieuwe doorfietsroutes"
         }
       ]
     },
@@ -478,13 +703,13 @@
       "key": "a:4d3692245e",
       "soort": "agenda",
       "kop": "Zaanstad Beraad Raadzaal: TEST",
-      "S": 0.15,
-      "Sa": 0.15,
+      "S": 0.17,
+      "Sa": 0.17,
       "Sp": 0,
       "route": "aanhoudend",
       "K": 0.22,
-      "Kp": 0.08,
-      "n": 2,
+      "Kp": 0.09,
+      "n": 3,
       "dagen": 1,
       "bronnen": 1,
       "ankers": [
@@ -495,16 +720,64 @@
         {
           "bron": "zaanstad-kalender",
           "datum": "2026-11-01T15:55:49.908Z",
-          "c": 0.76,
+          "c": 0.7,
           "plek": "intro",
           "titel": "Raadsvergadering: Reservedatum begroting"
         },
         {
           "bron": "zaanstad-kalender",
           "datum": "2026-11-01T15:55:49.908Z",
-          "c": 0.64,
+          "c": 0.69,
           "plek": "intro",
           "titel": "Ambtsbezoek: Ambtsbezoek Commissaris van de Koning"
+        },
+        {
+          "bron": "zaanstad-kalender",
+          "datum": "2026-11-01T15:55:49.908Z",
+          "c": 0.68,
+          "plek": "intro",
+          "titel": "Regionale Raadsledenbijeenkomst"
+        }
+      ]
+    },
+    {
+      "key": "a:2f3f3332ae",
+      "soort": "agenda",
+      "kop": "Zaanstad Beraad Raadzaal: TEST",
+      "S": 0.17,
+      "Sa": 0.17,
+      "Sp": 0,
+      "route": "aanhoudend",
+      "K": 0.22,
+      "Kp": 0.09,
+      "n": 3,
+      "dagen": 1,
+      "bronnen": 1,
+      "ankers": [
+        "radzal",
+        "test"
+      ],
+      "bewijs": [
+        {
+          "bron": "zaanstad-kalender",
+          "datum": "2026-11-01T15:55:49.908Z",
+          "c": 0.7,
+          "plek": "intro",
+          "titel": "Raadsvergadering: Reservedatum begroting"
+        },
+        {
+          "bron": "zaanstad-kalender",
+          "datum": "2026-11-01T15:55:49.908Z",
+          "c": 0.69,
+          "plek": "intro",
+          "titel": "Ambtsbezoek: Ambtsbezoek Commissaris van de Koning"
+        },
+        {
+          "bron": "zaanstad-kalender",
+          "datum": "2026-11-01T15:55:49.908Z",
+          "c": 0.68,
+          "plek": "intro",
+          "titel": "Regionale Raadsledenbijeenkomst"
         }
       ]
     },
@@ -531,8 +804,8 @@
         "krommeniedijk",
         "thema",
         "besturskracht",
-        "hamming",
-        "gesprek"
+        "gesprek",
+        "hamming"
       ],
       "bewijs": [
         {
@@ -541,6 +814,39 @@
           "c": 0.96,
           "plek": "kop",
           "titel": "Ambtsbezoek: Ambtsbezoek Commissaris van de Koning"
+        }
+      ]
+    },
+    {
+      "key": "n:https://www.noord-holland.nl/Actueel/Archief/2026/November_2026/9_overheidspartijen_zetten_volgende_stap_voor_nieuwe_doorfietsroutes",
+      "soort": "nieuws",
+      "kop": "9 overheidspartijen zetten volgende stap voor nieuwe doorfietsroutes",
+      "S": 0.13,
+      "Sa": 0.13,
+      "Sp": 0,
+      "route": "aanhoudend",
+      "K": 0.19,
+      "Kp": 0,
+      "n": 1,
+      "dagen": 1,
+      "bronnen": 1,
+      "ankers": [
+        "overheidspartij",
+        "dorfietsroute",
+        "hillegom",
+        "bollenstrek",
+        "harlemmermer",
+        "beter",
+        "samenwerkingsoverenkomst",
+        "pakket"
+      ],
+      "bewijs": [
+        {
+          "bron": "vervoerregio-persberichten",
+          "datum": "2026-11-05T23:00:00.000Z",
+          "c": 1,
+          "plek": "kop",
+          "titel": "Negen overheidspartijen zetten volgende stap voor nieuwe doorfietsroutes"
         }
       ]
     },
@@ -597,8 +903,8 @@
         "wijziging",
         "vornem",
         "anpassing",
-        "technisch",
         "implementati",
+        "technisch",
         "kennisgeving"
       ],
       "bewijs": [
@@ -851,90 +1157,6 @@
       ]
     },
     {
-      "key": "a:9f19133212",
-      "soort": "agenda",
-      "kop": "Zaanstad Beraad",
-      "S": 0.07,
-      "Sa": 0.07,
-      "Sp": 0,
-      "route": "aanhoudend",
-      "K": 0.14,
-      "Kp": 0,
-      "n": 1,
-      "dagen": 1,
-      "bronnen": 1,
-      "ankers": [
-        "filmopnam",
-        "uitgezond",
-        "internet"
-      ],
-      "bewijs": [
-        {
-          "bron": "zaanstad-kalender",
-          "datum": "2026-11-01T15:55:49.908Z",
-          "c": 0.8,
-          "plek": "intro",
-          "titel": "Raadsvergadering: Reservedatum begroting"
-        }
-      ]
-    },
-    {
-      "key": "a:a40d7a33f0",
-      "soort": "agenda",
-      "kop": "Zaanstad Beraad",
-      "S": 0.07,
-      "Sa": 0.07,
-      "Sp": 0,
-      "route": "aanhoudend",
-      "K": 0.14,
-      "Kp": 0,
-      "n": 1,
-      "dagen": 1,
-      "bronnen": 1,
-      "ankers": [
-        "filmopnam",
-        "uitgezond",
-        "internet"
-      ],
-      "bewijs": [
-        {
-          "bron": "zaanstad-kalender",
-          "datum": "2026-11-01T15:55:49.908Z",
-          "c": 0.8,
-          "plek": "intro",
-          "titel": "Raadsvergadering: Reservedatum begroting"
-        }
-      ]
-    },
-    {
-      "key": "a:4a5ff898e2",
-      "soort": "agenda",
-      "kop": "Zaanstad Beraad",
-      "S": 0.07,
-      "Sa": 0.07,
-      "Sp": 0,
-      "route": "aanhoudend",
-      "K": 0.14,
-      "Kp": 0,
-      "n": 1,
-      "dagen": 1,
-      "bronnen": 1,
-      "ankers": [
-        "filmopnam",
-        "uitgezond",
-        "internet"
-      ],
-      "bewijs": [
-        {
-          "bron": "zaanstad-kalender",
-          "datum": "2026-11-01T15:55:49.908Z",
-          "c": 0.8,
-          "plek": "intro",
-          "titel": "Raadsvergadering: Reservedatum begroting"
-        }
-      ]
-    },
-    {
       "key": "a:54bf0d34fe",
       "soort": "agenda",
       "kop": "Verkeersbesluit plaatsen laadpaal voor elektrische auto's locatie Kaaikhof te Assendelft",
@@ -1093,6 +1315,7 @@
       "ankers": [
         "lering",
         "vermak",
+        "lezing",
         "zevenberg",
         "humor"
       ],
@@ -1137,68 +1360,6 @@
       "ankers": [
         "anwijsbesluit",
         "perim"
-      ],
-      "bewijs": []
-    },
-    {
-      "key": "a:abb742a017",
-      "soort": "agenda",
-      "kop": "Omgevingsvergunning O2026055913 realiseren dakterras op woning Zuiderhoofdstraat 78 te Krommenie",
-      "S": 0,
-      "Sa": 0,
-      "Sp": 0,
-      "route": "geen",
-      "K": 0.15,
-      "Kp": 0,
-      "n": 0,
-      "dagen": 0,
-      "bronnen": 0,
-      "ankers": [
-        "o2026055913",
-        "zuiderhofdstrat",
-        "realiser",
-        "dakterras"
-      ],
-      "bewijs": []
-    },
-    {
-      "key": "a:1a746de3ba",
-      "soort": "agenda",
-      "kop": "Uitnodiging NZKG-Jaarcongres 12 november 'De kracht van het Noordzeekanaalgebied (NZKG) & 150 jaar Noordzeekanaal'",
-      "S": 0,
-      "Sa": 0,
-      "Sp": 0,
-      "route": "geen",
-      "K": 0,
-      "Kp": 0,
-      "n": 0,
-      "dagen": 0,
-      "bronnen": 0,
-      "ankers": [
-        "jarcongre",
-        "nordzekanal",
-        "kracht",
-        "nzkg",
-        "nzkanal"
-      ],
-      "bewijs": []
-    },
-    {
-      "key": "a:55db5c0d37",
-      "soort": "agenda",
-      "kop": "Raadsvergadering: Reservedatum begroting",
-      "S": 0,
-      "Sa": 0,
-      "Sp": 0,
-      "route": "geen",
-      "K": 0.15,
-      "Kp": 0,
-      "n": 0,
-      "dagen": 0,
-      "bronnen": 0,
-      "ankers": [
-        "reservedatum",
-        "radsvergadering"
       ],
       "bewijs": []
     }
@@ -1652,20 +1813,44 @@
       }
     },
     "2026-11-07": {
+      "a:04d5e7cb5d": {
+        "kop": "Raadsvergadering: Begroting",
+        "S": 0.96,
+        "route": "aanhoudend",
+        "K": 0.95,
+        "n": 16,
+        "bronnen": 3
+      },
       "n:https://zaanstad.bestuurlijkeinformatie.nl/Document/View/27931bc8-9e76-438d-82ba-f51af593bb38": {
         "kop": "Kennisgeving burgemeester Hamming: incident Jaspersstraat",
-        "S": 0.56,
+        "S": 0.78,
         "route": "piek",
-        "K": 0.74,
-        "n": 2,
-        "bronnen": 2
+        "K": 0.79,
+        "n": 4,
+        "bronnen": 3
+      },
+      "n:https://lokaleregelgeving.overheid.nl/CVDR769019/1": {
+        "kop": "Aanwijzingsbesluit verlenging tijdelijk cameratoezicht Zuiddijk te Zaandam",
+        "S": 0.67,
+        "route": "aanhoudend",
+        "K": 0.77,
+        "n": 5,
+        "bronnen": 3
       },
       "n:https://zaanstad.bestuurlijkeinformatie.nl/Document/View/3efd6010-3187-4635-81ad-6abea4b1acda": {
         "kop": "Kennisgeving Burgemeester J. Hamming: Incident Elzenstraat",
-        "S": 0.46,
+        "S": 0.62,
         "route": "aanhoudend",
-        "K": 0.69,
-        "n": 3,
+        "K": 0.77,
+        "n": 5,
+        "bronnen": 3
+      },
+      "n:https://zaanstad.bestuurlijkeinformatie.nl/Document/View/8b899045-41e2-48f7-b963-2762303ae520": {
+        "kop": "Kennisgeving burgemeester Hamming: Verlenging sluiting woning Zuiddijk 172 en cameratoezicht",
+        "S": 0.56,
+        "route": "aanhoudend",
+        "K": 0.7,
+        "n": 4,
         "bronnen": 2
       },
       "n:https://lokaleregelgeving.overheid.nl/CVDR768780/1": {
@@ -1681,6 +1866,14 @@
         "S": 0.35,
         "route": "aanhoudend",
         "K": 0.69,
+        "n": 2,
+        "bronnen": 1
+      },
+      "n:https://zaanstad.bestuurlijkeinformatie.nl/Document/View/e44deb13-3764-4b20-b7a9-900727754fcd": {
+        "kop": "Kennisgeving wethouder Groenewoud: Aanvraag windturbines Westelijk Havengebied",
+        "S": 0.34,
+        "route": "aanhoudend",
+        "K": 0.61,
         "n": 2,
         "bronnen": 1
       },
@@ -1700,11 +1893,11 @@
         "n": 1,
         "bronnen": 1
       },
-      "a:04d5e7cb5d": {
-        "kop": "Raadsvergadering: Begroting",
+      "n:https://www.vervoerregio.nl/artikel/20261106-negen-overheidspartijen-zetten-volgende-stap-voor-ni": {
+        "kop": "Negen overheidspartijen zetten volgende stap voor nieuwe doorfietsroutes",
         "S": 0.22,
         "route": "aanhoudend",
-        "K": 0.38,
+        "K": 0.18,
         "n": 1,
         "bronnen": 1
       },
@@ -1758,10 +1951,18 @@
       },
       "a:4d3692245e": {
         "kop": "Zaanstad Beraad Raadzaal: TEST",
-        "S": 0.15,
+        "S": 0.17,
         "route": "aanhoudend",
         "K": 0.22,
-        "n": 2,
+        "n": 3,
+        "bronnen": 1
+      },
+      "a:2f3f3332ae": {
+        "kop": "Zaanstad Beraad Raadzaal: TEST",
+        "S": 0.17,
+        "route": "aanhoudend",
+        "K": 0.22,
+        "n": 3,
         "bronnen": 1
       },
       "n:https://www.noord-holland.nl/Actueel/Archief/2026/November_2026/Oog_voor_verbinding_tijdens_ambtsbezoek_aan_gemeente_Zaanstad": {
@@ -1769,6 +1970,14 @@
         "S": 0.14,
         "route": "aanhoudend",
         "K": 0.33,
+        "n": 1,
+        "bronnen": 1
+      },
+      "n:https://www.noord-holland.nl/Actueel/Archief/2026/November_2026/9_overheidspartijen_zetten_volgende_stap_voor_nieuwe_doorfietsroutes": {
+        "kop": "9 overheidspartijen zetten volgende stap voor nieuwe doorfietsroutes",
+        "S": 0.13,
+        "route": "aanhoudend",
+        "K": 0.19,
         "n": 1,
         "bronnen": 1
       },
@@ -1802,54 +2011,6 @@
         "route": "aanhoudend",
         "K": 0,
         "n": 1,
-        "bronnen": 1
-      },
-      "n:https://zaanstad.bestuurlijkeinformatie.nl/Reports/Item/e824ca7c-cc27-463f-90b6-2ff61a2b5047": {
-        "kop": "Gemeente Den Haag geeft het voorbeeld",
-        "S": 0.09,
-        "route": "aanhoudend",
-        "K": 0.22,
-        "n": 1,
-        "bronnen": 1
-      },
-      "a:d1eae07b85": {
-        "kop": "Brandweer Oostzaan viert 100-jarig jubileum",
-        "S": 0.08,
-        "route": "aanhoudend",
-        "K": 0.36,
-        "n": 1,
-        "bronnen": 1
-      },
-      "a:bd39f8159e": {
-        "kop": "Dichter bij de tijd",
-        "S": 0.08,
-        "route": "aanhoudend",
-        "K": 0,
-        "n": 1,
-        "bronnen": 1
-      },
-      "n:https://zaanstad.bestuurlijkeinformatie.nl/Reports/Item/9df187bf-c385-4b57-8208-2cb708b1a398": {
-        "kop": "Nieuwsbrief week 43: Gesprekken met minister & inschrijven Dag voor de Raad",
-        "S": 0.08,
-        "route": "aanhoudend",
-        "K": 0,
-        "n": 1,
-        "bronnen": 1
-      },
-      "n:https://zaanstad.bestuurlijkeinformatie.nl/Reports/Item/ba379db2-8d98-40ec-b29c-c081d662f580": {
-        "kop": "Laat jij je de mond snoeren? Doe mee aan de enquête!",
-        "S": 0.08,
-        "route": "aanhoudend",
-        "K": 0,
-        "n": 1,
-        "bronnen": 1
-      },
-      "a:e26813c04c": {
-        "kop": "Geweigerde huisvestingsvergunning Klipperstraat 37 te Zaandam - Microsoft Teams",
-        "S": 0.07,
-        "route": "aanhoudend",
-        "K": 0.16,
-        "n": 2,
         "bronnen": 1
       }
     }
