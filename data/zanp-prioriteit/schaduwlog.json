@@ -1,5 +1,5 @@
 {
-  "gegenereerdOp": "2026-11-07T07:00:54.007Z",
+  "gegenereerdOp": "2026-11-07T08:00:49.873Z",
   "modus": "schaduw",
   "tau": 0.5,
   "stats": {
@@ -13,9 +13,9 @@
       "uitgesteld": 0
     },
     "vergeten": 0,
-    "stukken": 342,
-    "kandidaten": 94,
-    "metAnker": 91,
+    "stukken": 343,
+    "kandidaten": 93,
+    "metAnker": 90,
     "zonderAnker": 3,
     "afgelast": 1,
     "dubbel": 1,
@@ -23,8 +23,8 @@
     "besluit": {
       "boven": 2,
       "wacht": 0,
-      "onderdrukt": 2,
-      "veto": 0,
+      "onderdrukt": 1,
+      "veto": 1,
       "nieuwRood": 0,
       "noodrem": false
     },
@@ -40,7 +40,7 @@
       "Sp": 0,
       "route": "aanhoudend",
       "K": 0.95,
-      "Kp": 0.62,
+      "Kp": 0.61,
       "n": 16,
       "dagen": 10,
       "bronnen": 3,
@@ -517,6 +517,74 @@
           "c": 0.63,
           "plek": "intro",
           "titel": "Verkeersbesluit, voetpad De Krimp te Zaandam"
+        }
+      ]
+    },
+    {
+      "key": "n:https://www.deorkaan.nl/waarheen-topkolf-erfgoed-fontana-blue/",
+      "soort": "nieuws",
+      "kop": "Waarheen: topkolf, erfgoed, Fontana Blue",
+      "S": 0.2,
+      "Sa": 0.2,
+      "Sp": 0,
+      "route": "aanhoudend",
+      "K": 0,
+      "Kp": 0,
+      "n": 1,
+      "dagen": 1,
+      "bronnen": 1,
+      "ankers": [
+        "fontana",
+        "topkolf",
+        "oliver",
+        "erfgoed",
+        "rundfunk",
+        "conni",
+        "erfgoedmarkt"
+      ],
+      "bewijs": [
+        {
+          "bron": "DeOrkaan",
+          "datum": "2026-11-06T23:00:00.000Z",
+          "c": 0.93,
+          "plek": "kop",
+          "titel": "Waarheen: Erfgoed, onbeperkt gezellig, bierfestival 🎙"
+        }
+      ]
+    },
+    {
+      "key": "n:https://www.deorkaan.nl/jarige-zaans-erfgoed-viert-feestje-met-markt-en-glossy-%f0%9f%8e%a7/",
+      "soort": "nieuws",
+      "kop": "Jarig Zaans Erfgoed viert feestje met markt en glossy 🎧",
+      "S": 0.19,
+      "Sa": 0.19,
+      "Sp": 0,
+      "route": "aanhoudend",
+      "K": 0,
+      "Kp": 0,
+      "n": 1,
+      "dagen": 1,
+      "bronnen": 1,
+      "ankers": [
+        "erfgoed",
+        "glossy",
+        "jarig",
+        "festj",
+        "markt",
+        "lorena",
+        "viert",
+        "hogtepunt",
+        "marian",
+        "erfgoedmarkt",
+        "doeve"
+      ],
+      "bewijs": [
+        {
+          "bron": "DeOrkaan",
+          "datum": "2026-11-06T23:00:00.000Z",
+          "c": 0.88,
+          "plek": "kop",
+          "titel": "Waarheen: Erfgoed, onbeperkt gezellig, bierfestival 🎙"
         }
       ]
     },
@@ -1083,7 +1151,8 @@
         "marlen",
         "hennek",
         "sphinx",
-        "lightshow"
+        "lightshow",
+        "molenar"
       ],
       "bewijs": []
     },
@@ -1231,44 +1300,6 @@
         "kracht",
         "nzkg",
         "nzkanal"
-      ],
-      "bewijs": []
-    },
-    {
-      "key": "a:55db5c0d37",
-      "soort": "agenda",
-      "kop": "Raadsvergadering: Reservedatum begroting",
-      "S": 0,
-      "Sa": 0,
-      "Sp": 0,
-      "route": "geen",
-      "K": 0.15,
-      "Kp": 0,
-      "n": 0,
-      "dagen": 0,
-      "bronnen": 0,
-      "ankers": [
-        "reservedatum",
-        "radsvergadering"
-      ],
-      "bewijs": []
-    },
-    {
-      "key": "a:777fef6fda",
-      "soort": "agenda",
-      "kop": "Uitnodiging en aanmeldlink voor deelname aan de Webinar raadsleden",
-      "S": 0,
-      "Sa": 0,
-      "Sp": 0,
-      "route": "geen",
-      "K": 0,
-      "Kp": 0,
-      "n": 0,
-      "dagen": 0,
-      "bronnen": 0,
-      "ankers": [
-        "anmeldlink",
-        "delnam"
       ],
       "bewijs": []
     }
@@ -1842,6 +1873,22 @@
         "n": 1,
         "bronnen": 1
       },
+      "n:https://www.deorkaan.nl/waarheen-topkolf-erfgoed-fontana-blue/": {
+        "kop": "Waarheen: topkolf, erfgoed, Fontana Blue",
+        "S": 0.2,
+        "route": "aanhoudend",
+        "K": 0,
+        "n": 1,
+        "bronnen": 1
+      },
+      "n:https://www.deorkaan.nl/jarige-zaans-erfgoed-viert-feestje-met-markt-en-glossy-%f0%9f%8e%a7/": {
+        "kop": "Jarig Zaans Erfgoed viert feestje met markt en glossy 🎧",
+        "S": 0.19,
+        "route": "aanhoudend",
+        "K": 0,
+        "n": 1,
+        "bronnen": 1
+      },
       "n:https://lokaleregelgeving.overheid.nl/CVDR699867/2": {
         "kop": "Machtiging tekenbevoegdheid collegestukken",
         "S": 0.18,
@@ -1901,22 +1948,6 @@
       "n:https://zoek.officielebekendmakingen.nl/gmb-2026-503010.html": {
         "kop": "Kennisgeving voornemen Wijziging omgevingsplan technische aanpassingen",
         "S": 0.11,
-        "route": "aanhoudend",
-        "K": 0.16,
-        "n": 1,
-        "bronnen": 1
-      },
-      "n:https://www.deorkaan.nl/grote-politie-inzet-na-melding-steekpartij-bij-bedrijf-in-zaandam/": {
-        "kop": "Verdachte aangehouden na dodelijke steekpartij bij bedrijf in Zaandam 📸",
-        "S": 0.11,
-        "route": "aanhoudend",
-        "K": 0.46,
-        "n": 1,
-        "bronnen": 1
-      },
-      "a:1ebd6e1ddf": {
-        "kop": "Verkeersbesluit plaatsen laadpaal voor electrische auto's Matsmanzoom te Koog a/d Zaan",
-        "S": 0.1,
         "route": "aanhoudend",
         "K": 0.16,
         "n": 1,
