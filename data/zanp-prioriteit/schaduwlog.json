@@ -1,5 +1,5 @@
 {
-  "gegenereerdOp": "2026-11-07T19:00:51.256Z",
+  "gegenereerdOp": "2026-11-07T20:00:50.155Z",
   "modus": "schaduw",
   "stempel": "v3-22806000",
   "tau": 0.5,
@@ -8,15 +8,15 @@
     "ai": true,
     "formule": "v3-22806000",
     "tekst": {
-      "werklijst": 0,
-      "lokaal": 0,
+      "werklijst": 1,
+      "lokaal": 1,
       "opgehaald": 0,
       "mislukt": 0,
       "uitgesteld": 0
     },
     "vergeten": 0,
     "tekstenOpgeruimd": 0,
-    "stukken": 349,
+    "stukken": 350,
     "kandidaten": 76,
     "metAnker": 73,
     "zonderAnker": 3,
@@ -203,7 +203,7 @@
       "Sa": 0.33,
       "Sp": 0,
       "route": "aanhoudend",
-      "K": 0.67,
+      "K": 0.66,
       "Kp": 0.53,
       "n": 2,
       "dagen": 2,
@@ -269,6 +269,39 @@
       ]
     },
     {
+      "key": "a:bd39f8159e",
+      "soort": "agenda",
+      "kop": "Dichter bij de tijd",
+      "S": 0.26,
+      "Sa": 0.26,
+      "Sp": 0,
+      "route": "aanhoudend",
+      "K": 0,
+      "Kp": 0,
+      "n": 2,
+      "dagen": 2,
+      "bronnen": 1,
+      "ankers": [
+        "dichter"
+      ],
+      "bewijs": [
+        {
+          "bron": "DeOrkaan",
+          "datum": "2026-11-06T23:00:00.000Z",
+          "c": 1,
+          "plek": "kop",
+          "titel": "Dichters laten de tijd spreken in Museum Zaanse Tijd 📸 🎥"
+        },
+        {
+          "bron": "DeOrkaan",
+          "datum": "2026-10-26T14:05:21.411Z",
+          "c": 0.93,
+          "plek": "kop",
+          "titel": "Dichter bij de tijd: vol is vol"
+        }
+      ]
+    },
+    {
       "key": "n:https://zaanstad.bestuurlijkeinformatie.nl/Document/View/0c06a5b5-5ff0-4908-8c05-cefd51385e97",
       "soort": "nieuws",
       "kop": "Inkoop specialistische jeugdhulp 2027",
@@ -277,7 +310,7 @@
       "Sp": 0,
       "route": "aanhoudend",
       "K": 0.52,
-      "Kp": 0.36,
+      "Kp": 0.35,
       "n": 1,
       "dagen": 1,
       "bronnen": 1,
@@ -300,8 +333,8 @@
       "key": "n:https://www.deorkaan.nl/volgend-weekend-den-uylbrug-afgesloten/",
       "soort": "nieuws",
       "kop": "Volgend weekend (13-16 november) Den Uylbrug afgesloten",
-      "S": 0.24,
-      "Sa": 0.24,
+      "S": 0.23,
+      "Sa": 0.23,
       "Sp": 0,
       "route": "aanhoudend",
       "K": 0.59,
@@ -607,8 +640,8 @@
       "key": "a:1ebd6e1ddf",
       "soort": "agenda",
       "kop": "Verkeersbesluit plaatsen laadpaal voor electrische auto's Matsmanzoom te Koog a/d Zaan",
-      "S": 0.1,
-      "Sa": 0.1,
+      "S": 0.09,
+      "Sa": 0.09,
       "Sp": 0,
       "route": "aanhoudend",
       "K": 0.16,
@@ -729,32 +762,6 @@
       ]
     },
     {
-      "key": "a:bd39f8159e",
-      "soort": "agenda",
-      "kop": "Dichter bij de tijd",
-      "S": 0.07,
-      "Sa": 0.07,
-      "Sp": 0,
-      "route": "aanhoudend",
-      "K": 0,
-      "Kp": 0,
-      "n": 1,
-      "dagen": 1,
-      "bronnen": 1,
-      "ankers": [
-        "dichter"
-      ],
-      "bewijs": [
-        {
-          "bron": "DeOrkaan",
-          "datum": "2026-10-26T14:05:21.411Z",
-          "c": 0.93,
-          "plek": "kop",
-          "titel": "Dichter bij de tijd: vol is vol"
-        }
-      ]
-    },
-    {
       "key": "a:e26813c04c",
       "soort": "agenda",
       "kop": "Geweigerde huisvestingsvergunning Klipperstraat 37 te Zaandam - Microsoft Teams",
@@ -787,6 +794,35 @@
           "c": 0.67,
           "plek": "intro",
           "titel": "Weweigerde omgevingsvergunning voor een uitweg locatie Waterbies 35 te Assendelft"
+        }
+      ]
+    },
+    {
+      "key": "n:https://www.deorkaan.nl/dichters-laten-de-tijd-spreken-in-museum-zaanse-tijd-%f0%9f%93%b8-%f0%9f%8e%a5/",
+      "soort": "nieuws",
+      "kop": "Dichters laten de tijd spreken in Museum Zaanse Tijd 📸 🎥",
+      "S": 0.07,
+      "Sa": 0.07,
+      "Sp": 0,
+      "route": "aanhoudend",
+      "K": 0,
+      "Kp": 0,
+      "n": 1,
+      "dagen": 1,
+      "bronnen": 1,
+      "ankers": [
+        "dichter",
+        "museum",
+        "sprek",
+        "reichardt"
+      ],
+      "bewijs": [
+        {
+          "bron": "WaarheenAgenda",
+          "datum": "2026-10-30T08:00:10.425Z",
+          "c": 0.97,
+          "plek": "kop",
+          "titel": "Dichter bij de tijd"
         }
       ]
     },
@@ -1183,24 +1219,6 @@
         "vincent"
       ],
       "bewijs": []
-    },
-    {
-      "key": "a:7f80a7d896",
-      "soort": "agenda",
-      "kop": "Webinar ‘De wooncoöperatie’",
-      "S": 0,
-      "Sa": 0,
-      "Sp": 0,
-      "route": "geen",
-      "K": 0,
-      "Kp": 0,
-      "n": 0,
-      "dagen": 0,
-      "bronnen": 0,
-      "ankers": [
-        "woncoperati"
-      ],
-      "bewijs": []
     }
   ],
   "formule": {
@@ -1286,6 +1304,14 @@
         "S": 0.33,
         "route": "aanhoudend",
         "K": 0.61,
+        "n": 2,
+        "bronnen": 1
+      },
+      "a:bd39f8159e": {
+        "kop": "Dichter bij de tijd",
+        "S": 0.26,
+        "route": "aanhoudend",
+        "K": 0,
         "n": 2,
         "bronnen": 1
       },
@@ -1417,14 +1443,6 @@
         "n": 1,
         "bronnen": 1
       },
-      "a:bd39f8159e": {
-        "kop": "Dichter bij de tijd",
-        "S": 0.07,
-        "route": "aanhoudend",
-        "K": 0,
-        "n": 1,
-        "bronnen": 1
-      },
       "a:e26813c04c": {
         "kop": "Geweigerde huisvestingsvergunning Klipperstraat 37 te Zaandam - Microsoft Teams",
         "S": 0.07,
@@ -1433,19 +1451,19 @@
         "n": 2,
         "bronnen": 1
       },
+      "n:https://www.deorkaan.nl/dichters-laten-de-tijd-spreken-in-museum-zaanse-tijd-%f0%9f%93%b8-%f0%9f%8e%a5/": {
+        "kop": "Dichters laten de tijd spreken in Museum Zaanse Tijd 📸 🎥",
+        "S": 0.07,
+        "route": "aanhoudend",
+        "K": 0,
+        "n": 1,
+        "bronnen": 1
+      },
       "a:54bf0d34fe": {
         "kop": "Verkeersbesluit plaatsen laadpaal voor elektrische auto's locatie Kaaikhof te Assendelft",
         "S": 0.05,
         "route": "aanhoudend",
         "K": 0.16,
-        "n": 1,
-        "bronnen": 1
-      },
-      "n:https://www.deorkaan.nl/tweede-aanhouding-straatroof-assendelft-17-jarige-jongen-opgepakt/": {
-        "kop": "Tweede aanhouding straatroof Assendelft: 17-jarige jongen opgepakt",
-        "S": 0.05,
-        "route": "aanhoudend",
-        "K": 0.35,
         "n": 1,
         "bronnen": 1
       }

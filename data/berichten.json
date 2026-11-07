@@ -1,5 +1,5 @@
 {
-  "gegenereerdOp": "2026-11-07T19:00:51.256Z",
+  "gegenereerdOp": "2026-11-07T20:00:50.155Z",
   "promptVersie": "2026-10-29-batch-tag-checklist-agendapunten",
   "alertModus": "log",
   "prioSchaal": "1 = urgent, 2 = belangrijk, 3 = regulier, 4 = routine. De AI geeft nooit prio 1.",
@@ -70,7 +70,7 @@
       "ai": false,
       "controle": "analyse-ok",
       "eerstGezienOp": "2026-11-07T12:00:53.600Z",
-      "gecontroleerdOp": "2026-11-07T17:00:55.403Z",
+      "gecontroleerdOp": "2026-11-07T20:00:50.155Z",
       "bronTitel": "Verdachte aangehouden na dodelijke steekpartij bij bedrijf in Zaandam 📸 – update",
       "bronLengte": 1151,
       "checklist": {
@@ -88,6 +88,44 @@
       "checklistBron": "ai",
       "analyse": true,
       "tagVersie": 2
+    },
+    {
+      "id": "f7e7587369-v1",
+      "groepId": "f7e7587369",
+      "versie": 1,
+      "url": "https://www.deorkaan.nl/dichters-laten-de-tijd-spreken-in-museum-zaanse-tijd-%f0%9f%93%b8-%f0%9f%8e%a5/",
+      "kop": "Dichters laten de tijd spreken in Museum Zaanse Tijd 📸 🎥",
+      "tekst": null,
+      "rubriek": "CUL",
+      "tagBron": "ai",
+      "herkomst": "signaal",
+      "prio": 3,
+      "tijd": "2026-11-06T23:00:00.000Z",
+      "heeftTijd": false,
+      "woorden": 350,
+      "afgekapt": false,
+      "bronId": "DeOrkaan",
+      "bronNaam": "DeOrkaan",
+      "ai": false,
+      "controle": "analyse-ok",
+      "eerstGezienOp": "2026-11-07T20:00:50.155Z",
+      "gecontroleerdOp": "2026-11-07T20:00:50.155Z",
+      "bronTitel": "Dichters laten de tijd spreken in Museum Zaanse Tijd 📸 🎥",
+      "bronLengte": 2081,
+      "checklist": {
+        "gevaar": false,
+        "evacuatieOfNlAlert": false,
+        "gewondenOfDoden": false,
+        "bestuurlijkeCrisis": false,
+        "besluitMetGrootGevolg": false,
+        "tijdkritisch": false,
+        "betrokkenen": null,
+        "geldbedragEuro": null,
+        "banen": null,
+        "inRegio": true
+      },
+      "checklistBron": "ai",
+      "analyse": true
     },
     {
       "id": "6475b27baf-v1",
@@ -148,7 +186,7 @@
       "ai": false,
       "controle": "analyse-ok",
       "eerstGezienOp": "2026-11-07T14:00:52.111Z",
-      "gecontroleerdOp": "2026-11-07T17:00:55.403Z",
+      "gecontroleerdOp": "2026-11-07T20:00:50.155Z",
       "bronTitel": "Zaanse Olifantenpaadjes XXVII: Provincialeweg, Zaandam (de kortste?)",
       "bronLengte": 1695,
       "checklist": {
@@ -187,7 +225,7 @@
       "ai": false,
       "controle": "analyse-ok",
       "eerstGezienOp": "2026-11-07T12:51:06.636Z",
-      "gecontroleerdOp": "2026-11-07T17:00:55.403Z",
+      "gecontroleerdOp": "2026-11-07T20:00:50.155Z",
       "bronTitel": "Canta, eerlijke antwoorden en poëzie in De Week van De Orkaan 🎙",
       "bronLengte": 771,
       "checklist": {
@@ -226,7 +264,7 @@
       "ai": false,
       "controle": "analyse-ok",
       "eerstGezienOp": "2026-11-07T11:00:53.677Z",
-      "gecontroleerdOp": "2026-11-07T17:00:55.403Z",
+      "gecontroleerdOp": "2026-11-07T20:00:50.155Z",
       "bronTitel": "54-jarige vrouw uit Oostzaan aangehouden na dodelijke steekpartij in Zaandam",
       "bronLengte": 900,
       "checklist": {
@@ -265,7 +303,7 @@
       "ai": false,
       "controle": "analyse-ok",
       "eerstGezienOp": "2026-11-07T10:00:51.435Z",
-      "gecontroleerdOp": "2026-11-07T17:00:55.403Z",
+      "gecontroleerdOp": "2026-11-07T20:00:50.155Z",
       "bronTitel": "Thorbeckeweg: bouwput wordt eindelijk echte tunnel",
       "bronLengte": 1941,
       "checklist": {
@@ -304,7 +342,7 @@
       "ai": false,
       "controle": "analyse-ok",
       "eerstGezienOp": "2026-11-07T09:00:52.779Z",
-      "gecontroleerdOp": "2026-11-07T17:00:55.403Z",
+      "gecontroleerdOp": "2026-11-07T20:00:50.155Z",
       "bronTitel": "Herfst buiten, kerst in de stad: Zaandam maakt zich op voor Lichtfestival",
       "bronLengte": 1103,
       "checklist": {
@@ -356,7 +394,7 @@
       "ai": false,
       "controle": "analyse-ok",
       "eerstGezienOp": "2026-11-07T08:00:49.873Z",
-      "gecontroleerdOp": "2026-11-07T17:00:55.403Z",
+      "gecontroleerdOp": "2026-11-07T20:00:50.155Z",
       "bronTitel": "Waarheen: Erfgoed, onbeperkt gezellig, bierfestival 🎙",
       "bronLengte": 1552,
       "checklist": {
