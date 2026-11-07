@@ -1,5 +1,5 @@
 {
-  "gegenereerdOp": "2026-11-07T13:00:55.635Z",
+  "gegenereerdOp": "2026-11-07T14:00:52.111Z",
   "modus": "schaduw",
   "stempel": "v3-22806000",
   "tau": 0.5,
@@ -8,17 +8,17 @@
     "ai": true,
     "formule": "v3-22806000",
     "tekst": {
-      "werklijst": 0,
-      "lokaal": 0,
+      "werklijst": 2,
+      "lokaal": 2,
       "opgehaald": 0,
       "mislukt": 0,
       "uitgesteld": 0
     },
     "vergeten": 0,
     "tekstenOpgeruimd": 0,
-    "stukken": 347,
-    "kandidaten": 78,
-    "metAnker": 75,
+    "stukken": 349,
+    "kandidaten": 80,
+    "metAnker": 77,
     "zonderAnker": 3,
     "afgelast": 1,
     "dubbel": 1,
@@ -121,7 +121,7 @@
         {
           "bron": "DeOrkaan",
           "datum": "2026-11-05T23:00:00.000Z",
-          "c": 0.93,
+          "c": 0.92,
           "plek": "kop",
           "titel": "Cameratoezicht Zuiddijk en Jaspersstraat verlengd"
         },
@@ -400,9 +400,9 @@
         "fontana",
         "topkolf",
         "oliver",
-        "erfgoed",
         "rundfunk",
         "conni",
+        "erfgoed",
         "erfgoedmarkt"
       ],
       "bewijs": [
@@ -851,6 +851,37 @@
       ]
     },
     {
+      "key": "n:https://www.deorkaan.nl/zaanse-olifantenpaadjes-xxvii-provincialeweg-zaandam-de-kortste/",
+      "soort": "nieuws",
+      "kop": "Zaanse Olifantenpaadjes XXVII: Provincialeweg, Zaandam (de kortste?)",
+      "S": 0.05,
+      "Sa": 0.05,
+      "Sp": 0,
+      "route": "aanhoudend",
+      "K": 0,
+      "Kp": 0,
+      "n": 1,
+      "dagen": 1,
+      "bronnen": 1,
+      "ankers": [
+        "xxvii",
+        "olifantenpadje",
+        "provincialeweg",
+        "kortst",
+        "hornselijn",
+        "earth"
+      ],
+      "bewijs": [
+        {
+          "bron": "DeOrkaan",
+          "datum": "2026-10-22T22:00:00.000Z",
+          "c": 0.87,
+          "plek": "kop",
+          "titel": "Zaanse Olifantenpaadjes XXIV: Saendelverlaan"
+        }
+      ]
+    },
+    {
       "key": "a:5428adfb95",
       "soort": "agenda",
       "kop": "Slotbijeenkomst Klimaatweek Zaanstad",
@@ -1182,24 +1213,6 @@
         "kuster",
         "reinhild",
         "vincent"
-      ],
-      "bewijs": []
-    },
-    {
-      "key": "a:7f80a7d896",
-      "soort": "agenda",
-      "kop": "Webinar ‘De wooncoöperatie’",
-      "S": 0,
-      "Sa": 0,
-      "Sp": 0,
-      "route": "geen",
-      "K": 0,
-      "Kp": 0,
-      "n": 0,
-      "dagen": 0,
-      "bronnen": 0,
-      "ankers": [
-        "woncoperati"
       ],
       "bewijs": []
     }
