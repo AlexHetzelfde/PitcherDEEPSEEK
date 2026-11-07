@@ -1,5 +1,5 @@
 {
-  "gegenereerdOp": "2026-11-07T15:00:53.341Z",
+  "gegenereerdOp": "2026-11-07T16:00:51.799Z",
   "modus": "schaduw",
   "stempel": "v3-22806000",
   "tau": 0.5,
@@ -17,8 +17,8 @@
     "vergeten": 0,
     "tekstenOpgeruimd": 0,
     "stukken": 349,
-    "kandidaten": 79,
-    "metAnker": 76,
+    "kandidaten": 78,
+    "metAnker": 75,
     "zonderAnker": 3,
     "afgelast": 1,
     "dubbel": 1,
@@ -384,38 +384,6 @@
       ]
     },
     {
-      "key": "n:https://www.deorkaan.nl/waarheen-topkolf-erfgoed-fontana-blue/",
-      "soort": "nieuws",
-      "kop": "Waarheen: topkolf, erfgoed, Fontana Blue",
-      "S": 0.2,
-      "Sa": 0.2,
-      "Sp": 0,
-      "route": "aanhoudend",
-      "K": 0,
-      "Kp": 0,
-      "n": 1,
-      "dagen": 1,
-      "bronnen": 1,
-      "ankers": [
-        "fontana",
-        "topkolf",
-        "oliver",
-        "rundfunk",
-        "conni",
-        "erfgoed",
-        "erfgoedmarkt"
-      ],
-      "bewijs": [
-        {
-          "bron": "DeOrkaan",
-          "datum": "2026-11-06T23:00:00.000Z",
-          "c": 0.93,
-          "plek": "kop",
-          "titel": "Waarheen: Erfgoed, onbeperkt gezellig, bierfestival 🎙"
-        }
-      ]
-    },
-    {
       "key": "n:https://lokaleregelgeving.overheid.nl/CVDR699867/2",
       "soort": "nieuws",
       "kop": "Machtiging tekenbevoegdheid collegestukken",
@@ -667,8 +635,8 @@
       "key": "a:c201808017",
       "soort": "agenda",
       "kop": "De Fabriek: George Michael",
-      "S": 0.1,
-      "Sa": 0.1,
+      "S": 0.09,
+      "Sa": 0.09,
       "Sp": 0,
       "route": "aanhoudend",
       "K": 0,
@@ -1213,6 +1181,24 @@
         "kuster",
         "reinhild",
         "vincent"
+      ],
+      "bewijs": []
+    },
+    {
+      "key": "a:7f80a7d896",
+      "soort": "agenda",
+      "kop": "Webinar ‘De wooncoöperatie’",
+      "S": 0,
+      "Sa": 0,
+      "Sp": 0,
+      "route": "geen",
+      "K": 0,
+      "Kp": 0,
+      "n": 0,
+      "dagen": 0,
+      "bronnen": 0,
+      "ankers": [
+        "woncoperati"
       ],
       "bewijs": []
     }

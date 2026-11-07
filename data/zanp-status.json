@@ -1,5 +1,5 @@
 {
-  "gegenereerdOp": "2026-11-07T15:00:53.341Z",
+  "gegenereerdOp": "2026-11-07T16:00:51.799Z",
   "alertModus": "log",
   "bronnen": {
     "zaansche-molen": {
@@ -38,12 +38,12 @@
       "opeenvolgendLeeg": 0
     },
     "nh-actueel": {
-      "laatsteScrape": "2026-11-07T15:00:53.341Z",
+      "laatsteScrape": "2026-11-07T16:00:51.799Z",
       "gevonden": 15,
       "opeenvolgendLeeg": 0
     },
     "nh-cultuur": {
-      "laatsteScrape": "2026-11-07T15:00:53.341Z",
+      "laatsteScrape": "2026-11-07T16:00:51.799Z",
       "gevonden": 15,
       "opeenvolgendLeeg": 0
     },
@@ -78,9 +78,9 @@
       "opeenvolgendLeeg": 0
     },
     "hhnk": {
-      "laatsteScrape": "2026-11-07T10:00:51.435Z",
+      "laatsteScrape": "2026-11-07T16:00:51.799Z",
       "gevonden": 0,
-      "opeenvolgendLeeg": 32
+      "opeenvolgendLeeg": 33
     },
     "rechtspraak-noord-holland": {
       "laatsteScrape": "2026-11-07T02:00:51.170Z",
@@ -98,14 +98,14 @@
       "opeenvolgendLeeg": 0
     },
     "DeOrkaan": {
-      "laatsteScrape": "2026-11-07T15:00:53.341Z",
+      "laatsteScrape": "2026-11-07T16:00:51.799Z",
       "gevonden": 12,
       "opeenvolgendLeeg": 0
     },
     "politie-zaanstad": {
-      "laatsteScrape": "2026-11-07T10:00:51.435Z",
+      "laatsteScrape": "2026-11-07T16:00:51.799Z",
       "gevonden": 0,
-      "opeenvolgendLeeg": 28
+      "opeenvolgendLeeg": 29
     },
     "zaanstad-kalender": {
       "laatsteScrape": "2026-11-07T02:00:51.170Z",
@@ -123,9 +123,9 @@
       "opeenvolgendLeeg": 0
     },
     "vervoerregio-overzichten": {
-      "laatsteScrape": "2026-11-07T15:00:53.341Z",
+      "laatsteScrape": "2026-11-07T16:00:51.799Z",
       "gevonden": 0,
-      "opeenvolgendLeeg": 66
+      "opeenvolgendLeeg": 67
     }
   },
   "bronnenZonderRubriek": [],
@@ -316,7 +316,7 @@
       "nieuw": 0,
       "update": 0,
       "opnieuw": 0,
-      "ongewijzigd": 6,
+      "ongewijzigd": 0,
       "seed": 0
     },
     "cluster": {
@@ -348,8 +348,8 @@
       "vergeten": 0,
       "tekstenOpgeruimd": 0,
       "stukken": 349,
-      "kandidaten": 79,
-      "metAnker": 76,
+      "kandidaten": 78,
+      "metAnker": 75,
       "zonderAnker": 3,
       "afgelast": 1,
       "dubbel": 1,
