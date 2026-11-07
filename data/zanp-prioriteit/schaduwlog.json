@@ -1,21 +1,21 @@
 {
-  "gegenereerdOp": "2026-11-07T06:00:52.388Z",
+  "gegenereerdOp": "2026-11-07T07:00:54.007Z",
   "modus": "schaduw",
   "tau": 0.5,
   "stats": {
     "modus": "schaduw",
     "ai": true,
     "tekst": {
-      "werklijst": 0,
-      "lokaal": 0,
+      "werklijst": 1,
+      "lokaal": 1,
       "opgehaald": 0,
       "mislukt": 0,
       "uitgesteld": 0
     },
     "vergeten": 0,
-    "stukken": 341,
-    "kandidaten": 93,
-    "metAnker": 90,
+    "stukken": 342,
+    "kandidaten": 94,
+    "metAnker": 91,
     "zonderAnker": 3,
     "afgelast": 1,
     "dubbel": 1,
@@ -703,6 +703,43 @@
       ]
     },
     {
+      "key": "n:https://www.deorkaan.nl/grote-politie-inzet-na-melding-steekpartij-bij-bedrijf-in-zaandam/",
+      "soort": "nieuws",
+      "kop": "Verdachte aangehouden na dodelijke steekpartij bij bedrijf in Zaandam 📸",
+      "S": 0.11,
+      "Sa": 0.11,
+      "Sp": 0,
+      "route": "aanhoudend",
+      "K": 0.46,
+      "Kp": 0.29,
+      "n": 1,
+      "dagen": 1,
+      "bronnen": 1,
+      "ankers": [
+        "stekpartij",
+        "dodelijk",
+        "angehoud",
+        "klipon",
+        "trading",
+        "ghijsenlan",
+        "verdacht",
+        "bedrijf",
+        "pieter",
+        "vrijdagmiddag",
+        "ambulance",
+        "enhed"
+      ],
+      "bewijs": [
+        {
+          "bron": "DeOrkaan",
+          "datum": "2026-10-25T23:00:00.000Z",
+          "c": 0.89,
+          "plek": "kop",
+          "titel": "Zaans voor ’t hekje: steekpartij en explosie"
+        }
+      ]
+    },
+    {
       "key": "n:https://zoek.officielebekendmakingen.nl/gmb-2026-503010.html",
       "soort": "nieuws",
       "kop": "Kennisgeving voornemen Wijziging omgevingsplan technische aanpassingen",
@@ -1232,27 +1269,6 @@
       "ankers": [
         "anmeldlink",
         "delnam"
-      ],
-      "bewijs": []
-    },
-    {
-      "key": "a:2ee44579cf",
-      "soort": "agenda",
-      "kop": "Zaanstad Beraad Raadzaal",
-      "S": 0,
-      "Sa": 0,
-      "Sp": 0,
-      "route": "geen",
-      "K": 0.1,
-      "Kp": 0,
-      "n": 0,
-      "dagen": 0,
-      "bronnen": 0,
-      "ankers": [
-        "radzal",
-        "commissiegriffier",
-        "portefeuillehouder",
-        "vorzitter"
       ],
       "bewijs": []
     }
@@ -1890,19 +1906,19 @@
         "n": 1,
         "bronnen": 1
       },
+      "n:https://www.deorkaan.nl/grote-politie-inzet-na-melding-steekpartij-bij-bedrijf-in-zaandam/": {
+        "kop": "Verdachte aangehouden na dodelijke steekpartij bij bedrijf in Zaandam 📸",
+        "S": 0.11,
+        "route": "aanhoudend",
+        "K": 0.46,
+        "n": 1,
+        "bronnen": 1
+      },
       "a:1ebd6e1ddf": {
         "kop": "Verkeersbesluit plaatsen laadpaal voor electrische auto's Matsmanzoom te Koog a/d Zaan",
         "S": 0.1,
         "route": "aanhoudend",
         "K": 0.16,
-        "n": 1,
-        "bronnen": 1
-      },
-      "a:c201808017": {
-        "kop": "De Fabriek: George Michael",
-        "S": 0.1,
-        "route": "aanhoudend",
-        "K": 0,
         "n": 1,
         "bronnen": 1
       }
