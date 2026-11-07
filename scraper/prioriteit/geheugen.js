@@ -2,10 +2,14 @@
 //
 // Wat de prioriteitsfunctie onthoudt tussen runs, in data/zanp-prioriteit/:
 //   geheugen.json    vingerafdrukken (kernfeiten per stuk, ±30 dagen), kandidaten
-//                    (items boven de drempel, nog niet bevestigd) en rode items
+//                    (items boven de drempel, nog niet bevestigd), rode items, en
+//                    de stempel van de formule en de modus van de laatste run
+//                    (daarmee weet index.js wanneer het rood gewist moet worden)
 //   schaduwlog.json  scores, onderdelen en redenen van de laatste run, plus de
-//                    hoogste scores per dag (14 dagen), om de formule bij te stellen
-//   teksten-JJJJ-MM-DD.jsonl   alle volledige teksten, één bestand per dag
+//                    hoogste scores per dag (14 dagen), om de formule bij te stellen.
+//                    Begint opnieuw zodra de formule verandert.
+//   teksten-JJJJ-MM-DD.jsonl   alle volledige teksten, één bestand per dag; bestanden
+//                    ouder dan tekstBewaarDagen worden opgeruimd
 //
 // Dit zijn eigen bestanden: de pitchrun raakt ze niet aan en zij raken
 // data/*.json van de pitchrun niet aan.
@@ -28,7 +32,14 @@ function object(x) {
 
 function normaliseer(j) {
   const o = object(j);
-  return { versie: 1, docs: object(o.docs), kandidaten: object(o.kandidaten), rood: object(o.rood) };
+  return {
+    versie: 1,
+    stempel: typeof o.stempel === "string" ? o.stempel : null,
+    modus: typeof o.modus === "string" ? o.modus : null,
+    docs: object(o.docs),
+    kandidaten: object(o.kandidaten),
+    rood: object(o.rood),
+  };
 }
 
 async function leesGeheugen(map) {
@@ -73,10 +84,35 @@ function ruimOp(geheugen, nu, F) {
   return weg;
 }
 
-async function schrijfSchaduwlog(map, log, vandaag, topDezeRun, F) {
+// Verwijdert dagbestanden met teksten die ouder zijn dan tekstBewaarDagen.
+// Geeft het aantal verwijderde bestanden terug.
+async function ruimTekstenOp(map, vandaag, F) {
+  let namen;
+  try {
+    namen = await fs.readdir(map);
+  } catch {
+    return 0;
+  }
+  const grens = new Date(Date.parse(`${vandaag}T12:00:00Z`) - F.tekstBewaarDagen * DAG_MS).toISOString().slice(0, 10);
+  let weg = 0;
+  for (const naam of namen) {
+    const m = /^teksten-(\d{4}-\d{2}-\d{2})\.jsonl$/.exec(naam);
+    if (!m || m[1] >= grens) continue;
+    try {
+      await fs.unlink(path.join(map, naam));
+      weg++;
+    } catch {
+      // een volgende run probeert het opnieuw
+    }
+  }
+  return weg;
+}
+
+// opnieuw: de formule is veranderd, de log begint leeg (oude cijfers zijn dan niet vergelijkbaar).
+async function schrijfSchaduwlog(map, log, vandaag, topDezeRun, F, opnieuw = false) {
   let oud = {};
   try {
-    oud = JSON.parse(await fs.readFile(path.join(map, "schaduwlog.json"), "utf-8"));
+    oud = opnieuw ? {} : JSON.parse(await fs.readFile(path.join(map, "schaduwlog.json"), "utf-8"));
   } catch {
     oud = {};
   }
@@ -112,4 +148,12 @@ async function voegTekstenToe(map, dag, regels) {
   );
 }
 
-module.exports = { mapVan, leesGeheugen, schrijfGeheugen, ruimOp, schrijfSchaduwlog, voegTekstenToe };
+module.exports = {
+  mapVan,
+  leesGeheugen,
+  schrijfGeheugen,
+  ruimOp,
+  ruimTekstenOp,
+  schrijfSchaduwlog,
+  voegTekstenToe,
+};

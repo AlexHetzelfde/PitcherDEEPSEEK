@@ -4,9 +4,15 @@
 //  - Rood is rood: een item dat al rood is wordt niet meer beoordeeld.
 //  - Score boven tau in bevestigRuns opeenvolgende runs (standaard 2) voordat
 //    iets rood wordt. Zakt de score ruim onder tau, dan begint het tellen opnieuw.
-//  - Agenda-items kunnen altijd rood worden. Van nieuws alleen een vers bericht
-//    (zie index.js), en hooguit één per onderwerp per nieuwsTopicUren, zodat
-//    één groot onderwerp het dashboard niet vult.
+//  - Eén rood per onderwerp. Twee items horen bij hetzelfde onderwerp als het
+//    belangrijkste zoekwoord (anker) van het ene bij de twee belangrijkste van
+//    het andere hoort.
+//      Agenda: alleen het eerstvolgende item van het onderwerp wordt rood, en
+//      niets wat al voorbij is. Zolang een rood agenda-item van het onderwerp
+//      nog moet komen, volgt er geen tweede; daarna kan het volgende item
+//      eerstvolgend worden.
+//      Nieuws: alleen een vers bericht (zie index.js), en het eerste erna;
+//      daarna hooguit één per onderwerp per nieuwsTopicUren.
 //  - Noodrem: worden er in één run meer dan noodremMax items nieuw rood, dan
 //    blijven alleen de hoogste scores over en komt er een waarschuwing in het
 //    log. Drie of vier tegelijk is gewoon.
@@ -21,7 +27,15 @@ function afronden(x) {
   return Math.round(x * 100) / 100;
 }
 
-async function beslis({ kandidaten, tau, geheugen, nu, F, aiVeto = null, log = console }) {
+// Hetzelfde onderwerp: het belangrijkste anker van het ene zit bij de top-2 van het andere.
+function zelfdeOnderwerp(a, b) {
+  return a.length > 0 && b.length > 0 && (b.includes(a[0]) || a.includes(b[0]));
+}
+
+const topVan = (k) => k.topAnkers || [];
+const roodTop = (r) => r.topAnker || (r.anker || []).slice(0, 2);
+
+async function beslis({ kandidaten, tau, geheugen, nu, vandaag, F, aiVeto = null, log = console }) {
   const kand = geheugen.kandidaten;
   const rood = geheugen.rood;
   const stats = { boven: 0, wacht: 0, onderdrukt: 0, veto: 0, nieuwRood: 0, noodrem: false };
@@ -52,16 +66,35 @@ async function beslis({ kandidaten, tau, geheugen, nu, F, aiVeto = null, log = c
   const recentNieuws = Object.values(rood).filter(
     (r) => r.soort === "nieuws" && nu.getTime() - Date.parse(r.sinds) <= topicGrens
   );
+  const actiefAgendaRood = Object.values(rood).filter((r) => r.soort === "agenda" && r.tot && r.tot >= vandaag);
   const gekozen = [];
   for (const k of promoveer) {
+    const top = topVan(k);
+    let botst = false;
     if (k.soort === "nieuws") {
-      const raakt = (ankers) => (ankers || []).some((t) => k.ankers.includes(t));
-      const botst =
-        recentNieuws.some((r) => raakt(r.anker)) || gekozen.some((g) => g.soort === "nieuws" && raakt(g.ankers));
-      if (botst) {
-        stats.onderdrukt++;
-        continue;
-      }
+      botst =
+        recentNieuws.some((r) => zelfdeOnderwerp(top, roodTop(r))) ||
+        gekozen.some((g) => g.soort === "nieuws" && zelfdeOnderwerp(top, topVan(g)));
+    } else {
+      // Agenda: niets uit het verleden, en alleen het eerstvolgende item van het onderwerp.
+      const voorbij = Boolean(k.tot) && k.tot < vandaag;
+      const alRood = actiefAgendaRood.some((r) => zelfdeOnderwerp(top, roodTop(r)));
+      const eerder = kandidaten.some(
+        (o) =>
+          o !== k &&
+          o.soort === "agenda" &&
+          !rood[o.key] &&
+          !(kand[o.key] && kand[o.key].veto) &&
+          (o.tot || "") >= vandaag &&
+          o.score.S >= tau &&
+          zelfdeOnderwerp(top, topVan(o)) &&
+          ((o.start || "") < (k.start || "") || ((o.start || "") === (k.start || "") && o.key < k.key))
+      );
+      botst = voorbij || alRood || eerder || gekozen.some((g) => g.soort === "agenda" && zelfdeOnderwerp(top, topVan(g)));
+    }
+    if (botst) {
+      stats.onderdrukt++;
+      continue;
     }
     gekozen.push(k);
   }
@@ -113,6 +146,7 @@ async function beslis({ kandidaten, tau, geheugen, nu, F, aiVeto = null, log = c
       route: k.score.route,
       reden: k.reden,
       anker: k.ankers,
+      topAnker: topVan(k),
       kop: k.kop,
       tot: k.tot || null,
     };

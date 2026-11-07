@@ -13,18 +13,21 @@
 
 "use strict";
 
+const crypto = require("crypto");
+
 // De formule. De waarden komen uit de ontwerpfase; stel ze bij met de
 // schaduwlog (data/zanp-prioriteit/schaduwlog.json).
 const FORMULE = Object.freeze({
   // Geheugen en verval
   geheugenDagen: 30, // zo lang blijven kernfeiten van een artikel bewaard
+  tekstBewaarDagen: 30, // zo lang blijven de dagbestanden met volledige teksten in de repo staan
   halfwaardeDagen: 7, // na 7 dagen telt een artikel half, na 21 dagen ~12%
   roodBewaarDagen: 30, // een rood item blijft zo lang in het geheugen
 
   // Welke items worden beoordeeld
   nieuwsVersUren: 48, // een nieuwsbericht kan alleen rood worden in zijn eerste 48 uur
   agendaVooruitDagen: 14, // agenda-items tot 14 dagen vooruit
-  nieuwsTopicUren: 24, // hooguit één rood nieuwsbericht per onderwerp per 24 uur
+  nieuwsTopicUren: 168, // hooguit één rood nieuwsbericht per onderwerp per 7 dagen (het eerste bericht erna)
 
   // Zoekwoorden en matching
   queryMax: 12, // zoveel termen per item
@@ -95,4 +98,19 @@ function leesInstellingen(env = process.env) {
   };
 }
 
-module.exports = { FORMULE, leesInstellingen };
+// De stempel van de formule. Verandert de formule (een constante hierboven, of
+// de rekenregels zelf), dan wordt het rood uit de schaduwtijd gewist, zodat oud
+// rood van een eerdere formule nooit meegaat naar de echte start (zie index.js).
+//   - Verander je een constante in FORMULE, dan verandert de stempel vanzelf.
+//   - Verander je de REKENREGELS zonder constante, verhoog dan FORMULE_VERSIE.
+// Opruimen en AI-instellingen veranderen de uitkomst niet en tellen niet mee.
+const FORMULE_VERSIE = 3;
+const NIET_IN_STEMPEL = ["tekstBewaarDagen", "aiVerzoekenMax", "aiPerVerzoek"];
+
+function formuleStempel() {
+  const telt = Object.fromEntries(Object.entries(FORMULE).filter(([k]) => !NIET_IN_STEMPEL.includes(k)));
+  const hash = crypto.createHash("sha1").update(JSON.stringify(telt)).digest("hex").slice(0, 8);
+  return `v${FORMULE_VERSIE}-${hash}`;
+}
+
+module.exports = { FORMULE, FORMULE_VERSIE, formuleStempel, leesInstellingen };

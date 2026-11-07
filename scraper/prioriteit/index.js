@@ -11,8 +11,13 @@
 //     stukken erover zoeken, reeksen van dezelfde bron tot één stuk
 //     samenvoegen, impact meten, de score berekenen (score.js). Geannuleerde
 //     agenda-items doen niet mee en dubbele agenda-items tellen als één.
-//  3. De drempel tau bepalen en beslissen (beslis.js), met als laatste stap
-//     een optionele AI-controle die alleen kan tegenhouden (ai.js).
+//  3. De drempel tau bepalen en beslissen (beslis.js): één rood per onderwerp
+//     (bij agenda het eerstvolgende item), met als laatste stap een optionele
+//     AI-controle die alleen kan tegenhouden (ai.js).
+//
+// Bij een nieuwe formule of de overgang naar modus "aan" wordt het rood-geheugen
+// van de schaduwtijd gewist (stempel in instellingen.js); oude teksten worden
+// na tekstBewaarDagen opgeruimd.
 //  4. In modus "aan": het veld `rood` op de items zetten. In modus "schaduw"
 //     alleen rekenen en loggen.
 //
@@ -22,7 +27,7 @@
 "use strict";
 
 const { kalenderdagAmsterdam } = require("../hulpmiddelen");
-const { leesInstellingen } = require("./instellingen");
+const { leesInstellingen, formuleStempel } = require("./instellingen");
 const { analyseer, schoon, AFGELAST } = require("./taal");
 const {
   maakVingerafdruk,
@@ -36,7 +41,15 @@ const { berekenImpact, berekenScore, bepaalTau, PIEK_CATS } = require("./score")
 const { maakAiVeto } = require("./ai");
 const { beslis } = require("./beslis");
 const { maakWerklijst, haalTeksten, agendaKomt, laatstePerGroep } = require("./tekst");
-const { mapVan, leesGeheugen, schrijfGeheugen, ruimOp, schrijfSchaduwlog, voegTekstenToe } = require("./geheugen");
+const {
+  mapVan,
+  leesGeheugen,
+  schrijfGeheugen,
+  ruimOp,
+  ruimTekstenOp,
+  schrijfSchaduwlog,
+  voegTekstenToe,
+} = require("./geheugen");
 
 function afronden(x) {
   return Math.round(x * 100) / 100;
@@ -95,6 +108,23 @@ async function draaiPrioriteit(opties) {
   const { geheugen, voor } = await leesGeheugen(map);
   const vandaag = kalenderdagAmsterdam(nu.toISOString());
 
+  // Rood uit de schaduwtijd is geen echt rood. Bij een nieuwe formule (zolang de
+  // modus niet "aan" is) en bij de overgang naar "aan" begint het rood-geheugen
+  // leeg; wat dan echt boven de drempel blijft, wordt binnen twee runs opnieuw
+  // rood. In modus "aan" blijft rood staan, ook als de formule verandert.
+  const stempel = formuleStempel();
+  const formuleNieuw = geheugen.stempel !== stempel;
+  const naarAan = inst.modus === "aan" && geheugen.modus !== "aan";
+  if ((formuleNieuw && inst.modus !== "aan") || naarAan) {
+    stats.roodGewist = Object.keys(geheugen.rood).length;
+    geheugen.rood = {};
+    geheugen.kandidaten = {};
+    log.log(`[prioriteit] ${naarAan ? "Start van modus aan" : `Nieuwe formule ${stempel}`}: rood-geheugen leeggemaakt (${stats.roodGewist} item(s)).`);
+  }
+  geheugen.stempel = stempel;
+  geheugen.modus = inst.modus;
+  stats.formule = stempel;
+
   // 1. Teksten ophalen en vingerafdrukken maken
   try {
     const werklijst = maakWerklijst({ records, agendaItems, docs: geheugen.docs, vandaag, nu, F, inst });
@@ -149,6 +179,11 @@ async function draaiPrioriteit(opties) {
   }
 
   stats.vergeten = ruimOp(geheugen, nu, F);
+  try {
+    stats.tekstenOpgeruimd = await ruimTekstenOp(map, vandaag, F);
+  } catch (fout) {
+    log.error(`[prioriteit] Oude tekstbestanden opruimen mislukte: ${fout.message}`);
+  }
   const vingerafdrukken = Object.values(geheugen.docs);
   stats.stukken = vingerafdrukken.length;
 
@@ -191,7 +226,8 @@ async function draaiPrioriteit(opties) {
       kop: i.kop || "",
       url: i.url,
       bron: i.bronId,
-      tot: i.eindDag,
+      start: i.startDag,
+      tot: i.eindDag || i.startDag,
       groepen: eigenGroepen(i),
       gelijk,
     });
@@ -234,6 +270,7 @@ async function draaiPrioriteit(opties) {
     const score = berekenScore(evidentie, K, nu, F, Kp);
     k.kern = (fp && fp.kern) || "";
     k.ankers = vraag.ankers;
+    k.topAnkers = vraag.ankers.slice(0, 2);
     k.score = score;
     k.reden = maakReden(k, score, evidentie, F);
     k.bewijs = evidentie
@@ -252,6 +289,7 @@ async function draaiPrioriteit(opties) {
     tau,
     geheugen,
     nu,
+    vandaag,
     F,
     aiVeto: inst.ai ? aiVeto : null,
     log,
@@ -290,7 +328,14 @@ async function draaiPrioriteit(opties) {
     }));
   try {
     await schrijfGeheugen(map, geheugen, voor, nu);
-    await schrijfSchaduwlog(map, { gegenereerdOp: nu.toISOString(), modus: inst.modus, tau: stats.tau, stats, top }, vandaag, top, F);
+    await schrijfSchaduwlog(
+      map,
+      { gegenereerdOp: nu.toISOString(), modus: inst.modus, stempel, tau: stats.tau, stats, top },
+      vandaag,
+      top,
+      F,
+      formuleNieuw
+    );
   } catch (fout) {
     log.error(`[prioriteit] Opslaan mislukte: ${fout.stack || fout.message}`);
   }
