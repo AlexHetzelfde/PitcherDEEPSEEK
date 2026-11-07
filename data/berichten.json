@@ -1,5 +1,5 @@
 {
-  "gegenereerdOp": "2026-11-07T14:00:52.111Z",
+  "gegenereerdOp": "2026-11-07T15:00:53.341Z",
   "promptVersie": "2026-10-29-batch-tag-checklist-agendapunten",
   "alertModus": "log",
   "prioSchaal": "1 = urgent, 2 = belangrijk, 3 = regulier, 4 = routine. De AI geeft nooit prio 1.",
@@ -70,7 +70,7 @@
       "ai": false,
       "controle": "analyse-ok",
       "eerstGezienOp": "2026-11-07T12:00:53.600Z",
-      "gecontroleerdOp": "2026-11-07T12:00:53.600Z",
+      "gecontroleerdOp": "2026-11-07T15:00:53.341Z",
       "bronTitel": "Verdachte aangehouden na dodelijke steekpartij bij bedrijf in Zaandam 📸 – update",
       "bronLengte": 1151,
       "checklist": {
@@ -125,7 +125,8 @@
         "inRegio": true
       },
       "checklistBron": "ai",
-      "analyse": true
+      "analyse": true,
+      "tagVersie": 2
     },
     {
       "id": "5bdad2a42e-v1",
@@ -163,7 +164,8 @@
         "inRegio": true
       },
       "checklistBron": "ai",
-      "analyse": true
+      "analyse": true,
+      "tagVersie": 2
     },
     {
       "id": "230eedecdd-v1",
@@ -185,7 +187,7 @@
       "ai": false,
       "controle": "analyse-ok",
       "eerstGezienOp": "2026-11-07T12:51:06.636Z",
-      "gecontroleerdOp": "2026-11-07T12:51:06.636Z",
+      "gecontroleerdOp": "2026-11-07T15:00:53.341Z",
       "bronTitel": "Canta, eerlijke antwoorden en poëzie in De Week van De Orkaan 🎙",
       "bronLengte": 771,
       "checklist": {
@@ -263,7 +265,7 @@
       "ai": false,
       "controle": "analyse-ok",
       "eerstGezienOp": "2026-11-07T10:00:51.435Z",
-      "gecontroleerdOp": "2026-11-07T12:00:53.600Z",
+      "gecontroleerdOp": "2026-11-07T15:00:53.341Z",
       "bronTitel": "Thorbeckeweg: bouwput wordt eindelijk echte tunnel",
       "bronLengte": 1941,
       "checklist": {
@@ -354,7 +356,7 @@
       "ai": false,
       "controle": "analyse-ok",
       "eerstGezienOp": "2026-11-07T08:00:49.873Z",
-      "gecontroleerdOp": "2026-11-07T12:00:53.600Z",
+      "gecontroleerdOp": "2026-11-07T15:00:53.341Z",
       "bronTitel": "Waarheen: Erfgoed, onbeperkt gezellig, bierfestival 🎙",
       "bronLengte": 1552,
       "checklist": {
@@ -889,7 +891,7 @@
       "ai": false,
       "controle": "analyse-ok",
       "eerstGezienOp": "2026-11-06T17:01:00.473Z",
-      "gecontroleerdOp": "2026-11-07T12:00:53.600Z",
+      "gecontroleerdOp": "2026-11-07T15:00:53.341Z",
       "bronTitel": "Poging zware mishandeling: dief probeert medewerker tankstation aan te rijden",
       "bronLengte": 1646,
       "checklist": {
@@ -928,7 +930,7 @@
       "ai": false,
       "controle": "analyse-ok",
       "eerstGezienOp": "2026-11-06T16:00:54.503Z",
-      "gecontroleerdOp": "2026-11-07T12:00:53.600Z",
+      "gecontroleerdOp": "2026-11-07T15:00:53.341Z",
       "bronTitel": "Fel verzet omwonenden tegen tennispark Spekhuisstraat: ‘gewoon een heel slecht plan’",
       "bronLengte": 5278,
       "checklist": {
