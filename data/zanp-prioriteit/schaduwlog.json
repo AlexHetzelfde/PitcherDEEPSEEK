@@ -1,5 +1,5 @@
 {
-  "gegenereerdOp": "2026-11-07T11:00:53.677Z",
+  "gegenereerdOp": "2026-11-07T12:00:53.600Z",
   "modus": "schaduw",
   "stempel": "v3-22806000",
   "tau": 0.5,
@@ -17,18 +17,18 @@
     "vergeten": 0,
     "tekstenOpgeruimd": 0,
     "stukken": 346,
-    "kandidaten": 84,
-    "metAnker": 81,
+    "kandidaten": 80,
+    "metAnker": 77,
     "zonderAnker": 3,
     "afgelast": 1,
     "dubbel": 1,
     "tau": 0.5,
     "besluit": {
-      "boven": 3,
+      "boven": 2,
       "wacht": 0,
       "onderdrukt": 1,
-      "veto": 1,
-      "nieuwRood": 1,
+      "veto": 0,
+      "nieuwRood": 0,
       "noodrem": false
     },
     "rood": 1
@@ -92,7 +92,7 @@
       "Sa": 0.65,
       "Sp": 0.52,
       "route": "aanhoudend",
-      "K": 0.77,
+      "K": 0.76,
       "Kp": 0.59,
       "n": 5,
       "dagen": 3,
@@ -272,8 +272,8 @@
       "key": "n:https://zaanstad.bestuurlijkeinformatie.nl/Document/View/0c06a5b5-5ff0-4908-8c05-cefd51385e97",
       "soort": "nieuws",
       "kop": "Inkoop specialistische jeugdhulp 2027",
-      "S": 0.25,
-      "Sa": 0.25,
+      "S": 0.24,
+      "Sa": 0.24,
       "Sp": 0,
       "route": "aanhoudend",
       "K": 0.52,
@@ -583,8 +583,8 @@
         "trading",
         "ghijsenlan",
         "vrouw",
-        "jarig",
         "pieter",
+        "jarig",
         "verdenking",
         "stekincident"
       ],
@@ -601,7 +601,7 @@
     {
       "key": "n:https://www.deorkaan.nl/grote-politie-inzet-na-melding-steekpartij-bij-bedrijf-in-zaandam/",
       "soort": "nieuws",
-      "kop": "Verdachte aangehouden na dodelijke steekpartij bij bedrijf in Zaandam 📸",
+      "kop": "Verdachte aangehouden na dodelijke steekpartij bij bedrijf in Zaandam 📸 – update",
       "S": 0.11,
       "Sa": 0.11,
       "Sp": 0,
@@ -620,10 +620,10 @@
         "verdacht",
         "bedrijf",
         "ghijsenlan",
+        "updat",
         "pieter",
         "traumahelikopter",
-        "afgespeld",
-        "betrokken"
+        "afgespeld"
       ],
       "bewijs": [
         {
@@ -847,39 +847,6 @@
           "c": 1,
           "plek": "kop",
           "titel": "Verkeersbesluit plaatsen laadpaal voor electrische auto's Matsmanzoom te Koog a/d Zaan"
-        }
-      ]
-    },
-    {
-      "key": "n:https://www.deorkaan.nl/tweede-aanhouding-straatroof-assendelft-17-jarige-jongen-opgepakt/",
-      "soort": "nieuws",
-      "kop": "Tweede aanhouding straatroof Assendelft: 17-jarige jongen opgepakt",
-      "S": 0.05,
-      "Sa": 0.05,
-      "Sp": 0,
-      "route": "aanhoudend",
-      "K": 0.35,
-      "Kp": 0.35,
-      "n": 1,
-      "dagen": 1,
-      "bronnen": 1,
-      "ankers": [
-        "opgepakt",
-        "anhouding",
-        "stratrof",
-        "jarig",
-        "zwart",
-        "gewelddadig",
-        "arrestati",
-        "gelijkend"
-      ],
-      "bewijs": [
-        {
-          "bron": "DeOrkaan",
-          "datum": "2026-10-20T22:00:00.000Z",
-          "c": 0.97,
-          "plek": "kop",
-          "titel": "15-jarige aangehouden voor straatroof waarbij wapen is gebruikt"
         }
       ]
     },
@@ -1215,6 +1182,24 @@
         "kuster",
         "reinhild",
         "vincent"
+      ],
+      "bewijs": []
+    },
+    {
+      "key": "a:7f80a7d896",
+      "soort": "agenda",
+      "kop": "Webinar ‘De wooncoöperatie’",
+      "S": 0,
+      "Sa": 0,
+      "Sp": 0,
+      "route": "geen",
+      "K": 0,
+      "Kp": 0,
+      "n": 0,
+      "dagen": 0,
+      "bronnen": 0,
+      "ankers": [
+        "woncoperati"
       ],
       "bewijs": []
     }
