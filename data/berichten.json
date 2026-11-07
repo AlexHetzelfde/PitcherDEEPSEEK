@@ -1,5 +1,5 @@
 {
-  "gegenereerdOp": "2026-11-06T23:00:52.854Z",
+  "gegenereerdOp": "2026-11-07T00:00:55.276Z",
   "promptVersie": "2026-10-29-batch-tag-checklist-agendapunten",
   "alertModus": "log",
   "prioSchaal": "1 = urgent, 2 = belangrijk, 3 = regulier, 4 = routine. De AI geeft nooit prio 1.",
@@ -70,7 +70,7 @@
       "ai": false,
       "controle": "analyse-ok",
       "eerstGezienOp": "2026-11-06T20:00:52.041Z",
-      "gecontroleerdOp": "2026-11-06T22:00:52.881Z",
+      "gecontroleerdOp": "2026-11-07T00:00:55.276Z",
       "bronTitel": "Pinnen bij Kruidvat in Zaandam? Winkel kan meekijken – update",
       "bronLengte": 3798,
       "checklist": {
@@ -148,7 +148,7 @@
       "ai": true,
       "controle": "cijfers-ok",
       "eerstGezienOp": "2026-11-06T11:59:05.014Z",
-      "gecontroleerdOp": "2026-11-06T22:00:52.881Z",
+      "gecontroleerdOp": "2026-11-07T00:00:55.276Z",
       "bronTitel": "Gedeputeerde Staten stellen concept-Omgevingsvisie Noord-Holland vast",
       "bronLengte": 4460,
       "checklist": {
@@ -193,7 +193,7 @@
       "ai": true,
       "controle": "cijfers-ok",
       "eerstGezienOp": "2026-11-06T10:00:58.177Z",
-      "gecontroleerdOp": "2026-11-06T22:00:52.881Z",
+      "gecontroleerdOp": "2026-11-07T00:00:55.276Z",
       "bronTitel": "Warmtekansen in de kassen",
       "bronLengte": 5709,
       "checklist": {
@@ -231,7 +231,7 @@
       "ai": false,
       "controle": "analyse-ok",
       "eerstGezienOp": "2026-11-06T17:01:00.473Z",
-      "gecontroleerdOp": "2026-11-06T22:00:52.881Z",
+      "gecontroleerdOp": "2026-11-07T00:00:55.276Z",
       "bronTitel": "Cameratoezicht Zuiddijk en Jaspersstraat verlengd",
       "bronLengte": 1767,
       "checklist": {
@@ -271,7 +271,7 @@
       "ai": false,
       "controle": "analyse-ok",
       "eerstGezienOp": "2026-11-06T17:01:00.473Z",
-      "gecontroleerdOp": "2026-11-06T22:00:52.881Z",
+      "gecontroleerdOp": "2026-11-07T00:00:55.276Z",
       "bronTitel": "Poging zware mishandeling: dief probeert medewerker tankstation aan te rijden",
       "bronLengte": 1646,
       "checklist": {
@@ -310,7 +310,7 @@
       "ai": false,
       "controle": "analyse-ok",
       "eerstGezienOp": "2026-11-06T16:00:54.503Z",
-      "gecontroleerdOp": "2026-11-06T21:00:54.481Z",
+      "gecontroleerdOp": "2026-11-07T00:00:55.276Z",
       "bronTitel": "Fel verzet omwonenden tegen tennispark Spekhuisstraat: ‘gewoon een heel slecht plan’",
       "bronLengte": 5278,
       "checklist": {
@@ -356,7 +356,7 @@
       "ai": false,
       "controle": "analyse-ok",
       "eerstGezienOp": "2026-11-06T14:00:58.360Z",
-      "gecontroleerdOp": "2026-11-06T22:00:52.881Z",
+      "gecontroleerdOp": "2026-11-07T00:00:55.276Z",
       "bronTitel": "Geen straf voor scooterrijdster die zwaargewonde hardloper achterliet",
       "bronLengte": 3356,
       "checklist": {
@@ -395,7 +395,7 @@
       "ai": false,
       "controle": "analyse-ok",
       "eerstGezienOp": "2026-11-06T13:00:53.038Z",
-      "gecontroleerdOp": "2026-11-06T22:00:52.881Z",
+      "gecontroleerdOp": "2026-11-07T00:00:55.276Z",
       "bronTitel": "Canta gelanceerd door putdeksel: Zaanstad was weken voor ongeluk gewaarschuwd 🎧",
       "bronLengte": 5998,
       "checklist": {
@@ -434,7 +434,7 @@
       "ai": false,
       "controle": "analyse-ok",
       "eerstGezienOp": "2026-11-06T11:59:05.014Z",
-      "gecontroleerdOp": "2026-11-06T22:00:52.881Z",
+      "gecontroleerdOp": "2026-11-07T00:00:55.276Z",
       "bronTitel": "De Orkaan in 2 minuten: 6 november 🎧",
       "bronLengte": 342,
       "checklist": {
@@ -473,7 +473,7 @@
       "ai": false,
       "controle": "analyse-ok",
       "eerstGezienOp": "2026-11-06T11:59:05.014Z",
-      "gecontroleerdOp": "2026-11-06T22:00:52.881Z",
+      "gecontroleerdOp": "2026-11-07T00:00:55.276Z",
       "bronTitel": "Volgend weekend (13-16 november) Den Uylbrug afgesloten",
       "bronLengte": 1367,
       "checklist": {
@@ -533,7 +533,7 @@
       "ai": false,
       "controle": "analyse-ok",
       "eerstGezienOp": "2026-11-06T11:00:53.337Z",
-      "gecontroleerdOp": "2026-11-06T22:00:52.881Z",
+      "gecontroleerdOp": "2026-11-07T00:00:55.276Z",
       "bronTitel": "VVD Oostzaan als enige tegen begroting: ‘Te veel rekeningen in de keukenlade’",
       "bronLengte": 5080,
       "checklist": {
@@ -579,7 +579,7 @@
       "ai": false,
       "controle": "analyse-ok",
       "eerstGezienOp": "2026-11-06T10:00:58.177Z",
-      "gecontroleerdOp": "2026-11-06T22:00:52.881Z",
+      "gecontroleerdOp": "2026-11-07T00:00:55.276Z",
       "bronTitel": "Wisselstoring: geen treinverkeer Zaandam – Amsterdam, update: opgelost",
       "bronLengte": 581,
       "checklist": {
@@ -618,7 +618,7 @@
       "ai": false,
       "controle": "analyse-ok",
       "eerstGezienOp": "2026-11-06T09:00:53.862Z",
-      "gecontroleerdOp": "2026-11-06T22:00:52.881Z",
+      "gecontroleerdOp": "2026-11-07T00:00:55.276Z",
       "bronTitel": "Nieuwe hondenborden, maar geen nieuwe verboden: Zaanstad legt uit",
       "bronLengte": 2968,
       "checklist": {
@@ -696,7 +696,7 @@
       "ai": false,
       "controle": "analyse-ok",
       "eerstGezienOp": "2026-11-06T08:00:56.228Z",
-      "gecontroleerdOp": "2026-11-06T22:00:52.881Z",
+      "gecontroleerdOp": "2026-11-07T00:00:55.276Z",
       "bronTitel": "Waarheen: Janneke de Bijl, Natuurwerkdag, Wina Ricardo🎙",
       "bronLengte": 1373,
       "checklist": {
