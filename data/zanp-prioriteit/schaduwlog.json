@@ -1,5 +1,5 @@
 {
-  "gegenereerdOp": "2026-11-07T08:00:49.873Z",
+  "gegenereerdOp": "2026-11-07T09:00:52.779Z",
   "modus": "schaduw",
   "tau": 0.5,
   "stats": {
@@ -13,7 +13,7 @@
       "uitgesteld": 0
     },
     "vergeten": 0,
-    "stukken": 343,
+    "stukken": 344,
     "kandidaten": 93,
     "metAnker": 90,
     "zonderAnker": 3,
@@ -24,7 +24,7 @@
       "boven": 2,
       "wacht": 0,
       "onderdrukt": 1,
-      "veto": 1,
+      "veto": 0,
       "nieuwRood": 0,
       "noodrem": false
     },
@@ -91,7 +91,7 @@
       "soort": "nieuws",
       "kop": "Kennisgeving burgemeester Hamming: incident Jaspersstraat",
       "S": 0.78,
-      "Sa": 0.54,
+      "Sa": 0.53,
       "Sp": 0.78,
       "route": "piek",
       "K": 0.79,
@@ -202,7 +202,7 @@
       "Sp": 0.49,
       "route": "aanhoudend",
       "K": 0.7,
-      "Kp": 0.53,
+      "Kp": 0.52,
       "n": 4,
       "dagen": 3,
       "bronnen": 2,
@@ -438,8 +438,8 @@
       "key": "n:https://zoek.officielebekendmakingen.nl/gmb-2026-508877.html",
       "soort": "nieuws",
       "kop": "Verkeersbesluit, instellen stopverplichting fietsverkeer Stijlpad Assendelft",
-      "S": 0.21,
-      "Sa": 0.21,
+      "S": 0.2,
+      "Sa": 0.2,
       "Sp": 0,
       "route": "aanhoudend",
       "K": 0.81,
@@ -553,42 +553,6 @@
       ]
     },
     {
-      "key": "n:https://www.deorkaan.nl/jarige-zaans-erfgoed-viert-feestje-met-markt-en-glossy-%f0%9f%8e%a7/",
-      "soort": "nieuws",
-      "kop": "Jarig Zaans Erfgoed viert feestje met markt en glossy 🎧",
-      "S": 0.19,
-      "Sa": 0.19,
-      "Sp": 0,
-      "route": "aanhoudend",
-      "K": 0,
-      "Kp": 0,
-      "n": 1,
-      "dagen": 1,
-      "bronnen": 1,
-      "ankers": [
-        "erfgoed",
-        "glossy",
-        "jarig",
-        "festj",
-        "markt",
-        "lorena",
-        "viert",
-        "hogtepunt",
-        "marian",
-        "erfgoedmarkt",
-        "doeve"
-      ],
-      "bewijs": [
-        {
-          "bron": "DeOrkaan",
-          "datum": "2026-11-06T23:00:00.000Z",
-          "c": 0.88,
-          "plek": "kop",
-          "titel": "Waarheen: Erfgoed, onbeperkt gezellig, bierfestival 🎙"
-        }
-      ]
-    },
-    {
       "key": "n:https://lokaleregelgeving.overheid.nl/CVDR699867/2",
       "soort": "nieuws",
       "kop": "Machtiging tekenbevoegdheid collegestukken",
@@ -626,7 +590,7 @@
       "Sp": 0,
       "route": "aanhoudend",
       "K": 0.22,
-      "Kp": 0.09,
+      "Kp": 0.08,
       "n": 3,
       "dagen": 1,
       "bronnen": 1,
@@ -667,7 +631,7 @@
       "Sp": 0,
       "route": "aanhoudend",
       "K": 0.22,
-      "Kp": 0.09,
+      "Kp": 0.08,
       "n": 3,
       "dagen": 1,
       "bronnen": 1,
@@ -939,8 +903,8 @@
       "key": "n:https://zaanstad.bestuurlijkeinformatie.nl/Reports/Item/e824ca7c-cc27-463f-90b6-2ff61a2b5047",
       "soort": "nieuws",
       "kop": "Gemeente Den Haag geeft het voorbeeld",
-      "S": 0.09,
-      "Sa": 0.09,
+      "S": 0.08,
+      "Sa": 0.08,
       "Sp": 0,
       "route": "aanhoudend",
       "K": 0.21,
@@ -1300,6 +1264,25 @@
         "kracht",
         "nzkg",
         "nzkanal"
+      ],
+      "bewijs": []
+    },
+    {
+      "key": "a:55db5c0d37",
+      "soort": "agenda",
+      "kop": "Raadsvergadering: Reservedatum begroting",
+      "S": 0,
+      "Sa": 0,
+      "Sp": 0,
+      "route": "geen",
+      "K": 0.15,
+      "Kp": 0,
+      "n": 0,
+      "dagen": 0,
+      "bronnen": 0,
+      "ankers": [
+        "reservedatum",
+        "radsvergadering"
       ],
       "bewijs": []
     }
