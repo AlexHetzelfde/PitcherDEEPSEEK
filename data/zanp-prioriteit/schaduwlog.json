@@ -1,14 +1,14 @@
 {
-  "gegenereerdOp": "2026-11-07T02:00:51.170Z",
+  "gegenereerdOp": "2026-11-07T03:00:50.553Z",
   "modus": "schaduw",
   "tau": 0.5,
   "stats": {
     "modus": "schaduw",
     "ai": true,
     "tekst": {
-      "werklijst": 10,
-      "lokaal": 4,
-      "opgehaald": 4,
+      "werklijst": 2,
+      "lokaal": 0,
+      "opgehaald": 0,
       "mislukt": 2,
       "uitgesteld": 0
     },
@@ -22,8 +22,8 @@
     "tau": 0.5,
     "besluit": {
       "boven": 3,
-      "wacht": 3,
-      "onderdrukt": 0,
+      "wacht": 0,
+      "onderdrukt": 3,
       "veto": 0,
       "nieuwRood": 0,
       "noodrem": false
@@ -344,8 +344,8 @@
       "key": "n:https://zaanstad.bestuurlijkeinformatie.nl/Document/View/e44deb13-3764-4b20-b7a9-900727754fcd",
       "soort": "nieuws",
       "kop": "Kennisgeving wethouder Groenewoud: Aanvraag windturbines Westelijk Havengebied",
-      "S": 0.34,
-      "Sa": 0.34,
+      "S": 0.33,
+      "Sa": 0.33,
       "Sp": 0,
       "route": "aanhoudend",
       "K": 0.61,
@@ -464,8 +464,8 @@
       "key": "n:https://lokaleregelgeving.overheid.nl/CVDR768780/1",
       "soort": "nieuws",
       "kop": "Aanwijzingsbesluit verlenging tijdelijk cameratoezicht Jaspersstraat Zaandam",
-      "S": 0.23,
-      "Sa": 0.23,
+      "S": 0.22,
+      "Sa": 0.22,
       "Sp": 0,
       "route": "aanhoudend",
       "K": 0.64,
@@ -506,8 +506,6 @@
         "dorfietsroute",
         "negen",
         "hillegom",
-        "bollenstrek",
-        "harlemmermer",
         "samenwerkingsoverenkomst"
       ],
       "bewijs": [
@@ -609,8 +607,8 @@
       "key": "n:https://zoek.officielebekendmakingen.nl/gmb-2026-508923.html",
       "soort": "nieuws",
       "kop": "Verkeersbesluit, instellen stopverlichting fietsverkeer Themapad Assendelft",
-      "S": 0.21,
-      "Sa": 0.21,
+      "S": 0.2,
+      "Sa": 0.2,
       "Sp": 0,
       "route": "aanhoudend",
       "K": 0.81,
@@ -818,39 +816,6 @@
       ]
     },
     {
-      "key": "n:https://www.noord-holland.nl/Actueel/Archief/2026/November_2026/9_overheidspartijen_zetten_volgende_stap_voor_nieuwe_doorfietsroutes",
-      "soort": "nieuws",
-      "kop": "9 overheidspartijen zetten volgende stap voor nieuwe doorfietsroutes",
-      "S": 0.13,
-      "Sa": 0.13,
-      "Sp": 0,
-      "route": "aanhoudend",
-      "K": 0.19,
-      "Kp": 0,
-      "n": 1,
-      "dagen": 1,
-      "bronnen": 1,
-      "ankers": [
-        "overheidspartij",
-        "dorfietsroute",
-        "hillegom",
-        "bollenstrek",
-        "harlemmermer",
-        "beter",
-        "samenwerkingsoverenkomst",
-        "pakket"
-      ],
-      "bewijs": [
-        {
-          "bron": "vervoerregio-persberichten",
-          "datum": "2026-11-05T23:00:00.000Z",
-          "c": 1,
-          "plek": "kop",
-          "titel": "Negen overheidspartijen zetten volgende stap voor nieuwe doorfietsroutes"
-        }
-      ]
-    },
-    {
       "key": "a:e205032688",
       "soort": "agenda",
       "kop": "Geweigerde omgevingsvergunning voor aanleggen van een in- of uitrit locatie Raaigras 88 Assendelft",
@@ -975,6 +940,41 @@
           "c": 0.36,
           "plek": "tekst",
           "titel": "Waarheen: topkolf, erfgoed, Fontana Blue"
+        }
+      ]
+    },
+    {
+      "key": "n:https://www.noord-holland.nl/Actueel/Archief/2026/November_2026/9_overheidspartijen_zetten_volgende_stap_voor_nieuwe_doorfietsroutes",
+      "soort": "nieuws",
+      "kop": "9 overheidspartijen zetten volgende stap voor nieuwe doorfietsroutes",
+      "S": 0.1,
+      "Sa": 0.1,
+      "Sp": 0,
+      "route": "aanhoudend",
+      "K": 0.19,
+      "Kp": 0,
+      "n": 1,
+      "dagen": 1,
+      "bronnen": 1,
+      "ankers": [
+        "overheidspartij",
+        "dorfietsroute",
+        "bollenstrek",
+        "hillegom",
+        "harlemmermer",
+        "beter",
+        "samenwerkingsoverenkomst",
+        "nordelijk",
+        "uitwerking",
+        "pakket"
+      ],
+      "bewijs": [
+        {
+          "bron": "vervoerregio-persberichten",
+          "datum": "2026-11-05T23:00:00.000Z",
+          "c": 0.9,
+          "plek": "kop",
+          "titel": "Negen overheidspartijen zetten volgende stap voor nieuwe doorfietsroutes"
         }
       ]
     },
