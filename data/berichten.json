@@ -1,5 +1,5 @@
 {
-  "gegenereerdOp": "2026-11-07T22:00:51.272Z",
+  "gegenereerdOp": "2026-11-07T23:00:52.061Z",
   "promptVersie": "2026-10-29-batch-tag-checklist-agendapunten",
   "alertModus": "log",
   "prioSchaal": "1 = urgent, 2 = belangrijk, 3 = regulier, 4 = routine. De AI geeft nooit prio 1.",
@@ -86,7 +86,8 @@
         "inRegio": true
       },
       "checklistBron": "ai",
-      "clusterId": "54c4b5c5ec"
+      "clusterId": "3059702e4d",
+      "tagVersie": 2
     },
     {
       "id": "c2c16a516b-v2",
@@ -147,7 +148,7 @@
       "ai": false,
       "controle": "analyse-ok",
       "eerstGezienOp": "2026-11-07T20:00:50.155Z",
-      "gecontroleerdOp": "2026-11-07T20:00:50.155Z",
+      "gecontroleerdOp": "2026-11-07T23:00:52.061Z",
       "bronTitel": "Dichters laten de tijd spreken in Museum Zaanse Tijd 📸 🎥",
       "bronLengte": 2081,
       "checklist": {
@@ -225,7 +226,7 @@
       "ai": false,
       "controle": "analyse-ok",
       "eerstGezienOp": "2026-11-07T14:00:52.111Z",
-      "gecontroleerdOp": "2026-11-07T20:00:50.155Z",
+      "gecontroleerdOp": "2026-11-07T23:00:52.061Z",
       "bronTitel": "Zaanse Olifantenpaadjes XXVII: Provincialeweg, Zaandam (de kortste?)",
       "bronLengte": 1695,
       "checklist": {
@@ -264,7 +265,7 @@
       "ai": false,
       "controle": "analyse-ok",
       "eerstGezienOp": "2026-11-07T12:51:06.636Z",
-      "gecontroleerdOp": "2026-11-07T20:00:50.155Z",
+      "gecontroleerdOp": "2026-11-07T23:00:52.061Z",
       "bronTitel": "Canta, eerlijke antwoorden en poëzie in De Week van De Orkaan 🎙",
       "bronLengte": 771,
       "checklist": {
@@ -303,7 +304,7 @@
       "ai": false,
       "controle": "analyse-ok",
       "eerstGezienOp": "2026-11-07T11:00:53.677Z",
-      "gecontroleerdOp": "2026-11-07T20:00:50.155Z",
+      "gecontroleerdOp": "2026-11-07T23:00:52.061Z",
       "bronTitel": "54-jarige vrouw uit Oostzaan aangehouden na dodelijke steekpartij in Zaandam",
       "bronLengte": 900,
       "checklist": {
@@ -342,7 +343,7 @@
       "ai": false,
       "controle": "analyse-ok",
       "eerstGezienOp": "2026-11-07T10:00:51.435Z",
-      "gecontroleerdOp": "2026-11-07T20:00:50.155Z",
+      "gecontroleerdOp": "2026-11-07T23:00:52.061Z",
       "bronTitel": "Thorbeckeweg: bouwput wordt eindelijk echte tunnel",
       "bronLengte": 1941,
       "checklist": {
@@ -381,7 +382,7 @@
       "ai": false,
       "controle": "analyse-ok",
       "eerstGezienOp": "2026-11-07T09:00:52.779Z",
-      "gecontroleerdOp": "2026-11-07T20:00:50.155Z",
+      "gecontroleerdOp": "2026-11-07T23:00:52.061Z",
       "bronTitel": "Herfst buiten, kerst in de stad: Zaandam maakt zich op voor Lichtfestival",
       "bronLengte": 1103,
       "checklist": {
@@ -433,7 +434,7 @@
       "ai": false,
       "controle": "analyse-ok",
       "eerstGezienOp": "2026-11-07T08:00:49.873Z",
-      "gecontroleerdOp": "2026-11-07T20:00:50.155Z",
+      "gecontroleerdOp": "2026-11-07T23:00:52.061Z",
       "bronTitel": "Waarheen: Erfgoed, onbeperkt gezellig, bierfestival 🎙",
       "bronLengte": 1552,
       "checklist": {
@@ -728,7 +729,7 @@
       },
       "checklistBron": "ai",
       "tagVersie": 2,
-      "clusterId": "54c4b5c5ec"
+      "clusterId": "3059702e4d"
     },
     {
       "id": "4d7c7bd53c-v1",
@@ -829,7 +830,7 @@
       "gecontroleerdOp": "2026-11-07T02:00:51.170Z",
       "bronTitel": "Aanwijzingsbesluit verlenging tijdelijk cameratoezicht Zuiddijk te Zaandam",
       "bronLengte": 0,
-      "clusterId": "54c4b5c5ec",
+      "clusterId": "3059702e4d",
       "tagVersie": 2
     },
     {
@@ -1025,14 +1026,7 @@
       },
       "checklistBron": "ai",
       "analyse": true,
-      "tagVersie": 2,
-      "alertKandidaat": {
-        "niveau": "oranje",
-        "categorie": "bestuur",
-        "reden": "besluit met groot gevolg (één bron)",
-        "aangemaaktOp": "2026-11-07T17:59:33.543Z",
-        "tot": "2026-11-08T17:59:33.543Z"
-      }
+      "tagVersie": 2
     },
     {
       "id": "ccf449bf38-v1",
@@ -1248,14 +1242,7 @@
       },
       "checklistBron": "ai",
       "analyse": true,
-      "tagVersie": 2,
-      "alertKandidaat": {
-        "niveau": "oranje",
-        "categorie": "bestuur",
-        "reden": "besluit met groot gevolg (één bron)",
-        "aangemaaktOp": "2026-11-07T12:00:53.600Z",
-        "tot": "2026-11-08T12:00:53.600Z"
-      }
+      "tagVersie": 2
     },
     {
       "id": "430c13f72f-v1",
@@ -1449,7 +1436,6 @@
         "inRegio": true
       },
       "checklistBron": "ai",
-      "clusterId": "696c238b27",
       "tagVersie": 2
     },
     {
@@ -1848,7 +1834,6 @@
         "inRegio": true
       },
       "checklistBron": "ai",
-      "clusterId": "54c4b5c5ec",
       "tagVersie": 2
     },
     {
@@ -2657,8 +2642,7 @@
         "inRegio": true
       },
       "checklistBron": "ai",
-      "tagVersie": 2,
-      "clusterId": "696c238b27"
+      "tagVersie": 2
     },
     {
       "id": "1b798342db-v1",
