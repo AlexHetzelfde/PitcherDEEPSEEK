@@ -1,5 +1,5 @@
 {
-  "gegenereerdOp": "2026-11-07T21:42:48.703Z",
+  "gegenereerdOp": "2026-11-07T22:00:51.272Z",
   "modus": "schaduw",
   "stempel": "v3-22806000",
   "tau": 0.5,
@@ -8,8 +8,8 @@
     "ai": true,
     "formule": "v3-22806000",
     "tekst": {
-      "werklijst": 0,
-      "lokaal": 0,
+      "werklijst": 1,
+      "lokaal": 1,
       "opgehaald": 0,
       "mislukt": 0,
       "uitgesteld": 0
@@ -21,10 +21,10 @@
     "metAnker": 72,
     "zonderAnker": 3,
     "afgelast": 1,
-    "dubbel": 1,
+    "dubbel": 0,
     "tau": 0.5,
     "besluit": {
-      "boven": 2,
+      "boven": 1,
       "wacht": 0,
       "onderdrukt": 1,
       "veto": 0,
@@ -50,8 +50,8 @@
       "ankers": [
         "jaspersstrat",
         "kennisgeving",
-        "incident",
-        "hamming"
+        "hamming",
+        "incident"
       ],
       "bewijs": [
         {
@@ -85,75 +85,18 @@
       ]
     },
     {
-      "key": "n:https://lokaleregelgeving.overheid.nl/CVDR769019/1",
-      "soort": "nieuws",
-      "kop": "Aanwijzingsbesluit verlenging tijdelijk cameratoezicht Zuiddijk te Zaandam",
-      "S": 0.64,
-      "Sa": 0.64,
-      "Sp": 0.51,
-      "route": "aanhoudend",
-      "K": 0.76,
-      "Kp": 0.59,
-      "n": 5,
-      "dagen": 3,
-      "bronnen": 3,
-      "ankers": [
-        "zuiddijk",
-        "anwijzingsbesluit",
-        "verlenging",
-        "cameratoezicht"
-      ],
-      "bewijs": [
-        {
-          "bron": "bekendmakingen",
-          "datum": "2026-11-02T23:00:00.000Z",
-          "c": 1,
-          "plek": "kop",
-          "titel": "Aanwijzingsbesluit verlenging tijdelijk cameratoezicht Elzenstraat in Wormerveer"
-        },
-        {
-          "bron": "ibabs-collegeberichten",
-          "datum": "2026-11-05T23:00:00.000Z",
-          "c": 1,
-          "plek": "kop",
-          "titel": "Kennisgeving burgemeester Hamming: Verlenging sluiting woning Zuiddijk 172 en cameratoezicht"
-        },
-        {
-          "bron": "DeOrkaan",
-          "datum": "2026-11-05T23:00:00.000Z",
-          "c": 0.92,
-          "plek": "kop",
-          "titel": "Cameratoezicht Zuiddijk en Jaspersstraat verlengd"
-        },
-        {
-          "bron": "DeOrkaan",
-          "datum": "2026-11-02T23:00:00.000Z",
-          "c": 0.89,
-          "plek": "kop",
-          "titel": "Cameratoezicht Elzenstraat wéér verlengd"
-        },
-        {
-          "bron": "ibabs-collegeberichten",
-          "datum": "2026-11-03T23:00:00.000Z",
-          "c": 0.8,
-          "plek": "intro",
-          "titel": "Kennisgeving Burgemeester J. Hamming: Incident Elzenstraat"
-        }
-      ]
-    },
-    {
       "key": "n:https://zaanstad.bestuurlijkeinformatie.nl/Document/View/8b899045-41e2-48f7-b963-2762303ae520",
       "soort": "nieuws",
       "kop": "Kennisgeving burgemeester Hamming: Verlenging sluiting woning Zuiddijk 172 en cameratoezicht",
-      "S": 0.54,
-      "Sa": 0.54,
-      "Sp": 0.49,
-      "route": "aanhoudend",
-      "K": 0.7,
-      "Kp": 0.52,
-      "n": 4,
-      "dagen": 3,
-      "bronnen": 2,
+      "S": 0.73,
+      "Sa": 0.73,
+      "Sp": 0.73,
+      "route": "piek",
+      "K": 0.8,
+      "Kp": 0.62,
+      "n": 5,
+      "dagen": 4,
+      "bronnen": 3,
       "ankers": [
         "kennisgeving",
         "zuiddijk",
@@ -187,11 +130,97 @@
           "titel": "Cameratoezicht Elzenstraat wéér verlengd"
         },
         {
+          "bron": "wetenregelgeving",
+          "datum": "2026-11-07T22:00:51.272Z",
+          "c": 0.88,
+          "plek": "kop",
+          "titel": "Aanwijzingsbesluit verlenging tijdelijk cameratoezicht Zuiddijk te Zaandam"
+        },
+        {
           "bron": "DeOrkaan",
           "datum": "2026-11-05T23:00:00.000Z",
           "c": 0.88,
           "plek": "kop",
           "titel": "Cameratoezicht Zuiddijk en Jaspersstraat verlengd"
+        }
+      ]
+    },
+    {
+      "key": "n:https://lokaleregelgeving.overheid.nl/CVDR769019/1",
+      "soort": "nieuws",
+      "kop": "Aanwijzingsbesluit verlenging tijdelijk cameratoezicht Zuiddijk te Zaandam",
+      "S": 0.49,
+      "Sa": 0.49,
+      "Sp": 0,
+      "route": "aanhoudend",
+      "K": 0.76,
+      "Kp": 0.59,
+      "n": 3,
+      "dagen": 3,
+      "bronnen": 2,
+      "ankers": [
+        "anwijzingsbesluit",
+        "zuiddijk",
+        "cvdr769019",
+        "verlenging",
+        "cameratoezicht"
+      ],
+      "bewijs": [
+        {
+          "bron": "bekendmakingen",
+          "datum": "2026-11-02T23:00:00.000Z",
+          "c": 0.88,
+          "plek": "kop",
+          "titel": "Aanwijzingsbesluit verlenging tijdelijk cameratoezicht Elzenstraat in Wormerveer"
+        },
+        {
+          "bron": "ibabs-collegeberichten",
+          "datum": "2026-11-05T23:00:00.000Z",
+          "c": 0.88,
+          "plek": "kop",
+          "titel": "Kennisgeving burgemeester Hamming: Verlenging sluiting woning Zuiddijk 172 en cameratoezicht"
+        },
+        {
+          "bron": "ibabs-collegeberichten",
+          "datum": "2026-11-03T23:00:00.000Z",
+          "c": 0.7,
+          "plek": "intro",
+          "titel": "Kennisgeving Burgemeester J. Hamming: Incident Elzenstraat"
+        }
+      ]
+    },
+    {
+      "key": "n:https://lokaleregelgeving.overheid.nl/CVDR768780/1",
+      "soort": "nieuws",
+      "kop": "Aanwijzingsbesluit verlenging tijdelijk cameratoezicht Jaspersstraat Zaandam",
+      "S": 0.38,
+      "Sa": 0.38,
+      "Sp": 0,
+      "route": "aanhoudend",
+      "K": 0.69,
+      "Kp": 0.53,
+      "n": 2,
+      "dagen": 2,
+      "bronnen": 2,
+      "ankers": [
+        "jaspersstrat",
+        "anwijzingsbesluit",
+        "cvdr768780"
+      ],
+      "bewijs": [
+        {
+          "bron": "bekendmakingen",
+          "datum": "2026-11-02T23:00:00.000Z",
+          "c": 0.91,
+          "plek": "kop",
+          "titel": "Aanwijzingsbesluit verlenging tijdelijk cameratoezicht Elzenstraat in Wormerveer"
+        },
+        {
+          "bron": "ibabs-collegeberichten",
+          "datum": "2026-11-04T23:00:00.000Z",
+          "c": 0.85,
+          "plek": "kop",
+          "titel": "Kennisgeving burgemeester Hamming: incident Jaspersstraat"
         }
       ]
     },
@@ -235,8 +264,8 @@
       "key": "n:https://zaanstad.bestuurlijkeinformatie.nl/Document/View/e44deb13-3764-4b20-b7a9-900727754fcd",
       "soort": "nieuws",
       "kop": "Kennisgeving wethouder Groenewoud: Aanvraag windturbines Westelijk Havengebied",
-      "S": 0.32,
-      "Sa": 0.32,
+      "S": 0.31,
+      "Sa": 0.31,
       "Sp": 0,
       "route": "aanhoudend",
       "K": 0.6,
@@ -355,34 +384,6 @@
           "c": 0.89,
           "plek": "kop",
           "titel": "Thorbeckeweg: bouwput wordt eindelijk echte tunnel"
-        }
-      ]
-    },
-    {
-      "key": "n:https://lokaleregelgeving.overheid.nl/CVDR768780/1",
-      "soort": "nieuws",
-      "kop": "Aanwijzingsbesluit verlenging tijdelijk cameratoezicht Jaspersstraat Zaandam",
-      "S": 0.21,
-      "Sa": 0.21,
-      "Sp": 0,
-      "route": "aanhoudend",
-      "K": 0.64,
-      "Kp": 0.47,
-      "n": 1,
-      "dagen": 1,
-      "bronnen": 1,
-      "ankers": [
-        "jaspersstrat",
-        "anwijzingsbesluit",
-        "cvdr768780"
-      ],
-      "bewijs": [
-        {
-          "bron": "bekendmakingen",
-          "datum": "2026-11-02T23:00:00.000Z",
-          "c": 0.91,
-          "plek": "kop",
-          "titel": "Aanwijzingsbesluit verlenging tijdelijk cameratoezicht Elzenstraat in Wormerveer"
         }
       ]
     },
@@ -1275,6 +1276,14 @@
         "n": 4,
         "bronnen": 3
       },
+      "n:https://zaanstad.bestuurlijkeinformatie.nl/Document/View/8b899045-41e2-48f7-b963-2762303ae520": {
+        "kop": "Kennisgeving burgemeester Hamming: Verlenging sluiting woning Zuiddijk 172 en cameratoezicht",
+        "S": 0.73,
+        "route": "piek",
+        "K": 0.8,
+        "n": 5,
+        "bronnen": 3
+      },
       "n:https://lokaleregelgeving.overheid.nl/CVDR769019/1": {
         "kop": "Aanwijzingsbesluit verlenging tijdelijk cameratoezicht Zuiddijk te Zaandam",
         "S": 0.66,
@@ -1283,12 +1292,12 @@
         "n": 5,
         "bronnen": 3
       },
-      "n:https://zaanstad.bestuurlijkeinformatie.nl/Document/View/8b899045-41e2-48f7-b963-2762303ae520": {
-        "kop": "Kennisgeving burgemeester Hamming: Verlenging sluiting woning Zuiddijk 172 en cameratoezicht",
-        "S": 0.55,
+      "n:https://lokaleregelgeving.overheid.nl/CVDR768780/1": {
+        "kop": "Aanwijzingsbesluit verlenging tijdelijk cameratoezicht Jaspersstraat Zaandam",
+        "S": 0.38,
         "route": "aanhoudend",
-        "K": 0.7,
-        "n": 4,
+        "K": 0.69,
+        "n": 2,
         "bronnen": 2
       },
       "n:https://www.noord-holland.nl/Actueel/Archief/2026/November_2026/Warmtekansen_in_de_kassen": {
@@ -1328,14 +1337,6 @@
         "S": 0.24,
         "route": "aanhoudend",
         "K": 0.59,
-        "n": 1,
-        "bronnen": 1
-      },
-      "n:https://lokaleregelgeving.overheid.nl/CVDR768780/1": {
-        "kop": "Aanwijzingsbesluit verlenging tijdelijk cameratoezicht Jaspersstraat Zaandam",
-        "S": 0.22,
-        "route": "aanhoudend",
-        "K": 0.64,
         "n": 1,
         "bronnen": 1
       },

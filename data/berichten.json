@@ -1,5 +1,5 @@
 {
-  "gegenereerdOp": "2026-11-07T21:42:48.703Z",
+  "gegenereerdOp": "2026-11-07T22:00:51.272Z",
   "promptVersie": "2026-10-29-batch-tag-checklist-agendapunten",
   "alertModus": "log",
   "prioSchaal": "1 = urgent, 2 = belangrijk, 3 = regulier, 4 = routine. De AI geeft nooit prio 1.",
@@ -50,6 +50,44 @@
     }
   ],
   "berichten": [
+    {
+      "id": "fe149669c4-v2",
+      "groepId": "fe149669c4",
+      "versie": 2,
+      "url": "https://lokaleregelgeving.overheid.nl/CVDR769019/1",
+      "kop": "Gemeente Zaanstad verlengt tijdelijk cameratoezicht aan de Zuiddijk in Zaandam",
+      "tekst": "De burgemeester van Zaanstad heeft het tijdelijke cameratoezicht aan de Zuiddijk in Zaandam verlengd tot en met 4 december 2026. Het toezicht is ingesteld naar aanleiding van het plaatsen van een explosief op 25 augustus 2026 en een explosie op 1 september 2026. Volgens de gemeente is de maatregel nodig om de rust te behouden en verdere verstoringen van de openbare orde te voorkomen.",
+      "rubriek": "GEM",
+      "tagBron": "ai",
+      "herkomst": "officieel",
+      "prio": 3,
+      "tijd": "2026-11-07T22:00:51.272Z",
+      "heeftTijd": true,
+      "woorden": 810,
+      "afgekapt": false,
+      "bronId": "wetenregelgeving",
+      "bronNaam": "Lokale regelgeving — Zaanstad",
+      "ai": true,
+      "controle": "cijfers-ok",
+      "eerstGezienOp": "2026-11-07T22:00:51.272Z",
+      "gecontroleerdOp": "2026-11-07T22:00:51.272Z",
+      "bronTitel": "Aanwijzingsbesluit verlenging tijdelijk cameratoezicht Zuiddijk te Zaandam",
+      "bronLengte": 5431,
+      "checklist": {
+        "gevaar": false,
+        "evacuatieOfNlAlert": false,
+        "gewondenOfDoden": false,
+        "bestuurlijkeCrisis": false,
+        "besluitMetGrootGevolg": false,
+        "tijdkritisch": false,
+        "betrokkenen": null,
+        "geldbedragEuro": null,
+        "banen": null,
+        "inRegio": true
+      },
+      "checklistBron": "ai",
+      "clusterId": "54c4b5c5ec"
+    },
     {
       "id": "c2c16a516b-v2",
       "groepId": "c2c16a516b",
@@ -634,7 +672,7 @@
       "ai": true,
       "controle": "cijfers-ok",
       "eerstGezienOp": "2026-11-07T02:00:51.170Z",
-      "gecontroleerdOp": "2026-11-07T02:00:51.170Z",
+      "gecontroleerdOp": "2026-11-07T22:00:51.272Z",
       "bronTitel": "Kennisgeving wethouder Groenewoud: Aanvraag windturbines Westelijk Havengebied",
       "bronLengte": 1641,
       "checklist": {
@@ -673,7 +711,7 @@
       "ai": true,
       "controle": "cijfers-ok",
       "eerstGezienOp": "2026-11-07T02:00:51.170Z",
-      "gecontroleerdOp": "2026-11-07T02:00:51.170Z",
+      "gecontroleerdOp": "2026-11-07T22:00:51.272Z",
       "bronTitel": "Kennisgeving burgemeester Hamming: Verlenging sluiting woning Zuiddijk 172 en cameratoezicht",
       "bronLengte": 1734,
       "checklist": {
@@ -689,7 +727,8 @@
         "inRegio": true
       },
       "checklistBron": "ai",
-      "tagVersie": 2
+      "tagVersie": 2,
+      "clusterId": "54c4b5c5ec"
     },
     {
       "id": "4d7c7bd53c-v1",
@@ -711,7 +750,7 @@
       "ai": true,
       "controle": "cijfers-ok",
       "eerstGezienOp": "2026-11-07T02:00:51.170Z",
-      "gecontroleerdOp": "2026-11-07T02:00:51.170Z",
+      "gecontroleerdOp": "2026-11-07T22:00:51.272Z",
       "bronTitel": "Mail 'brief aan de gemeenteraad, planten redden bij sloop in Zaanstad'",
       "bronLengte": 1299,
       "checklist": {
@@ -749,7 +788,7 @@
       "ai": true,
       "controle": "cijfers-ok",
       "eerstGezienOp": "2026-11-07T02:00:51.170Z",
-      "gecontroleerdOp": "2026-11-07T02:00:51.170Z",
+      "gecontroleerdOp": "2026-11-07T22:00:51.272Z",
       "bronTitel": "Is winteropvang in uw gemeente voor iedereen beschikbaar?",
       "bronLengte": 2457,
       "checklist": {
@@ -813,7 +852,7 @@
       "ai": true,
       "controle": "cijfers-ok",
       "eerstGezienOp": "2026-11-07T02:00:51.170Z",
-      "gecontroleerdOp": "2026-11-07T02:00:51.170Z",
+      "gecontroleerdOp": "2026-11-07T22:00:51.272Z",
       "bronTitel": "Goede fietsverlichting: veilig voor jezelf en de ander Gratis fietslampreparatie in Amsterdam Noord",
       "bronLengte": 419,
       "checklist": {
@@ -851,7 +890,7 @@
       "ai": true,
       "controle": "cijfers-ok",
       "eerstGezienOp": "2026-11-07T02:00:51.170Z",
-      "gecontroleerdOp": "2026-11-07T02:00:51.170Z",
+      "gecontroleerdOp": "2026-11-07T22:00:51.272Z",
       "bronTitel": "Negen overheidspartijen zetten volgende stap voor nieuwe doorfietsroutes",
       "bronLengte": 374,
       "checklist": {
