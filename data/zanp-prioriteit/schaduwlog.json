@@ -1,29 +1,29 @@
 {
-  "gegenereerdOp": "2026-11-07T04:00:50.690Z",
+  "gegenereerdOp": "2026-11-07T05:00:53.633Z",
   "modus": "schaduw",
   "tau": 0.5,
   "stats": {
     "modus": "schaduw",
     "ai": true,
     "tekst": {
-      "werklijst": 2,
+      "werklijst": 0,
       "lokaal": 0,
       "opgehaald": 0,
-      "mislukt": 2,
+      "mislukt": 0,
       "uitgesteld": 0
     },
     "vergeten": 0,
     "stukken": 341,
-    "kandidaten": 112,
-    "metAnker": 109,
+    "kandidaten": 93,
+    "metAnker": 90,
     "zonderAnker": 3,
     "afgelast": 1,
     "dubbel": 1,
     "tau": 0.5,
     "besluit": {
-      "boven": 3,
+      "boven": 2,
       "wacht": 0,
-      "onderdrukt": 3,
+      "onderdrukt": 2,
       "veto": 0,
       "nieuwRood": 0,
       "noodrem": false
@@ -140,12 +140,12 @@
       "key": "n:https://lokaleregelgeving.overheid.nl/CVDR769019/1",
       "soort": "nieuws",
       "kop": "Aanwijzingsbesluit verlenging tijdelijk cameratoezicht Zuiddijk te Zaandam",
-      "S": 0.67,
-      "Sa": 0.67,
+      "S": 0.66,
+      "Sa": 0.66,
       "Sp": 0.52,
       "route": "aanhoudend",
       "K": 0.77,
-      "Kp": 0.6,
+      "Kp": 0.59,
       "n": 5,
       "dagen": 3,
       "bronnen": 3,
@@ -190,63 +190,6 @@
           "c": 0.8,
           "plek": "intro",
           "titel": "Kennisgeving Burgemeester J. Hamming: Incident Elzenstraat"
-        }
-      ]
-    },
-    {
-      "key": "n:https://zaanstad.bestuurlijkeinformatie.nl/Document/View/3efd6010-3187-4635-81ad-6abea4b1acda",
-      "soort": "nieuws",
-      "kop": "Kennisgeving Burgemeester J. Hamming: Incident Elzenstraat",
-      "S": 0.62,
-      "Sa": 0.62,
-      "Sp": 0.59,
-      "route": "aanhoudend",
-      "K": 0.77,
-      "Kp": 0.59,
-      "n": 5,
-      "dagen": 2,
-      "bronnen": 3,
-      "ankers": [
-        "elzenstrat",
-        "kennisgeving",
-        "incident",
-        "hamming"
-      ],
-      "bewijs": [
-        {
-          "bron": "ibabs-collegeberichten",
-          "datum": "2026-11-05T23:00:00.000Z",
-          "c": 0.98,
-          "plek": "kop",
-          "titel": "Kennisgeving burgemeester Hamming: Verlenging sluiting woning Zuiddijk 172 en cameratoezicht"
-        },
-        {
-          "bron": "ibabs-collegeberichten",
-          "datum": "2026-11-05T23:00:00.000Z",
-          "c": 0.93,
-          "plek": "kop",
-          "titel": "Kennisgeving wethouder Groenewoud: Aanvraag windturbines Westelijk Havengebied"
-        },
-        {
-          "bron": "bekendmakingen",
-          "datum": "2026-11-02T23:00:00.000Z",
-          "c": 0.89,
-          "plek": "kop",
-          "titel": "Aanwijzingsbesluit verlenging tijdelijk cameratoezicht Elzenstraat in Wormerveer"
-        },
-        {
-          "bron": "DeOrkaan",
-          "datum": "2026-11-02T23:00:00.000Z",
-          "c": 0.89,
-          "plek": "kop",
-          "titel": "Cameratoezicht Elzenstraat wéér verlengd"
-        },
-        {
-          "bron": "DeOrkaan",
-          "datum": "2026-11-05T23:00:00.000Z",
-          "c": 0.7,
-          "plek": "intro",
-          "titel": "Cameratoezicht Zuiddijk en Jaspersstraat verlengd"
         }
       ]
     },
@@ -374,61 +317,6 @@
           "c": 0.87,
           "plek": "kop",
           "titel": "Kennisgeving burgemeester Hamming: Verlenging sluiting woning Zuiddijk 172 en cameratoezicht"
-        }
-      ]
-    },
-    {
-      "key": "n:https://zaanstad.bestuurlijkeinformatie.nl/Reports/Item/ca542b04-ff0c-4e5e-b854-c8a6e61461d0",
-      "soort": "nieuws",
-      "kop": "Platform31 Nieuwsbrief | 29 oktober 2026",
-      "S": 0.32,
-      "Sa": 0.32,
-      "Sp": 0,
-      "route": "aanhoudend",
-      "K": 0.17,
-      "Kp": 0.17,
-      "n": 6,
-      "dagen": 1,
-      "bronnen": 1,
-      "ankers": [
-        "nieuwsbrief",
-        "platform31"
-      ],
-      "bewijs": [
-        {
-          "bron": "ibabs-ingekomen-stukken",
-          "datum": "2026-11-03T23:00:00.000Z",
-          "c": 0.97,
-          "plek": "kop",
-          "titel": "Nieuwsbrief Regioteam Energietransitie: webinar warmtetransitie; bijmengplicht groen gas; netcongestie-plannen"
-        },
-        {
-          "bron": "ibabs-ingekomen-stukken",
-          "datum": "2026-11-03T23:00:00.000Z",
-          "c": 0.89,
-          "plek": "kop",
-          "titel": "Nieuwsbrief Dorpscontact Westzaan - Oktober 2026"
-        },
-        {
-          "bron": "ibabs-ingekomen-stukken",
-          "datum": "2026-11-03T23:00:00.000Z",
-          "c": 0.89,
-          "plek": "kop",
-          "titel": "HVC inZicht nieuwsbrief | terugblik 35 jaar HVC en vooruitblik naar 2035"
-        },
-        {
-          "bron": "ibabs-ingekomen-stukken",
-          "datum": "2026-11-03T23:00:00.000Z",
-          "c": 0.89,
-          "plek": "kop",
-          "titel": "Nieuwsbrief: Bestuurswissel |Infrabesluiten in onze regio| Zero emissiezones | Najaarsforum"
-        },
-        {
-          "bron": "ibabs-ingekomen-stukken",
-          "datum": "2026-11-03T23:00:00.000Z",
-          "c": 0.89,
-          "plek": "kop",
-          "titel": "Nieuwsbrief week 43: Gesprekken met minister & inschrijven Dag voor de Raad"
         }
       ]
     },
@@ -658,42 +546,6 @@
           "c": 0.89,
           "plek": "kop",
           "titel": "Machtiging tekenbevoegdheid burgemeestersbesluiten 10045012"
-        }
-      ]
-    },
-    {
-      "key": "n:https://zaanstad.bestuurlijkeinformatie.nl/Document/View/1fbec0bf-504f-4014-8808-dbf1b37dc6b9",
-      "soort": "nieuws",
-      "kop": "Gemeente Den Haag geeft het voorbeeld",
-      "S": 0.17,
-      "Sa": 0.17,
-      "Sp": 0,
-      "route": "aanhoudend",
-      "K": 0.56,
-      "Kp": 0.27,
-      "n": 1,
-      "dagen": 1,
-      "bronnen": 1,
-      "ankers": [
-        "vorbeld",
-        "orlog",
-        "antisemitism",
-        "subject",
-        "categorie",
-        "radsgriffi",
-        "warschuwing",
-        "racism",
-        "discriminati",
-        "nadeorlog",
-        "overheid"
-      ],
-      "bewijs": [
-        {
-          "bron": "ibabs-ingekomen-stukken",
-          "datum": "2026-11-03T23:00:00.000Z",
-          "c": 0.68,
-          "plek": "intro",
-          "titel": "Aanbieding Kwaliteitscriteria Gezinshuizen 2026 | Verzoek registratie als ingekomen stuk"
         }
       ]
     },
@@ -1060,67 +912,6 @@
       ]
     },
     {
-      "key": "n:https://zaanstad.bestuurlijkeinformatie.nl/Reports/Item/9df187bf-c385-4b57-8208-2cb708b1a398",
-      "soort": "nieuws",
-      "kop": "Nieuwsbrief week 43: Gesprekken met minister & inschrijven Dag voor de Raad",
-      "S": 0.07,
-      "Sa": 0.07,
-      "Sp": 0,
-      "route": "aanhoudend",
-      "K": 0,
-      "Kp": 0,
-      "n": 1,
-      "dagen": 1,
-      "bronnen": 1,
-      "ankers": [
-        "inschrijv",
-        "minister",
-        "nieuwsbrief",
-        "gesprek",
-        "vereniging",
-        "tuhuljtk"
-      ],
-      "bewijs": [
-        {
-          "bron": "ibabs-ingekomen-stukken",
-          "datum": "2026-11-03T23:00:00.000Z",
-          "c": 0.72,
-          "plek": "intro",
-          "titel": "Laat jij je de mond snoeren? Doe mee aan de enquête!"
-        }
-      ]
-    },
-    {
-      "key": "n:https://zaanstad.bestuurlijkeinformatie.nl/Reports/Item/ba379db2-8d98-40ec-b29c-c081d662f580",
-      "soort": "nieuws",
-      "kop": "Laat jij je de mond snoeren? Doe mee aan de enquête!",
-      "S": 0.07,
-      "Sa": 0.07,
-      "Sp": 0,
-      "route": "aanhoudend",
-      "K": 0,
-      "Kp": 0,
-      "n": 1,
-      "dagen": 1,
-      "bronnen": 1,
-      "ankers": [
-        "snoer",
-        "enquet",
-        "vereniging",
-        "mond",
-        "tukihhyk"
-      ],
-      "bewijs": [
-        {
-          "bron": "ibabs-ingekomen-stukken",
-          "datum": "2026-11-03T23:00:00.000Z",
-          "c": 0.71,
-          "plek": "intro",
-          "titel": "Nieuwsbrief week 43: Gesprekken met minister & inschrijven Dag voor de Raad"
-        }
-      ]
-    },
-    {
       "key": "a:e26813c04c",
       "soort": "agenda",
       "kop": "Geweigerde huisvestingsvergunning Klipperstraat 37 te Zaandam - Microsoft Teams",
@@ -1360,6 +1151,108 @@
       "ankers": [
         "anwijsbesluit",
         "perim"
+      ],
+      "bewijs": []
+    },
+    {
+      "key": "a:abb742a017",
+      "soort": "agenda",
+      "kop": "Omgevingsvergunning O2026055913 realiseren dakterras op woning Zuiderhoofdstraat 78 te Krommenie",
+      "S": 0,
+      "Sa": 0,
+      "Sp": 0,
+      "route": "geen",
+      "K": 0.15,
+      "Kp": 0,
+      "n": 0,
+      "dagen": 0,
+      "bronnen": 0,
+      "ankers": [
+        "o2026055913",
+        "zuiderhofdstrat",
+        "realiser",
+        "dakterras"
+      ],
+      "bewijs": []
+    },
+    {
+      "key": "a:1a746de3ba",
+      "soort": "agenda",
+      "kop": "Uitnodiging NZKG-Jaarcongres 12 november 'De kracht van het Noordzeekanaalgebied (NZKG) & 150 jaar Noordzeekanaal'",
+      "S": 0,
+      "Sa": 0,
+      "Sp": 0,
+      "route": "geen",
+      "K": 0,
+      "Kp": 0,
+      "n": 0,
+      "dagen": 0,
+      "bronnen": 0,
+      "ankers": [
+        "jarcongre",
+        "nordzekanal",
+        "kracht",
+        "nzkg",
+        "nzkanal"
+      ],
+      "bewijs": []
+    },
+    {
+      "key": "a:55db5c0d37",
+      "soort": "agenda",
+      "kop": "Raadsvergadering: Reservedatum begroting",
+      "S": 0,
+      "Sa": 0,
+      "Sp": 0,
+      "route": "geen",
+      "K": 0.15,
+      "Kp": 0,
+      "n": 0,
+      "dagen": 0,
+      "bronnen": 0,
+      "ankers": [
+        "reservedatum",
+        "radsvergadering"
+      ],
+      "bewijs": []
+    },
+    {
+      "key": "a:777fef6fda",
+      "soort": "agenda",
+      "kop": "Uitnodiging en aanmeldlink voor deelname aan de Webinar raadsleden",
+      "S": 0,
+      "Sa": 0,
+      "Sp": 0,
+      "route": "geen",
+      "K": 0,
+      "Kp": 0,
+      "n": 0,
+      "dagen": 0,
+      "bronnen": 0,
+      "ankers": [
+        "anmeldlink",
+        "delnam"
+      ],
+      "bewijs": []
+    },
+    {
+      "key": "a:2ee44579cf",
+      "soort": "agenda",
+      "kop": "Zaanstad Beraad Raadzaal",
+      "S": 0,
+      "Sa": 0,
+      "Sp": 0,
+      "route": "geen",
+      "K": 0.1,
+      "Kp": 0,
+      "n": 0,
+      "dagen": 0,
+      "bronnen": 0,
+      "ankers": [
+        "radzal",
+        "commissiegriffier",
+        "portefeuillehouder",
+        "vorzitter"
       ],
       "bewijs": []
     }
