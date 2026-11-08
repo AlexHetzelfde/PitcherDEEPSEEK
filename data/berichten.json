@@ -1,5 +1,5 @@
 {
-  "gegenereerdOp": "2026-11-08T13:00:53.748Z",
+  "gegenereerdOp": "2026-11-08T14:00:52.056Z",
   "promptVersie": "2026-10-29-batch-tag-checklist-agendapunten",
   "alertModus": "log",
   "prioSchaal": "1 = urgent, 2 = belangrijk, 3 = regulier, 4 = routine. De AI geeft nooit prio 1.",
@@ -88,6 +88,75 @@
       "checklistBron": "ai",
       "analyse": true,
       "tagVersie": 2
+    },
+    {
+      "id": "d6700fdef4-v1",
+      "groepId": "d6700fdef4",
+      "versie": 1,
+      "url": "https://www.deorkaan.nl/zaans-voor-t-hekje-mcdonalds-wormerveer-perim-camera/",
+      "kop": "Zaans voor ’t hekje: McDonald’s Wormerveer & Perim-camera",
+      "tekst": null,
+      "rubriek": "REC",
+      "tagBron": "ai",
+      "herkomst": "signaal",
+      "prio": 3,
+      "tijd": "2026-11-07T23:00:00.000Z",
+      "heeftTijd": false,
+      "woorden": 607,
+      "afgekapt": false,
+      "bronId": "DeOrkaan",
+      "bronNaam": "DeOrkaan",
+      "ai": false,
+      "controle": "analyse-ok",
+      "eerstGezienOp": "2026-11-08T14:00:52.056Z",
+      "gecontroleerdOp": "2026-11-08T14:00:52.056Z",
+      "bronTitel": "Zaans voor ’t hekje: McDonald’s Wormerveer & Perim-camera",
+      "bronLengte": 3993,
+      "checklist": {
+        "gevaar": false,
+        "evacuatieOfNlAlert": false,
+        "gewondenOfDoden": false,
+        "bestuurlijkeCrisis": false,
+        "besluitMetGrootGevolg": false,
+        "tijdkritisch": false,
+        "betrokkenen": null,
+        "geldbedragEuro": null,
+        "banen": null,
+        "inRegio": true
+      },
+      "checklistBron": "ai",
+      "agendapunten": [
+        {
+          "titel": "Politierechter Alkmaar",
+          "dag": "2026-11-09",
+          "start": null,
+          "eind": null,
+          "plaats": "Alkmaar",
+          "zekerheid": "afgeleid"
+        },
+        {
+          "titel": "Bestuursrechter Alkmaar",
+          "dag": "2026-11-09",
+          "start": null,
+          "eind": null,
+          "plaats": "Alkmaar",
+          "zekerheid": "afgeleid"
+        },
+        {
+          "titel": "Politierechter Haarlem",
+          "dag": "2026-11-09",
+          "start": null,
+          "eind": null,
+          "plaats": "Haarlem",
+          "zekerheid": "afgeleid"
+        }
+      ],
+      "analyse": true,
+      "agendaIds": [
+        "8376000d6f",
+        "be5c0944a8",
+        "6343c18c07"
+      ]
     },
     {
       "id": "7941c5e237-v1",

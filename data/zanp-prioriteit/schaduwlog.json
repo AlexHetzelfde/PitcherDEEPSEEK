@@ -1,5 +1,5 @@
 {
-  "gegenereerdOp": "2026-11-08T13:00:53.748Z",
+  "gegenereerdOp": "2026-11-08T14:00:52.056Z",
   "modus": "schaduw",
   "stempel": "v3-22806000",
   "tau": 0.5,
@@ -8,17 +8,17 @@
     "ai": true,
     "formule": "v3-22806000",
     "tekst": {
-      "werklijst": 0,
-      "lokaal": 0,
+      "werklijst": 1,
+      "lokaal": 1,
       "opgehaald": 0,
       "mislukt": 0,
       "uitgesteld": 0
     },
     "vergeten": 0,
     "tekstenOpgeruimd": 0,
-    "stukken": 355,
-    "kandidaten": 59,
-    "metAnker": 56,
+    "stukken": 356,
+    "kandidaten": 60,
+    "metAnker": 57,
     "zonderAnker": 3,
     "afgelast": 1,
     "dubbel": 0,
@@ -148,7 +148,7 @@
       "Sp": 0,
       "route": "aanhoudend",
       "K": 0.58,
-      "Kp": 0.42,
+      "Kp": 0.41,
       "n": 2,
       "dagen": 2,
       "bronnen": 1,
@@ -269,7 +269,7 @@
         {
           "bron": "zaanstad-hoorzittingen",
           "datum": "2026-10-30T08:00:10.425Z",
-          "c": 0.92,
+          "c": 0.93,
           "plek": "kop",
           "titel": "Geweigerde huisvestingsvergunning Klipperstraat 37 te Zaandam - Microsoft Teams"
         },
@@ -366,9 +366,9 @@
         "angehoud",
         "klipon",
         "trading",
-        "verdacht",
         "bedrijf",
         "ghijsenlan",
+        "verdacht",
         "updat",
         "pieter",
         "afgespeld",
@@ -378,7 +378,7 @@
         {
           "bron": "DeOrkaan",
           "datum": "2026-10-25T23:00:00.000Z",
-          "c": 0.89,
+          "c": 0.88,
           "plek": "kop",
           "titel": "Zaans voor ’t hekje: steekpartij en explosie"
         }
