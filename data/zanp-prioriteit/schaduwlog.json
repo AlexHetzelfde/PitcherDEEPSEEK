@@ -1,5 +1,5 @@
 {
-  "gegenereerdOp": "2026-11-08T20:22:51.919Z",
+  "gegenereerdOp": "2026-11-08T21:01:00.528Z",
   "modus": "schaduw",
   "stempel": "v3-22806000",
   "tau": 0.5,
@@ -8,17 +8,17 @@
     "ai": true,
     "formule": "v3-22806000",
     "tekst": {
-      "werklijst": 0,
-      "lokaal": 0,
+      "werklijst": 1,
+      "lokaal": 1,
       "opgehaald": 0,
       "mislukt": 0,
       "uitgesteld": 0
     },
     "vergeten": 0,
     "tekstenOpgeruimd": 0,
-    "stukken": 361,
-    "kandidaten": 60,
-    "metAnker": 57,
+    "stukken": 362,
+    "kandidaten": 61,
+    "metAnker": 58,
     "zonderAnker": 3,
     "afgelast": 1,
     "dubbel": 0,
@@ -177,6 +177,72 @@
       ]
     },
     {
+      "key": "n:https://www.deorkaan.nl/overleden-persoon-bij-zaaneiland-slachtoffer-van-noodlottig-ongeval/",
+      "soort": "nieuws",
+      "kop": "Overleden persoon bij Zaaneiland slachtoffer van noodlottig ongeval",
+      "S": 0.21,
+      "Sa": 0.21,
+      "Sp": 0,
+      "route": "aanhoudend",
+      "K": 0.38,
+      "Kp": 0.38,
+      "n": 1,
+      "dagen": 1,
+      "bronnen": 1,
+      "ankers": [
+        "zaneiland",
+        "nodlottig",
+        "ongeval",
+        "mellum",
+        "sarema",
+        "overled",
+        "person",
+        "slachtoffer",
+        "forensisch"
+      ],
+      "bewijs": [
+        {
+          "bron": "DeOrkaan",
+          "datum": "2026-11-07T23:00:00.000Z",
+          "c": 1,
+          "plek": "kop",
+          "titel": "Overleden persoon gevonden in water bij Zaaneiland in Zaandam"
+        }
+      ]
+    },
+    {
+      "key": "n:https://www.deorkaan.nl/overleden-persoon-gevonden-in-water-bij-zaaneiland-in-zaandam/",
+      "soort": "nieuws",
+      "kop": "Overleden persoon gevonden in water bij Zaaneiland in Zaandam",
+      "S": 0.2,
+      "Sa": 0.2,
+      "Sp": 0,
+      "route": "aanhoudend",
+      "K": 0.38,
+      "Kp": 0.38,
+      "n": 1,
+      "dagen": 1,
+      "bronnen": 1,
+      "ankers": [
+        "zaneiland",
+        "sarema",
+        "mellum",
+        "overled",
+        "person",
+        "gevond",
+        "water"
+      ],
+      "bewijs": [
+        {
+          "bron": "DeOrkaan",
+          "datum": "2026-11-07T23:00:00.000Z",
+          "c": 1,
+          "plek": "kop",
+          "titel": "Overleden persoon bij Zaaneiland slachtoffer van noodlottig ongeval"
+        }
+      ]
+    },
+    {
       "key": "n:https://www.vervoerregio.nl/artikel/20261106-negen-overheidspartijen-zetten-volgende-stap-voor-ni",
       "soort": "nieuws",
       "kop": "Negen overheidspartijen zetten volgende stap voor nieuwe doorfietsroutes",
@@ -319,7 +385,7 @@
       "Sp": 0,
       "route": "aanhoudend",
       "K": 0.35,
-      "Kp": 0.19,
+      "Kp": 0.18,
       "n": 1,
       "dagen": 1,
       "bronnen": 1,
@@ -1046,46 +1112,6 @@
         "champion"
       ],
       "bewijs": []
-    },
-    {
-      "key": "a:f6354ef2ca",
-      "soort": "agenda",
-      "kop": "Nationaal Congres Bodemdaling",
-      "S": 0,
-      "Sa": 0,
-      "Sp": 0,
-      "route": "geen",
-      "K": 0,
-      "Kp": 0,
-      "n": 0,
-      "dagen": 0,
-      "bronnen": 0,
-      "ankers": [
-        "congre",
-        "bodemdaling",
-        "national"
-      ],
-      "bewijs": []
-    },
-    {
-      "key": "a:3acacdce09",
-      "soort": "agenda",
-      "kop": "lunchwebinar: dilemma’s voorleggen aan inwoners",
-      "S": 0,
-      "Sa": 0,
-      "Sp": 0,
-      "route": "geen",
-      "K": 0,
-      "Kp": 0,
-      "n": 0,
-      "dagen": 0,
-      "bronnen": 0,
-      "ankers": [
-        "lunchwebinar",
-        "dilemma",
-        "vorleg"
-      ],
-      "bewijs": []
     }
   ],
   "formule": {
@@ -1408,6 +1434,22 @@
         "n": 1,
         "bronnen": 1
       },
+      "n:https://www.deorkaan.nl/overleden-persoon-bij-zaaneiland-slachtoffer-van-noodlottig-ongeval/": {
+        "kop": "Overleden persoon bij Zaaneiland slachtoffer van noodlottig ongeval",
+        "S": 0.21,
+        "route": "aanhoudend",
+        "K": 0.38,
+        "n": 1,
+        "bronnen": 1
+      },
+      "n:https://www.deorkaan.nl/overleden-persoon-gevonden-in-water-bij-zaaneiland-in-zaandam/": {
+        "kop": "Overleden persoon gevonden in water bij Zaaneiland in Zaandam",
+        "S": 0.2,
+        "route": "aanhoudend",
+        "K": 0.38,
+        "n": 1,
+        "bronnen": 1
+      },
       "n:https://lokaleregelgeving.overheid.nl/CVDR699867/2": {
         "kop": "Machtiging tekenbevoegdheid collegestukken",
         "S": 0.16,
@@ -1514,22 +1556,6 @@
       },
       "a:357ab9afd4": {
         "kop": "Fontana Blue",
-        "S": 0,
-        "route": "geen",
-        "K": 0,
-        "n": 0,
-        "bronnen": 0
-      },
-      "a:08afc06932": {
-        "kop": "Jorge J. Herrera Fuentealba",
-        "S": 0,
-        "route": "geen",
-        "K": 0,
-        "n": 0,
-        "bronnen": 0
-      },
-      "a:d4b2d32a23": {
-        "kop": "Fietstocht raadsleden en Fietsersbond",
         "S": 0,
         "route": "geen",
         "K": 0,
