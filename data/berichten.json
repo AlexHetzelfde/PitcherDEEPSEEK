@@ -1,5 +1,5 @@
 {
-  "gegenereerdOp": "2026-11-08T15:00:54.717Z",
+  "gegenereerdOp": "2026-11-08T15:55:10.098Z",
   "promptVersie": "2026-10-29-batch-tag-checklist-agendapunten",
   "alertModus": "log",
   "prioSchaal": "1 = urgent, 2 = belangrijk, 3 = regulier, 4 = routine. De AI geeft nooit prio 1.",
@@ -125,7 +125,8 @@
         "inRegio": true
       },
       "checklistBron": "ai",
-      "analyse": true
+      "analyse": true,
+      "tagVersie": 2
     },
     {
       "id": "d6700fdef4-v1",

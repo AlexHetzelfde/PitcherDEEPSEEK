@@ -1,5 +1,5 @@
 {
-  "gegenereerdOp": "2026-11-08T15:00:54.717Z",
+  "gegenereerdOp": "2026-11-08T15:55:10.098Z",
   "modus": "schaduw",
   "stempel": "v3-22806000",
   "tau": 0.5,
@@ -8,8 +8,8 @@
     "ai": true,
     "formule": "v3-22806000",
     "tekst": {
-      "werklijst": 1,
-      "lokaal": 1,
+      "werklijst": 0,
+      "lokaal": 0,
       "opgehaald": 0,
       "mislukt": 0,
       "uitgesteld": 0
@@ -38,8 +38,8 @@
       "key": "n:https://zaanstad.bestuurlijkeinformatie.nl/Document/View/8b899045-41e2-48f7-b963-2762303ae520",
       "soort": "nieuws",
       "kop": "Kennisgeving burgemeester Hamming: Verlenging sluiting woning Zuiddijk 172 en cameratoezicht",
-      "S": 0.71,
-      "Sa": 0.71,
+      "S": 0.7,
+      "Sa": 0.7,
       "Sp": 0,
       "route": "aanhoudend",
       "K": 0.79,
