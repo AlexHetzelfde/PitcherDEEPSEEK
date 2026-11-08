@@ -1,5 +1,5 @@
 {
-  "gegenereerdOp": "2026-11-08T08:00:51.810Z",
+  "gegenereerdOp": "2026-11-08T08:53:13.494Z",
   "alertModus": "log",
   "bronnen": {
     "zaansche-molen": {
@@ -38,12 +38,12 @@
       "opeenvolgendLeeg": 0
     },
     "nh-actueel": {
-      "laatsteScrape": "2026-11-08T08:00:51.810Z",
+      "laatsteScrape": "2026-11-08T08:53:13.494Z",
       "gevonden": 15,
       "opeenvolgendLeeg": 0
     },
     "nh-cultuur": {
-      "laatsteScrape": "2026-11-08T08:00:51.810Z",
+      "laatsteScrape": "2026-11-08T08:53:13.494Z",
       "gevonden": 15,
       "opeenvolgendLeeg": 0
     },
@@ -98,7 +98,7 @@
       "opeenvolgendLeeg": 0
     },
     "DeOrkaan": {
-      "laatsteScrape": "2026-11-08T08:00:51.810Z",
+      "laatsteScrape": "2026-11-08T08:53:13.494Z",
       "gevonden": 12,
       "opeenvolgendLeeg": 0
     },
@@ -123,15 +123,15 @@
       "opeenvolgendLeeg": 0
     },
     "vervoerregio-overzichten": {
-      "laatsteScrape": "2026-11-08T08:00:51.810Z",
+      "laatsteScrape": "2026-11-08T08:53:13.494Z",
       "gevonden": 0,
-      "opeenvolgendLeeg": 83
+      "opeenvolgendLeeg": 84
     }
   },
   "bronnenZonderRubriek": [],
   "gemini": {
     "dag": "2026-11-08",
-    "gebruikt": 1,
+    "gebruikt": 2,
     "wachtTot": null,
     "dagcap": 80,
     "runcap": 25,
@@ -308,10 +308,10 @@
       "runs": 11
     },
     "2026-11-08": {
-      "verzoeken": 2,
-      "berichten": 2,
+      "verzoeken": 3,
+      "berichten": 3,
       "ok": 0,
-      "analyseOk": 2,
+      "analyseOk": 3,
       "cijfersAfgekeurd": 0,
       "onvoldoende": 0,
       "fout": 0,
@@ -319,8 +319,8 @@
       "tagAi": 2,
       "tagTrefwoord": 0,
       "tagBron": 0,
-      "tagGeen": 0,
-      "runs": 2
+      "tagGeen": 1,
+      "runs": 3
     }
   },
   "laatsteRun": {
@@ -343,7 +343,7 @@
       "seed": 0
     },
     "cluster": {
-      "vergeleken": 741,
+      "vergeleken": 780,
       "automatisch": 1,
       "aiGevraagd": 0,
       "aiJa": 0,
@@ -370,7 +370,7 @@
       },
       "vergeten": 0,
       "tekstenOpgeruimd": 0,
-      "stukken": 351,
+      "stukken": 352,
       "kandidaten": 65,
       "metAnker": 62,
       "zonderAnker": 3,
@@ -396,10 +396,10 @@
       "onvoldoende": 0,
       "fout": 0,
       "overgeslagen": 0,
-      "tagAi": 1,
+      "tagAi": 0,
       "tagTrefwoord": 0,
       "tagBron": 0,
-      "tagGeen": 0
+      "tagGeen": 1
     }
   }
 }
