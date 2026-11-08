@@ -1,5 +1,5 @@
 {
-  "gegenereerdOp": "2026-11-08T07:00:52.465Z",
+  "gegenereerdOp": "2026-11-08T08:00:51.810Z",
   "alertModus": "log",
   "bronnen": {
     "zaansche-molen": {
@@ -38,13 +38,13 @@
       "opeenvolgendLeeg": 0
     },
     "nh-actueel": {
-      "laatsteScrape": "2026-11-08T07:00:52.465Z",
+      "laatsteScrape": "2026-11-08T08:00:51.810Z",
       "gevonden": 15,
       "opeenvolgendLeeg": 0
     },
     "nh-cultuur": {
-      "laatsteScrape": "2026-11-08T07:00:52.465Z",
-      "gevonden": 3,
+      "laatsteScrape": "2026-11-08T08:00:51.810Z",
+      "gevonden": 15,
       "opeenvolgendLeeg": 0
     },
     "zaanstad-hoorzittingen": {
@@ -98,7 +98,7 @@
       "opeenvolgendLeeg": 0
     },
     "DeOrkaan": {
-      "laatsteScrape": "2026-11-08T07:00:52.465Z",
+      "laatsteScrape": "2026-11-08T08:00:51.810Z",
       "gevonden": 12,
       "opeenvolgendLeeg": 0
     },
@@ -123,15 +123,15 @@
       "opeenvolgendLeeg": 0
     },
     "vervoerregio-overzichten": {
-      "laatsteScrape": "2026-11-08T07:00:52.465Z",
+      "laatsteScrape": "2026-11-08T08:00:51.810Z",
       "gevonden": 0,
-      "opeenvolgendLeeg": 82
+      "opeenvolgendLeeg": 83
     }
   },
   "bronnenZonderRubriek": [],
   "gemini": {
-    "dag": "2026-11-07",
-    "gebruikt": 13,
+    "dag": "2026-11-08",
+    "gebruikt": 1,
     "wachtTot": null,
     "dagcap": 80,
     "runcap": 25,
@@ -308,19 +308,19 @@
       "runs": 11
     },
     "2026-11-08": {
-      "verzoeken": 1,
-      "berichten": 1,
+      "verzoeken": 2,
+      "berichten": 2,
       "ok": 0,
-      "analyseOk": 1,
+      "analyseOk": 2,
       "cijfersAfgekeurd": 0,
       "onvoldoende": 0,
       "fout": 0,
       "overgeslagen": 0,
-      "tagAi": 1,
+      "tagAi": 2,
       "tagTrefwoord": 0,
       "tagBron": 0,
       "tagGeen": 0,
-      "runs": 1
+      "runs": 2
     }
   },
   "laatsteRun": {
@@ -336,14 +336,14 @@
       "inAfwachting": 0
     },
     "berichten": {
-      "nieuw": 0,
-      "update": 1,
+      "nieuw": 1,
+      "update": 0,
       "opnieuw": 0,
-      "ongewijzigd": 7,
+      "ongewijzigd": 0,
       "seed": 0
     },
     "cluster": {
-      "vergeleken": 703,
+      "vergeleken": 741,
       "automatisch": 1,
       "aiGevraagd": 0,
       "aiJa": 0,
@@ -370,7 +370,7 @@
       },
       "vergeten": 0,
       "tekstenOpgeruimd": 0,
-      "stukken": 350,
+      "stukken": 351,
       "kandidaten": 65,
       "metAnker": 62,
       "zonderAnker": 3,
