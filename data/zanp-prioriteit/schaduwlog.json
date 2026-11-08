@@ -1,5 +1,5 @@
 {
-  "gegenereerdOp": "2026-11-08T21:01:00.528Z",
+  "gegenereerdOp": "2026-11-08T22:00:53.184Z",
   "modus": "schaduw",
   "stempel": "v3-22806000",
   "tau": 0.5,
@@ -8,8 +8,8 @@
     "ai": true,
     "formule": "v3-22806000",
     "tekst": {
-      "werklijst": 1,
-      "lokaal": 1,
+      "werklijst": 0,
+      "lokaal": 0,
       "opgehaald": 0,
       "mislukt": 0,
       "uitgesteld": 0
@@ -576,8 +576,8 @@
       "key": "a:54bf0d34fe",
       "soort": "agenda",
       "kop": "Verkeersbesluit plaatsen laadpaal voor elektrische auto's locatie Kaaikhof te Assendelft",
-      "S": 0.05,
-      "Sa": 0.05,
+      "S": 0.04,
+      "Sa": 0.04,
       "Sp": 0,
       "route": "aanhoudend",
       "K": 0.16,
