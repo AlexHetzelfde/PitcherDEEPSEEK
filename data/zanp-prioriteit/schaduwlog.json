@@ -1,5 +1,5 @@
 {
-  "gegenereerdOp": "2026-11-08T09:00:49.568Z",
+  "gegenereerdOp": "2026-11-08T10:00:53.439Z",
   "modus": "schaduw",
   "stempel": "v3-22806000",
   "tau": 0.5,
@@ -8,15 +8,15 @@
     "ai": true,
     "formule": "v3-22806000",
     "tekst": {
-      "werklijst": 0,
-      "lokaal": 0,
+      "werklijst": 1,
+      "lokaal": 1,
       "opgehaald": 0,
       "mislukt": 0,
       "uitgesteld": 0
     },
     "vergeten": 0,
     "tekstenOpgeruimd": 0,
-    "stukken": 352,
+    "stukken": 353,
     "kandidaten": 65,
     "metAnker": 62,
     "zonderAnker": 3,
@@ -43,7 +43,7 @@
       "Sp": 0,
       "route": "aanhoudend",
       "K": 0.8,
-      "Kp": 0.62,
+      "Kp": 0.61,
       "n": 5,
       "dagen": 4,
       "bronnen": 3,
@@ -369,8 +369,8 @@
         "trading",
         "ghijsenlan",
         "vrouw",
-        "pieter",
         "jarig",
+        "pieter",
         "verdenking",
         "stekincident"
       ],
@@ -408,8 +408,8 @@
         "ghijsenlan",
         "updat",
         "pieter",
-        "traumahelikopter",
-        "afgespeld"
+        "afgespeld",
+        "betrokken"
       ],
       "bewijs": [
         {
