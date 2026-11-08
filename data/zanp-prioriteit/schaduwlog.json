@@ -1,5 +1,5 @@
 {
-  "gegenereerdOp": "2026-11-08T12:00:53.524Z",
+  "gegenereerdOp": "2026-11-08T13:00:53.748Z",
   "modus": "schaduw",
   "stempel": "v3-22806000",
   "tau": 0.5,
@@ -8,8 +8,8 @@
     "ai": true,
     "formule": "v3-22806000",
     "tekst": {
-      "werklijst": 1,
-      "lokaal": 1,
+      "werklijst": 0,
+      "lokaal": 0,
       "opgehaald": 0,
       "mislukt": 0,
       "uitgesteld": 0
@@ -17,8 +17,8 @@
     "vergeten": 0,
     "tekstenOpgeruimd": 0,
     "stukken": 355,
-    "kandidaten": 61,
-    "metAnker": 58,
+    "kandidaten": 59,
+    "metAnker": 56,
     "zonderAnker": 3,
     "afgelast": 1,
     "dubbel": 0,
@@ -42,7 +42,7 @@
       "Sa": 0.71,
       "Sp": 0,
       "route": "aanhoudend",
-      "K": 0.8,
+      "K": 0.79,
       "Kp": 0.61,
       "n": 5,
       "dagen": 4,
@@ -147,7 +147,7 @@
       "Sa": 0.3,
       "Sp": 0,
       "route": "aanhoudend",
-      "K": 0.59,
+      "K": 0.58,
       "Kp": 0.42,
       "n": 2,
       "dagen": 2,
@@ -409,41 +409,6 @@
           "c": 1,
           "plek": "kop",
           "titel": "Verkeersbesluit plaatsen laadpaal voor elektrische auto's locatie Kaaikhof te Assendelft"
-        }
-      ]
-    },
-    {
-      "key": "n:https://www.noord-holland.nl/Actueel/Archief/2026/November_2026/9_overheidspartijen_zetten_volgende_stap_voor_nieuwe_doorfietsroutes",
-      "soort": "nieuws",
-      "kop": "9 overheidspartijen zetten volgende stap voor nieuwe doorfietsroutes",
-      "S": 0.08,
-      "Sa": 0.08,
-      "Sp": 0,
-      "route": "aanhoudend",
-      "K": 0.19,
-      "Kp": 0,
-      "n": 1,
-      "dagen": 1,
-      "bronnen": 1,
-      "ankers": [
-        "overheidspartij",
-        "dorfietsroute",
-        "bollenstrek",
-        "hillegom",
-        "harlemmermer",
-        "beter",
-        "samenwerkingsoverenkomst",
-        "nordelijk",
-        "uitwerking",
-        "pakket"
-      ],
-      "bewijs": [
-        {
-          "bron": "vervoerregio-persberichten",
-          "datum": "2026-11-05T23:00:00.000Z",
-          "c": 0.9,
-          "plek": "kop",
-          "titel": "Negen overheidspartijen zetten volgende stap voor nieuwe doorfietsroutes"
         }
       ]
     },
@@ -1089,6 +1054,29 @@
         "dagprogramma",
         "zeist",
         "vereniging"
+      ],
+      "bewijs": []
+    },
+    {
+      "key": "n:https://www.deorkaan.nl/erfgoed-jubileum-gevierd-in-westzaan/",
+      "soort": "nieuws",
+      "kop": "Erfgoed-jubileum gevierd in Westzaan 📸 🎥",
+      "S": 0,
+      "Sa": 0,
+      "Sp": 0,
+      "route": "geen",
+      "K": 0,
+      "Kp": 0,
+      "n": 0,
+      "dagen": 0,
+      "bronnen": 0,
+      "ankers": [
+        "erfgoed",
+        "jubileum",
+        "erfgoeddag",
+        "westzans",
+        "gevierd",
+        "zansch"
       ],
       "bewijs": []
     }
