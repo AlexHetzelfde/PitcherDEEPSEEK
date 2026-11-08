@@ -1,5 +1,5 @@
 {
-  "gegenereerdOp": "2026-11-08T14:00:52.056Z",
+  "gegenereerdOp": "2026-11-08T15:00:54.717Z",
   "alertModus": "log",
   "bronnen": {
     "zaansche-molen": {
@@ -38,12 +38,12 @@
       "opeenvolgendLeeg": 0
     },
     "nh-actueel": {
-      "laatsteScrape": "2026-11-08T14:00:52.056Z",
+      "laatsteScrape": "2026-11-08T15:00:54.717Z",
       "gevonden": 15,
       "opeenvolgendLeeg": 0
     },
     "nh-cultuur": {
-      "laatsteScrape": "2026-11-08T14:00:52.056Z",
+      "laatsteScrape": "2026-11-08T15:00:54.717Z",
       "gevonden": 15,
       "opeenvolgendLeeg": 0
     },
@@ -98,7 +98,7 @@
       "opeenvolgendLeeg": 0
     },
     "DeOrkaan": {
-      "laatsteScrape": "2026-11-08T14:00:52.056Z",
+      "laatsteScrape": "2026-11-08T15:00:54.717Z",
       "gevonden": 12,
       "opeenvolgendLeeg": 0
     },
@@ -123,15 +123,15 @@
       "opeenvolgendLeeg": 0
     },
     "vervoerregio-overzichten": {
-      "laatsteScrape": "2026-11-08T14:00:52.056Z",
+      "laatsteScrape": "2026-11-08T15:00:54.717Z",
       "gevonden": 0,
-      "opeenvolgendLeeg": 89
+      "opeenvolgendLeeg": 90
     }
   },
   "bronnenZonderRubriek": [],
   "gemini": {
     "dag": "2026-11-08",
-    "gebruikt": 6,
+    "gebruikt": 7,
     "wachtTot": null,
     "dagcap": 80,
     "runcap": 25,
@@ -308,19 +308,19 @@
       "runs": 11
     },
     "2026-11-08": {
-      "verzoeken": 7,
-      "berichten": 7,
+      "verzoeken": 8,
+      "berichten": 8,
       "ok": 0,
-      "analyseOk": 7,
+      "analyseOk": 8,
       "cijfersAfgekeurd": 0,
       "onvoldoende": 0,
       "fout": 0,
       "overgeslagen": 0,
-      "tagAi": 6,
+      "tagAi": 7,
       "tagTrefwoord": 0,
       "tagBron": 0,
       "tagGeen": 1,
-      "runs": 7
+      "runs": 8
     }
   },
   "laatsteRun": {
@@ -339,7 +339,7 @@
       "nieuw": 1,
       "update": 0,
       "opnieuw": 0,
-      "ongewijzigd": 0,
+      "ongewijzigd": 7,
       "seed": 0
     },
     "cluster": {
@@ -349,7 +349,7 @@
       "aiJa": 0,
       "aiNee": 0,
       "uitgesteld": 0,
-      "clusters": 3
+      "clusters": 2
     },
     "alerts": 0,
     "koppel": {
@@ -370,7 +370,7 @@
       },
       "vergeten": 0,
       "tekstenOpgeruimd": 0,
-      "stukken": 356,
+      "stukken": 357,
       "kandidaten": 60,
       "metAnker": 57,
       "zonderAnker": 3,

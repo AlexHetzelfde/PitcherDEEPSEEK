@@ -1,5 +1,5 @@
 {
-  "gegenereerdOp": "2026-11-08T14:00:52.056Z",
+  "gegenereerdOp": "2026-11-08T15:00:54.717Z",
   "promptVersie": "2026-10-29-batch-tag-checklist-agendapunten",
   "alertModus": "log",
   "prioSchaal": "1 = urgent, 2 = belangrijk, 3 = regulier, 4 = routine. De AI geeft nooit prio 1.",
@@ -70,7 +70,7 @@
       "ai": false,
       "controle": "analyse-ok",
       "eerstGezienOp": "2026-11-08T07:00:52.465Z",
-      "gecontroleerdOp": "2026-11-08T12:00:53.524Z",
+      "gecontroleerdOp": "2026-11-08T15:00:54.717Z",
       "bronTitel": "Erfgoed-jubileum gevierd in Westzaan 📸 🎥",
       "bronLengte": 1760,
       "checklist": {
@@ -88,6 +88,44 @@
       "checklistBron": "ai",
       "analyse": true,
       "tagVersie": 2
+    },
+    {
+      "id": "f4f48a9b03-v1",
+      "groepId": "f4f48a9b03",
+      "versie": 1,
+      "url": "https://www.deorkaan.nl/zomaar-een-zaans-minuutje-opkomst-vv-westzaan-en-zcfc-%f0%9f%8e%a5/",
+      "kop": "Zomaar een Zaans minuutje: opkomst VV Westzaan en ZCFC… 🎥",
+      "tekst": null,
+      "rubriek": "SPO",
+      "tagBron": "ai",
+      "herkomst": "signaal",
+      "prio": 3,
+      "tijd": "2026-11-07T23:00:00.000Z",
+      "heeftTijd": false,
+      "woorden": 498,
+      "afgekapt": false,
+      "bronId": "DeOrkaan",
+      "bronNaam": "DeOrkaan",
+      "ai": false,
+      "controle": "analyse-ok",
+      "eerstGezienOp": "2026-11-08T15:00:54.717Z",
+      "gecontroleerdOp": "2026-11-08T15:00:54.717Z",
+      "bronTitel": "Zomaar een Zaans minuutje: opkomst VV Westzaan en ZCFC… 🎥",
+      "bronLengte": 3441,
+      "checklist": {
+        "gevaar": false,
+        "evacuatieOfNlAlert": false,
+        "gewondenOfDoden": false,
+        "bestuurlijkeCrisis": false,
+        "besluitMetGrootGevolg": false,
+        "tijdkritisch": false,
+        "betrokkenen": null,
+        "geldbedragEuro": null,
+        "banen": null,
+        "inRegio": true
+      },
+      "checklistBron": "ai",
+      "analyse": true
     },
     {
       "id": "d6700fdef4-v1",
@@ -156,7 +194,8 @@
         "8376000d6f",
         "be5c0944a8",
         "6343c18c07"
-      ]
+      ],
+      "tagVersie": 2
     },
     {
       "id": "7941c5e237-v1",
@@ -178,7 +217,7 @@
       "ai": false,
       "controle": "analyse-ok",
       "eerstGezienOp": "2026-11-08T12:00:53.524Z",
-      "gecontroleerdOp": "2026-11-08T12:00:53.524Z",
+      "gecontroleerdOp": "2026-11-08T15:00:54.717Z",
       "bronTitel": "Orgel Bullekerk aan onderhoud toe, kerk anderhalf jaar orgelloos 🎥",
       "bronLengte": 822,
       "checklist": {
@@ -217,7 +256,7 @@
       "ai": false,
       "controle": "analyse-ok",
       "eerstGezienOp": "2026-11-08T11:00:52.498Z",
-      "gecontroleerdOp": "2026-11-08T13:00:53.748Z",
+      "gecontroleerdOp": "2026-11-08T15:00:54.717Z",
       "bronTitel": "Fototijdreis: Guisweg ter hoogte van spoorwegovergang (Zaandijk)",
       "bronLengte": 5991,
       "checklist": {
@@ -256,7 +295,7 @@
       "ai": false,
       "controle": "analyse-ok",
       "eerstGezienOp": "2026-11-08T10:00:53.439Z",
-      "gecontroleerdOp": "2026-11-08T12:00:53.524Z",
+      "gecontroleerdOp": "2026-11-08T15:00:54.717Z",
       "bronTitel": "Overleden persoon gevonden in water bij Zaaneiland in Zaandam",
       "bronLengte": 1208,
       "checklist": {
@@ -295,7 +334,7 @@
       "ai": false,
       "controle": "analyse-ok",
       "eerstGezienOp": "2026-11-08T08:53:13.494Z",
-      "gecontroleerdOp": "2026-11-08T13:00:53.748Z",
+      "gecontroleerdOp": "2026-11-08T15:00:54.717Z",
       "bronTitel": "50woordenfoto: goed gemikt?",
       "bronLengte": 673,
       "checklist": {
@@ -334,7 +373,7 @@
       "ai": false,
       "controle": "analyse-ok",
       "eerstGezienOp": "2026-11-08T08:00:51.810Z",
-      "gecontroleerdOp": "2026-11-08T12:00:53.524Z",
+      "gecontroleerdOp": "2026-11-08T15:00:54.717Z",
       "bronTitel": "Waarheen: Kolf, sjoelmiddag, Harp on Fire 🎙",
       "bronLengte": 1328,
       "checklist": {
@@ -451,7 +490,7 @@
       "ai": false,
       "controle": "analyse-ok",
       "eerstGezienOp": "2026-11-07T20:00:50.155Z",
-      "gecontroleerdOp": "2026-11-08T12:00:53.524Z",
+      "gecontroleerdOp": "2026-11-08T15:00:54.717Z",
       "bronTitel": "Dichters laten de tijd spreken in Museum Zaanse Tijd 📸 🎥",
       "bronLengte": 2081,
       "checklist": {
@@ -985,7 +1024,6 @@
         "inRegio": true
       },
       "checklistBron": "ai",
-      "clusterId": "fe86f7d6db",
       "tagVersie": 2
     },
     {
@@ -1847,8 +1885,7 @@
         "inRegio": false
       },
       "checklistBron": "ai",
-      "tagVersie": 2,
-      "clusterId": "fe86f7d6db"
+      "tagVersie": 2
     },
     {
       "id": "633edb0e48-v1",
