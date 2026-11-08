@@ -1,5 +1,5 @@
 {
-  "gegenereerdOp": "2026-11-08T15:55:10.098Z",
+  "gegenereerdOp": "2026-11-08T16:00:56.226Z",
   "alertModus": "log",
   "bronnen": {
     "zaansche-molen": {
@@ -78,9 +78,9 @@
       "opeenvolgendLeeg": 0
     },
     "hhnk": {
-      "laatsteScrape": "2026-11-08T10:00:53.439Z",
+      "laatsteScrape": "2026-11-08T16:00:56.226Z",
       "gevonden": 0,
-      "opeenvolgendLeeg": 36
+      "opeenvolgendLeeg": 37
     },
     "rechtspraak-noord-holland": {
       "laatsteScrape": "2026-11-07T22:00:51.272Z",
@@ -103,9 +103,9 @@
       "opeenvolgendLeeg": 0
     },
     "politie-zaanstad": {
-      "laatsteScrape": "2026-11-08T10:00:53.439Z",
+      "laatsteScrape": "2026-11-08T16:00:56.226Z",
       "gevonden": 0,
-      "opeenvolgendLeeg": 32
+      "opeenvolgendLeeg": 33
     },
     "zaanstad-kalender": {
       "laatsteScrape": "2026-11-07T22:00:51.272Z",
@@ -371,8 +371,8 @@
       "vergeten": 0,
       "tekstenOpgeruimd": 0,
       "stukken": 357,
-      "kandidaten": 60,
-      "metAnker": 57,
+      "kandidaten": 59,
+      "metAnker": 56,
       "zonderAnker": 3,
       "afgelast": 1,
       "dubbel": 0,
