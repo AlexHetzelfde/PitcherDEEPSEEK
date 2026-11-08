@@ -1,5 +1,5 @@
 {
-  "gegenereerdOp": "2026-11-08T22:00:53.184Z",
+  "gegenereerdOp": "2026-11-08T23:00:54.718Z",
   "modus": "schaduw",
   "stempel": "v3-22806000",
   "tau": 0.5,
@@ -17,8 +17,8 @@
     "vergeten": 0,
     "tekstenOpgeruimd": 0,
     "stukken": 362,
-    "kandidaten": 61,
-    "metAnker": 58,
+    "kandidaten": 58,
+    "metAnker": 55,
     "zonderAnker": 3,
     "afgelast": 1,
     "dubbel": 0,
@@ -38,8 +38,8 @@
       "key": "n:https://zaanstad.bestuurlijkeinformatie.nl/Document/View/8b899045-41e2-48f7-b963-2762303ae520",
       "soort": "nieuws",
       "kop": "Kennisgeving burgemeester Hamming: Verlenging sluiting woning Zuiddijk 172 en cameratoezicht",
-      "S": 0.7,
-      "Sa": 0.7,
+      "S": 0.69,
+      "Sa": 0.69,
       "Sp": 0,
       "route": "aanhoudend",
       "K": 0.79,
@@ -103,7 +103,7 @@
       "Sa": 0.46,
       "Sp": 0,
       "route": "aanhoudend",
-      "K": 0.76,
+      "K": 0.75,
       "Kp": 0.58,
       "n": 3,
       "dagen": 3,
@@ -214,8 +214,8 @@
       "key": "n:https://www.deorkaan.nl/overleden-persoon-gevonden-in-water-bij-zaaneiland-in-zaandam/",
       "soort": "nieuws",
       "kop": "Overleden persoon gevonden in water bij Zaaneiland in Zaandam",
-      "S": 0.2,
-      "Sa": 0.2,
+      "S": 0.19,
+      "Sa": 0.19,
       "Sp": 0,
       "route": "aanhoudend",
       "K": 0.38,
@@ -384,7 +384,7 @@
       "Sa": 0.1,
       "Sp": 0,
       "route": "aanhoudend",
-      "K": 0.35,
+      "K": 0.34,
       "Kp": 0.18,
       "n": 1,
       "dagen": 1,
@@ -630,69 +630,6 @@
           "titel": "Zaanse Olifantenpaadjes XXIV: Saendelverlaan"
         }
       ]
-    },
-    {
-      "key": "a:357ab9afd4",
-      "soort": "agenda",
-      "kop": "Fontana Blue",
-      "S": 0,
-      "Sa": 0,
-      "Sp": 0,
-      "route": "geen",
-      "K": 0,
-      "Kp": 0,
-      "n": 0,
-      "dagen": 0,
-      "bronnen": 0,
-      "ankers": [
-        "fontana",
-        "marlen",
-        "hennek",
-        "sphinx",
-        "lightshow",
-        "molenar"
-      ],
-      "bewijs": []
-    },
-    {
-      "key": "a:08afc06932",
-      "soort": "agenda",
-      "kop": "Jorge J. Herrera Fuentealba",
-      "S": 0,
-      "Sa": 0,
-      "Sp": 0,
-      "route": "geen",
-      "K": 0,
-      "Kp": 0,
-      "n": 0,
-      "dagen": 0,
-      "bronnen": 0,
-      "ankers": [
-        "jorge",
-        "fuentealba",
-        "herrera"
-      ],
-      "bewijs": []
-    },
-    {
-      "key": "a:d4b2d32a23",
-      "soort": "agenda",
-      "kop": "Fietstocht raadsleden en Fietsersbond",
-      "S": 0,
-      "Sa": 0,
-      "Sp": 0,
-      "route": "geen",
-      "K": 0,
-      "Kp": 0,
-      "n": 0,
-      "dagen": 0,
-      "bronnen": 0,
-      "ankers": [
-        "fietstocht",
-        "fietsersbond",
-        "verzamel"
-      ],
-      "bewijs": []
     },
     {
       "key": "a:2f23908817",
@@ -1110,6 +1047,68 @@
         "arend",
         "burtcentrum",
         "champion"
+      ],
+      "bewijs": []
+    },
+    {
+      "key": "a:f6354ef2ca",
+      "soort": "agenda",
+      "kop": "Nationaal Congres Bodemdaling",
+      "S": 0,
+      "Sa": 0,
+      "Sp": 0,
+      "route": "geen",
+      "K": 0,
+      "Kp": 0,
+      "n": 0,
+      "dagen": 0,
+      "bronnen": 0,
+      "ankers": [
+        "congre",
+        "bodemdaling",
+        "national"
+      ],
+      "bewijs": []
+    },
+    {
+      "key": "a:3acacdce09",
+      "soort": "agenda",
+      "kop": "lunchwebinar: dilemma’s voorleggen aan inwoners",
+      "S": 0,
+      "Sa": 0,
+      "Sp": 0,
+      "route": "geen",
+      "K": 0,
+      "Kp": 0,
+      "n": 0,
+      "dagen": 0,
+      "bronnen": 0,
+      "ankers": [
+        "lunchwebinar",
+        "dilemma",
+        "vorleg"
+      ],
+      "bewijs": []
+    },
+    {
+      "key": "a:cabf81de91",
+      "soort": "agenda",
+      "kop": "Zaans & Reüniek De Waakzaamheid: Hans & Candy Dulfer",
+      "S": 0,
+      "Sa": 0,
+      "Sp": 0,
+      "route": "geen",
+      "K": 0,
+      "Kp": 0,
+      "n": 0,
+      "dagen": 0,
+      "bronnen": 0,
+      "ankers": [
+        "reuniek",
+        "wakzamheid",
+        "candy",
+        "dulfer",
+        "wakzinnig"
       ],
       "bewijs": []
     }
@@ -1556,6 +1555,208 @@
       },
       "a:357ab9afd4": {
         "kop": "Fontana Blue",
+        "S": 0,
+        "route": "geen",
+        "K": 0,
+        "n": 0,
+        "bronnen": 0
+      }
+    },
+    "2026-11-09": {
+      "n:https://zaanstad.bestuurlijkeinformatie.nl/Document/View/8b899045-41e2-48f7-b963-2762303ae520": {
+        "kop": "Kennisgeving burgemeester Hamming: Verlenging sluiting woning Zuiddijk 172 en cameratoezicht",
+        "S": 0.69,
+        "route": "aanhoudend",
+        "K": 0.79,
+        "n": 5,
+        "bronnen": 3
+      },
+      "n:https://lokaleregelgeving.overheid.nl/CVDR769019/1": {
+        "kop": "Aanwijzingsbesluit verlenging tijdelijk cameratoezicht Zuiddijk te Zaandam",
+        "S": 0.46,
+        "route": "aanhoudend",
+        "K": 0.75,
+        "n": 3,
+        "bronnen": 2
+      },
+      "n:https://zaanstad.bestuurlijkeinformatie.nl/Document/View/e44deb13-3764-4b20-b7a9-900727754fcd": {
+        "kop": "Kennisgeving wethouder Groenewoud: Aanvraag windturbines Westelijk Havengebied",
+        "S": 0.29,
+        "route": "aanhoudend",
+        "K": 0.58,
+        "n": 2,
+        "bronnen": 1
+      },
+      "n:https://www.deorkaan.nl/overleden-persoon-bij-zaaneiland-slachtoffer-van-noodlottig-ongeval/": {
+        "kop": "Overleden persoon bij Zaaneiland slachtoffer van noodlottig ongeval",
+        "S": 0.21,
+        "route": "aanhoudend",
+        "K": 0.38,
+        "n": 1,
+        "bronnen": 1
+      },
+      "n:https://www.deorkaan.nl/overleden-persoon-gevonden-in-water-bij-zaaneiland-in-zaandam/": {
+        "kop": "Overleden persoon gevonden in water bij Zaaneiland in Zaandam",
+        "S": 0.19,
+        "route": "aanhoudend",
+        "K": 0.38,
+        "n": 1,
+        "bronnen": 1
+      },
+      "n:https://www.vervoerregio.nl/artikel/20261106-negen-overheidspartijen-zetten-volgende-stap-voor-ni": {
+        "kop": "Negen overheidspartijen zetten volgende stap voor nieuwe doorfietsroutes",
+        "S": 0.19,
+        "route": "aanhoudend",
+        "K": 0.17,
+        "n": 1,
+        "bronnen": 1
+      },
+      "a:2f3f3332ae": {
+        "kop": "Zaanstad Beraad Raadzaal: TEST",
+        "S": 0.14,
+        "route": "aanhoudend",
+        "K": 0.21,
+        "n": 3,
+        "bronnen": 1
+      },
+      "a:e205032688": {
+        "kop": "Geweigerde omgevingsvergunning voor aanleggen van een in- of uitrit locatie Raaigras 88 Assendelft",
+        "S": 0.1,
+        "route": "aanhoudend",
+        "K": 0.16,
+        "n": 2,
+        "bronnen": 1
+      },
+      "n:https://www.deorkaan.nl/fototijdreis-guisweg-ter-hoogte-van-spoorwegovergang-zaandijk/": {
+        "kop": "Fototijdreis: Guisweg ter hoogte van spoorwegovergang (Zaandijk)",
+        "S": 0.1,
+        "route": "aanhoudend",
+        "K": 0.69,
+        "n": 1,
+        "bronnen": 1
+      },
+      "n:https://www.deorkaan.nl/54-jarige-vrouw-uit-oostzaan-aangehouden-na-dodelijke-steekpartij-in-zaandam/": {
+        "kop": "54-jarige vrouw uit Oostzaan aangehouden na dodelijke steekpartij in Zaandam",
+        "S": 0.1,
+        "route": "aanhoudend",
+        "K": 0.34,
+        "n": 1,
+        "bronnen": 1
+      },
+      "n:https://www.deorkaan.nl/grote-politie-inzet-na-melding-steekpartij-bij-bedrijf-in-zaandam/": {
+        "kop": "Verdachte aangehouden na dodelijke steekpartij bij bedrijf in Zaandam 📸 – update",
+        "S": 0.1,
+        "route": "aanhoudend",
+        "K": 0.44,
+        "n": 1,
+        "bronnen": 1
+      },
+      "a:1ebd6e1ddf": {
+        "kop": "Verkeersbesluit plaatsen laadpaal voor electrische auto's Matsmanzoom te Koog a/d Zaan",
+        "S": 0.09,
+        "route": "aanhoudend",
+        "K": 0.16,
+        "n": 1,
+        "bronnen": 1
+      },
+      "a:d1eae07b85": {
+        "kop": "Brandweer Oostzaan viert 100-jarig jubileum",
+        "S": 0.07,
+        "route": "aanhoudend",
+        "K": 0.35,
+        "n": 1,
+        "bronnen": 1
+      },
+      "a:e26813c04c": {
+        "kop": "Geweigerde huisvestingsvergunning Klipperstraat 37 te Zaandam - Microsoft Teams",
+        "S": 0.06,
+        "route": "aanhoudend",
+        "K": 0.16,
+        "n": 2,
+        "bronnen": 1
+      },
+      "n:https://www.deorkaan.nl/dichters-laten-de-tijd-spreken-in-museum-zaanse-tijd-%f0%9f%93%b8-%f0%9f%8e%a5/": {
+        "kop": "Dichters laten de tijd spreken in Museum Zaanse Tijd 📸 🎥",
+        "S": 0.06,
+        "route": "aanhoudend",
+        "K": 0,
+        "n": 1,
+        "bronnen": 1
+      },
+      "a:54bf0d34fe": {
+        "kop": "Verkeersbesluit plaatsen laadpaal voor elektrische auto's locatie Kaaikhof te Assendelft",
+        "S": 0.04,
+        "route": "aanhoudend",
+        "K": 0.16,
+        "n": 1,
+        "bronnen": 1
+      },
+      "n:https://www.deorkaan.nl/zaanse-olifantenpaadjes-xxvii-provincialeweg-zaandam-de-kortste/": {
+        "kop": "Zaanse Olifantenpaadjes XXVII: Provincialeweg, Zaandam (de kortste?)",
+        "S": 0.04,
+        "route": "aanhoudend",
+        "K": 0,
+        "n": 1,
+        "bronnen": 1
+      },
+      "a:2f23908817": {
+        "kop": "Lezing: Tot Lering en Vermaak",
+        "S": 0,
+        "route": "geen",
+        "K": 0,
+        "n": 0,
+        "bronnen": 0
+      },
+      "a:4150f4ffc4": {
+        "kop": "Ontdek hoe een kaartspel nieuwe gesprekken over de toekomst opent!",
+        "S": 0,
+        "route": "geen",
+        "K": 0,
+        "n": 0,
+        "bronnen": 0
+      },
+      "a:da1fdf516e": {
+        "kop": "Aanwijsbesluit plaatsen camera locatie Perim te Zaandam",
+        "S": 0,
+        "route": "geen",
+        "K": 0.15,
+        "n": 0,
+        "bronnen": 0
+      },
+      "a:f317521e28": {
+        "kop": "Raadsvergadering: Begroting",
+        "S": 0,
+        "route": "geen",
+        "K": 0.15,
+        "n": 0,
+        "bronnen": 0
+      },
+      "a:abb742a017": {
+        "kop": "Omgevingsvergunning O2026055913 realiseren dakterras op woning Zuiderhoofdstraat 78 te Krommenie",
+        "S": 0,
+        "route": "geen",
+        "K": 0.15,
+        "n": 0,
+        "bronnen": 0
+      },
+      "a:1a746de3ba": {
+        "kop": "Uitnodiging NZKG-Jaarcongres 12 november 'De kracht van het Noordzeekanaalgebied (NZKG) & 150 jaar Noordzeekanaal'",
+        "S": 0,
+        "route": "geen",
+        "K": 0,
+        "n": 0,
+        "bronnen": 0
+      },
+      "a:55db5c0d37": {
+        "kop": "Raadsvergadering: Reservedatum begroting",
+        "S": 0,
+        "route": "geen",
+        "K": 0.15,
+        "n": 0,
+        "bronnen": 0
+      },
+      "a:777fef6fda": {
+        "kop": "Uitnodiging en aanmeldlink voor deelname aan de Webinar raadsleden",
         "S": 0,
         "route": "geen",
         "K": 0,

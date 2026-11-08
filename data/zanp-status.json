@@ -1,5 +1,5 @@
 {
-  "gegenereerdOp": "2026-11-08T22:00:53.184Z",
+  "gegenereerdOp": "2026-11-08T23:00:54.718Z",
   "alertModus": "log",
   "bronnen": {
     "zaansche-molen": {
@@ -38,13 +38,13 @@
       "opeenvolgendLeeg": 0
     },
     "nh-actueel": {
-      "laatsteScrape": "2026-11-08T22:00:53.184Z",
+      "laatsteScrape": "2026-11-08T23:00:54.718Z",
       "gevonden": 15,
       "opeenvolgendLeeg": 0
     },
     "nh-cultuur": {
-      "laatsteScrape": "2026-11-08T22:00:53.184Z",
-      "gevonden": 3,
+      "laatsteScrape": "2026-11-08T23:00:54.718Z",
+      "gevonden": 15,
       "opeenvolgendLeeg": 0
     },
     "zaanstad-hoorzittingen": {
@@ -98,7 +98,7 @@
       "opeenvolgendLeeg": 0
     },
     "DeOrkaan": {
-      "laatsteScrape": "2026-11-08T22:00:53.184Z",
+      "laatsteScrape": "2026-11-08T23:00:54.718Z",
       "gevonden": 12,
       "opeenvolgendLeeg": 0
     },
@@ -123,9 +123,9 @@
       "opeenvolgendLeeg": 0
     },
     "vervoerregio-overzichten": {
-      "laatsteScrape": "2026-11-08T22:00:53.184Z",
+      "laatsteScrape": "2026-11-08T23:00:54.718Z",
       "gevonden": 0,
-      "opeenvolgendLeeg": 97
+      "opeenvolgendLeeg": 98
     }
   },
   "bronnenZonderRubriek": [],
@@ -327,29 +327,29 @@
     "agenda": {
       "nieuw": 0,
       "bijgewerkt": 0,
-      "behouden": 246,
+      "behouden": 226,
       "verdwenen": 0,
-      "verlopen": 0,
-      "uitBerichten": 27,
-      "zichtbaar": 93,
-      "verborgen": 175,
+      "verlopen": 20,
+      "uitBerichten": 26,
+      "zichtbaar": 88,
+      "verborgen": 159,
       "inAfwachting": 0
     },
     "berichten": {
       "nieuw": 0,
       "update": 0,
       "opnieuw": 0,
-      "ongewijzigd": 8,
+      "ongewijzigd": 0,
       "seed": 0
     },
     "cluster": {
-      "vergeleken": 780,
+      "vergeleken": 210,
       "automatisch": 0,
       "aiGevraagd": 0,
       "aiJa": 0,
       "aiNee": 0,
       "uitgesteld": 0,
-      "clusters": 2
+      "clusters": 0
     },
     "alerts": 0,
     "koppel": {
@@ -371,8 +371,8 @@
       "vergeten": 0,
       "tekstenOpgeruimd": 0,
       "stukken": 362,
-      "kandidaten": 61,
-      "metAnker": 58,
+      "kandidaten": 58,
+      "metAnker": 55,
       "zonderAnker": 3,
       "afgelast": 1,
       "dubbel": 0,
