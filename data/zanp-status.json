@@ -1,5 +1,5 @@
 {
-  "gegenereerdOp": "2026-11-08T03:00:54.229Z",
+  "gegenereerdOp": "2026-11-08T04:00:55.696Z",
   "alertModus": "log",
   "bronnen": {
     "zaansche-molen": {
@@ -38,13 +38,13 @@
       "opeenvolgendLeeg": 0
     },
     "nh-actueel": {
-      "laatsteScrape": "2026-11-08T03:00:54.229Z",
+      "laatsteScrape": "2026-11-08T04:00:55.696Z",
       "gevonden": 15,
       "opeenvolgendLeeg": 0
     },
     "nh-cultuur": {
-      "laatsteScrape": "2026-11-08T03:00:54.229Z",
-      "gevonden": 15,
+      "laatsteScrape": "2026-11-08T04:00:55.696Z",
+      "gevonden": 3,
       "opeenvolgendLeeg": 0
     },
     "zaanstad-hoorzittingen": {
@@ -78,9 +78,9 @@
       "opeenvolgendLeeg": 0
     },
     "hhnk": {
-      "laatsteScrape": "2026-11-07T22:00:51.272Z",
+      "laatsteScrape": "2026-11-08T04:00:55.696Z",
       "gevonden": 0,
-      "opeenvolgendLeeg": 34
+      "opeenvolgendLeeg": 35
     },
     "rechtspraak-noord-holland": {
       "laatsteScrape": "2026-11-07T22:00:51.272Z",
@@ -98,14 +98,14 @@
       "opeenvolgendLeeg": 0
     },
     "DeOrkaan": {
-      "laatsteScrape": "2026-11-08T03:00:54.229Z",
+      "laatsteScrape": "2026-11-08T04:00:55.696Z",
       "gevonden": 12,
       "opeenvolgendLeeg": 0
     },
     "politie-zaanstad": {
-      "laatsteScrape": "2026-11-07T22:00:51.272Z",
+      "laatsteScrape": "2026-11-08T04:00:55.696Z",
       "gevonden": 0,
-      "opeenvolgendLeeg": 30
+      "opeenvolgendLeeg": 31
     },
     "zaanstad-kalender": {
       "laatsteScrape": "2026-11-07T22:00:51.272Z",
@@ -123,9 +123,9 @@
       "opeenvolgendLeeg": 0
     },
     "vervoerregio-overzichten": {
-      "laatsteScrape": "2026-11-08T03:00:54.229Z",
+      "laatsteScrape": "2026-11-08T04:00:55.696Z",
       "gevonden": 0,
-      "opeenvolgendLeeg": 78
+      "opeenvolgendLeeg": 79
     }
   },
   "bronnenZonderRubriek": [],
@@ -324,7 +324,7 @@
       "nieuw": 0,
       "update": 0,
       "opnieuw": 0,
-      "ongewijzigd": 0,
+      "ongewijzigd": 7,
       "seed": 0
     },
     "cluster": {
