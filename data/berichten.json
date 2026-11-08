@@ -1,5 +1,5 @@
 {
-  "gegenereerdOp": "2026-11-08T10:00:53.439Z",
+  "gegenereerdOp": "2026-11-08T11:00:52.498Z",
   "promptVersie": "2026-10-29-batch-tag-checklist-agendapunten",
   "alertModus": "log",
   "prioSchaal": "1 = urgent, 2 = belangrijk, 3 = regulier, 4 = routine. De AI geeft nooit prio 1.",
@@ -90,6 +90,44 @@
       "tagVersie": 2
     },
     {
+      "id": "721bcae6d6-v1",
+      "groepId": "721bcae6d6",
+      "versie": 1,
+      "url": "https://www.deorkaan.nl/fototijdreis-guisweg-ter-hoogte-van-spoorwegovergang-zaandijk/",
+      "kop": "Fototijdreis: Guisweg ter hoogte van spoorwegovergang (Zaandijk)",
+      "tekst": null,
+      "rubriek": "CUL",
+      "tagBron": "ai",
+      "herkomst": "signaal",
+      "prio": 3,
+      "tijd": "2026-11-07T23:00:00.000Z",
+      "heeftTijd": false,
+      "woorden": 978,
+      "afgekapt": true,
+      "bronId": "DeOrkaan",
+      "bronNaam": "DeOrkaan",
+      "ai": false,
+      "controle": "analyse-ok",
+      "eerstGezienOp": "2026-11-08T11:00:52.498Z",
+      "gecontroleerdOp": "2026-11-08T11:00:52.498Z",
+      "bronTitel": "Fototijdreis: Guisweg ter hoogte van spoorwegovergang (Zaandijk)",
+      "bronLengte": 5991,
+      "checklist": {
+        "gevaar": false,
+        "evacuatieOfNlAlert": false,
+        "gewondenOfDoden": false,
+        "bestuurlijkeCrisis": false,
+        "besluitMetGrootGevolg": false,
+        "tijdkritisch": false,
+        "betrokkenen": null,
+        "geldbedragEuro": null,
+        "banen": null,
+        "inRegio": true
+      },
+      "checklistBron": "ai",
+      "analyse": true
+    },
+    {
       "id": "df254b0c4d-v1",
       "groepId": "df254b0c4d",
       "versie": 1,
@@ -125,7 +163,8 @@
         "inRegio": true
       },
       "checklistBron": "ai",
-      "analyse": true
+      "analyse": true,
+      "tagVersie": 2
     },
     {
       "id": "a5e1214bbc-v1",
@@ -147,7 +186,7 @@
       "ai": false,
       "controle": "analyse-ok",
       "eerstGezienOp": "2026-11-08T08:53:13.494Z",
-      "gecontroleerdOp": "2026-11-08T08:53:13.494Z",
+      "gecontroleerdOp": "2026-11-08T11:00:52.498Z",
       "bronTitel": "50woordenfoto: goed gemikt?",
       "bronLengte": 673,
       "checklist": {
@@ -722,14 +761,7 @@
         "inRegio": true
       },
       "checklistBron": "ai",
-      "tagVersie": 2,
-      "alertKandidaat": {
-        "niveau": "oranje",
-        "categorie": "bestuur",
-        "reden": "besluit met groot gevolg (officiële bron)",
-        "aangemaaktOp": "2026-11-07T12:51:06.636Z",
-        "tot": "2026-11-08T12:51:06.636Z"
-      }
+      "tagVersie": 2
     },
     {
       "id": "b8d848126c-v1",
@@ -1062,7 +1094,6 @@
         "inRegio": false
       },
       "checklistBron": "ai",
-      "clusterId": "a790e88d2b",
       "tagVersie": 2
     },
     {
@@ -1822,8 +1853,7 @@
         "inRegio": false
       },
       "checklistBron": "ai",
-      "tagVersie": 2,
-      "clusterId": "a790e88d2b"
+      "tagVersie": 2
     },
     {
       "id": "bc1aa449b0-v1",

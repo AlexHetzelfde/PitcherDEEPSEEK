@@ -1,5 +1,5 @@
 {
-  "gegenereerdOp": "2026-11-08T10:00:53.439Z",
+  "gegenereerdOp": "2026-11-08T11:00:52.498Z",
   "modus": "schaduw",
   "stempel": "v3-22806000",
   "tau": 0.5,
@@ -9,16 +9,16 @@
     "formule": "v3-22806000",
     "tekst": {
       "werklijst": 1,
-      "lokaal": 1,
-      "opgehaald": 0,
+      "lokaal": 0,
+      "opgehaald": 1,
       "mislukt": 0,
       "uitgesteld": 0
     },
     "vergeten": 0,
     "tekstenOpgeruimd": 0,
-    "stukken": 353,
-    "kandidaten": 65,
-    "metAnker": 62,
+    "stukken": 354,
+    "kandidaten": 64,
+    "metAnker": 61,
     "zonderAnker": 3,
     "afgelast": 1,
     "dubbel": 0,
@@ -136,42 +136,6 @@
           "c": 0.7,
           "plek": "intro",
           "titel": "Kennisgeving Burgemeester J. Hamming: Incident Elzenstraat"
-        }
-      ]
-    },
-    {
-      "key": "n:https://www.noord-holland.nl/Actueel/Archief/2026/November_2026/Warmtekansen_in_de_kassen",
-      "soort": "nieuws",
-      "kop": "Warmtekansen in de kassen",
-      "S": 0.31,
-      "Sa": 0.31,
-      "Sp": 0,
-      "route": "aanhoudend",
-      "K": 0.65,
-      "Kp": 0.52,
-      "n": 2,
-      "dagen": 2,
-      "bronnen": 1,
-      "ankers": [
-        "warmtekans",
-        "klimatwek",
-        "durzam",
-        "glastuinbouw"
-      ],
-      "bewijs": [
-        {
-          "bron": "nh-actueel",
-          "datum": "2026-11-02T11:54:30.000Z",
-          "c": 0.65,
-          "plek": "intro",
-          "titel": "Schoon en veilig werken zonder motorgeronk"
-        },
-        {
-          "bron": "nh-actueel",
-          "datum": "2026-11-04T08:15:14.000Z",
-          "c": 0.64,
-          "plek": "intro",
-          "titel": "Een comfortabeler monument met hetzelfde karakter"
         }
       ]
     },
@@ -348,6 +312,34 @@
       ]
     },
     {
+      "key": "n:https://www.deorkaan.nl/fototijdreis-guisweg-ter-hoogte-van-spoorwegovergang-zaandijk/",
+      "soort": "nieuws",
+      "kop": "Fototijdreis: Guisweg ter hoogte van spoorwegovergang (Zaandijk)",
+      "S": 0.1,
+      "Sa": 0.1,
+      "Sp": 0,
+      "route": "aanhoudend",
+      "K": 0.69,
+      "Kp": 0.5,
+      "n": 1,
+      "dagen": 1,
+      "bronnen": 1,
+      "ankers": [
+        "fototijdreis",
+        "guisweg",
+        "sporwegovergang"
+      ],
+      "bewijs": [
+        {
+          "bron": "DeOrkaan",
+          "datum": "2026-10-24T22:00:00.000Z",
+          "c": 0.87,
+          "plek": "kop",
+          "titel": "Fototijdreis: De Zaan bij Gerkens Cacao (Wormer)"
+        }
+      ]
+    },
+    {
       "key": "n:https://www.deorkaan.nl/54-jarige-vrouw-uit-oostzaan-aangehouden-na-dodelijke-steekpartij-in-zaandam/",
       "soort": "nieuws",
       "kop": "54-jarige vrouw uit Oostzaan aangehouden na dodelijke steekpartij in Zaandam",
@@ -392,7 +384,7 @@
       "Sa": 0.1,
       "Sp": 0,
       "route": "aanhoudend",
-      "K": 0.45,
+      "K": 0.44,
       "Kp": 0.28,
       "n": 1,
       "dagen": 1,
@@ -453,8 +445,8 @@
       "key": "n:https://www.noord-holland.nl/Actueel/Archief/2026/November_2026/9_overheidspartijen_zetten_volgende_stap_voor_nieuwe_doorfietsroutes",
       "soort": "nieuws",
       "kop": "9 overheidspartijen zetten volgende stap voor nieuwe doorfietsroutes",
-      "S": 0.09,
-      "Sa": 0.09,
+      "S": 0.08,
+      "Sa": 0.08,
       "Sp": 0,
       "route": "aanhoudend",
       "K": 0.19,
@@ -1468,6 +1460,14 @@
         "n": 1,
         "bronnen": 1
       },
+      "n:https://www.deorkaan.nl/fototijdreis-guisweg-ter-hoogte-van-spoorwegovergang-zaandijk/": {
+        "kop": "Fototijdreis: Guisweg ter hoogte van spoorwegovergang (Zaandijk)",
+        "S": 0.1,
+        "route": "aanhoudend",
+        "K": 0.69,
+        "n": 1,
+        "bronnen": 1
+      },
       "a:1ebd6e1ddf": {
         "kop": "Verkeersbesluit plaatsen laadpaal voor electrische auto's Matsmanzoom te Koog a/d Zaan",
         "S": 0.09,
@@ -1542,14 +1542,6 @@
       },
       "a:d4b2d32a23": {
         "kop": "Fietstocht raadsleden en Fietsersbond",
-        "S": 0,
-        "route": "geen",
-        "K": 0,
-        "n": 0,
-        "bronnen": 0
-      },
-      "a:2f23908817": {
-        "kop": "Lezing: Tot Lering en Vermaak",
         "S": 0,
         "route": "geen",
         "K": 0,
