@@ -1,5 +1,5 @@
 {
-  "gegenereerdOp": "2026-11-08T11:00:52.498Z",
+  "gegenereerdOp": "2026-11-08T12:00:53.524Z",
   "alertModus": "log",
   "bronnen": {
     "zaansche-molen": {
@@ -38,12 +38,12 @@
       "opeenvolgendLeeg": 0
     },
     "nh-actueel": {
-      "laatsteScrape": "2026-11-08T11:00:52.498Z",
+      "laatsteScrape": "2026-11-08T12:00:53.524Z",
       "gevonden": 15,
       "opeenvolgendLeeg": 0
     },
     "nh-cultuur": {
-      "laatsteScrape": "2026-11-08T11:00:52.498Z",
+      "laatsteScrape": "2026-11-08T12:00:53.524Z",
       "gevonden": 15,
       "opeenvolgendLeeg": 0
     },
@@ -98,7 +98,7 @@
       "opeenvolgendLeeg": 0
     },
     "DeOrkaan": {
-      "laatsteScrape": "2026-11-08T11:00:52.498Z",
+      "laatsteScrape": "2026-11-08T12:00:53.524Z",
       "gevonden": 12,
       "opeenvolgendLeeg": 0
     },
@@ -123,15 +123,15 @@
       "opeenvolgendLeeg": 0
     },
     "vervoerregio-overzichten": {
-      "laatsteScrape": "2026-11-08T11:00:52.498Z",
+      "laatsteScrape": "2026-11-08T12:00:53.524Z",
       "gevonden": 0,
-      "opeenvolgendLeeg": 86
+      "opeenvolgendLeeg": 87
     }
   },
   "bronnenZonderRubriek": [],
   "gemini": {
     "dag": "2026-11-08",
-    "gebruikt": 4,
+    "gebruikt": 5,
     "wachtTot": null,
     "dagcap": 80,
     "runcap": 25,
@@ -308,19 +308,19 @@
       "runs": 11
     },
     "2026-11-08": {
-      "verzoeken": 5,
-      "berichten": 5,
+      "verzoeken": 6,
+      "berichten": 6,
       "ok": 0,
-      "analyseOk": 5,
+      "analyseOk": 6,
       "cijfersAfgekeurd": 0,
       "onvoldoende": 0,
       "fout": 0,
       "overgeslagen": 0,
-      "tagAi": 4,
+      "tagAi": 5,
       "tagTrefwoord": 0,
       "tagBron": 0,
       "tagGeen": 1,
-      "runs": 5
+      "runs": 6
     }
   },
   "laatsteRun": {
@@ -339,7 +339,7 @@
       "nieuw": 1,
       "update": 0,
       "opnieuw": 0,
-      "ongewijzigd": 1,
+      "ongewijzigd": 6,
       "seed": 0
     },
     "cluster": {
@@ -363,16 +363,16 @@
       "formule": "v3-22806000",
       "tekst": {
         "werklijst": 1,
-        "lokaal": 0,
-        "opgehaald": 1,
+        "lokaal": 1,
+        "opgehaald": 0,
         "mislukt": 0,
         "uitgesteld": 0
       },
       "vergeten": 0,
       "tekstenOpgeruimd": 0,
-      "stukken": 354,
-      "kandidaten": 64,
-      "metAnker": 61,
+      "stukken": 355,
+      "kandidaten": 61,
+      "metAnker": 58,
       "zonderAnker": 3,
       "afgelast": 1,
       "dubbel": 0,

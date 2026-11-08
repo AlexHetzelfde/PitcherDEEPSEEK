@@ -1,5 +1,5 @@
 {
-  "gegenereerdOp": "2026-11-08T11:00:52.498Z",
+  "gegenereerdOp": "2026-11-08T12:00:53.524Z",
   "modus": "schaduw",
   "stempel": "v3-22806000",
   "tau": 0.5,
@@ -9,16 +9,16 @@
     "formule": "v3-22806000",
     "tekst": {
       "werklijst": 1,
-      "lokaal": 0,
-      "opgehaald": 1,
+      "lokaal": 1,
+      "opgehaald": 0,
       "mislukt": 0,
       "uitgesteld": 0
     },
     "vergeten": 0,
     "tekstenOpgeruimd": 0,
-    "stukken": 354,
-    "kandidaten": 64,
-    "metAnker": 61,
+    "stukken": 355,
+    "kandidaten": 61,
+    "metAnker": 58,
     "zonderAnker": 3,
     "afgelast": 1,
     "dubbel": 0,
@@ -177,35 +177,6 @@
       ]
     },
     {
-      "key": "n:https://www.deorkaan.nl/volgend-weekend-den-uylbrug-afgesloten/",
-      "soort": "nieuws",
-      "kop": "Volgend weekend (13-16 november) Den Uylbrug afgesloten",
-      "S": 0.22,
-      "Sa": 0.22,
-      "Sp": 0,
-      "route": "aanhoudend",
-      "K": 0.59,
-      "Kp": 0.38,
-      "n": 1,
-      "dagen": 1,
-      "bronnen": 1,
-      "ankers": [
-        "uylbrug",
-        "volgend",
-        "boskalis",
-        "thorbeckeweg"
-      ],
-      "bewijs": [
-        {
-          "bron": "DeOrkaan",
-          "datum": "2026-11-06T23:00:00.000Z",
-          "c": 0.89,
-          "plek": "kop",
-          "titel": "Thorbeckeweg: bouwput wordt eindelijk echte tunnel"
-        }
-      ]
-    },
-    {
       "key": "n:https://www.vervoerregio.nl/artikel/20261106-negen-overheidspartijen-zetten-volgende-stap-voor-ni",
       "soort": "nieuws",
       "kop": "Negen overheidspartijen zetten volgende stap voor nieuwe doorfietsroutes",
@@ -280,8 +251,8 @@
       "key": "a:e205032688",
       "soort": "agenda",
       "kop": "Geweigerde omgevingsvergunning voor aanleggen van een in- of uitrit locatie Raaigras 88 Assendelft",
-      "S": 0.11,
-      "Sa": 0.11,
+      "S": 0.1,
+      "Sa": 0.1,
       "Sp": 0,
       "route": "aanhoudend",
       "K": 0.16,
@@ -347,7 +318,7 @@
       "Sa": 0.1,
       "Sp": 0,
       "route": "aanhoudend",
-      "K": 0.36,
+      "K": 0.35,
       "Kp": 0.19,
       "n": 1,
       "dagen": 1,
@@ -1096,6 +1067,28 @@
       "ankers": [
         "werkom",
         "agendacommissi"
+      ],
+      "bewijs": []
+    },
+    {
+      "key": "a:a24756ce32",
+      "soort": "agenda",
+      "kop": "Dag voor de Raad 2026!",
+      "S": 0,
+      "Sa": 0,
+      "Sp": 0,
+      "route": "geen",
+      "K": 0,
+      "Kp": 0,
+      "n": 0,
+      "dagen": 0,
+      "bronnen": 0,
+      "ankers": [
+        "antropia",
+        "drieberg",
+        "dagprogramma",
+        "zeist",
+        "vereniging"
       ],
       "bewijs": []
     }
