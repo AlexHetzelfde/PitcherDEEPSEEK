@@ -104,7 +104,7 @@ function leesInstellingen(env = process.env) {
 //   - Verander je een constante in FORMULE, dan verandert de stempel vanzelf.
 //   - Verander je de REKENREGELS zonder constante, verhoog dan FORMULE_VERSIE.
 // Opruimen en AI-instellingen veranderen de uitkomst niet en tellen niet mee.
-const FORMULE_VERSIE = 3;
+const FORMULE_VERSIE = 4; // 4: cameratoezicht valt buiten de formule (vaste regel, regels.js)
 const NIET_IN_STEMPEL = ["tekstBewaarDagen", "aiVerzoekenMax", "aiPerVerzoek"];
 
 function formuleStempel() {

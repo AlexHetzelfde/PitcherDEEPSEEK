@@ -40,6 +40,7 @@ const {
 const { berekenImpact, berekenScore, bepaalTau, PIEK_CATS } = require("./score");
 const { maakAiVeto } = require("./ai");
 const { beslis } = require("./beslis");
+const { cameraRood } = require("./regels");
 const { maakWerklijst, haalTeksten, agendaKomt, laatstePerGroep } = require("./tekst");
 const {
   mapVan,
@@ -94,6 +95,7 @@ async function draaiPrioriteit(opties) {
     nu = new Date(),
     env = process.env,
     bronPerId = {},
+    cameraReeksen = [],
     nietOphalen = () => false,
     aiVeto = null,
     log = console,
@@ -234,6 +236,7 @@ async function draaiPrioriteit(opties) {
   }
   for (const r of laatstePerGroep(records)) {
     if (!r.url || r.seed) continue;
+    if (r.camera) continue; // cameratoezicht: vaste regel (regels.js), niet de formule
     const eerst = Date.parse(r.eerstGezienOp);
     if (!Number.isFinite(eerst) || eerst < nieuwsGrens) continue;
     kandidaten.push({
@@ -340,10 +343,24 @@ async function draaiPrioriteit(opties) {
     log.error(`[prioriteit] Opslaan mislukte: ${fout.stack || fout.message}`);
   }
 
+  // Rood op grond van een vaste regel (cameratoezicht): niet bewaard, elke run opnieuw bepaald.
+  let regelRood = new Map();
+  try {
+    regelRood = cameraRood({ records, cameraReeksen });
+    stats.regelRood = regelRood.size;
+    for (const e of regelRood.values()) {
+      if (e.sinds && nu.getTime() - Date.parse(e.sinds) <= 2 * 3600 * 1000) {
+        log.log(`  ROOD-REGEL (${inst.modus}) nieuws: ${String(e.kop).slice(0, 70)} — ${e.reden}`);
+      }
+    }
+  } catch (fout) {
+    log.error(`[prioriteit] Rood op regel (camera) mislukte: ${fout.stack || fout.message}`);
+  }
+
   // 6. Kleuren, alleen in modus "aan"
   if (inst.modus !== "aan") return { records, agendaItems, stats };
   const nieuweRecords = records.map((r) => {
-    const e = geheugen.rood[`n:${r.url}`];
+    const e = geheugen.rood[`n:${r.url}`] || regelRood.get(`n:${r.url}`);
     return e ? { ...r, rood: openbaar(e) } : r;
   });
   const nieuweAgenda = agendaItems.map((i) => {
