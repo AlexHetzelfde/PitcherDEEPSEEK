@@ -1,5 +1,5 @@
 {
-  "gegenereerdOp": "2026-11-09T18:00:59.108Z",
+  "gegenereerdOp": "2026-11-09T18:40:33.660Z",
   "modus": "schaduw",
   "stempel": "v4-22806000",
   "tau": 0.5,
@@ -8,8 +8,8 @@
     "ai": true,
     "formule": "v4-22806000",
     "tekst": {
-      "werklijst": 1,
-      "lokaal": 1,
+      "werklijst": 0,
+      "lokaal": 0,
       "opgehaald": 0,
       "mislukt": 0,
       "uitgesteld": 0
@@ -543,8 +543,8 @@
       "key": "n:https://www.deorkaan.nl/dichters-laten-de-tijd-spreken-in-museum-zaanse-tijd-%f0%9f%93%b8-%f0%9f%8e%a5/",
       "soort": "nieuws",
       "kop": "Dichters laten de tijd spreken in Museum Zaanse Tijd 📸 🎥",
-      "S": 0.06,
-      "Sa": 0.06,
+      "S": 0.05,
+      "Sa": 0.05,
       "Sp": 0,
       "route": "aanhoudend",
       "K": 0,
