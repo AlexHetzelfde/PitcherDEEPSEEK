@@ -1,5 +1,5 @@
 {
-  "gegenereerdOp": "2026-11-09T14:01:06.499Z",
+  "gegenereerdOp": "2026-11-09T15:00:59.124Z",
   "promptVersie": "2026-10-29-batch-tag-checklist-agendapunten",
   "alertModus": "log",
   "prioSchaal": "1 = urgent, 2 = belangrijk, 3 = regulier, 4 = routine. De AI geeft nooit prio 1.",
@@ -534,6 +534,44 @@
       "tagVersie": 2
     },
     {
+      "id": "cdc13b69df-v1",
+      "groepId": "cdc13b69df",
+      "versie": 1,
+      "url": "https://www.deorkaan.nl/nog-meer-windturbines-bij-de-amsterdamse-haven/",
+      "kop": "Nog meer windturbines bij de Amsterdamse haven",
+      "tekst": null,
+      "rubriek": "PRV",
+      "tagBron": "ai",
+      "herkomst": "signaal",
+      "prio": 3,
+      "tijd": "2026-11-08T23:00:00.000Z",
+      "heeftTijd": false,
+      "woorden": 343,
+      "afgekapt": false,
+      "bronId": "DeOrkaan",
+      "bronNaam": "DeOrkaan",
+      "ai": false,
+      "controle": "analyse-ok",
+      "eerstGezienOp": "2026-11-09T15:00:59.124Z",
+      "gecontroleerdOp": "2026-11-09T15:00:59.124Z",
+      "bronTitel": "Nog meer windturbines bij de Amsterdamse haven",
+      "bronLengte": 2287,
+      "checklist": {
+        "gevaar": false,
+        "evacuatieOfNlAlert": false,
+        "gewondenOfDoden": false,
+        "bestuurlijkeCrisis": false,
+        "besluitMetGrootGevolg": false,
+        "tijdkritisch": false,
+        "betrokkenen": null,
+        "geldbedragEuro": null,
+        "banen": null,
+        "inRegio": true
+      },
+      "checklistBron": "ai",
+      "analyse": true
+    },
+    {
       "id": "1f9a693d51-v1",
       "groepId": "1f9a693d51",
       "versie": 1,
@@ -568,7 +606,8 @@
         "banen": null,
         "inRegio": true
       },
-      "checklistBron": "ai"
+      "checklistBron": "ai",
+      "tagVersie": 2
     },
     {
       "id": "8d9e585ff0-v1",
@@ -605,7 +644,8 @@
         "banen": null,
         "inRegio": true
       },
-      "checklistBron": "ai"
+      "checklistBron": "ai",
+      "tagVersie": 2
     },
     {
       "id": "e8b6f443ef-v1",
@@ -642,7 +682,8 @@
         "banen": null,
         "inRegio": true
       },
-      "checklistBron": "ai"
+      "checklistBron": "ai",
+      "tagVersie": 2
     },
     {
       "id": "a667ca5d9a-v1",
@@ -681,6 +722,7 @@
       },
       "checklistBron": "ai",
       "analyse": true,
+      "tagVersie": 2,
       "alertKandidaat": {
         "niveau": "oranje",
         "categorie": "bestuur",
@@ -725,7 +767,8 @@
         "inRegio": false
       },
       "checklistBron": "ai",
-      "analyse": true
+      "analyse": true,
+      "tagVersie": 2
     },
     {
       "id": "639b3d3211-v1",
@@ -775,16 +818,16 @@
         }
       ],
       "analyse": true,
+      "agendaIds": [
+        "00bd7e7755"
+      ],
       "alertKandidaat": {
         "niveau": "oranje",
         "categorie": "bestuur",
         "reden": "besluit met groot gevolg (één bron)",
         "aangemaaktOp": "2026-11-09T13:00:56.658Z",
         "tot": "2026-11-10T13:00:56.658Z"
-      },
-      "agendaIds": [
-        "00bd7e7755"
-      ]
+      }
     },
     {
       "id": "3bd27ad8ee-v1",
@@ -1001,7 +1044,7 @@
       "ai": true,
       "controle": "cijfers-ok",
       "eerstGezienOp": "2026-11-09T10:01:00.973Z",
-      "gecontroleerdOp": "2026-11-09T13:00:56.658Z",
+      "gecontroleerdOp": "2026-11-09T15:00:59.124Z",
       "bronTitel": "Flexibiliteit in begrotingsuitwerking voor OV en deelmobiliteit",
       "bronLengte": 14973,
       "checklist": {
@@ -1039,7 +1082,7 @@
       "ai": false,
       "controle": "analyse-ok",
       "eerstGezienOp": "2026-11-09T09:00:56.202Z",
-      "gecontroleerdOp": "2026-11-09T13:00:56.658Z",
+      "gecontroleerdOp": "2026-11-09T15:00:59.124Z",
       "bronTitel": "Sport: zaalkorfbal van start, kolf-kampioenen bekend",
       "bronLengte": 5987,
       "checklist": {
@@ -1100,7 +1143,7 @@
       "ai": false,
       "controle": "analyse-ok",
       "eerstGezienOp": "2026-11-09T09:00:56.202Z",
-      "gecontroleerdOp": "2026-11-09T13:00:56.658Z",
+      "gecontroleerdOp": "2026-11-09T15:00:59.124Z",
       "bronTitel": "Pincodes klanten in Zaandam beeld: Kruidvat onderzoekt veiligheidslek in gehele keten",
       "bronLengte": 4202,
       "checklist": {
@@ -1184,7 +1227,7 @@
       "ai": false,
       "controle": "analyse-ok",
       "eerstGezienOp": "2026-11-09T07:51:31.296Z",
-      "gecontroleerdOp": "2026-11-09T13:00:56.658Z",
+      "gecontroleerdOp": "2026-11-09T15:00:59.124Z",
       "bronTitel": "Steekpartij in woning Zaandam, politie zoekt man op elektrische fiets",
       "bronLengte": 1306,
       "checklist": {
@@ -1223,7 +1266,7 @@
       "ai": false,
       "controle": "geen-ai",
       "eerstGezienOp": "2026-11-09T07:51:31.296Z",
-      "gecontroleerdOp": "2026-11-09T13:00:56.658Z",
+      "gecontroleerdOp": "2026-11-09T15:00:59.124Z",
       "bronTitel": "Aanbesteding afgerond zonder gunning: specialistische Jeugdhulp Segment B 2027 Zaanstreek-Waterland",
       "bronLengte": 188,
       "aanbesteding": {

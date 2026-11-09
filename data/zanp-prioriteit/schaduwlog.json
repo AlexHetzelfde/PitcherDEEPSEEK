@@ -1,5 +1,5 @@
 {
-  "gegenereerdOp": "2026-11-09T14:01:06.499Z",
+  "gegenereerdOp": "2026-11-09T15:00:59.124Z",
   "modus": "schaduw",
   "stempel": "v4-22806000",
   "tau": 0.5,
@@ -8,17 +8,17 @@
     "ai": true,
     "formule": "v4-22806000",
     "tekst": {
-      "werklijst": 5,
-      "lokaal": 5,
+      "werklijst": 1,
+      "lokaal": 1,
       "opgehaald": 0,
       "mislukt": 0,
       "uitgesteld": 0
     },
     "vergeten": 0,
     "tekstenOpgeruimd": 0,
-    "stukken": 382,
-    "kandidaten": 64,
-    "metAnker": 62,
+    "stukken": 383,
+    "kandidaten": 65,
+    "metAnker": 63,
     "zonderAnker": 2,
     "afgelast": 1,
     "dubbel": 0,
@@ -187,8 +187,8 @@
       "key": "n:https://www.deorkaan.nl/overleden-persoon-bij-zaaneiland-slachtoffer-van-noodlottig-ongeval/",
       "soort": "nieuws",
       "kop": "Overleden persoon bij Zaaneiland slachtoffer van noodlottig ongeval",
-      "S": 0.2,
-      "Sa": 0.2,
+      "S": 0.19,
+      "Sa": 0.19,
       "Sp": 0,
       "route": "aanhoudend",
       "K": 0.38,
@@ -246,6 +246,36 @@
           "c": 1,
           "plek": "kop",
           "titel": "Overleden persoon bij Zaaneiland slachtoffer van noodlottig ongeval"
+        }
+      ]
+    },
+    {
+      "key": "n:https://www.deorkaan.nl/nog-meer-windturbines-bij-de-amsterdamse-haven/",
+      "soort": "nieuws",
+      "kop": "Nog meer windturbines bij de Amsterdamse haven",
+      "S": 0.18,
+      "Sa": 0.18,
+      "Sp": 0,
+      "route": "aanhoudend",
+      "K": 0.29,
+      "Kp": 0,
+      "n": 1,
+      "dagen": 1,
+      "bronnen": 1,
+      "ankers": [
+        "amsterdams",
+        "windturbine",
+        "haven",
+        "havenbedrijf",
+        "havengebied"
+      ],
+      "bewijs": [
+        {
+          "bron": "nh-actueel",
+          "datum": "2026-11-05T14:26:00.000Z",
+          "c": 0.87,
+          "plek": "kop",
+          "titel": "Vergunningaanvragen voor 8 windturbines in havengebied Amsterdam"
         }
       ]
     },
@@ -1037,28 +1067,6 @@
         "agendacommissi"
       ],
       "bewijs": []
-    },
-    {
-      "key": "a:a24756ce32",
-      "soort": "agenda",
-      "kop": "Dag voor de Raad 2026!",
-      "S": 0,
-      "Sa": 0,
-      "Sp": 0,
-      "route": "geen",
-      "K": 0,
-      "Kp": 0,
-      "n": 0,
-      "dagen": 0,
-      "bronnen": 0,
-      "ankers": [
-        "antropia",
-        "drieberg",
-        "dagprogramma",
-        "zeist",
-        "vereniging"
-      ],
-      "bewijs": []
     }
   ],
   "formule": {
@@ -1152,6 +1160,14 @@
         "S": 0.19,
         "route": "aanhoudend",
         "K": 0.38,
+        "n": 1,
+        "bronnen": 1
+      },
+      "n:https://www.deorkaan.nl/nog-meer-windturbines-bij-de-amsterdamse-haven/": {
+        "kop": "Nog meer windturbines bij de Amsterdamse haven",
+        "S": 0.18,
+        "route": "aanhoudend",
+        "K": 0.29,
         "n": 1,
         "bronnen": 1
       },
@@ -1296,14 +1312,6 @@
         "S": 0,
         "route": "geen",
         "K": 0,
-        "n": 0,
-        "bronnen": 0
-      },
-      "a:55db5c0d37": {
-        "kop": "Raadsvergadering: Reservedatum begroting",
-        "S": 0,
-        "route": "geen",
-        "K": 0.15,
         "n": 0,
         "bronnen": 0
       }
