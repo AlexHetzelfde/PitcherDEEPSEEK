@@ -78,6 +78,10 @@ function valideerBronnen(lijst) {
       fouten.push(`${label}: type "gemini-recept" maar geen "selectors" aanwezig — deze bron zou 0 berichten opleveren.`);
     }
 
+    if (bron.type === "moties" && !/Reports\/Details\/[a-f0-9-]{36}/i.test(bron.url || "")) {
+      fouten.push(`${label}: type "moties" heeft een iBabs-rapport-url nodig (…/Reports/Details/<id>) — deze bron zou 0 berichten opleveren.`);
+    }
+
     if (bron.type === "json-api" && !(bron.json && bron.json.titelVeld && bron.json.linkVeld)) {
       fouten.push(`${label}: type "json-api" mist "json" met minstens "titelVeld" en "linkVeld" — deze bron zou 0 berichten opleveren.`);
     }
