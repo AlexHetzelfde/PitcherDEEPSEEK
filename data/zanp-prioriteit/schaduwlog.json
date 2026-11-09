@@ -1,5 +1,5 @@
 {
-  "gegenereerdOp": "2026-11-09T13:00:56.658Z",
+  "gegenereerdOp": "2026-11-09T14:01:06.499Z",
   "modus": "schaduw",
   "stempel": "v4-22806000",
   "tau": 0.5,
@@ -8,18 +8,18 @@
     "ai": true,
     "formule": "v4-22806000",
     "tekst": {
-      "werklijst": 3,
-      "lokaal": 2,
-      "opgehaald": 1,
+      "werklijst": 5,
+      "lokaal": 5,
+      "opgehaald": 0,
       "mislukt": 0,
       "uitgesteld": 0
     },
     "vergeten": 0,
     "tekstenOpgeruimd": 0,
-    "stukken": 377,
-    "kandidaten": 61,
-    "metAnker": 58,
-    "zonderAnker": 3,
+    "stukken": 382,
+    "kandidaten": 64,
+    "metAnker": 62,
+    "zonderAnker": 2,
     "afgelast": 1,
     "dubbel": 0,
     "tau": 0.5,
@@ -75,6 +75,42 @@
           "c": 0.7,
           "plek": "intro",
           "titel": "Kennisgeving Burgemeester J. Hamming: Incident Elzenstraat"
+        }
+      ]
+    },
+    {
+      "key": "n:https://www.deorkaan.nl/stroomuitval-bij-zaans-medisch-centrum-zmc-brandweer-ter-plaatse/",
+      "soort": "nieuws",
+      "kop": "Stroomuitval bij Zaans Medisch Centrum (ZMC), brandweer ter plaatse",
+      "S": 0.26,
+      "Sa": 0.26,
+      "Sp": 0,
+      "route": "aanhoudend",
+      "K": 0.61,
+      "Kp": 0.41,
+      "n": 2,
+      "dagen": 2,
+      "bronnen": 1,
+      "ankers": [
+        "medisch",
+        "stromuitval",
+        "centrum",
+        "brandwer"
+      ],
+      "bewijs": [
+        {
+          "bron": "DeOrkaan",
+          "datum": "2026-10-29T23:00:00.000Z",
+          "c": 0.67,
+          "plek": "intro",
+          "titel": "Dikke onvoldoende voor financiële gezondheid ZMC"
+        },
+        {
+          "bron": "DeOrkaan",
+          "datum": "2026-11-08T23:00:00.000Z",
+          "c": 0.67,
+          "plek": "intro",
+          "titel": "Steekpartij in woning Zaandam, politie zoekt man op elektrische fiets"
         }
       ]
     },
@@ -185,8 +221,8 @@
       "key": "n:https://www.deorkaan.nl/overleden-persoon-gevonden-in-water-bij-zaaneiland-in-zaandam/",
       "soort": "nieuws",
       "kop": "Overleden persoon gevonden in water bij Zaaneiland in Zaandam",
-      "S": 0.19,
-      "Sa": 0.19,
+      "S": 0.18,
+      "Sa": 0.18,
       "Sp": 0,
       "route": "aanhoudend",
       "K": 0.38,
@@ -217,8 +253,8 @@
       "key": "a:2f3f3332ae",
       "soort": "agenda",
       "kop": "Zaanstad Beraad Raadzaal: TEST",
-      "S": 0.14,
-      "Sa": 0.14,
+      "S": 0.13,
+      "Sa": 0.13,
       "Sp": 0,
       "route": "aanhoudend",
       "K": 0.2,
@@ -500,37 +536,6 @@
           "c": 1,
           "plek": "kop",
           "titel": "Verkeersbesluit plaatsen laadpaal voor electrische auto's Matsmanzoom te Koog a/d Zaan"
-        }
-      ]
-    },
-    {
-      "key": "n:https://www.deorkaan.nl/zaanse-olifantenpaadjes-xxvii-provincialeweg-zaandam-de-kortste/",
-      "soort": "nieuws",
-      "kop": "Zaanse Olifantenpaadjes XXVII: Provincialeweg, Zaandam (de kortste?)",
-      "S": 0.04,
-      "Sa": 0.04,
-      "Sp": 0,
-      "route": "aanhoudend",
-      "K": 0,
-      "Kp": 0,
-      "n": 1,
-      "dagen": 1,
-      "bronnen": 1,
-      "ankers": [
-        "xxvii",
-        "olifantenpadje",
-        "provincialeweg",
-        "kortst",
-        "hornselijn",
-        "earth"
-      ],
-      "bewijs": [
-        {
-          "bron": "DeOrkaan",
-          "datum": "2026-10-22T22:00:00.000Z",
-          "c": 0.87,
-          "plek": "kop",
-          "titel": "Zaanse Olifantenpaadjes XXIV: Saendelverlaan"
         }
       ]
     },
@@ -1110,6 +1115,14 @@
         "n": 3,
         "bronnen": 2
       },
+      "n:https://www.deorkaan.nl/stroomuitval-bij-zaans-medisch-centrum-zmc-brandweer-ter-plaatse/": {
+        "kop": "Stroomuitval bij Zaans Medisch Centrum (ZMC), brandweer ter plaatse",
+        "S": 0.26,
+        "route": "aanhoudend",
+        "K": 0.61,
+        "n": 2,
+        "bronnen": 1
+      },
       "n:https://ted.europa.eu/nl/notice/-/detail/777319-2026": {
         "kop": "Aanbesteding afgerond zonder gunning: specialistische Jeugdhulp Segment B 2027 Zaanstreek-Waterland",
         "S": 0.23,
@@ -1291,14 +1304,6 @@
         "S": 0,
         "route": "geen",
         "K": 0.15,
-        "n": 0,
-        "bronnen": 0
-      },
-      "a:777fef6fda": {
-        "kop": "Uitnodiging en aanmeldlink voor deelname aan de Webinar raadsleden",
-        "S": 0,
-        "route": "geen",
-        "K": 0,
         "n": 0,
         "bronnen": 0
       }
