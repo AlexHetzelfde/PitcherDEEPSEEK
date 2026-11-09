@@ -1,5 +1,5 @@
 {
-  "gegenereerdOp": "2026-11-09T05:00:56.784Z",
+  "gegenereerdOp": "2026-11-09T06:00:53.173Z",
   "modus": "schaduw",
   "stempel": "v3-22806000",
   "tau": 0.5,
@@ -8,17 +8,17 @@
     "ai": true,
     "formule": "v3-22806000",
     "tekst": {
-      "werklijst": 0,
-      "lokaal": 0,
+      "werklijst": 1,
+      "lokaal": 1,
       "opgehaald": 0,
       "mislukt": 0,
       "uitgesteld": 0
     },
     "vergeten": 0,
     "tekstenOpgeruimd": 0,
-    "stukken": 362,
-    "kandidaten": 52,
-    "metAnker": 49,
+    "stukken": 363,
+    "kandidaten": 53,
+    "metAnker": 50,
     "zonderAnker": 3,
     "afgelast": 1,
     "dubbel": 0,
@@ -249,43 +249,6 @@
       ]
     },
     {
-      "key": "n:https://www.deorkaan.nl/54-jarige-vrouw-uit-oostzaan-aangehouden-na-dodelijke-steekpartij-in-zaandam/",
-      "soort": "nieuws",
-      "kop": "54-jarige vrouw uit Oostzaan aangehouden na dodelijke steekpartij in Zaandam",
-      "S": 0.09,
-      "Sa": 0.09,
-      "Sp": 0,
-      "route": "aanhoudend",
-      "K": 0.34,
-      "Kp": 0.18,
-      "n": 1,
-      "dagen": 1,
-      "bronnen": 1,
-      "ankers": [
-        "stekpartij",
-        "dodelijk",
-        "angehoud",
-        "ostzaner",
-        "klipon",
-        "trading",
-        "ghijsenlan",
-        "vrouw",
-        "pieter",
-        "jarig",
-        "verdenking",
-        "stekincident"
-      ],
-      "bewijs": [
-        {
-          "bron": "DeOrkaan",
-          "datum": "2026-10-25T23:00:00.000Z",
-          "c": 0.92,
-          "plek": "kop",
-          "titel": "Zaans voor ’t hekje: steekpartij en explosie"
-        }
-      ]
-    },
-    {
       "key": "n:https://www.deorkaan.nl/grote-politie-inzet-na-melding-steekpartij-bij-bedrijf-in-zaandam/",
       "soort": "nieuws",
       "kop": "Verdachte aangehouden na dodelijke steekpartij bij bedrijf in Zaandam 📸 – update",
@@ -317,6 +280,43 @@
           "bron": "DeOrkaan",
           "datum": "2026-10-25T23:00:00.000Z",
           "c": 0.88,
+          "plek": "kop",
+          "titel": "Zaans voor ’t hekje: steekpartij en explosie"
+        }
+      ]
+    },
+    {
+      "key": "n:https://www.deorkaan.nl/54-jarige-vrouw-uit-oostzaan-aangehouden-na-dodelijke-steekpartij-in-zaandam/",
+      "soort": "nieuws",
+      "kop": "54-jarige vrouw uit Oostzaan aangehouden na dodelijke steekpartij in Zaandam",
+      "S": 0.09,
+      "Sa": 0.09,
+      "Sp": 0,
+      "route": "aanhoudend",
+      "K": 0.34,
+      "Kp": 0.18,
+      "n": 1,
+      "dagen": 1,
+      "bronnen": 1,
+      "ankers": [
+        "stekpartij",
+        "dodelijk",
+        "angehoud",
+        "ostzaner",
+        "klipon",
+        "trading",
+        "ghijsenlan",
+        "vrouw",
+        "pieter",
+        "jarig",
+        "verdenking",
+        "stekincident"
+      ],
+      "bewijs": [
+        {
+          "bron": "DeOrkaan",
+          "datum": "2026-10-25T23:00:00.000Z",
+          "c": 0.92,
           "plek": "kop",
           "titel": "Zaans voor ’t hekje: steekpartij en explosie"
         }
