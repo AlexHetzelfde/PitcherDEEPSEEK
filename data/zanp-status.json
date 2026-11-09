@@ -1,5 +1,5 @@
 {
-  "gegenereerdOp": "2026-11-09T03:00:59.144Z",
+  "gegenereerdOp": "2026-11-09T04:00:52.956Z",
   "alertModus": "log",
   "bronnen": {
     "zaansche-molen": {
@@ -38,12 +38,12 @@
       "opeenvolgendLeeg": 0
     },
     "nh-actueel": {
-      "laatsteScrape": "2026-11-09T03:00:59.144Z",
+      "laatsteScrape": "2026-11-09T04:00:52.956Z",
       "gevonden": 15,
       "opeenvolgendLeeg": 0
     },
     "nh-cultuur": {
-      "laatsteScrape": "2026-11-09T03:00:59.144Z",
+      "laatsteScrape": "2026-11-09T04:00:52.956Z",
       "gevonden": 15,
       "opeenvolgendLeeg": 0
     },
@@ -78,9 +78,9 @@
       "opeenvolgendLeeg": 0
     },
     "hhnk": {
-      "laatsteScrape": "2026-11-08T22:00:53.184Z",
+      "laatsteScrape": "2026-11-09T04:00:52.956Z",
       "gevonden": 0,
-      "opeenvolgendLeeg": 38
+      "opeenvolgendLeeg": 39
     },
     "rechtspraak-noord-holland": {
       "laatsteScrape": "2026-11-08T18:00:52.373Z",
@@ -98,14 +98,14 @@
       "opeenvolgendLeeg": 0
     },
     "DeOrkaan": {
-      "laatsteScrape": "2026-11-09T03:00:59.144Z",
+      "laatsteScrape": "2026-11-09T04:00:52.956Z",
       "gevonden": 12,
       "opeenvolgendLeeg": 0
     },
     "politie-zaanstad": {
-      "laatsteScrape": "2026-11-08T22:00:53.184Z",
+      "laatsteScrape": "2026-11-09T04:00:52.956Z",
       "gevonden": 0,
-      "opeenvolgendLeeg": 34
+      "opeenvolgendLeeg": 35
     },
     "zaanstad-kalender": {
       "laatsteScrape": "2026-11-08T18:00:52.373Z",
@@ -123,9 +123,9 @@
       "opeenvolgendLeeg": 0
     },
     "vervoerregio-overzichten": {
-      "laatsteScrape": "2026-11-09T03:00:59.144Z",
+      "laatsteScrape": "2026-11-09T04:00:52.956Z",
       "gevonden": 0,
-      "opeenvolgendLeeg": 102
+      "opeenvolgendLeeg": 103
     }
   },
   "bronnenZonderRubriek": [],
@@ -339,7 +339,7 @@
       "nieuw": 0,
       "update": 0,
       "opnieuw": 0,
-      "ongewijzigd": 8,
+      "ongewijzigd": 0,
       "seed": 0
     },
     "cluster": {
