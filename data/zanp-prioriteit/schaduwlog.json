@@ -1,24 +1,25 @@
 {
-  "gegenereerdOp": "2026-11-09T06:00:53.173Z",
+  "gegenereerdOp": "2026-11-09T07:51:31.296Z",
   "modus": "schaduw",
-  "stempel": "v3-22806000",
+  "stempel": "v4-22806000",
   "tau": 0.5,
   "stats": {
     "modus": "schaduw",
     "ai": true,
-    "formule": "v3-22806000",
+    "roodGewist": 1,
+    "formule": "v4-22806000",
     "tekst": {
-      "werklijst": 1,
-      "lokaal": 1,
+      "werklijst": 2,
+      "lokaal": 2,
       "opgehaald": 0,
       "mislukt": 0,
       "uitgesteld": 0
     },
     "vergeten": 0,
     "tekstenOpgeruimd": 0,
-    "stukken": 363,
-    "kandidaten": 53,
-    "metAnker": 50,
+    "stukken": 365,
+    "kandidaten": 55,
+    "metAnker": 52,
     "zonderAnker": 3,
     "afgelast": 1,
     "dubbel": 0,
@@ -31,7 +32,7 @@
       "nieuwRood": 0,
       "noodrem": false
     },
-    "rood": 1
+    "rood": 0
   },
   "top": [
     {
@@ -75,6 +76,38 @@
           "c": 0.7,
           "plek": "intro",
           "titel": "Kennisgeving Burgemeester J. Hamming: Incident Elzenstraat"
+        }
+      ]
+    },
+    {
+      "key": "n:https://ted.europa.eu/nl/notice/-/detail/777319-2026",
+      "soort": "nieuws",
+      "kop": "Aanbesteding afgerond zonder gunning: specialistische Jeugdhulp Segment B 2027 Zaanstreek-Waterland",
+      "S": 0.23,
+      "Sa": 0.23,
+      "Sp": 0,
+      "route": "aanhoudend",
+      "K": 0.33,
+      "Kp": 0.2,
+      "n": 1,
+      "dagen": 1,
+      "bronnen": 1,
+      "ankers": [
+        "segment",
+        "jeugdhulp",
+        "waterland",
+        "afgerond",
+        "gunning",
+        "specialistisch",
+        "anbesteding"
+      ],
+      "bewijs": [
+        {
+          "bron": "ibabs-collegeberichten",
+          "datum": "2026-11-04T23:00:00.000Z",
+          "c": 1,
+          "plek": "kop",
+          "titel": "Inkoop specialistische jeugdhulp 2027"
         }
       ]
     },
@@ -262,8 +295,8 @@
       "dagen": 1,
       "bronnen": 1,
       "ankers": [
-        "stekpartij",
         "dodelijk",
+        "stekpartij",
         "angehoud",
         "klipon",
         "trading",
@@ -299,8 +332,8 @@
       "dagen": 1,
       "bronnen": 1,
       "ankers": [
-        "stekpartij",
         "dodelijk",
+        "stekpartij",
         "angehoud",
         "ostzaner",
         "klipon",
@@ -1024,29 +1057,6 @@
         "vereniging"
       ],
       "bewijs": []
-    },
-    {
-      "key": "n:https://www.deorkaan.nl/erfgoed-jubileum-gevierd-in-westzaan/",
-      "soort": "nieuws",
-      "kop": "Erfgoed-jubileum gevierd in Westzaan 📸 🎥",
-      "S": 0,
-      "Sa": 0,
-      "Sp": 0,
-      "route": "geen",
-      "K": 0,
-      "Kp": 0,
-      "n": 0,
-      "dagen": 0,
-      "bronnen": 0,
-      "ankers": [
-        "erfgoed",
-        "jubileum",
-        "erfgoeddag",
-        "westzans",
-        "gevierd",
-        "zansch"
-      ],
-      "bewijs": []
     }
   ],
   "formule": {
@@ -1094,438 +1104,26 @@
     "aiPerVerzoek": 6
   },
   "dagen": {
-    "2026-11-07": {
-      "n:https://zaanstad.bestuurlijkeinformatie.nl/Document/View/27931bc8-9e76-438d-82ba-f51af593bb38": {
-        "kop": "Kennisgeving burgemeester Hamming: incident Jaspersstraat",
-        "S": 0.78,
-        "route": "piek",
-        "K": 0.79,
-        "n": 4,
-        "bronnen": 3
-      },
-      "n:https://zaanstad.bestuurlijkeinformatie.nl/Document/View/8b899045-41e2-48f7-b963-2762303ae520": {
-        "kop": "Kennisgeving burgemeester Hamming: Verlenging sluiting woning Zuiddijk 172 en cameratoezicht",
-        "S": 0.73,
-        "route": "piek",
-        "K": 0.8,
-        "n": 5,
-        "bronnen": 3
-      },
-      "n:https://lokaleregelgeving.overheid.nl/CVDR769019/1": {
-        "kop": "Aanwijzingsbesluit verlenging tijdelijk cameratoezicht Zuiddijk te Zaandam",
-        "S": 0.66,
-        "route": "aanhoudend",
-        "K": 0.77,
-        "n": 5,
-        "bronnen": 3
-      },
-      "n:https://lokaleregelgeving.overheid.nl/CVDR768780/1": {
-        "kop": "Aanwijzingsbesluit verlenging tijdelijk cameratoezicht Jaspersstraat Zaandam",
-        "S": 0.38,
-        "route": "aanhoudend",
-        "K": 0.69,
-        "n": 2,
-        "bronnen": 2
-      },
-      "n:https://www.noord-holland.nl/Actueel/Archief/2026/November_2026/Warmtekansen_in_de_kassen": {
-        "kop": "Warmtekansen in de kassen",
-        "S": 0.34,
-        "route": "aanhoudend",
-        "K": 0.67,
-        "n": 2,
-        "bronnen": 1
-      },
-      "n:https://zaanstad.bestuurlijkeinformatie.nl/Document/View/e44deb13-3764-4b20-b7a9-900727754fcd": {
-        "kop": "Kennisgeving wethouder Groenewoud: Aanvraag windturbines Westelijk Havengebied",
-        "S": 0.33,
-        "route": "aanhoudend",
-        "K": 0.61,
-        "n": 2,
-        "bronnen": 1
-      },
-      "a:bd39f8159e": {
-        "kop": "Dichter bij de tijd",
-        "S": 0.26,
-        "route": "aanhoudend",
-        "K": 0,
-        "n": 2,
-        "bronnen": 1
-      },
-      "n:https://zaanstad.bestuurlijkeinformatie.nl/Document/View/0c06a5b5-5ff0-4908-8c05-cefd51385e97": {
-        "kop": "Inkoop specialistische jeugdhulp 2027",
-        "S": 0.25,
-        "route": "aanhoudend",
-        "K": 0.52,
-        "n": 1,
-        "bronnen": 1
-      },
-      "n:https://www.deorkaan.nl/volgend-weekend-den-uylbrug-afgesloten/": {
-        "kop": "Volgend weekend (13-16 november) Den Uylbrug afgesloten",
-        "S": 0.24,
-        "route": "aanhoudend",
-        "K": 0.59,
-        "n": 1,
-        "bronnen": 1
-      },
-      "n:https://www.vervoerregio.nl/artikel/20261106-negen-overheidspartijen-zetten-volgende-stap-voor-ni": {
-        "kop": "Negen overheidspartijen zetten volgende stap voor nieuwe doorfietsroutes",
-        "S": 0.21,
-        "route": "aanhoudend",
-        "K": 0.18,
-        "n": 1,
-        "bronnen": 1
-      },
-      "n:https://www.deorkaan.nl/waarheen-topkolf-erfgoed-fontana-blue/": {
-        "kop": "Waarheen: topkolf, erfgoed, Fontana Blue",
-        "S": 0.2,
-        "route": "aanhoudend",
-        "K": 0,
-        "n": 1,
-        "bronnen": 1
-      },
-      "n:https://lokaleregelgeving.overheid.nl/CVDR699867/2": {
-        "kop": "Machtiging tekenbevoegdheid collegestukken",
-        "S": 0.17,
-        "route": "aanhoudend",
-        "K": 0.16,
-        "n": 1,
-        "bronnen": 1
-      },
-      "a:4d3692245e": {
-        "kop": "Zaanstad Beraad Raadzaal: TEST",
-        "S": 0.16,
-        "route": "aanhoudend",
-        "K": 0.22,
-        "n": 3,
-        "bronnen": 1
-      },
-      "a:2f3f3332ae": {
-        "kop": "Zaanstad Beraad Raadzaal: TEST",
-        "S": 0.16,
-        "route": "aanhoudend",
-        "K": 0.22,
-        "n": 3,
-        "bronnen": 1
-      },
-      "n:https://www.noord-holland.nl/Actueel/Archief/2026/November_2026/Oog_voor_verbinding_tijdens_ambtsbezoek_aan_gemeente_Zaanstad": {
-        "kop": "Oog voor verbinding tijdens ambtsbezoek aan gemeente Zaanstad",
-        "S": 0.14,
-        "route": "aanhoudend",
-        "K": 0.33,
-        "n": 1,
-        "bronnen": 1
-      },
-      "a:e205032688": {
-        "kop": "Geweigerde omgevingsvergunning voor aanleggen van een in- of uitrit locatie Raaigras 88 Assendelft",
-        "S": 0.12,
-        "route": "aanhoudend",
-        "K": 0.17,
-        "n": 2,
-        "bronnen": 1
-      },
-      "n:https://www.deorkaan.nl/grote-politie-inzet-na-melding-steekpartij-bij-bedrijf-in-zaandam/": {
-        "kop": "Verdachte aangehouden na dodelijke steekpartij bij bedrijf in Zaandam 📸",
-        "S": 0.11,
-        "route": "aanhoudend",
-        "K": 0.46,
-        "n": 1,
-        "bronnen": 1
-      },
-      "n:https://www.deorkaan.nl/54-jarige-vrouw-uit-oostzaan-aangehouden-na-dodelijke-steekpartij-in-zaandam/": {
-        "kop": "54-jarige vrouw uit Oostzaan aangehouden na dodelijke steekpartij in Zaandam",
-        "S": 0.11,
-        "route": "aanhoudend",
-        "K": 0.38,
-        "n": 1,
-        "bronnen": 1
-      },
-      "a:1ebd6e1ddf": {
-        "kop": "Verkeersbesluit plaatsen laadpaal voor electrische auto's Matsmanzoom te Koog a/d Zaan",
-        "S": 0.1,
-        "route": "aanhoudend",
-        "K": 0.16,
-        "n": 1,
-        "bronnen": 1
-      },
-      "a:c201808017": {
-        "kop": "De Fabriek: George Michael",
-        "S": 0.1,
-        "route": "aanhoudend",
-        "K": 0,
-        "n": 1,
-        "bronnen": 1
-      },
-      "n:https://www.noord-holland.nl/Actueel/Archief/2026/November_2026/9_overheidspartijen_zetten_volgende_stap_voor_nieuwe_doorfietsroutes": {
-        "kop": "9 overheidspartijen zetten volgende stap voor nieuwe doorfietsroutes",
-        "S": 0.09,
-        "route": "aanhoudend",
-        "K": 0.19,
-        "n": 1,
-        "bronnen": 1
-      },
-      "a:d1eae07b85": {
-        "kop": "Brandweer Oostzaan viert 100-jarig jubileum",
-        "S": 0.08,
-        "route": "aanhoudend",
-        "K": 0.36,
-        "n": 1,
-        "bronnen": 1
-      },
-      "a:e26813c04c": {
-        "kop": "Geweigerde huisvestingsvergunning Klipperstraat 37 te Zaandam - Microsoft Teams",
-        "S": 0.07,
-        "route": "aanhoudend",
-        "K": 0.16,
-        "n": 2,
-        "bronnen": 1
-      },
-      "n:https://www.deorkaan.nl/dichters-laten-de-tijd-spreken-in-museum-zaanse-tijd-%f0%9f%93%b8-%f0%9f%8e%a5/": {
-        "kop": "Dichters laten de tijd spreken in Museum Zaanse Tijd 📸 🎥",
-        "S": 0.07,
-        "route": "aanhoudend",
-        "K": 0,
-        "n": 1,
-        "bronnen": 1
-      },
-      "a:54bf0d34fe": {
-        "kop": "Verkeersbesluit plaatsen laadpaal voor elektrische auto's locatie Kaaikhof te Assendelft",
-        "S": 0.05,
-        "route": "aanhoudend",
-        "K": 0.16,
-        "n": 1,
-        "bronnen": 1
-      }
-    },
-    "2026-11-08": {
-      "n:https://zaanstad.bestuurlijkeinformatie.nl/Document/View/8b899045-41e2-48f7-b963-2762303ae520": {
-        "kop": "Kennisgeving burgemeester Hamming: Verlenging sluiting woning Zuiddijk 172 en cameratoezicht",
-        "S": 0.73,
-        "route": "aanhoudend",
-        "K": 0.8,
-        "n": 5,
-        "bronnen": 3
-      },
-      "n:https://zaanstad.bestuurlijkeinformatie.nl/Document/View/27931bc8-9e76-438d-82ba-f51af593bb38": {
-        "kop": "Kennisgeving burgemeester Hamming: incident Jaspersstraat",
-        "S": 0.52,
-        "route": "aanhoudend",
-        "K": 0.78,
-        "n": 4,
-        "bronnen": 3
-      },
-      "n:https://lokaleregelgeving.overheid.nl/CVDR769019/1": {
-        "kop": "Aanwijzingsbesluit verlenging tijdelijk cameratoezicht Zuiddijk te Zaandam",
-        "S": 0.49,
-        "route": "aanhoudend",
-        "K": 0.76,
-        "n": 3,
-        "bronnen": 2
-      },
-      "n:https://lokaleregelgeving.overheid.nl/CVDR768780/1": {
-        "kop": "Aanwijzingsbesluit verlenging tijdelijk cameratoezicht Jaspersstraat Zaandam",
-        "S": 0.38,
-        "route": "aanhoudend",
-        "K": 0.69,
-        "n": 2,
-        "bronnen": 2
-      },
-      "n:https://www.noord-holland.nl/Actueel/Archief/2026/November_2026/Warmtekansen_in_de_kassen": {
-        "kop": "Warmtekansen in de kassen",
-        "S": 0.32,
-        "route": "aanhoudend",
-        "K": 0.66,
-        "n": 2,
-        "bronnen": 1
-      },
-      "n:https://zaanstad.bestuurlijkeinformatie.nl/Document/View/e44deb13-3764-4b20-b7a9-900727754fcd": {
-        "kop": "Kennisgeving wethouder Groenewoud: Aanvraag windturbines Westelijk Havengebied",
-        "S": 0.31,
-        "route": "aanhoudend",
-        "K": 0.6,
-        "n": 2,
-        "bronnen": 1
-      },
-      "n:https://zaanstad.bestuurlijkeinformatie.nl/Document/View/0c06a5b5-5ff0-4908-8c05-cefd51385e97": {
-        "kop": "Inkoop specialistische jeugdhulp 2027",
-        "S": 0.24,
-        "route": "aanhoudend",
-        "K": 0.52,
-        "n": 1,
-        "bronnen": 1
-      },
-      "n:https://www.deorkaan.nl/volgend-weekend-den-uylbrug-afgesloten/": {
-        "kop": "Volgend weekend (13-16 november) Den Uylbrug afgesloten",
-        "S": 0.23,
-        "route": "aanhoudend",
-        "K": 0.59,
-        "n": 1,
-        "bronnen": 1
-      },
-      "n:https://www.vervoerregio.nl/artikel/20261106-negen-overheidspartijen-zetten-volgende-stap-voor-ni": {
-        "kop": "Negen overheidspartijen zetten volgende stap voor nieuwe doorfietsroutes",
-        "S": 0.21,
-        "route": "aanhoudend",
-        "K": 0.18,
-        "n": 1,
-        "bronnen": 1
-      },
-      "n:https://www.deorkaan.nl/overleden-persoon-bij-zaaneiland-slachtoffer-van-noodlottig-ongeval/": {
-        "kop": "Overleden persoon bij Zaaneiland slachtoffer van noodlottig ongeval",
-        "S": 0.21,
-        "route": "aanhoudend",
-        "K": 0.38,
-        "n": 1,
-        "bronnen": 1
-      },
-      "n:https://www.deorkaan.nl/overleden-persoon-gevonden-in-water-bij-zaaneiland-in-zaandam/": {
-        "kop": "Overleden persoon gevonden in water bij Zaaneiland in Zaandam",
-        "S": 0.2,
-        "route": "aanhoudend",
-        "K": 0.38,
-        "n": 1,
-        "bronnen": 1
-      },
-      "n:https://lokaleregelgeving.overheid.nl/CVDR699867/2": {
-        "kop": "Machtiging tekenbevoegdheid collegestukken",
-        "S": 0.16,
-        "route": "aanhoudend",
-        "K": 0.16,
-        "n": 1,
-        "bronnen": 1
-      },
-      "a:2f3f3332ae": {
-        "kop": "Zaanstad Beraad Raadzaal: TEST",
-        "S": 0.15,
-        "route": "aanhoudend",
-        "K": 0.22,
-        "n": 3,
-        "bronnen": 1
-      },
-      "a:e205032688": {
-        "kop": "Geweigerde omgevingsvergunning voor aanleggen van een in- of uitrit locatie Raaigras 88 Assendelft",
-        "S": 0.11,
-        "route": "aanhoudend",
-        "K": 0.16,
-        "n": 2,
-        "bronnen": 1
-      },
-      "n:https://www.deorkaan.nl/54-jarige-vrouw-uit-oostzaan-aangehouden-na-dodelijke-steekpartij-in-zaandam/": {
-        "kop": "54-jarige vrouw uit Oostzaan aangehouden na dodelijke steekpartij in Zaandam",
-        "S": 0.11,
-        "route": "aanhoudend",
-        "K": 0.37,
-        "n": 1,
-        "bronnen": 1
-      },
-      "n:https://www.deorkaan.nl/grote-politie-inzet-na-melding-steekpartij-bij-bedrijf-in-zaandam/": {
-        "kop": "Verdachte aangehouden na dodelijke steekpartij bij bedrijf in Zaandam 📸 – update",
-        "S": 0.1,
-        "route": "aanhoudend",
-        "K": 0.45,
-        "n": 1,
-        "bronnen": 1
-      },
-      "n:https://www.deorkaan.nl/fototijdreis-guisweg-ter-hoogte-van-spoorwegovergang-zaandijk/": {
-        "kop": "Fototijdreis: Guisweg ter hoogte van spoorwegovergang (Zaandijk)",
-        "S": 0.1,
-        "route": "aanhoudend",
-        "K": 0.69,
-        "n": 1,
-        "bronnen": 1
-      },
-      "a:1ebd6e1ddf": {
-        "kop": "Verkeersbesluit plaatsen laadpaal voor electrische auto's Matsmanzoom te Koog a/d Zaan",
-        "S": 0.09,
-        "route": "aanhoudend",
-        "K": 0.16,
-        "n": 1,
-        "bronnen": 1
-      },
-      "n:https://www.noord-holland.nl/Actueel/Archief/2026/November_2026/9_overheidspartijen_zetten_volgende_stap_voor_nieuwe_doorfietsroutes": {
-        "kop": "9 overheidspartijen zetten volgende stap voor nieuwe doorfietsroutes",
-        "S": 0.09,
-        "route": "aanhoudend",
-        "K": 0.19,
-        "n": 1,
-        "bronnen": 1
-      },
-      "a:d1eae07b85": {
-        "kop": "Brandweer Oostzaan viert 100-jarig jubileum",
-        "S": 0.07,
-        "route": "aanhoudend",
-        "K": 0.35,
-        "n": 1,
-        "bronnen": 1
-      },
-      "a:e26813c04c": {
-        "kop": "Geweigerde huisvestingsvergunning Klipperstraat 37 te Zaandam - Microsoft Teams",
-        "S": 0.07,
-        "route": "aanhoudend",
-        "K": 0.16,
-        "n": 2,
-        "bronnen": 1
-      },
-      "n:https://www.deorkaan.nl/dichters-laten-de-tijd-spreken-in-museum-zaanse-tijd-%f0%9f%93%b8-%f0%9f%8e%a5/": {
-        "kop": "Dichters laten de tijd spreken in Museum Zaanse Tijd 📸 🎥",
-        "S": 0.06,
-        "route": "aanhoudend",
-        "K": 0,
-        "n": 1,
-        "bronnen": 1
-      },
-      "a:54bf0d34fe": {
-        "kop": "Verkeersbesluit plaatsen laadpaal voor elektrische auto's locatie Kaaikhof te Assendelft",
-        "S": 0.05,
-        "route": "aanhoudend",
-        "K": 0.16,
-        "n": 1,
-        "bronnen": 1
-      },
-      "n:https://www.deorkaan.nl/zaanse-olifantenpaadjes-xxvii-provincialeweg-zaandam-de-kortste/": {
-        "kop": "Zaanse Olifantenpaadjes XXVII: Provincialeweg, Zaandam (de kortste?)",
-        "S": 0.05,
-        "route": "aanhoudend",
-        "K": 0,
-        "n": 1,
-        "bronnen": 1
-      },
-      "a:357ab9afd4": {
-        "kop": "Fontana Blue",
-        "S": 0,
-        "route": "geen",
-        "K": 0,
-        "n": 0,
-        "bronnen": 0
-      }
-    },
     "2026-11-09": {
-      "n:https://zaanstad.bestuurlijkeinformatie.nl/Document/View/8b899045-41e2-48f7-b963-2762303ae520": {
-        "kop": "Kennisgeving burgemeester Hamming: Verlenging sluiting woning Zuiddijk 172 en cameratoezicht",
-        "S": 0.69,
-        "route": "aanhoudend",
-        "K": 0.79,
-        "n": 5,
-        "bronnen": 3
-      },
       "n:https://lokaleregelgeving.overheid.nl/CVDR769019/1": {
         "kop": "Aanwijzingsbesluit verlenging tijdelijk cameratoezicht Zuiddijk te Zaandam",
-        "S": 0.46,
+        "S": 0.45,
         "route": "aanhoudend",
         "K": 0.75,
         "n": 3,
         "bronnen": 2
       },
-      "n:https://zaanstad.bestuurlijkeinformatie.nl/Document/View/e44deb13-3764-4b20-b7a9-900727754fcd": {
-        "kop": "Kennisgeving wethouder Groenewoud: Aanvraag windturbines Westelijk Havengebied",
-        "S": 0.29,
+      "n:https://ted.europa.eu/nl/notice/-/detail/777319-2026": {
+        "kop": "Aanbesteding afgerond zonder gunning: specialistische Jeugdhulp Segment B 2027 Zaanstreek-Waterland",
+        "S": 0.23,
         "route": "aanhoudend",
-        "K": 0.58,
-        "n": 2,
+        "K": 0.33,
+        "n": 1,
         "bronnen": 1
       },
       "n:https://www.deorkaan.nl/overleden-persoon-bij-zaaneiland-slachtoffer-van-noodlottig-ongeval/": {
         "kop": "Overleden persoon bij Zaaneiland slachtoffer van noodlottig ongeval",
-        "S": 0.21,
+        "S": 0.2,
         "route": "aanhoudend",
         "K": 0.38,
         "n": 1,
@@ -1536,14 +1134,6 @@
         "S": 0.19,
         "route": "aanhoudend",
         "K": 0.38,
-        "n": 1,
-        "bronnen": 1
-      },
-      "n:https://www.vervoerregio.nl/artikel/20261106-negen-overheidspartijen-zetten-volgende-stap-voor-ni": {
-        "kop": "Negen overheidspartijen zetten volgende stap voor nieuwe doorfietsroutes",
-        "S": 0.19,
-        "route": "aanhoudend",
-        "K": 0.17,
         "n": 1,
         "bronnen": 1
       },
@@ -1571,25 +1161,25 @@
         "n": 1,
         "bronnen": 1
       },
+      "n:https://www.deorkaan.nl/grote-politie-inzet-na-melding-steekpartij-bij-bedrijf-in-zaandam/": {
+        "kop": "Verdachte aangehouden na dodelijke steekpartij bij bedrijf in Zaandam 📸 – update",
+        "S": 0.09,
+        "route": "aanhoudend",
+        "K": 0.43,
+        "n": 1,
+        "bronnen": 1
+      },
       "n:https://www.deorkaan.nl/54-jarige-vrouw-uit-oostzaan-aangehouden-na-dodelijke-steekpartij-in-zaandam/": {
         "kop": "54-jarige vrouw uit Oostzaan aangehouden na dodelijke steekpartij in Zaandam",
-        "S": 0.1,
+        "S": 0.09,
         "route": "aanhoudend",
         "K": 0.34,
         "n": 1,
         "bronnen": 1
       },
-      "n:https://www.deorkaan.nl/grote-politie-inzet-na-melding-steekpartij-bij-bedrijf-in-zaandam/": {
-        "kop": "Verdachte aangehouden na dodelijke steekpartij bij bedrijf in Zaandam 📸 – update",
-        "S": 0.1,
-        "route": "aanhoudend",
-        "K": 0.44,
-        "n": 1,
-        "bronnen": 1
-      },
       "a:1ebd6e1ddf": {
         "kop": "Verkeersbesluit plaatsen laadpaal voor electrische auto's Matsmanzoom te Koog a/d Zaan",
-        "S": 0.09,
+        "S": 0.08,
         "route": "aanhoudend",
         "K": 0.16,
         "n": 1,
@@ -1597,7 +1187,7 @@
       },
       "a:d1eae07b85": {
         "kop": "Brandweer Oostzaan viert 100-jarig jubileum",
-        "S": 0.07,
+        "S": 0.06,
         "route": "aanhoudend",
         "K": 0.35,
         "n": 1,
@@ -1693,6 +1283,22 @@
       },
       "a:777fef6fda": {
         "kop": "Uitnodiging en aanmeldlink voor deelname aan de Webinar raadsleden",
+        "S": 0,
+        "route": "geen",
+        "K": 0,
+        "n": 0,
+        "bronnen": 0
+      },
+      "a:2ee44579cf": {
+        "kop": "Zaanstad Beraad Raadzaal",
+        "S": 0,
+        "route": "geen",
+        "K": 0.1,
+        "n": 0,
+        "bronnen": 0
+      },
+      "a:ef5e3a8881": {
+        "kop": "Indrukwekkend theater in het Zaans Cultuurhuis met Letters Home.",
         "S": 0,
         "route": "geen",
         "K": 0,

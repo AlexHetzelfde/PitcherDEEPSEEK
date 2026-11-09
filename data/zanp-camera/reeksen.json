@@ -1,0 +1,164 @@
+{
+  "reeksen": [
+    {
+      "id": "cam-3f1a1f5f09",
+      "locatie": "Jaspersstraat",
+      "plaats": "Zaandam",
+      "start": "2026-09-29",
+      "eind": "2026-12-18",
+      "aantal": 2,
+      "besluiten": [
+        {
+          "nr": 1,
+          "url": "https://zoek.officielebekendmakingen.nl/gmb-2026-459450.html",
+          "soort": "aanwijzing",
+          "titel": "Aanwijzingsbesluit tijdelijk cameratoezicht Jaspersstraat in Zaandam",
+          "start": "2026-09-29",
+          "eind": "2026-11-06",
+          "pubdate": "2026-09-29",
+          "redenCategorieen": [
+            "Overlast",
+            "Brand/explosie"
+          ],
+          "redenSamenvatting": "uit de bestuurlijke rapportage van de politie van 28 september 2026 blijkt dat er op 24 september 2026 omstreeks 22:15 uur een explosie aan een woning heeft plaatsgevonden."
+        },
+        {
+          "nr": 2,
+          "url": "https://zoek.officielebekendmakingen.nl/gmb-2026-516378.html",
+          "soort": "verlenging",
+          "titel": "Aanwijzingsbesluit verlenging tijdelijk cameratoezicht Jaspersstraat in Zaandam",
+          "start": "2026-11-06",
+          "eind": "2026-12-18",
+          "pubdate": "2026-11-06",
+          "redenCategorieen": [
+            "Overlast",
+            "Brand/explosie"
+          ],
+          "redenSamenvatting": "het tijdelijk cameratoezicht is ingezet naar aanleiding van de explosie die op 24 september 2026 omstreeks 22:15 uur heeft plaatsgevonden in de Jaspersstraat;"
+        }
+      ]
+    },
+    {
+      "id": "cam-75d684849b",
+      "locatie": "Zuiddijk",
+      "plaats": "Zaandam",
+      "start": "2026-10-09",
+      "eind": "2026-12-04",
+      "aantal": 2,
+      "besluiten": [
+        {
+          "nr": 1,
+          "url": "https://zoek.officielebekendmakingen.nl/gmb-2026-477250.html",
+          "soort": "verlenging",
+          "titel": "Aanwijzingsbesluit verlenging tijdelijk cameratoezicht Zuiddijk te Zaandam",
+          "start": "2026-10-09",
+          "eind": "2026-11-06",
+          "pubdate": "2026-10-09",
+          "redenCategorieen": [
+            "Overlast",
+            "Brand/explosie"
+          ],
+          "redenSamenvatting": "het tijdelijk cameratoezicht is ingezet naar aanleiding van het plaatsen van een explosief op 25 augustus 2026, en een explosie die op 1 september 2026 heeft plaatsgevonden op de Zuiddijk;"
+        },
+        {
+          "nr": 2,
+          "url": "https://zoek.officielebekendmakingen.nl/gmb-2026-524186.html",
+          "soort": "verlenging",
+          "titel": "Aanwijzingsbesluit verlenging tijdelijk cameratoezicht Zuiddijk te Zaandam",
+          "start": "2026-11-06",
+          "eind": "2026-12-04",
+          "pubdate": "2026-11-06",
+          "redenCategorieen": [
+            "Overlast",
+            "Brand/explosie"
+          ],
+          "redenSamenvatting": "het tijdelijk cameratoezicht is ingezet naar aanleiding van het plaatsen van een explosief op 25 augustus 2026, en een explosie die op 1 september 2026 heeft plaatsgevonden op de Zuiddijk;"
+        }
+      ]
+    },
+    {
+      "id": "cam-5263d7d958",
+      "locatie": "Elzenstraat",
+      "plaats": "Wormerveer",
+      "start": "2026-10-01",
+      "eind": "2026-12-01",
+      "aantal": 2,
+      "besluiten": [
+        {
+          "nr": 1,
+          "url": "https://zoek.officielebekendmakingen.nl/gmb-2026-459380.html",
+          "soort": "verlenging",
+          "titel": "Aanwijzingsbesluit verlenging tijdelijk cameratoezicht Elzenstraat in Wormerveer",
+          "start": "2026-10-01",
+          "eind": "2026-11-01",
+          "pubdate": "2026-10-01",
+          "redenCategorieen": [
+            "Overlast"
+          ],
+          "redenSamenvatting": "het incident heeft plaatsgevonden midden in een woonwijk en heeft geleid tot gevoelens van angst en onrust in de gemeente in het algemeen en in de Elzenstraat en de omliggende omgeving in het bijzonder;"
+        },
+        {
+          "nr": 2,
+          "url": "https://zoek.officielebekendmakingen.nl/gmb-2026-517023.html",
+          "soort": "verlenging",
+          "titel": "Aanwijzingsbesluit verlenging tijdelijk cameratoezicht Elzenstraat in Wormerveer",
+          "start": "2026-11-01",
+          "eind": "2026-12-01",
+          "pubdate": "2026-11-03",
+          "redenCategorieen": [
+            "Overlast"
+          ],
+          "redenSamenvatting": "het incident heeft plaatsgevonden midden in een woonwijk en heeft geleid tot gevoelens van angst en onrust in de gemeente in het algemeen en in de Elzenstraat en de omliggende omgeving in het bijzonder;"
+        }
+      ]
+    },
+    {
+      "id": "cam-e2a31dadd8",
+      "locatie": "Rode Zee",
+      "plaats": "Zaandam",
+      "start": "2026-10-18",
+      "eind": "2026-11-15",
+      "aantal": 1,
+      "besluiten": [
+        {
+          "nr": 1,
+          "url": "https://zoek.officielebekendmakingen.nl/gmb-2026-491005.html",
+          "soort": "verlenging",
+          "titel": "Aanwijzingsbesluit verlenging tijdelijk cameratoezicht Rode Zee in Zaandam",
+          "start": "2026-10-18",
+          "eind": "2026-11-15",
+          "pubdate": "2026-10-19",
+          "redenCategorieen": [
+            "Overlast",
+            "Brand/explosie"
+          ],
+          "redenSamenvatting": "het tijdelijk cameratoezicht is ingezet naar aanleiding van de explosie die op 6 september 2026 heeft plaatsgevonden in de Rode Zee te Zaandam;"
+        }
+      ]
+    },
+    {
+      "id": "cam-5e5d6512f5",
+      "locatie": "Schoenerstraat",
+      "plaats": "Zaandam",
+      "start": "2026-10-13",
+      "eind": "2026-11-14",
+      "aantal": 1,
+      "besluiten": [
+        {
+          "nr": 1,
+          "url": "https://zoek.officielebekendmakingen.nl/gmb-2026-482339.html",
+          "soort": "aanwijzing",
+          "titel": "Aanwijzingsbesluit tijdelijk cameratoezicht Schoenerstraat in Zaandam",
+          "start": "2026-10-13",
+          "eind": "2026-11-14",
+          "pubdate": "2026-10-13",
+          "redenCategorieen": [
+            "Overlast",
+            "Brand/explosie"
+          ],
+          "redenSamenvatting": "uit de bestuurlijke rapportage van de politie van 12 oktober 2026 blijkt dat er op 3 oktober 2026 een explosief bij een woning aan de Schoenerstraat te Zaandam is aangetroffen;"
+        }
+      ]
+    }
+  ]
+}
