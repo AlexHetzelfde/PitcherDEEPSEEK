@@ -100,6 +100,7 @@ const state = {
   bezoekStart: leesOpslag("zanp-laatst-bezocht", null),
   actieveTab: "nieuwsdienst",
   popup: null, // { id, kolom } zolang de pop-up open staat
+  cameraReeksen: [], // reeksen van cameratoezicht (uit berichten.json), voor de pop-up
 };
 
 // ---------------------------------------------------------------------------
@@ -325,6 +326,7 @@ function zetBerichten(data) {
   state.rubrieken = Array.isArray(d.rubrieken) ? d.rubrieken : [];
   state.alertModus = d.alertModus === "aan" ? "aan" : "log";
   state.berichtenGegenereerdOp = d.gegenereerdOp || null;
+  state.cameraReeksen = Array.isArray(d.cameraReeksen) ? d.cameraReeksen : [];
 
   const nieuwste = new Map();
   for (const r of state.berichten) {
@@ -500,7 +502,11 @@ function renderWireDetail(r) {
   if (r.tekst) delen.push(`<p>${escapeHtml(r.tekst)}</p>`);
 
   const herkomst = herkomstVan(r);
-  if (r.ai && r.tekst) {
+  if (r.stemming) {
+    delen.push(renderStemming(r));
+  } else if (r.camera) {
+    delen.push(renderCamera(r));
+  } else if (r.ai && r.tekst) {
     delen.push('<p><span class="wire-label ai">AI</span>Automatisch samengevat uit de bron. Controleer de feiten voor gebruik.</p>');
   } else if (herkomst === "signaal") {
     delen.push('<p><span class="wire-label signaal">Signaal</span>Artikel of agenda van een andere redactie: alleen de kop en een link. Lees het artikel via de bron.</p>');
@@ -527,6 +533,129 @@ function renderWireDetail(r) {
     delen.push(`<p>Ook gemeld door: ${links}</p>`);
   }
   return delen.join("");
+}
+
+// --- Cameratoezicht -------------------------------------------------------------
+
+const CAMERA_SOORT = { aanwijzing: "Aanwijzing", extra: "Extra camera's", verlenging: "Verlenging" };
+
+function datumLang(dag) {
+  return new Date(`${dag}T12:00:00Z`).toLocaleDateString("nl-NL", { day: "numeric", month: "short", year: "numeric", timeZone: "UTC" });
+}
+
+// De reeks (alle besluiten van dezelfde plek) waar dit bericht bij hoort, en zijn plek erin.
+function cameraReeksVan(r) {
+  for (const reeks of state.cameraReeksen) {
+    const besluit = (reeks.besluiten || []).find((b) => b.url === r.url);
+    if (besluit) return { reeks, besluit };
+  }
+  return null;
+}
+
+function renderCamera(r) {
+  const c = r.camera || {};
+  const gevonden = cameraReeksVan(r);
+  const rij = (label, waarde) => (waarde ? `<div class="stemming-rij"><dt>${label}</dt><dd>${waarde}</dd></div>` : "");
+  const plek = [c.locatie ? escapeHtml(c.locatie) : "", c.plaats ? escapeHtml(c.plaats) : ""].filter(Boolean).join(", ");
+  const periode = c.start && c.eind ? `${escapeHtml(datumLang(c.start))} t/m ${escapeHtml(datumLang(c.eind))}` : "";
+  const positie = gevonden ? `${gevonden.besluit.nr}e van ${gevonden.reeks.aantal} besluit${gevonden.reeks.aantal === 1 ? "" : "en"} voor deze plek` : "";
+  const redenen = Array.isArray(c.redenCategorieen) && c.redenCategorieen.length ? c.redenCategorieen.map(escapeHtml).join(", ") : "";
+  return (
+    `<section class="stemming">` +
+    `<p><span class="wire-label ${gevonden && gevonden.besluit.nr === 1 && c.soort === "aanwijzing" ? "waarschuwing" : "signaal"}">Cameratoezicht</span>` +
+    `<strong>${escapeHtml(CAMERA_SOORT[c.soort] || "Besluit")}</strong></p>` +
+    `<dl class="stemming-lijst">` +
+    rij("Plek", plek) +
+    rij("Periode", periode) +
+    rij("In de reeks", escapeHtml(positie)) +
+    rij("Aanleiding", redenen) +
+    `</dl>` +
+    (c.redenSamenvatting ? `<p class="stemming-aanleiding">${escapeHtml(c.redenSamenvatting)}</p>` : "") +
+    `<p class="stemming-bron">Besluit uit officielebekendmakingen.nl (officiële bron).</p>` +
+    `</section>`
+  );
+}
+
+// Zijbalk van de pop-up: alle besluiten van dezelfde plek, om tussen te navigeren.
+function renderCameraReeks(r) {
+  const gevonden = cameraReeksVan(r);
+  if (!gevonden) return "";
+  const { reeks } = gevonden;
+  const nieuwsteVan = (url) => {
+    let beste = null;
+    for (const x of state.perGroep.values()) if (x.url === url) beste = x;
+    return beste;
+  };
+  const leden = reeks.besluiten
+    .map((b) => {
+      const huidig = b.url === r.url;
+      const tekst = `${b.nr}. ${CAMERA_SOORT[b.soort] || "Besluit"} ${datumKort(b.start)} – ${datumKort(b.eind)}`;
+      const record = nieuwsteVan(b.url);
+      if (huidig) return `<span class="chip chip-bericht chip-actief" aria-current="true">${escapeHtml(tekst)}</span>`;
+      if (record) return `<button type="button" class="chip chip-bericht" data-actie="open-bericht" data-id="${escapeHtml(record.id)}">${escapeHtml(tekst)}</button>`;
+      return `<a class="chip chip-bericht" href="${escapeHtml(veiligeUrl(b.url))}" target="_blank" rel="noopener" title="Dit besluit staat niet meer in de stroom: open de bron">${escapeHtml(tekst)} ↗</a>`;
+    })
+    .join("");
+  const plek = reeks.plaats ? `${reeks.locatie} (${reeks.plaats})` : reeks.locatie;
+  return (
+    `<section class="modal-blok"><p class="modal-blok-titel">Reeks: ${escapeHtml(plek)}</p>` +
+    `<p class="modal-blok-tekst">${reeks.aantal} besluit${reeks.aantal === 1 ? "" : "en"}, ${escapeHtml(datumKort(reeks.start))} t/m ${escapeHtml(datumKort(reeks.eind))}</p>` +
+    `<div class="wire-chips wire-chips-kolom">${leden}</div></section>`
+  );
+}
+
+// Een motie waarover gestemd is: uitslag, balk voor/tegen, fracties, indiener
+// en de strekking (wat de motie vraagt). Alles komt uit scrapers/moties.js.
+function renderStemming(r) {
+  const s = r.stemming || {};
+  const k = r.strekking || {};
+  const aangenomen = s.uitslag === "aangenomen";
+  const voor = Number.isFinite(s.voorPct) ? Math.max(0, Math.min(100, s.voorPct)) : null;
+  const tegen = voor === null ? null : 100 - voor;
+  const lijst = (a) => (Array.isArray(a) && a.length ? a.map(escapeHtml).join(", ") : "");
+  const rij = (label, waarde) => (waarde ? `<div class="stemming-rij"><dt>${label}</dt><dd>${waarde}</dd></div>` : "");
+
+  const wanneer = [];
+  if (s.vergadering) wanneer.push(escapeHtml(s.vergadering));
+  if (s.vergaderdatum) wanneer.push(escapeHtml(datumKort(s.vergaderdatum)));
+  const agendapunt = [s.agendapunt ? escapeHtml(s.agendapunt) : "", wanneer.length ? `(${wanneer.join(", ")})` : ""].filter(Boolean).join(" ");
+
+  const indiener = [s.indiener ? escapeHtml(s.indiener) : "", lijst(s.fracties) ? `(${lijst(s.fracties)})` : ""].filter(Boolean).join(" ");
+
+  const balk =
+    voor === null
+      ? ""
+      : `<div class="stemming-balk" role="img" aria-label="${voor}% voor, ${tegen}% tegen">` +
+        `<span class="stemming-voor" style="width: ${voor}%"></span><span class="stemming-tegen" style="width: ${tegen}%"></span></div>` +
+        `<p class="stemming-pct"><span>${voor}% voor</span><span>${tegen}% tegen</span></p>`;
+
+  let strekking = "";
+  if (k.tekst) {
+    const titel = k.bron === "begin" ? "Begin van de motietekst" : "Strekking";
+    strekking =
+      `<div class="stemming-strekking">` +
+      (k.aanleiding ? `<p class="stemming-aanleiding">${escapeHtml(k.aanleiding)}</p>` : "") +
+      `<p><span class="wire-label">${titel}</span>${escapeHtml(k.tekst)}</p></div>`;
+  } else {
+    strekking = "<p>De tekst van de motie kon niet worden gelezen. Open de bron voor de strekking.</p>";
+  }
+
+  return (
+    `<section class="stemming">` +
+    `<p><span class="wire-label ${aangenomen ? "stemming-aangenomen" : "stemming-verworpen"}">Stemming</span>` +
+    `<strong>${aangenomen ? "Aangenomen" : "Verworpen"}</strong></p>` +
+    balk +
+    `<dl class="stemming-lijst">` +
+    rij("Voor", lijst(s.fractiesVoor)) +
+    rij("Tegen", lijst(s.fractiesTegen)) +
+    rij("Indiener", indiener) +
+    rij("Mede-ondertekend", (Array.isArray(s.medeondertekenaars) && s.medeondertekenaars.length ? s.medeondertekenaars.map(escapeHtml).join("; ") : "")) +
+    rij("Agendapunt", agendapunt) +
+    `</dl>` +
+    strekking +
+    `<p class="stemming-bron">Uitslag en motietekst uit iBabs (officiële bron).</p>` +
+    `</section>`
+  );
 }
 
 // Chips onder de meta-regel: wie meldt het nog meer, wat staat ervan in de
@@ -726,6 +855,7 @@ function renderPopup() {
         <p class="modal-blok-titel">Versies</p>
         <div class="wire-chips">${versieChips}</div>
       </section>
+      ${r.camera ? renderCameraReeks(r) : ""}
       ${tagChip ? `<section class="modal-blok"><p class="modal-blok-titel">Tags</p><div class="wire-chips">${tagChip}</div></section>` : ""}
       ${gerelateerd ? `<section class="modal-blok"><p class="modal-blok-titel">Gerelateerd</p>${gerelateerd}</section>` : ""}
     </div>`;
@@ -864,11 +994,12 @@ function renderAgendaItem(item) {
   // Rood: het onderwerp leeft groot (berekend door ZANP, zie scraper/prioriteit/). De reden staat in de tooltip.
   if (item.rood) chips.push(`<span class="chip chip-rood" title="${escapeHtml(item.rood.reden || "Groot onderwerp")}">groot onderwerp</span>`);
   // Het bericht erover (T), eventueel meer berichten over dezelfde zaak, en de uitkomst.
-  const titel = item.afkomst === "termijn" ? "Termijn uit bericht" : item.afkomst === "bericht" ? "Agendapunt uit bericht" : "Bericht over dit agendapunt";
+  const titel = item.afkomst === "termijn" ? "Termijn uit bericht" : item.afkomst === "bericht" ? "Agendapunt uit bericht" : item.afkomst === "camera" ? "Laatste besluit van deze camera-reeks" : "Bericht over dit agendapunt";
   const eigen = berichtKnop(item.berichtId, titel);
   if (eigen) chips.push(eigen);
   else if (item.afkomst === "bericht") chips.push('<span class="chip chip-bericht" title="Agendapunt uit een bericht">uit bericht</span>');
   else if (item.afkomst === "termijn") chips.push('<span class="chip chip-bericht" title="Termijn uit een bericht">termijn</span>');
+  else if (item.afkomst === "camera") chips.push('<span class="chip chip-bericht" title="Dag na het einde van het cameratoezicht">camera</span>');
   for (const id of (item.meerBerichten || []).slice(0, 3)) chips.push(berichtKnop(id, "Ander bericht over dit agendapunt"));
   const uitkomst = berichtKnop(item.uitkomstId, "Uitkomst", "uitkomst ↗");
   if (uitkomst) chips.push(uitkomst);

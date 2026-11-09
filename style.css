@@ -1842,3 +1842,97 @@ body.modal-open {
     display: none;
   }
 }
+
+/* --- Moties: stemming en strekking in de pop-up ------------------------- */
+.stemming {
+  margin: 0.6rem 0;
+}
+
+.wire-label.stemming-aangenomen {
+  background: var(--kleur-accent-licht);
+  color: var(--kleur-donker);
+}
+
+.wire-label.stemming-verworpen {
+  background: var(--kleur-nieuws-licht);
+  color: var(--kleur-nieuws);
+}
+
+.stemming-balk {
+  display: flex;
+  height: 0.7rem;
+  margin: 0.5rem 0 0.2rem;
+  border-radius: 999px;
+  overflow: hidden;
+  background: var(--kleur-rand);
+}
+
+.stemming-voor {
+  background: var(--kleur-accent);
+}
+
+.stemming-tegen {
+  background: var(--kleur-nieuws);
+}
+
+.stemming-pct {
+  display: flex;
+  justify-content: space-between;
+  margin: 0 0 0.6rem;
+  font-size: 0.8rem;
+  color: var(--kleur-prio-4);
+}
+
+.stemming-lijst {
+  margin: 0 0 0.6rem;
+}
+
+.stemming-rij {
+  display: grid;
+  grid-template-columns: 9rem 1fr;
+  gap: 0.5rem;
+  padding: 0.2rem 0;
+  border-bottom: 1px solid var(--kleur-rand);
+  font-size: 0.9rem;
+}
+
+.stemming-rij dt {
+  font-weight: 600;
+}
+
+.stemming-rij dd {
+  margin: 0;
+}
+
+.stemming-aanleiding {
+  color: var(--kleur-prio-4);
+  font-style: italic;
+}
+
+.stemming-bron {
+  font-size: 0.75rem;
+  color: var(--kleur-prio-4);
+}
+
+@media (max-width: 520px) {
+  .stemming-rij {
+    grid-template-columns: 1fr;
+    gap: 0;
+  }
+}
+
+/* --- Cameratoezicht: reeks in de zijbalk van de pop-up --------------------- */
+.modal-blok-tekst {
+  margin: 0 0 0.4rem;
+  font-size: 0.8rem;
+  color: var(--kleur-prio-4);
+}
+
+.wire-chips-kolom {
+  flex-direction: column;
+  align-items: stretch;
+}
+
+.wire-chips-kolom .chip {
+  text-align: left;
+}
