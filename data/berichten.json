@@ -1,5 +1,5 @@
 {
-  "gegenereerdOp": "2026-11-09T12:00:53.179Z",
+  "gegenereerdOp": "2026-11-09T13:00:56.658Z",
   "promptVersie": "2026-10-29-batch-tag-checklist-agendapunten",
   "alertModus": "log",
   "prioSchaal": "1 = urgent, 2 = belangrijk, 3 = regulier, 4 = routine. De AI geeft nooit prio 1.",
@@ -406,6 +406,43 @@
   ],
   "berichten": [
     {
+      "id": "54ee6086c7-v2",
+      "groepId": "54ee6086c7",
+      "versie": 2,
+      "url": "https://www.deorkaan.nl/mogelijk-expolosief-opgevist-bij-havenstraat-zaandam/",
+      "kop": "Update: explosief Havenstraat, EOD laat ‘m ploffen (ergens anders)",
+      "tekst": null,
+      "rubriek": "112",
+      "tagBron": "trefwoord",
+      "herkomst": "signaal",
+      "prio": 3,
+      "tijd": "2026-11-09T13:00:56.658Z",
+      "heeftTijd": true,
+      "woorden": 123,
+      "afgekapt": false,
+      "bronId": "DeOrkaan",
+      "bronNaam": "DeOrkaan",
+      "ai": false,
+      "controle": "ai-fout",
+      "eerstGezienOp": "2026-11-09T13:00:56.658Z",
+      "gecontroleerdOp": "2026-11-09T13:00:56.658Z",
+      "bronTitel": "Update: explosief Havenstraat, EOD laat ‘m ploffen (ergens anders)",
+      "bronLengte": 772,
+      "checklist": {
+        "gevaar": false,
+        "evacuatieOfNlAlert": false,
+        "gewondenOfDoden": false,
+        "bestuurlijkeCrisis": false,
+        "besluitMetGrootGevolg": false,
+        "tijdkritisch": false,
+        "betrokkenen": null,
+        "geldbedragEuro": null,
+        "banen": null,
+        "inRegio": true
+      },
+      "checklistBron": "patroon"
+    },
+    {
       "id": "9b8993a91d-v1",
       "groepId": "9b8993a91d",
       "versie": 1,
@@ -453,7 +490,8 @@
       ],
       "agendaIds": [
         "59fe37a430"
-      ]
+      ],
+      "tagVersie": 2
     },
     {
       "id": "5e6eeaacc2-v1",
@@ -490,7 +528,89 @@
         "banen": null,
         "inRegio": false
       },
-      "checklistBron": "ai"
+      "checklistBron": "ai",
+      "tagVersie": 2
+    },
+    {
+      "id": "639b3d3211-v1",
+      "groepId": "639b3d3211",
+      "versie": 1,
+      "url": "https://www.deorkaan.nl/zaanse-begroting-op-naar-de-grand-finale/",
+      "kop": "Zaanse begroting: op naar de grand finale",
+      "tekst": null,
+      "rubriek": "GEM",
+      "tagBron": "trefwoord",
+      "herkomst": "signaal",
+      "prio": 3,
+      "tijd": "2026-11-08T23:00:00.000Z",
+      "heeftTijd": false,
+      "woorden": 934,
+      "afgekapt": true,
+      "bronId": "DeOrkaan",
+      "bronNaam": "DeOrkaan",
+      "ai": false,
+      "controle": "ai-fout",
+      "eerstGezienOp": "2026-11-09T13:00:56.658Z",
+      "gecontroleerdOp": "2026-11-09T13:00:56.658Z",
+      "bronTitel": "Zaanse begroting: op naar de grand finale",
+      "bronLengte": 5995,
+      "checklist": {
+        "gevaar": false,
+        "evacuatieOfNlAlert": false,
+        "gewondenOfDoden": false,
+        "bestuurlijkeCrisis": false,
+        "besluitMetGrootGevolg": true,
+        "tijdkritisch": false,
+        "betrokkenen": null,
+        "geldbedragEuro": 10900000,
+        "banen": null,
+        "inRegio": true
+      },
+      "checklistBron": "patroon",
+      "alertKandidaat": {
+        "niveau": "oranje",
+        "categorie": "bestuur",
+        "reden": "besluit met groot gevolg (één bron)",
+        "aangemaaktOp": "2026-11-09T13:00:56.658Z",
+        "tot": "2026-11-10T13:00:56.658Z"
+      }
+    },
+    {
+      "id": "3bd27ad8ee-v1",
+      "groepId": "3bd27ad8ee",
+      "versie": 1,
+      "url": "https://www.deorkaan.nl/daar-is-ie-weer-poller-meegepakt/",
+      "kop": "Daar is-ie weer: poller meegepakt",
+      "tekst": null,
+      "rubriek": "ALG",
+      "tagBron": "geen",
+      "herkomst": "signaal",
+      "prio": 3,
+      "tijd": "2026-11-08T23:00:00.000Z",
+      "heeftTijd": false,
+      "woorden": 168,
+      "afgekapt": false,
+      "bronId": "DeOrkaan",
+      "bronNaam": "DeOrkaan",
+      "ai": false,
+      "controle": "ai-fout",
+      "eerstGezienOp": "2026-11-09T13:00:56.658Z",
+      "gecontroleerdOp": "2026-11-09T13:00:56.658Z",
+      "bronTitel": "Daar is-ie weer: poller meegepakt",
+      "bronLengte": 970,
+      "checklist": {
+        "gevaar": false,
+        "evacuatieOfNlAlert": false,
+        "gewondenOfDoden": false,
+        "bestuurlijkeCrisis": false,
+        "besluitMetGrootGevolg": false,
+        "tijdkritisch": false,
+        "betrokkenen": null,
+        "geldbedragEuro": null,
+        "banen": null,
+        "inRegio": false
+      },
+      "checklistBron": "patroon"
     },
     {
       "id": "f34eb5e251-v1",
@@ -528,7 +648,8 @@
         "inRegio": true
       },
       "checklistBron": "ai",
-      "analyse": true
+      "analyse": true,
+      "tagVersie": 2
     },
     {
       "id": "85c60d7f39-v1",
@@ -667,7 +788,7 @@
       "ai": true,
       "controle": "cijfers-ok",
       "eerstGezienOp": "2026-11-09T10:01:00.973Z",
-      "gecontroleerdOp": "2026-11-09T10:01:00.973Z",
+      "gecontroleerdOp": "2026-11-09T13:00:56.658Z",
       "bronTitel": "Flexibiliteit in begrotingsuitwerking voor OV en deelmobiliteit",
       "bronLengte": 14973,
       "checklist": {
@@ -705,7 +826,7 @@
       "ai": false,
       "controle": "analyse-ok",
       "eerstGezienOp": "2026-11-09T09:00:56.202Z",
-      "gecontroleerdOp": "2026-11-09T10:01:00.973Z",
+      "gecontroleerdOp": "2026-11-09T13:00:56.658Z",
       "bronTitel": "Sport: zaalkorfbal van start, kolf-kampioenen bekend",
       "bronLengte": 5987,
       "checklist": {
@@ -766,7 +887,7 @@
       "ai": false,
       "controle": "analyse-ok",
       "eerstGezienOp": "2026-11-09T09:00:56.202Z",
-      "gecontroleerdOp": "2026-11-09T10:01:00.973Z",
+      "gecontroleerdOp": "2026-11-09T13:00:56.658Z",
       "bronTitel": "Pincodes klanten in Zaandam beeld: Kruidvat onderzoekt veiligheidslek in gehele keten",
       "bronLengte": 4202,
       "checklist": {
@@ -850,7 +971,7 @@
       "ai": false,
       "controle": "analyse-ok",
       "eerstGezienOp": "2026-11-09T07:51:31.296Z",
-      "gecontroleerdOp": "2026-11-09T10:01:00.973Z",
+      "gecontroleerdOp": "2026-11-09T13:00:56.658Z",
       "bronTitel": "Steekpartij in woning Zaandam, politie zoekt man op elektrische fiets",
       "bronLengte": 1306,
       "checklist": {
@@ -889,7 +1010,7 @@
       "ai": false,
       "controle": "geen-ai",
       "eerstGezienOp": "2026-11-09T07:51:31.296Z",
-      "gecontroleerdOp": "2026-11-09T10:01:00.973Z",
+      "gecontroleerdOp": "2026-11-09T13:00:56.658Z",
       "bronTitel": "Aanbesteding afgerond zonder gunning: specialistische Jeugdhulp Segment B 2027 Zaanstreek-Waterland",
       "bronLengte": 188,
       "aanbesteding": {
