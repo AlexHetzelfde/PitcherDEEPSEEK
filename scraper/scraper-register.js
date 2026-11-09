@@ -26,6 +26,8 @@ const { scrapeGeminiRecept } = require("./scrapers/gemini-recept");
 const { scrapeWpRest } = require("./scrapers/wp-rest");
 const { scrapeJsonLd } = require("./scrapers/json-ld");
 const { scrapeJsonApi } = require("./scrapers/json-api");
+const { scrapeMoties } = require("./scrapers/moties");
+const { scrapeCamera } = require("./scrapers/camera");
 
 const SCRAPER_PER_TYPE = {
   "wordpress-html": scrapeWordpress,
@@ -38,6 +40,8 @@ const SCRAPER_PER_TYPE = {
   "wp-rest": scrapeWpRest, // WordPress REST API, ook voor eigen berichttypes (bv. een agenda)
   "json-ld": scrapeJsonLd, // schema.org-gegevens (Event/Article) uit de pagina zelf
   "json-api": scrapeJsonApi, // los JSON-endpoint, met veldkoppeling in bron.json
+  camera: scrapeCamera, // cameratoezicht uit officielebekendmakingen.nl, met reeksen (alleen ZANP)
+  moties: scrapeMoties, // moties met stemming en strekking uit het iBabs-rapport "Moties en amendementen" (alleen ZANP)
 };
 
 /** Geeft de scraper-functie voor een type, of undefined als die niet bestaat. */

@@ -65,6 +65,18 @@
       "prio": 3,
       "herschrijf": true
     },
+    "zaanstad-camera": {
+      "rubriek": "GEM",
+      "herkomst": "officieel",
+      "prio": 3,
+      "herschrijf": false
+    },
+    "zaanstad-moties": {
+      "rubriek": "GEM",
+      "herkomst": "officieel",
+      "prio": 3,
+      "herschrijf": false
+    },
     "ibabs-ingekomen-stukken": {
       "rubriek": "GEM",
       "herkomst": "officieel",

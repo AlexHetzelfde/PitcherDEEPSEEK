@@ -33,7 +33,7 @@ const {
 // ZANP_DATA_DIR bestaat alleen voor de tests; zonder die variabele is de map ../data, zoals altijd.
 const DATA_MAP = process.env.ZANP_DATA_DIR || path.join(__dirname, "..", "data");
 
-const GEEN_TEKSTOPHAAL_TYPES = new Set(["ibabs", "ibabs-dashboard"]);
+const GEEN_TEKSTOPHAAL_TYPES = new Set(["ibabs", "ibabs-dashboard", "moties", "camera"]);
 const GEEN_TEKSTOPHAAL_BRONNEN = new Set(["OmgevingsdienstNHN"]);
 const PAGINADATUM_TYPES = new Set(["gemini-recept", "generieke-lijst", "wordpress-html", "json-ld"]);
 const afgeleideAgenda = new Map();
@@ -151,7 +151,11 @@ async function scrapeAlleBronnen(bronnenLijst = bronnen, opties = {}) {
 
 function verwijderDubbelen(berichten) {
   const gezieneUrls = new Set();
+  // Een cameraBesluit kan ook in de algemene bekendmakingenfeed staan. Dan wint de
+  // camerascraper, want alleen die levert het veld `camera` (de reeks) mee.
+  const metCamera = new Set(berichten.filter((b) => b.camera && b.url).map((b) => b.url));
   return berichten.filter((b) => {
+    if (b.url && metCamera.has(b.url) && !b.camera) return false;
     if (!b.url || gezieneUrls.has(b.url)) return false;
     gezieneUrls.add(b.url);
     return true;

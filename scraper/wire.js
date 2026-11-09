@@ -47,6 +47,7 @@ const {
   titelGelijkenis,
 } = require("./agenda-regels");
 const { isRegio } = require("./alert-regels");
+const { locatieMetPlaats } = require("./camera-reeks");
 const { ONBEKEND, bepaalTag } = require("./tags");
 const { checklistUitPatronen, agendapuntenUitPatronen } = require("./patronen");
 
@@ -373,6 +374,49 @@ function agendaItemsUitBerichten(records, nu) {
   return items;
 }
 
+// Cameratoezicht: de dag NA het einde van elke reeks komt in de agenda, zodat je
+// kijkt of het is verlengd. Net als de agendapunten uit berichten wordt dit elke
+// run opnieuw afgeleid uit de reeksen (nooit apart bewaard): wordt de reeks
+// verlengd, dan schuift het item naar de nieuwe einddatum.
+const CAMERA_BRON_ID = "zaanstad-camera";
+
+function agendaItemsUitCamera(reeksen, nu) {
+  const profiel = profielVoor(CAMERA_BRON_ID);
+  const items = [];
+  for (const reeks of Array.isArray(reeksen) ? reeksen : []) {
+    if (!reeks || !reeks.eind || !Array.isArray(reeks.besluiten) || !reeks.besluiten.length) continue;
+    const dag = volgendeDag(reeks.eind, 1);
+    const laatste = reeks.besluiten[reeks.besluiten.length - 1];
+    items.push({
+      id: korteId(`${reeks.id}|einde|${reeks.eind}`),
+      url: laatste.url,
+      kop: `Cameratoezicht ${locatieMetPlaats(reeks)}: periode afgelopen (t/m ${reeks.eind}), verlengd?`.slice(0, MAX_KOP_TEKENS),
+      plaats: reeks.plaats || null,
+      status: null,
+      rubriek: profiel.rubriek,
+      herkomst: profiel.herkomst,
+      afkomst: "camera",
+      bronId: CAMERA_BRON_ID,
+      bronNaam: "Gemeente Zaanstad: cameratoezicht",
+      berichtId: korteId(laatste.url),
+      reeksId: reeks.id,
+      start: amsterdamNaarIso(dag, 0, 0),
+      eind: null,
+      startDag: dag,
+      eindDag: dag,
+      doorlopend: false,
+      heeftTijd: false,
+      tijdBron: "geen",
+      relevantie: { zichtbaar: true, regel: "camera-einde", woorden: null, regelVersie: REGEL_VERSIE },
+      zichtbaar: true,
+      inAfwachting: false,
+      zekerheid: "afgeleid",
+      laatstGezienOp: nu.toISOString(),
+    });
+  }
+  return items;
+}
+
 /**
  * Voegt dubbelen samen: een agendapunt uit een bericht dat al als gescraped
  * item bestaat (zelfde dag, gelijkende titel) wordt niet apart getoond; het
@@ -418,7 +462,7 @@ function ontdubbelAgenda(items) {
  *       als die bron deze run wel iets opleverde, zodat een kapotte scraper
  *       of een bron die deze run niet draaide een agenda nooit leegmaakt.
  */
-function bouwAgenda({ ruweBerichten, bronPerId, bestaand = [], berichtRecords = [], nu = new Date() }) {
+function bouwAgenda({ ruweBerichten, bronPerId, bestaand = [], berichtRecords = [], cameraReeksen = [], nu = new Date() }) {
   const vandaag = vandaagAmsterdam();
   const eersteDag = volgendeDag(vandaag, -AGENDA_TERUG_DAGEN);
   const laatsteDag = volgendeDag(vandaag, AGENDA_VOORUIT_DAGEN);
@@ -460,11 +504,23 @@ function bouwAgenda({ ruweBerichten, bronPerId, bestaand = [], berichtRecords = 
     (i) => i.eindDag >= eersteDag && i.startDag <= laatsteDag
   );
 
+  const uitCamera = agendaItemsUitCamera(cameraReeksen, nu).filter(
+    (i) => i.eindDag >= eersteDag && i.startDag <= laatsteDag
+  );
+
   const samen = new Map();
-  const stats = { nieuw: 0, bijgewerkt: 0, behouden: 0, verdwenen: 0, verlopen: 0, uitBerichten: uitBerichten.length };
+  const stats = {
+    nieuw: 0,
+    bijgewerkt: 0,
+    behouden: 0,
+    verdwenen: 0,
+    verlopen: 0,
+    uitBerichten: uitBerichten.length,
+    uitCamera: uitCamera.length,
+  };
 
   for (const oud of bestaand) {
-    if (oud.afkomst === "bericht" || oud.afkomst === "termijn") continue;
+    if (oud.afkomst === "bericht" || oud.afkomst === "termijn" || oud.afkomst === "camera") continue;
     if (nieuw.has(oud.id)) continue;
     if (oud.eindDag < eersteDag) {
       stats.verlopen++;
@@ -484,7 +540,7 @@ function bouwAgenda({ ruweBerichten, bronPerId, bestaand = [], berichtRecords = 
     else stats.nieuw++;
     samen.set(id, { ...item, eerstGezienOp: oud && oud.eerstGezienOp ? oud.eerstGezienOp : nu.toISOString() });
   }
-  for (const item of uitBerichten) {
+  for (const item of [...uitBerichten, ...uitCamera]) {
     const oud = vorige.get(item.id);
     samen.set(item.id, { ...item, eerstGezienOp: oud && oud.eerstGezienOp ? oud.eerstGezienOp : nu.toISOString() });
   }
@@ -577,8 +633,20 @@ function maakBerichtRecord(b, profiel, versie, tekst, nu, opties = {}) {
     bronLengte: tekst.length,
     ...(opties.seed ? { seed: true } : {}),
   };
+  // Moties (scrapers/moties.js): stemming en strekking komen kant en klaar uit de
+  // scraper, staan altijd in hun vaste rubriek en gaan niet langs de AI. Ook
+  // geen checklist, termijnen of agendapunten uit patronen: de tekst is een
+  // motie, geen bekendmaking.
+  if (b.stemming) record.stemming = b.stemming;
+  if (b.camera) record.camera = b.camera; // cameratoezicht (scrapers/camera.js); de reeks staat in data/zanp-camera/reeksen.json
+  if (b.strekking) record.strekking = b.strekking;
+  if (b.vasteRubriek) {
+    record.rubriek = b.vasteRubriek;
+    record.tagBron = "bron";
+  }
+  if (b.geenAi) record.controle = "geen-ai";
   // Termijnen (zienswijze, bezwaar, beroep, inspraak) uit officiële bronnen.
-  if (!opties.seed && (profiel.herkomst === "officieel" || profiel.herkomst === "organisatie")) {
+  if (!opties.seed && !b.geenAi && (profiel.herkomst === "officieel" || profiel.herkomst === "organisatie")) {
     const termijnen = termijnenUitTekst(tekst, publicatieDagVan(b));
     if (termijnen.length) record.termijnen = termijnen;
   }
@@ -586,7 +654,7 @@ function maakBerichtRecord(b, profiel, versie, tekst, nu, opties = {}) {
   // checklist en eerste agendapunten. Dezelfde controles als bij de AI-uitvoer
   // gelden: getallen en datums blijven alleen staan als ze in de bron staan.
   // Een latere AI-beoordeling vervangt deze versie (verwerkMelding).
-  if (!opties.seed && tekst) {
+  if (!opties.seed && !b.geenAi && tekst) {
     const bron = `${b.titel || ""} ${tekst}`;
     record.checklist = maakChecklist(
       checklistUitPatronen(bron, { nu, gepubliceerdOp: isUpdate ? nu.toISOString() : b.gepubliceerdOp }),
@@ -606,7 +674,7 @@ function maakBerichtRecord(b, profiel, versie, tekst, nu, opties = {}) {
 // tekst; "analyse" haalt alleen checklist en agendapunten eruit (voor
 // bronnen die we nooit herschrijven).
 function maakInvoer(record, b, profiel, tekst) {
-  if (tekst.length < MIN_TEKST_VOOR_AI) return null;
+  if (b.geenAi || tekst.length < MIN_TEKST_VOOR_AI) return null;
   const mag = profiel.herschrijf && profiel.herkomst !== "signaal";
   return {
     id: record.id,
@@ -953,5 +1021,6 @@ module.exports = {
   verifieerAgendapunten,
   getalStaatInBron,
   agendaItemsUitBerichten,
+  agendaItemsUitCamera,
   ontdubbelAgenda,
 };

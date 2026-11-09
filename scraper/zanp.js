@@ -652,11 +652,15 @@ async function draai(deps = {}) {
   }
 
   logFase("ZANP 8 — Agenda opbouwen en opslaan");
+  // De camerareeksen schrijft de camerascraper (scrapers/camera.js) deze run of een eerdere.
+  const cameraBestand = await leesJson("zanp-camera/reeksen.json", { reeksen: [] });
+  const cameraReeksen = Array.isArray(cameraBestand && cameraBestand.reeksen) ? cameraBestand.reeksen : [];
   const agenda = wire.bouwAgenda({
     ruweBerichten: ruwe,
     bronPerId,
     bestaand: bestaandeAgenda,
     berichtRecords: records,
+    cameraReeksen,
     nu,
   });
   let agendaItems = agenda.items;
@@ -709,6 +713,7 @@ async function draai(deps = {}) {
         nu,
         env,
         bronPerId,
+        cameraReeksen,
         nietOphalen: (bronId) => opties.nietOphalen({ bronId }),
       });
       records = uit.records;
@@ -735,6 +740,8 @@ async function draai(deps = {}) {
     prioSchaal:
       "1 = urgent, 2 = belangrijk, 3 = regulier, 4 = routine. De AI geeft nooit prio 1.",
     rubrieken: RUBRIEKEN,
+    // De reeksen van cameratoezicht, voor de pop-up (alle besluiten van één plek).
+    cameraReeksen,
     berichten: records,
   });
   await schrijfJson("zanp-status.json", {
