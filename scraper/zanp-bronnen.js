@@ -52,4 +52,24 @@ module.exports = [
       "%20AND%20dt.creator==%22Zaanstad%22",
     nooitVertragen: true,
   },
+  {
+    // Aanbestedingen boven de Europese drempel (TED). Zie scrapers/ted.js.
+    id: "zaanstad-ted",
+    naam: "Gemeente Zaanstad: aanbestedingen (TED)",
+    categorie: "lokaal",
+    type: "ted",
+    url: "https://api.ted.europa.eu/v3/notices/search",
+    zoeknaam: "Zaanstad",
+    nooitVertragen: true,
+  },
+  {
+    // Aanbestedingen uit TenderNed, ook nationaal en onder de drempel. Zie scrapers/tenderned.js.
+    id: "zaanstad-tenderned",
+    naam: "Gemeente Zaanstad: aanbestedingen (TenderNed)",
+    categorie: "lokaal",
+    type: "tenderned",
+    url: "https://www.tenderned.nl/papi/tenderned-rs-tns/v2",
+    zoeknaam: "Zaanstad",
+    nooitVertragen: true,
+  },
 ];

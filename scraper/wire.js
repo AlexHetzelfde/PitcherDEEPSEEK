@@ -638,6 +638,7 @@ function maakBerichtRecord(b, profiel, versie, tekst, nu, opties = {}) {
   // geen checklist, termijnen of agendapunten uit patronen: de tekst is een
   // motie, geen bekendmaking.
   if (b.stemming) record.stemming = b.stemming;
+  if (b.aanbesteding) record.aanbesteding = b.aanbesteding; // TED/TenderNed (scrapers/ted.js, tenderned.js)
   if (b.camera) record.camera = b.camera; // cameratoezicht (scrapers/camera.js); de reeks staat in data/zanp-camera/reeksen.json
   if (b.strekking) record.strekking = b.strekking;
   if (b.vasteRubriek) {

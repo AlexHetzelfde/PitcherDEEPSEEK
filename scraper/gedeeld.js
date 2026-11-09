@@ -33,7 +33,7 @@ const {
 // ZANP_DATA_DIR bestaat alleen voor de tests; zonder die variabele is de map ../data, zoals altijd.
 const DATA_MAP = process.env.ZANP_DATA_DIR || path.join(__dirname, "..", "data");
 
-const GEEN_TEKSTOPHAAL_TYPES = new Set(["ibabs", "ibabs-dashboard", "moties", "camera"]);
+const GEEN_TEKSTOPHAAL_TYPES = new Set(["ibabs", "ibabs-dashboard", "moties", "camera", "ted", "tenderned"]);
 const GEEN_TEKSTOPHAAL_BRONNEN = new Set(["OmgevingsdienstNHN"]);
 const PAGINADATUM_TYPES = new Set(["gemini-recept", "generieke-lijst", "wordpress-html", "json-ld"]);
 const afgeleideAgenda = new Map();

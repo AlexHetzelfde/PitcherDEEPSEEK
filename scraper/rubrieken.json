@@ -71,6 +71,18 @@
       "prio": 3,
       "herschrijf": false
     },
+    "zaanstad-ted": {
+      "rubriek": "GEM",
+      "herkomst": "officieel",
+      "prio": 3,
+      "herschrijf": false
+    },
+    "zaanstad-tenderned": {
+      "rubriek": "GEM",
+      "herkomst": "officieel",
+      "prio": 3,
+      "herschrijf": false
+    },
     "zaanstad-moties": {
       "rubriek": "GEM",
       "herkomst": "officieel",

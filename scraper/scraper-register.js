@@ -28,6 +28,8 @@ const { scrapeJsonLd } = require("./scrapers/json-ld");
 const { scrapeJsonApi } = require("./scrapers/json-api");
 const { scrapeMoties } = require("./scrapers/moties");
 const { scrapeCamera } = require("./scrapers/camera");
+const { scrapeTed } = require("./scrapers/ted");
+const { scrapeTenderned } = require("./scrapers/tenderned");
 
 const SCRAPER_PER_TYPE = {
   "wordpress-html": scrapeWordpress,
@@ -41,6 +43,8 @@ const SCRAPER_PER_TYPE = {
   "json-ld": scrapeJsonLd, // schema.org-gegevens (Event/Article) uit de pagina zelf
   "json-api": scrapeJsonApi, // los JSON-endpoint, met veldkoppeling in bron.json
   camera: scrapeCamera, // cameratoezicht uit officielebekendmakingen.nl, met reeksen (alleen ZANP)
+  ted: scrapeTed, // aanbestedingen van de gemeente uit TED, de Europese databank (alleen ZANP)
+  tenderned: scrapeTenderned, // aanbestedingen uit TenderNed, ook nationaal en onder de drempel (alleen ZANP)
   moties: scrapeMoties, // moties met stemming en strekking uit het iBabs-rapport "Moties en amendementen" (alleen ZANP)
 };
 
