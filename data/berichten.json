@@ -1,5 +1,5 @@
 {
-  "gegenereerdOp": "2026-11-09T17:01:02.861Z",
+  "gegenereerdOp": "2026-11-09T18:00:59.108Z",
   "promptVersie": "2026-10-29-batch-tag-checklist-agendapunten",
   "alertModus": "log",
   "prioSchaal": "1 = urgent, 2 = belangrijk, 3 = regulier, 4 = routine. De AI geeft nooit prio 1.",
@@ -406,6 +406,44 @@
   ],
   "berichten": [
     {
+      "id": "567a9b680c-v2",
+      "groepId": "567a9b680c",
+      "versie": 2,
+      "url": "https://www.deorkaan.nl/steekpartij-in-woning-zaandam-politie-zoekt-man-op-elektrische-fiets/",
+      "kop": "Steekpartij in woning Zaandam, politie zoekt man op elektrische fiets (Update: niet meer gezocht)",
+      "tekst": null,
+      "rubriek": "112",
+      "tagBron": "ai",
+      "herkomst": "signaal",
+      "prio": 3,
+      "tijd": "2026-11-09T18:00:59.108Z",
+      "heeftTijd": true,
+      "woorden": 244,
+      "afgekapt": false,
+      "bronId": "DeOrkaan",
+      "bronNaam": "DeOrkaan",
+      "ai": false,
+      "controle": "analyse-ok",
+      "eerstGezienOp": "2026-11-09T18:00:59.108Z",
+      "gecontroleerdOp": "2026-11-09T18:00:59.108Z",
+      "bronTitel": "Steekpartij in woning Zaandam, politie zoekt man op elektrische fiets (Update: niet meer gezocht)",
+      "bronLengte": 1463,
+      "checklist": {
+        "gevaar": true,
+        "evacuatieOfNlAlert": false,
+        "gewondenOfDoden": true,
+        "bestuurlijkeCrisis": false,
+        "besluitMetGrootGevolg": false,
+        "tijdkritisch": false,
+        "betrokkenen": 1,
+        "geldbedragEuro": null,
+        "banen": null,
+        "inRegio": true
+      },
+      "checklistBron": "ai",
+      "analyse": true
+    },
+    {
       "id": "54ee6086c7-v2",
       "groepId": "54ee6086c7",
       "versie": 2,
@@ -569,7 +607,8 @@
         "inRegio": true
       },
       "checklistBron": "ai",
-      "analyse": true
+      "analyse": true,
+      "tagVersie": 2
     },
     {
       "id": "cdc13b69df-v1",

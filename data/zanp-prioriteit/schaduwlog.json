@@ -1,5 +1,5 @@
 {
-  "gegenereerdOp": "2026-11-09T17:01:02.861Z",
+  "gegenereerdOp": "2026-11-09T18:00:59.108Z",
   "modus": "schaduw",
   "stempel": "v4-22806000",
   "tau": 0.5,
@@ -82,8 +82,8 @@
       "key": "n:https://www.deorkaan.nl/stroomuitval-bij-zaans-medisch-centrum-zmc-brandweer-ter-plaatse/",
       "soort": "nieuws",
       "kop": "Stroomuitval bij Zaans Medisch Centrum (ZMC), brandweer ter plaatse",
-      "S": 0.26,
-      "Sa": 0.26,
+      "S": 0.27,
+      "Sa": 0.27,
       "Sp": 0,
       "route": "aanhoudend",
       "K": 0.61,
@@ -107,10 +107,10 @@
         },
         {
           "bron": "DeOrkaan",
-          "datum": "2026-11-08T23:00:00.000Z",
-          "c": 0.67,
+          "datum": "2026-11-09T18:00:59.108Z",
+          "c": 0.66,
           "plek": "intro",
-          "titel": "Steekpartij in woning Zaandam, politie zoekt man op elektrische fiets"
+          "titel": "Steekpartij in woning Zaandam, politie zoekt man op elektrische fiets (Update: niet meer gezocht)"
         }
       ]
     },
@@ -187,8 +187,8 @@
       "key": "n:https://www.deorkaan.nl/themapad-in-assendelft-krijgt-stopverlichting-huh/",
       "soort": "nieuws",
       "kop": "Themapad in Assendelft krijgt ‘stopverlichting’ (huh?)",
-      "S": 0.21,
-      "Sa": 0.21,
+      "S": 0.2,
+      "Sa": 0.2,
       "Sp": 0,
       "route": "aanhoudend",
       "K": 0.72,
@@ -1134,7 +1134,7 @@
       },
       "n:https://www.deorkaan.nl/stroomuitval-bij-zaans-medisch-centrum-zmc-brandweer-ter-plaatse/": {
         "kop": "Stroomuitval bij Zaans Medisch Centrum (ZMC), brandweer ter plaatse",
-        "S": 0.26,
+        "S": 0.27,
         "route": "aanhoudend",
         "K": 0.61,
         "n": 2,
