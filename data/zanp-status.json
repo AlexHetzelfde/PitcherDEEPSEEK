@@ -1,5 +1,5 @@
 {
-  "gegenereerdOp": "2026-11-09T11:01:04.336Z",
+  "gegenereerdOp": "2026-11-09T12:00:53.179Z",
   "alertModus": "log",
   "bronnen": {
     "zaansche-molen": {
@@ -38,12 +38,12 @@
       "opeenvolgendLeeg": 0
     },
     "nh-actueel": {
-      "laatsteScrape": "2026-11-09T11:01:04.336Z",
+      "laatsteScrape": "2026-11-09T12:00:53.179Z",
       "gevonden": 15,
       "opeenvolgendLeeg": 0
     },
     "nh-cultuur": {
-      "laatsteScrape": "2026-11-09T11:01:04.336Z",
+      "laatsteScrape": "2026-11-09T12:00:53.179Z",
       "gevonden": 3,
       "opeenvolgendLeeg": 0
     },
@@ -98,7 +98,7 @@
       "opeenvolgendLeeg": 0
     },
     "DeOrkaan": {
-      "laatsteScrape": "2026-11-09T11:01:04.336Z",
+      "laatsteScrape": "2026-11-09T12:00:53.179Z",
       "gevonden": 12,
       "opeenvolgendLeeg": 0
     },
@@ -123,39 +123,39 @@
       "opeenvolgendLeeg": 0
     },
     "vervoerregio-overzichten": {
-      "laatsteScrape": "2026-11-09T11:01:04.336Z",
+      "laatsteScrape": "2026-11-09T12:00:53.179Z",
       "gevonden": 1,
       "opeenvolgendLeeg": 0
     },
     "zaanstad-moties": {
-      "laatsteScrape": "2026-11-09T11:01:04.336Z",
+      "laatsteScrape": "2026-11-09T12:00:53.179Z",
       "gevonden": 0,
-      "opeenvolgendLeeg": 4
+      "opeenvolgendLeeg": 5
     },
     "zaanstad-camera": {
-      "laatsteScrape": "2026-11-09T11:01:04.336Z",
+      "laatsteScrape": "2026-11-09T12:00:53.179Z",
       "gevonden": 0,
-      "opeenvolgendLeeg": 4
+      "opeenvolgendLeeg": 5
     },
     "zaanstad-ted": {
-      "laatsteScrape": "2026-11-09T11:01:04.336Z",
+      "laatsteScrape": "2026-11-09T12:00:53.179Z",
       "gevonden": 1,
       "opeenvolgendLeeg": 0
     },
     "zaanstad-tenderned": {
-      "laatsteScrape": "2026-11-09T11:01:04.336Z",
+      "laatsteScrape": "2026-11-09T12:00:53.179Z",
       "gevonden": 0,
-      "opeenvolgendLeeg": 4
+      "opeenvolgendLeeg": 5
     }
   },
   "bronnenZonderRubriek": [],
   "gemini": {
     "dag": "2026-11-09",
-    "gebruikt": 3,
+    "gebruikt": 5,
     "wachtTot": null,
     "dagcap": 80,
     "runcap": 25,
-    "verzoekenDezeRun": 1
+    "verzoekenDezeRun": 2
   },
   "clusterBeslissingen": {
     "6ed1a85c02|a40204adea": {
@@ -343,19 +343,19 @@
       "runs": 9
     },
     "2026-11-09": {
-      "verzoeken": 5,
-      "berichten": 11,
-      "ok": 1,
-      "analyseOk": 7,
+      "verzoeken": 7,
+      "berichten": 14,
+      "ok": 3,
+      "analyseOk": 8,
       "cijfersAfgekeurd": 0,
       "onvoldoende": 0,
       "fout": 3,
       "overgeslagen": 0,
-      "tagAi": 8,
+      "tagAi": 11,
       "tagTrefwoord": 0,
       "tagBron": 0,
       "tagGeen": 0,
-      "runs": 5
+      "runs": 6
     }
   },
   "laatsteRun": {
@@ -365,21 +365,21 @@
       "behouden": 226,
       "verdwenen": 0,
       "verlopen": 0,
-      "uitBerichten": 28,
+      "uitBerichten": 29,
       "uitCamera": 2,
-      "zichtbaar": 92,
+      "zichtbaar": 93,
       "verborgen": 159,
       "inAfwachting": 0
     },
     "berichten": {
-      "nieuw": 2,
+      "nieuw": 3,
       "update": 0,
       "opnieuw": 0,
-      "ongewijzigd": 5,
+      "ongewijzigd": 0,
       "seed": 0
     },
     "cluster": {
-      "vergeleken": 406,
+      "vergeleken": 496,
       "automatisch": 0,
       "aiGevraagd": 0,
       "aiJa": 0,
@@ -398,17 +398,17 @@
       "ai": true,
       "formule": "v4-22806000",
       "tekst": {
-        "werklijst": 2,
-        "lokaal": 2,
+        "werklijst": 3,
+        "lokaal": 3,
         "opgehaald": 0,
         "mislukt": 0,
         "uitgesteld": 0
       },
       "vergeten": 0,
       "tekstenOpgeruimd": 0,
-      "stukken": 372,
-      "kandidaten": 58,
-      "metAnker": 55,
+      "stukken": 375,
+      "kandidaten": 61,
+      "metAnker": 58,
       "zonderAnker": 3,
       "afgelast": 1,
       "dubbel": 0,
@@ -425,15 +425,15 @@
       "regelRood": 0
     },
     "kwaliteit": {
-      "verzoeken": 1,
-      "berichten": 2,
-      "ok": 0,
-      "analyseOk": 2,
+      "verzoeken": 2,
+      "berichten": 3,
+      "ok": 2,
+      "analyseOk": 1,
       "cijfersAfgekeurd": 0,
       "onvoldoende": 0,
       "fout": 0,
       "overgeslagen": 0,
-      "tagAi": 2,
+      "tagAi": 3,
       "tagTrefwoord": 0,
       "tagBron": 0,
       "tagGeen": 0

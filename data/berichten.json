@@ -1,5 +1,5 @@
 {
-  "gegenereerdOp": "2026-11-09T11:01:04.336Z",
+  "gegenereerdOp": "2026-11-09T12:00:53.179Z",
   "promptVersie": "2026-10-29-batch-tag-checklist-agendapunten",
   "alertModus": "log",
   "prioSchaal": "1 = urgent, 2 = belangrijk, 3 = regulier, 4 = routine. De AI geeft nooit prio 1.",
@@ -406,6 +406,131 @@
   ],
   "berichten": [
     {
+      "id": "9b8993a91d-v1",
+      "groepId": "9b8993a91d",
+      "versie": 1,
+      "url": "https://www.noord-holland.nl/Actueel/Archief/2026/November_2026/Koopvaardersschutsluis_in_Den_Helder_op_26_november_tijdelijk_gestremd",
+      "kop": "Koopvaardersschutsluis in Den Helder op 26 november tijdelijk gestremd voor scheepvaart",
+      "tekst": "De provincie Noord-Holland voert op 26 november werkzaamheden uit aan de Koopvaardersschutsluis in Den Helder. Hierdoor is de sluis gesloten voor scheepvaart van 8.00 uur tot 12.00 uur. Schippers wordt geadviseerd om hun reis tijdig te plannen of gebruik te maken van alternatieve routes.",
+      "rubriek": "PRV",
+      "tagBron": "ai",
+      "herkomst": "officieel",
+      "prio": 3,
+      "tijd": "2026-11-09T11:55:56.000Z",
+      "heeftTijd": true,
+      "woorden": 241,
+      "afgekapt": false,
+      "bronId": "nh-actueel",
+      "bronNaam": "Provincie Noord-Holland — Actueel",
+      "ai": true,
+      "controle": "cijfers-ok",
+      "eerstGezienOp": "2026-11-09T12:00:53.179Z",
+      "gecontroleerdOp": "2026-11-09T12:00:53.179Z",
+      "bronTitel": "Koopvaardersschutsluis in Den Helder op 26 november tijdelijk gestremd",
+      "bronLengte": 1669,
+      "checklist": {
+        "gevaar": false,
+        "evacuatieOfNlAlert": false,
+        "gewondenOfDoden": false,
+        "bestuurlijkeCrisis": false,
+        "besluitMetGrootGevolg": false,
+        "tijdkritisch": false,
+        "betrokkenen": null,
+        "geldbedragEuro": null,
+        "banen": null,
+        "inRegio": false
+      },
+      "checklistBron": "ai",
+      "agendapunten": [
+        {
+          "titel": "Werkzaamheden Koopvaardersschutsluis",
+          "dag": "2026-11-26",
+          "start": "2026-11-26T07:00:00.000Z",
+          "eind": "2026-11-26T11:00:00.000Z",
+          "plaats": "Den Helder",
+          "zekerheid": "afgeleid"
+        }
+      ],
+      "agendaIds": [
+        "59fe37a430"
+      ]
+    },
+    {
+      "id": "5e6eeaacc2-v1",
+      "groepId": "5e6eeaacc2",
+      "versie": 1,
+      "url": "https://www.noord-holland.nl/Actueel/Archief/2026/November_2026/Werkzaamheden_Fokkerweg_N232_in_Schiphol_Oost",
+      "kop": "Fokkerweg in Schiphol-Oost dicht voor onderhoud aan het asfalt",
+      "tekst": "De provincie Noord-Holland voert van 16 tot en met 20 november onderhoud uit aan het asfalt op de Fokkerweg in Schiphol-Oost. De weg is op verschillende dagen in zuidelijke of noordelijke richting afgesloten tussen 7.00 en 20.00 uur. Verkeer wordt omgeleid via de Bosrandbrug en de Waterwolftunnel.",
+      "rubriek": "VER",
+      "tagBron": "ai",
+      "herkomst": "officieel",
+      "prio": 2,
+      "tijd": "2026-11-09T11:49:07.000Z",
+      "heeftTijd": true,
+      "woorden": 254,
+      "afgekapt": false,
+      "bronId": "nh-actueel",
+      "bronNaam": "Provincie Noord-Holland — Actueel",
+      "ai": true,
+      "controle": "cijfers-ok",
+      "eerstGezienOp": "2026-11-09T12:00:53.179Z",
+      "gecontroleerdOp": "2026-11-09T12:00:53.179Z",
+      "bronTitel": "Werkzaamheden Fokkerweg (N232) in Schiphol-Oost",
+      "bronLengte": 1649,
+      "checklist": {
+        "gevaar": false,
+        "evacuatieOfNlAlert": false,
+        "gewondenOfDoden": false,
+        "bestuurlijkeCrisis": false,
+        "besluitMetGrootGevolg": false,
+        "tijdkritisch": false,
+        "betrokkenen": null,
+        "geldbedragEuro": null,
+        "banen": null,
+        "inRegio": false
+      },
+      "checklistBron": "ai"
+    },
+    {
+      "id": "f34eb5e251-v1",
+      "groepId": "f34eb5e251",
+      "versie": 1,
+      "url": "https://www.deorkaan.nl/de-orkaan-in-2-minuten-9-november-%f0%9f%8e%a7/",
+      "kop": "De Orkaan in 2 minuten: 9 november 🎧",
+      "tekst": null,
+      "rubriek": "112",
+      "tagBron": "ai",
+      "herkomst": "signaal",
+      "prio": 3,
+      "tijd": "2026-11-08T23:00:00.000Z",
+      "heeftTijd": false,
+      "woorden": 54,
+      "afgekapt": false,
+      "bronId": "DeOrkaan",
+      "bronNaam": "DeOrkaan",
+      "ai": false,
+      "controle": "analyse-ok",
+      "eerstGezienOp": "2026-11-09T12:00:53.179Z",
+      "gecontroleerdOp": "2026-11-09T12:00:53.179Z",
+      "bronTitel": "De Orkaan in 2 minuten: 9 november 🎧",
+      "bronLengte": 321,
+      "checklist": {
+        "gevaar": false,
+        "evacuatieOfNlAlert": false,
+        "gewondenOfDoden": false,
+        "bestuurlijkeCrisis": false,
+        "besluitMetGrootGevolg": false,
+        "tijdkritisch": false,
+        "betrokkenen": null,
+        "geldbedragEuro": null,
+        "banen": null,
+        "inRegio": true
+      },
+      "checklistBron": "ai",
+      "analyse": true
+    },
+    {
       "id": "85c60d7f39-v1",
       "groepId": "85c60d7f39",
       "versie": 1,
@@ -441,7 +566,8 @@
         "inRegio": true
       },
       "checklistBron": "ai",
-      "analyse": true
+      "analyse": true,
+      "tagVersie": 2
     },
     {
       "id": "d48f14d52f-v1",
@@ -479,7 +605,8 @@
         "inRegio": true
       },
       "checklistBron": "ai",
-      "analyse": true
+      "analyse": true,
+      "tagVersie": 2
     },
     {
       "id": "54ee6086c7-v1",
