@@ -1,5 +1,5 @@
 {
-  "gegenereerdOp": "2026-11-09T22:00:52.538Z",
+  "gegenereerdOp": "2026-11-09T23:00:59.674Z",
   "modus": "schaduw",
   "stempel": "v4-22806000",
   "tau": 0.5,
@@ -8,18 +8,18 @@
     "ai": true,
     "formule": "v4-22806000",
     "tekst": {
-      "werklijst": 0,
+      "werklijst": 3,
       "lokaal": 0,
-      "opgehaald": 0,
+      "opgehaald": 3,
       "mislukt": 0,
       "uitgesteld": 0
     },
     "vergeten": 0,
     "tekstenOpgeruimd": 0,
-    "stukken": 384,
-    "kandidaten": 64,
-    "metAnker": 62,
-    "zonderAnker": 2,
+    "stukken": 387,
+    "kandidaten": 67,
+    "metAnker": 67,
+    "zonderAnker": 0,
     "afgelast": 1,
     "dubbel": 0,
     "tau": 0.5,
@@ -123,10 +123,10 @@
       "ankers": [
         "segment",
         "jeugdhulp",
+        "waterland",
         "afgerond",
         "gunning",
         "specialistisch",
-        "waterland",
         "anbesteding"
       ],
       "bewijs": [
@@ -266,13 +266,13 @@
       "key": "a:2f3f3332ae",
       "soort": "agenda",
       "kop": "Zaanstad Beraad Raadzaal: TEST",
-      "S": 0.13,
-      "Sa": 0.13,
+      "S": 0.12,
+      "Sa": 0.12,
       "Sp": 0,
       "route": "aanhoudend",
       "K": 0.2,
       "Kp": 0.07,
-      "n": 3,
+      "n": 2,
       "dagen": 1,
       "bronnen": 1,
       "ankers": [
@@ -283,23 +283,16 @@
         {
           "bron": "zaanstad-kalender",
           "datum": "2026-11-01T15:55:49.908Z",
-          "c": 0.7,
+          "c": 0.75,
           "plek": "intro",
           "titel": "Raadsvergadering: Reservedatum begroting"
         },
         {
           "bron": "zaanstad-kalender",
           "datum": "2026-11-01T15:55:49.908Z",
-          "c": 0.69,
+          "c": 0.65,
           "plek": "intro",
           "titel": "Ambtsbezoek: Ambtsbezoek Commissaris van de Koning"
-        },
-        {
-          "bron": "zaanstad-kalender",
-          "datum": "2026-11-01T15:55:49.908Z",
-          "c": 0.68,
-          "plek": "intro",
-          "titel": "Regionale Raadsledenbijeenkomst"
         }
       ]
     },
@@ -492,6 +485,62 @@
           "c": 0.67,
           "plek": "intro",
           "titel": "Weweigerde omgevingsvergunning voor een uitweg locatie Waterbies 35 te Assendelft"
+        }
+      ]
+    },
+    {
+      "key": "a:a40d7a33f0",
+      "soort": "agenda",
+      "kop": "Zaanstad Beraad",
+      "S": 0.05,
+      "Sa": 0.05,
+      "Sp": 0,
+      "route": "aanhoudend",
+      "K": 0.13,
+      "Kp": 0,
+      "n": 1,
+      "dagen": 1,
+      "bronnen": 1,
+      "ankers": [
+        "filmopnam",
+        "uitgezond",
+        "internet"
+      ],
+      "bewijs": [
+        {
+          "bron": "zaanstad-kalender",
+          "datum": "2026-11-01T15:55:49.908Z",
+          "c": 0.8,
+          "plek": "intro",
+          "titel": "Raadsvergadering: Reservedatum begroting"
+        }
+      ]
+    },
+    {
+      "key": "a:4a5ff898e2",
+      "soort": "agenda",
+      "kop": "Zaanstad Beraad",
+      "S": 0.05,
+      "Sa": 0.05,
+      "Sp": 0,
+      "route": "aanhoudend",
+      "K": 0.13,
+      "Kp": 0,
+      "n": 1,
+      "dagen": 1,
+      "bronnen": 1,
+      "ankers": [
+        "filmopnam",
+        "uitgezond",
+        "internet"
+      ],
+      "bewijs": [
+        {
+          "bron": "zaanstad-kalender",
+          "datum": "2026-11-01T15:55:49.908Z",
+          "c": 0.8,
+          "plek": "intro",
+          "titel": "Raadsvergadering: Reservedatum begroting"
         }
       ]
     },
@@ -1003,47 +1052,6 @@
         "wakzinnig"
       ],
       "bewijs": []
-    },
-    {
-      "key": "a:822c3f1bd8",
-      "soort": "agenda",
-      "kop": "Werkbezoek: Werkom",
-      "S": 0,
-      "Sa": 0,
-      "Sp": 0,
-      "route": "geen",
-      "K": 0,
-      "Kp": 0,
-      "n": 0,
-      "dagen": 0,
-      "bronnen": 0,
-      "ankers": [
-        "werkom",
-        "agendacommissi"
-      ],
-      "bewijs": []
-    },
-    {
-      "key": "a:a24756ce32",
-      "soort": "agenda",
-      "kop": "Dag voor de Raad 2026!",
-      "S": 0,
-      "Sa": 0,
-      "Sp": 0,
-      "route": "geen",
-      "K": 0,
-      "Kp": 0,
-      "n": 0,
-      "dagen": 0,
-      "bronnen": 0,
-      "ankers": [
-        "antropia",
-        "drieberg",
-        "dagprogramma",
-        "zeist",
-        "vereniging"
-      ],
-      "bewijs": []
     }
   ],
   "formule": {
@@ -1289,6 +1297,208 @@
         "S": 0,
         "route": "geen",
         "K": 0.15,
+        "n": 0,
+        "bronnen": 0
+      }
+    },
+    "2026-11-10": {
+      "n:https://www.deorkaan.nl/stroomuitval-bij-zaans-medisch-centrum-zmc-brandweer-ter-plaatse/": {
+        "kop": "Stroomuitval bij Zaans Medisch Centrum (ZMC), brandweer ter plaatse",
+        "S": 0.27,
+        "route": "aanhoudend",
+        "K": 0.61,
+        "n": 2,
+        "bronnen": 1
+      },
+      "n:https://www.deorkaan.nl/pincodes-klanten-in-zaandam-beeld-kruidvat-onderzoekt-veiligheidslek-in-gehele-keten/": {
+        "kop": "Pincodes klanten in Zaandam beeld: Kruidvat onderzoekt veiligheidslek in gehele keten",
+        "S": 0.22,
+        "route": "aanhoudend",
+        "K": 0.48,
+        "n": 1,
+        "bronnen": 1
+      },
+      "n:https://ted.europa.eu/nl/notice/-/detail/777319-2026": {
+        "kop": "Aanbesteding afgerond zonder gunning: specialistische Jeugdhulp Segment B 2027 Zaanstreek-Waterland",
+        "S": 0.22,
+        "route": "aanhoudend",
+        "K": 0.32,
+        "n": 1,
+        "bronnen": 1
+      },
+      "n:https://www.deorkaan.nl/themapad-in-assendelft-krijgt-stopverlichting-huh/": {
+        "kop": "Themapad in Assendelft krijgt ‘stopverlichting’ (huh?)",
+        "S": 0.2,
+        "route": "aanhoudend",
+        "K": 0.71,
+        "n": 1,
+        "bronnen": 1
+      },
+      "n:https://www.deorkaan.nl/overleden-persoon-bij-zaaneiland-slachtoffer-van-noodlottig-ongeval/": {
+        "kop": "Overleden persoon bij Zaaneiland slachtoffer van noodlottig ongeval",
+        "S": 0.19,
+        "route": "aanhoudend",
+        "K": 0.38,
+        "n": 1,
+        "bronnen": 1
+      },
+      "n:https://www.deorkaan.nl/overleden-persoon-gevonden-in-water-bij-zaaneiland-in-zaandam/": {
+        "kop": "Overleden persoon gevonden in water bij Zaaneiland in Zaandam",
+        "S": 0.18,
+        "route": "aanhoudend",
+        "K": 0.38,
+        "n": 1,
+        "bronnen": 1
+      },
+      "n:https://www.deorkaan.nl/nog-meer-windturbines-bij-de-amsterdamse-haven/": {
+        "kop": "Nog meer windturbines bij de Amsterdamse haven",
+        "S": 0.18,
+        "route": "aanhoudend",
+        "K": 0.29,
+        "n": 1,
+        "bronnen": 1
+      },
+      "a:2f3f3332ae": {
+        "kop": "Zaanstad Beraad Raadzaal: TEST",
+        "S": 0.12,
+        "route": "aanhoudend",
+        "K": 0.2,
+        "n": 2,
+        "bronnen": 1
+      },
+      "a:e205032688": {
+        "kop": "Geweigerde omgevingsvergunning voor aanleggen van een in- of uitrit locatie Raaigras 88 Assendelft",
+        "S": 0.09,
+        "route": "aanhoudend",
+        "K": 0.16,
+        "n": 2,
+        "bronnen": 1
+      },
+      "n:https://www.deorkaan.nl/fototijdreis-guisweg-ter-hoogte-van-spoorwegovergang-zaandijk/": {
+        "kop": "Fototijdreis: Guisweg ter hoogte van spoorwegovergang (Zaandijk)",
+        "S": 0.09,
+        "route": "aanhoudend",
+        "K": 0.69,
+        "n": 1,
+        "bronnen": 1
+      },
+      "a:1ebd6e1ddf": {
+        "kop": "Verkeersbesluit plaatsen laadpaal voor electrische auto's Matsmanzoom te Koog a/d Zaan",
+        "S": 0.08,
+        "route": "aanhoudend",
+        "K": 0.16,
+        "n": 1,
+        "bronnen": 1
+      },
+      "n:https://www.deorkaan.nl/sport-zaalkorfbal-van-start-kolf-kampioenen-bekend/": {
+        "kop": "Sport: zaalkorfbal van start, kolf-kampioenen bekend",
+        "S": 0.08,
+        "route": "aanhoudend",
+        "K": 0,
+        "n": 1,
+        "bronnen": 1
+      },
+      "a:d1eae07b85": {
+        "kop": "Brandweer Oostzaan viert 100-jarig jubileum",
+        "S": 0.06,
+        "route": "aanhoudend",
+        "K": 0.35,
+        "n": 1,
+        "bronnen": 1
+      },
+      "a:e26813c04c": {
+        "kop": "Geweigerde huisvestingsvergunning Klipperstraat 37 te Zaandam - Microsoft Teams",
+        "S": 0.06,
+        "route": "aanhoudend",
+        "K": 0.16,
+        "n": 2,
+        "bronnen": 1
+      },
+      "a:a40d7a33f0": {
+        "kop": "Zaanstad Beraad",
+        "S": 0.05,
+        "route": "aanhoudend",
+        "K": 0.13,
+        "n": 1,
+        "bronnen": 1
+      },
+      "a:4a5ff898e2": {
+        "kop": "Zaanstad Beraad",
+        "S": 0.05,
+        "route": "aanhoudend",
+        "K": 0.13,
+        "n": 1,
+        "bronnen": 1
+      },
+      "a:54bf0d34fe": {
+        "kop": "Verkeersbesluit plaatsen laadpaal voor elektrische auto's locatie Kaaikhof te Assendelft",
+        "S": 0.04,
+        "route": "aanhoudend",
+        "K": 0.16,
+        "n": 1,
+        "bronnen": 1
+      },
+      "a:2f23908817": {
+        "kop": "Lezing: Tot Lering en Vermaak",
+        "S": 0,
+        "route": "geen",
+        "K": 0,
+        "n": 0,
+        "bronnen": 0
+      },
+      "a:4150f4ffc4": {
+        "kop": "Ontdek hoe een kaartspel nieuwe gesprekken over de toekomst opent!",
+        "S": 0,
+        "route": "geen",
+        "K": 0,
+        "n": 0,
+        "bronnen": 0
+      },
+      "a:da1fdf516e": {
+        "kop": "Aanwijsbesluit plaatsen camera locatie Perim te Zaandam",
+        "S": 0,
+        "route": "geen",
+        "K": 0.15,
+        "n": 0,
+        "bronnen": 0
+      },
+      "a:f317521e28": {
+        "kop": "Raadsvergadering: Begroting",
+        "S": 0,
+        "route": "geen",
+        "K": 0.15,
+        "n": 0,
+        "bronnen": 0
+      },
+      "a:abb742a017": {
+        "kop": "Omgevingsvergunning O2026055913 realiseren dakterras op woning Zuiderhoofdstraat 78 te Krommenie",
+        "S": 0,
+        "route": "geen",
+        "K": 0.15,
+        "n": 0,
+        "bronnen": 0
+      },
+      "a:1a746de3ba": {
+        "kop": "Uitnodiging NZKG-Jaarcongres 12 november 'De kracht van het Noordzeekanaalgebied (NZKG) & 150 jaar Noordzeekanaal'",
+        "S": 0,
+        "route": "geen",
+        "K": 0,
+        "n": 0,
+        "bronnen": 0
+      },
+      "a:55db5c0d37": {
+        "kop": "Raadsvergadering: Reservedatum begroting",
+        "S": 0,
+        "route": "geen",
+        "K": 0.15,
+        "n": 0,
+        "bronnen": 0
+      },
+      "a:777fef6fda": {
+        "kop": "Uitnodiging en aanmeldlink voor deelname aan de Webinar raadsleden",
+        "S": 0,
+        "route": "geen",
+        "K": 0,
         "n": 0,
         "bronnen": 0
       }
