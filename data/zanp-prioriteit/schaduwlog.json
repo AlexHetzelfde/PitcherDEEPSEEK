@@ -1,5 +1,5 @@
 {
-  "gegenereerdOp": "2026-11-09T10:01:00.973Z",
+  "gegenereerdOp": "2026-11-09T11:01:04.336Z",
   "modus": "schaduw",
   "stempel": "v4-22806000",
   "tau": 0.5,
@@ -16,9 +16,9 @@
     },
     "vergeten": 0,
     "tekstenOpgeruimd": 0,
-    "stukken": 370,
-    "kandidaten": 57,
-    "metAnker": 54,
+    "stukken": 372,
+    "kandidaten": 58,
+    "metAnker": 55,
     "zonderAnker": 3,
     "afgelast": 1,
     "dubbel": 0,
@@ -131,10 +131,10 @@
       "ankers": [
         "segment",
         "jeugdhulp",
-        "waterland",
         "afgerond",
         "gunning",
         "specialistisch",
+        "waterland",
         "anbesteding"
       ],
       "bewijs": [
@@ -349,43 +349,6 @@
           "bron": "DeOrkaan",
           "datum": "2026-10-25T23:00:00.000Z",
           "c": 0.88,
-          "plek": "kop",
-          "titel": "Zaans voor ’t hekje: steekpartij en explosie"
-        }
-      ]
-    },
-    {
-      "key": "n:https://www.deorkaan.nl/54-jarige-vrouw-uit-oostzaan-aangehouden-na-dodelijke-steekpartij-in-zaandam/",
-      "soort": "nieuws",
-      "kop": "54-jarige vrouw uit Oostzaan aangehouden na dodelijke steekpartij in Zaandam",
-      "S": 0.09,
-      "Sa": 0.09,
-      "Sp": 0,
-      "route": "aanhoudend",
-      "K": 0.33,
-      "Kp": 0.18,
-      "n": 1,
-      "dagen": 1,
-      "bronnen": 1,
-      "ankers": [
-        "dodelijk",
-        "stekpartij",
-        "angehoud",
-        "ostzaner",
-        "klipon",
-        "trading",
-        "ghijsenlan",
-        "vrouw",
-        "pieter",
-        "jarig",
-        "verdenking",
-        "stekincident"
-      ],
-      "bewijs": [
-        {
-          "bron": "DeOrkaan",
-          "datum": "2026-10-25T23:00:00.000Z",
-          "c": 0.92,
           "plek": "kop",
           "titel": "Zaans voor ’t hekje: steekpartij en explosie"
         }
@@ -647,8 +610,8 @@
         "kartspel",
         "opent",
         "atelier2100",
-        "toekomst",
-        "reminder"
+        "reminder",
+        "toekomst"
       ],
       "bewijs": []
     },
@@ -1086,6 +1049,25 @@
         "candy",
         "dulfer",
         "wakzinnig"
+      ],
+      "bewijs": []
+    },
+    {
+      "key": "a:822c3f1bd8",
+      "soort": "agenda",
+      "kop": "Werkbezoek: Werkom",
+      "S": 0,
+      "Sa": 0,
+      "Sp": 0,
+      "route": "geen",
+      "K": 0,
+      "Kp": 0,
+      "n": 0,
+      "dagen": 0,
+      "bronnen": 0,
+      "ankers": [
+        "werkom",
+        "agendacommissi"
       ],
       "bewijs": []
     }

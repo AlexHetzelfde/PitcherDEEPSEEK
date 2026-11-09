@@ -1,5 +1,5 @@
 {
-  "gegenereerdOp": "2026-11-09T10:01:00.973Z",
+  "gegenereerdOp": "2026-11-09T11:01:04.336Z",
   "promptVersie": "2026-10-29-batch-tag-checklist-agendapunten",
   "alertModus": "log",
   "prioSchaal": "1 = urgent, 2 = belangrijk, 3 = regulier, 4 = routine. De AI geeft nooit prio 1.",
@@ -156,15 +156,43 @@
       ]
     },
     {
-      "id": "cam-335c327157",
+      "id": "cam-470901d399",
       "locatie": "Elzenstraat",
       "plaats": "Wormerveer",
-      "start": "2026-08-27",
+      "start": "2026-07-16",
       "eind": "2026-12-01",
-      "aantal": 3,
+      "aantal": 5,
       "besluiten": [
         {
           "nr": 1,
+          "url": "https://zoek.officielebekendmakingen.nl/gmb-2026-352263.html",
+          "soort": "aanwijzing",
+          "titel": "Aanwijzingsbesluit tijdelijk cameratoezicht Elzenstraat",
+          "start": "2026-07-16",
+          "eind": "2026-08-26",
+          "pubdate": "2026-07-20",
+          "redenCategorieen": [
+            "Wapens/schietincident",
+            "Overlast"
+          ],
+          "redenSamenvatting": "uit de bestuurlijke rapportage van de politie van 15 juli 2026 blijkt dat er op 14 juli 2026, omstreeks 19:45 uur, met een (mogelijk automatisch) vuurwapen een woning aan de Elzenstraat is beschoten en dat er meerdere kogelgaten in de woning zijn aangetroffen;"
+        },
+        {
+          "nr": 2,
+          "url": "https://zoek.officielebekendmakingen.nl/gmb-2026-364272.html",
+          "soort": "extra",
+          "titel": "Aanwijzingsbesluit extra tijdelijk cameratoezicht Elzenstraat in Wormerveer",
+          "start": "2026-07-27",
+          "eind": "2026-08-31",
+          "pubdate": "2026-07-27",
+          "redenCategorieen": [
+            "Wapens/schietincident",
+            "Overlast"
+          ],
+          "redenSamenvatting": "het incident heeft plaatsgevonden midden in een woonwijk en heeft geleid tot gevoelens van angst en onrust in de gemeente in het algemeen en in de Elzenstraat en de omliggende omgeving in het bijzonder;"
+        },
+        {
+          "nr": 3,
           "url": "https://zoek.officielebekendmakingen.nl/gmb-2026-408913.html",
           "soort": "verlenging",
           "titel": "Aanwijzingsbesluit verlenging tijdelijk cameratoezicht Elzenstraat in Wormerveer",
@@ -177,7 +205,7 @@
           "redenSamenvatting": "het incident heeft plaatsgevonden midden in een woonwijk en heeft geleid tot gevoelens van angst en onrust in de gemeente in het algemeen en in de Elzenstraat en de omliggende omgeving in het bijzonder;"
         },
         {
-          "nr": 2,
+          "nr": 4,
           "url": "https://zoek.officielebekendmakingen.nl/gmb-2026-459380.html",
           "soort": "verlenging",
           "titel": "Aanwijzingsbesluit verlenging tijdelijk cameratoezicht Elzenstraat in Wormerveer",
@@ -190,7 +218,7 @@
           "redenSamenvatting": "het incident heeft plaatsgevonden midden in een woonwijk en heeft geleid tot gevoelens van angst en onrust in de gemeente in het algemeen en in de Elzenstraat en de omliggende omgeving in het bijzonder;"
         },
         {
-          "nr": 3,
+          "nr": 5,
           "url": "https://zoek.officielebekendmakingen.nl/gmb-2026-517023.html",
           "soort": "verlenging",
           "titel": "Aanwijzingsbesluit verlenging tijdelijk cameratoezicht Elzenstraat in Wormerveer",
@@ -351,9 +379,108 @@
           "redenSamenvatting": "uit de bestuurlijke rapportage van de politie van 17 augustus 2026 blijkt dat er op 14 augustus 2026 omstreeks 02:36 uur een explosie bij KOC supermarkt aan het Kaaikhof te Assendelft heeft plaatsgevonden."
         }
       ]
+    },
+    {
+      "id": "cam-b5b5128319",
+      "locatie": "Perim ingang één",
+      "plaats": "Zaandam",
+      "start": "2026-07-03",
+      "eind": "2026-08-14",
+      "aantal": 1,
+      "besluiten": [
+        {
+          "nr": 1,
+          "url": "https://zoek.officielebekendmakingen.nl/gmb-2026-325850.html",
+          "soort": "aanwijzing",
+          "titel": "Aanwijzingsbesluit tijdelijk cameratoezicht Perim ter hoogte van ingang één te Zaandam",
+          "start": "2026-07-03",
+          "eind": "2026-08-14",
+          "pubdate": "2026-07-06",
+          "redenCategorieen": [
+            "Overlast"
+          ],
+          "redenSamenvatting": "de belangen van de openbare orde en veiligheid en het voorkomen van wanordelijkheden en van strafbare feiten in het onderhavige geval zwaarder wegen dan het individuele belang van de eventuele inperking op persoonsniveau (bescherming van de persoonlijke levenssfeer);"
+        }
+      ]
     }
   ],
   "berichten": [
+    {
+      "id": "85c60d7f39-v1",
+      "groepId": "85c60d7f39",
+      "versie": 1,
+      "url": "https://www.deorkaan.nl/toekomst-vishandel-plat-onzeker-doodzonde-als-ik-nu-weg-moet/",
+      "kop": "Toekomst Vishandel Plat onzeker: ‘doodzonde als ik nu weg moet’",
+      "tekst": null,
+      "rubriek": "BED",
+      "tagBron": "ai",
+      "herkomst": "signaal",
+      "prio": 3,
+      "tijd": "2026-11-08T23:00:00.000Z",
+      "heeftTijd": false,
+      "woorden": 342,
+      "afgekapt": false,
+      "bronId": "DeOrkaan",
+      "bronNaam": "DeOrkaan",
+      "ai": false,
+      "controle": "analyse-ok",
+      "eerstGezienOp": "2026-11-09T11:01:04.336Z",
+      "gecontroleerdOp": "2026-11-09T11:01:04.336Z",
+      "bronTitel": "Toekomst Vishandel Plat onzeker: ‘doodzonde als ik nu weg moet’",
+      "bronLengte": 1855,
+      "checklist": {
+        "gevaar": false,
+        "evacuatieOfNlAlert": false,
+        "gewondenOfDoden": false,
+        "bestuurlijkeCrisis": false,
+        "besluitMetGrootGevolg": false,
+        "tijdkritisch": false,
+        "betrokkenen": null,
+        "geldbedragEuro": null,
+        "banen": null,
+        "inRegio": true
+      },
+      "checklistBron": "ai",
+      "analyse": true
+    },
+    {
+      "id": "d48f14d52f-v1",
+      "groepId": "d48f14d52f",
+      "versie": 1,
+      "url": "https://www.deorkaan.nl/zaagselbrand-bij-ydefix-schaverij-%f0%9f%93%b8/",
+      "kop": "Zaagselbrand bij Ydefix Schaverij 📸",
+      "tekst": null,
+      "rubriek": "112",
+      "tagBron": "ai",
+      "herkomst": "signaal",
+      "prio": 3,
+      "tijd": "2026-11-08T23:00:00.000Z",
+      "heeftTijd": false,
+      "woorden": 90,
+      "afgekapt": false,
+      "bronId": "DeOrkaan",
+      "bronNaam": "DeOrkaan",
+      "ai": false,
+      "controle": "analyse-ok",
+      "eerstGezienOp": "2026-11-09T11:01:04.336Z",
+      "gecontroleerdOp": "2026-11-09T11:01:04.336Z",
+      "bronTitel": "Zaagselbrand bij Ydefix Schaverij 📸",
+      "bronLengte": 563,
+      "checklist": {
+        "gevaar": true,
+        "evacuatieOfNlAlert": false,
+        "gewondenOfDoden": false,
+        "bestuurlijkeCrisis": false,
+        "besluitMetGrootGevolg": false,
+        "tijdkritisch": false,
+        "betrokkenen": null,
+        "geldbedragEuro": null,
+        "banen": null,
+        "inRegio": true
+      },
+      "checklistBron": "ai",
+      "analyse": true
+    },
     {
       "id": "54ee6086c7-v1",
       "groepId": "54ee6086c7",
@@ -390,7 +517,8 @@
         "inRegio": true
       },
       "checklistBron": "ai",
-      "analyse": true
+      "analyse": true,
+      "tagVersie": 2
     },
     {
       "id": "a0cf15ccde-v1",
@@ -427,7 +555,8 @@
         "banen": null,
         "inRegio": false
       },
-      "checklistBron": "ai"
+      "checklistBron": "ai",
+      "tagVersie": 2
     },
     {
       "id": "1f713f9fb8-v1",
@@ -726,7 +855,7 @@
       "ai": false,
       "controle": "analyse-ok",
       "eerstGezienOp": "2026-11-09T06:00:53.173Z",
-      "gecontroleerdOp": "2026-11-09T09:00:56.202Z",
+      "gecontroleerdOp": "2026-11-09T11:01:04.336Z",
       "bronTitel": "Eerste zege vrouwen Zaandijk en ZCFC verliest van tien Westzaners ⚽️",
       "bronLengte": 3571,
       "checklist": {
@@ -765,7 +894,7 @@
       "ai": false,
       "controle": "analyse-ok",
       "eerstGezienOp": "2026-11-08T21:01:00.528Z",
-      "gecontroleerdOp": "2026-11-09T09:00:56.202Z",
+      "gecontroleerdOp": "2026-11-09T11:01:04.336Z",
       "bronTitel": "Overleden persoon bij Zaaneiland slachtoffer van noodlottig ongeval",
       "bronLengte": 1030,
       "checklist": {
@@ -804,7 +933,7 @@
       "ai": false,
       "controle": "analyse-ok",
       "eerstGezienOp": "2026-11-08T15:00:54.717Z",
-      "gecontroleerdOp": "2026-11-09T09:00:56.202Z",
+      "gecontroleerdOp": "2026-11-09T11:01:04.336Z",
       "bronTitel": "Zomaar een Zaans minuutje: opkomst VV Westzaan en ZCFC… 🎥",
       "bronLengte": 3441,
       "checklist": {
@@ -843,7 +972,7 @@
       "ai": false,
       "controle": "analyse-ok",
       "eerstGezienOp": "2026-11-08T14:00:52.056Z",
-      "gecontroleerdOp": "2026-11-09T09:00:56.202Z",
+      "gecontroleerdOp": "2026-11-09T11:01:04.336Z",
       "bronTitel": "Zaans voor ’t hekje: McDonald’s Wormerveer & Perim-camera",
       "bronLengte": 3993,
       "checklist": {
@@ -913,7 +1042,7 @@
       "ai": false,
       "controle": "analyse-ok",
       "eerstGezienOp": "2026-11-08T12:00:53.524Z",
-      "gecontroleerdOp": "2026-11-09T09:00:56.202Z",
+      "gecontroleerdOp": "2026-11-09T11:01:04.336Z",
       "bronTitel": "Orgel Bullekerk aan onderhoud toe, kerk anderhalf jaar orgelloos 🎥",
       "bronLengte": 822,
       "checklist": {

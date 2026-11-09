@@ -1,5 +1,49 @@
 {
   "besluiten": {
+    "https://zoek.officielebekendmakingen.nl/gmb-2026-325850.html": {
+      "url": "https://zoek.officielebekendmakingen.nl/gmb-2026-325850.html",
+      "titel": "Aanwijzingsbesluit tijdelijk cameratoezicht Perim ter hoogte van ingang één te Zaandam",
+      "camera": "Perim ingang één te Zaandam",
+      "plaats": "Zaandam",
+      "soort": "aanwijzing",
+      "start": "2026-07-03",
+      "eind": "2026-08-14",
+      "redenCategorieen": [
+        "Overlast"
+      ],
+      "redenSamenvatting": "de belangen van de openbare orde en veiligheid en het voorkomen van wanordelijkheden en van strafbare feiten in het onderhavige geval zwaarder wegen dan het individuele belang van de eventuele inperking op persoonsniveau (bescherming van de persoonlijke levenssfeer);",
+      "pubdate": "2026-07-06"
+    },
+    "https://zoek.officielebekendmakingen.nl/gmb-2026-352263.html": {
+      "url": "https://zoek.officielebekendmakingen.nl/gmb-2026-352263.html",
+      "titel": "Aanwijzingsbesluit tijdelijk cameratoezicht Elzenstraat",
+      "camera": "Elzenstraat",
+      "plaats": null,
+      "soort": "aanwijzing",
+      "start": "2026-07-16",
+      "eind": "2026-08-26",
+      "redenCategorieen": [
+        "Wapens/schietincident",
+        "Overlast"
+      ],
+      "redenSamenvatting": "uit de bestuurlijke rapportage van de politie van 15 juli 2026 blijkt dat er op 14 juli 2026, omstreeks 19:45 uur, met een (mogelijk automatisch) vuurwapen een woning aan de Elzenstraat is beschoten en dat er meerdere kogelgaten in de woning zijn aangetroffen;",
+      "pubdate": "2026-07-20"
+    },
+    "https://zoek.officielebekendmakingen.nl/gmb-2026-364272.html": {
+      "url": "https://zoek.officielebekendmakingen.nl/gmb-2026-364272.html",
+      "titel": "Aanwijzingsbesluit extra tijdelijk cameratoezicht Elzenstraat in Wormerveer",
+      "camera": "Elzenstraat in Wormerveer",
+      "plaats": "Wormerveer",
+      "soort": "extra",
+      "start": "2026-07-27",
+      "eind": "2026-08-31",
+      "redenCategorieen": [
+        "Wapens/schietincident",
+        "Overlast"
+      ],
+      "redenSamenvatting": "het incident heeft plaatsgevonden midden in een woonwijk en heeft geleid tot gevoelens van angst en onrust in de gemeente in het algemeen en in de Elzenstraat en de omliggende omgeving in het bijzonder;",
+      "pubdate": "2026-07-27"
+    },
     "https://zoek.officielebekendmakingen.nl/gmb-2026-396408.html": {
       "url": "https://zoek.officielebekendmakingen.nl/gmb-2026-396408.html",
       "titel": "Aanwijzingsbesluit tijdelijk cameratoezicht Kaaikhof te Assendelft",

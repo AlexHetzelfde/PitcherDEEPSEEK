@@ -106,15 +106,43 @@
       ]
     },
     {
-      "id": "cam-335c327157",
+      "id": "cam-470901d399",
       "locatie": "Elzenstraat",
       "plaats": "Wormerveer",
-      "start": "2026-08-27",
+      "start": "2026-07-16",
       "eind": "2026-12-01",
-      "aantal": 3,
+      "aantal": 5,
       "besluiten": [
         {
           "nr": 1,
+          "url": "https://zoek.officielebekendmakingen.nl/gmb-2026-352263.html",
+          "soort": "aanwijzing",
+          "titel": "Aanwijzingsbesluit tijdelijk cameratoezicht Elzenstraat",
+          "start": "2026-07-16",
+          "eind": "2026-08-26",
+          "pubdate": "2026-07-20",
+          "redenCategorieen": [
+            "Wapens/schietincident",
+            "Overlast"
+          ],
+          "redenSamenvatting": "uit de bestuurlijke rapportage van de politie van 15 juli 2026 blijkt dat er op 14 juli 2026, omstreeks 19:45 uur, met een (mogelijk automatisch) vuurwapen een woning aan de Elzenstraat is beschoten en dat er meerdere kogelgaten in de woning zijn aangetroffen;"
+        },
+        {
+          "nr": 2,
+          "url": "https://zoek.officielebekendmakingen.nl/gmb-2026-364272.html",
+          "soort": "extra",
+          "titel": "Aanwijzingsbesluit extra tijdelijk cameratoezicht Elzenstraat in Wormerveer",
+          "start": "2026-07-27",
+          "eind": "2026-08-31",
+          "pubdate": "2026-07-27",
+          "redenCategorieen": [
+            "Wapens/schietincident",
+            "Overlast"
+          ],
+          "redenSamenvatting": "het incident heeft plaatsgevonden midden in een woonwijk en heeft geleid tot gevoelens van angst en onrust in de gemeente in het algemeen en in de Elzenstraat en de omliggende omgeving in het bijzonder;"
+        },
+        {
+          "nr": 3,
           "url": "https://zoek.officielebekendmakingen.nl/gmb-2026-408913.html",
           "soort": "verlenging",
           "titel": "Aanwijzingsbesluit verlenging tijdelijk cameratoezicht Elzenstraat in Wormerveer",
@@ -127,7 +155,7 @@
           "redenSamenvatting": "het incident heeft plaatsgevonden midden in een woonwijk en heeft geleid tot gevoelens van angst en onrust in de gemeente in het algemeen en in de Elzenstraat en de omliggende omgeving in het bijzonder;"
         },
         {
-          "nr": 2,
+          "nr": 4,
           "url": "https://zoek.officielebekendmakingen.nl/gmb-2026-459380.html",
           "soort": "verlenging",
           "titel": "Aanwijzingsbesluit verlenging tijdelijk cameratoezicht Elzenstraat in Wormerveer",
@@ -140,7 +168,7 @@
           "redenSamenvatting": "het incident heeft plaatsgevonden midden in een woonwijk en heeft geleid tot gevoelens van angst en onrust in de gemeente in het algemeen en in de Elzenstraat en de omliggende omgeving in het bijzonder;"
         },
         {
-          "nr": 3,
+          "nr": 5,
           "url": "https://zoek.officielebekendmakingen.nl/gmb-2026-517023.html",
           "soort": "verlenging",
           "titel": "Aanwijzingsbesluit verlenging tijdelijk cameratoezicht Elzenstraat in Wormerveer",
@@ -299,6 +327,29 @@
             "Brand/explosie"
           ],
           "redenSamenvatting": "uit de bestuurlijke rapportage van de politie van 17 augustus 2026 blijkt dat er op 14 augustus 2026 omstreeks 02:36 uur een explosie bij KOC supermarkt aan het Kaaikhof te Assendelft heeft plaatsgevonden."
+        }
+      ]
+    },
+    {
+      "id": "cam-b5b5128319",
+      "locatie": "Perim ingang één",
+      "plaats": "Zaandam",
+      "start": "2026-07-03",
+      "eind": "2026-08-14",
+      "aantal": 1,
+      "besluiten": [
+        {
+          "nr": 1,
+          "url": "https://zoek.officielebekendmakingen.nl/gmb-2026-325850.html",
+          "soort": "aanwijzing",
+          "titel": "Aanwijzingsbesluit tijdelijk cameratoezicht Perim ter hoogte van ingang één te Zaandam",
+          "start": "2026-07-03",
+          "eind": "2026-08-14",
+          "pubdate": "2026-07-06",
+          "redenCategorieen": [
+            "Overlast"
+          ],
+          "redenSamenvatting": "de belangen van de openbare orde en veiligheid en het voorkomen van wanordelijkheden en van strafbare feiten in het onderhavige geval zwaarder wegen dan het individuele belang van de eventuele inperking op persoonsniveau (bescherming van de persoonlijke levenssfeer);"
         }
       ]
     }
