@@ -1,5 +1,5 @@
 {
-  "gegenereerdOp": "2026-11-09T01:00:53.398Z",
+  "gegenereerdOp": "2026-11-09T02:00:51.426Z",
   "modus": "schaduw",
   "stempel": "v3-22806000",
   "tau": 0.5,
@@ -17,16 +17,16 @@
     "vergeten": 0,
     "tekstenOpgeruimd": 0,
     "stukken": 362,
-    "kandidaten": 58,
-    "metAnker": 55,
+    "kandidaten": 52,
+    "metAnker": 49,
     "zonderAnker": 3,
     "afgelast": 1,
     "dubbel": 0,
     "tau": 0.5,
     "besluit": {
-      "boven": 1,
+      "boven": 0,
       "wacht": 0,
-      "onderdrukt": 1,
+      "onderdrukt": 0,
       "veto": 0,
       "nieuwRood": 0,
       "noodrem": false
@@ -34,67 +34,6 @@
     "rood": 1
   },
   "top": [
-    {
-      "key": "n:https://zaanstad.bestuurlijkeinformatie.nl/Document/View/8b899045-41e2-48f7-b963-2762303ae520",
-      "soort": "nieuws",
-      "kop": "Kennisgeving burgemeester Hamming: Verlenging sluiting woning Zuiddijk 172 en cameratoezicht",
-      "S": 0.69,
-      "Sa": 0.69,
-      "Sp": 0,
-      "route": "aanhoudend",
-      "K": 0.79,
-      "Kp": 0.61,
-      "n": 5,
-      "dagen": 4,
-      "bronnen": 3,
-      "ankers": [
-        "kennisgeving",
-        "zuiddijk",
-        "verlenging",
-        "hamming",
-        "sluiting",
-        "cameratoezicht",
-        "telefon",
-        "geacht"
-      ],
-      "bewijs": [
-        {
-          "bron": "ibabs-collegeberichten",
-          "datum": "2026-11-03T23:00:00.000Z",
-          "c": 1,
-          "plek": "kop",
-          "titel": "Kennisgeving Burgemeester J. Hamming: Incident Elzenstraat"
-        },
-        {
-          "bron": "ibabs-collegeberichten",
-          "datum": "2026-11-05T23:00:00.000Z",
-          "c": 0.92,
-          "plek": "kop",
-          "titel": "Kennisgeving wethouder Groenewoud: Aanvraag windturbines Westelijk Havengebied"
-        },
-        {
-          "bron": "DeOrkaan",
-          "datum": "2026-11-02T23:00:00.000Z",
-          "c": 0.91,
-          "plek": "kop",
-          "titel": "Cameratoezicht Elzenstraat wéér verlengd"
-        },
-        {
-          "bron": "wetenregelgeving",
-          "datum": "2026-11-07T22:00:51.272Z",
-          "c": 0.88,
-          "plek": "kop",
-          "titel": "Aanwijzingsbesluit verlenging tijdelijk cameratoezicht Zuiddijk te Zaandam"
-        },
-        {
-          "bron": "DeOrkaan",
-          "datum": "2026-11-05T23:00:00.000Z",
-          "c": 0.88,
-          "plek": "kop",
-          "titel": "Cameratoezicht Zuiddijk en Jaspersstraat verlengd"
-        }
-      ]
-    },
     {
       "key": "n:https://lokaleregelgeving.overheid.nl/CVDR769019/1",
       "soort": "nieuws",
@@ -136,43 +75,6 @@
           "c": 0.7,
           "plek": "intro",
           "titel": "Kennisgeving Burgemeester J. Hamming: Incident Elzenstraat"
-        }
-      ]
-    },
-    {
-      "key": "n:https://zaanstad.bestuurlijkeinformatie.nl/Document/View/e44deb13-3764-4b20-b7a9-900727754fcd",
-      "soort": "nieuws",
-      "kop": "Kennisgeving wethouder Groenewoud: Aanvraag windturbines Westelijk Havengebied",
-      "S": 0.29,
-      "Sa": 0.29,
-      "Sp": 0,
-      "route": "aanhoudend",
-      "K": 0.58,
-      "Kp": 0.41,
-      "n": 2,
-      "dagen": 2,
-      "bronnen": 1,
-      "ankers": [
-        "groenewoud",
-        "westelijk",
-        "havengebied",
-        "kennisgeving",
-        "windturbine"
-      ],
-      "bewijs": [
-        {
-          "bron": "ibabs-collegeberichten",
-          "datum": "2026-11-03T23:00:00.000Z",
-          "c": 0.87,
-          "plek": "kop",
-          "titel": "Kennisgeving Burgemeester J. Hamming: Incident Elzenstraat"
-        },
-        {
-          "bron": "ibabs-collegeberichten",
-          "datum": "2026-11-05T23:00:00.000Z",
-          "c": 0.87,
-          "plek": "kop",
-          "titel": "Kennisgeving burgemeester Hamming: Verlenging sluiting woning Zuiddijk 172 en cameratoezicht"
         }
       ]
     },
@@ -243,36 +145,6 @@
       ]
     },
     {
-      "key": "n:https://www.vervoerregio.nl/artikel/20261106-negen-overheidspartijen-zetten-volgende-stap-voor-ni",
-      "soort": "nieuws",
-      "kop": "Negen overheidspartijen zetten volgende stap voor nieuwe doorfietsroutes",
-      "S": 0.19,
-      "Sa": 0.19,
-      "Sp": 0,
-      "route": "aanhoudend",
-      "K": 0.17,
-      "Kp": 0,
-      "n": 1,
-      "dagen": 1,
-      "bronnen": 1,
-      "ankers": [
-        "overheidspartij",
-        "dorfietsroute",
-        "negen",
-        "hillegom",
-        "samenwerkingsoverenkomst"
-      ],
-      "bewijs": [
-        {
-          "bron": "nh-actueel",
-          "datum": "2026-11-05T10:34:53.000Z",
-          "c": 1,
-          "plek": "kop",
-          "titel": "9 overheidspartijen zetten volgende stap voor nieuwe doorfietsroutes"
-        }
-      ]
-    },
-    {
       "key": "a:2f3f3332ae",
       "soort": "agenda",
       "kop": "Zaanstad Beraad Raadzaal: TEST",
@@ -281,7 +153,7 @@
       "Sp": 0,
       "route": "aanhoudend",
       "K": 0.21,
-      "Kp": 0.08,
+      "Kp": 0.07,
       "n": 3,
       "dagen": 1,
       "bronnen": 1,
@@ -454,8 +326,8 @@
       "key": "a:1ebd6e1ddf",
       "soort": "agenda",
       "kop": "Verkeersbesluit plaatsen laadpaal voor electrische auto's Matsmanzoom te Koog a/d Zaan",
-      "S": 0.09,
-      "Sa": 0.09,
+      "S": 0.08,
+      "Sa": 0.08,
       "Sp": 0,
       "route": "aanhoudend",
       "K": 0.16,
@@ -1109,6 +981,70 @@
         "candy",
         "dulfer",
         "wakzinnig"
+      ],
+      "bewijs": []
+    },
+    {
+      "key": "a:822c3f1bd8",
+      "soort": "agenda",
+      "kop": "Werkbezoek: Werkom",
+      "S": 0,
+      "Sa": 0,
+      "Sp": 0,
+      "route": "geen",
+      "K": 0,
+      "Kp": 0,
+      "n": 0,
+      "dagen": 0,
+      "bronnen": 0,
+      "ankers": [
+        "werkom",
+        "agendacommissi"
+      ],
+      "bewijs": []
+    },
+    {
+      "key": "a:a24756ce32",
+      "soort": "agenda",
+      "kop": "Dag voor de Raad 2026!",
+      "S": 0,
+      "Sa": 0,
+      "Sp": 0,
+      "route": "geen",
+      "K": 0,
+      "Kp": 0,
+      "n": 0,
+      "dagen": 0,
+      "bronnen": 0,
+      "ankers": [
+        "antropia",
+        "drieberg",
+        "dagprogramma",
+        "zeist",
+        "vereniging"
+      ],
+      "bewijs": []
+    },
+    {
+      "key": "n:https://www.deorkaan.nl/erfgoed-jubileum-gevierd-in-westzaan/",
+      "soort": "nieuws",
+      "kop": "Erfgoed-jubileum gevierd in Westzaan 📸 🎥",
+      "S": 0,
+      "Sa": 0,
+      "Sp": 0,
+      "route": "geen",
+      "K": 0,
+      "Kp": 0,
+      "n": 0,
+      "dagen": 0,
+      "bronnen": 0,
+      "ankers": [
+        "erfgoed",
+        "jubileum",
+        "erfgoeddag",
+        "westzans",
+        "gevierd",
+        "zansch"
       ],
       "bewijs": []
     }
