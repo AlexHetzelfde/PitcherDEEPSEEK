@@ -506,6 +506,8 @@ function renderWireDetail(r) {
     delen.push(renderStemming(r));
   } else if (r.camera) {
     delen.push(renderCamera(r));
+  } else if (r.aanbesteding) {
+    delen.push(renderAanbesteding(r));
   } else if (r.ai && r.tekst) {
     delen.push('<p><span class="wire-label ai">AI</span>Automatisch samengevat uit de bron. Controleer de feiten voor gebruik.</p>');
   } else if (herkomst === "signaal") {
@@ -574,6 +576,70 @@ function renderCamera(r) {
     `<p class="stemming-bron">Besluit uit officielebekendmakingen.nl (officiële bron).</p>` +
     `</section>`
   );
+}
+
+const AANBESTEDING_SOORT = {
+  aankondiging: "Aankondiging van een opdracht",
+  vooraankondiging: "Vooraankondiging",
+  marktconsultatie: "Marktconsultatie",
+  gunning: "Gunning",
+  "zonder-gunning": "Afgerond zonder gunning",
+  ingetrokken: "Ingetrokken",
+  wijziging: "Wijziging",
+  "voornemen-zonder-aanbesteding": "Voornemen tot gunning zonder aanbesteding",
+  overig: "Publicatie",
+};
+
+function aanbestedingEuro(n) {
+  const x = Number(n);
+  return Number.isFinite(x) && x > 0 ? `€ ${Math.round(x).toLocaleString("nl-NL")}` : "";
+}
+
+// Aanbesteding uit TED of TenderNed: soort, bedragen, winnaar en sluitingsdatum.
+function renderAanbesteding(r) {
+  const a = r.aanbesteding || {};
+  const rij = (label, waarde) => (waarde ? `<div class="stemming-rij"><dt>${label}</dt><dd>${waarde}</dd></div>` : "");
+  const winnaars = Array.isArray(a.winnaars) && a.winnaars.length ? a.winnaars.map(escapeHtml).join(", ") : "";
+  const bronNaam = a.bron === "ted" ? "TED (Europese databank)" : "TenderNed";
+  const markering = a.soort === "gunning" ? "signaal" : a.soort === "zonder-gunning" || a.soort === "ingetrokken" ? "waarschuwing" : "";
+  return (
+    `<section class="stemming">` +
+    `<p><span class="wire-label ${markering}">Aanbesteding</span><strong>${escapeHtml(AANBESTEDING_SOORT[a.soort] || "Publicatie")}</strong></p>` +
+    `<dl class="stemming-lijst">` +
+    rij("Opdracht", a.naam ? escapeHtml(a.naam) : "") +
+    rij("Opdrachtgever", a.koper ? escapeHtml(a.koper) : "") +
+    rij("Geraamde waarde", escapeHtml(aanbestedingEuro(a.geraamdeWaarde))) +
+    rij("Gegunde waarde", escapeHtml(aanbestedingEuro(a.gegundeWaarde))) +
+    rij("Winnaar", winnaars) +
+    rij("Sluitingsdatum", a.sluitingsdatum ? escapeHtml(datumLang(a.sluitingsdatum)) : "") +
+    rij("Procedure", a.procedure ? escapeHtml(a.procedure) : "") +
+    rij("Type publicatie", a.typePublicatie ? escapeHtml(a.typePublicatie) : "") +
+    `</dl>` +
+    (a.soort === "zonder-gunning" ? `<p class="stemming-aanleiding">Het bericht meldt geen winnaar en geen gegund bedrag. Lees de bron om te zien waarom.</p>` : "") +
+    `<p class="stemming-bron">Publicatie uit ${bronNaam} (officiële bron).</p>` +
+    `</section>`
+  );
+}
+
+// Zijbalk van de pop-up: de tijdlijn van één aanbesteding (aankondiging, gunning, wijziging).
+function renderAanbestedingTijdlijn(r) {
+  const t = r.aanbesteding && Array.isArray(r.aanbesteding.tijdlijn) ? r.aanbesteding.tijdlijn : [];
+  if (t.length < 2) return "";
+  const nieuwsteVan = (url) => {
+    let beste = null;
+    for (const x of state.perGroep.values()) if (x.url === url) beste = x;
+    return beste;
+  };
+  const leden = t
+    .map((p) => {
+      const tekst = `${datumKort(p.datum)} ${AANBESTEDING_SOORT[p.soort] || "Publicatie"}`;
+      if (p.url === r.url) return `<span class="chip chip-bericht chip-actief" aria-current="true">${escapeHtml(tekst)}</span>`;
+      const record = nieuwsteVan(p.url);
+      if (record) return `<button type="button" class="chip chip-bericht" data-actie="open-bericht" data-id="${escapeHtml(record.id)}">${escapeHtml(tekst)}</button>`;
+      return `<a class="chip chip-bericht" href="${escapeHtml(veiligeUrl(p.url))}" target="_blank" rel="noopener">${escapeHtml(tekst)} ↗</a>`;
+    })
+    .join("");
+  return `<section class="modal-blok"><p class="modal-blok-titel">Verloop van deze aanbesteding</p><div class="wire-chips wire-chips-kolom">${leden}</div></section>`;
 }
 
 // Zijbalk van de pop-up: alle besluiten van dezelfde plek, om tussen te navigeren.
@@ -856,6 +922,7 @@ function renderPopup() {
         <div class="wire-chips">${versieChips}</div>
       </section>
       ${r.camera ? renderCameraReeks(r) : ""}
+      ${r.aanbesteding ? renderAanbestedingTijdlijn(r) : ""}
       ${tagChip ? `<section class="modal-blok"><p class="modal-blok-titel">Tags</p><div class="wire-chips">${tagChip}</div></section>` : ""}
       ${gerelateerd ? `<section class="modal-blok"><p class="modal-blok-titel">Gerelateerd</p>${gerelateerd}</section>` : ""}
     </div>`;
