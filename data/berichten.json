@@ -1,5 +1,5 @@
 {
-  "gegenereerdOp": "2026-11-09T16:00:55.979Z",
+  "gegenereerdOp": "2026-11-09T17:01:02.861Z",
   "promptVersie": "2026-10-29-batch-tag-checklist-agendapunten",
   "alertModus": "log",
   "prioSchaal": "1 = urgent, 2 = belangrijk, 3 = regulier, 4 = routine. De AI geeft nooit prio 1.",
@@ -425,7 +425,7 @@
       "ai": false,
       "controle": "analyse-ok",
       "eerstGezienOp": "2026-11-09T13:00:56.658Z",
-      "gecontroleerdOp": "2026-11-09T14:01:06.499Z",
+      "gecontroleerdOp": "2026-11-09T17:01:02.861Z",
       "bronTitel": "Update: explosief Havenstraat, EOD laat ‘m ploffen (ergens anders)",
       "bronLengte": 772,
       "checklist": {
@@ -464,7 +464,7 @@
       "ai": true,
       "controle": "cijfers-ok",
       "eerstGezienOp": "2026-11-09T12:00:53.179Z",
-      "gecontroleerdOp": "2026-11-09T14:01:06.499Z",
+      "gecontroleerdOp": "2026-11-09T17:01:02.861Z",
       "bronTitel": "Koopvaardersschutsluis in Den Helder op 26 november tijdelijk gestremd",
       "bronLengte": 1669,
       "checklist": {
@@ -515,7 +515,7 @@
       "ai": true,
       "controle": "cijfers-ok",
       "eerstGezienOp": "2026-11-09T12:00:53.179Z",
-      "gecontroleerdOp": "2026-11-09T14:01:06.499Z",
+      "gecontroleerdOp": "2026-11-09T17:01:02.861Z",
       "bronTitel": "Werkzaamheden Fokkerweg (N232) in Schiphol-Oost",
       "bronLengte": 1649,
       "checklist": {
@@ -532,6 +532,44 @@
       },
       "checklistBron": "ai",
       "tagVersie": 2
+    },
+    {
+      "id": "e0c8d06de1-v1",
+      "groepId": "e0c8d06de1",
+      "versie": 1,
+      "url": "https://www.deorkaan.nl/themapad-in-assendelft-krijgt-stopverlichting-huh/",
+      "kop": "Themapad in Assendelft krijgt ‘stopverlichting’ (huh?)",
+      "tekst": null,
+      "rubriek": "VER",
+      "tagBron": "ai",
+      "herkomst": "signaal",
+      "prio": 3,
+      "tijd": "2026-11-08T23:00:00.000Z",
+      "heeftTijd": false,
+      "woorden": 160,
+      "afgekapt": false,
+      "bronId": "DeOrkaan",
+      "bronNaam": "DeOrkaan",
+      "ai": false,
+      "controle": "analyse-ok",
+      "eerstGezienOp": "2026-11-09T17:01:02.861Z",
+      "gecontroleerdOp": "2026-11-09T17:01:02.861Z",
+      "bronTitel": "Themapad in Assendelft krijgt ‘stopverlichting’ (huh?)",
+      "bronLengte": 1045,
+      "checklist": {
+        "gevaar": false,
+        "evacuatieOfNlAlert": false,
+        "gewondenOfDoden": false,
+        "bestuurlijkeCrisis": false,
+        "besluitMetGrootGevolg": false,
+        "tijdkritisch": false,
+        "betrokkenen": null,
+        "geldbedragEuro": null,
+        "banen": null,
+        "inRegio": true
+      },
+      "checklistBron": "ai",
+      "analyse": true
     },
     {
       "id": "cdc13b69df-v1",
@@ -553,7 +591,7 @@
       "ai": false,
       "controle": "analyse-ok",
       "eerstGezienOp": "2026-11-09T15:00:59.124Z",
-      "gecontroleerdOp": "2026-11-09T15:00:59.124Z",
+      "gecontroleerdOp": "2026-11-09T17:01:02.861Z",
       "bronTitel": "Nog meer windturbines bij de Amsterdamse haven",
       "bronLengte": 2287,
       "checklist": {
@@ -706,7 +744,7 @@
       "ai": false,
       "controle": "analyse-ok",
       "eerstGezienOp": "2026-11-09T14:01:06.499Z",
-      "gecontroleerdOp": "2026-11-09T14:01:06.499Z",
+      "gecontroleerdOp": "2026-11-09T17:01:02.861Z",
       "bronTitel": "Onderzoek naar crisis GroenLinks-PvdA: partij liet conflict rond Köseoglu ontsporen",
       "bronLengte": 5796,
       "checklist": {
@@ -752,7 +790,7 @@
       "ai": false,
       "controle": "analyse-ok",
       "eerstGezienOp": "2026-11-09T14:01:06.499Z",
-      "gecontroleerdOp": "2026-11-09T14:01:06.499Z",
+      "gecontroleerdOp": "2026-11-09T17:01:02.861Z",
       "bronTitel": "Stroomuitval bij Zaans Medisch Centrum (ZMC), brandweer ter plaatse",
       "bronLengte": 1160,
       "checklist": {
@@ -791,7 +829,7 @@
       "ai": false,
       "controle": "analyse-ok",
       "eerstGezienOp": "2026-11-09T13:00:56.658Z",
-      "gecontroleerdOp": "2026-11-09T14:01:06.499Z",
+      "gecontroleerdOp": "2026-11-09T17:01:02.861Z",
       "bronTitel": "Zaanse begroting: op naar de grand finale",
       "bronLengte": 5995,
       "checklist": {
@@ -850,7 +888,7 @@
       "ai": false,
       "controle": "analyse-ok",
       "eerstGezienOp": "2026-11-09T13:00:56.658Z",
-      "gecontroleerdOp": "2026-11-09T14:01:06.499Z",
+      "gecontroleerdOp": "2026-11-09T17:01:02.861Z",
       "bronTitel": "Daar is-ie weer: poller meegepakt",
       "bronLengte": 970,
       "checklist": {
@@ -889,7 +927,7 @@
       "ai": false,
       "controle": "analyse-ok",
       "eerstGezienOp": "2026-11-09T12:00:53.179Z",
-      "gecontroleerdOp": "2026-11-09T14:01:06.499Z",
+      "gecontroleerdOp": "2026-11-09T17:01:02.861Z",
       "bronTitel": "De Orkaan in 2 minuten: 9 november 🎧",
       "bronLengte": 321,
       "checklist": {
@@ -928,7 +966,7 @@
       "ai": false,
       "controle": "analyse-ok",
       "eerstGezienOp": "2026-11-09T11:01:04.336Z",
-      "gecontroleerdOp": "2026-11-09T14:01:06.499Z",
+      "gecontroleerdOp": "2026-11-09T17:01:02.861Z",
       "bronTitel": "Toekomst Vishandel Plat onzeker: ‘doodzonde als ik nu weg moet’",
       "bronLengte": 1855,
       "checklist": {
@@ -967,7 +1005,7 @@
       "ai": false,
       "controle": "analyse-ok",
       "eerstGezienOp": "2026-11-09T11:01:04.336Z",
-      "gecontroleerdOp": "2026-11-09T14:01:06.499Z",
+      "gecontroleerdOp": "2026-11-09T17:01:02.861Z",
       "bronTitel": "Zaagselbrand bij Ydefix Schaverij 📸",
       "bronLengte": 563,
       "checklist": {
@@ -1045,7 +1083,7 @@
       "ai": true,
       "controle": "cijfers-ok",
       "eerstGezienOp": "2026-11-09T10:01:00.973Z",
-      "gecontroleerdOp": "2026-11-09T15:00:59.124Z",
+      "gecontroleerdOp": "2026-11-09T17:01:02.861Z",
       "bronTitel": "Flexibiliteit in begrotingsuitwerking voor OV en deelmobiliteit",
       "bronLengte": 14973,
       "checklist": {
@@ -1083,7 +1121,7 @@
       "ai": false,
       "controle": "analyse-ok",
       "eerstGezienOp": "2026-11-09T09:00:56.202Z",
-      "gecontroleerdOp": "2026-11-09T15:00:59.124Z",
+      "gecontroleerdOp": "2026-11-09T17:01:02.861Z",
       "bronTitel": "Sport: zaalkorfbal van start, kolf-kampioenen bekend",
       "bronLengte": 5987,
       "checklist": {
@@ -1144,7 +1182,7 @@
       "ai": false,
       "controle": "analyse-ok",
       "eerstGezienOp": "2026-11-09T09:00:56.202Z",
-      "gecontroleerdOp": "2026-11-09T15:00:59.124Z",
+      "gecontroleerdOp": "2026-11-09T17:01:02.861Z",
       "bronTitel": "Pincodes klanten in Zaandam beeld: Kruidvat onderzoekt veiligheidslek in gehele keten",
       "bronLengte": 4202,
       "checklist": {
@@ -1267,7 +1305,7 @@
       "ai": false,
       "controle": "geen-ai",
       "eerstGezienOp": "2026-11-09T07:51:31.296Z",
-      "gecontroleerdOp": "2026-11-09T15:00:59.124Z",
+      "gecontroleerdOp": "2026-11-09T17:01:02.861Z",
       "bronTitel": "Aanbesteding afgerond zonder gunning: specialistische Jeugdhulp Segment B 2027 Zaanstreek-Waterland",
       "bronLengte": 188,
       "aanbesteding": {

@@ -1,5 +1,5 @@
 {
-  "gegenereerdOp": "2026-11-09T16:00:55.979Z",
+  "gegenereerdOp": "2026-11-09T17:01:02.861Z",
   "modus": "schaduw",
   "stempel": "v4-22806000",
   "tau": 0.5,
@@ -8,17 +8,17 @@
     "ai": true,
     "formule": "v4-22806000",
     "tekst": {
-      "werklijst": 0,
-      "lokaal": 0,
+      "werklijst": 1,
+      "lokaal": 1,
       "opgehaald": 0,
       "mislukt": 0,
       "uitgesteld": 0
     },
     "vergeten": 0,
     "tekstenOpgeruimd": 0,
-    "stukken": 383,
-    "kandidaten": 65,
-    "metAnker": 63,
+    "stukken": 384,
+    "kandidaten": 66,
+    "metAnker": 64,
     "zonderAnker": 2,
     "afgelast": 1,
     "dubbel": 0,
@@ -43,7 +43,7 @@
       "Sp": 0,
       "route": "aanhoudend",
       "K": 0.75,
-      "Kp": 0.58,
+      "Kp": 0.57,
       "n": 3,
       "dagen": 3,
       "bronnen": 2,
@@ -155,8 +155,8 @@
       "key": "n:https://ted.europa.eu/nl/notice/-/detail/777319-2026",
       "soort": "nieuws",
       "kop": "Aanbesteding afgerond zonder gunning: specialistische Jeugdhulp Segment B 2027 Zaanstreek-Waterland",
-      "S": 0.23,
-      "Sa": 0.23,
+      "S": 0.22,
+      "Sa": 0.22,
       "Sp": 0,
       "route": "aanhoudend",
       "K": 0.33,
@@ -180,6 +180,33 @@
           "c": 1,
           "plek": "kop",
           "titel": "Inkoop specialistische jeugdhulp 2027"
+        }
+      ]
+    },
+    {
+      "key": "n:https://www.deorkaan.nl/themapad-in-assendelft-krijgt-stopverlichting-huh/",
+      "soort": "nieuws",
+      "kop": "Themapad in Assendelft krijgt ‘stopverlichting’ (huh?)",
+      "S": 0.21,
+      "Sa": 0.21,
+      "Sp": 0,
+      "route": "aanhoudend",
+      "K": 0.72,
+      "Kp": 0.38,
+      "n": 1,
+      "dagen": 1,
+      "bronnen": 1,
+      "ankers": [
+        "themapad",
+        "stopverlichting"
+      ],
+      "bewijs": [
+        {
+          "bron": "bekendmakingen",
+          "datum": "2026-11-04T23:00:00.000Z",
+          "c": 0.91,
+          "plek": "kop",
+          "titel": "Verkeersbesluit, instellen stopverlichting fietsverkeer Themapad Assendelft"
         }
       ]
     },
@@ -647,6 +674,7 @@
       "bronnen": 0,
       "ankers": [
         "radsvergadering",
+        "begroting",
         "sprektijd",
         "agendapunt",
         "opening"
@@ -1048,25 +1076,6 @@
         "wakzinnig"
       ],
       "bewijs": []
-    },
-    {
-      "key": "a:822c3f1bd8",
-      "soort": "agenda",
-      "kop": "Werkbezoek: Werkom",
-      "S": 0,
-      "Sa": 0,
-      "Sp": 0,
-      "route": "geen",
-      "K": 0,
-      "Kp": 0,
-      "n": 0,
-      "dagen": 0,
-      "bronnen": 0,
-      "ankers": [
-        "werkom",
-        "agendacommissi"
-      ],
-      "bewijs": []
     }
   ],
   "formule": {
@@ -1144,6 +1153,14 @@
         "S": 0.23,
         "route": "aanhoudend",
         "K": 0.48,
+        "n": 1,
+        "bronnen": 1
+      },
+      "n:https://www.deorkaan.nl/themapad-in-assendelft-krijgt-stopverlichting-huh/": {
+        "kop": "Themapad in Assendelft krijgt ‘stopverlichting’ (huh?)",
+        "S": 0.21,
+        "route": "aanhoudend",
+        "K": 0.72,
         "n": 1,
         "bronnen": 1
       },
@@ -1304,14 +1321,6 @@
         "S": 0,
         "route": "geen",
         "K": 0.15,
-        "n": 0,
-        "bronnen": 0
-      },
-      "a:1a746de3ba": {
-        "kop": "Uitnodiging NZKG-Jaarcongres 12 november 'De kracht van het Noordzeekanaalgebied (NZKG) & 150 jaar Noordzeekanaal'",
-        "S": 0,
-        "route": "geen",
-        "K": 0,
         "n": 0,
         "bronnen": 0
       }
