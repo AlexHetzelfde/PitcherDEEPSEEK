@@ -1,5 +1,5 @@
 {
-  "gegenereerdOp": "2026-11-09T19:00:57.514Z",
+  "gegenereerdOp": "2026-11-09T20:00:55.974Z",
   "alertModus": "log",
   "bronnen": {
     "zaansche-molen": {
@@ -38,13 +38,13 @@
       "opeenvolgendLeeg": 0
     },
     "nh-actueel": {
-      "laatsteScrape": "2026-11-09T18:40:33.660Z",
+      "laatsteScrape": "2026-11-09T20:00:55.974Z",
       "gevonden": 15,
       "opeenvolgendLeeg": 0
     },
     "nh-cultuur": {
-      "laatsteScrape": "2026-11-09T18:40:33.660Z",
-      "gevonden": 15,
+      "laatsteScrape": "2026-11-09T20:00:55.974Z",
+      "gevonden": 3,
       "opeenvolgendLeeg": 0
     },
     "zaanstad-hoorzittingen": {
@@ -98,7 +98,7 @@
       "opeenvolgendLeeg": 0
     },
     "DeOrkaan": {
-      "laatsteScrape": "2026-11-09T18:40:33.660Z",
+      "laatsteScrape": "2026-11-09T20:00:55.974Z",
       "gevonden": 12,
       "opeenvolgendLeeg": 0
     },
@@ -123,29 +123,29 @@
       "opeenvolgendLeeg": 0
     },
     "vervoerregio-overzichten": {
-      "laatsteScrape": "2026-11-09T18:40:33.660Z",
+      "laatsteScrape": "2026-11-09T20:00:55.974Z",
       "gevonden": 1,
       "opeenvolgendLeeg": 0
     },
     "zaanstad-moties": {
-      "laatsteScrape": "2026-11-09T18:40:33.660Z",
+      "laatsteScrape": "2026-11-09T20:00:55.974Z",
       "gevonden": 0,
-      "opeenvolgendLeeg": 12
+      "opeenvolgendLeeg": 13
     },
     "zaanstad-camera": {
-      "laatsteScrape": "2026-11-09T18:40:33.660Z",
+      "laatsteScrape": "2026-11-09T20:00:55.974Z",
       "gevonden": 0,
-      "opeenvolgendLeeg": 12
+      "opeenvolgendLeeg": 13
     },
     "zaanstad-ted": {
-      "laatsteScrape": "2026-11-09T18:40:33.660Z",
+      "laatsteScrape": "2026-11-09T20:00:55.974Z",
       "gevonden": 1,
       "opeenvolgendLeeg": 0
     },
     "zaanstad-tenderned": {
-      "laatsteScrape": "2026-11-09T18:40:33.660Z",
+      "laatsteScrape": "2026-11-09T20:00:55.974Z",
       "gevonden": 0,
-      "opeenvolgendLeeg": 12
+      "opeenvolgendLeeg": 13
     }
   },
   "bronnenZonderRubriek": [],
@@ -375,11 +375,11 @@
       "nieuw": 0,
       "update": 0,
       "opnieuw": 0,
-      "ongewijzigd": 0,
+      "ongewijzigd": 15,
       "seed": 0
     },
     "cluster": {
-      "vergeleken": 820,
+      "vergeleken": 780,
       "automatisch": 0,
       "aiGevraagd": 0,
       "aiJa": 0,
@@ -407,8 +407,8 @@
       "vergeten": 0,
       "tekstenOpgeruimd": 0,
       "stukken": 384,
-      "kandidaten": 66,
-      "metAnker": 64,
+      "kandidaten": 65,
+      "metAnker": 63,
       "zonderAnker": 2,
       "afgelast": 1,
       "dubbel": 0,

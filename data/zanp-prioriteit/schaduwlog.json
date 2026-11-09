@@ -1,5 +1,5 @@
 {
-  "gegenereerdOp": "2026-11-09T19:00:57.514Z",
+  "gegenereerdOp": "2026-11-09T20:00:55.974Z",
   "modus": "schaduw",
   "stempel": "v4-22806000",
   "tau": 0.5,
@@ -17,8 +17,8 @@
     "vergeten": 0,
     "tekstenOpgeruimd": 0,
     "stukken": 384,
-    "kandidaten": 66,
-    "metAnker": 64,
+    "kandidaten": 65,
+    "metAnker": 63,
     "zonderAnker": 2,
     "afgelast": 1,
     "dubbel": 0,
@@ -159,8 +159,8 @@
       "Sa": 0.22,
       "Sp": 0,
       "route": "aanhoudend",
-      "K": 0.33,
-      "Kp": 0.2,
+      "K": 0.32,
+      "Kp": 0.19,
       "n": 1,
       "dagen": 1,
       "bronnen": 1,
@@ -536,35 +536,6 @@
           "c": 0.67,
           "plek": "intro",
           "titel": "Weweigerde omgevingsvergunning voor een uitweg locatie Waterbies 35 te Assendelft"
-        }
-      ]
-    },
-    {
-      "key": "n:https://www.deorkaan.nl/dichters-laten-de-tijd-spreken-in-museum-zaanse-tijd-%f0%9f%93%b8-%f0%9f%8e%a5/",
-      "soort": "nieuws",
-      "kop": "Dichters laten de tijd spreken in Museum Zaanse Tijd 📸 🎥",
-      "S": 0.05,
-      "Sa": 0.05,
-      "Sp": 0,
-      "route": "aanhoudend",
-      "K": 0,
-      "Kp": 0,
-      "n": 1,
-      "dagen": 1,
-      "bronnen": 1,
-      "ankers": [
-        "dichter",
-        "museum",
-        "sprek",
-        "reichardt"
-      ],
-      "bewijs": [
-        {
-          "bron": "WaarheenAgenda",
-          "datum": "2026-10-30T08:00:10.425Z",
-          "c": 0.97,
-          "plek": "kop",
-          "titel": "Dichter bij de tijd"
         }
       ]
     },
@@ -1074,6 +1045,25 @@
         "candy",
         "dulfer",
         "wakzinnig"
+      ],
+      "bewijs": []
+    },
+    {
+      "key": "a:822c3f1bd8",
+      "soort": "agenda",
+      "kop": "Werkbezoek: Werkom",
+      "S": 0,
+      "Sa": 0,
+      "Sp": 0,
+      "route": "geen",
+      "K": 0,
+      "Kp": 0,
+      "n": 0,
+      "dagen": 0,
+      "bronnen": 0,
+      "ankers": [
+        "werkom",
+        "agendacommissi"
       ],
       "bewijs": []
     }
