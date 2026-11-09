@@ -1,5 +1,5 @@
 {
-  "gegenereerdOp": "2026-11-09T09:00:56.202Z",
+  "gegenereerdOp": "2026-11-09T10:01:00.973Z",
   "promptVersie": "2026-10-29-batch-tag-checklist-agendapunten",
   "alertModus": "log",
   "prioSchaal": "1 = urgent, 2 = belangrijk, 3 = regulier, 4 = routine. De AI geeft nooit prio 1.",
@@ -89,15 +89,44 @@
       ]
     },
     {
-      "id": "cam-75d684849b",
+      "id": "cam-c7026b23f8",
       "locatie": "Zuiddijk",
       "plaats": "Zaandam",
-      "start": "2026-10-09",
+      "start": "2026-08-28",
       "eind": "2026-12-04",
-      "aantal": 2,
+      "aantal": 4,
       "besluiten": [
         {
           "nr": 1,
+          "url": "https://zoek.officielebekendmakingen.nl/gmb-2026-410932.html",
+          "soort": "aanwijzing",
+          "titel": "Aanwijzingsbesluit tijdelijk cameratoezicht Zuiddijk te Zaandam",
+          "start": "2026-08-28",
+          "eind": "2026-10-09",
+          "pubdate": "2026-08-28",
+          "redenCategorieen": [
+            "Overlast",
+            "Brand/explosie"
+          ],
+          "redenSamenvatting": "- uit de bestuurlijke rapportage van de politie blijkt dat er op 25 augustus 2026 omstreeks 08.00 uur een explosief bij een woning aan de Zuiddijk te Zaandam is aangetroffen;"
+        },
+        {
+          "nr": 2,
+          "url": "https://zoek.officielebekendmakingen.nl/gmb-2026-419916.html",
+          "soort": "extra",
+          "titel": "Aanwijzingsbesluit extra tijdelijk cameratoezicht Zuiddijk te Zaandam",
+          "start": "2026-09-03",
+          "eind": "2026-10-09",
+          "pubdate": "2026-09-03",
+          "redenCategorieen": [
+            "Overlast",
+            "Geweld/bedreiging",
+            "Brand/explosie"
+          ],
+          "redenSamenvatting": "de grondslag voor het plaatsen van de extra camera is gelegen in het feit dat er op 1 september 2026 een explosie heeft plaatsgevonden bij een woning aan de Zuiddijk;"
+        },
+        {
+          "nr": 3,
           "url": "https://zoek.officielebekendmakingen.nl/gmb-2026-477250.html",
           "soort": "verlenging",
           "titel": "Aanwijzingsbesluit verlenging tijdelijk cameratoezicht Zuiddijk te Zaandam",
@@ -111,7 +140,7 @@
           "redenSamenvatting": "het tijdelijk cameratoezicht is ingezet naar aanleiding van het plaatsen van een explosief op 25 augustus 2026, en een explosie die op 1 september 2026 heeft plaatsgevonden op de Zuiddijk;"
         },
         {
-          "nr": 2,
+          "nr": 4,
           "url": "https://zoek.officielebekendmakingen.nl/gmb-2026-524186.html",
           "soort": "verlenging",
           "titel": "Aanwijzingsbesluit verlenging tijdelijk cameratoezicht Zuiddijk te Zaandam",
@@ -127,15 +156,28 @@
       ]
     },
     {
-      "id": "cam-5263d7d958",
+      "id": "cam-335c327157",
       "locatie": "Elzenstraat",
       "plaats": "Wormerveer",
-      "start": "2026-10-01",
+      "start": "2026-08-27",
       "eind": "2026-12-01",
-      "aantal": 2,
+      "aantal": 3,
       "besluiten": [
         {
           "nr": 1,
+          "url": "https://zoek.officielebekendmakingen.nl/gmb-2026-408913.html",
+          "soort": "verlenging",
+          "titel": "Aanwijzingsbesluit verlenging tijdelijk cameratoezicht Elzenstraat in Wormerveer",
+          "start": "2026-08-27",
+          "eind": "2026-10-01",
+          "pubdate": "2026-08-27",
+          "redenCategorieen": [
+            "Overlast"
+          ],
+          "redenSamenvatting": "het incident heeft plaatsgevonden midden in een woonwijk en heeft geleid tot gevoelens van angst en onrust in de gemeente in het algemeen en in de Elzenstraat en de omliggende omgeving in het bijzonder;"
+        },
+        {
+          "nr": 2,
           "url": "https://zoek.officielebekendmakingen.nl/gmb-2026-459380.html",
           "soort": "verlenging",
           "titel": "Aanwijzingsbesluit verlenging tijdelijk cameratoezicht Elzenstraat in Wormerveer",
@@ -148,7 +190,7 @@
           "redenSamenvatting": "het incident heeft plaatsgevonden midden in een woonwijk en heeft geleid tot gevoelens van angst en onrust in de gemeente in het algemeen en in de Elzenstraat en de omliggende omgeving in het bijzonder;"
         },
         {
-          "nr": 2,
+          "nr": 3,
           "url": "https://zoek.officielebekendmakingen.nl/gmb-2026-517023.html",
           "soort": "verlenging",
           "titel": "Aanwijzingsbesluit verlenging tijdelijk cameratoezicht Elzenstraat in Wormerveer",
@@ -163,15 +205,29 @@
       ]
     },
     {
-      "id": "cam-e2a31dadd8",
+      "id": "cam-d27e2494a0",
       "locatie": "Rode Zee",
       "plaats": "Zaandam",
-      "start": "2026-10-18",
+      "start": "2026-09-08",
       "eind": "2026-11-15",
-      "aantal": 1,
+      "aantal": 2,
       "besluiten": [
         {
           "nr": 1,
+          "url": "https://zoek.officielebekendmakingen.nl/gmb-2026-426158.html",
+          "soort": "aanwijzing",
+          "titel": "Aanwijzingsbesluit tijdelijk cameratoezicht Rode Zee te Zaandam",
+          "start": "2026-09-08",
+          "eind": "2026-10-18",
+          "pubdate": "2026-09-08",
+          "redenCategorieen": [
+            "Overlast",
+            "Brand/explosie"
+          ],
+          "redenSamenvatting": "uit de bestuurlijke rapportage van de politie van 7 september 2026 blijkt dat er op 6 september 2026 omstreeks 01.50 uur een explosie bij een woning aan de Rode Zee te Zaandam heeft plaatsgevonden."
+        },
+        {
+          "nr": 2,
           "url": "https://zoek.officielebekendmakingen.nl/gmb-2026-491005.html",
           "soort": "verlenging",
           "titel": "Aanwijzingsbesluit verlenging tijdelijk cameratoezicht Rode Zee in Zaandam",
@@ -209,9 +265,170 @@
           "redenSamenvatting": "uit de bestuurlijke rapportage van de politie van 12 oktober 2026 blijkt dat er op 3 oktober 2026 een explosief bij een woning aan de Schoenerstraat te Zaandam is aangetroffen;"
         }
       ]
+    },
+    {
+      "id": "cam-e4b1365d75",
+      "locatie": "Hof van Zaenden",
+      "plaats": "Zaandam",
+      "start": "2026-08-20",
+      "eind": "2026-10-28",
+      "aantal": 2,
+      "besluiten": [
+        {
+          "nr": 1,
+          "url": "https://zoek.officielebekendmakingen.nl/gmb-2026-398093.html",
+          "soort": "aanwijzing",
+          "titel": "Aanwijzingsbesluit tijdelijk cameratoezicht Hof van Zaenden te Zaandam",
+          "start": "2026-08-20",
+          "eind": "2026-09-28",
+          "pubdate": "2026-08-20",
+          "redenCategorieen": [
+            "Overlast",
+            "Brand/explosie"
+          ],
+          "redenSamenvatting": "uit de bestuurlijke rapportage van de politie van 18 augustus 2026 blijkt dat er op 14 augustus 2026 omstreeks 01.39 uur een explosie bij een appartementencomplex aan het Hof van Zaenden te Zaandam heeft plaatsgevonden."
+        },
+        {
+          "nr": 2,
+          "url": "https://zoek.officielebekendmakingen.nl/gmb-2026-456868.html",
+          "soort": "verlenging",
+          "titel": "Aanwijzingsbesluit verlenging tijdelijk cameratoezicht Hof van Zaenden in Zaandam",
+          "start": "2026-09-28",
+          "eind": "2026-10-28",
+          "pubdate": "2026-09-28",
+          "redenCategorieen": [
+            "Overlast",
+            "Brand/explosie"
+          ],
+          "redenSamenvatting": "het tijdelijk cameratoezicht is ingezet naar aanleiding van de explosie die op 14 augustus 2026 heeft plaatsgevonden bij een appartementencomplex aan het Hof van Zaenden te Zaandam;"
+        }
+      ]
+    },
+    {
+      "id": "cam-65524a44b6",
+      "locatie": "Oosterwerf",
+      "plaats": "Zaandam",
+      "start": "2026-08-21",
+      "eind": "2026-10-02",
+      "aantal": 1,
+      "besluiten": [
+        {
+          "nr": 1,
+          "url": "https://zoek.officielebekendmakingen.nl/gmb-2026-400422.html",
+          "soort": "aanwijzing",
+          "titel": "Aanwijzingsbesluit tijdelijk cameratoezicht Oosterwerf te Zaandam",
+          "start": "2026-08-21",
+          "eind": "2026-10-02",
+          "pubdate": "2026-08-21",
+          "redenCategorieen": [
+            "Overlast",
+            "Brand/explosie"
+          ],
+          "redenSamenvatting": "uit de bestuurlijke rapportage van de politie van 18 augustus 2026 blijkt dat er op 13 augustus 2026 omstreeks 04:45 uur een explosie bij een woning aan de Oosterwerf te Zaandam heeft plaatsgevonden."
+        }
+      ]
+    },
+    {
+      "id": "cam-ccada83f79",
+      "locatie": "Kaaikhof",
+      "plaats": "Assendelft",
+      "start": "2026-08-18",
+      "eind": "2026-09-25",
+      "aantal": 1,
+      "besluiten": [
+        {
+          "nr": 1,
+          "url": "https://zoek.officielebekendmakingen.nl/gmb-2026-396408.html",
+          "soort": "aanwijzing",
+          "titel": "Aanwijzingsbesluit tijdelijk cameratoezicht Kaaikhof te Assendelft",
+          "start": "2026-08-18",
+          "eind": "2026-09-25",
+          "pubdate": "2026-08-19",
+          "redenCategorieen": [
+            "Overlast",
+            "Brand/explosie"
+          ],
+          "redenSamenvatting": "uit de bestuurlijke rapportage van de politie van 17 augustus 2026 blijkt dat er op 14 augustus 2026 omstreeks 02:36 uur een explosie bij KOC supermarkt aan het Kaaikhof te Assendelft heeft plaatsgevonden."
+        }
+      ]
     }
   ],
   "berichten": [
+    {
+      "id": "54ee6086c7-v1",
+      "groepId": "54ee6086c7",
+      "versie": 1,
+      "url": "https://www.deorkaan.nl/mogelijk-expolosief-opgevist-bij-havenstraat-zaandam/",
+      "kop": "Mogelijk explosief opgevist bij Havenstraat, Zaandam",
+      "tekst": null,
+      "rubriek": "VER",
+      "tagBron": "ai",
+      "herkomst": "signaal",
+      "prio": 3,
+      "tijd": "2026-11-08T23:00:00.000Z",
+      "heeftTijd": false,
+      "woorden": 109,
+      "afgekapt": false,
+      "bronId": "DeOrkaan",
+      "bronNaam": "DeOrkaan",
+      "ai": false,
+      "controle": "analyse-ok",
+      "eerstGezienOp": "2026-11-09T10:01:00.973Z",
+      "gecontroleerdOp": "2026-11-09T10:01:00.973Z",
+      "bronTitel": "Mogelijk explosief opgevist bij Havenstraat, Zaandam",
+      "bronLengte": 698,
+      "checklist": {
+        "gevaar": false,
+        "evacuatieOfNlAlert": false,
+        "gewondenOfDoden": false,
+        "bestuurlijkeCrisis": false,
+        "besluitMetGrootGevolg": false,
+        "tijdkritisch": false,
+        "betrokkenen": null,
+        "geldbedragEuro": null,
+        "banen": null,
+        "inRegio": true
+      },
+      "checklistBron": "ai",
+      "analyse": true
+    },
+    {
+      "id": "a0cf15ccde-v1",
+      "groepId": "a0cf15ccde",
+      "versie": 1,
+      "url": "https://vervoerregio.bestuurlijkeinformatie.nl/Reports/Item/f5b571e1-6aca-4ebf-b6f4-ea274c9b2337",
+      "kop": "Vervoerregio Amsterdam presenteert begroting voor de jaren 2027 tot en met 2030",
+      "tekst": "De Vervoerregio Amsterdam heeft de begroting voor 2027 tot en met 2030 opgesteld, waarin activiteiten, maatregelen en projecten voor openbaar vervoer en deelmobiliteit staan uitgewerkt. De regioraad stelt de begroting naar verwachting vast op 30 juni 2026. Daarbij wordt rekening gehouden met een mogelijke korting van het Rijk op de jaarlijkse inkomsten.",
+      "rubriek": "PRV",
+      "tagBron": "ai",
+      "herkomst": "officieel",
+      "prio": 4,
+      "tijd": "2026-11-08T23:00:00.000Z",
+      "heeftTijd": false,
+      "woorden": 2214,
+      "afgekapt": true,
+      "bronId": "vervoerregio-overzichten",
+      "bronNaam": "Vervoerregio: Overzichten (iBabs)",
+      "ai": true,
+      "controle": "cijfers-ok",
+      "eerstGezienOp": "2026-11-09T10:01:00.973Z",
+      "gecontroleerdOp": "2026-11-09T10:01:00.973Z",
+      "bronTitel": "Flexibiliteit in begrotingsuitwerking voor OV en deelmobiliteit",
+      "bronLengte": 14973,
+      "checklist": {
+        "gevaar": false,
+        "evacuatieOfNlAlert": false,
+        "gewondenOfDoden": false,
+        "bestuurlijkeCrisis": false,
+        "besluitMetGrootGevolg": false,
+        "tijdkritisch": false,
+        "betrokkenen": null,
+        "geldbedragEuro": null,
+        "banen": null,
+        "inRegio": false
+      },
+      "checklistBron": "ai"
+    },
     {
       "id": "1f713f9fb8-v1",
       "groepId": "1f713f9fb8",
@@ -220,7 +437,7 @@
       "kop": "Sport: zaalkorfbal van start, kolf-kampioenen bekend",
       "tekst": null,
       "rubriek": "SPO",
-      "tagBron": "trefwoord",
+      "tagBron": "ai",
       "herkomst": "signaal",
       "prio": 3,
       "tijd": "2026-11-08T23:00:00.000Z",
@@ -230,9 +447,9 @@
       "bronId": "DeOrkaan",
       "bronNaam": "DeOrkaan",
       "ai": false,
-      "controle": "ai-fout",
+      "controle": "analyse-ok",
       "eerstGezienOp": "2026-11-09T09:00:56.202Z",
-      "gecontroleerdOp": "2026-11-09T09:00:56.202Z",
+      "gecontroleerdOp": "2026-11-09T10:01:00.973Z",
       "bronTitel": "Sport: zaalkorfbal van start, kolf-kampioenen bekend",
       "bronLengte": 5987,
       "checklist": {
@@ -247,7 +464,31 @@
         "banen": null,
         "inRegio": true
       },
-      "checklistBron": "patroon"
+      "checklistBron": "ai",
+      "tagVersie": 2,
+      "agendapunten": [
+        {
+          "titel": "KZ speelt de eerste thuiswedstrijd tegen LDODK uit Gorredijk",
+          "dag": "2026-11-13",
+          "start": "2026-11-13T19:30:00.000Z",
+          "eind": null,
+          "plaats": null,
+          "zekerheid": "afgeleid"
+        },
+        {
+          "titel": "Eerste thuiswedstrijd van KVZ '23 tegen Maassluis",
+          "dag": "2026-11-14",
+          "start": null,
+          "eind": null,
+          "plaats": null,
+          "zekerheid": "afgeleid"
+        }
+      ],
+      "analyse": true,
+      "agendaIds": [
+        "b89f8df87d",
+        "f30edbd1c7"
+      ]
     },
     {
       "id": "8551a2f43c-v1",
@@ -256,8 +497,8 @@
       "url": "https://www.deorkaan.nl/pincodes-klanten-in-zaandam-beeld-kruidvat-onderzoekt-veiligheidslek-in-gehele-keten/",
       "kop": "Pincodes klanten in Zaandam beeld: Kruidvat onderzoekt veiligheidslek in gehele keten",
       "tekst": null,
-      "rubriek": "ALG",
-      "tagBron": "geen",
+      "rubriek": "BED",
+      "tagBron": "ai",
       "herkomst": "signaal",
       "prio": 3,
       "tijd": "2026-11-08T23:00:00.000Z",
@@ -267,9 +508,9 @@
       "bronId": "DeOrkaan",
       "bronNaam": "DeOrkaan",
       "ai": false,
-      "controle": "ai-fout",
+      "controle": "analyse-ok",
       "eerstGezienOp": "2026-11-09T09:00:56.202Z",
-      "gecontroleerdOp": "2026-11-09T09:00:56.202Z",
+      "gecontroleerdOp": "2026-11-09T10:01:00.973Z",
       "bronTitel": "Pincodes klanten in Zaandam beeld: Kruidvat onderzoekt veiligheidslek in gehele keten",
       "bronLengte": 4202,
       "checklist": {
@@ -284,7 +525,9 @@
         "banen": null,
         "inRegio": true
       },
-      "checklistBron": "patroon"
+      "checklistBron": "ai",
+      "tagVersie": 2,
+      "analyse": true
     },
     {
       "id": "aa1f8d72ab-v1",
@@ -322,6 +565,7 @@
         "inRegio": true
       },
       "checklistBron": "patroon",
+      "tagVersie": 2,
       "alertKandidaat": {
         "niveau": "oranje",
         "categorie": "economie",
@@ -350,7 +594,7 @@
       "ai": false,
       "controle": "analyse-ok",
       "eerstGezienOp": "2026-11-09T07:51:31.296Z",
-      "gecontroleerdOp": "2026-11-09T07:51:31.296Z",
+      "gecontroleerdOp": "2026-11-09T10:01:00.973Z",
       "bronTitel": "Steekpartij in woning Zaandam, politie zoekt man op elektrische fiets",
       "bronLengte": 1306,
       "checklist": {
@@ -389,7 +633,7 @@
       "ai": false,
       "controle": "geen-ai",
       "eerstGezienOp": "2026-11-09T07:51:31.296Z",
-      "gecontroleerdOp": "2026-11-09T07:51:31.296Z",
+      "gecontroleerdOp": "2026-11-09T10:01:00.973Z",
       "bronTitel": "Aanbesteding afgerond zonder gunning: specialistische Jeugdhulp Segment B 2027 Zaanstreek-Waterland",
       "bronLengte": 188,
       "aanbesteding": {
@@ -12185,7 +12429,7 @@
       "tagBron": "bron",
       "tagVersie": 2,
       "agendaIds": [
-        "1230a44a40"
+        "5faab7661d"
       ]
     },
     {

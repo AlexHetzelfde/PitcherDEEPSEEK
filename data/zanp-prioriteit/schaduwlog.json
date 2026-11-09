@@ -1,5 +1,5 @@
 {
-  "gegenereerdOp": "2026-11-09T09:00:56.202Z",
+  "gegenereerdOp": "2026-11-09T10:01:00.973Z",
   "modus": "schaduw",
   "stempel": "v4-22806000",
   "tau": 0.5,
@@ -8,17 +8,17 @@
     "ai": true,
     "formule": "v4-22806000",
     "tekst": {
-      "werklijst": 3,
+      "werklijst": 2,
       "lokaal": 2,
-      "opgehaald": 1,
+      "opgehaald": 0,
       "mislukt": 0,
       "uitgesteld": 0
     },
     "vergeten": 0,
     "tekstenOpgeruimd": 0,
-    "stukken": 368,
-    "kandidaten": 56,
-    "metAnker": 53,
+    "stukken": 370,
+    "kandidaten": 57,
+    "metAnker": 54,
     "zonderAnker": 3,
     "afgelast": 1,
     "dubbel": 0,
@@ -362,7 +362,7 @@
       "Sa": 0.09,
       "Sp": 0,
       "route": "aanhoudend",
-      "K": 0.34,
+      "K": 0.33,
       "Kp": 0.18,
       "n": 1,
       "dagen": 1,
@@ -790,8 +790,8 @@
       "ankers": [
         "radzal",
         "commissiegriffier",
-        "portefeuillehouder",
-        "vorzitter"
+        "vorzitter",
+        "portefeuillehouder"
       ],
       "bewijs": []
     },
