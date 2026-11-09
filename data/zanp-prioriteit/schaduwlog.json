@@ -1,5 +1,5 @@
 {
-  "gegenereerdOp": "2026-11-09T08:00:54.172Z",
+  "gegenereerdOp": "2026-11-09T09:00:56.202Z",
   "modus": "schaduw",
   "stempel": "v4-22806000",
   "tau": 0.5,
@@ -8,17 +8,17 @@
     "ai": true,
     "formule": "v4-22806000",
     "tekst": {
-      "werklijst": 0,
-      "lokaal": 0,
-      "opgehaald": 0,
+      "werklijst": 3,
+      "lokaal": 2,
+      "opgehaald": 1,
       "mislukt": 0,
       "uitgesteld": 0
     },
     "vergeten": 0,
     "tekstenOpgeruimd": 0,
-    "stukken": 365,
-    "kandidaten": 54,
-    "metAnker": 51,
+    "stukken": 368,
+    "kandidaten": 56,
+    "metAnker": 53,
     "zonderAnker": 3,
     "afgelast": 1,
     "dubbel": 0,
@@ -75,6 +75,43 @@
           "c": 0.7,
           "plek": "intro",
           "titel": "Kennisgeving Burgemeester J. Hamming: Incident Elzenstraat"
+        }
+      ]
+    },
+    {
+      "key": "n:https://www.deorkaan.nl/pincodes-klanten-in-zaandam-beeld-kruidvat-onderzoekt-veiligheidslek-in-gehele-keten/",
+      "soort": "nieuws",
+      "kop": "Pincodes klanten in Zaandam beeld: Kruidvat onderzoekt veiligheidslek in gehele keten",
+      "S": 0.23,
+      "Sa": 0.23,
+      "Sp": 0,
+      "route": "aanhoudend",
+      "K": 0.48,
+      "Kp": 0.48,
+      "n": 1,
+      "dagen": 1,
+      "bronnen": 1,
+      "ankers": [
+        "kruidvat",
+        "keten",
+        "pincode",
+        "onderzoekt",
+        "veiligheidslek",
+        "gehel",
+        "spijkenis",
+        "valkenburg",
+        "terneuz",
+        "meppel",
+        "bolsward",
+        "klant"
+      ],
+      "bewijs": [
+        {
+          "bron": "DeOrkaan",
+          "datum": "2026-11-06T20:00:52.041Z",
+          "c": 0.88,
+          "plek": "kop",
+          "titel": "Pinnen bij Kruidvat in Zaandam? Winkel kan meekijken – update"
         }
       ]
     },
@@ -299,9 +336,9 @@
         "angehoud",
         "klipon",
         "trading",
-        "bedrijf",
         "ghijsenlan",
         "verdacht",
+        "bedrijf",
         "updat",
         "pieter",
         "afgespeld",
@@ -379,6 +416,42 @@
           "c": 1,
           "plek": "kop",
           "titel": "Verkeersbesluit plaatsen laadpaal voor elektrische auto's locatie Kaaikhof te Assendelft"
+        }
+      ]
+    },
+    {
+      "key": "n:https://www.deorkaan.nl/sport-zaalkorfbal-van-start-kolf-kampioenen-bekend/",
+      "soort": "nieuws",
+      "kop": "Sport: zaalkorfbal van start, kolf-kampioenen bekend",
+      "S": 0.08,
+      "Sa": 0.08,
+      "Sp": 0,
+      "route": "aanhoudend",
+      "K": 0,
+      "Kp": 0,
+      "n": 1,
+      "dagen": 1,
+      "bronnen": 1,
+      "ankers": [
+        "zalkorfbal",
+        "kampioen",
+        "woerd",
+        "sport",
+        "korfbal",
+        "leagu",
+        "start",
+        "zalseizo",
+        "uitwedstrijd",
+        "verspeld",
+        "wekeind"
+      ],
+      "bewijs": [
+        {
+          "bron": "DeOrkaan",
+          "datum": "2026-10-25T23:00:00.000Z",
+          "c": 0.86,
+          "plek": "kop",
+          "titel": "Sport: heren ZV de Zaan mogen door in Europa"
         }
       ]
     },
@@ -1015,47 +1088,6 @@
         "wakzinnig"
       ],
       "bewijs": []
-    },
-    {
-      "key": "a:822c3f1bd8",
-      "soort": "agenda",
-      "kop": "Werkbezoek: Werkom",
-      "S": 0,
-      "Sa": 0,
-      "Sp": 0,
-      "route": "geen",
-      "K": 0,
-      "Kp": 0,
-      "n": 0,
-      "dagen": 0,
-      "bronnen": 0,
-      "ankers": [
-        "werkom",
-        "agendacommissi"
-      ],
-      "bewijs": []
-    },
-    {
-      "key": "a:a24756ce32",
-      "soort": "agenda",
-      "kop": "Dag voor de Raad 2026!",
-      "S": 0,
-      "Sa": 0,
-      "Sp": 0,
-      "route": "geen",
-      "K": 0,
-      "Kp": 0,
-      "n": 0,
-      "dagen": 0,
-      "bronnen": 0,
-      "ankers": [
-        "antropia",
-        "drieberg",
-        "dagprogramma",
-        "zeist",
-        "vereniging"
-      ],
-      "bewijs": []
     }
   ],
   "formule": {
@@ -1120,6 +1152,14 @@
         "n": 1,
         "bronnen": 1
       },
+      "n:https://www.deorkaan.nl/pincodes-klanten-in-zaandam-beeld-kruidvat-onderzoekt-veiligheidslek-in-gehele-keten/": {
+        "kop": "Pincodes klanten in Zaandam beeld: Kruidvat onderzoekt veiligheidslek in gehele keten",
+        "S": 0.23,
+        "route": "aanhoudend",
+        "K": 0.48,
+        "n": 1,
+        "bronnen": 1
+      },
       "n:https://www.deorkaan.nl/overleden-persoon-bij-zaaneiland-slachtoffer-van-noodlottig-ongeval/": {
         "kop": "Overleden persoon bij Zaaneiland slachtoffer van noodlottig ongeval",
         "S": 0.2,
@@ -1181,6 +1221,14 @@
         "S": 0.08,
         "route": "aanhoudend",
         "K": 0.16,
+        "n": 1,
+        "bronnen": 1
+      },
+      "n:https://www.deorkaan.nl/sport-zaalkorfbal-van-start-kolf-kampioenen-bekend/": {
+        "kop": "Sport: zaalkorfbal van start, kolf-kampioenen bekend",
+        "S": 0.08,
+        "route": "aanhoudend",
+        "K": 0,
         "n": 1,
         "bronnen": 1
       },
@@ -1282,22 +1330,6 @@
       },
       "a:777fef6fda": {
         "kop": "Uitnodiging en aanmeldlink voor deelname aan de Webinar raadsleden",
-        "S": 0,
-        "route": "geen",
-        "K": 0,
-        "n": 0,
-        "bronnen": 0
-      },
-      "a:2ee44579cf": {
-        "kop": "Zaanstad Beraad Raadzaal",
-        "S": 0,
-        "route": "geen",
-        "K": 0.1,
-        "n": 0,
-        "bronnen": 0
-      },
-      "a:ef5e3a8881": {
-        "kop": "Indrukwekkend theater in het Zaans Cultuurhuis met Letters Home.",
         "S": 0,
         "route": "geen",
         "K": 0,
