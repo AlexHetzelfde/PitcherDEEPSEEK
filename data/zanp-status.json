@@ -1,5 +1,5 @@
 {
-  "gegenereerdOp": "2026-11-10T05:00:55.821Z",
+  "gegenereerdOp": "2026-11-10T06:00:52.896Z",
   "alertModus": "log",
   "bronnen": {
     "zaansche-molen": {
@@ -38,13 +38,13 @@
       "opeenvolgendLeeg": 0
     },
     "nh-actueel": {
-      "laatsteScrape": "2026-11-10T05:00:55.821Z",
+      "laatsteScrape": "2026-11-10T06:00:52.896Z",
       "gevonden": 15,
       "opeenvolgendLeeg": 0
     },
     "nh-cultuur": {
-      "laatsteScrape": "2026-11-10T05:00:55.821Z",
-      "gevonden": 15,
+      "laatsteScrape": "2026-11-10T06:00:52.896Z",
+      "gevonden": 3,
       "opeenvolgendLeeg": 0
     },
     "zaanstad-hoorzittingen": {
@@ -98,7 +98,7 @@
       "opeenvolgendLeeg": 0
     },
     "DeOrkaan": {
-      "laatsteScrape": "2026-11-10T05:00:55.821Z",
+      "laatsteScrape": "2026-11-10T06:00:52.896Z",
       "gevonden": 12,
       "opeenvolgendLeeg": 0
     },
@@ -123,29 +123,29 @@
       "opeenvolgendLeeg": 0
     },
     "vervoerregio-overzichten": {
-      "laatsteScrape": "2026-11-10T05:00:55.821Z",
+      "laatsteScrape": "2026-11-10T06:00:52.896Z",
       "gevonden": 1,
       "opeenvolgendLeeg": 0
     },
     "zaanstad-moties": {
-      "laatsteScrape": "2026-11-10T05:00:55.821Z",
+      "laatsteScrape": "2026-11-10T06:00:52.896Z",
       "gevonden": 0,
-      "opeenvolgendLeeg": 22
+      "opeenvolgendLeeg": 23
     },
     "zaanstad-camera": {
-      "laatsteScrape": "2026-11-10T05:00:55.821Z",
+      "laatsteScrape": "2026-11-10T06:00:52.896Z",
       "gevonden": 0,
-      "opeenvolgendLeeg": 22
+      "opeenvolgendLeeg": 23
     },
     "zaanstad-ted": {
-      "laatsteScrape": "2026-11-10T05:00:55.821Z",
+      "laatsteScrape": "2026-11-10T06:00:52.896Z",
       "gevonden": 1,
       "opeenvolgendLeeg": 0
     },
     "zaanstad-tenderned": {
-      "laatsteScrape": "2026-11-10T05:00:55.821Z",
+      "laatsteScrape": "2026-11-10T06:00:52.896Z",
       "gevonden": 0,
-      "opeenvolgendLeeg": 22
+      "opeenvolgendLeeg": 23
     }
   },
   "bronnenZonderRubriek": [],
@@ -375,7 +375,7 @@
       "nieuw": 0,
       "update": 0,
       "opnieuw": 0,
-      "ongewijzigd": 0,
+      "ongewijzigd": 16,
       "seed": 0
     },
     "cluster": {
