@@ -1,5 +1,5 @@
 {
-  "gegenereerdOp": "2026-11-10T00:00:54.671Z",
+  "gegenereerdOp": "2026-11-10T01:00:59.304Z",
   "modus": "schaduw",
   "stempel": "v4-22806000",
   "tau": 0.5,
@@ -266,8 +266,8 @@
       "key": "a:2f3f3332ae",
       "soort": "agenda",
       "kop": "Zaanstad Beraad Raadzaal: TEST",
-      "S": 0.12,
-      "Sa": 0.12,
+      "S": 0.11,
+      "Sa": 0.11,
       "Sp": 0,
       "route": "aanhoudend",
       "K": 0.2,
