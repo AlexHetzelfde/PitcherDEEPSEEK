@@ -30,6 +30,13 @@
 //  - Berichten krijgen een tag (de kolom); oude records worden eenmalig omgezet.
 //  - Berichten en agendapunten worden gekoppeld op harde sleutels (koppel.js).
 //  - zanp-status.json bewaart een kwaliteitslog per dag (14 dagen).
+//
+// Sinds 2026-11-10:
+//  - Logboek per run (runlog.js): per onderdeel tellers, metingen en voorbeelden,
+//    in data/zanp-log.json en als "[log:onderdeel]"-regels in het Actions-log.
+//  - Volledige teksten staan in data/zanp-teksten/ (per publicatiedag, 14 dagen;
+//    tekstarchief.js). De teksten worden netjes en met alinea's bewaard
+//    (tekstopschoning.js).
 
 // Bronnen die alleen ZANP gebruikt staan in zanp-bronnen.js, zodat de
 // nachtelijke pitchrun (index.js) ze niet meeneemt.
@@ -45,6 +52,7 @@ const {
 } = require("./hulpmiddelen");
 const gedeeld = require("./gedeeld");
 const wire = require("./wire");
+const runlog = require("./runlog");
 
 // ZANP-prioriteit (2026-11-04): agenda-items en berichten rood kleuren als een
 // onderwerp groot leeft. Staat in scraper/prioriteit/. Een fout bij het laden
@@ -344,6 +352,7 @@ async function draai(deps = {}) {
   const beslisZelfde = deps.beslisZelfde || beslisZelfdeNieuwsfeit;
   const inst = leesInstellingen(env);
   const samenvatting = { agenda: null, berichten: null, cluster: null, alerts: 0 };
+  const runLog = runlog.start({ nu });
 
   logFase("ZANP 1 — Bronnen kiezen");
   const status = await leesStatus();
@@ -744,6 +753,13 @@ async function draai(deps = {}) {
     cameraReeksen,
     berichten: records,
   });
+  // Logboek: kerngetallen van de run zelf, dan wegschrijven (een fout hier stopt niets).
+  runLog.zet("run", "berichten", records.length);
+  runLog.zet("run", "agendaItems", agendaItems.length);
+  runLog.zet("run", "aiVerzoeken", run.verzoeken);
+  runLog.zet("run", "geminiDagGebruikt", `${status.gemini.gebruikt}/${inst.dagcap}`);
+  runLog.zet("run", "duurSeconden", Math.round((Date.now() - startRun) / 1000));
+  runLog.drukAf();
   await schrijfJson("zanp-status.json", {
     gegenereerdOp,
     alertModus: inst.alertModus,
@@ -754,6 +770,8 @@ async function draai(deps = {}) {
     kwaliteit: status.kwaliteit,
     laatsteRun: samenvatting,
   });
+  await runLog.bewaar({ leesJson, schrijfJson });
+  runlog.stop();
   console.log(
     `Klaar: ${records.length} berichten, ${agendaItems.length} agenda-items, ${
       records.filter((r) => r.ai).length
