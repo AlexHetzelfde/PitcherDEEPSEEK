@@ -58,7 +58,7 @@ test("een run zonder API-sleutel levert tags, checklists en alleen de eigen best
   assert.equal(b.bekendmakingen.rubriek, "112");
   assert.equal(b.bekendmakingen.checklist.evacuatieOfNlAlert, true);
   assert.equal(b.DeOrkaan.checklist.bestuurlijkeCrisis, true);
-  assert.deepEqual(fs.readdirSync(map).sort(), ["agenda.json", "berichten.json", "zanp-status.json"]); // geen pitchbestanden
+  assert.deepEqual(fs.readdirSync(map).sort(), ["agenda.json", "berichten.json", "zanp-log.json", "zanp-status.json"]); // geen pitchbestanden
   const status = leesData(map, "zanp-status.json");
   assert.equal(status.gemini.gebruikt, 0);
 });
