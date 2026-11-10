@@ -1,5 +1,5 @@
 {
-  "gegenereerdOp": "2026-11-10T17:39:38.151Z",
+  "gegenereerdOp": "2026-11-10T18:52:39.868Z",
   "modus": "schaduw",
   "stempel": "v4-22806000",
   "tau": 0.5,
@@ -8,17 +8,18 @@
     "ai": true,
     "formule": "v4-22806000",
     "tekst": {
-      "werklijst": 2,
-      "lokaal": 2,
-      "opgehaald": 0,
+      "werklijst": 7,
+      "lokaal": 6,
+      "opgehaald": 1,
       "mislukt": 0,
       "uitgesteld": 0
     },
     "vergeten": 0,
     "tekstenOpgeruimd": 0,
-    "stukken": 416,
-    "kandidaten": 88,
-    "metAnker": 88,
+    "tekstDekkingPct": 93,
+    "stukken": 423,
+    "kandidaten": 95,
+    "metAnker": 95,
     "zonderAnker": 0,
     "afgelast": 1,
     "dubbel": 0,
@@ -78,6 +79,42 @@
       ]
     },
     {
+      "key": "n:https://zaanstad.bestuurlijkeinformatie.nl/Document/View/401754a8-35b9-4379-8e55-667b9bfe6a05",
+      "soort": "nieuws",
+      "kop": "Kennisgeving wethouder Onclin: Subsidieregeling decentrale politieke partijen Zaanstad",
+      "S": 0.37,
+      "Sa": 0.37,
+      "Sp": 0,
+      "route": "aanhoudend",
+      "K": 0.17,
+      "Kp": 0,
+      "n": 2,
+      "dagen": 2,
+      "bronnen": 2,
+      "ankers": [
+        "subsidieregeling",
+        "kennisgeving",
+        "onclin",
+        "decentral"
+      ],
+      "bewijs": [
+        {
+          "bron": "ibabs-collegeberichten",
+          "datum": "2026-11-05T23:00:00.000Z",
+          "c": 0.86,
+          "plek": "kop",
+          "titel": "Kennisgeving wethouder Groenewoud: Aanvraag windturbines Westelijk Havengebied"
+        },
+        {
+          "bron": "DeOrkaan",
+          "datum": "2026-11-10T15:01:04.293Z",
+          "c": 0.71,
+          "plek": "intro",
+          "titel": "Cadeautjes voor raadsfracties Zaanstad (behalve PVV)"
+        }
+      ]
+    },
+    {
       "key": "n:https://www.deorkaan.nl/stroomuitval-bij-zaans-medisch-centrum-zmc-brandweer-ter-plaatse/",
       "soort": "nieuws",
       "kop": "Stroomuitval bij Zaans Medisch Centrum (ZMC), brandweer ter plaatse – UPDATE",
@@ -131,8 +168,8 @@
         "kruidvat",
         "keten",
         "pincode",
-        "onderzoekt",
         "veiligheidslek",
+        "onderzoekt",
         "gehel",
         "spijkenis",
         "valkenburg",
@@ -246,6 +283,35 @@
       ]
     },
     {
+      "key": "n:https://www.deorkaan.nl/rechtbank-geen-celstraf-voor-doodrijden-hardloopster-op-leeghwaterweg/",
+      "soort": "nieuws",
+      "kop": "Rechtbank: geen celstraf voor doodrijden hardloopster op Leeghwaterweg",
+      "S": 0.18,
+      "Sa": 0.18,
+      "Sp": 0,
+      "route": "aanhoudend",
+      "K": 0.57,
+      "Kp": 0.51,
+      "n": 1,
+      "dagen": 1,
+      "bronnen": 1,
+      "ankers": [
+        "leghwaterweg",
+        "dodrijd",
+        "celstraf",
+        "hardlopster"
+      ],
+      "bewijs": [
+        {
+          "bron": "rechtspraak-noord-holland",
+          "datum": "2026-11-10T13:00:39.000Z",
+          "c": 0.35,
+          "plek": "tekst",
+          "titel": "ECLI:NL:RBNHO:2026:15240 Rechtbank Noord-Holland, 10-11-2026, 15/349569-25"
+        }
+      ]
+    },
+    {
       "key": "n:https://www.deorkaan.nl/het-zaanse-voetbalweekend-%e2%9a%bd%ef%b8%8f-zege-vrouwen-zaandijk-derbyzeges-kfc-en-rood-wit-%f0%9f%8e%99/",
       "soort": "nieuws",
       "kop": "Het Zaanse voetbalweekend ⚽️ zege vrouwen Zaandijk, Derbyzeges KFC en Rood Wit 🎙",
@@ -292,9 +358,9 @@
         "mellum",
         "sarema",
         "overled",
-        "person",
         "slachtoffer",
-        "forensisch"
+        "forensisch",
+        "person"
       ],
       "bewijs": [
         {
@@ -303,36 +369,6 @@
           "c": 1,
           "plek": "kop",
           "titel": "Overleden persoon gevonden in water bij Zaaneiland in Zaandam"
-        }
-      ]
-    },
-    {
-      "key": "n:https://www.deorkaan.nl/nog-meer-windturbines-bij-de-amsterdamse-haven/",
-      "soort": "nieuws",
-      "kop": "Nog meer windturbines bij de Amsterdamse haven",
-      "S": 0.17,
-      "Sa": 0.17,
-      "Sp": 0,
-      "route": "aanhoudend",
-      "K": 0.29,
-      "Kp": 0,
-      "n": 1,
-      "dagen": 1,
-      "bronnen": 1,
-      "ankers": [
-        "amsterdams",
-        "windturbine",
-        "haven",
-        "havenbedrijf",
-        "havengebied"
-      ],
-      "bewijs": [
-        {
-          "bron": "nh-actueel",
-          "datum": "2026-11-05T14:26:00.000Z",
-          "c": 0.87,
-          "plek": "kop",
-          "titel": "Vergunningaanvragen voor 8 windturbines in havengebied Amsterdam"
         }
       ]
     },
@@ -422,7 +458,7 @@
         {
           "bron": "zaanstad-kalender",
           "datum": "2026-11-01T15:55:49.908Z",
-          "c": 0.75,
+          "c": 0.76,
           "plek": "intro",
           "titel": "Raadsvergadering: Reservedatum begroting"
         },
@@ -538,8 +574,8 @@
       "key": "a:d1eae07b85",
       "soort": "agenda",
       "kop": "Brandweer Oostzaan viert 100-jarig jubileum",
-      "S": 0.06,
-      "Sa": 0.06,
+      "S": 0.05,
+      "Sa": 0.05,
       "Sp": 0,
       "route": "aanhoudend",
       "K": 0.35,
@@ -1076,36 +1112,11 @@
         "regional"
       ],
       "bewijs": []
-    },
-    {
-      "key": "a:0a13415ebf",
-      "soort": "agenda",
-      "kop": "Pokertoernooi in de Pelikaan",
-      "S": 0,
-      "Sa": 0,
-      "Sp": 0,
-      "route": "geen",
-      "K": 0,
-      "Kp": 0,
-      "n": 0,
-      "dagen": 0,
-      "bronnen": 0,
-      "ankers": [
-        "pelikan",
-        "pokertoernoi",
-        "poker",
-        "serie",
-        "tournament",
-        "arend",
-        "burtcentrum",
-        "champion"
-      ],
-      "bewijs": []
     }
   ],
   "formule": {
     "geheugenDagen": 30,
-    "tekstBewaarDagen": 30,
+    "tekstBewaarDagen": 14,
     "halfwaardeDagen": 7,
     "roodBewaarDagen": 30,
     "nieuwsVersUren": 48,
@@ -1359,6 +1370,14 @@
         "n": 3,
         "bronnen": 2
       },
+      "n:https://zaanstad.bestuurlijkeinformatie.nl/Document/View/401754a8-35b9-4379-8e55-667b9bfe6a05": {
+        "kop": "Kennisgeving wethouder Onclin: Subsidieregeling decentrale politieke partijen Zaanstad",
+        "S": 0.37,
+        "route": "aanhoudend",
+        "K": 0.17,
+        "n": 2,
+        "bronnen": 2
+      },
       "n:https://www.deorkaan.nl/stroomuitval-bij-zaans-medisch-centrum-zmc-brandweer-ter-plaatse/": {
         "kop": "Stroomuitval bij Zaans Medisch Centrum (ZMC), brandweer ter plaatse – UPDATE",
         "S": 0.28,
@@ -1428,6 +1447,14 @@
         "S": 0.18,
         "route": "aanhoudend",
         "K": 0.29,
+        "n": 1,
+        "bronnen": 1
+      },
+      "n:https://www.deorkaan.nl/rechtbank-geen-celstraf-voor-doodrijden-hardloopster-op-leeghwaterweg/": {
+        "kop": "Rechtbank: geen celstraf voor doodrijden hardloopster op Leeghwaterweg",
+        "S": 0.18,
+        "route": "aanhoudend",
+        "K": 0.57,
         "n": 1,
         "bronnen": 1
       },
@@ -1532,22 +1559,6 @@
         "S": 0,
         "route": "geen",
         "K": 0,
-        "n": 0,
-        "bronnen": 0
-      },
-      "a:4150f4ffc4": {
-        "kop": "Ontdek hoe een kaartspel nieuwe gesprekken over de toekomst opent!",
-        "S": 0,
-        "route": "geen",
-        "K": 0,
-        "n": 0,
-        "bronnen": 0
-      },
-      "a:da1fdf516e": {
-        "kop": "Aanwijsbesluit plaatsen camera locatie Perim te Zaandam",
-        "S": 0,
-        "route": "geen",
-        "K": 0.15,
         "n": 0,
         "bronnen": 0
       }

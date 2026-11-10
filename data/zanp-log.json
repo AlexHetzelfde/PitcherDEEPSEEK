@@ -1,0 +1,289 @@
+{
+  "gegenereerdOp": "2026-11-10T18:52:39.868Z",
+  "uitleg": "Per run per onderdeel: tellers (optellend), waarden (meting van die run), voorbeelden en regels. De laatste 24 runs hebben voorbeelden en regels; 'dagen' telt de tellers per dag op.",
+  "runs": [
+    {
+      "tijd": "2026-11-10T18:52:39.868Z",
+      "duurMs": 78859,
+      "onderdelen": {
+        "tekst": {
+          "tellers": {
+            "aangeboden": 417,
+            "geschreven": 327,
+            "teOudOvergeslagen": 90,
+            "leegOvergeslagen": 0,
+            "rommelRegelsWeg": 83,
+            "alineasHerleid": 204,
+            "titelHerhalingWeg": 38,
+            "methode-run": 137,
+            "methode-artikel": 178,
+            "methode-lijst": 9,
+            "methode-pagina": 3,
+            "oudeBestandenOvergezet": 6,
+            "dagbestandenVerwijderd": 0,
+            "bytesVerwijderd": 0
+          },
+          "waarden": {
+            "oudsteDagbestand": "2026-10-29",
+            "dekkingPct": 93,
+            "berichtenZonderTekst": 19,
+            "dekkingPerBron": {
+              "DeOrkaan": {
+                "berichten": 150,
+                "metTekst": 150,
+                "pct": 100,
+                "gemTekens": 2525
+              },
+              "rechtspraak-noord-holland": {
+                "berichten": 1,
+                "metTekst": 1,
+                "pct": 100,
+                "gemTekens": 6002
+              },
+              "omgevingsdienstnoordzeekanaal": {
+                "berichten": 2,
+                "metTekst": 2,
+                "pct": 100,
+                "gemTekens": 3328
+              },
+              "ibabs-collegeberichten": {
+                "berichten": 15,
+                "metTekst": 8,
+                "pct": 53,
+                "gemTekens": 4519
+              },
+              "ibabs-ingekomen-stukken": {
+                "berichten": 43,
+                "metTekst": 34,
+                "pct": 79,
+                "gemTekens": 1901
+              },
+              "vervoerregio-overzichten": {
+                "berichten": 6,
+                "metTekst": 3,
+                "pct": 50,
+                "gemTekens": 6952
+              },
+              "bekendmakingen": {
+                "berichten": 26,
+                "metTekst": 26,
+                "pct": 100,
+                "gemTekens": 2345
+              },
+              "nh-actueel": {
+                "berichten": 21,
+                "metTekst": 21,
+                "pct": 100,
+                "gemTekens": 2936
+              },
+              "zaanstad-ted": {
+                "berichten": 1,
+                "metTekst": 1,
+                "pct": 100,
+                "gemTekens": 87
+              },
+              "wetenregelgeving": {
+                "berichten": 7,
+                "metTekst": 7,
+                "pct": 100,
+                "gemTekens": 25177
+              },
+              "vervoerregio-persberichten": {
+                "berichten": 5,
+                "metTekst": 5,
+                "pct": 100,
+                "gemTekens": 1586
+              }
+            }
+          },
+          "voorbeelden": [
+            {
+              "bron": "omgevingsdienstnoordzeekanaal",
+              "methode": "run",
+              "kop": "Te hoge stofuitstoot Oxystaalfabriek: Omgevingsdienst onderzoekt nieuwe maatregelen",
+              "tekensVoor": 2529,
+              "tekensNa": 2533,
+              "alineas": 5,
+              "rommelRegelsWeg": 0,
+              "alineasHerleid": true,
+              "begin": "Stofuitstoot bij continugietmachine In de Oxystaalfabriek wordt vloeibaar staal gemaakt. Dit staal wordt vervolgens verwerkt in drie continugietmachines, die het uitgieten tot lange plakken staal. Bij dit proces komt sto",
+              "eind": "ng binnen een bepaalde tijd te beëindigen. Gebeurt dat niet, dan moet het bedrijf een dwangsom (een geldbedrag) betalen."
+            },
+            {
+              "bron": "ibabs-collegeberichten",
+              "methode": "run",
+              "kop": "Kennisgeving wethouder Onclin: Subsidieregeling decentrale politieke partijen Zaanstad",
+              "tekensVoor": 1107,
+              "tekensNa": 1105,
+              "alineas": 5,
+              "rommelRegelsWeg": 0,
+              "alineasHerleid": true,
+              "begin": "Kennisgeving\n\nOnclin, S.\n\nTer kennisname\n\ngemeente Zaanstad wethouder S. Onclin Kennisgeving Stadhuisplein 100 1506 MZ Zaandam Postbus 2000 1500 GA Zaandam AAN Gemeenteraad DATUM 10 november 2026 Telefoon 14 075 www.zaan",
+              "eind": ") Zaanstad 2023 en Subsidieregeling decentrale politieke partijen Zaanstad. Met vriendelijke groet, S. Onclin, wethouder"
+            },
+            {
+              "bron": "ibabs-ingekomen-stukken",
+              "methode": "run",
+              "kop": "Batterijen = geen aansluit stop Noord-Holland",
+              "tekensVoor": 5501,
+              "tekensNa": 5502,
+              "alineas": 6,
+              "rommelRegelsWeg": 0,
+              "alineasHerleid": true,
+              "begin": "Anoniem\n\nTer kennisname\n\nVan: @yahoo.com> Verzonden: dinsdag 10 november 2026 16:20 Aan: Griffie Aalsmeer <griffie@aalsmeer.nl>; ASM_Secretariaatcollege <secretariaat.college@aalsmeer.nl>; Raadsgriffie <raadsgriffie@alkm",
+              "eind": "sluiting krijgen met een batterij. Heeft u vragen, opmerkingen of zelfs kritiek dan hoor ik graag van u! Veel dank! +316"
+            },
+            {
+              "bron": "rechtspraak-noord-holland",
+              "methode": "artikel",
+              "kop": "ECLI:NL:RBNHO:2026:15240 Rechtbank Noord-Holland, 10-11-2026, 15/349569-25",
+              "tekensVoor": 5994,
+              "tekensNa": 6002,
+              "alineas": 9,
+              "rommelRegelsWeg": 0,
+              "alineasHerleid": true,
+              "begin": "RECHTBANK NOORD-HOLLAND Team Straf, zittingsplaats Haarlem Meervoudige strafkamer Parketnummer: 15/349569-25 (P) Uitspraakdatum: 10 november 2026 Tegenspraak Dit vonnis is gewezen naar aanleiding van het onderzoek op de ",
+              "eind": "chte reed. De uitkomst daarvan is passend bij een indicatieve gemiddelde snelheid van 103,8 kilometer per uur, die werd…"
+            },
+            {
+              "bron": "bekendmakingen",
+              "methode": "run",
+              "kop": "Melding toepassen grond en baggerspecie - Nabij Grote Tocht 33 Zaandam , 251 meter richtin",
+              "tekensVoor": 466,
+              "tekensNa": 466,
+              "alineas": 1,
+              "rommelRegelsWeg": 0,
+              "alineasHerleid": false,
+              "begin": "De Omgevingsdienst Noordzeekanaalgebied maakt bekend dat zij een melding heeft ontvangen. Onderwerp: Melding toepassen grond en baggerspecie Aanvrager: Milieutechniek ZVS Eemnes B.V. Zaaknummer: OD2026-0067739 DSO nummer",
+              "eind": "t. Heeft u een vraag over deze zaak dan kunt u gebruik maken van dit webformulier. Er wordt dan contact met u opgenomen."
+            },
+            {
+              "bron": "ibabs-collegeberichten",
+              "methode": "run",
+              "kop": "Kennisgeving Burgemeester J. Hamming: Incident Elzenstraat",
+              "tekensVoor": 1241,
+              "tekensNa": 1240,
+              "alineas": 6,
+              "rommelRegelsWeg": 0,
+              "alineasHerleid": true,
+              "begin": "Kennisgeving\n\nHamming, J.\n\nActieve informatievoorziening\n\ngemeente Zaanstad burgemeester drs. J. Hamming Stadhuisplein 100 1506 MZ Zaandam Postbus 2000 Kennisgeving 1500 GA Zaandam AAN Gemeenteraad DATUM 2 november 2026 ",
+              "eind": "ertrouw erop u hiermee voldoende te hebben geïnformeerd. Met vriendelijke groet, J. Hamming de burgemeester van Zaanstad"
+            },
+            {
+              "bron": "ibabs-ingekomen-stukken",
+              "methode": "run",
+              "kop": "Nieuwsbrief Regioteam Energietransitie: webinar warmtetransitie; bijmengplicht groen gas; ",
+              "tekensVoor": 357,
+              "tekensNa": 352,
+              "alineas": 6,
+              "rommelRegelsWeg": 0,
+              "alineasHerleid": false,
+              "begin": "NVDE - Nederlandse Vereniging Duurzame Energie\n\nTer kennisname\n\nOnderwerp: Nieuwsbrief Regioteam Energietransitie: webinar warmtetransitie; bijmengplicht groen gas; netcongestie-plannen\n\nToelichting: https://mailchi.mp/n",
+              "eind": "nieuws-f9i2jgpa2r-2610767?e=7c4776d6f2\n\nAfzender: NVDE - Nederlandse Vereniging Duurzame Energie\n\nAdvies: Ter kennisname"
+            },
+            {
+              "bron": "zaanstad-kalender",
+              "methode": "artikel",
+              "kop": "Ambtsbezoek: Ambtsbezoek Commissaris van de Koning",
+              "tekensVoor": 1296,
+              "tekensNa": 1234,
+              "alineas": 3,
+              "rommelRegelsWeg": 1,
+              "alineasHerleid": true,
+              "begin": "woensdag 4 november 2026 16:15 - 17:15 Locatie Raadzaal Toelichting Op woensdag 4 november brengt de Commissaris van de Koning, de heer A.Th.H. van Dijk van 12.45 tot 17.30 uur een ambtsbezoek aan de gemeente Zaanstad. O",
+              "eind": "an Hamming heeft uitgesproken erop te vertrouwen dat er een brede vertegenwoordiging van de raad aanwezig is. Uitzending"
+            },
+            {
+              "bron": "WaarheenAgenda",
+              "methode": "artikel",
+              "kop": "De Fabriek: George Michael",
+              "tekensVoor": 408,
+              "tekensNa": 408,
+              "alineas": 1,
+              "rommelRegelsWeg": 0,
+              "alineasHerleid": false,
+              "begin": "The Faith Tour George Michael was een van de meest invloedrijke sterren van zijn generatie en heeft als zanger en songwriter zijn stempel gedrukt op die tijd. In deze nieuwe concertfilm, samengesteld uit herontdekte en n",
+              "eind": "mnisports de Paris-Bercy in 1988, zie je George op zijn creatieve hoogtepunt tijdens de ongekend succesvolle Faith Tour."
+            },
+            {
+              "bron": "DeOrkaan",
+              "methode": "artikel",
+              "kop": "Jarig Zaans Erfgoed viert feestje met markt en glossy 🎧",
+              "tekensVoor": 2769,
+              "tekensNa": 2773,
+              "alineas": 5,
+              "rommelRegelsWeg": 0,
+              "alineasHerleid": true,
+              "begin": "Met twintig kraampjes, Lorena + The Tide, lezingen en een heuse glossy wordt de tweejaarlijkse Erfgoedmarkt deze keer extra leuk. De vereniging Zaans Erfgoed bestaat 65 jaar en dat zal niet onopgemerkt voorbijgaan, komen",
+              "eind": "uwen) Door Di-Lan Sun op basis van een gesprek met voorzitter Peter Tange en informatie van de Vereniging Zaans Erfgoed."
+            },
+            {
+              "bron": "zaanstad-hoorzittingen",
+              "methode": "artikel",
+              "kop": "Invorderen dwangsom niet houden aan bestuursdwang verbouwen zonder vergunning Schoolpad 4 ",
+              "tekensVoor": 875,
+              "tekensNa": 875,
+              "alineas": 1,
+              "rommelRegelsWeg": 0,
+              "alineasHerleid": false,
+              "begin": "2026-11-04 Woensdag 4 november 2026 om 11:00 uur - Invorderen dwangsom niet houden aan bestuursdwang verbouwen zonder vergunning Schoolpad 4 Zaandijk - Stadhuis, Stadhuisplein 100, 1506 MZ Zaandam Kenmerken Naam2026-11-0",
+              "eind": "ig wilt zijn, verzoeken wij u dit tot uiterlijk één dag voor de hoorzitting aan te geven via juridischezaken@zaanstad.nl"
+            },
+            {
+              "bron": "nh-actueel",
+              "methode": "artikel",
+              "kop": "Provincie verwijdert zieke en doden bomen langs verschillende N-wegen",
+              "tekensVoor": 2375,
+              "tekensNa": 2166,
+              "alineas": 5,
+              "rommelRegelsWeg": 2,
+              "alineasHerleid": true,
+              "begin": "Vanaf medio januari 2027 start de provincie Noord-Holland met het kappen van zieke en dode bomen langs provinciale wegen in Alkmaar en omgeving, West-Friesland en Zuid-Kennemerland. Het gaat om 137 bomen die dood, ziek o",
+              "eind": "d.nl. Of kijk op de regionale Facebook-pagina's van Zuid-Kennemerland en IJmond, West-Friesland en Alkmaar en omstreken."
+            }
+          ],
+          "regels": [
+            "6 oud(e) tekstbestand(en) overgezet (410 regels) en verwijderd.",
+            "Dekking volledige tekst: 258/277 berichten (93%). Laagst: vervoerregio-overzichten 3/6 (50%); ibabs-collegeberichten 8/15 (53%); ibabs-ingekomen-stukken 34/43 (79%)."
+          ]
+        },
+        "run": {
+          "tellers": {},
+          "waarden": {
+            "berichten": 387,
+            "agendaItems": 276,
+            "aiVerzoeken": 0,
+            "geminiDagGebruikt": "8/80",
+            "duurSeconden": 79
+          },
+          "voorbeelden": [],
+          "regels": []
+        }
+      }
+    }
+  ],
+  "dagen": {
+    "2026-11-10": {
+      "runs": 1,
+      "tellers": {
+        "tekst": {
+          "aangeboden": 417,
+          "geschreven": 327,
+          "teOudOvergeslagen": 90,
+          "leegOvergeslagen": 0,
+          "rommelRegelsWeg": 83,
+          "alineasHerleid": 204,
+          "titelHerhalingWeg": 38,
+          "methode-run": 137,
+          "methode-artikel": 178,
+          "methode-lijst": 9,
+          "methode-pagina": 3,
+          "oudeBestandenOvergezet": 6,
+          "dagbestandenVerwijderd": 0,
+          "bytesVerwijderd": 0
+        },
+        "run": {}
+      }
+    }
+  }
+}
