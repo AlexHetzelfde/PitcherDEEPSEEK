@@ -1,5 +1,5 @@
 {
-  "gegenereerdOp": "2026-11-10T09:00:56.279Z",
+  "gegenereerdOp": "2026-11-10T09:37:42.168Z",
   "modus": "schaduw",
   "stempel": "v4-22806000",
   "tau": 0.5,
@@ -8,17 +8,17 @@
     "ai": true,
     "formule": "v4-22806000",
     "tekst": {
-      "werklijst": 2,
+      "werklijst": 1,
       "lokaal": 1,
-      "opgehaald": 1,
+      "opgehaald": 0,
       "mislukt": 0,
       "uitgesteld": 0
     },
     "vergeten": 0,
     "tekstenOpgeruimd": 0,
-    "stukken": 391,
-    "kandidaten": 68,
-    "metAnker": 68,
+    "stukken": 392,
+    "kandidaten": 69,
+    "metAnker": 69,
     "zonderAnker": 0,
     "afgelast": 1,
     "dubbel": 0,
@@ -170,8 +170,8 @@
       "key": "n:https://www.deorkaan.nl/het-zaanse-voetbalweekend-%e2%9a%bd%ef%b8%8f-zege-vrouwen-zaandijk-derbyzeges-kfc-en-rood-wit-%f0%9f%8e%99/",
       "soort": "nieuws",
       "kop": "Het Zaanse voetbalweekend ⚽️ zege vrouwen Zaandijk, Derbyzeges KFC en Rood Wit 🎙",
-      "S": 0.19,
-      "Sa": 0.19,
+      "S": 0.18,
+      "Sa": 0.18,
       "Sp": 0,
       "route": "aanhoudend",
       "K": 0,
@@ -750,7 +750,6 @@
         "jarcongre",
         "nordzekanal",
         "kracht",
-        "nzkg",
         "nzkanal"
       ],
       "bewijs": []
@@ -830,8 +829,7 @@
       "ankers": [
         "indrukwekkend",
         "culturhuis",
-        "letter",
-        "home"
+        "letter"
       ],
       "bewijs": []
     },
@@ -950,7 +948,6 @@
       "ankers": [
         "kelapa",
         "moluk",
-        "muda",
         "theaterproductie",
         "maleis",
         "moluks",

@@ -1,5 +1,5 @@
 {
-  "gegenereerdOp": "2026-11-10T09:00:56.279Z",
+  "gegenereerdOp": "2026-11-10T09:37:42.168Z",
   "promptVersie": "2026-10-29-batch-tag-checklist-agendapunten",
   "alertModus": "log",
   "prioSchaal": "1 = urgent, 2 = belangrijk, 3 = regulier, 4 = routine. De AI geeft nooit prio 1.",
@@ -406,6 +406,43 @@
   ],
   "berichten": [
     {
+      "id": "ee0a4ff81b-v1",
+      "groepId": "ee0a4ff81b",
+      "versie": 1,
+      "url": "https://www.deorkaan.nl/ik-zie-je-vaag-zaanstreek-gehuld-in-mist/",
+      "kop": "Ik zie je vaag… Zaanstreek gehuld in mist",
+      "tekst": null,
+      "rubriek": "ALG",
+      "tagBron": "geen",
+      "herkomst": "signaal",
+      "prio": 3,
+      "tijd": "2026-11-09T23:00:00.000Z",
+      "heeftTijd": false,
+      "woorden": 142,
+      "afgekapt": false,
+      "bronId": "DeOrkaan",
+      "bronNaam": "DeOrkaan",
+      "ai": false,
+      "controle": "ai-fout",
+      "eerstGezienOp": "2026-11-10T09:37:42.168Z",
+      "gecontroleerdOp": "2026-11-10T09:37:42.168Z",
+      "bronTitel": "Ik zie je vaag… Zaanstreek gehuld in mist",
+      "bronLengte": 888,
+      "checklist": {
+        "gevaar": false,
+        "evacuatieOfNlAlert": false,
+        "gewondenOfDoden": false,
+        "bestuurlijkeCrisis": false,
+        "besluitMetGrootGevolg": false,
+        "tijdkritisch": false,
+        "betrokkenen": null,
+        "geldbedragEuro": null,
+        "banen": null,
+        "inRegio": true
+      },
+      "checklistBron": "patroon"
+    },
+    {
       "id": "b286fc6895-v1",
       "groepId": "b286fc6895",
       "versie": 1,
@@ -425,7 +462,7 @@
       "ai": false,
       "controle": "ai-fout",
       "eerstGezienOp": "2026-11-10T09:00:56.279Z",
-      "gecontroleerdOp": "2026-11-10T09:00:56.279Z",
+      "gecontroleerdOp": "2026-11-10T09:37:42.168Z",
       "bronTitel": "Doorkijkje bij ROOZ in oude Pancho’s #bouwmarathon",
       "bronLengte": 2396,
       "checklist": {
@@ -440,7 +477,8 @@
         "banen": null,
         "inRegio": true
       },
-      "checklistBron": "patroon"
+      "checklistBron": "patroon",
+      "tagVersie": 2
     },
     {
       "id": "1eba30b367-v1",
@@ -462,7 +500,7 @@
       "ai": false,
       "controle": "ai-fout",
       "eerstGezienOp": "2026-11-10T09:00:56.279Z",
-      "gecontroleerdOp": "2026-11-10T09:00:56.279Z",
+      "gecontroleerdOp": "2026-11-10T09:37:42.168Z",
       "bronTitel": "Zaanvisie vreest dat ook nieuwe Guiswegtunnel vastloopt",
       "bronLengte": 5970,
       "checklist": {
@@ -477,7 +515,8 @@
         "banen": null,
         "inRegio": true
       },
-      "checklistBron": "patroon"
+      "checklistBron": "patroon",
+      "tagVersie": 2
     },
     {
       "id": "d49dd9a007-v1",
@@ -1454,7 +1493,14 @@
         "inRegio": true
       },
       "checklistBron": "patroon",
-      "tagVersie": 2
+      "tagVersie": 2,
+      "alertKandidaat": {
+        "niveau": "oranje",
+        "categorie": "economie",
+        "reden": "bedrag van 8 miljoen euro (officiële bron)",
+        "aangemaaktOp": "2026-11-10T09:37:42.168Z",
+        "tot": "2026-11-11T09:37:42.168Z"
+      }
     },
     {
       "id": "567a9b680c-v1",
