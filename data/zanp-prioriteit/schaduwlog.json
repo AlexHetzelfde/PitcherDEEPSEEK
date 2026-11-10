@@ -1,5 +1,5 @@
 {
-  "gegenereerdOp": "2026-11-10T09:37:42.168Z",
+  "gegenereerdOp": "2026-11-10T10:00:56.746Z",
   "modus": "schaduw",
   "stempel": "v4-22806000",
   "tau": 0.5,
@@ -8,17 +8,17 @@
     "ai": true,
     "formule": "v4-22806000",
     "tekst": {
-      "werklijst": 1,
-      "lokaal": 1,
+      "werklijst": 17,
+      "lokaal": 17,
       "opgehaald": 0,
       "mislukt": 0,
       "uitgesteld": 0
     },
     "vergeten": 0,
     "tekstenOpgeruimd": 0,
-    "stukken": 392,
-    "kandidaten": 69,
-    "metAnker": 69,
+    "stukken": 408,
+    "kandidaten": 84,
+    "metAnker": 84,
     "zonderAnker": 0,
     "afgelast": 1,
     "dubbel": 0,
@@ -35,15 +35,58 @@
   },
   "top": [
     {
-      "key": "n:https://www.deorkaan.nl/stroomuitval-bij-zaans-medisch-centrum-zmc-brandweer-ter-plaatse/",
+      "key": "n:https://zoek.officielebekendmakingen.nl/gmb-2026-523105.html",
       "soort": "nieuws",
-      "kop": "Stroomuitval bij Zaans Medisch Centrum (ZMC), brandweer ter plaatse",
-      "S": 0.26,
-      "Sa": 0.26,
+      "kop": "Melding graven bodem - Nabij Gedempte Gracht 9 Zaandam , 4 meter richting zuidwesten",
+      "S": 0.42,
+      "Sa": 0.42,
       "Sp": 0,
       "route": "aanhoudend",
-      "K": 0.61,
-      "Kp": 0.4,
+      "K": 0.51,
+      "Kp": 0.51,
+      "n": 3,
+      "dagen": 3,
+      "bronnen": 2,
+      "ankers": [
+        "gedempt",
+        "gracht",
+        "zuidwest",
+        "bodem"
+      ],
+      "bewijs": [
+        {
+          "bron": "bekendmakingen",
+          "datum": "2026-10-29T23:00:00.000Z",
+          "c": 0.91,
+          "plek": "kop",
+          "titel": "Melding graven bodem - Nabij Wezelstraat 1 Koog aan de Zaan , 86 meter richting zuidwesten"
+        },
+        {
+          "bron": "DeOrkaan",
+          "datum": "2026-11-06T20:00:52.041Z",
+          "c": 0.64,
+          "plek": "intro",
+          "titel": "Pinnen bij Kruidvat in Zaandam? Winkel kan meekijken – update"
+        },
+        {
+          "bron": "DeOrkaan",
+          "datum": "2026-11-08T23:00:00.000Z",
+          "c": 0.64,
+          "plek": "intro",
+          "titel": "Pincodes klanten in Zaandam beeld: Kruidvat onderzoekt veiligheidslek in gehele keten"
+        }
+      ]
+    },
+    {
+      "key": "n:https://www.deorkaan.nl/stroomuitval-bij-zaans-medisch-centrum-zmc-brandweer-ter-plaatse/",
+      "soort": "nieuws",
+      "kop": "Stroomuitval bij Zaans Medisch Centrum (ZMC), brandweer ter plaatse – UPDATE",
+      "S": 0.28,
+      "Sa": 0.28,
+      "Sp": 0,
+      "route": "aanhoudend",
+      "K": 0.63,
+      "Kp": 0.43,
       "n": 2,
       "dagen": 2,
       "bronnen": 1,
@@ -51,22 +94,23 @@
         "medisch",
         "stromuitval",
         "centrum",
+        "updat",
         "brandwer"
       ],
       "bewijs": [
         {
           "bron": "DeOrkaan",
-          "datum": "2026-10-29T23:00:00.000Z",
-          "c": 0.67,
-          "plek": "intro",
-          "titel": "Dikke onvoldoende voor financiële gezondheid ZMC"
+          "datum": "2026-11-09T18:00:59.108Z",
+          "c": 0.87,
+          "plek": "kop",
+          "titel": "Steekpartij in woning Zaandam, politie zoekt man op elektrische fiets (Update: niet meer gezocht)"
         },
         {
           "bron": "DeOrkaan",
-          "datum": "2026-11-09T18:00:59.108Z",
-          "c": 0.66,
+          "datum": "2026-10-29T23:00:00.000Z",
+          "c": 0.61,
           "plek": "intro",
-          "titel": "Steekpartij in woning Zaandam, politie zoekt man op elektrische fiets (Update: niet meer gezocht)"
+          "titel": "Dikke onvoldoende voor financiële gezondheid ZMC"
         }
       ]
     },
@@ -74,8 +118,8 @@
       "key": "n:https://www.deorkaan.nl/pincodes-klanten-in-zaandam-beeld-kruidvat-onderzoekt-veiligheidslek-in-gehele-keten/",
       "soort": "nieuws",
       "kop": "Pincodes klanten in Zaandam beeld: Kruidvat onderzoekt veiligheidslek in gehele keten",
-      "S": 0.22,
-      "Sa": 0.22,
+      "S": 0.21,
+      "Sa": 0.21,
       "Sp": 0,
       "route": "aanhoudend",
       "K": 0.47,
@@ -147,7 +191,7 @@
       "Sa": 0.19,
       "Sp": 0,
       "route": "aanhoudend",
-      "K": 0.71,
+      "K": 0.7,
       "Kp": 0.37,
       "n": 1,
       "dagen": 1,
@@ -228,38 +272,6 @@
       ]
     },
     {
-      "key": "n:https://www.deorkaan.nl/overleden-persoon-gevonden-in-water-bij-zaaneiland-in-zaandam/",
-      "soort": "nieuws",
-      "kop": "Overleden persoon gevonden in water bij Zaaneiland in Zaandam",
-      "S": 0.17,
-      "Sa": 0.17,
-      "Sp": 0,
-      "route": "aanhoudend",
-      "K": 0.38,
-      "Kp": 0.38,
-      "n": 1,
-      "dagen": 1,
-      "bronnen": 1,
-      "ankers": [
-        "zaneiland",
-        "sarema",
-        "mellum",
-        "overled",
-        "person",
-        "gevond",
-        "water"
-      ],
-      "bewijs": [
-        {
-          "bron": "DeOrkaan",
-          "datum": "2026-11-07T23:00:00.000Z",
-          "c": 1,
-          "plek": "kop",
-          "titel": "Overleden persoon bij Zaaneiland slachtoffer van noodlottig ongeval"
-        }
-      ]
-    },
-    {
       "key": "n:https://www.deorkaan.nl/nog-meer-windturbines-bij-de-amsterdamse-haven/",
       "soort": "nieuws",
       "kop": "Nog meer windturbines bij de Amsterdamse haven",
@@ -286,6 +298,43 @@
           "c": 0.87,
           "plek": "kop",
           "titel": "Vergunningaanvragen voor 8 windturbines in havengebied Amsterdam"
+        }
+      ]
+    },
+    {
+      "key": "n:https://zaanstad.bestuurlijkeinformatie.nl/Reports/Item/9620c5e4-255c-451d-8e83-11e80b84cd05",
+      "soort": "nieuws",
+      "kop": "Nieuwsbrief november 2026",
+      "S": 0.15,
+      "Sa": 0.15,
+      "Sp": 0,
+      "route": "aanhoudend",
+      "K": 0,
+      "Kp": 0,
+      "n": 2,
+      "dagen": 2,
+      "bronnen": 1,
+      "ankers": [
+        "corner",
+        "nieuwsbrief",
+        "2f0411406ff0",
+        "f2f9cb9628",
+        "mailchi"
+      ],
+      "bewijs": [
+        {
+          "bron": "ibabs-ingekomen-stukken",
+          "datum": "2026-11-03T23:00:00.000Z",
+          "c": 0.87,
+          "plek": "kop",
+          "titel": "Nieuwsbrief Regioteam Energietransitie: webinar warmtetransitie; bijmengplicht groen gas; netcongestie-plannen"
+        },
+        {
+          "bron": "ibabs-ingekomen-stukken",
+          "datum": "2026-11-09T23:00:00.000Z",
+          "c": 0.87,
+          "plek": "kop",
+          "titel": "Nieuwsbrief 14 - Het najaar voor elkaar?"
         }
       ]
     },
@@ -750,6 +799,7 @@
         "jarcongre",
         "nordzekanal",
         "kracht",
+        "nzkg",
         "nzkanal"
       ],
       "bewijs": []
@@ -829,7 +879,8 @@
       "ankers": [
         "indrukwekkend",
         "culturhuis",
-        "letter"
+        "letter",
+        "home"
       ],
       "bewijs": []
     },
@@ -948,6 +999,7 @@
       "ankers": [
         "kelapa",
         "moluk",
+        "muda",
         "theaterproductie",
         "maleis",
         "moluks",
@@ -1040,26 +1092,6 @@
         "arend",
         "burtcentrum",
         "champion"
-      ],
-      "bewijs": []
-    },
-    {
-      "key": "a:f6354ef2ca",
-      "soort": "agenda",
-      "kop": "Nationaal Congres Bodemdaling",
-      "S": 0,
-      "Sa": 0,
-      "Sp": 0,
-      "route": "geen",
-      "K": 0,
-      "Kp": 0,
-      "n": 0,
-      "dagen": 0,
-      "bronnen": 0,
-      "ankers": [
-        "congre",
-        "bodemdaling",
-        "national"
       ],
       "bewijs": []
     }
@@ -1312,11 +1344,19 @@
       }
     },
     "2026-11-10": {
-      "n:https://www.deorkaan.nl/stroomuitval-bij-zaans-medisch-centrum-zmc-brandweer-ter-plaatse/": {
-        "kop": "Stroomuitval bij Zaans Medisch Centrum (ZMC), brandweer ter plaatse",
-        "S": 0.27,
+      "n:https://zoek.officielebekendmakingen.nl/gmb-2026-523105.html": {
+        "kop": "Melding graven bodem - Nabij Gedempte Gracht 9 Zaandam , 4 meter richting zuidwesten",
+        "S": 0.42,
         "route": "aanhoudend",
-        "K": 0.61,
+        "K": 0.51,
+        "n": 3,
+        "bronnen": 2
+      },
+      "n:https://www.deorkaan.nl/stroomuitval-bij-zaans-medisch-centrum-zmc-brandweer-ter-plaatse/": {
+        "kop": "Stroomuitval bij Zaans Medisch Centrum (ZMC), brandweer ter plaatse – UPDATE",
+        "S": 0.28,
+        "route": "aanhoudend",
+        "K": 0.63,
         "n": 2,
         "bronnen": 1
       },
@@ -1374,6 +1414,14 @@
         "route": "aanhoudend",
         "K": 0.29,
         "n": 1,
+        "bronnen": 1
+      },
+      "n:https://zaanstad.bestuurlijkeinformatie.nl/Reports/Item/9620c5e4-255c-451d-8e83-11e80b84cd05": {
+        "kop": "Nieuwsbrief november 2026",
+        "S": 0.15,
+        "route": "aanhoudend",
+        "K": 0,
+        "n": 2,
         "bronnen": 1
       },
       "n:https://www.deorkaan.nl/eerste-zege-vrouwen-zaandijk-en-zcfc-verliest-van-tien-westzaners-%e2%9a%bd%ef%b8%8f/": {
@@ -1493,22 +1541,6 @@
         "S": 0,
         "route": "geen",
         "K": 0.15,
-        "n": 0,
-        "bronnen": 0
-      },
-      "a:abb742a017": {
-        "kop": "Omgevingsvergunning O2026055913 realiseren dakterras op woning Zuiderhoofdstraat 78 te Krommenie",
-        "S": 0,
-        "route": "geen",
-        "K": 0.15,
-        "n": 0,
-        "bronnen": 0
-      },
-      "a:1a746de3ba": {
-        "kop": "Uitnodiging NZKG-Jaarcongres 12 november 'De kracht van het Noordzeekanaalgebied (NZKG) & 150 jaar Noordzeekanaal'",
-        "S": 0,
-        "route": "geen",
-        "K": 0,
         "n": 0,
         "bronnen": 0
       }
