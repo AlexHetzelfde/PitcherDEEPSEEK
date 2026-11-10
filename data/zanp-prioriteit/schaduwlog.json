@@ -1,5 +1,5 @@
 {
-  "gegenereerdOp": "2026-11-10T18:52:39.868Z",
+  "gegenereerdOp": "2026-11-10T23:08:49.251Z",
   "modus": "schaduw",
   "stempel": "v4-22806000",
   "tau": 0.5,
@@ -8,25 +8,25 @@
     "ai": true,
     "formule": "v4-22806000",
     "tekst": {
-      "werklijst": 7,
-      "lokaal": 6,
-      "opgehaald": 1,
+      "werklijst": 22,
+      "lokaal": 22,
+      "opgehaald": 0,
       "mislukt": 0,
       "uitgesteld": 0
     },
     "vergeten": 0,
     "tekstenOpgeruimd": 0,
-    "tekstDekkingPct": 93,
-    "stukken": 423,
-    "kandidaten": 95,
-    "metAnker": 95,
+    "tekstDekkingPct": 94,
+    "stukken": 445,
+    "kandidaten": 114,
+    "metAnker": 114,
     "zonderAnker": 0,
     "afgelast": 1,
     "dubbel": 0,
     "tau": 0.5,
     "besluit": {
-      "boven": 0,
-      "wacht": 0,
+      "boven": 1,
+      "wacht": 1,
       "onderdrukt": 0,
       "veto": 0,
       "nieuwRood": 0,
@@ -36,6 +36,56 @@
   },
   "top": [
     {
+      "key": "n:https://zaanstad.bestuurlijkeinformatie.nl/Document/View/401754a8-35b9-4379-8e55-667b9bfe6a05",
+      "soort": "nieuws",
+      "kop": "Kennisgeving wethouder Onclin: Subsidieregeling decentrale politieke partijen Zaanstad",
+      "S": 0.52,
+      "Sa": 0.52,
+      "Sp": 0,
+      "route": "aanhoudend",
+      "K": 0.55,
+      "Kp": 0.37,
+      "n": 4,
+      "dagen": 3,
+      "bronnen": 2,
+      "ankers": [
+        "subsidieregeling",
+        "kennisgeving",
+        "onclin",
+        "decentral"
+      ],
+      "bewijs": [
+        {
+          "bron": "ibabs-collegeberichten",
+          "datum": "2026-11-05T23:00:00.000Z",
+          "c": 0.89,
+          "plek": "kop",
+          "titel": "Kennisgeving wethouder Groenewoud: Aanvraag windturbines Westelijk Havengebied"
+        },
+        {
+          "bron": "ibabs-collegeberichten",
+          "datum": "2026-11-03T23:00:00.000Z",
+          "c": 0.85,
+          "plek": "kop",
+          "titel": "Kennisgeving Burgemeester J. Hamming: Incident Elzenstraat"
+        },
+        {
+          "bron": "ibabs-collegeberichten",
+          "datum": "2026-11-05T23:00:00.000Z",
+          "c": 0.85,
+          "plek": "kop",
+          "titel": "Kennisgeving burgemeester Hamming: Verlenging sluiting woning Zuiddijk 172 en cameratoezicht"
+        },
+        {
+          "bron": "DeOrkaan",
+          "datum": "2026-11-10T15:01:04.293Z",
+          "c": 0.68,
+          "plek": "intro",
+          "titel": "Cadeautjes voor raadsfracties Zaanstad (behalve PVV)"
+        }
+      ]
+    },
+    {
       "key": "n:https://zoek.officielebekendmakingen.nl/gmb-2026-523105.html",
       "soort": "nieuws",
       "kop": "Melding graven bodem - Nabij Gedempte Gracht 9 Zaandam , 4 meter richting zuidwesten",
@@ -43,8 +93,8 @@
       "Sa": 0.41,
       "Sp": 0,
       "route": "aanhoudend",
-      "K": 0.51,
-      "Kp": 0.51,
+      "K": 0.5,
+      "Kp": 0.5,
       "n": 3,
       "dagen": 3,
       "bronnen": 2,
@@ -79,38 +129,96 @@
       ]
     },
     {
-      "key": "n:https://zaanstad.bestuurlijkeinformatie.nl/Document/View/401754a8-35b9-4379-8e55-667b9bfe6a05",
+      "key": "n:https://zaanstad.bestuurlijkeinformatie.nl/Reports/Item/d44474d6-6007-49ff-a9af-b054265fec57",
       "soort": "nieuws",
-      "kop": "Kennisgeving wethouder Onclin: Subsidieregeling decentrale politieke partijen Zaanstad",
-      "S": 0.37,
-      "Sa": 0.37,
+      "kop": "Motie aangenomen: A8-A9 Te groot voor de provincie, te belangrijk om te laten liggen",
+      "S": 0.31,
+      "Sa": 0.31,
+      "Sp": 0,
+      "route": "aanhoudend",
+      "K": 0.34,
+      "Kp": 0,
+      "n": 3,
+      "dagen": 2,
+      "bronnen": 2,
+      "ankers": [
+        "casper",
+        "davelar",
+        "laten",
+        "26m77",
+        "elano",
+        "uitert",
+        "tiental",
+        "discussi",
+        "verbinding",
+        "hendrik",
+        "bomsma"
+      ],
+      "bewijs": [
+        {
+          "bron": "zaanstad-moties",
+          "datum": "2026-11-10T23:08:49.684Z",
+          "c": 0.76,
+          "plek": "intro",
+          "titel": "Motie aangenomen: Wie niets geeft, kan niet terugverwachten"
+        },
+        {
+          "bron": "zaanstad-moties",
+          "datum": "2026-11-10T23:08:49.684Z",
+          "c": 0.69,
+          "plek": "intro",
+          "titel": "Motie verworpen: Niet over de Zaan maar onder de Zaan"
+        },
+        {
+          "bron": "DeOrkaan",
+          "datum": "2026-10-24T22:00:00.000Z",
+          "c": 0.68,
+          "plek": "intro",
+          "titel": "Is 70 het nieuwe 50? (of omgekeerd?)"
+        }
+      ]
+    },
+    {
+      "key": "n:https://zaanstad.bestuurlijkeinformatie.nl/Reports/Item/2e2284e7-51cc-4a00-827e-d873824f6194",
+      "soort": "nieuws",
+      "kop": "Motie aangenomen: Wie niets geeft, kan niet terugverwachten",
+      "S": 0.29,
+      "Sa": 0.29,
       "Sp": 0,
       "route": "aanhoudend",
       "K": 0.17,
       "Kp": 0,
-      "n": 2,
-      "dagen": 2,
-      "bronnen": 2,
+      "n": 3,
+      "dagen": 1,
+      "bronnen": 1,
       "ankers": [
-        "subsidieregeling",
-        "kennisgeving",
-        "onclin",
-        "decentral"
+        "terugverwacht",
+        "casper",
+        "binding",
+        "davelar",
+        "26m75"
       ],
       "bewijs": [
         {
-          "bron": "ibabs-collegeberichten",
-          "datum": "2026-11-05T23:00:00.000Z",
-          "c": 0.86,
-          "plek": "kop",
-          "titel": "Kennisgeving wethouder Groenewoud: Aanvraag windturbines Westelijk Havengebied"
+          "bron": "zaanstad-moties",
+          "datum": "2026-11-10T23:08:49.684Z",
+          "c": 0.7,
+          "plek": "intro",
+          "titel": "Motie verworpen: Beetje tijd om vrij te stellen"
         },
         {
-          "bron": "DeOrkaan",
-          "datum": "2026-11-10T15:01:04.293Z",
-          "c": 0.71,
+          "bron": "zaanstad-moties",
+          "datum": "2026-11-10T23:08:49.684Z",
+          "c": 0.7,
           "plek": "intro",
-          "titel": "Cadeautjes voor raadsfracties Zaanstad (behalve PVV)"
+          "titel": "Motie aangenomen: Niet omrijden, maar vrijstellen"
+        },
+        {
+          "bron": "zaanstad-moties",
+          "datum": "2026-11-10T23:08:49.684Z",
+          "c": 0.69,
+          "plek": "intro",
+          "titel": "Motie aangenomen: A8-A9 Te groot voor de provincie, te belangrijk om te laten liggen"
         }
       ]
     },
@@ -118,8 +226,8 @@
       "key": "n:https://www.deorkaan.nl/stroomuitval-bij-zaans-medisch-centrum-zmc-brandweer-ter-plaatse/",
       "soort": "nieuws",
       "kop": "Stroomuitval bij Zaans Medisch Centrum (ZMC), brandweer ter plaatse – UPDATE",
-      "S": 0.28,
-      "Sa": 0.28,
+      "S": 0.27,
+      "Sa": 0.27,
       "Sp": 0,
       "route": "aanhoudend",
       "K": 0.63,
@@ -148,6 +256,88 @@
           "c": 0.61,
           "plek": "intro",
           "titel": "Dikke onvoldoende voor financiële gezondheid ZMC"
+        }
+      ]
+    },
+    {
+      "key": "n:https://zaanstad.bestuurlijkeinformatie.nl/Reports/Item/16cbc9ca-ebdf-44bd-af0e-f3db7fe89f77",
+      "soort": "nieuws",
+      "kop": "Motie verworpen: Beetje tijd om vrij te stellen",
+      "S": 0.26,
+      "Sa": 0.26,
+      "Sp": 0,
+      "route": "aanhoudend",
+      "K": 0.17,
+      "Kp": 0,
+      "n": 2,
+      "dagen": 1,
+      "bronnen": 1,
+      "ankers": [
+        "betj",
+        "casper",
+        "binding",
+        "davelar",
+        "26m92",
+        "avondspit",
+        "busbrug",
+        "ochtend",
+        "vrij",
+        "regulier",
+        "autoverker",
+        "geslot"
+      ],
+      "bewijs": [
+        {
+          "bron": "zaanstad-moties",
+          "datum": "2026-11-10T23:08:49.684Z",
+          "c": 0.8,
+          "plek": "intro",
+          "titel": "Motie aangenomen: Niet omrijden, maar vrijstellen"
+        },
+        {
+          "bron": "zaanstad-moties",
+          "datum": "2026-11-10T23:08:49.684Z",
+          "c": 0.7,
+          "plek": "intro",
+          "titel": "Motie aangenomen: Wie niets geeft, kan niet terugverwachten"
+        }
+      ]
+    },
+    {
+      "key": "n:https://zaanstad.bestuurlijkeinformatie.nl/Reports/Item/fabb398a-91c0-4ba1-9a5e-2633da400bd3",
+      "soort": "nieuws",
+      "kop": "Motie aangenomen: Niet omrijden, maar vrijstellen",
+      "S": 0.24,
+      "Sa": 0.24,
+      "Sp": 0,
+      "route": "aanhoudend",
+      "K": 0.17,
+      "Kp": 0,
+      "n": 2,
+      "dagen": 1,
+      "bronnen": 1,
+      "ankers": [
+        "vrijstel",
+        "omrijd",
+        "casper",
+        "binding",
+        "davelar",
+        "26m76"
+      ],
+      "bewijs": [
+        {
+          "bron": "zaanstad-moties",
+          "datum": "2026-11-10T23:08:49.684Z",
+          "c": 0.8,
+          "plek": "intro",
+          "titel": "Motie verworpen: Beetje tijd om vrij te stellen"
+        },
+        {
+          "bron": "zaanstad-moties",
+          "datum": "2026-11-10T23:08:49.684Z",
+          "c": 0.69,
+          "plek": "intro",
+          "titel": "Motie aangenomen: Wie niets geeft, kan niet terugverwachten"
         }
       ]
     },
@@ -192,8 +382,8 @@
       "key": "n:https://ted.europa.eu/nl/notice/-/detail/777319-2026",
       "soort": "nieuws",
       "kop": "Aanbesteding afgerond zonder gunning: specialistische Jeugdhulp Segment B 2027 Zaanstreek-Waterland",
-      "S": 0.21,
-      "Sa": 0.21,
+      "S": 0.2,
+      "Sa": 0.2,
       "Sp": 0,
       "route": "aanhoudend",
       "K": 0.31,
@@ -224,8 +414,8 @@
       "key": "n:https://www.deorkaan.nl/een-rekening-van-vrouwe-justitia-bezwaar-phishing/",
       "soort": "nieuws",
       "kop": "Een rekening van Vrouwe Justitia? Bezwaar! (phishing)",
-      "S": 0.19,
-      "Sa": 0.19,
+      "S": 0.18,
+      "Sa": 0.18,
       "Sp": 0,
       "route": "aanhoudend",
       "K": 0.62,
@@ -259,12 +449,12 @@
       "key": "n:https://www.deorkaan.nl/themapad-in-assendelft-krijgt-stopverlichting-huh/",
       "soort": "nieuws",
       "kop": "Themapad in Assendelft krijgt ‘stopverlichting’ (huh?)",
-      "S": 0.19,
-      "Sa": 0.19,
+      "S": 0.18,
+      "Sa": 0.18,
       "Sp": 0,
       "route": "aanhoudend",
       "K": 0.7,
-      "Kp": 0.37,
+      "Kp": 0.36,
       "n": 1,
       "dagen": 1,
       "bronnen": 1,
@@ -339,36 +529,39 @@
       ]
     },
     {
-      "key": "n:https://www.deorkaan.nl/overleden-persoon-bij-zaaneiland-slachtoffer-van-noodlottig-ongeval/",
+      "key": "n:https://zaanstad.bestuurlijkeinformatie.nl/Reports/Item/d3e15c8e-7b51-4998-8026-3c24bae30b4c",
       "soort": "nieuws",
-      "kop": "Overleden persoon bij Zaaneiland slachtoffer van noodlottig ongeval",
-      "S": 0.18,
-      "Sa": 0.18,
+      "kop": "Motie verworpen: Voorkom stapeling van financiële lasten bij kwetsbare inwoners",
+      "S": 0.17,
+      "Sa": 0.17,
       "Sp": 0,
       "route": "aanhoudend",
-      "K": 0.38,
-      "Kp": 0.38,
+      "K": 0.74,
+      "Kp": 0.46,
       "n": 1,
       "dagen": 1,
       "bronnen": 1,
       "ankers": [
-        "zaneiland",
-        "nodlottig",
-        "ongeval",
-        "mellum",
-        "sarema",
-        "overled",
-        "slachtoffer",
-        "forensisch",
-        "person"
+        "stapeling",
+        "vorkom",
+        "kwetsbar",
+        "stadspas",
+        "natasja",
+        "financiel",
+        "cornelis",
+        "26m72",
+        "bijstelling",
+        "collectiev",
+        "ziektekostenverzekering",
+        "bijstand"
       ],
       "bewijs": [
         {
           "bron": "DeOrkaan",
-          "datum": "2026-11-07T23:00:00.000Z",
-          "c": 1,
-          "plek": "kop",
-          "titel": "Overleden persoon gevonden in water bij Zaaneiland in Zaandam"
+          "datum": "2026-11-03T23:00:00.000Z",
+          "c": 0.66,
+          "plek": "intro",
+          "titel": "Begrotingsdebat Zaanstad Beraad #2: ‘eerlijk antwoord’ en ‘juiste feiten’"
         }
       ]
     },
@@ -438,36 +631,34 @@
       ]
     },
     {
-      "key": "a:2f3f3332ae",
-      "soort": "agenda",
-      "kop": "Zaanstad Beraad Raadzaal: TEST",
-      "S": 0.11,
-      "Sa": 0.11,
+      "key": "n:https://zaanstad.bestuurlijkeinformatie.nl/Reports/Item/87aafb17-09d2-4fd5-bd65-fa1238f0a091",
+      "soort": "nieuws",
+      "kop": "Motie verworpen: Eerst kaders, dan extra camera’s",
+      "S": 0.09,
+      "Sa": 0.09,
       "Sp": 0,
       "route": "aanhoudend",
-      "K": 0.19,
-      "Kp": 0.06,
-      "n": 2,
+      "K": 0.49,
+      "Kp": 0.26,
+      "n": 1,
       "dagen": 1,
       "bronnen": 1,
       "ankers": [
-        "radzal",
-        "test"
+        "kader",
+        "belkasmi",
+        "abdelhak",
+        "camera",
+        "26m88",
+        "toetsingskader",
+        "erst"
       ],
       "bewijs": [
         {
-          "bron": "zaanstad-kalender",
-          "datum": "2026-11-01T15:55:49.908Z",
-          "c": 0.76,
-          "plek": "intro",
-          "titel": "Raadsvergadering: Reservedatum begroting"
-        },
-        {
-          "bron": "zaanstad-kalender",
-          "datum": "2026-11-01T15:55:49.908Z",
-          "c": 0.65,
-          "plek": "intro",
-          "titel": "Ambtsbezoek: Ambtsbezoek Commissaris van de Koning"
+          "bron": "DeOrkaan",
+          "datum": "2026-11-03T23:00:00.000Z",
+          "c": 0.28,
+          "plek": "tekst",
+          "titel": "Begrotingsdebat Zaanstad Beraad #2: ‘eerlijk antwoord’ en ‘juiste feiten’"
         }
       ]
     },
@@ -475,8 +666,8 @@
       "key": "a:e205032688",
       "soort": "agenda",
       "kop": "Geweigerde omgevingsvergunning voor aanleggen van een in- of uitrit locatie Raaigras 88 Assendelft",
-      "S": 0.09,
-      "Sa": 0.09,
+      "S": 0.08,
+      "Sa": 0.08,
       "Sp": 0,
       "route": "aanhoudend",
       "K": 0.16,
@@ -503,6 +694,32 @@
           "c": 0.76,
           "plek": "intro",
           "titel": "Weweigerde omgevingsvergunning voor een uitweg locatie Waterbies 35 te Assendelft"
+        }
+      ]
+    },
+    {
+      "key": "n:https://zaanstad.bestuurlijkeinformatie.nl/Reports/Item/f5a6eeda-d2d2-4433-b622-65022bbc6d0c",
+      "soort": "nieuws",
+      "kop": "Motie aangenomen: Nachttrein",
+      "S": 0.07,
+      "Sa": 0.07,
+      "Sp": 0,
+      "route": "aanhoudend",
+      "K": 0.21,
+      "Kp": 0.07,
+      "n": 1,
+      "dagen": 1,
+      "bronnen": 1,
+      "ankers": [
+        "nachttrein"
+      ],
+      "bewijs": [
+        {
+          "bron": "DeOrkaan",
+          "datum": "2026-10-28T23:00:00.000Z",
+          "c": 0.59,
+          "plek": "intro",
+          "titel": "Zaanse begroting ronde twee: van AI tot gemeentehuis"
         }
       ]
     },
@@ -720,27 +937,6 @@
       ]
     },
     {
-      "key": "a:2f23908817",
-      "soort": "agenda",
-      "kop": "Lezing: Tot Lering en Vermaak",
-      "S": 0,
-      "Sa": 0,
-      "Sp": 0,
-      "route": "geen",
-      "K": 0,
-      "Kp": 0,
-      "n": 0,
-      "dagen": 0,
-      "bronnen": 0,
-      "ankers": [
-        "lering",
-        "vermak",
-        "zevenberg",
-        "humor"
-      ],
-      "bewijs": []
-    },
-    {
       "key": "a:4150f4ffc4",
       "soort": "agenda",
       "kop": "Ontdek hoe een kaartspel nieuwe gesprekken over de toekomst opent!",
@@ -797,7 +993,6 @@
       "bronnen": 0,
       "ankers": [
         "radsvergadering",
-        "begroting",
         "sprektijd",
         "agendapunt",
         "opening"
@@ -1023,93 +1218,6 @@
       "bronnen": 0,
       "ankers": [
         "mantelzorg"
-      ],
-      "bewijs": []
-    },
-    {
-      "key": "a:e41b9aa2a8",
-      "soort": "agenda",
-      "kop": "Kelapa Muda: Kinderen van de Molukken",
-      "S": 0,
-      "Sa": 0,
-      "Sp": 0,
-      "route": "geen",
-      "K": 0,
-      "Kp": 0,
-      "n": 0,
-      "dagen": 0,
-      "bronnen": 0,
-      "ankers": [
-        "kelapa",
-        "moluk",
-        "muda",
-        "theaterproductie",
-        "maleis",
-        "moluks",
-        "joenoe",
-        "polnaija",
-        "hetharia",
-        "jefta",
-        "tanat"
-      ],
-      "bewijs": []
-    },
-    {
-      "key": "a:c0cdd99ed1",
-      "soort": "agenda",
-      "kop": "Jaarconferentie ‘Wonen in Zaanstad’",
-      "S": 0,
-      "Sa": 0,
-      "Sp": 0,
-      "route": "geen",
-      "K": 0,
-      "Kp": 0,
-      "n": 0,
-      "dagen": 0,
-      "bronnen": 0,
-      "ankers": [
-        "jarconferenti",
-        "wonen",
-        "lanplein"
-      ],
-      "bewijs": []
-    },
-    {
-      "key": "a:a1d48a4237",
-      "soort": "agenda",
-      "kop": "Besluit tot invordering last onder dwangsom illegale woningsplitsing De Weer 23 Zaandam",
-      "S": 0,
-      "Sa": 0,
-      "Sp": 0,
-      "route": "geen",
-      "K": 0.15,
-      "Kp": 0,
-      "n": 0,
-      "dagen": 0,
-      "bronnen": 0,
-      "ankers": [
-        "invordering",
-        "illegal",
-        "woningsplitsing"
-      ],
-      "bewijs": []
-    },
-    {
-      "key": "a:85028be697",
-      "soort": "agenda",
-      "kop": "Regionale Raadsledenbijeenkomst",
-      "S": 0,
-      "Sa": 0,
-      "Sp": 0,
-      "route": "geen",
-      "K": 0,
-      "Kp": 0,
-      "n": 0,
-      "dagen": 0,
-      "bronnen": 0,
-      "ankers": [
-        "radsledenbijenkomst",
-        "regional"
       ],
       "bewijs": []
     }
@@ -1561,6 +1669,208 @@
         "K": 0,
         "n": 0,
         "bronnen": 0
+      }
+    },
+    "2026-11-11": {
+      "n:https://zaanstad.bestuurlijkeinformatie.nl/Document/View/401754a8-35b9-4379-8e55-667b9bfe6a05": {
+        "kop": "Kennisgeving wethouder Onclin: Subsidieregeling decentrale politieke partijen Zaanstad",
+        "S": 0.52,
+        "route": "aanhoudend",
+        "K": 0.55,
+        "n": 4,
+        "bronnen": 2
+      },
+      "n:https://zoek.officielebekendmakingen.nl/gmb-2026-523105.html": {
+        "kop": "Melding graven bodem - Nabij Gedempte Gracht 9 Zaandam , 4 meter richting zuidwesten",
+        "S": 0.41,
+        "route": "aanhoudend",
+        "K": 0.5,
+        "n": 3,
+        "bronnen": 2
+      },
+      "n:https://zaanstad.bestuurlijkeinformatie.nl/Reports/Item/d44474d6-6007-49ff-a9af-b054265fec57": {
+        "kop": "Motie aangenomen: A8-A9 Te groot voor de provincie, te belangrijk om te laten liggen",
+        "S": 0.31,
+        "route": "aanhoudend",
+        "K": 0.34,
+        "n": 3,
+        "bronnen": 2
+      },
+      "n:https://zaanstad.bestuurlijkeinformatie.nl/Reports/Item/2e2284e7-51cc-4a00-827e-d873824f6194": {
+        "kop": "Motie aangenomen: Wie niets geeft, kan niet terugverwachten",
+        "S": 0.29,
+        "route": "aanhoudend",
+        "K": 0.17,
+        "n": 3,
+        "bronnen": 1
+      },
+      "n:https://www.deorkaan.nl/stroomuitval-bij-zaans-medisch-centrum-zmc-brandweer-ter-plaatse/": {
+        "kop": "Stroomuitval bij Zaans Medisch Centrum (ZMC), brandweer ter plaatse – UPDATE",
+        "S": 0.27,
+        "route": "aanhoudend",
+        "K": 0.63,
+        "n": 2,
+        "bronnen": 1
+      },
+      "n:https://zaanstad.bestuurlijkeinformatie.nl/Reports/Item/16cbc9ca-ebdf-44bd-af0e-f3db7fe89f77": {
+        "kop": "Motie verworpen: Beetje tijd om vrij te stellen",
+        "S": 0.26,
+        "route": "aanhoudend",
+        "K": 0.17,
+        "n": 2,
+        "bronnen": 1
+      },
+      "n:https://zaanstad.bestuurlijkeinformatie.nl/Reports/Item/fabb398a-91c0-4ba1-9a5e-2633da400bd3": {
+        "kop": "Motie aangenomen: Niet omrijden, maar vrijstellen",
+        "S": 0.24,
+        "route": "aanhoudend",
+        "K": 0.17,
+        "n": 2,
+        "bronnen": 1
+      },
+      "n:https://www.deorkaan.nl/pincodes-klanten-in-zaandam-beeld-kruidvat-onderzoekt-veiligheidslek-in-gehele-keten/": {
+        "kop": "Pincodes klanten in Zaandam beeld: Kruidvat onderzoekt veiligheidslek in gehele keten",
+        "S": 0.21,
+        "route": "aanhoudend",
+        "K": 0.47,
+        "n": 1,
+        "bronnen": 1
+      },
+      "n:https://ted.europa.eu/nl/notice/-/detail/777319-2026": {
+        "kop": "Aanbesteding afgerond zonder gunning: specialistische Jeugdhulp Segment B 2027 Zaanstreek-Waterland",
+        "S": 0.2,
+        "route": "aanhoudend",
+        "K": 0.31,
+        "n": 1,
+        "bronnen": 1
+      },
+      "n:https://www.deorkaan.nl/een-rekening-van-vrouwe-justitia-bezwaar-phishing/": {
+        "kop": "Een rekening van Vrouwe Justitia? Bezwaar! (phishing)",
+        "S": 0.18,
+        "route": "aanhoudend",
+        "K": 0.62,
+        "n": 2,
+        "bronnen": 1
+      },
+      "n:https://www.deorkaan.nl/themapad-in-assendelft-krijgt-stopverlichting-huh/": {
+        "kop": "Themapad in Assendelft krijgt ‘stopverlichting’ (huh?)",
+        "S": 0.18,
+        "route": "aanhoudend",
+        "K": 0.7,
+        "n": 1,
+        "bronnen": 1
+      },
+      "n:https://www.deorkaan.nl/rechtbank-geen-celstraf-voor-doodrijden-hardloopster-op-leeghwaterweg/": {
+        "kop": "Rechtbank: geen celstraf voor doodrijden hardloopster op Leeghwaterweg",
+        "S": 0.18,
+        "route": "aanhoudend",
+        "K": 0.57,
+        "n": 1,
+        "bronnen": 1
+      },
+      "n:https://www.deorkaan.nl/het-zaanse-voetbalweekend-%e2%9a%bd%ef%b8%8f-zege-vrouwen-zaandijk-derbyzeges-kfc-en-rood-wit-%f0%9f%8e%99/": {
+        "kop": "Het Zaanse voetbalweekend ⚽️ zege vrouwen Zaandijk, Derbyzeges KFC en Rood Wit 🎙",
+        "S": 0.18,
+        "route": "aanhoudend",
+        "K": 0,
+        "n": 1,
+        "bronnen": 1
+      },
+      "n:https://zaanstad.bestuurlijkeinformatie.nl/Reports/Item/d3e15c8e-7b51-4998-8026-3c24bae30b4c": {
+        "kop": "Motie verworpen: Voorkom stapeling van financiële lasten bij kwetsbare inwoners",
+        "S": 0.17,
+        "route": "aanhoudend",
+        "K": 0.74,
+        "n": 1,
+        "bronnen": 1
+      },
+      "n:https://zaanstad.bestuurlijkeinformatie.nl/Reports/Item/9620c5e4-255c-451d-8e83-11e80b84cd05": {
+        "kop": "Nieuwsbrief november 2026",
+        "S": 0.14,
+        "route": "aanhoudend",
+        "K": 0,
+        "n": 2,
+        "bronnen": 1
+      },
+      "n:https://www.deorkaan.nl/eerste-zege-vrouwen-zaandijk-en-zcfc-verliest-van-tien-westzaners-%e2%9a%bd%ef%b8%8f/": {
+        "kop": "Eerste zege vrouwen Zaandijk en ZCFC verliest van tien Westzaners ⚽️",
+        "S": 0.13,
+        "route": "aanhoudend",
+        "K": 0,
+        "n": 1,
+        "bronnen": 1
+      },
+      "n:https://zaanstad.bestuurlijkeinformatie.nl/Reports/Item/87aafb17-09d2-4fd5-bd65-fa1238f0a091": {
+        "kop": "Motie verworpen: Eerst kaders, dan extra camera’s",
+        "S": 0.09,
+        "route": "aanhoudend",
+        "K": 0.49,
+        "n": 1,
+        "bronnen": 1
+      },
+      "a:e205032688": {
+        "kop": "Geweigerde omgevingsvergunning voor aanleggen van een in- of uitrit locatie Raaigras 88 Assendelft",
+        "S": 0.08,
+        "route": "aanhoudend",
+        "K": 0.16,
+        "n": 2,
+        "bronnen": 1
+      },
+      "n:https://zaanstad.bestuurlijkeinformatie.nl/Reports/Item/f5a6eeda-d2d2-4433-b622-65022bbc6d0c": {
+        "kop": "Motie aangenomen: Nachttrein",
+        "S": 0.07,
+        "route": "aanhoudend",
+        "K": 0.21,
+        "n": 1,
+        "bronnen": 1
+      },
+      "a:1ebd6e1ddf": {
+        "kop": "Verkeersbesluit plaatsen laadpaal voor electrische auto's Matsmanzoom te Koog a/d Zaan",
+        "S": 0.07,
+        "route": "aanhoudend",
+        "K": 0.16,
+        "n": 1,
+        "bronnen": 1
+      },
+      "n:https://www.deorkaan.nl/sport-zaalkorfbal-van-start-kolf-kampioenen-bekend/": {
+        "kop": "Sport: zaalkorfbal van start, kolf-kampioenen bekend",
+        "S": 0.07,
+        "route": "aanhoudend",
+        "K": 0,
+        "n": 1,
+        "bronnen": 1
+      },
+      "a:d1eae07b85": {
+        "kop": "Brandweer Oostzaan viert 100-jarig jubileum",
+        "S": 0.05,
+        "route": "aanhoudend",
+        "K": 0.35,
+        "n": 1,
+        "bronnen": 1
+      },
+      "a:e26813c04c": {
+        "kop": "Geweigerde huisvestingsvergunning Klipperstraat 37 te Zaandam - Microsoft Teams",
+        "S": 0.05,
+        "route": "aanhoudend",
+        "K": 0.16,
+        "n": 2,
+        "bronnen": 1
+      },
+      "a:a40d7a33f0": {
+        "kop": "Zaanstad Beraad",
+        "S": 0.05,
+        "route": "aanhoudend",
+        "K": 0.13,
+        "n": 1,
+        "bronnen": 1
+      },
+      "a:4a5ff898e2": {
+        "kop": "Zaanstad Beraad",
+        "S": 0.05,
+        "route": "aanhoudend",
+        "K": 0.13,
+        "n": 1,
+        "bronnen": 1
       }
     }
   }

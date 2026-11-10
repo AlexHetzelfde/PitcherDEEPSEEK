@@ -1,5 +1,5 @@
 {
-  "gegenereerdOp": "2026-11-10T18:52:39.868Z",
+  "gegenereerdOp": "2026-11-10T23:08:49.251Z",
   "uitleg": "Per run per onderdeel: tellers (optellend), waarden (meting van die run), voorbeelden en regels. De laatste 24 runs hebben voorbeelden en regels; 'dagen' telt de tellers per dag op.",
   "runs": [
     {
@@ -260,23 +260,152 @@
           "regels": []
         }
       }
+    },
+    {
+      "tijd": "2026-11-10T23:08:49.251Z",
+      "duurMs": 57826,
+      "onderdelen": {
+        "tekst": {
+          "tellers": {
+            "aangeboden": 22,
+            "geschreven": 22,
+            "teOudOvergeslagen": 0,
+            "leegOvergeslagen": 0,
+            "rommelRegelsWeg": 0,
+            "alineasHerleid": 8,
+            "titelHerhalingWeg": 0,
+            "methode-lijst": 22,
+            "oudeBestandenOvergezet": 0,
+            "dagbestandenVerwijderd": 0,
+            "bytesVerwijderd": 0
+          },
+          "waarden": {
+            "oudsteDagbestand": "2026-10-29",
+            "dekkingPct": 94,
+            "berichtenZonderTekst": 19,
+            "dekkingPerBron": {
+              "zaanstad-moties": {
+                "berichten": 22,
+                "metTekst": 22,
+                "pct": 100,
+                "gemTekens": 1040
+              },
+              "DeOrkaan": {
+                "berichten": 150,
+                "metTekst": 150,
+                "pct": 100,
+                "gemTekens": 2525
+              },
+              "rechtspraak-noord-holland": {
+                "berichten": 1,
+                "metTekst": 1,
+                "pct": 100,
+                "gemTekens": 6002
+              },
+              "omgevingsdienstnoordzeekanaal": {
+                "berichten": 2,
+                "metTekst": 2,
+                "pct": 100,
+                "gemTekens": 3328
+              },
+              "ibabs-collegeberichten": {
+                "berichten": 15,
+                "metTekst": 8,
+                "pct": 53,
+                "gemTekens": 4519
+              },
+              "ibabs-ingekomen-stukken": {
+                "berichten": 43,
+                "metTekst": 34,
+                "pct": 79,
+                "gemTekens": 1901
+              },
+              "vervoerregio-overzichten": {
+                "berichten": 6,
+                "metTekst": 3,
+                "pct": 50,
+                "gemTekens": 6952
+              },
+              "bekendmakingen": {
+                "berichten": 26,
+                "metTekst": 26,
+                "pct": 100,
+                "gemTekens": 2345
+              },
+              "nh-actueel": {
+                "berichten": 21,
+                "metTekst": 21,
+                "pct": 100,
+                "gemTekens": 2936
+              },
+              "zaanstad-ted": {
+                "berichten": 1,
+                "metTekst": 1,
+                "pct": 100,
+                "gemTekens": 87
+              },
+              "wetenregelgeving": {
+                "berichten": 7,
+                "metTekst": 7,
+                "pct": 100,
+                "gemTekens": 25177
+              },
+              "vervoerregio-persberichten": {
+                "berichten": 5,
+                "metTekst": 5,
+                "pct": 100,
+                "gemTekens": 1586
+              }
+            }
+          },
+          "voorbeelden": [
+            {
+              "bron": "zaanstad-moties",
+              "methode": "lijst",
+              "kop": "Motie verworpen: Beetje tijd om vrij te stellen",
+              "tekensVoor": 581,
+              "tekensNa": 580,
+              "alineas": 1,
+              "rommelRegelsWeg": 0,
+              "alineasHerleid": false,
+              "begin": "Motie 26M92 Beetje tijd om vrij te stellen. Ingediend door Davelaar, Casper (VVD). Uitslag: verworpen met 29% voor. Voor: DENK (1), Forum voor Democratie (3), POV (4), VVD (3). Tegen: CDA (1), D66 (3), Democratisch Zaans",
+              "eind": "de busbrug open te stellen voor een duur van vier maanden per 1 januari 2027 Namens de fractie van: VVD, Casper Davelaar"
+            }
+          ],
+          "regels": [
+            "Dekking volledige tekst: 280/299 berichten (94%). Laagst: vervoerregio-overzichten 3/6 (50%); ibabs-collegeberichten 8/15 (53%); ibabs-ingekomen-stukken 34/43 (79%)."
+          ]
+        },
+        "run": {
+          "tellers": {},
+          "waarden": {
+            "berichten": 409,
+            "agendaItems": 270,
+            "aiVerzoeken": 1,
+            "geminiDagGebruikt": "9/80",
+            "duurSeconden": 58
+          },
+          "voorbeelden": [],
+          "regels": []
+        }
+      }
     }
   ],
   "dagen": {
     "2026-11-10": {
-      "runs": 1,
+      "runs": 2,
       "tellers": {
         "tekst": {
-          "aangeboden": 417,
-          "geschreven": 327,
+          "aangeboden": 439,
+          "geschreven": 349,
           "teOudOvergeslagen": 90,
           "leegOvergeslagen": 0,
           "rommelRegelsWeg": 83,
-          "alineasHerleid": 204,
+          "alineasHerleid": 212,
           "titelHerhalingWeg": 38,
           "methode-run": 137,
           "methode-artikel": 178,
-          "methode-lijst": 9,
+          "methode-lijst": 31,
           "methode-pagina": 3,
           "oudeBestandenOvergezet": 6,
           "dagbestandenVerwijderd": 0,
