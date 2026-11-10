@@ -1,5 +1,5 @@
 {
-  "gegenereerdOp": "2026-11-10T13:01:02.347Z",
+  "gegenereerdOp": "2026-11-10T14:00:56.193Z",
   "promptVersie": "2026-10-29-batch-tag-checklist-agendapunten",
   "alertModus": "log",
   "prioSchaal": "1 = urgent, 2 = belangrijk, 3 = regulier, 4 = routine. De AI geeft nooit prio 1.",
@@ -441,7 +441,8 @@
         "inRegio": true
       },
       "checklistBron": "ai",
-      "analyse": true
+      "analyse": true,
+      "tagVersie": 2
     },
     {
       "id": "568454d2c0-v2",
@@ -483,6 +484,43 @@
       "analyse": true
     },
     {
+      "id": "579b746275-v1",
+      "groepId": "579b746275",
+      "versie": 1,
+      "url": "https://www.deorkaan.nl/40-jaar-geleden-jisp-voert-actie-voor-zelfstandigheid/",
+      "kop": "40 jaar geleden: Jisp voert actie voor zelfstandigheid",
+      "tekst": null,
+      "rubriek": "ALG",
+      "tagBron": "geen",
+      "herkomst": "signaal",
+      "prio": 3,
+      "tijd": "2026-11-09T23:00:00.000Z",
+      "heeftTijd": false,
+      "woorden": 243,
+      "afgekapt": false,
+      "bronId": "DeOrkaan",
+      "bronNaam": "DeOrkaan",
+      "ai": false,
+      "controle": "ai-fout",
+      "eerstGezienOp": "2026-11-10T14:00:56.193Z",
+      "gecontroleerdOp": "2026-11-10T14:00:56.193Z",
+      "bronTitel": "40 jaar geleden: Jisp voert actie voor zelfstandigheid",
+      "bronLengte": 1404,
+      "checklist": {
+        "gevaar": false,
+        "evacuatieOfNlAlert": false,
+        "gewondenOfDoden": false,
+        "bestuurlijkeCrisis": false,
+        "besluitMetGrootGevolg": false,
+        "tijdkritisch": false,
+        "betrokkenen": null,
+        "geldbedragEuro": null,
+        "banen": null,
+        "inRegio": true
+      },
+      "checklistBron": "patroon"
+    },
+    {
       "id": "cc452fea66-v1",
       "groepId": "cc452fea66",
       "versie": 1,
@@ -502,7 +540,7 @@
       "ai": false,
       "controle": "analyse-ok",
       "eerstGezienOp": "2026-11-10T12:00:54.043Z",
-      "gecontroleerdOp": "2026-11-10T12:00:54.043Z",
+      "gecontroleerdOp": "2026-11-10T14:00:56.193Z",
       "bronTitel": "De Orkaan in 2 minuten: 10 november 🎧",
       "bronLengte": 326,
       "checklist": {
@@ -1897,7 +1935,14 @@
       "analyse": true,
       "agendaIds": [
         "00bd7e7755"
-      ]
+      ],
+      "alertKandidaat": {
+        "niveau": "oranje",
+        "categorie": "bestuur",
+        "reden": "besluit met groot gevolg (één bron)",
+        "aangemaaktOp": "2026-11-10T14:00:56.193Z",
+        "tot": "2026-11-11T14:00:56.193Z"
+      }
     },
     {
       "id": "3bd27ad8ee-v1",
