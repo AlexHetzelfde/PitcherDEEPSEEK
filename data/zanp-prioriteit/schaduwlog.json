@@ -1,5 +1,5 @@
 {
-  "gegenereerdOp": "2026-11-10T10:00:56.746Z",
+  "gegenereerdOp": "2026-11-10T11:01:00.571Z",
   "modus": "schaduw",
   "stempel": "v4-22806000",
   "tau": 0.5,
@@ -8,17 +8,17 @@
     "ai": true,
     "formule": "v4-22806000",
     "tekst": {
-      "werklijst": 17,
-      "lokaal": 17,
-      "opgehaald": 0,
+      "werklijst": 2,
+      "lokaal": 1,
+      "opgehaald": 1,
       "mislukt": 0,
       "uitgesteld": 0
     },
     "vergeten": 0,
     "tekstenOpgeruimd": 0,
-    "stukken": 408,
-    "kandidaten": 84,
-    "metAnker": 84,
+    "stukken": 410,
+    "kandidaten": 85,
+    "metAnker": 85,
     "zonderAnker": 0,
     "afgelast": 1,
     "dubbel": 0,
@@ -436,39 +436,11 @@
       ]
     },
     {
-      "key": "n:https://www.deorkaan.nl/fototijdreis-guisweg-ter-hoogte-van-spoorwegovergang-zaandijk/",
-      "soort": "nieuws",
-      "kop": "Fototijdreis: Guisweg ter hoogte van spoorwegovergang (Zaandijk)",
-      "S": 0.09,
-      "Sa": 0.09,
-      "Sp": 0,
-      "route": "aanhoudend",
-      "K": 0.69,
-      "Kp": 0.5,
-      "n": 1,
-      "dagen": 1,
-      "bronnen": 1,
-      "ankers": [
-        "fototijdreis",
-        "guisweg",
-        "sporwegovergang"
-      ],
-      "bewijs": [
-        {
-          "bron": "DeOrkaan",
-          "datum": "2026-10-24T22:00:00.000Z",
-          "c": 0.88,
-          "plek": "kop",
-          "titel": "Fototijdreis: De Zaan bij Gerkens Cacao (Wormer)"
-        }
-      ]
-    },
-    {
       "key": "a:1ebd6e1ddf",
       "soort": "agenda",
       "kop": "Verkeersbesluit plaatsen laadpaal voor electrische auto's Matsmanzoom te Koog a/d Zaan",
-      "S": 0.08,
-      "Sa": 0.08,
+      "S": 0.07,
+      "Sa": 0.07,
       "Sp": 0,
       "route": "aanhoudend",
       "K": 0.16,
@@ -1092,6 +1064,26 @@
         "arend",
         "burtcentrum",
         "champion"
+      ],
+      "bewijs": []
+    },
+    {
+      "key": "a:f6354ef2ca",
+      "soort": "agenda",
+      "kop": "Nationaal Congres Bodemdaling",
+      "S": 0,
+      "Sa": 0,
+      "Sp": 0,
+      "route": "geen",
+      "K": 0,
+      "Kp": 0,
+      "n": 0,
+      "dagen": 0,
+      "bronnen": 0,
+      "ankers": [
+        "congre",
+        "bodemdaling",
+        "national"
       ],
       "bewijs": []
     }

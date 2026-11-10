@@ -1,5 +1,5 @@
 {
-  "gegenereerdOp": "2026-11-10T10:00:56.746Z",
+  "gegenereerdOp": "2026-11-10T11:01:00.571Z",
   "promptVersie": "2026-10-29-batch-tag-checklist-agendapunten",
   "alertModus": "log",
   "prioSchaal": "1 = urgent, 2 = belangrijk, 3 = regulier, 4 = routine. De AI geeft nooit prio 1.",
@@ -413,7 +413,7 @@
       "kop": "Stroomuitval bij Zaans Medisch Centrum (ZMC), brandweer ter plaatse – UPDATE",
       "tekst": null,
       "rubriek": "112",
-      "tagBron": "trefwoord",
+      "tagBron": "ai",
       "herkomst": "signaal",
       "prio": 3,
       "tijd": "2026-11-10T10:00:56.746Z",
@@ -423,9 +423,9 @@
       "bronId": "DeOrkaan",
       "bronNaam": "DeOrkaan",
       "ai": false,
-      "controle": "ai-fout",
+      "controle": "analyse-ok",
       "eerstGezienOp": "2026-11-10T10:00:56.746Z",
-      "gecontroleerdOp": "2026-11-10T10:00:56.746Z",
+      "gecontroleerdOp": "2026-11-10T11:01:00.571Z",
       "bronTitel": "Stroomuitval bij Zaans Medisch Centrum (ZMC), brandweer ter plaatse – UPDATE",
       "bronLengte": 1654,
       "checklist": {
@@ -440,7 +440,85 @@
         "banen": null,
         "inRegio": false
       },
-      "checklistBron": "patroon"
+      "checklistBron": "ai",
+      "tagVersie": 2,
+      "analyse": true
+    },
+    {
+      "id": "19c1e61748-v1",
+      "groepId": "19c1e61748",
+      "versie": 1,
+      "url": "https://www.deorkaan.nl/cadeautjes-voor-raadsfracties-zaanstad-behalve-pvv/",
+      "kop": "Cadeautjes voor raadsfracties Zaanstad (behalve PVV)",
+      "tekst": null,
+      "rubriek": "GEM",
+      "tagBron": "ai",
+      "herkomst": "signaal",
+      "prio": 3,
+      "tijd": "2026-11-09T23:00:00.000Z",
+      "heeftTijd": false,
+      "woorden": 667,
+      "afgekapt": false,
+      "bronId": "DeOrkaan",
+      "bronNaam": "DeOrkaan",
+      "ai": false,
+      "controle": "analyse-ok",
+      "eerstGezienOp": "2026-11-10T11:01:00.571Z",
+      "gecontroleerdOp": "2026-11-10T11:01:00.571Z",
+      "bronTitel": "Cadeautjes voor raadsfracties Zaanstad (behalve PVV)",
+      "bronLengte": 4226,
+      "checklist": {
+        "gevaar": false,
+        "evacuatieOfNlAlert": false,
+        "gewondenOfDoden": false,
+        "bestuurlijkeCrisis": false,
+        "besluitMetGrootGevolg": false,
+        "tijdkritisch": false,
+        "betrokkenen": null,
+        "geldbedragEuro": 982,
+        "banen": null,
+        "inRegio": true
+      },
+      "checklistBron": "ai",
+      "analyse": true
+    },
+    {
+      "id": "92307478e7-v1",
+      "groepId": "92307478e7",
+      "versie": 1,
+      "url": "https://www.deorkaan.nl/15-procent-minder-misdaad-door-cameratoezicht-orkaan-feitencheck/",
+      "kop": "15 procent minder misdaad door cameratoezicht? Orkaan #feitencheck",
+      "tekst": null,
+      "rubriek": "112",
+      "tagBron": "ai",
+      "herkomst": "signaal",
+      "prio": 3,
+      "tijd": "2026-11-09T23:00:00.000Z",
+      "heeftTijd": false,
+      "woorden": 904,
+      "afgekapt": true,
+      "bronId": "DeOrkaan",
+      "bronNaam": "DeOrkaan",
+      "ai": false,
+      "controle": "analyse-ok",
+      "eerstGezienOp": "2026-11-10T11:01:00.571Z",
+      "gecontroleerdOp": "2026-11-10T11:01:00.571Z",
+      "bronTitel": "15 procent minder misdaad door cameratoezicht? Orkaan #feitencheck",
+      "bronLengte": 5995,
+      "checklist": {
+        "gevaar": false,
+        "evacuatieOfNlAlert": false,
+        "gewondenOfDoden": false,
+        "bestuurlijkeCrisis": false,
+        "besluitMetGrootGevolg": false,
+        "tijdkritisch": false,
+        "betrokkenen": 42,
+        "geldbedragEuro": null,
+        "banen": null,
+        "inRegio": true
+      },
+      "checklistBron": "ai",
+      "analyse": true
     },
     {
       "id": "f9d3198f90-v1",
@@ -477,7 +555,8 @@
         "banen": null,
         "inRegio": false
       },
-      "checklistBron": "patroon"
+      "checklistBron": "patroon",
+      "tagVersie": 2
     },
     {
       "id": "c51aaebf47-v1",
@@ -514,7 +593,8 @@
         "banen": null,
         "inRegio": true
       },
-      "checklistBron": "patroon"
+      "checklistBron": "patroon",
+      "tagVersie": 2
     },
     {
       "id": "6bdfb6a1f7-v1",
@@ -551,7 +631,8 @@
         "banen": null,
         "inRegio": true
       },
-      "checklistBron": "patroon"
+      "checklistBron": "patroon",
+      "tagVersie": 2
     },
     {
       "id": "238586775d-v1",
@@ -588,7 +669,8 @@
         "banen": null,
         "inRegio": true
       },
-      "checklistBron": "patroon"
+      "checklistBron": "patroon",
+      "tagVersie": 2
     },
     {
       "id": "2b97c3147a-v1",
@@ -625,7 +707,8 @@
         "banen": null,
         "inRegio": true
       },
-      "checklistBron": "patroon"
+      "checklistBron": "patroon",
+      "tagVersie": 2
     },
     {
       "id": "13571ee714-v1",
@@ -662,7 +745,8 @@
         "banen": null,
         "inRegio": true
       },
-      "checklistBron": "patroon"
+      "checklistBron": "patroon",
+      "tagVersie": 2
     },
     {
       "id": "053eba66e3-v1",
@@ -699,7 +783,8 @@
         "banen": null,
         "inRegio": true
       },
-      "checklistBron": "ai"
+      "checklistBron": "ai",
+      "tagVersie": 2
     },
     {
       "id": "ee0a4ff81b-v1",
@@ -708,8 +793,8 @@
       "url": "https://www.deorkaan.nl/ik-zie-je-vaag-zaanstreek-gehuld-in-mist/",
       "kop": "Ik zie je vaag… Zaanstreek gehuld in mist",
       "tekst": null,
-      "rubriek": "ALG",
-      "tagBron": "geen",
+      "rubriek": "VER",
+      "tagBron": "ai",
       "herkomst": "signaal",
       "prio": 3,
       "tijd": "2026-11-09T23:00:00.000Z",
@@ -719,25 +804,26 @@
       "bronId": "DeOrkaan",
       "bronNaam": "DeOrkaan",
       "ai": false,
-      "controle": "ai-fout",
+      "controle": "analyse-ok",
       "eerstGezienOp": "2026-11-10T09:37:42.168Z",
-      "gecontroleerdOp": "2026-11-10T10:00:56.746Z",
+      "gecontroleerdOp": "2026-11-10T11:01:00.571Z",
       "bronTitel": "Ik zie je vaag… Zaanstreek gehuld in mist",
       "bronLengte": 888,
       "checklist": {
-        "gevaar": false,
+        "gevaar": true,
         "evacuatieOfNlAlert": false,
         "gewondenOfDoden": false,
         "bestuurlijkeCrisis": false,
         "besluitMetGrootGevolg": false,
-        "tijdkritisch": false,
+        "tijdkritisch": true,
         "betrokkenen": null,
         "geldbedragEuro": null,
         "banen": null,
         "inRegio": true
       },
-      "checklistBron": "patroon",
-      "tagVersie": 2
+      "checklistBron": "ai",
+      "tagVersie": 2,
+      "analyse": true
     },
     {
       "id": "b286fc6895-v1",
@@ -746,8 +832,8 @@
       "url": "https://www.deorkaan.nl/doorkijkje-bij-rooz-in-oude-panchos-bouwmarathon/",
       "kop": "Doorkijkje bij ROOZ in oude Pancho’s #bouwmarathon",
       "tekst": null,
-      "rubriek": "ALG",
-      "tagBron": "geen",
+      "rubriek": "WON",
+      "tagBron": "ai",
       "herkomst": "signaal",
       "prio": 3,
       "tijd": "2026-11-09T23:00:00.000Z",
@@ -757,49 +843,11 @@
       "bronId": "DeOrkaan",
       "bronNaam": "DeOrkaan",
       "ai": false,
-      "controle": "ai-fout",
+      "controle": "analyse-ok",
       "eerstGezienOp": "2026-11-10T09:00:56.279Z",
-      "gecontroleerdOp": "2026-11-10T10:00:56.746Z",
+      "gecontroleerdOp": "2026-11-10T11:01:00.571Z",
       "bronTitel": "Doorkijkje bij ROOZ in oude Pancho’s #bouwmarathon",
       "bronLengte": 2396,
-      "checklist": {
-        "gevaar": false,
-        "evacuatieOfNlAlert": false,
-        "gewondenOfDoden": false,
-        "bestuurlijkeCrisis": false,
-        "besluitMetGrootGevolg": false,
-        "tijdkritisch": false,
-        "betrokkenen": 200,
-        "geldbedragEuro": null,
-        "banen": null,
-        "inRegio": true
-      },
-      "checklistBron": "patroon",
-      "tagVersie": 2
-    },
-    {
-      "id": "1eba30b367-v1",
-      "groepId": "1eba30b367",
-      "versie": 1,
-      "url": "https://www.deorkaan.nl/zaanvisie-vreest-dat-ook-nieuwe-guiswegtunnel-vastloopt/",
-      "kop": "Zaanvisie vreest dat ook nieuwe Guiswegtunnel vastloopt",
-      "tekst": null,
-      "rubriek": "VER",
-      "tagBron": "trefwoord",
-      "herkomst": "signaal",
-      "prio": 3,
-      "tijd": "2026-11-09T23:00:00.000Z",
-      "heeftTijd": false,
-      "woorden": 877,
-      "afgekapt": true,
-      "bronId": "DeOrkaan",
-      "bronNaam": "DeOrkaan",
-      "ai": false,
-      "controle": "ai-fout",
-      "eerstGezienOp": "2026-11-10T09:00:56.279Z",
-      "gecontroleerdOp": "2026-11-10T10:00:56.746Z",
-      "bronTitel": "Zaanvisie vreest dat ook nieuwe Guiswegtunnel vastloopt",
-      "bronLengte": 5970,
       "checklist": {
         "gevaar": false,
         "evacuatieOfNlAlert": false,
@@ -812,8 +860,55 @@
         "banen": null,
         "inRegio": true
       },
-      "checklistBron": "patroon",
-      "tagVersie": 2
+      "checklistBron": "ai",
+      "tagVersie": 2,
+      "analyse": true
+    },
+    {
+      "id": "1eba30b367-v1",
+      "groepId": "1eba30b367",
+      "versie": 1,
+      "url": "https://www.deorkaan.nl/zaanvisie-vreest-dat-ook-nieuwe-guiswegtunnel-vastloopt/",
+      "kop": "Zaanvisie vreest dat ook nieuwe Guiswegtunnel vastloopt",
+      "tekst": null,
+      "rubriek": "VER",
+      "tagBron": "ai",
+      "herkomst": "signaal",
+      "prio": 3,
+      "tijd": "2026-11-09T23:00:00.000Z",
+      "heeftTijd": false,
+      "woorden": 877,
+      "afgekapt": true,
+      "bronId": "DeOrkaan",
+      "bronNaam": "DeOrkaan",
+      "ai": false,
+      "controle": "analyse-ok",
+      "eerstGezienOp": "2026-11-10T09:00:56.279Z",
+      "gecontroleerdOp": "2026-11-10T11:01:00.571Z",
+      "bronTitel": "Zaanvisie vreest dat ook nieuwe Guiswegtunnel vastloopt",
+      "bronLengte": 5970,
+      "checklist": {
+        "gevaar": false,
+        "evacuatieOfNlAlert": false,
+        "gewondenOfDoden": false,
+        "bestuurlijkeCrisis": false,
+        "besluitMetGrootGevolg": true,
+        "tijdkritisch": false,
+        "betrokkenen": null,
+        "geldbedragEuro": null,
+        "banen": null,
+        "inRegio": true
+      },
+      "checklistBron": "ai",
+      "tagVersie": 2,
+      "analyse": true,
+      "alertKandidaat": {
+        "niveau": "oranje",
+        "categorie": "bestuur",
+        "reden": "besluit met groot gevolg (één bron)",
+        "aangemaaktOp": "2026-11-10T11:01:00.571Z",
+        "tot": "2026-11-11T11:01:00.571Z"
+      }
     },
     {
       "id": "d49dd9a007-v1",
@@ -1081,7 +1176,8 @@
         "banen": null,
         "inRegio": true
       },
-      "checklistBron": "patroon"
+      "checklistBron": "patroon",
+      "tagVersie": 2
     },
     {
       "id": "27fac46ff5-v1",
@@ -1118,7 +1214,8 @@
         "banen": null,
         "inRegio": true
       },
-      "checklistBron": "ai"
+      "checklistBron": "ai",
+      "tagVersie": 2
     },
     {
       "id": "0f6f219bb7-v1",
@@ -1155,7 +1252,8 @@
         "banen": null,
         "inRegio": false
       },
-      "checklistBron": "patroon"
+      "checklistBron": "patroon",
+      "tagVersie": 2
     },
     {
       "id": "3460a9b44c-v1",
@@ -1192,7 +1290,8 @@
         "banen": null,
         "inRegio": false
       },
-      "checklistBron": "patroon"
+      "checklistBron": "patroon",
+      "tagVersie": 2
     },
     {
       "id": "250b7226ed-v1",
@@ -1229,7 +1328,8 @@
         "banen": null,
         "inRegio": false
       },
-      "checklistBron": "patroon"
+      "checklistBron": "patroon",
+      "tagVersie": 2
     },
     {
       "id": "b78d5f90e6-v1",
@@ -1266,7 +1366,8 @@
         "banen": null,
         "inRegio": false
       },
-      "checklistBron": "ai"
+      "checklistBron": "ai",
+      "tagVersie": 2
     },
     {
       "id": "d10bec0aec-v1",
@@ -1303,7 +1404,8 @@
         "banen": null,
         "inRegio": false
       },
-      "checklistBron": "ai"
+      "checklistBron": "ai",
+      "tagVersie": 2
     },
     {
       "id": "15c50d7961-v1",
@@ -1341,6 +1443,7 @@
         "inRegio": true
       },
       "checklistBron": "ai",
+      "tagVersie": 2,
       "alertKandidaat": {
         "niveau": "oranje",
         "categorie": "bestuur",
@@ -1369,7 +1472,7 @@
       "ai": false,
       "controle": "analyse-ok",
       "eerstGezienOp": "2026-11-10T07:00:55.598Z",
-      "gecontroleerdOp": "2026-11-10T09:00:56.279Z",
+      "gecontroleerdOp": "2026-11-10T11:01:00.571Z",
       "bronTitel": "Het Zaanse voetbalweekend ⚽️ zege vrouwen Zaandijk, Derbyzeges KFC en Rood Wit 🎙",
       "bronLengte": 860,
       "checklist": {
