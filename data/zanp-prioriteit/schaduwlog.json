@@ -1,5 +1,5 @@
 {
-  "gegenereerdOp": "2026-11-10T06:00:52.896Z",
+  "gegenereerdOp": "2026-11-10T07:00:55.598Z",
   "modus": "schaduw",
   "stempel": "v4-22806000",
   "tau": 0.5,
@@ -8,15 +8,15 @@
     "ai": true,
     "formule": "v4-22806000",
     "tekst": {
-      "werklijst": 0,
-      "lokaal": 0,
+      "werklijst": 1,
+      "lokaal": 1,
       "opgehaald": 0,
       "mislukt": 0,
       "uitgesteld": 0
     },
     "vergeten": 0,
     "tekstenOpgeruimd": 0,
-    "stukken": 387,
+    "stukken": 388,
     "kandidaten": 67,
     "metAnker": 67,
     "zonderAnker": 0,
@@ -111,8 +111,8 @@
       "key": "n:https://ted.europa.eu/nl/notice/-/detail/777319-2026",
       "soort": "nieuws",
       "kop": "Aanbesteding afgerond zonder gunning: specialistische Jeugdhulp Segment B 2027 Zaanstreek-Waterland",
-      "S": 0.22,
-      "Sa": 0.22,
+      "S": 0.21,
+      "Sa": 0.21,
       "Sp": 0,
       "route": "aanhoudend",
       "K": 0.32,
@@ -163,6 +163,33 @@
           "c": 0.91,
           "plek": "kop",
           "titel": "Verkeersbesluit, instellen stopverlichting fietsverkeer Themapad Assendelft"
+        }
+      ]
+    },
+    {
+      "key": "n:https://www.deorkaan.nl/het-zaanse-voetbalweekend-%e2%9a%bd%ef%b8%8f-zege-vrouwen-zaandijk-derbyzeges-kfc-en-rood-wit-%f0%9f%8e%99/",
+      "soort": "nieuws",
+      "kop": "Het Zaanse voetbalweekend ⚽️ zege vrouwen Zaandijk, Derbyzeges KFC en Rood Wit 🎙",
+      "S": 0.19,
+      "Sa": 0.19,
+      "Sp": 0,
+      "route": "aanhoudend",
+      "K": 0,
+      "Kp": 0,
+      "n": 1,
+      "dagen": 1,
+      "bronnen": 1,
+      "ankers": [
+        "derbyzege",
+        "voetbalwekend"
+      ],
+      "bewijs": [
+        {
+          "bron": "DeOrkaan",
+          "datum": "2026-11-07T23:00:00.000Z",
+          "c": 0.71,
+          "plek": "intro",
+          "titel": "Eerste zege vrouwen Zaandijk en ZCFC verliest van tien Westzaners ⚽️"
         }
       ]
     },
@@ -259,6 +286,34 @@
           "c": 0.87,
           "plek": "kop",
           "titel": "Vergunningaanvragen voor 8 windturbines in havengebied Amsterdam"
+        }
+      ]
+    },
+    {
+      "key": "n:https://www.deorkaan.nl/eerste-zege-vrouwen-zaandijk-en-zcfc-verliest-van-tien-westzaners-%e2%9a%bd%ef%b8%8f/",
+      "soort": "nieuws",
+      "kop": "Eerste zege vrouwen Zaandijk en ZCFC verliest van tien Westzaners ⚽️",
+      "S": 0.13,
+      "Sa": 0.13,
+      "Sp": 0,
+      "route": "aanhoudend",
+      "K": 0,
+      "Kp": 0,
+      "n": 1,
+      "dagen": 1,
+      "bronnen": 1,
+      "ankers": [
+        "westzaner",
+        "verliest",
+        "julianadorp"
+      ],
+      "bewijs": [
+        {
+          "bron": "DeOrkaan",
+          "datum": "2026-11-08T23:00:00.000Z",
+          "c": 0.68,
+          "plek": "intro",
+          "titel": "Het Zaanse voetbalweekend ⚽️ zege vrouwen Zaandijk, Derbyzeges KFC en Rood Wit 🎙"
         }
       ]
     },
@@ -1010,48 +1065,6 @@
         "national"
       ],
       "bewijs": []
-    },
-    {
-      "key": "a:3acacdce09",
-      "soort": "agenda",
-      "kop": "lunchwebinar: dilemma’s voorleggen aan inwoners",
-      "S": 0,
-      "Sa": 0,
-      "Sp": 0,
-      "route": "geen",
-      "K": 0,
-      "Kp": 0,
-      "n": 0,
-      "dagen": 0,
-      "bronnen": 0,
-      "ankers": [
-        "lunchwebinar",
-        "dilemma",
-        "vorleg"
-      ],
-      "bewijs": []
-    },
-    {
-      "key": "a:cabf81de91",
-      "soort": "agenda",
-      "kop": "Zaans & Reüniek De Waakzaamheid: Hans & Candy Dulfer",
-      "S": 0,
-      "Sa": 0,
-      "Sp": 0,
-      "route": "geen",
-      "K": 0,
-      "Kp": 0,
-      "n": 0,
-      "dagen": 0,
-      "bronnen": 0,
-      "ankers": [
-        "reuniek",
-        "wakzamheid",
-        "candy",
-        "dulfer",
-        "wakzinnig"
-      ],
-      "bewijs": []
     }
   ],
   "formule": {
@@ -1342,6 +1355,14 @@
         "n": 1,
         "bronnen": 1
       },
+      "n:https://www.deorkaan.nl/het-zaanse-voetbalweekend-%e2%9a%bd%ef%b8%8f-zege-vrouwen-zaandijk-derbyzeges-kfc-en-rood-wit-%f0%9f%8e%99/": {
+        "kop": "Het Zaanse voetbalweekend ⚽️ zege vrouwen Zaandijk, Derbyzeges KFC en Rood Wit 🎙",
+        "S": 0.19,
+        "route": "aanhoudend",
+        "K": 0,
+        "n": 1,
+        "bronnen": 1
+      },
       "n:https://www.deorkaan.nl/overleden-persoon-gevonden-in-water-bij-zaaneiland-in-zaandam/": {
         "kop": "Overleden persoon gevonden in water bij Zaaneiland in Zaandam",
         "S": 0.18,
@@ -1355,6 +1376,14 @@
         "S": 0.18,
         "route": "aanhoudend",
         "K": 0.29,
+        "n": 1,
+        "bronnen": 1
+      },
+      "n:https://www.deorkaan.nl/eerste-zege-vrouwen-zaandijk-en-zcfc-verliest-van-tien-westzaners-%e2%9a%bd%ef%b8%8f/": {
+        "kop": "Eerste zege vrouwen Zaandijk en ZCFC verliest van tien Westzaners ⚽️",
+        "S": 0.13,
+        "route": "aanhoudend",
+        "K": 0,
         "n": 1,
         "bronnen": 1
       },
@@ -1480,22 +1509,6 @@
       },
       "a:1a746de3ba": {
         "kop": "Uitnodiging NZKG-Jaarcongres 12 november 'De kracht van het Noordzeekanaalgebied (NZKG) & 150 jaar Noordzeekanaal'",
-        "S": 0,
-        "route": "geen",
-        "K": 0,
-        "n": 0,
-        "bronnen": 0
-      },
-      "a:55db5c0d37": {
-        "kop": "Raadsvergadering: Reservedatum begroting",
-        "S": 0,
-        "route": "geen",
-        "K": 0.15,
-        "n": 0,
-        "bronnen": 0
-      },
-      "a:777fef6fda": {
-        "kop": "Uitnodiging en aanmeldlink voor deelname aan de Webinar raadsleden",
         "S": 0,
         "route": "geen",
         "K": 0,
