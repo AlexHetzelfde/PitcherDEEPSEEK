@@ -1,5 +1,5 @@
 {
-  "gegenereerdOp": "2026-11-10T11:01:00.571Z",
+  "gegenereerdOp": "2026-11-10T12:00:54.043Z",
   "modus": "schaduw",
   "stempel": "v4-22806000",
   "tau": 0.5,
@@ -8,15 +8,15 @@
     "ai": true,
     "formule": "v4-22806000",
     "tekst": {
-      "werklijst": 2,
+      "werklijst": 1,
       "lokaal": 1,
-      "opgehaald": 1,
+      "opgehaald": 0,
       "mislukt": 0,
       "uitgesteld": 0
     },
     "vergeten": 0,
     "tekstenOpgeruimd": 0,
-    "stukken": 410,
+    "stukken": 411,
     "kandidaten": 85,
     "metAnker": 85,
     "zonderAnker": 0,
