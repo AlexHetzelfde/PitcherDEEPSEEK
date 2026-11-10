@@ -1,5 +1,5 @@
 {
-  "gegenereerdOp": "2026-11-10T16:00:58.949Z",
+  "gegenereerdOp": "2026-11-10T17:39:38.151Z",
   "promptVersie": "2026-10-29-batch-tag-checklist-agendapunten",
   "alertModus": "log",
   "prioSchaal": "1 = urgent, 2 = belangrijk, 3 = regulier, 4 = routine. De AI geeft nooit prio 1.",
@@ -464,7 +464,7 @@
       "ai": false,
       "controle": "analyse-ok",
       "eerstGezienOp": "2026-11-10T13:01:02.347Z",
-      "gecontroleerdOp": "2026-11-10T15:01:04.293Z",
+      "gecontroleerdOp": "2026-11-10T17:39:38.151Z",
       "bronTitel": "Ik zie je vaag… Zaanstreek gehuld in mist",
       "bronLengte": 1194,
       "checklist": {
@@ -503,7 +503,7 @@
       "ai": false,
       "controle": "analyse-ok",
       "eerstGezienOp": "2026-11-10T10:00:56.746Z",
-      "gecontroleerdOp": "2026-11-10T15:01:04.293Z",
+      "gecontroleerdOp": "2026-11-10T17:39:38.151Z",
       "bronTitel": "Stroomuitval bij Zaans Medisch Centrum (ZMC), brandweer ter plaatse – UPDATE",
       "bronLengte": 1654,
       "checklist": {
@@ -521,6 +521,81 @@
       "checklistBron": "ai",
       "tagVersie": 2,
       "analyse": true
+    },
+    {
+      "id": "409c9368bb-v1",
+      "groepId": "409c9368bb",
+      "versie": 1,
+      "url": "https://www.deorkaan.nl/zaanse-olifantenpaadjes-xxviii-schildersbuurt-zaandam/",
+      "kop": "Zaanse Olifantenpaadjes XXVIII: Schildersbuurt Zaandam",
+      "tekst": null,
+      "rubriek": "CUL",
+      "tagBron": "trefwoord",
+      "herkomst": "signaal",
+      "prio": 3,
+      "tijd": "2026-11-09T23:00:00.000Z",
+      "heeftTijd": false,
+      "woorden": 273,
+      "afgekapt": false,
+      "bronId": "DeOrkaan",
+      "bronNaam": "DeOrkaan",
+      "ai": false,
+      "controle": "analyse-ok",
+      "eerstGezienOp": "2026-11-10T17:39:38.151Z",
+      "gecontroleerdOp": "2026-11-10T17:39:38.151Z",
+      "bronTitel": "Zaanse Olifantenpaadjes XXVIII: Schildersbuurt Zaandam",
+      "bronLengte": 1748,
+      "checklist": {
+        "gevaar": false,
+        "evacuatieOfNlAlert": false,
+        "gewondenOfDoden": false,
+        "bestuurlijkeCrisis": false,
+        "besluitMetGrootGevolg": false,
+        "tijdkritisch": false,
+        "betrokkenen": null,
+        "geldbedragEuro": null,
+        "banen": null,
+        "inRegio": true
+      },
+      "checklistBron": "ai",
+      "analyse": true
+    },
+    {
+      "id": "0e700c678e-v1",
+      "groepId": "0e700c678e",
+      "versie": 1,
+      "url": "https://vervoerregio.bestuurlijkeinformatie.nl/Reports/Item/3c2faa7b-faeb-4ab8-b74b-705db3ac0910",
+      "kop": "Nieuw metronetwerk Amsterdam",
+      "tekst": null,
+      "rubriek": "VER",
+      "tagBron": "bron",
+      "herkomst": "officieel",
+      "prio": 4,
+      "tijd": "2026-11-09T23:00:00.000Z",
+      "heeftTijd": false,
+      "woorden": 461,
+      "afgekapt": false,
+      "bronId": "vervoerregio-overzichten",
+      "bronNaam": "Vervoerregio: Overzichten (iBabs)",
+      "ai": false,
+      "controle": "ai-fout",
+      "eerstGezienOp": "2026-11-10T17:39:38.151Z",
+      "gecontroleerdOp": "2026-11-10T17:39:38.151Z",
+      "bronTitel": "Nieuw metronetwerk Amsterdam",
+      "bronLengte": 3521,
+      "checklist": {
+        "gevaar": false,
+        "evacuatieOfNlAlert": false,
+        "gewondenOfDoden": false,
+        "bestuurlijkeCrisis": false,
+        "besluitMetGrootGevolg": false,
+        "tijdkritisch": false,
+        "betrokkenen": null,
+        "geldbedragEuro": null,
+        "banen": null,
+        "inRegio": false
+      },
+      "checklistBron": "patroon"
     },
     {
       "id": "49c1e47e3b-v1",
@@ -558,7 +633,8 @@
         "inRegio": true
       },
       "checklistBron": "ai",
-      "analyse": true
+      "analyse": true,
+      "tagVersie": 2
     },
     {
       "id": "ac08ce4ecb-v1",
@@ -596,7 +672,8 @@
         "inRegio": false
       },
       "checklistBron": "ai",
-      "analyse": true
+      "analyse": true,
+      "tagVersie": 2
     },
     {
       "id": "579b746275-v1",
@@ -735,7 +812,7 @@
       "ai": false,
       "controle": "analyse-ok",
       "eerstGezienOp": "2026-11-10T11:01:00.571Z",
-      "gecontroleerdOp": "2026-11-10T15:01:04.293Z",
+      "gecontroleerdOp": "2026-11-10T17:39:38.151Z",
       "bronTitel": "15 procent minder misdaad door cameratoezicht? Orkaan #feitencheck",
       "bronLengte": 5995,
       "checklist": {
@@ -1079,7 +1156,7 @@
       "ai": false,
       "controle": "analyse-ok",
       "eerstGezienOp": "2026-11-10T09:00:56.279Z",
-      "gecontroleerdOp": "2026-11-10T15:01:04.293Z",
+      "gecontroleerdOp": "2026-11-10T17:39:38.151Z",
       "bronTitel": "Doorkijkje bij ROOZ in oude Pancho’s #bouwmarathon",
       "bronLengte": 2396,
       "checklist": {
@@ -1118,7 +1195,7 @@
       "ai": false,
       "controle": "analyse-ok",
       "eerstGezienOp": "2026-11-10T09:00:56.279Z",
-      "gecontroleerdOp": "2026-11-10T15:01:04.293Z",
+      "gecontroleerdOp": "2026-11-10T17:39:38.151Z",
       "bronTitel": "Zaanvisie vreest dat ook nieuwe Guiswegtunnel vastloopt",
       "bronLengte": 5970,
       "checklist": {
@@ -1164,7 +1241,7 @@
       "ai": false,
       "controle": "analyse-ok",
       "eerstGezienOp": "2026-11-10T08:00:53.950Z",
-      "gecontroleerdOp": "2026-11-10T15:01:04.293Z",
+      "gecontroleerdOp": "2026-11-10T17:39:38.151Z",
       "bronTitel": "De Zaanstreek 2050: meer huizen, natuur en hoogspanningsmasten",
       "bronLengte": 5999,
       "checklist": {
@@ -1706,7 +1783,7 @@
       "ai": false,
       "controle": "analyse-ok",
       "eerstGezienOp": "2026-11-10T07:00:55.598Z",
-      "gecontroleerdOp": "2026-11-10T15:01:04.293Z",
+      "gecontroleerdOp": "2026-11-10T17:39:38.151Z",
       "bronTitel": "Het Zaanse voetbalweekend ⚽️ zege vrouwen Zaandijk, Derbyzeges KFC en Rood Wit 🎙",
       "bronLengte": 860,
       "checklist": {
