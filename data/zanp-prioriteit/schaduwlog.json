@@ -1,5 +1,5 @@
 {
-  "gegenereerdOp": "2026-11-09T23:00:59.674Z",
+  "gegenereerdOp": "2026-11-10T00:00:54.671Z",
   "modus": "schaduw",
   "stempel": "v4-22806000",
   "tau": 0.5,
@@ -8,9 +8,9 @@
     "ai": true,
     "formule": "v4-22806000",
     "tekst": {
-      "werklijst": 3,
+      "werklijst": 0,
       "lokaal": 0,
-      "opgehaald": 3,
+      "opgehaald": 0,
       "mislukt": 0,
       "uitgesteld": 0
     },
@@ -38,8 +38,8 @@
       "key": "n:https://www.deorkaan.nl/stroomuitval-bij-zaans-medisch-centrum-zmc-brandweer-ter-plaatse/",
       "soort": "nieuws",
       "kop": "Stroomuitval bij Zaans Medisch Centrum (ZMC), brandweer ter plaatse",
-      "S": 0.27,
-      "Sa": 0.27,
+      "S": 0.26,
+      "Sa": 0.26,
       "Sp": 0,
       "route": "aanhoudend",
       "K": 0.61,
