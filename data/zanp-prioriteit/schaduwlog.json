@@ -1,5 +1,5 @@
 {
-  "gegenereerdOp": "2026-11-10T08:00:53.950Z",
+  "gegenereerdOp": "2026-11-10T09:00:56.279Z",
   "modus": "schaduw",
   "stempel": "v4-22806000",
   "tau": 0.5,
@@ -8,17 +8,17 @@
     "ai": true,
     "formule": "v4-22806000",
     "tekst": {
-      "werklijst": 1,
-      "lokaal": 0,
+      "werklijst": 2,
+      "lokaal": 1,
       "opgehaald": 1,
       "mislukt": 0,
       "uitgesteld": 0
     },
     "vergeten": 0,
     "tekstenOpgeruimd": 0,
-    "stukken": 389,
-    "kandidaten": 67,
-    "metAnker": 67,
+    "stukken": 391,
+    "kandidaten": 68,
+    "metAnker": 68,
     "zonderAnker": 0,
     "afgelast": 1,
     "dubbel": 0,
@@ -43,7 +43,7 @@
       "Sp": 0,
       "route": "aanhoudend",
       "K": 0.61,
-      "Kp": 0.41,
+      "Kp": 0.4,
       "n": 2,
       "dagen": 2,
       "bronnen": 1,
@@ -408,7 +408,7 @@
         {
           "bron": "DeOrkaan",
           "datum": "2026-10-24T22:00:00.000Z",
-          "c": 0.87,
+          "c": 0.88,
           "plek": "kop",
           "titel": "Fototijdreis: De Zaan bij Gerkens Cacao (Wormer)"
         }
