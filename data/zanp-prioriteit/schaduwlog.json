@@ -1,5 +1,5 @@
 {
-  "gegenereerdOp": "2026-11-10T07:00:55.598Z",
+  "gegenereerdOp": "2026-11-10T08:00:53.950Z",
   "modus": "schaduw",
   "stempel": "v4-22806000",
   "tau": 0.5,
@@ -9,14 +9,14 @@
     "formule": "v4-22806000",
     "tekst": {
       "werklijst": 1,
-      "lokaal": 1,
-      "opgehaald": 0,
+      "lokaal": 0,
+      "opgehaald": 1,
       "mislukt": 0,
       "uitgesteld": 0
     },
     "vergeten": 0,
     "tekstenOpgeruimd": 0,
-    "stukken": 388,
+    "stukken": 389,
     "kandidaten": 67,
     "metAnker": 67,
     "zonderAnker": 0,
@@ -123,10 +123,10 @@
       "ankers": [
         "segment",
         "jeugdhulp",
-        "waterland",
         "afgerond",
         "gunning",
         "specialistisch",
+        "waterland",
         "anbesteding"
       ],
       "bewijs": [
@@ -143,8 +143,8 @@
       "key": "n:https://www.deorkaan.nl/themapad-in-assendelft-krijgt-stopverlichting-huh/",
       "soort": "nieuws",
       "kop": "Themapad in Assendelft krijgt ‘stopverlichting’ (huh?)",
-      "S": 0.2,
-      "Sa": 0.2,
+      "S": 0.19,
+      "Sa": 0.19,
       "Sp": 0,
       "route": "aanhoudend",
       "K": 0.71,
@@ -326,7 +326,7 @@
       "Sp": 0,
       "route": "aanhoudend",
       "K": 0.2,
-      "Kp": 0.07,
+      "Kp": 0.06,
       "n": 2,
       "dagen": 1,
       "bronnen": 1,
