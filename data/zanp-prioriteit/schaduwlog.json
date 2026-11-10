@@ -1,5 +1,5 @@
 {
-  "gegenereerdOp": "2026-11-10T15:01:04.293Z",
+  "gegenereerdOp": "2026-11-10T16:00:58.949Z",
   "modus": "schaduw",
   "stempel": "v4-22806000",
   "tau": 0.5,
@@ -8,17 +8,17 @@
     "ai": true,
     "formule": "v4-22806000",
     "tekst": {
-      "werklijst": 1,
-      "lokaal": 1,
+      "werklijst": 2,
+      "lokaal": 2,
       "opgehaald": 0,
       "mislukt": 0,
       "uitgesteld": 0
     },
     "vergeten": 0,
     "tekstenOpgeruimd": 0,
-    "stukken": 412,
-    "kandidaten": 84,
-    "metAnker": 84,
+    "stukken": 414,
+    "kandidaten": 86,
+    "metAnker": 86,
     "zonderAnker": 0,
     "afgelast": 1,
     "dubbel": 0,
@@ -180,6 +180,41 @@
           "c": 1,
           "plek": "kop",
           "titel": "Inkoop specialistische jeugdhulp 2027"
+        }
+      ]
+    },
+    {
+      "key": "n:https://www.deorkaan.nl/een-rekening-van-vrouwe-justitia-bezwaar-phishing/",
+      "soort": "nieuws",
+      "kop": "Een rekening van Vrouwe Justitia? Bezwaar! (phishing)",
+      "S": 0.19,
+      "Sa": 0.19,
+      "Sp": 0,
+      "route": "aanhoudend",
+      "K": 0.62,
+      "Kp": 0.53,
+      "n": 2,
+      "dagen": 2,
+      "bronnen": 1,
+      "ankers": [
+        "justitia",
+        "vrouw",
+        "phishing"
+      ],
+      "bewijs": [
+        {
+          "bron": "DeOrkaan",
+          "datum": "2026-10-25T23:00:00.000Z",
+          "c": 1,
+          "plek": "kop",
+          "titel": "Phishing: controle persoonsgegevens MijnOverheid"
+        },
+        {
+          "bron": "DeOrkaan",
+          "datum": "2026-11-04T23:00:00.000Z",
+          "c": 0.5,
+          "plek": "tekst",
+          "titel": "Playstation winnen? Trap er niet in…"
         }
       ]
     },
@@ -374,7 +409,7 @@
       "Sa": 0.11,
       "Sp": 0,
       "route": "aanhoudend",
-      "K": 0.2,
+      "K": 0.19,
       "Kp": 0.06,
       "n": 2,
       "dagen": 1,
@@ -1066,26 +1101,6 @@
         "champion"
       ],
       "bewijs": []
-    },
-    {
-      "key": "a:f6354ef2ca",
-      "soort": "agenda",
-      "kop": "Nationaal Congres Bodemdaling",
-      "S": 0,
-      "Sa": 0,
-      "Sp": 0,
-      "route": "geen",
-      "K": 0,
-      "Kp": 0,
-      "n": 0,
-      "dagen": 0,
-      "bronnen": 0,
-      "ankers": [
-        "congre",
-        "bodemdaling",
-        "national"
-      ],
-      "bewijs": []
     }
   ],
   "formule": {
@@ -1392,6 +1407,14 @@
         "n": 1,
         "bronnen": 1
       },
+      "n:https://www.deorkaan.nl/een-rekening-van-vrouwe-justitia-bezwaar-phishing/": {
+        "kop": "Een rekening van Vrouwe Justitia? Bezwaar! (phishing)",
+        "S": 0.19,
+        "route": "aanhoudend",
+        "K": 0.62,
+        "n": 2,
+        "bronnen": 1
+      },
       "n:https://www.deorkaan.nl/overleden-persoon-gevonden-in-water-bij-zaaneiland-in-zaandam/": {
         "kop": "Overleden persoon gevonden in water bij Zaaneiland in Zaandam",
         "S": 0.18,
@@ -1522,14 +1545,6 @@
       },
       "a:da1fdf516e": {
         "kop": "Aanwijsbesluit plaatsen camera locatie Perim te Zaandam",
-        "S": 0,
-        "route": "geen",
-        "K": 0.15,
-        "n": 0,
-        "bronnen": 0
-      },
-      "a:f317521e28": {
-        "kop": "Raadsvergadering: Begroting",
         "S": 0,
         "route": "geen",
         "K": 0.15,
