@@ -6,7 +6,7 @@
 // Wat hij doet, in volgorde:
 //  1. Volledige teksten ophalen van alle agenda-items en berichten (tekst.js)
 //     en per stuk een vingerafdruk bewaren (analyse.js). De tekst zelf wordt
-//     alleen in data/zanp-prioriteit/teksten-*.jsonl bewaard.
+//     bewaard in data/zanp-teksten/ (per publicatiedag, zie tekstarchief.js).
 //  2. Voor elk item dat rood kan worden: zoekwoorden bepalen, de bewaarde
 //     stukken erover zoeken, reeksen van dezelfde bron tot één stuk
 //     samenvoegen, impact meten, de score berekenen (score.js). Geannuleerde
@@ -26,6 +26,7 @@
 
 "use strict";
 
+const path = require("path");
 const { kalenderdagAmsterdam } = require("../hulpmiddelen");
 const { leesInstellingen, formuleStempel } = require("./instellingen");
 const { analyseer, schoon, AFGELAST } = require("./taal");
@@ -41,6 +42,7 @@ const { berekenImpact, berekenScore, bepaalTau, PIEK_CATS } = require("./score")
 const { maakAiVeto } = require("./ai");
 const { beslis } = require("./beslis");
 const { cameraRood } = require("./regels");
+const tekstarchief = require("../tekstarchief");
 const { maakWerklijst, haalTeksten, agendaKomt, laatstePerGroep } = require("./tekst");
 const {
   mapVan,
@@ -174,7 +176,7 @@ async function draaiPrioriteit(opties) {
         });
       }
     }
-    await voegTekstenToe(map, vandaag, regels);
+    await voegTekstenToe(map, vandaag, regels, F);
     stats.tekst = ophaal.stats;
   } catch (fout) {
     log.error(`[prioriteit] Teksten ophalen mislukte (er wordt gerekend met wat al bewaard is): ${fout.stack || fout.message}`);
@@ -185,6 +187,16 @@ async function draaiPrioriteit(opties) {
     stats.tekstenOpgeruimd = await ruimTekstenOp(map, vandaag, F);
   } catch (fout) {
     log.error(`[prioriteit] Oude tekstbestanden opruimen mislukte: ${fout.message}`);
+  }
+  // Logboek: hoeveel berichten hebben nu een volledige tekst in het archief?
+  try {
+    const d = await tekstarchief.dekking(path.join(path.dirname(map), "zanp-teksten"), records, {
+      vandaag,
+      bewaarDagen: F.tekstBewaarDagen,
+    });
+    stats.tekstDekkingPct = d.pct;
+  } catch (fout) {
+    log.error(`[prioriteit] Dekking van het tekstarchief berekenen mislukte: ${fout.message}`);
   }
   const vingerafdrukken = Object.values(geheugen.docs);
   stats.stukken = vingerafdrukken.length;

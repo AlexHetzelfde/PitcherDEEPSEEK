@@ -20,7 +20,7 @@ const crypto = require("crypto");
 const FORMULE = Object.freeze({
   // Geheugen en verval
   geheugenDagen: 30, // zo lang blijven kernfeiten van een artikel bewaard
-  tekstBewaarDagen: 30, // zo lang blijven de dagbestanden met volledige teksten in de repo staan
+  tekstBewaarDagen: 14, // zo lang (na publicatie) blijven de volledige teksten in de repo staan (data/zanp-teksten)
   halfwaardeDagen: 7, // na 7 dagen telt een artikel half, na 21 dagen ~12%
   roodBewaarDagen: 30, // een rood item blijft zo lang in het geheugen
 

@@ -8,8 +8,10 @@
 //   schaduwlog.json  scores, onderdelen en redenen van de laatste run, plus de
 //                    hoogste scores per dag (14 dagen), om de formule bij te stellen.
 //                    Begint opnieuw zodra de formule verandert.
-//   teksten-JJJJ-MM-DD.jsonl   alle volledige teksten, één bestand per dag; bestanden
-//                    ouder dan tekstBewaarDagen worden opgeruimd
+//   (De volledige teksten staan sinds 2026-11-10 niet meer hier maar in
+//   data/zanp-teksten/JJJJ-MM-DD.json, één bestand per publicatiedag; zie
+//   tekstarchief.js. De oude teksten-*.jsonl worden bij de eerstvolgende run
+//   overgezet en verwijderd.)
 //
 // Dit zijn eigen bestanden: de pitchrun raakt ze niet aan en zij raken
 // data/*.json van de pitchrun niet aan.
@@ -18,6 +20,7 @@
 
 const fs = require("fs/promises");
 const path = require("path");
+const tekstarchief = require("../tekstarchief");
 
 const DAG_MS = 24 * 3600 * 1000;
 
@@ -84,28 +87,14 @@ function ruimOp(geheugen, nu, F) {
   return weg;
 }
 
-// Verwijdert dagbestanden met teksten die ouder zijn dan tekstBewaarDagen.
-// Geeft het aantal verwijderde bestanden terug.
+// Zet eerst eventuele oude teksten-*.jsonl over naar het tekstarchief en
+// verwijdert daarna de dagbestanden met teksten die langer dan tekstBewaarDagen
+// geleden zijn gepubliceerd. Geeft het aantal verwijderde bestanden terug.
 async function ruimTekstenOp(map, vandaag, F) {
-  let namen;
-  try {
-    namen = await fs.readdir(map);
-  } catch {
-    return 0;
-  }
-  const grens = new Date(Date.parse(`${vandaag}T12:00:00Z`) - F.tekstBewaarDagen * DAG_MS).toISOString().slice(0, 10);
-  let weg = 0;
-  for (const naam of namen) {
-    const m = /^teksten-(\d{4}-\d{2}-\d{2})\.jsonl$/.exec(naam);
-    if (!m || m[1] >= grens) continue;
-    try {
-      await fs.unlink(path.join(map, naam));
-      weg++;
-    } catch {
-      // een volgende run probeert het opnieuw
-    }
-  }
-  return weg;
+  const archiefMap = path.join(path.dirname(map), "zanp-teksten");
+  await tekstarchief.migreerOudeBestanden(map, archiefMap, { vandaag, bewaarDagen: F.tekstBewaarDagen });
+  const r = await tekstarchief.ruimOp(archiefMap, vandaag, F.tekstBewaarDagen);
+  return r.verwijderd;
 }
 
 // opnieuw: de formule is veranderd, de log begint leeg (oude cijfers zijn dan niet vergelijkbaar).
@@ -138,14 +127,15 @@ async function schrijfSchaduwlog(map, log, vandaag, topDezeRun, F, opnieuw = fal
   );
 }
 
-async function voegTekstenToe(map, dag, regels) {
+// Bewaart volledige teksten in het tekstarchief (per publicatiedag). `dag` is
+// vandaag; elke regel draagt zijn eigen datum.
+async function voegTekstenToe(map, dag, regels, F = {}) {
   if (!regels.length) return;
-  await fs.mkdir(map, { recursive: true });
-  await fs.appendFile(
-    path.join(map, `teksten-${dag}.jsonl`),
-    regels.map((r) => JSON.stringify(r)).join("\n") + "\n",
-    "utf-8"
-  );
+  const archiefMap = path.join(path.dirname(map), "zanp-teksten");
+  await tekstarchief.voegToe(archiefMap, regels, {
+    vandaag: dag,
+    bewaarDagen: F.tekstBewaarDagen || tekstarchief.BEWAAR_DAGEN,
+  });
 }
 
 module.exports = {

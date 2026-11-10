@@ -17,11 +17,13 @@
 
 "use strict";
 
-const cheerio = require("cheerio");
-const { haalArtikelTekst, haalOp, MIN_BRUIKBARE_TEKST_TEKENS } = require("../hulpmiddelen");
+const { haalOp, MIN_BRUIKBARE_TEKST_TEKENS } = require("../hulpmiddelen");
+// Alinea's blijven behouden (2026-11-10): de tekst die hier binnenkomt is ook de
+// tekst die de popup laat zien. Lukt de nieuwe extractie niet, dan valt
+// haalArtikelTekstMetAlineas terug op de bestaande methode uit hulpmiddelen.js.
+const { haalArtikelTekstMetAlineas, haalPaginaTekstMetAlineas } = require("../tekstopschoning");
 
 const BESTANDSTYPE = /\.(pdf|docx?|xlsx?|pptx?|zip|jpe?g|png|gif)(\?|#|$)/i;
-const WEG = "script, style, noscript, svg, iframe, nav, footer, header, aside, form, button, select";
 const AFGEKAPT_VANAF = 5900;
 const MIN_VOLLEDIG_TEKENS = 200;
 const PAGINA_TIMEOUT_MS = 45_000;
@@ -34,10 +36,6 @@ function hostVan(url) {
   }
 }
 
-function schoonTekst(t) {
-  return String(t || "").replace(/\s+/g, " ").trim();
-}
-
 function metTijdslimiet(belofte, ms) {
   belofte.catch(() => {});
   let timer;
@@ -48,22 +46,11 @@ function metTijdslimiet(belofte, ms) {
 }
 
 // Reserve voor pagina's waar de gewone tekstherkenning niets vindt (bijvoorbeeld
-// een iBabs-agendapagina): de hoofdtekst of anders alle tekst van de pagina.
+// een iBabs-agendapagina): de hoofdtekst of anders alle tekst van de pagina,
+// met alinea's.
 async function haalPaginaTekst(url, maxTekens) {
   const html = await metTijdslimiet(haalOp(url, 2, { stil: true }), PAGINA_TIMEOUT_MS);
-  if (!html || String(html).startsWith("%PDF-")) return "";
-  const $ = cheerio.load(html);
-  $(WEG).remove();
-  const kandidaten = ["main", '[role="main"]', "#content", ".content", "body"];
-  let beste = "";
-  for (const sel of kandidaten) {
-    const t = schoonTekst($(sel).first().text());
-    if (t.length > beste.length && (t.length >= MIN_VOLLEDIG_TEKENS || sel === "body")) {
-      beste = t;
-      if (t.length >= MIN_VOLLEDIG_TEKENS) break;
-    }
-  }
-  return beste.slice(0, maxTekens);
+  return haalPaginaTekstMetAlineas(html, maxTekens);
 }
 
 function plusDagen(dag, n) {
@@ -170,7 +157,7 @@ async function haalVoorTaak(taak, ctx) {
   let methode = "kort";
   let gefaald = false;
   try {
-    const uit = await haalArtikelTekst(taak.url, {
+    const uit = await haalArtikelTekstMetAlineas(taak.url, {
       titel: taak.kop,
       detailSelector: ctx.detailSelectorVoor(taak.bron),
       maxTekens: ctx.inst.tekstMaxTekens,
