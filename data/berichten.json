@@ -1,5 +1,5 @@
 {
-  "gegenereerdOp": "2026-11-10T12:00:54.043Z",
+  "gegenereerdOp": "2026-11-10T13:01:02.347Z",
   "promptVersie": "2026-10-29-batch-tag-checklist-agendapunten",
   "alertModus": "log",
   "prioSchaal": "1 = urgent, 2 = belangrijk, 3 = regulier, 4 = routine. De AI geeft nooit prio 1.",
@@ -406,6 +406,44 @@
   ],
   "berichten": [
     {
+      "id": "ee0a4ff81b-v2",
+      "groepId": "ee0a4ff81b",
+      "versie": 2,
+      "url": "https://www.deorkaan.nl/ik-zie-je-vaag-zaanstreek-gehuld-in-mist/",
+      "kop": "Ik zie je vaag… Zaanstreek gehuld in mist",
+      "tekst": null,
+      "rubriek": "VER",
+      "tagBron": "ai",
+      "herkomst": "signaal",
+      "prio": 3,
+      "tijd": "2026-11-10T13:01:02.347Z",
+      "heeftTijd": true,
+      "woorden": 193,
+      "afgekapt": false,
+      "bronId": "DeOrkaan",
+      "bronNaam": "DeOrkaan",
+      "ai": false,
+      "controle": "analyse-ok",
+      "eerstGezienOp": "2026-11-10T13:01:02.347Z",
+      "gecontroleerdOp": "2026-11-10T13:01:02.347Z",
+      "bronTitel": "Ik zie je vaag… Zaanstreek gehuld in mist",
+      "bronLengte": 1194,
+      "checklist": {
+        "gevaar": false,
+        "evacuatieOfNlAlert": false,
+        "gewondenOfDoden": false,
+        "bestuurlijkeCrisis": false,
+        "besluitMetGrootGevolg": false,
+        "tijdkritisch": true,
+        "betrokkenen": null,
+        "geldbedragEuro": null,
+        "banen": null,
+        "inRegio": true
+      },
+      "checklistBron": "ai",
+      "analyse": true
+    },
+    {
       "id": "568454d2c0-v2",
       "groepId": "568454d2c0",
       "versie": 2,
@@ -425,7 +463,7 @@
       "ai": false,
       "controle": "analyse-ok",
       "eerstGezienOp": "2026-11-10T10:00:56.746Z",
-      "gecontroleerdOp": "2026-11-10T11:01:00.571Z",
+      "gecontroleerdOp": "2026-11-10T13:01:02.347Z",
       "bronTitel": "Stroomuitval bij Zaans Medisch Centrum (ZMC), brandweer ter plaatse – UPDATE",
       "bronLengte": 1654,
       "checklist": {
@@ -480,7 +518,8 @@
         "inRegio": true
       },
       "checklistBron": "ai",
-      "analyse": true
+      "analyse": true,
+      "tagVersie": 2
     },
     {
       "id": "19c1e61748-v1",
@@ -502,7 +541,7 @@
       "ai": false,
       "controle": "analyse-ok",
       "eerstGezienOp": "2026-11-10T11:01:00.571Z",
-      "gecontroleerdOp": "2026-11-10T11:01:00.571Z",
+      "gecontroleerdOp": "2026-11-10T13:01:02.347Z",
       "bronTitel": "Cadeautjes voor raadsfracties Zaanstad (behalve PVV)",
       "bronLengte": 4226,
       "checklist": {
@@ -541,7 +580,7 @@
       "ai": false,
       "controle": "analyse-ok",
       "eerstGezienOp": "2026-11-10T11:01:00.571Z",
-      "gecontroleerdOp": "2026-11-10T11:01:00.571Z",
+      "gecontroleerdOp": "2026-11-10T13:01:02.347Z",
       "bronTitel": "15 procent minder misdaad door cameratoezicht? Orkaan #feitencheck",
       "bronLengte": 5995,
       "checklist": {
@@ -885,7 +924,7 @@
       "ai": false,
       "controle": "analyse-ok",
       "eerstGezienOp": "2026-11-10T09:00:56.279Z",
-      "gecontroleerdOp": "2026-11-10T11:01:00.571Z",
+      "gecontroleerdOp": "2026-11-10T13:01:02.347Z",
       "bronTitel": "Doorkijkje bij ROOZ in oude Pancho’s #bouwmarathon",
       "bronLengte": 2396,
       "checklist": {
@@ -924,7 +963,7 @@
       "ai": false,
       "controle": "analyse-ok",
       "eerstGezienOp": "2026-11-10T09:00:56.279Z",
-      "gecontroleerdOp": "2026-11-10T11:01:00.571Z",
+      "gecontroleerdOp": "2026-11-10T13:01:02.347Z",
       "bronTitel": "Zaanvisie vreest dat ook nieuwe Guiswegtunnel vastloopt",
       "bronLengte": 5970,
       "checklist": {
@@ -970,7 +1009,7 @@
       "ai": false,
       "controle": "analyse-ok",
       "eerstGezienOp": "2026-11-10T08:00:53.950Z",
-      "gecontroleerdOp": "2026-11-10T10:00:56.746Z",
+      "gecontroleerdOp": "2026-11-10T13:01:02.347Z",
       "bronTitel": "De Zaanstreek 2050: meer huizen, natuur en hoogspanningsmasten",
       "bronLengte": 5999,
       "checklist": {
@@ -1512,7 +1551,7 @@
       "ai": false,
       "controle": "analyse-ok",
       "eerstGezienOp": "2026-11-10T07:00:55.598Z",
-      "gecontroleerdOp": "2026-11-10T11:01:00.571Z",
+      "gecontroleerdOp": "2026-11-10T13:01:02.347Z",
       "bronTitel": "Het Zaanse voetbalweekend ⚽️ zege vrouwen Zaandijk, Derbyzeges KFC en Rood Wit 🎙",
       "bronLengte": 860,
       "checklist": {
@@ -1551,7 +1590,7 @@
       "ai": false,
       "controle": "analyse-ok",
       "eerstGezienOp": "2026-11-09T17:01:02.861Z",
-      "gecontroleerdOp": "2026-11-10T10:00:56.746Z",
+      "gecontroleerdOp": "2026-11-10T13:01:02.347Z",
       "bronTitel": "Themapad in Assendelft krijgt ‘stopverlichting’ (huh?)",
       "bronLengte": 1045,
       "checklist": {
@@ -1590,7 +1629,7 @@
       "ai": false,
       "controle": "analyse-ok",
       "eerstGezienOp": "2026-11-09T15:00:59.124Z",
-      "gecontroleerdOp": "2026-11-10T10:00:56.746Z",
+      "gecontroleerdOp": "2026-11-10T13:01:02.347Z",
       "bronTitel": "Nog meer windturbines bij de Amsterdamse haven",
       "bronLengte": 2287,
       "checklist": {
@@ -1858,14 +1897,7 @@
       "analyse": true,
       "agendaIds": [
         "00bd7e7755"
-      ],
-      "alertKandidaat": {
-        "niveau": "oranje",
-        "categorie": "bestuur",
-        "reden": "besluit met groot gevolg (één bron)",
-        "aangemaaktOp": "2026-11-09T13:00:56.658Z",
-        "tot": "2026-11-10T13:00:56.658Z"
-      }
+      ]
     },
     {
       "id": "3bd27ad8ee-v1",
