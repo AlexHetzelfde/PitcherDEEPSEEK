@@ -1,5 +1,5 @@
 {
-  "gegenereerdOp": "2026-11-11T07:51:03.133Z",
+  "gegenereerdOp": "2026-11-11T14:01:46.937Z",
   "uitleg": "Per run per onderdeel: tellers (optellend), waarden (meting van die run), voorbeelden en regels. De laatste 24 runs hebben voorbeelden en regels; 'dagen' telt de tellers per dag op.",
   "runs": [
     {
@@ -703,6 +703,170 @@
           "regels": []
         }
       }
+    },
+    {
+      "tijd": "2026-11-11T14:01:46.937Z",
+      "duurMs": 110297,
+      "onderdelen": {
+        "spelling": {
+          "tellers": {
+            "gecontroleerd": 2,
+            "ok": 2
+          },
+          "waarden": {},
+          "voorbeelden": [],
+          "regels": [
+            "Nederlands woordenboek geladen."
+          ]
+        },
+        "tekst": {
+          "tellers": {
+            "aangeboden": 9,
+            "geschreven": 9,
+            "teOudOvergeslagen": 0,
+            "leegOvergeslagen": 0,
+            "rommelRegelsWeg": 4,
+            "alineasHerleid": 6,
+            "titelHerhalingWeg": 0,
+            "methode-run": 8,
+            "methode-artikel": 1,
+            "oudeBestandenOvergezet": 0,
+            "dagbestandenVerwijderd": 0,
+            "bytesVerwijderd": 0
+          },
+          "waarden": {
+            "oudsteDagbestand": "2026-10-29",
+            "dekkingPct": 94,
+            "berichtenZonderTekst": 19,
+            "dekkingPerBron": {
+              "nh-actueel": {
+                "berichten": 23,
+                "metTekst": 23,
+                "pct": 100,
+                "gemTekens": 2897
+              },
+              "zaanstad-moties": {
+                "berichten": 22,
+                "metTekst": 22,
+                "pct": 100,
+                "gemTekens": 1040
+              },
+              "DeOrkaan": {
+                "berichten": 160,
+                "metTekst": 160,
+                "pct": 100,
+                "gemTekens": 2532
+              },
+              "rechtspraak-noord-holland": {
+                "berichten": 1,
+                "metTekst": 1,
+                "pct": 100,
+                "gemTekens": 6002
+              },
+              "omgevingsdienstnoordzeekanaal": {
+                "berichten": 2,
+                "metTekst": 2,
+                "pct": 100,
+                "gemTekens": 3328
+              },
+              "ibabs-collegeberichten": {
+                "berichten": 15,
+                "metTekst": 8,
+                "pct": 53,
+                "gemTekens": 4519
+              },
+              "ibabs-ingekomen-stukken": {
+                "berichten": 43,
+                "metTekst": 34,
+                "pct": 79,
+                "gemTekens": 1901
+              },
+              "vervoerregio-overzichten": {
+                "berichten": 6,
+                "metTekst": 3,
+                "pct": 50,
+                "gemTekens": 6952
+              },
+              "bekendmakingen": {
+                "berichten": 26,
+                "metTekst": 26,
+                "pct": 100,
+                "gemTekens": 2345
+              },
+              "zaanstad-ted": {
+                "berichten": 1,
+                "metTekst": 1,
+                "pct": 100,
+                "gemTekens": 87
+              },
+              "wetenregelgeving": {
+                "berichten": 7,
+                "metTekst": 7,
+                "pct": 100,
+                "gemTekens": 25177
+              },
+              "vervoerregio-persberichten": {
+                "berichten": 5,
+                "metTekst": 5,
+                "pct": 100,
+                "gemTekens": 1586
+              }
+            }
+          },
+          "voorbeelden": [
+            {
+              "bron": "nh-actueel",
+              "methode": "run",
+              "kop": "Provincie sponsort ook in 2027 verschillende sportevenementen",
+              "tekensVoor": 2216,
+              "tekensNa": 2004,
+              "alineas": 4,
+              "rommelRegelsWeg": 2,
+              "alineasHerleid": true,
+              "begin": "Na het succes in 2026, stelt de provincie Noord-Holland ook in 2027 weer € 100.000 sponsorgeld beschikbaar voor nationale kampioenschappen en internationale topsporttoernooien. Hiermee kunnen niet alleen grote topsportev",
+              "eind": "jd die in samenwerking met de sportbond wordt georganiseerd. Meer informatie staat op de sponsorpagina van de provincie."
+            },
+            {
+              "bron": "DeOrkaan",
+              "methode": "run",
+              "kop": "Wietplantage met 70 planten ontmanteld in appartement Zaandam",
+              "tekensVoor": 696,
+              "tekensNa": 696,
+              "alineas": 1,
+              "rommelRegelsWeg": 0,
+              "alineasHerleid": false,
+              "begin": "In een appartement aan de Provincialeweg N203 in Zaandam is woensdagochtend 11 november een wietplantage ontmanteld. In de woning op de tweede verdieping van appartementencomplex Aan de Vaart, tegenover Station Zaandam, ",
+              "eind": "s niet bekend. Bij de ontmanteling is niemand aangehouden. Ook de waarde van de aangetroffen hennepplantage is onbekend."
+            }
+          ],
+          "regels": [
+            "Dekking volledige tekst: 292/311 berichten (94%). Laagst: vervoerregio-overzichten 3/6 (50%); ibabs-collegeberichten 8/15 (53%); ibabs-ingekomen-stukken 34/43 (79%)."
+          ]
+        },
+        "jubileum": {
+          "tellers": {
+            "nieuwsRood": 0,
+            "agendaRood": 0,
+            "uitgesloten": 0,
+            "alRoodDoorPrioriteit": 3
+          },
+          "waarden": {},
+          "voorbeelden": [],
+          "regels": []
+        },
+        "run": {
+          "tellers": {},
+          "waarden": {
+            "berichten": 421,
+            "agendaItems": 272,
+            "aiVerzoeken": 1,
+            "geminiDagGebruikt": "1/80",
+            "duurSeconden": 110
+          },
+          "voorbeelden": [],
+          "regels": []
+        }
+      }
     }
   ],
   "dagen": {
@@ -729,31 +893,32 @@
       }
     },
     "2026-11-11": {
-      "runs": 2,
+      "runs": 3,
       "tellers": {
         "tekst": {
-          "aangeboden": 4,
-          "geschreven": 4,
+          "aangeboden": 13,
+          "geschreven": 13,
           "teOudOvergeslagen": 0,
           "leegOvergeslagen": 0,
-          "rommelRegelsWeg": 0,
-          "alineasHerleid": 2,
+          "rommelRegelsWeg": 4,
+          "alineasHerleid": 8,
           "titelHerhalingWeg": 0,
-          "methode-run": 4,
+          "methode-run": 12,
           "oudeBestandenOvergezet": 0,
           "dagbestandenVerwijderd": 0,
-          "bytesVerwijderd": 0
+          "bytesVerwijderd": 0,
+          "methode-artikel": 1
         },
         "run": {},
         "spelling": {
-          "gecontroleerd": 11,
-          "ok": 11
+          "gecontroleerd": 13,
+          "ok": 13
         },
         "jubileum": {
           "nieuwsRood": 2,
           "agendaRood": 1,
           "uitgesloten": 0,
-          "alRoodDoorPrioriteit": 0
+          "alRoodDoorPrioriteit": 3
         }
       }
     }
