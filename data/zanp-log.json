@@ -1,5 +1,5 @@
 {
-  "gegenereerdOp": "2026-11-11T14:01:46.937Z",
+  "gegenereerdOp": "2026-11-11T21:14:16.919Z",
   "uitleg": "Per run per onderdeel: tellers (optellend), waarden (meting van die run), voorbeelden en regels. De laatste 24 runs hebben voorbeelden en regels; 'dagen' telt de tellers per dag op.",
   "runs": [
     {
@@ -867,6 +867,170 @@
           "regels": []
         }
       }
+    },
+    {
+      "tijd": "2026-11-11T21:14:16.919Z",
+      "duurMs": 92812,
+      "onderdelen": {
+        "spelling": {
+          "tellers": {
+            "gecontroleerd": 2,
+            "ok": 2
+          },
+          "waarden": {},
+          "voorbeelden": [],
+          "regels": [
+            "Nederlands woordenboek geladen."
+          ]
+        },
+        "tekst": {
+          "tellers": {
+            "aangeboden": 4,
+            "geschreven": 4,
+            "teOudOvergeslagen": 0,
+            "leegOvergeslagen": 0,
+            "rommelRegelsWeg": 2,
+            "alineasHerleid": 1,
+            "titelHerhalingWeg": 0,
+            "methode-run": 1,
+            "methode-artikel": 3,
+            "oudeBestandenOvergezet": 0,
+            "dagbestandenVerwijderd": 0,
+            "bytesVerwijderd": 0
+          },
+          "waarden": {
+            "oudsteDagbestand": "2026-10-29",
+            "dekkingPct": 94,
+            "berichtenZonderTekst": 19,
+            "dekkingPerBron": {
+              "nh-actueel": {
+                "berichten": 25,
+                "metTekst": 25,
+                "pct": 100,
+                "gemTekens": 2979
+              },
+              "zaanstad-moties": {
+                "berichten": 22,
+                "metTekst": 22,
+                "pct": 100,
+                "gemTekens": 1040
+              },
+              "DeOrkaan": {
+                "berichten": 162,
+                "metTekst": 162,
+                "pct": 100,
+                "gemTekens": 2590
+              },
+              "rechtspraak-noord-holland": {
+                "berichten": 1,
+                "metTekst": 1,
+                "pct": 100,
+                "gemTekens": 6002
+              },
+              "omgevingsdienstnoordzeekanaal": {
+                "berichten": 2,
+                "metTekst": 2,
+                "pct": 100,
+                "gemTekens": 3328
+              },
+              "ibabs-collegeberichten": {
+                "berichten": 15,
+                "metTekst": 8,
+                "pct": 53,
+                "gemTekens": 4519
+              },
+              "ibabs-ingekomen-stukken": {
+                "berichten": 43,
+                "metTekst": 34,
+                "pct": 79,
+                "gemTekens": 1901
+              },
+              "vervoerregio-overzichten": {
+                "berichten": 6,
+                "metTekst": 3,
+                "pct": 50,
+                "gemTekens": 6952
+              },
+              "bekendmakingen": {
+                "berichten": 26,
+                "metTekst": 26,
+                "pct": 100,
+                "gemTekens": 2345
+              },
+              "zaanstad-ted": {
+                "berichten": 1,
+                "metTekst": 1,
+                "pct": 100,
+                "gemTekens": 87
+              },
+              "wetenregelgeving": {
+                "berichten": 7,
+                "metTekst": 7,
+                "pct": 100,
+                "gemTekens": 25177
+              },
+              "vervoerregio-persberichten": {
+                "berichten": 5,
+                "metTekst": 5,
+                "pct": 100,
+                "gemTekens": 1586
+              }
+            }
+          },
+          "voorbeelden": [
+            {
+              "bron": "nh-actueel",
+              "methode": "run",
+              "kop": "€ 300.000 subsidie voor Noord-Hollandse energiecoöperaties vanaf 2027",
+              "tekensVoor": 2137,
+              "tekensNa": 1925,
+              "alineas": 4,
+              "rommelRegelsWeg": 2,
+              "alineasHerleid": true,
+              "begin": "De provincie Noord-Holland stelt € 300.000 subsidie beschikbaar voor energiecoöperaties, verenigingen en stichtingen. Deze organisaties helpen inwoners om energie te besparen en te investeren in installaties voor het opw",
+              "eind": "punt kunnen zijn. Met de subsidieregeling ‘Lokale energie-initiatieven' wil de provincie deze initiatieven ondersteunen."
+            },
+            {
+              "bron": "DeOrkaan",
+              "methode": "artikel",
+              "kop": "Zes Zaanse tieners aangehouden voor explosies en beschietingen",
+              "tekensVoor": 7511,
+              "tekensNa": 7511,
+              "alineas": 37,
+              "rommelRegelsWeg": 0,
+              "alineasHerleid": false,
+              "begin": "Wie zich voor een paar honderd (of duizend) euro laat ronselen om een explosief te plaatsen of op een woning te schieten, loopt een grote kans te worden opgepakt. Dat is de waarschuwing van de politie na de aanhouding va",
+              "eind": "litie) en het Orkaan-archief. Foto: Explosief bij een woning aan de Knollendammerstraat in Wormer, door Michel Schermer."
+            }
+          ],
+          "regels": [
+            "Dekking volledige tekst: 296/315 berichten (94%). Laagst: vervoerregio-overzichten 3/6 (50%); ibabs-collegeberichten 8/15 (53%); ibabs-ingekomen-stukken 34/43 (79%)."
+          ]
+        },
+        "jubileum": {
+          "tellers": {
+            "nieuwsRood": 0,
+            "agendaRood": 0,
+            "uitgesloten": 0,
+            "alRoodDoorPrioriteit": 3
+          },
+          "waarden": {},
+          "voorbeelden": [],
+          "regels": []
+        },
+        "run": {
+          "tellers": {},
+          "waarden": {
+            "berichten": 425,
+            "agendaItems": 273,
+            "aiVerzoeken": 4,
+            "geminiDagGebruikt": "5/80",
+            "duurSeconden": 93
+          },
+          "voorbeelden": [],
+          "regels": []
+        }
+      }
     }
   ],
   "dagen": {
@@ -893,32 +1057,32 @@
       }
     },
     "2026-11-11": {
-      "runs": 3,
+      "runs": 4,
       "tellers": {
         "tekst": {
-          "aangeboden": 13,
-          "geschreven": 13,
+          "aangeboden": 17,
+          "geschreven": 17,
           "teOudOvergeslagen": 0,
           "leegOvergeslagen": 0,
-          "rommelRegelsWeg": 4,
-          "alineasHerleid": 8,
+          "rommelRegelsWeg": 6,
+          "alineasHerleid": 9,
           "titelHerhalingWeg": 0,
-          "methode-run": 12,
+          "methode-run": 13,
           "oudeBestandenOvergezet": 0,
           "dagbestandenVerwijderd": 0,
           "bytesVerwijderd": 0,
-          "methode-artikel": 1
+          "methode-artikel": 4
         },
         "run": {},
         "spelling": {
-          "gecontroleerd": 13,
-          "ok": 13
+          "gecontroleerd": 15,
+          "ok": 15
         },
         "jubileum": {
           "nieuwsRood": 2,
           "agendaRood": 1,
           "uitgesloten": 0,
-          "alRoodDoorPrioriteit": 3
+          "alRoodDoorPrioriteit": 6
         }
       }
     }

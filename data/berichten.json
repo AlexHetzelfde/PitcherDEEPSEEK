@@ -1,5 +1,5 @@
 {
-  "gegenereerdOp": "2026-11-11T14:01:46.937Z",
+  "gegenereerdOp": "2026-11-11T21:14:16.919Z",
   "promptVersie": "2026-10-29-batch-tag-checklist-agendapunten",
   "alertModus": "log",
   "prioSchaal": "1 = urgent, 2 = belangrijk, 3 = regulier, 4 = routine. De AI geeft nooit prio 1.",
@@ -406,6 +406,87 @@
   ],
   "berichten": [
     {
+      "id": "bdc90b8b2d-v1",
+      "groepId": "bdc90b8b2d",
+      "versie": 1,
+      "url": "https://www.noord-holland.nl/Actueel/Archief/2026/November_2026/Besluiten_Provinciale_Staten_van_Noord_Holland_9_november_2026",
+      "kop": "Provinciale Staten stemmen in met begroting 2027 en infrastructuurplan",
+      "tekst": "Provinciale Staten van Noord-Holland hebben ingestemd met de begroting voor 2027 en het meerjarenprogramma voor de infrastructuur. Tijdens de behandeling werden diverse moties aangenomen, waaronder voor extra steun aan groene vrijwilligers en betere veiligheid in het openbaar vervoer. Ook spraken de Staten over onderwerpen als klimaatbeleid, woningbouw en netcongestie.",
+      "rubriek": "PRV",
+      "tagBron": "ai",
+      "herkomst": "officieel",
+      "prio": 3,
+      "tijd": "2026-11-11T17:08:26.000Z",
+      "heeftTijd": true,
+      "woorden": 863,
+      "afgekapt": true,
+      "bronId": "nh-actueel",
+      "bronNaam": "Provincie Noord-Holland — Actueel",
+      "ai": true,
+      "controle": "cijfers-ok",
+      "eerstGezienOp": "2026-11-11T21:14:16.919Z",
+      "gecontroleerdOp": "2026-11-11T21:14:16.919Z",
+      "bronTitel": "Besluiten Provinciale Staten van Noord-Holland 9 november 2026",
+      "bronLengte": 5997,
+      "checklist": {
+        "gevaar": false,
+        "evacuatieOfNlAlert": false,
+        "gewondenOfDoden": false,
+        "bestuurlijkeCrisis": false,
+        "besluitMetGrootGevolg": true,
+        "tijdkritisch": false,
+        "betrokkenen": null,
+        "geldbedragEuro": null,
+        "banen": null,
+        "inRegio": true
+      },
+      "checklistBron": "ai",
+      "alertKandidaat": {
+        "niveau": "oranje",
+        "categorie": "bestuur",
+        "reden": "besluit met groot gevolg (officiële bron)",
+        "aangemaaktOp": "2026-11-11T21:14:16.919Z",
+        "tot": "2026-11-12T21:14:16.919Z"
+      }
+    },
+    {
+      "id": "122c8e9bd7-v1",
+      "groepId": "122c8e9bd7",
+      "versie": 1,
+      "url": "https://www.noord-holland.nl/Actueel/Archief/2026/November_2026/300_000_subsidie_voor_Noord_Hollandse_energiecooperaties_vanaf_2027",
+      "kop": "Provincie stelt 300.000 euro beschikbaar voor lokale energiecoöperaties",
+      "tekst": "De provincie Noord-Holland stelt een subsidie van 300.000 euro beschikbaar voor energiecoöperaties, verenigingen en stichtingen. Organisaties kunnen van 1 januari tot en met 1 oktober 2027 een aanvraag indienen tot maximaal 20.000 euro per project. Het geld is bedoeld om inwoners te helpen bij energiebesparing en het opwekken van duurzame energie.",
+      "rubriek": "PRV",
+      "tagBron": "ai",
+      "herkomst": "officieel",
+      "prio": 3,
+      "tijd": "2026-11-11T16:02:20.000Z",
+      "heeftTijd": true,
+      "woorden": 308,
+      "afgekapt": false,
+      "bronId": "nh-actueel",
+      "bronNaam": "Provincie Noord-Holland — Actueel",
+      "ai": true,
+      "controle": "cijfers-ok",
+      "eerstGezienOp": "2026-11-11T21:14:16.919Z",
+      "gecontroleerdOp": "2026-11-11T21:14:16.919Z",
+      "bronTitel": "€ 300.000 subsidie voor Noord-Hollandse energiecoöperaties vanaf 2027",
+      "bronLengte": 2137,
+      "checklist": {
+        "gevaar": false,
+        "evacuatieOfNlAlert": false,
+        "gewondenOfDoden": false,
+        "bestuurlijkeCrisis": false,
+        "besluitMetGrootGevolg": false,
+        "tijdkritisch": false,
+        "betrokkenen": 100,
+        "geldbedragEuro": 300000,
+        "banen": null,
+        "inRegio": false
+      },
+      "checklistBron": "ai"
+    },
+    {
       "id": "32af7794ef-v1",
       "groepId": "32af7794ef",
       "versie": 1,
@@ -425,7 +506,7 @@
       "ai": true,
       "controle": "cijfers-ok",
       "eerstGezienOp": "2026-11-11T14:01:46.937Z",
-      "gecontroleerdOp": "2026-11-11T14:01:46.937Z",
+      "gecontroleerdOp": "2026-11-11T21:14:16.919Z",
       "bronTitel": "Provincie sponsort ook in 2027 verschillende sportevenementen",
       "bronLengte": 2216,
       "checklist": {
@@ -440,7 +521,8 @@
         "banen": null,
         "inRegio": false
       },
-      "checklistBron": "ai"
+      "checklistBron": "ai",
+      "tagVersie": 2
     },
     {
       "id": "0b15df997b-v1",
@@ -1913,14 +1995,97 @@
       "tagVersie": 2
     },
     {
+      "id": "b78bbe1eea-v1",
+      "groepId": "b78bbe1eea",
+      "versie": 1,
+      "url": "https://www.deorkaan.nl/zes-zaanse-tieners-aangehouden-voor-explosies-en-beschietingen/",
+      "kop": "Zes Zaanse tieners aangehouden voor explosies en beschietingen",
+      "tekst": null,
+      "rubriek": "112",
+      "tagBron": "ai",
+      "herkomst": "signaal",
+      "prio": 3,
+      "tijd": "2026-11-10T23:00:00.000Z",
+      "heeftTijd": false,
+      "woorden": 945,
+      "afgekapt": true,
+      "bronId": "DeOrkaan",
+      "bronNaam": "DeOrkaan",
+      "ai": false,
+      "controle": "analyse-ok",
+      "eerstGezienOp": "2026-11-11T21:14:16.919Z",
+      "gecontroleerdOp": "2026-11-11T21:14:16.919Z",
+      "bronTitel": "Zes Zaanse tieners aangehouden voor explosies en beschietingen",
+      "bronLengte": 5995,
+      "checklist": {
+        "gevaar": false,
+        "evacuatieOfNlAlert": false,
+        "gewondenOfDoden": true,
+        "bestuurlijkeCrisis": false,
+        "besluitMetGrootGevolg": false,
+        "tijdkritisch": false,
+        "betrokkenen": null,
+        "geldbedragEuro": null,
+        "banen": null,
+        "inRegio": true
+      },
+      "checklistBron": "ai",
+      "analyse": true
+    },
+    {
+      "id": "c4c0e1e653-v1",
+      "groepId": "c4c0e1e653",
+      "versie": 1,
+      "url": "https://www.deorkaan.nl/hotelontwikkelaar-bakker-dreigt-schade-te-verhalen-op-wormerland/",
+      "kop": "Hotelontwikkelaar Bakker dreigt schade te verhalen op Wormerland",
+      "tekst": null,
+      "rubriek": "GEM",
+      "tagBron": "ai",
+      "herkomst": "signaal",
+      "prio": 3,
+      "tijd": "2026-11-10T23:00:00.000Z",
+      "heeftTijd": false,
+      "woorden": 925,
+      "afgekapt": true,
+      "bronId": "DeOrkaan",
+      "bronNaam": "DeOrkaan",
+      "ai": false,
+      "controle": "analyse-ok",
+      "eerstGezienOp": "2026-11-11T21:14:16.919Z",
+      "gecontroleerdOp": "2026-11-11T21:14:16.919Z",
+      "bronTitel": "Hotelontwikkelaar Bakker dreigt schade te verhalen op Wormerland",
+      "bronLengte": 5999,
+      "checklist": {
+        "gevaar": false,
+        "evacuatieOfNlAlert": false,
+        "gewondenOfDoden": false,
+        "bestuurlijkeCrisis": false,
+        "besluitMetGrootGevolg": true,
+        "tijdkritisch": false,
+        "betrokkenen": null,
+        "geldbedragEuro": 1200000,
+        "banen": null,
+        "inRegio": true
+      },
+      "checklistBron": "ai",
+      "analyse": true,
+      "alertKandidaat": {
+        "niveau": "oranje",
+        "categorie": "bestuur",
+        "reden": "besluit met groot gevolg (één bron)",
+        "aangemaaktOp": "2026-11-11T21:14:16.919Z",
+        "tot": "2026-11-12T21:14:16.919Z"
+      }
+    },
+    {
       "id": "c92229dfb1-v1",
       "groepId": "c92229dfb1",
       "versie": 1,
       "url": "https://www.deorkaan.nl/wietplantage-met-70-planten-ontmanteld-in-appartement-zaandam/",
       "kop": "Wietplantage met 70 planten ontmanteld in appartement Zaandam",
       "tekst": null,
-      "rubriek": "ALG",
-      "tagBron": "geen",
+      "rubriek": "112",
+      "tagBron": "ai",
       "herkomst": "signaal",
       "prio": 3,
       "tijd": "2026-11-10T23:00:00.000Z",
@@ -1930,9 +2095,9 @@
       "bronId": "DeOrkaan",
       "bronNaam": "DeOrkaan",
       "ai": false,
-      "controle": "ai-fout",
+      "controle": "analyse-ok",
       "eerstGezienOp": "2026-11-11T14:01:46.937Z",
-      "gecontroleerdOp": "2026-11-11T14:01:46.937Z",
+      "gecontroleerdOp": "2026-11-11T21:14:16.919Z",
       "bronTitel": "Wietplantage met 70 planten ontmanteld in appartement Zaandam",
       "bronLengte": 696,
       "checklist": {
@@ -1947,7 +2112,9 @@
         "banen": null,
         "inRegio": true
       },
-      "checklistBron": "patroon"
+      "checklistBron": "ai",
+      "tagVersie": 2,
+      "analyse": true
     },
     {
       "id": "7fd9fa2dd6-v1",
@@ -1956,8 +2123,8 @@
       "url": "https://www.deorkaan.nl/kruidvat-ziet-geen-datalek-bij-zichtbare-pincodes-maar-vragen-blijven/",
       "kop": "Kruidvat ziet geen datalek bij zichtbare pincodes, maar vragen blijven",
       "tekst": null,
-      "rubriek": "ALG",
-      "tagBron": "geen",
+      "rubriek": "BED",
+      "tagBron": "ai",
       "herkomst": "signaal",
       "prio": 3,
       "tijd": "2026-11-10T23:00:00.000Z",
@@ -1967,9 +2134,9 @@
       "bronId": "DeOrkaan",
       "bronNaam": "DeOrkaan",
       "ai": false,
-      "controle": "ai-fout",
+      "controle": "analyse-ok",
       "eerstGezienOp": "2026-11-11T14:01:46.937Z",
-      "gecontroleerdOp": "2026-11-11T14:01:46.937Z",
+      "gecontroleerdOp": "2026-11-11T21:14:16.919Z",
       "bronTitel": "Kruidvat ziet geen datalek bij zichtbare pincodes, maar vragen blijven",
       "bronLengte": 4901,
       "checklist": {
@@ -1984,7 +2151,9 @@
         "banen": null,
         "inRegio": true
       },
-      "checklistBron": "patroon"
+      "checklistBron": "ai",
+      "tagVersie": 2,
+      "analyse": true
     },
     {
       "id": "72de5bd8e0-v1",
@@ -2004,9 +2173,9 @@
       "bronId": "DeOrkaan",
       "bronNaam": "DeOrkaan",
       "ai": false,
-      "controle": "ai-fout",
+      "controle": "analyse-ok",
       "eerstGezienOp": "2026-11-11T14:01:46.937Z",
-      "gecontroleerdOp": "2026-11-11T14:01:46.937Z",
+      "gecontroleerdOp": "2026-11-11T21:14:16.919Z",
       "bronTitel": "De Orkaan in 2 minuten: 11 november 🎧",
       "bronLengte": 436,
       "checklist": {
@@ -2021,7 +2190,9 @@
         "banen": null,
         "inRegio": true
       },
-      "checklistBron": "patroon"
+      "checklistBron": "ai",
+      "tagVersie": 2,
+      "analyse": true
     },
     {
       "id": "92b7edce1b-v1",
@@ -2030,8 +2201,8 @@
       "url": "https://www.deorkaan.nl/sint-maarten-voor-dummies/",
       "kop": "Sint-Maarten voor Dummies",
       "tekst": null,
-      "rubriek": "ALG",
-      "tagBron": "geen",
+      "rubriek": "CUL",
+      "tagBron": "ai",
       "herkomst": "signaal",
       "prio": 3,
       "tijd": "2026-11-10T23:00:00.000Z",
@@ -2041,9 +2212,9 @@
       "bronId": "DeOrkaan",
       "bronNaam": "DeOrkaan",
       "ai": false,
-      "controle": "ai-fout",
+      "controle": "analyse-ok",
       "eerstGezienOp": "2026-11-11T14:01:46.937Z",
-      "gecontroleerdOp": "2026-11-11T14:01:46.937Z",
+      "gecontroleerdOp": "2026-11-11T21:14:16.919Z",
       "bronTitel": "Sint-Maarten voor Dummies",
       "bronLengte": 2128,
       "checklist": {
@@ -2058,7 +2229,9 @@
         "banen": null,
         "inRegio": true
       },
-      "checklistBron": "patroon"
+      "checklistBron": "ai",
+      "tagVersie": 2,
+      "analyse": true
     },
     {
       "id": "f3e9cc0556-v1",
@@ -2068,7 +2241,7 @@
       "kop": "Bijvangst begroting Zaanstad: kerncentrales en busbrug beetje open…",
       "tekst": null,
       "rubriek": "GEM",
-      "tagBron": "trefwoord",
+      "tagBron": "ai",
       "herkomst": "signaal",
       "prio": 3,
       "tijd": "2026-11-10T23:00:00.000Z",
@@ -2078,9 +2251,9 @@
       "bronId": "DeOrkaan",
       "bronNaam": "DeOrkaan",
       "ai": false,
-      "controle": "ai-fout",
+      "controle": "analyse-ok",
       "eerstGezienOp": "2026-11-11T14:01:46.937Z",
-      "gecontroleerdOp": "2026-11-11T14:01:46.937Z",
+      "gecontroleerdOp": "2026-11-11T21:14:16.919Z",
       "bronTitel": "Bijvangst begroting Zaanstad: kerncentrales en busbrug beetje open…",
       "bronLengte": 5998,
       "checklist": {
@@ -2091,18 +2264,13 @@
         "besluitMetGrootGevolg": false,
         "tijdkritisch": false,
         "betrokkenen": null,
-        "geldbedragEuro": 2900000,
+        "geldbedragEuro": 75000,
         "banen": null,
         "inRegio": true
       },
-      "checklistBron": "patroon",
-      "alertKandidaat": {
-        "niveau": "oranje",
-        "categorie": "economie",
-        "reden": "bedrag van 2.9 miljoen euro (één bron)",
-        "aangemaaktOp": "2026-11-11T14:01:46.937Z",
-        "tot": "2026-11-12T14:01:46.937Z"
-      }
+      "checklistBron": "ai",
+      "tagVersie": 2,
+      "analyse": true
     },
     {
       "id": "cbe88dcaaf-v1",
@@ -2111,8 +2279,8 @@
       "url": "https://www.deorkaan.nl/fietstunnel-skoon-bijna-open-verlengde-stellingweg-weekend-dicht/",
       "kop": "Fietstunnel Skoon bijna open, Verlengde Stellingweg weekend dicht",
       "tekst": null,
-      "rubriek": "ALG",
-      "tagBron": "geen",
+      "rubriek": "VER",
+      "tagBron": "ai",
       "herkomst": "signaal",
       "prio": 3,
       "tijd": "2026-11-10T23:00:00.000Z",
@@ -2122,9 +2290,9 @@
       "bronId": "DeOrkaan",
       "bronNaam": "DeOrkaan",
       "ai": false,
-      "controle": "ai-fout",
+      "controle": "analyse-ok",
       "eerstGezienOp": "2026-11-11T14:01:46.937Z",
-      "gecontroleerdOp": "2026-11-11T14:01:46.937Z",
+      "gecontroleerdOp": "2026-11-11T21:14:16.919Z",
       "bronTitel": "Fietstunnel Skoon bijna open, Verlengde Stellingweg weekend dicht",
       "bronLengte": 1286,
       "checklist": {
@@ -2139,7 +2307,22 @@
         "banen": null,
         "inRegio": true
       },
-      "checklistBron": "patroon"
+      "checklistBron": "ai",
+      "tagVersie": 2,
+      "agendapunten": [
+        {
+          "titel": "Opening fietstunnel bij bedrijventerrein Skoon",
+          "dag": "2026-11-27",
+          "start": "2026-11-27T19:00:00.000Z",
+          "eind": null,
+          "plaats": null,
+          "zekerheid": "afgeleid"
+        }
+      ],
+      "analyse": true,
+      "agendaIds": [
+        "2dd437066a"
+      ]
     },
     {
       "id": "56de5590d9-v1",
@@ -2149,7 +2332,7 @@
       "kop": "Veilig Leerlingenvervoer wil sneller actie: ‘geen tijd om nog een jaar te wachten’",
       "tekst": null,
       "rubriek": "ONW",
-      "tagBron": "trefwoord",
+      "tagBron": "ai",
       "herkomst": "signaal",
       "prio": 3,
       "tijd": "2026-11-10T23:00:00.000Z",
@@ -2159,9 +2342,9 @@
       "bronId": "DeOrkaan",
       "bronNaam": "DeOrkaan",
       "ai": false,
-      "controle": "ai-fout",
+      "controle": "analyse-ok",
       "eerstGezienOp": "2026-11-11T14:01:46.937Z",
-      "gecontroleerdOp": "2026-11-11T14:01:46.937Z",
+      "gecontroleerdOp": "2026-11-11T21:14:16.919Z",
       "bronTitel": "Veilig Leerlingenvervoer wil sneller actie: ‘geen tijd om nog een jaar te wachten’",
       "bronLengte": 3930,
       "checklist": {
@@ -2176,7 +2359,9 @@
         "banen": null,
         "inRegio": true
       },
-      "checklistBron": "patroon"
+      "checklistBron": "ai",
+      "tagVersie": 2,
+      "analyse": true
     },
     {
       "id": "bbae8c023f-v1",
@@ -2198,7 +2383,7 @@
       "ai": false,
       "controle": "analyse-ok",
       "eerstGezienOp": "2026-11-11T07:51:03.133Z",
-      "gecontroleerdOp": "2026-11-11T14:01:46.937Z",
+      "gecontroleerdOp": "2026-11-11T21:14:16.919Z",
       "bronTitel": "Waar woont u? Op nummer ‘0’",
       "bronLengte": 801,
       "checklist": {
@@ -2237,7 +2422,7 @@
       "ai": false,
       "controle": "analyse-ok",
       "eerstGezienOp": "2026-11-11T07:51:03.133Z",
-      "gecontroleerdOp": "2026-11-11T14:01:46.937Z",
+      "gecontroleerdOp": "2026-11-11T21:14:16.919Z",
       "bronTitel": "Zaanstad in top 10 grootste dalers huizenprijzen",
       "bronLengte": 2034,
       "checklist": {
@@ -2315,7 +2500,7 @@
       "ai": true,
       "controle": "cijfers-ok",
       "eerstGezienOp": "2026-11-11T14:01:46.937Z",
-      "gecontroleerdOp": "2026-11-11T14:01:46.937Z",
+      "gecontroleerdOp": "2026-11-11T21:14:16.919Z",
       "bronTitel": "€ 1,9 miljoen subsidie Rijk voor doorfietsroutes Hilversum - Utrecht en Heerhugowaard - Zuid-Scharwoude",
       "bronLengte": 3170,
       "checklist": {
@@ -2330,7 +2515,8 @@
         "banen": null,
         "inRegio": false
       },
-      "checklistBron": "ai"
+      "checklistBron": "ai",
+      "tagVersie": 2
     },
     {
       "id": "ee0a4ff81b-v2",
@@ -2506,7 +2692,7 @@
       "ai": false,
       "controle": "analyse-ok",
       "eerstGezienOp": "2026-11-11T05:55:18.389Z",
-      "gecontroleerdOp": "2026-11-11T14:01:46.937Z",
+      "gecontroleerdOp": "2026-11-11T21:14:16.919Z",
       "bronTitel": "Bewoner onwel door vreemde lucht bij woningen Sumatrakade (Wormerveer)",
       "bronLengte": 1598,
       "checklist": {
@@ -2523,7 +2709,14 @@
       },
       "checklistBron": "ai",
       "analyse": true,
-      "tagVersie": 2
+      "tagVersie": 2,
+      "alertKandidaat": {
+        "niveau": "oranje",
+        "categorie": "veiligheid",
+        "reden": "gewonden of doden (één bron)",
+        "aangemaaktOp": "2026-11-11T21:14:16.919Z",
+        "tot": "2026-11-12T03:14:16.919Z"
+      }
     },
     {
       "id": "dc40448f1a-v1",
@@ -2675,14 +2868,7 @@
         "inRegio": true
       },
       "checklistBron": "ai",
-      "tagVersie": 2,
-      "alertKandidaat": {
-        "niveau": "oranje",
-        "categorie": "bestuur",
-        "reden": "besluit met groot gevolg (officiële bron)",
-        "aangemaaktOp": "2026-11-10T18:52:39.868Z",
-        "tot": "2026-11-11T18:52:39.868Z"
-      }
+      "tagVersie": 2
     },
     {
       "id": "b64dfe2ad7-v1",
@@ -3424,7 +3610,14 @@
       },
       "checklistBron": "ai",
       "tagVersie": 2,
-      "analyse": true
+      "analyse": true,
+      "alertKandidaat": {
+        "niveau": "oranje",
+        "categorie": "bestuur",
+        "reden": "besluit met groot gevolg (één bron)",
+        "aangemaaktOp": "2026-11-11T21:14:16.919Z",
+        "tot": "2026-11-12T21:14:16.919Z"
+      }
     },
     {
       "id": "d49dd9a007-v1",
@@ -3481,7 +3674,14 @@
         }
       ],
       "analyse": true,
-      "tagVersie": 2
+      "tagVersie": 2,
+      "alertKandidaat": {
+        "niveau": "oranje",
+        "categorie": "bestuur",
+        "reden": "besluit met groot gevolg (één bron)",
+        "aangemaaktOp": "2026-11-11T21:14:16.919Z",
+        "tot": "2026-11-12T21:14:16.919Z"
+      }
     },
     {
       "id": "567a9b680c-v2",

@@ -1,5 +1,5 @@
 {
-  "gegenereerdOp": "2026-11-11T14:01:46.937Z",
+  "gegenereerdOp": "2026-11-11T21:14:16.919Z",
   "modus": "schaduw",
   "stempel": "v4-22806000",
   "tau": 0.5,
@@ -8,27 +8,27 @@
     "ai": true,
     "formule": "v4-22806000",
     "tekst": {
-      "werklijst": 9,
-      "lokaal": 8,
-      "opgehaald": 1,
+      "werklijst": 4,
+      "lokaal": 1,
+      "opgehaald": 3,
       "mislukt": 0,
       "uitgesteld": 0
     },
     "vergeten": 0,
     "tekstenOpgeruimd": 0,
     "tekstDekkingPct": 94,
-    "stukken": 458,
-    "kandidaten": 109,
-    "metAnker": 109,
+    "stukken": 462,
+    "kandidaten": 110,
+    "metAnker": 110,
     "zonderAnker": 0,
     "afgelast": 1,
     "dubbel": 0,
     "tau": 0.5,
     "besluit": {
       "boven": 1,
-      "wacht": 1,
+      "wacht": 0,
       "onderdrukt": 0,
-      "veto": 0,
+      "veto": 1,
       "nieuwRood": 0,
       "noodrem": false
     },
@@ -39,8 +39,8 @@
       "key": "n:https://zoek.officielebekendmakingen.nl/gmb-2026-523105.html",
       "soort": "nieuws",
       "kop": "Melding graven bodem - Nabij Gedempte Gracht 9 Zaandam , 4 meter richting zuidwesten",
-      "S": 0.55,
-      "Sa": 0.55,
+      "S": 0.54,
+      "Sa": 0.54,
       "Sp": 0,
       "route": "aanhoudend",
       "K": 0.66,
@@ -90,12 +90,12 @@
       "key": "n:https://zaanstad.bestuurlijkeinformatie.nl/Document/View/401754a8-35b9-4379-8e55-667b9bfe6a05",
       "soort": "nieuws",
       "kop": "Kennisgeving wethouder Onclin: Subsidieregeling decentrale politieke partijen Zaanstad",
-      "S": 0.5,
-      "Sa": 0.5,
+      "S": 0.49,
+      "Sa": 0.49,
       "Sp": 0,
       "route": "aanhoudend",
-      "K": 0.54,
-      "Kp": 0.36,
+      "K": 0.53,
+      "Kp": 0.35,
       "n": 4,
       "dagen": 3,
       "bronnen": 2,
@@ -191,8 +191,8 @@
       "key": "n:https://www.deorkaan.nl/kruidvat-ziet-geen-datalek-bij-zichtbare-pincodes-maar-vragen-blijven/",
       "soort": "nieuws",
       "kop": "Kruidvat ziet geen datalek bij zichtbare pincodes, maar vragen blijven",
-      "S": 0.39,
-      "Sa": 0.39,
+      "S": 0.38,
+      "Sa": 0.38,
       "Sp": 0,
       "route": "aanhoudend",
       "K": 0.63,
@@ -272,11 +272,11 @@
       "key": "n:https://www.deorkaan.nl/stroomuitval-bij-zaans-medisch-centrum-zmc-brandweer-ter-plaatse/",
       "soort": "nieuws",
       "kop": "Stroomuitval bij Zaans Medisch Centrum (ZMC), brandweer ter plaatse – UPDATE",
-      "S": 0.26,
-      "Sa": 0.26,
+      "S": 0.25,
+      "Sa": 0.25,
       "Sp": 0,
       "route": "aanhoudend",
-      "K": 0.63,
+      "K": 0.62,
       "Kp": 0.42,
       "n": 2,
       "dagen": 2,
@@ -309,11 +309,11 @@
       "key": "n:https://zaanstad.bestuurlijkeinformatie.nl/Reports/Item/d44474d6-6007-49ff-a9af-b054265fec57",
       "soort": "nieuws",
       "kop": "Motie aangenomen: A8-A9 Te groot voor de provincie, te belangrijk om te laten liggen",
-      "S": 0.25,
-      "Sa": 0.25,
+      "S": 0.24,
+      "Sa": 0.24,
       "Sp": 0,
       "route": "aanhoudend",
-      "K": 0.34,
+      "K": 0.33,
       "Kp": 0,
       "n": 2,
       "dagen": 1,
@@ -352,11 +352,11 @@
       "key": "n:https://zaanstad.bestuurlijkeinformatie.nl/Reports/Item/fabb398a-91c0-4ba1-9a5e-2633da400bd3",
       "soort": "nieuws",
       "kop": "Motie aangenomen: Niet omrijden, maar vrijstellen",
-      "S": 0.23,
-      "Sa": 0.23,
+      "S": 0.22,
+      "Sa": 0.22,
       "Sp": 0,
       "route": "aanhoudend",
-      "K": 0.17,
+      "K": 0.16,
       "Kp": 0,
       "n": 2,
       "dagen": 1,
@@ -387,11 +387,43 @@
       ]
     },
     {
+      "key": "n:https://www.noord-holland.nl/Actueel/Archief/2026/November_2026/Besluiten_Provinciale_Staten_van_Noord_Holland_9_november_2026",
+      "soort": "nieuws",
+      "kop": "Besluiten Provinciale Staten van Noord-Holland 9 november 2026",
+      "S": 0.21,
+      "Sa": 0.21,
+      "Sp": 0,
+      "route": "aanhoudend",
+      "K": 0.92,
+      "Kp": 0.56,
+      "n": 1,
+      "dagen": 1,
+      "bronnen": 1,
+      "ankers": [
+        "provincial",
+        "statenperiod",
+        "merjarenprogramma",
+        "stat",
+        "gedeputerd",
+        "infrastructur",
+        "kondigd"
+      ],
+      "bewijs": [
+        {
+          "bron": "nh-actueel",
+          "datum": "2026-11-06T10:28:53.000Z",
+          "c": 0.89,
+          "plek": "kop",
+          "titel": "Gedeputeerde Staten stellen concept-Omgevingsvisie Noord-Holland vast"
+        }
+      ]
+    },
+    {
       "key": "n:https://www.deorkaan.nl/een-rekening-van-vrouwe-justitia-bezwaar-phishing/",
       "soort": "nieuws",
       "kop": "Een rekening van Vrouwe Justitia? Bezwaar! (phishing)",
-      "S": 0.18,
-      "Sa": 0.18,
+      "S": 0.17,
+      "Sa": 0.17,
       "Sp": 0,
       "route": "aanhoudend",
       "K": 0.61,
@@ -418,33 +450,6 @@
           "c": 0.5,
           "plek": "tekst",
           "titel": "Playstation winnen? Trap er niet in…"
-        }
-      ]
-    },
-    {
-      "key": "n:https://www.deorkaan.nl/themapad-in-assendelft-krijgt-stopverlichting-huh/",
-      "soort": "nieuws",
-      "kop": "Themapad in Assendelft krijgt ‘stopverlichting’ (huh?)",
-      "S": 0.17,
-      "Sa": 0.17,
-      "Sp": 0,
-      "route": "aanhoudend",
-      "K": 0.68,
-      "Kp": 0.36,
-      "n": 1,
-      "dagen": 1,
-      "bronnen": 1,
-      "ankers": [
-        "themapad",
-        "stopverlichting"
-      ],
-      "bewijs": [
-        {
-          "bron": "bekendmakingen",
-          "datum": "2026-11-04T23:00:00.000Z",
-          "c": 0.91,
-          "plek": "kop",
-          "titel": "Verkeersbesluit, instellen stopverlichting fietsverkeer Themapad Assendelft"
         }
       ]
     },
@@ -481,8 +486,8 @@
       "key": "n:https://www.deorkaan.nl/het-zaanse-voetbalweekend-%e2%9a%bd%ef%b8%8f-zege-vrouwen-zaandijk-derbyzeges-kfc-en-rood-wit-%f0%9f%8e%99/",
       "soort": "nieuws",
       "kop": "Het Zaanse voetbalweekend ⚽️ zege vrouwen Zaandijk, Derbyzeges KFC en Rood Wit 🎙",
-      "S": 0.17,
-      "Sa": 0.17,
+      "S": 0.16,
+      "Sa": 0.16,
       "Sp": 0,
       "route": "aanhoudend",
       "K": 0,
@@ -508,11 +513,11 @@
       "key": "n:https://zaanstad.bestuurlijkeinformatie.nl/Reports/Item/d3e15c8e-7b51-4998-8026-3c24bae30b4c",
       "soort": "nieuws",
       "kop": "Motie verworpen: Voorkom stapeling van financiële lasten bij kwetsbare inwoners",
-      "S": 0.16,
-      "Sa": 0.16,
+      "S": 0.15,
+      "Sa": 0.15,
       "Sp": 0,
       "route": "aanhoudend",
-      "K": 0.72,
+      "K": 0.71,
       "Kp": 0.44,
       "n": 1,
       "dagen": 1,
@@ -545,8 +550,8 @@
       "key": "n:https://www.deorkaan.nl/fietstunnel-skoon-bijna-open-verlengde-stellingweg-weekend-dicht/",
       "soort": "nieuws",
       "kop": "Fietstunnel Skoon bijna open, Verlengde Stellingweg weekend dicht",
-      "S": 0.14,
-      "Sa": 0.14,
+      "S": 0.13,
+      "Sa": 0.13,
       "Sp": 0,
       "route": "aanhoudend",
       "K": 0.51,
@@ -609,14 +614,42 @@
       ]
     },
     {
+      "key": "n:https://www.noord-holland.nl/Actueel/Archief/2026/November_2026/300_000_subsidie_voor_Noord_Hollandse_energiecooperaties_vanaf_2027",
+      "soort": "nieuws",
+      "kop": "€ 300.000 subsidie voor Noord-Hollandse energiecoöperaties vanaf 2027",
+      "S": 0.11,
+      "Sa": 0.11,
+      "Sp": 0,
+      "route": "aanhoudend",
+      "K": 0.14,
+      "Kp": 0.14,
+      "n": 1,
+      "dagen": 1,
+      "bronnen": 1,
+      "ankers": [
+        "hollands",
+        "energiecoperatie",
+        "subsidi"
+      ],
+      "bewijs": [
+        {
+          "bron": "nh-actueel",
+          "datum": "2026-11-03T13:24:54.000Z",
+          "c": 0.85,
+          "plek": "kop",
+          "titel": "Provincie geeft subsidie aan veehouders die willen stoppen"
+        }
+      ]
+    },
+    {
       "key": "n:https://zaanstad.bestuurlijkeinformatie.nl/Reports/Item/87aafb17-09d2-4fd5-bd65-fa1238f0a091",
       "soort": "nieuws",
       "kop": "Motie verworpen: Eerst kaders, dan extra camera’s",
-      "S": 0.09,
-      "Sa": 0.09,
+      "S": 0.08,
+      "Sa": 0.08,
       "Sp": 0,
       "route": "aanhoudend",
-      "K": 0.48,
+      "K": 0.47,
       "Kp": 0.25,
       "n": 1,
       "dagen": 1,
@@ -683,7 +716,7 @@
       "Sa": 0.07,
       "Sp": 0,
       "route": "aanhoudend",
-      "K": 0.21,
+      "K": 0.2,
       "Kp": 0.06,
       "n": 1,
       "dagen": 1,
@@ -746,8 +779,7 @@
         "brandwer",
         "jubileum",
         "viert",
-        "vrijwillig",
-        "jarig"
+        "vrijwillig"
       ],
       "bewijs": [
         {
@@ -1189,26 +1221,6 @@
         "hetharia",
         "jefta",
         "tanat"
-      ],
-      "bewijs": []
-    },
-    {
-      "key": "a:c0cdd99ed1",
-      "soort": "agenda",
-      "kop": "Jaarconferentie ‘Wonen in Zaanstad’",
-      "S": 0,
-      "Sa": 0,
-      "Sp": 0,
-      "route": "geen",
-      "K": 0,
-      "Kp": 0,
-      "n": 0,
-      "dagen": 0,
-      "bronnen": 0,
-      "ankers": [
-        "jarconferenti",
-        "wonen",
-        "lanplein"
       ],
       "bewijs": []
     }
@@ -1735,6 +1747,14 @@
         "n": 1,
         "bronnen": 1
       },
+      "n:https://www.noord-holland.nl/Actueel/Archief/2026/November_2026/Besluiten_Provinciale_Staten_van_Noord_Holland_9_november_2026": {
+        "kop": "Besluiten Provinciale Staten van Noord-Holland 9 november 2026",
+        "S": 0.21,
+        "route": "aanhoudend",
+        "K": 0.92,
+        "n": 1,
+        "bronnen": 1
+      },
       "n:https://ted.europa.eu/nl/notice/-/detail/777319-2026": {
         "kop": "Aanbesteding afgerond zonder gunning: specialistische Jeugdhulp Segment B 2027 Zaanstreek-Waterland",
         "S": 0.2,
@@ -1807,6 +1827,14 @@
         "n": 1,
         "bronnen": 1
       },
+      "n:https://www.noord-holland.nl/Actueel/Archief/2026/November_2026/300_000_subsidie_voor_Noord_Hollandse_energiecooperaties_vanaf_2027": {
+        "kop": "€ 300.000 subsidie voor Noord-Hollandse energiecoöperaties vanaf 2027",
+        "S": 0.11,
+        "route": "aanhoudend",
+        "K": 0.14,
+        "n": 1,
+        "bronnen": 1
+      },
       "n:https://zaanstad.bestuurlijkeinformatie.nl/Reports/Item/87aafb17-09d2-4fd5-bd65-fa1238f0a091": {
         "kop": "Motie verworpen: Eerst kaders, dan extra camera’s",
         "S": 0.09,
@@ -1845,22 +1873,6 @@
         "route": "aanhoudend",
         "K": 0,
         "n": 1,
-        "bronnen": 1
-      },
-      "a:d1eae07b85": {
-        "kop": "Brandweer Oostzaan viert 100-jarig jubileum",
-        "S": 0.05,
-        "route": "aanhoudend",
-        "K": 0.35,
-        "n": 1,
-        "bronnen": 1
-      },
-      "a:e26813c04c": {
-        "kop": "Geweigerde huisvestingsvergunning Klipperstraat 37 te Zaandam - Microsoft Teams",
-        "S": 0.05,
-        "route": "aanhoudend",
-        "K": 0.16,
-        "n": 2,
         "bronnen": 1
       }
     }
