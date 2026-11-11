@@ -50,6 +50,7 @@ const { isRegio } = require("./alert-regels");
 const { locatieMetPlaats } = require("./camera-reeks");
 const { ONBEKEND, bepaalTag } = require("./tags");
 const { checklistUitPatronen, agendapuntenUitPatronen } = require("./patronen");
+const spelling = require("./spelling");
 
 // De tags (kolommen) uit rubrieken.json, zonder "Overig". Het veld "rubriek"
 // van een bericht bevat de tag.
@@ -925,9 +926,16 @@ function verwerkMelding({ record, invoer }, resultaat) {
   if (invoer.modus === "analyse") return { ...basis, analyse: true, controle: "analyse-ok" };
 
   if (!cijfersKloppen(`${m.kop} ${m.tekst}`, bron)) return { ...basis, controle: "cijfers-afgekeurd" };
+
+  // Woordcontrole op de kop (spelling.js): een woord dat nergens in de bron of het
+  // woordenboek staat wordt hersteld, of de kop valt terug op de titel van de bron.
+  // De samenvatting wordt alleen geteld voor het logboek, niet aangepast.
+  const spel = spelling.controleerKop(m.kop, bron, record.kop);
+  spelling.telTekstFouten(m.tekst, bron);
   return {
     ...basis,
-    kop: schoneKop(m.kop),
+    kop: schoneKop(spel.kop),
+    ...(spel.status === "hersteld" || spel.status === "terugval" ? { kopSpelling: spel.status } : {}),
     tekst: opschonen(m.tekst),
     prio: begrensPrio(m.prio, invoer.standaardPrio),
     ai: true,

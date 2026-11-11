@@ -34,6 +34,9 @@
 // Sinds 2026-11-10:
 //  - Logboek per run (runlog.js): per onderdeel tellers, metingen en voorbeelden,
 //    in data/zanp-log.json en als "[log:onderdeel]"-regels in het Actions-log.
+//  - Een 50-, 75- of 100-jarig jubileum wordt rood op een vaste regel (jubileum.js).
+//  - AI-koppen met onbekende woorden worden hersteld of vallen terug op de titel
+//    van de bron (spelling.js).
 //  - Volledige teksten staan in data/zanp-teksten/ (per publicatiedag, 14 dagen;
 //    tekstarchief.js). De teksten worden netjes en met alinea's bewaard
 //    (tekstopschoning.js).
@@ -53,6 +56,8 @@ const {
 const gedeeld = require("./gedeeld");
 const wire = require("./wire");
 const runlog = require("./runlog");
+const jubileum = require("./jubileum");
+const spelling = require("./spelling");
 
 // ZANP-prioriteit (2026-11-04): agenda-items en berichten rood kleuren als een
 // onderwerp groot leeft. Staat in scraper/prioriteit/. Een fout bij het laden
@@ -353,6 +358,8 @@ async function draai(deps = {}) {
   const inst = leesInstellingen(env);
   const samenvatting = { agenda: null, berichten: null, cluster: null, alerts: 0 };
   const runLog = runlog.start({ nu });
+  // Nederlands woordenboek voor de kopcontrole; alleen nodig als de AI koppen schrijft.
+  if (apiKey) await spelling.laad();
 
   logFase("ZANP 1 — Bronnen kiezen");
   const status = await leesStatus();
@@ -732,6 +739,17 @@ async function draai(deps = {}) {
     } catch (fout) {
       console.error(`Prioriteit bepalen mislukte (ZANP gaat door zonder rood): ${fout.stack || fout.message}`);
     }
+  }
+
+  // Jubileum van 50, 75 of 100 jaar: rood op een vaste regel (jubileum.js), los van
+  // de prioriteitsmodule en haar modus. Een fout hier stopt de run niet.
+  try {
+    const j = jubileum.pasJubileumRoodToe({ records, agendaItems, nu });
+    records = j.records;
+    agendaItems = j.agendaItems;
+    samenvatting.jubileum = j.stats;
+  } catch (fout) {
+    console.error(`Jubileumregel mislukte (ZANP gaat door zonder jubileum-rood): ${fout.stack || fout.message}`);
   }
 
   if (kwaliteitRun) {
