@@ -1,5 +1,5 @@
 {
-  "gegenereerdOp": "2026-11-11T05:55:18.389Z",
+  "gegenereerdOp": "2026-11-11T07:51:03.133Z",
   "modus": "schaduw",
   "stempel": "v4-22806000",
   "tau": 0.5,
@@ -8,8 +8,8 @@
     "ai": true,
     "formule": "v4-22806000",
     "tekst": {
-      "werklijst": 1,
-      "lokaal": 1,
+      "werklijst": 3,
+      "lokaal": 3,
       "opgehaald": 0,
       "mislukt": 0,
       "uitgesteld": 0
@@ -17,9 +17,9 @@
     "vergeten": 0,
     "tekstenOpgeruimd": 0,
     "tekstDekkingPct": 94,
-    "stukken": 446,
-    "kandidaten": 115,
-    "metAnker": 115,
+    "stukken": 449,
+    "kandidaten": 117,
+    "metAnker": 117,
     "zonderAnker": 0,
     "afgelast": 1,
     "dubbel": 0,
@@ -28,7 +28,7 @@
       "boven": 1,
       "wacht": 0,
       "onderdrukt": 0,
-      "veto": 1,
+      "veto": 0,
       "nieuwRood": 0,
       "noodrem": false
     },
@@ -39,12 +39,12 @@
       "key": "n:https://zaanstad.bestuurlijkeinformatie.nl/Document/View/401754a8-35b9-4379-8e55-667b9bfe6a05",
       "soort": "nieuws",
       "kop": "Kennisgeving wethouder Onclin: Subsidieregeling decentrale politieke partijen Zaanstad",
-      "S": 0.51,
-      "Sa": 0.51,
+      "S": 0.5,
+      "Sa": 0.5,
       "Sp": 0,
       "route": "aanhoudend",
       "K": 0.54,
-      "Kp": 0.37,
+      "Kp": 0.36,
       "n": 4,
       "dagen": 3,
       "bronnen": 2,
@@ -386,7 +386,7 @@
       "Sp": 0,
       "route": "aanhoudend",
       "K": 0.31,
-      "Kp": 0.19,
+      "Kp": 0.18,
       "n": 1,
       "dagen": 1,
       "bronnen": 1,
@@ -535,7 +535,7 @@
       "Sa": 0.16,
       "Sp": 0,
       "route": "aanhoudend",
-      "K": 0.74,
+      "K": 0.73,
       "Kp": 0.45,
       "n": 1,
       "dagen": 1,
@@ -598,34 +598,6 @@
           "c": 0.87,
           "plek": "kop",
           "titel": "Nieuwsbrief 14 - Het najaar voor elkaar?"
-        }
-      ]
-    },
-    {
-      "key": "n:https://www.deorkaan.nl/eerste-zege-vrouwen-zaandijk-en-zcfc-verliest-van-tien-westzaners-%e2%9a%bd%ef%b8%8f/",
-      "soort": "nieuws",
-      "kop": "Eerste zege vrouwen Zaandijk en ZCFC verliest van tien Westzaners ⚽️",
-      "S": 0.12,
-      "Sa": 0.12,
-      "Sp": 0,
-      "route": "aanhoudend",
-      "K": 0,
-      "Kp": 0,
-      "n": 1,
-      "dagen": 1,
-      "bronnen": 1,
-      "ankers": [
-        "westzaner",
-        "verliest",
-        "julianadorp"
-      ],
-      "bewijs": [
-        {
-          "bron": "DeOrkaan",
-          "datum": "2026-11-08T23:00:00.000Z",
-          "c": 0.68,
-          "plek": "intro",
-          "titel": "Het Zaanse voetbalweekend ⚽️ zege vrouwen Zaandijk, Derbyzeges KFC en Rood Wit 🎙"
         }
       ]
     },
@@ -1218,6 +1190,34 @@
       "bronnen": 0,
       "ankers": [
         "mantelzorg"
+      ],
+      "bewijs": []
+    },
+    {
+      "key": "a:e41b9aa2a8",
+      "soort": "agenda",
+      "kop": "Kelapa Muda: Kinderen van de Molukken",
+      "S": 0,
+      "Sa": 0,
+      "Sp": 0,
+      "route": "geen",
+      "K": 0,
+      "Kp": 0,
+      "n": 0,
+      "dagen": 0,
+      "bronnen": 0,
+      "ankers": [
+        "kelapa",
+        "moluk",
+        "muda",
+        "theaterproductie",
+        "maleis",
+        "moluks",
+        "joenoe",
+        "polnaija",
+        "hetharia",
+        "jefta",
+        "tanat"
       ],
       "bewijs": []
     }

@@ -1,5 +1,5 @@
 {
-  "gegenereerdOp": "2026-11-11T05:55:18.389Z",
+  "gegenereerdOp": "2026-11-11T07:51:03.133Z",
   "uitleg": "Per run per onderdeel: tellers (optellend), waarden (meting van die run), voorbeelden en regels. De laatste 24 runs hebben voorbeelden en regels; 'dagen' telt de tellers per dag op.",
   "runs": [
     {
@@ -518,6 +518,191 @@
           "regels": []
         }
       }
+    },
+    {
+      "tijd": "2026-11-11T07:51:03.133Z",
+      "duurMs": 91204,
+      "onderdelen": {
+        "spelling": {
+          "tellers": {
+            "gecontroleerd": 11,
+            "ok": 11
+          },
+          "waarden": {},
+          "voorbeelden": [],
+          "regels": [
+            "Nederlands woordenboek geladen."
+          ]
+        },
+        "tekst": {
+          "tellers": {
+            "aangeboden": 3,
+            "geschreven": 3,
+            "teOudOvergeslagen": 0,
+            "leegOvergeslagen": 0,
+            "rommelRegelsWeg": 0,
+            "alineasHerleid": 1,
+            "titelHerhalingWeg": 0,
+            "methode-run": 3,
+            "oudeBestandenOvergezet": 0,
+            "dagbestandenVerwijderd": 0,
+            "bytesVerwijderd": 0
+          },
+          "waarden": {
+            "oudsteDagbestand": "2026-10-29",
+            "dekkingPct": 94,
+            "berichtenZonderTekst": 19,
+            "dekkingPerBron": {
+              "zaanstad-moties": {
+                "berichten": 22,
+                "metTekst": 22,
+                "pct": 100,
+                "gemTekens": 1040
+              },
+              "DeOrkaan": {
+                "berichten": 153,
+                "metTekst": 153,
+                "pct": 100,
+                "gemTekens": 2504
+              },
+              "rechtspraak-noord-holland": {
+                "berichten": 1,
+                "metTekst": 1,
+                "pct": 100,
+                "gemTekens": 6002
+              },
+              "omgevingsdienstnoordzeekanaal": {
+                "berichten": 2,
+                "metTekst": 2,
+                "pct": 100,
+                "gemTekens": 3328
+              },
+              "ibabs-collegeberichten": {
+                "berichten": 15,
+                "metTekst": 8,
+                "pct": 53,
+                "gemTekens": 4519
+              },
+              "ibabs-ingekomen-stukken": {
+                "berichten": 43,
+                "metTekst": 34,
+                "pct": 79,
+                "gemTekens": 1901
+              },
+              "vervoerregio-overzichten": {
+                "berichten": 6,
+                "metTekst": 3,
+                "pct": 50,
+                "gemTekens": 6952
+              },
+              "bekendmakingen": {
+                "berichten": 26,
+                "metTekst": 26,
+                "pct": 100,
+                "gemTekens": 2345
+              },
+              "nh-actueel": {
+                "berichten": 21,
+                "metTekst": 21,
+                "pct": 100,
+                "gemTekens": 2936
+              },
+              "zaanstad-ted": {
+                "berichten": 1,
+                "metTekst": 1,
+                "pct": 100,
+                "gemTekens": 87
+              },
+              "wetenregelgeving": {
+                "berichten": 7,
+                "metTekst": 7,
+                "pct": 100,
+                "gemTekens": 25177
+              },
+              "vervoerregio-persberichten": {
+                "berichten": 5,
+                "metTekst": 5,
+                "pct": 100,
+                "gemTekens": 1586
+              }
+            }
+          },
+          "voorbeelden": [
+            {
+              "bron": "DeOrkaan",
+              "methode": "run",
+              "kop": "Waar woont u? Op nummer ‘0’",
+              "tekensVoor": 801,
+              "tekensNa": 801,
+              "alineas": 1,
+              "rommelRegelsWeg": 0,
+              "alineasHerleid": false,
+              "begin": "Straten beginnen doorgaans bij nummertje 1 (of bij 2 aan de andere kant van de straat). Voor de ‘1’ komt rekenkundig de ‘0’. Maar dat treffen we zelden aan bij huisnummers. Eigenlijk dachten we dat we dat ‘nooit’ aantrof",
+              "eind": "rsplateaus en fietssuggestiestroken aan Engewormer 0 te Wormer’ (Gemeenteblad Wormerland Nr. 520718), foto: Google maps."
+            },
+            {
+              "bron": "WaarheenAgenda",
+              "methode": "run",
+              "kop": "De Fabriek: Laatbloeier met High Tea",
+              "tekensVoor": 452,
+              "tekensNa": 452,
+              "alineas": 1,
+              "rommelRegelsWeg": 0,
+              "alineasHerleid": false,
+              "begin": "Laatbloeier laat zien dat opnieuw beginnen altijd kan Voorafgaand aan de film Laatbloeier kunnen bezoekers genieten van een high tea. De Nederlandse tragikomedie volgt Joke, een vrouw van 65 jaar die onverwacht wordt ver",
+              "eind": ". Daar ontdekt ze een heel nieuwe wereld en krijgt ze steeds meer zelfvertrouwen. De high tea vindt plaats voor de film."
+            }
+          ],
+          "regels": [
+            "Dekking volledige tekst: 283/302 berichten (94%). Laagst: vervoerregio-overzichten 3/6 (50%); ibabs-collegeberichten 8/15 (53%); ibabs-ingekomen-stukken 34/43 (79%)."
+          ]
+        },
+        "jubileum": {
+          "tellers": {
+            "nieuwsRood": 2,
+            "agendaRood": 1,
+            "uitgesloten": 0,
+            "alRoodDoorPrioriteit": 0
+          },
+          "waarden": {},
+          "voorbeelden": [
+            {
+              "soort": "nieuws",
+              "rood": true,
+              "jaren": 50,
+              "woorden": "50 jaar",
+              "kop": "Terug in de tijd: 50 jaar Koperen Bel"
+            },
+            {
+              "soort": "nieuws",
+              "rood": true,
+              "jaren": 100,
+              "woorden": "100 jaar",
+              "kop": "Vrijwillige brandweer Oostzaan bestaat 100 jaar 🎧"
+            },
+            {
+              "soort": "agenda",
+              "rood": true,
+              "jaren": 100,
+              "woorden": "100-jarig",
+              "kop": "Brandweer Oostzaan viert 100-jarig jubileum"
+            }
+          ],
+          "regels": []
+        },
+        "run": {
+          "tellers": {},
+          "waarden": {
+            "berichten": 412,
+            "agendaItems": 272,
+            "aiVerzoeken": 3,
+            "geminiDagGebruikt": "14/80",
+            "duurSeconden": 91
+          },
+          "voorbeelden": [],
+          "regels": []
+        }
+      }
     }
   ],
   "dagen": {
@@ -544,22 +729,32 @@
       }
     },
     "2026-11-11": {
-      "runs": 1,
+      "runs": 2,
       "tellers": {
         "tekst": {
-          "aangeboden": 1,
-          "geschreven": 1,
+          "aangeboden": 4,
+          "geschreven": 4,
           "teOudOvergeslagen": 0,
           "leegOvergeslagen": 0,
           "rommelRegelsWeg": 0,
-          "alineasHerleid": 1,
+          "alineasHerleid": 2,
           "titelHerhalingWeg": 0,
-          "methode-run": 1,
+          "methode-run": 4,
           "oudeBestandenOvergezet": 0,
           "dagbestandenVerwijderd": 0,
           "bytesVerwijderd": 0
         },
-        "run": {}
+        "run": {},
+        "spelling": {
+          "gecontroleerd": 11,
+          "ok": 11
+        },
+        "jubileum": {
+          "nieuwsRood": 2,
+          "agendaRood": 1,
+          "uitgesloten": 0,
+          "alRoodDoorPrioriteit": 0
+        }
       }
     }
   }
