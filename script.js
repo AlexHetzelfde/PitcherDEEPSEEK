@@ -1059,7 +1059,7 @@ function renderAgendaItem(item) {
   if (regel === "eerste-keer") chips.push('<span class="chip chip-regel" title="Eerste keer volgens de bron">eerste keer</span>');
   if (regel === "jubileum") chips.push('<span class="chip chip-regel" title="Jubileum of herdenking volgens de bron">jubileum</span>');
   // Rood: het onderwerp leeft groot (berekend door ZANP, zie scraper/prioriteit/). De reden staat in de tooltip.
-  if (item.rood) chips.push(`<span class="chip chip-rood" title="${escapeHtml(item.rood.reden || "Groot onderwerp")}">groot onderwerp</span>`);
+  if (item.rood) chips.push(`<span class="chip chip-rood" title="${escapeHtml(item.rood.reden || "Groot onderwerp")}">${escapeHtml(item.rood.label || "groot onderwerp")}</span>`);
   // Het bericht erover (T), eventueel meer berichten over dezelfde zaak, en de uitkomst.
   const titel = item.afkomst === "termijn" ? "Termijn uit bericht" : item.afkomst === "bericht" ? "Agendapunt uit bericht" : item.afkomst === "camera" ? "Laatste besluit van deze camera-reeks" : "Bericht over dit agendapunt";
   const eigen = berichtKnop(item.berichtId, titel);
