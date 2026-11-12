@@ -1,5 +1,5 @@
 {
-  "gegenereerdOp": "2026-11-12T02:49:37.542Z",
+  "gegenereerdOp": "2026-11-12T07:50:59.785Z",
   "uitleg": "Per run per onderdeel: tellers (optellend), waarden (meting van die run), voorbeelden en regels. De laatste 24 runs hebben voorbeelden en regels; 'dagen' telt de tellers per dag op.",
   "runs": [
     {
@@ -1192,6 +1192,233 @@
           "regels": []
         }
       }
+    },
+    {
+      "tijd": "2026-11-12T07:50:59.785Z",
+      "duurMs": 131502,
+      "onderdelen": {
+        "spelling": {
+          "tellers": {
+            "gecontroleerd": 6,
+            "ok": 6
+          },
+          "waarden": {},
+          "voorbeelden": [],
+          "regels": [
+            "Nederlands woordenboek geladen."
+          ]
+        },
+        "tekst": {
+          "tellers": {
+            "aangeboden": 18,
+            "geschreven": 15,
+            "teOudOvergeslagen": 0,
+            "leegOvergeslagen": 0,
+            "rommelRegelsWeg": 1,
+            "alineasHerleid": 7,
+            "titelHerhalingWeg": 1,
+            "methode-run": 12,
+            "methode-lijst": 1,
+            "methode-artikel": 5,
+            "oudeBestandenOvergezet": 0,
+            "dagbestandenVerwijderd": 0,
+            "bytesVerwijderd": 0
+          },
+          "waarden": {
+            "oudsteDagbestand": "2026-10-29",
+            "dekkingPct": 94,
+            "berichtenZonderTekst": 19,
+            "dekkingPerBron": {
+              "wetenregelgeving": {
+                "berichten": 8,
+                "metTekst": 8,
+                "pct": 100,
+                "gemTekens": 22400
+              },
+              "DeOrkaan": {
+                "berichten": 165,
+                "metTekst": 165,
+                "pct": 100,
+                "gemTekens": 2588
+              },
+              "zaanstad-ted": {
+                "berichten": 2,
+                "metTekst": 2,
+                "pct": 100,
+                "gemTekens": 74
+              },
+              "nh-actueel": {
+                "berichten": 25,
+                "metTekst": 25,
+                "pct": 100,
+                "gemTekens": 2979
+              },
+              "zaansche-molen": {
+                "berichten": 1,
+                "metTekst": 1,
+                "pct": 100,
+                "gemTekens": 1620
+              },
+              "zaanstad-moties": {
+                "berichten": 22,
+                "metTekst": 22,
+                "pct": 100,
+                "gemTekens": 1040
+              },
+              "ibabs-collegeberichten": {
+                "berichten": 16,
+                "metTekst": 9,
+                "pct": 56,
+                "gemTekens": 4965
+              },
+              "bekendmakingen": {
+                "berichten": 33,
+                "metTekst": 33,
+                "pct": 100,
+                "gemTekens": 2045
+              },
+              "rechtspraak-noord-holland": {
+                "berichten": 1,
+                "metTekst": 1,
+                "pct": 100,
+                "gemTekens": 6002
+              },
+              "omgevingsdienstnoordzeekanaal": {
+                "berichten": 2,
+                "metTekst": 2,
+                "pct": 100,
+                "gemTekens": 3328
+              },
+              "ibabs-ingekomen-stukken": {
+                "berichten": 43,
+                "metTekst": 34,
+                "pct": 79,
+                "gemTekens": 1901
+              },
+              "vervoerregio-overzichten": {
+                "berichten": 6,
+                "metTekst": 3,
+                "pct": 50,
+                "gemTekens": 6952
+              },
+              "vervoerregio-persberichten": {
+                "berichten": 5,
+                "metTekst": 5,
+                "pct": 100,
+                "gemTekens": 1586
+              }
+            }
+          },
+          "voorbeelden": [
+            {
+              "bron": "wetenregelgeving",
+              "methode": "run",
+              "kop": "Besluit Beperking Openbaarheid (BBO) Persoonskaarten, archiefkaarten en woningkaarten van ",
+              "tekensVoor": 3314,
+              "tekensNa": 2965,
+              "alineas": 7,
+              "rommelRegelsWeg": 1,
+              "alineasHerleid": true,
+              "begin": "Geldend van 12-11-2026 t/m heden Intitulé Besluit Beperking Openbaarheid (BBO) Persoonskaarten, archiefkaarten en woningkaarten van de Gemeente Zaanstad en rechtsvoorgangers 1939–1994 (OA-0215) Gelezen het advies van de ",
+              "eind": "ken: organisaties.overheid.nl. Werkt de website of een link niet goed? Stuur dan een e-mail naar regelgeving@overheid.nl"
+            },
+            {
+              "bron": "DeOrkaan",
+              "methode": "run",
+              "kop": "Zaans Verzet flyert bij middelbare scholen voor ‘schoolstaking’ tegen dienstplicht 🎥",
+              "tekensVoor": 2989,
+              "tekensNa": 2994,
+              "alineas": 6,
+              "rommelRegelsWeg": 0,
+              "alineasHerleid": true,
+              "begin": "De groep Zaans Verzet, bestaande uit zo’n zeven flyeraars en onderdeel van de landelijke groep Stop de Oorlogskoorts, is de afgelopen weken geregeld te vinden voor Zaanse middelbare scholen. Het doel is het verspreiden v",
+              "eind": " met Mark van der Hout, Michiel van Dijk en de woordvoering van Zaanstad. Op basis van de website stop de oorlogskoorts."
+            },
+            {
+              "bron": "zaansche-molen",
+              "methode": "run",
+              "kop": "Molens openen ’s avonds hun deuren ter ere van 80 jaar UNESCO",
+              "tekensVoor": 1617,
+              "tekensNa": 1620,
+              "alineas": 4,
+              "rommelRegelsWeg": 0,
+              "alineasHerleid": true,
+              "begin": "Ter gelegenheid van het 80-jarig bestaan van UNESCO openen drie molens van Vereniging De Zaansche Molen op zaterdagavond 21 november speciaal hun deuren voor bezoekers. Een bijzondere gelegenheid om de Zaanse molens eens",
+              "eind": "teraard zeer gewaardeerd. Iedereen is van harte welkom om deze bijzondere avond mee te beleven! Foto: Marcel van Someren"
+            },
+            {
+              "bron": "ibabs-collegeberichten",
+              "methode": "lijst",
+              "kop": "Kennisgeving burgemeester Hamming: Persbericht politie aanhouding verdachten explosies en ",
+              "tekensVoor": 8518,
+              "tekensNa": 8530,
+              "alineas": 19,
+              "rommelRegelsWeg": 0,
+              "alineasHerleid": true,
+              "begin": "Kennisgeving\n\nHamming, J.\n\nTer kennisname\n\ngemeente Zaanstad burgemeester drs. J. Hamming Stadhuisplein 100 1506 MZ Zaandam Postbus 2000 Kennisgeving 1500 GA Zaandam AAN Gemeenteraad DATUM 11 november 2026 Telefoon 14 07",
+              "eind": "omen, verantwoordelijken in beeld te brengen en te voorkomen dat jongeren worden ingezet voor ernstige criminaliteit. --"
+            },
+            {
+              "bron": "bekendmakingen",
+              "methode": "run",
+              "kop": "Besluit Beperking Openbaarheid (BBO) Persoonskaarten, archiefkaarten en woningkaarten van ",
+              "tekensVoor": 3624,
+              "tekensNa": 3630,
+              "alineas": 7,
+              "rommelRegelsWeg": 0,
+              "alineasHerleid": true,
+              "begin": "Gelezen het advies van de gemeentearchivaris van het Gemeentearchief Zaanstad (GAZ) van 21 juli 2026, met kenmerk in Mozardzaaknr. 10497800. artikel 15, eerste lid onder a en b van de Archiefwet 1995. artikel 10 van het ",
+              "eind": " kunt u binnen zes weken beroep aantekenen bij de sector bestuursrecht van de rechtbank Noord-Holland (locatie Haarlem)."
+            },
+            {
+              "bron": "zaanstad-kalender",
+              "methode": "artikel",
+              "kop": "Uitnodiging Een nieuwe kijk op de Zaanse geschiedenis",
+              "tekensVoor": 429,
+              "tekensNa": 429,
+              "alineas": 7,
+              "rommelRegelsWeg": 0,
+              "alineasHerleid": false,
+              "begin": "zaterdag 14 november 2026\n\n15:00 - 17:00\n\nLocatie\n\nZaans Museum, Schansend 7, 1509 AW Zaandam\n\nToelichting\n\nGraag nodigt het Zaans Museum de raadsleden uit om op 14 november aanwezig te zijn bij een speciale bijeenkomst ",
+              "eind": " verleden. Hieronder vindt u het programma.\n\nhttps://zaansmuseum.nl/zien-doen/een-nieuwe-kijk-op-de-zaanse-geschiedenis/"
+            }
+          ],
+          "regels": [
+            "Dekking volledige tekst: 310/329 berichten (94%). Laagst: vervoerregio-overzichten 3/6 (50%); ibabs-collegeberichten 9/16 (56%); ibabs-ingekomen-stukken 34/43 (79%)."
+          ]
+        },
+        "jubileum": {
+          "tellers": {
+            "nieuwsRood": 0,
+            "agendaRood": 1,
+            "uitgesloten": 0,
+            "alRoodDoorPrioriteit": 2
+          },
+          "waarden": {},
+          "voorbeelden": [
+            {
+              "soort": "agenda",
+              "rood": true,
+              "jaren": 100,
+              "woorden": "100-jarig",
+              "kop": "Brandweer Oostzaan viert 100-jarig jubileum"
+            }
+          ],
+          "regels": []
+        },
+        "run": {
+          "tellers": {},
+          "waarden": {
+            "berichten": 439,
+            "agendaItems": 270,
+            "aiVerzoeken": 2,
+            "geminiDagGebruikt": "7/80",
+            "duurSeconden": 132
+          },
+          "voorbeelden": [],
+          "regels": []
+        }
+      }
     }
   ],
   "dagen": {
@@ -1248,28 +1475,32 @@
       }
     },
     "2026-11-12": {
-      "runs": 1,
+      "runs": 2,
       "tellers": {
-        "spelling": {},
+        "spelling": {
+          "gecontroleerd": 6,
+          "ok": 6
+        },
         "tekst": {
-          "aangeboden": 7,
-          "geschreven": 7,
+          "aangeboden": 25,
+          "geschreven": 22,
           "teOudOvergeslagen": 0,
           "leegOvergeslagen": 0,
-          "rommelRegelsWeg": 0,
-          "alineasHerleid": 0,
-          "titelHerhalingWeg": 1,
-          "methode-lijst": 1,
-          "methode-artikel": 6,
+          "rommelRegelsWeg": 1,
+          "alineasHerleid": 7,
+          "titelHerhalingWeg": 2,
+          "methode-lijst": 2,
+          "methode-artikel": 11,
           "oudeBestandenOvergezet": 0,
           "dagbestandenVerwijderd": 0,
-          "bytesVerwijderd": 0
+          "bytesVerwijderd": 0,
+          "methode-run": 12
         },
         "jubileum": {
           "nieuwsRood": 0,
-          "agendaRood": 0,
+          "agendaRood": 1,
           "uitgesloten": 0,
-          "alRoodDoorPrioriteit": 3
+          "alRoodDoorPrioriteit": 5
         },
         "run": {}
       }
