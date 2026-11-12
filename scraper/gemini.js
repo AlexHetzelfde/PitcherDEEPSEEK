@@ -6,12 +6,14 @@
 //   2. genereerPitches — de pitch. Draait voor alle nieuws + de agenda die
 //      het filter heeft gehaald. Vier velden: werktitel, samenvatting,
 //      invalshoek, vraag (afspraak 3).
-//   3. schrijfMeldingen — de nieuwsdienst (ZANP). Twee modi: "volledig" maakt
-//      van een officiële bron of een persbericht een korte, feitelijke
-//      melding (kop, tekst, prio); "analyse" schrijft GEEN tekst en haalt
-//      alleen een checklist en agendapunten uit de bron (artikelen van
-//      andere redacties). Wie volledig mag, bepaalt rubrieken.json. De
-//      uitvoer wordt in wire.js gecontroleerd tegen de bron.
+//   3. schrijfMeldingen — de nieuwsdienst (ZANP). Twee modi: "volledig" schrijft
+//      bij een officiële bron of een persbericht een korte, feitelijke kop en
+//      kiest prio, tag, checklist en agendapunten; "analyse" schrijft ook
+//      geen kop en haalt alleen een tag, checklist en agendapunten uit de bron
+//      (artikelen van andere redacties). Sinds 2026-11-11 schrijft de AI geen
+//      samenvatting meer: de popup toont de volledige tekst uit het
+//      tekstarchief. Wie volledig mag, bepaalt rubrieken.json. De uitvoer
+//      wordt in wire.js gecontroleerd tegen de bron.
 //   4. beslisZelfdeNieuwsfeit — voor dubbel nieuws, alleen bij twijfelgevallen.
 //
 // Sinds 2026-10-26:
@@ -37,7 +39,7 @@ const {
 } = require("./nieuwscriteria");
 
 const PROMPT_VERSIE = "2026-10-22-pitch-vier-velden";
-const PROMPT_VERSIE_WIRE = "2026-10-29-batch-tag-checklist-agendapunten";
+const PROMPT_VERSIE_WIRE = "2026-11-11-batch-kop-tag-checklist-agendapunten";
 
 // De pitchrun (index.js) gebruikt filter, pitch en sterker en draait op Flash.
 // ZANP gebruikt alleen "wire", op Flash-Lite met een ruimer quotum.
@@ -364,10 +366,10 @@ async function genereerPitches(berichten, apiKey, cap, categorie) {
 // ---------------------------------------------------------------------------
 //
 // Twee modi per bericht:
-//   "volledig"  kop, tekst, prio, tag + checklist + agendapunten (officiële en
-//               organisatiebronnen die we mogen herschrijven)
-//   "analyse"   alleen tag + checklist + agendapunten, GEEN tekst (artikelen
-//               van andere redacties en onbekende bronnen)
+//   "volledig"  kop, prio, tag + checklist + agendapunten (officiële en
+//               organisatiebronnen die we mogen herschrijven); geen samenvatting
+//   "analyse"   alleen tag + checklist + agendapunten, GEEN kop en geen tekst
+//               (artikelen van andere redacties en onbekende bronnen)
 // Alles wat de AI teruggeeft wordt in wire.js gecontroleerd tegen de bron.
 //
 // BATCHES. Het gratis quotum telt VERZOEKEN, geen tokens. Daarom gaan er per
@@ -514,15 +516,11 @@ function bouwMeldingBatchPrompt(items, modus = "volledig", tags = []) {
 
   const intro = volledig
     ? `Je bent redacteur bij een regionale nieuwsdienst voor Zaanstreek-Waterland, in de stijl van een persbureau: kort, feitelijk en neutraal.
-Hieronder staan ${n} bron(nen). Schrijf voor ELKE bron een melding met een kop, een tekst, een prio${tag ? ", een tag" : ""}, een checklist en eventueel agendapunten. Behandel elke bron los van de andere: gebruik voor een melding alleen de tekst van die ene bron.
+Hieronder staan ${n} bron(nen). Schrijf voor ELKE bron een kop, kies een prio${tag ? ", een tag" : ""}, vul een checklist in en haal eventuele agendapunten uit de bron. Je schrijft geen samenvatting: de lezer krijgt de volledige tekst van de bron te zien. Behandel elke bron los van de andere: gebruik voor een kop alleen de tekst van die ene bron.
 
 kop
 Eis: maximaal 14 woorden, tegenwoordige tijd, feitelijk. Noem wie of wat en de kern. Geen vraag, geen aanloktaal, geen uitroepteken.
 Voorbeeld: "Fietspad langs de Vaart in Wormer twee weken dicht voor onderhoud"
-
-tekst
-Eis: twee tot vier zinnen over wie of wat, waar, wanneer en wat het concreet betekent. Uitsluitend feiten uit de bron. Geen oordeel, geen citaten, geen achtergrond uit eigen kennis.
-Voorbeeld: "De gemeente knapt van 3 tot en met 14 maart het fietspad langs de Vaart op. Fietsers worden in die periode omgeleid via de Dorpsstraat."
 
 prio
 Een geheel getal van 2 tot en met 4:
@@ -535,8 +533,8 @@ Een geheel getal van 2 tot en met 4:
     ? `REGELS:
 - Gebruik alleen wat in de bron staat. Staat iets er niet in, laat het dan weg. Verzin geen namen, getallen, data of plaatsen.
 - Neem getallen letterlijk over; reken niets om en tel niets op.
-- Is de brontekst te kort of te onduidelijk voor een melding, antwoord voor die bron dan {"nr": <nummer>, "onvoldoende": true}.
-- Schrijf in correct, helder Nederlands.`
+- Is de brontekst te kort of te onduidelijk voor een kop, antwoord voor die bron dan {"nr": <nummer>, "onvoldoende": true}.
+- Schrijf de kop in correct, helder Nederlands. Gebruik alleen woorden en namen zoals ze in de bron staan of gewone Nederlandse woorden; verzin geen woorden.`
     : `REGELS:
 - Gebruik alleen wat in de bron staat. Verzin geen getallen, data of plaatsen.
 - Is de brontekst te kort of te onduidelijk, antwoord voor die bron dan {"nr": <nummer>, "onvoldoende": true}.`;
@@ -545,7 +543,6 @@ Een geheel getal van 2 tot en met 4:
     ? `    {
       "nr": 1,
       "kop": "...",
-      "tekst": "...",
       "prio": 3,${tagVeld}
       ${CHECKLIST_VOORBEELD}
     }`
@@ -572,8 +569,9 @@ ${voorbeeld}
 ${items.map((item, i) => bronBlok(item, i + 1)).join("\n\n")}`;
 }
 
-// Geeft { onvoldoende: true } of { kop, tekst, prio, tag, checklist, agendapunten }
-// terug, of null bij een onbruikbaar antwoord. Checklist, agendapunten en tag
+// Geeft { onvoldoende: true } of { kop, prio, tag, checklist, agendapunten }
+// terug (modus "analyse": { checklist, agendapunten, tag }), of null bij een
+// onbruikbaar antwoord. Een eventueel meegestuurde "tekst" wordt genegeerd. Checklist, agendapunten en tag
 // gaan ongecontroleerd door; wire.js controleert ze tegen de bron en de lijst.
 function valideerMelding(data, modus = "volledig") {
   if (!data || typeof data !== "object") return null;
@@ -588,15 +586,12 @@ function valideerMelding(data, modus = "volledig") {
     return { checklist, agendapunten, tag };
   }
 
-  for (const veld of ["kop", "tekst"]) {
-    if (typeof data[veld] !== "string" || !data[veld].trim()) return null;
-  }
+  if (typeof data.kop !== "string" || !data.kop.trim()) return null;
   const kop = data.kop.trim();
   if (kop.length > 160) return null;
   const prio = Number(data.prio);
   return {
     kop,
-    tekst: data.tekst.trim(),
     prio: Number.isInteger(prio) ? prio : null,
     tag,
     checklist,
@@ -686,7 +681,7 @@ async function schrijfMeldingen(items, apiKey, cap, opties = {}) {
       const melding = valideerMelding(r, batch.modus);
       if (!melding) {
         resultaten.set(item.id, {
-          fout: batch.modus === "analyse" ? "onvolledige analyse (checklist ontbreekt)" : "onvolledige melding (kop of tekst ontbreekt)",
+          fout: batch.modus === "analyse" ? "onvolledige analyse (checklist ontbreekt)" : "onvolledige melding (kop ontbreekt)",
         });
         return;
       }

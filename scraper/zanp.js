@@ -384,7 +384,7 @@ async function draai(deps = {}) {
   const zonderRubriek = bronnen.filter((b) => !isBekendeBron(b.id)).map((b) => b.id);
   for (const id of zonderRubriek) {
     console.warn(
-      `[${id}] Staat niet in rubrieken.json: rubriek Overig, geen AI-tekst, agendafilter uit. Voeg de bron daar toe.`
+      `[${id}] Staat niet in rubrieken.json: rubriek Overig, geen AI-kop, agendafilter uit. Voeg de bron daar toe.`
     );
   }
 
@@ -793,7 +793,7 @@ async function draai(deps = {}) {
   console.log(
     `Klaar: ${records.length} berichten, ${agendaItems.length} agenda-items, ${
       records.filter((r) => r.ai).length
-    } met AI-tekst, ${run.verzoeken} AI-verzoek(en).`
+    } met AI-kop, ${run.verzoeken} AI-verzoek(en).`
   );
   logDuur(startRun, "ZANP-run");
   return { records, agenda: agendaItems, status, samenvatting };

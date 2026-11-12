@@ -25,8 +25,9 @@
 //    harde controle bij: elk getal in de uitvoer moet ook in de bron staan
 //    (cijfersKloppen). Faalt dat, dan blijft de originele kop staan en
 //    krijgt het bericht controle: "cijfers-afgekeurd". Namen en plaatsen
-//    worden NIET gecontroleerd; daarom staat in de frontend altijd dat de
-//    tekst automatisch is samengevat.
+//    worden NIET gecontroleerd; daarom staat in de frontend dat de kop door
+//    de AI is geschreven. (De AI schrijft sinds 2026-11-11 alleen nog de kop;
+//    de popup toont de volledige tekst uit het tekstarchief.)
 //
 // 3. Versies: een bericht is hetzelfde bericht als de url gelijk is. Is de
 //    kop veranderd, of de brontekst merkbaar langer of korter geworden,
@@ -896,7 +897,7 @@ function verifieerAgendapunten(raw, bron, publicatieDag) {
 
 /**
  * Verwerkt het resultaat van Gemini voor één bericht.
- * resultaat: { melding: { kop?, tekst?, prio?, checklist?, agendapunten? } }
+ * resultaat: { melding: { kop?, prio?, tag?, checklist?, agendapunten? } }
  *          | { onvoldoende: true } | { fout }
  */
 function verwerkMelding({ record, invoer }, resultaat) {
@@ -925,18 +926,20 @@ function verwerkMelding({ record, invoer }, resultaat) {
 
   if (invoer.modus === "analyse") return { ...basis, analyse: true, controle: "analyse-ok" };
 
-  if (!cijfersKloppen(`${m.kop} ${m.tekst}`, bron)) return { ...basis, controle: "cijfers-afgekeurd" };
+  // De AI schrijft sinds 2026-11-11 alleen nog een kop (geen samenvatting): de
+  // cijfercontrole gaat dus over de kop.
+  if (!cijfersKloppen(m.kop, bron)) return { ...basis, controle: "cijfers-afgekeurd" };
 
   // Woordcontrole op de kop (spelling.js): een woord dat nergens in de bron of het
   // woordenboek staat wordt hersteld, of de kop valt terug op de titel van de bron.
-  // De samenvatting wordt alleen geteld voor het logboek, niet aangepast.
   const spel = spelling.controleerKop(m.kop, bron, record.kop);
-  spelling.telTekstFouten(m.tekst, bron);
   return {
     ...basis,
     kop: schoneKop(spel.kop),
     ...(spel.status === "hersteld" || spel.status === "terugval" ? { kopSpelling: spel.status } : {}),
-    tekst: opschonen(m.tekst),
+    // Een samenvatting van een eerdere versie van de prompt verdwijnt hier; de
+    // popup toont de volledige tekst uit het tekstarchief.
+    tekst: null,
     prio: begrensPrio(m.prio, invoer.standaardPrio),
     ai: true,
     controle: "cijfers-ok",
