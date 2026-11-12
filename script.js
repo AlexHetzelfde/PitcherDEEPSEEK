@@ -4,6 +4,9 @@
 //   data/berichten.json     de nieuwsstroom (ZANP, elk half uur)
 //   data/agenda.json        de weekagenda (ZANP, elk half uur)
 //   data/zanp-status.json   laatste ZANP-run en bronstatus (voor de statusregel)
+//   data/zanp-teksten/JJJJ-MM-DD.json   de volledige teksten per publicatiedag
+//                           (14 dagen); de pop-up laadt het bestand van de dag
+//                           van het bericht pas als je het bericht opent
 //   data/pitches.json, data/feed.json, data/nieuws-lokaal.json,
 //   data/nieuws-landelijk.json   de pitchmachine (tab Pitches, elke nacht)
 //
@@ -492,6 +495,111 @@ function agendaVandaagInfo(rubriekCode) {
   return { aantal: items.length, bereik };
 }
 
+// --- volledige tekst uit het tekstarchief ----------------------------------------
+
+// data/zanp-teksten/JJJJ-MM-DD.json: per publicatiedag één bestand, pas geladen als
+// een bericht van die dag wordt geopend. Een bestand blijft onthouden; staat het
+// bericht er niet in en is het bestand ouder dan een minuut, dan halen we het
+// opnieuw op (ZANP schrijft elk uur nieuwe teksten bij).
+const tekstBestanden = new Map(); // dag -> { tijd, belofte }
+const TEKSTBESTAND_VERS_MS = 60 * 1000;
+
+async function zoekInTekstBestand(dag, sleutel) {
+  const haal = () => {
+    const invoer = { tijd: Date.now(), belofte: laadJson(`data/zanp-teksten/${dag}.json`).catch(() => null) };
+    tekstBestanden.set(dag, invoer);
+    return invoer;
+  };
+  const uitBestand = (bestand) => (bestand && bestand.items && bestand.items[sleutel]) || null;
+  let invoer = tekstBestanden.get(dag) || haal();
+  let item = uitBestand(await invoer.belofte);
+  if (!item && Date.now() - invoer.tijd > TEKSTBESTAND_VERS_MS) item = uitBestand(await haal().belofte);
+  return item;
+}
+
+// De dagen waarop de tekst van dit bericht kan staan: de dag van het bericht zelf en
+// die van zijn nieuwste versie (bij een nieuwe versie is de tijd het moment van de
+// wijziging, en de archieftekst is die van de nieuwste versie).
+function tekstDagenVoor(r) {
+  const dagen = [];
+  const voeg = (iso) => {
+    const d = iso ? dagVan(iso) : null;
+    if (d && !dagen.includes(d)) dagen.push(d);
+  };
+  voeg(r.tijd);
+  const nieuwste = state.berichten
+    .filter((x) => x.groepId === r.groepId)
+    .sort((a, b) => (b.versie || 1) - (a.versie || 1))[0];
+  if (nieuwste) voeg(nieuwste.tijd);
+  voeg(r.eerstGezienOp);
+  return dagen;
+}
+
+async function haalVolledigeTekst(r) {
+  if (!r.url) return null;
+  for (const dag of tekstDagenVoor(r)) {
+    const item = await zoekInTekstBestand(dag, `n:${r.url}`);
+    if (item && item.tekst) return item;
+  }
+  return null;
+}
+
+// Alinea's gescheiden door een lege regel; regels die met "• " beginnen worden een lijst.
+function tekstNaarHtml(tekst) {
+  const alineas = String(tekst || "")
+    .split(/\n{2,}/)
+    .map((a) => a.trim())
+    .filter(Boolean);
+  const uit = [];
+  let lijst = [];
+  const sluitLijst = () => {
+    if (lijst.length) uit.push(`<ul>${lijst.join("")}</ul>`);
+    lijst = [];
+  };
+  for (const a of alineas) {
+    if (a.startsWith("• ")) {
+      lijst.push(`<li>${escapeHtml(a.slice(2))}</li>`);
+    } else {
+      sluitLijst();
+      uit.push(`<p>${escapeHtml(a)}</p>`);
+    }
+  }
+  sluitLijst();
+  return uit.join("");
+}
+
+function renderGeenVolledigeTekst(r) {
+  const reden = r.seed ? "<p>Dit bericht is bij de start van de nieuwsdienst overgenomen uit de feed.</p>" : "";
+  const knop = r.url
+    ? `<p><a class="knop knop-klein" href="${escapeHtml(veiligeUrl(r.url))}" target="_blank" rel="noopener">Naar de bron ↗</a></p>`
+    : "";
+  return `<p class="wire-tekst-melding">Volledige tekst niet beschikbaar.</p>${reden}${knop}`;
+}
+
+// Vult het tekstvak van de pop-up. Een fout of een ontbrekende tekst geeft de
+// terugval: de kop (staat al boven), de melding en een knop naar de bron.
+async function vulVolledigeTekst(r) {
+  const hoofd = document.getElementById("modal-hoofd");
+  const vak = hoofd && hoofd.querySelector(`[data-wire-tekst="${CSS.escape(r.id)}"]`);
+  if (!vak) return;
+  let item = null;
+  try {
+    item = await haalVolledigeTekst(r);
+  } catch {
+    item = null;
+  }
+  // De pop-up kan intussen een ander bericht tonen.
+  if (!vak.isConnected || !state.popup || state.popup.id !== r.id) return;
+  if (item && item.tekst) {
+    const nieuwer = (item.versie || 1) > (r.versie || 1);
+    vak.innerHTML =
+      (nieuwer ? '<p class="wire-tekst-melding">Dit is de tekst van een nieuwere versie van het bericht.</p>' : "") +
+      tekstNaarHtml(item.tekst);
+  } else {
+    vak.innerHTML = renderGeenVolledigeTekst(r);
+  }
+}
+
 // --- één bericht ---------------------------------------------------------------
 
 function renderWireDetail(r) {
@@ -499,7 +607,6 @@ function renderWireDetail(r) {
   if (r.alert && state.alertModus === "aan") {
     delen.push(`<p><span class="wire-label waarschuwing">${r.alert.niveau === "rood" ? "Alert" : "Mogelijk groot"}</span>${escapeHtml(r.alert.reden)}</p>`);
   }
-  if (r.tekst) delen.push(`<p>${escapeHtml(r.tekst)}</p>`);
 
   const herkomst = herkomstVan(r);
   if (r.stemming) {
@@ -508,20 +615,22 @@ function renderWireDetail(r) {
     delen.push(renderCamera(r));
   } else if (r.aanbesteding) {
     delen.push(renderAanbesteding(r));
-  } else if (r.ai && r.tekst) {
-    delen.push('<p><span class="wire-label ai">AI</span>Automatisch samengevat uit de bron. Controleer de feiten voor gebruik.</p>');
-  } else if (herkomst === "signaal") {
-    delen.push('<p><span class="wire-label signaal">Signaal</span>Artikel of agenda van een andere redactie: alleen de kop en een link. Lees het artikel via de bron.</p>');
-  } else if (r.controle === "cijfers-afgekeurd") {
-    delen.push('<p><span class="wire-label waarschuwing">Afgekeurd</span>De AI-samenvatting bevatte een getal dat niet in de bron staat. Dit is de originele kop.</p>');
-  } else if (r.controle === "ai-onvoldoende-tekst") {
-    delen.push("<p>De brontekst was te kort voor een samenvatting. Open de bron voor de details.</p>");
-  } else if (herkomst === "onbekend") {
-    delen.push("<p>Alleen de kop en een link: deze bron heeft nog geen instellingen in rubrieken.json.</p>");
-  } else if (r.seed) {
-    delen.push("<p>Alleen de kop: dit bericht is bij de start van de nieuwsdienst overgenomen uit de feed.</p>");
   } else {
-    delen.push("<p>Nog geen samenvatting beschikbaar.</p>");
+    // De volledige, opgeschoonde tekst uit het tekstarchief. Het vak wordt na het
+    // tonen van de pop-up gevuld (vulVolledigeTekst), zodat de pop-up meteen opent.
+    delen.push(`<div class="wire-volledig" data-wire-tekst="${escapeHtml(r.id)}"><p class="wire-tekst-melding">Volledige tekst laden…</p></div>`);
+    // Een korte toelichting bij de kop of de herkomst.
+    if (r.ai && r.kopSpelling !== "terugval") {
+      delen.push('<p><span class="wire-label ai">AI</span>De kop is automatisch geschreven uit de bron. Controleer de feiten voor gebruik.</p>');
+    } else if (herkomst === "signaal") {
+      delen.push('<p><span class="wire-label signaal">Signaal</span>Artikel of agenda van een andere redactie: alleen de kop en een link. Lees het artikel via de bron.</p>');
+    } else if (r.controle === "cijfers-afgekeurd") {
+      delen.push('<p><span class="wire-label waarschuwing">Afgekeurd</span>De AI-kop bevatte een getal dat niet in de bron staat. Dit is de originele kop.</p>');
+    } else if (r.controle === "ai-onvoldoende-tekst") {
+      delen.push("<p>De brontekst was te kort voor de AI om een kop te schrijven. Dit is de originele kop.</p>");
+    } else if (herkomst === "onbekend") {
+      delen.push("<p>Alleen de kop en een link: deze bron heeft nog geen instellingen in rubrieken.json.</p>");
+    }
   }
 
   if (r.versie > 1) {
@@ -895,7 +1004,7 @@ function renderPopup() {
   const bodyTekst = [r.kop, r.tekst, r.url ? veiligeUrl(r.url) : ""].filter(Boolean).join("\n\n");
   const mailHref = `mailto:?subject=${encodeURIComponent(r.kop || "")}&body=${encodeURIComponent(bodyTekst)}`;
 
-  const voet = [r.bronNaam, r.id, r.ai && r.tekst ? "Samengevat door AI" : ""].filter(Boolean);
+  const voet = [r.bronNaam, r.id, r.ai && r.kopSpelling !== "terugval" ? "Kop door AI" : ""].filter(Boolean);
 
   document.getElementById("modal-hoofd").innerHTML = `
     <div class="article__title">
@@ -931,6 +1040,7 @@ function renderPopup() {
   const zij = document.getElementById("modal-zij");
   hoofd.scrollTop = 0;
   zij.scrollTop = 0;
+  vulVolledigeTekst(r);
 }
 
 // kolom: de kolom waaruit geopend wordt (voor vorige/volgende). Zonder kolom blijft

@@ -1035,6 +1035,26 @@ body {
   color: var(--zanp-primair);
 }
 
+/* De volledige tekst in de pop-up (uit data/zanp-teksten) en de terugval zonder tekst. */
+.wire-volledig ul {
+  margin: 0 0 1rem 1.25rem;
+  padding: 0;
+}
+
+.wire-volledig li {
+  margin: 0 0 0.35rem;
+}
+
+.wire-tekst-melding {
+  color: #555;
+  font-style: italic;
+}
+
+a.knop {
+  display: inline-block;
+  text-decoration: none;
+}
+
 .nieuw-stip {
   display: inline-block;
   font-size: 0.6rem;
