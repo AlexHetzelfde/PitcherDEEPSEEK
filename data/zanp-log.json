@@ -1,5 +1,5 @@
 {
-  "gegenereerdOp": "2026-11-12T07:50:59.785Z",
+  "gegenereerdOp": "2026-11-12T10:52:59.944Z",
   "uitleg": "Per run per onderdeel: tellers (optellend), waarden (meting van die run), voorbeelden en regels. De laatste 24 runs hebben voorbeelden en regels; 'dagen' telt de tellers per dag op.",
   "runs": [
     {
@@ -1419,6 +1419,201 @@
           "regels": []
         }
       }
+    },
+    {
+      "tijd": "2026-11-12T10:52:59.944Z",
+      "duurMs": 89567,
+      "onderdelen": {
+        "spelling": {
+          "tellers": {
+            "gecontroleerd": 1,
+            "ok": 1
+          },
+          "waarden": {},
+          "voorbeelden": [],
+          "regels": [
+            "Nederlands woordenboek geladen."
+          ]
+        },
+        "tekst": {
+          "tellers": {
+            "aangeboden": 25,
+            "geschreven": 22,
+            "teOudOvergeslagen": 0,
+            "leegOvergeslagen": 0,
+            "rommelRegelsWeg": 2,
+            "alineasHerleid": 11,
+            "titelHerhalingWeg": 0,
+            "methode-lijst": 17,
+            "methode-run": 4,
+            "methode-artikel": 4,
+            "oudeBestandenOvergezet": 0,
+            "dagbestandenVerwijderd": 0,
+            "bytesVerwijderd": 0
+          },
+          "waarden": {
+            "oudsteDagbestand": "2026-10-29",
+            "dekkingPct": 95,
+            "berichtenZonderTekst": 19,
+            "dekkingPerBron": {
+              "zaanstad-moties": {
+                "berichten": 39,
+                "metTekst": 39,
+                "pct": 100,
+                "gemTekens": 1043
+              },
+              "DeOrkaan": {
+                "berichten": 168,
+                "metTekst": 168,
+                "pct": 100,
+                "gemTekens": 2639
+              },
+              "nh-actueel": {
+                "berichten": 26,
+                "metTekst": 26,
+                "pct": 100,
+                "gemTekens": 2979
+              },
+              "wetenregelgeving": {
+                "berichten": 8,
+                "metTekst": 8,
+                "pct": 100,
+                "gemTekens": 22400
+              },
+              "zaanstad-ted": {
+                "berichten": 2,
+                "metTekst": 2,
+                "pct": 100,
+                "gemTekens": 74
+              },
+              "zaansche-molen": {
+                "berichten": 1,
+                "metTekst": 1,
+                "pct": 100,
+                "gemTekens": 1620
+              },
+              "ibabs-collegeberichten": {
+                "berichten": 16,
+                "metTekst": 9,
+                "pct": 56,
+                "gemTekens": 4965
+              },
+              "bekendmakingen": {
+                "berichten": 33,
+                "metTekst": 33,
+                "pct": 100,
+                "gemTekens": 2045
+              },
+              "rechtspraak-noord-holland": {
+                "berichten": 1,
+                "metTekst": 1,
+                "pct": 100,
+                "gemTekens": 6002
+              },
+              "omgevingsdienstnoordzeekanaal": {
+                "berichten": 2,
+                "metTekst": 2,
+                "pct": 100,
+                "gemTekens": 3328
+              },
+              "ibabs-ingekomen-stukken": {
+                "berichten": 43,
+                "metTekst": 34,
+                "pct": 79,
+                "gemTekens": 1901
+              },
+              "vervoerregio-overzichten": {
+                "berichten": 6,
+                "metTekst": 3,
+                "pct": 50,
+                "gemTekens": 6952
+              },
+              "vervoerregio-persberichten": {
+                "berichten": 5,
+                "metTekst": 5,
+                "pct": 100,
+                "gemTekens": 1586
+              }
+            }
+          },
+          "voorbeelden": [
+            {
+              "bron": "zaanstad-moties",
+              "methode": "lijst",
+              "kop": "Motie verworpen: Beetje tijd om vrij te stellen",
+              "tekensVoor": 641,
+              "tekensNa": 640,
+              "alineas": 1,
+              "rommelRegelsWeg": 0,
+              "alineasHerleid": false,
+              "begin": "Motie 26M92 Beetje tijd om vrij te stellen. Ingediend door Davelaar, Casper (VVD). Uitslag: verworpen met 29% voor. Voor: DENK (1), Forum voor Democratie (3), POV (4), VVD (3). Tegen: CDA (1), D66 (3), Democratisch Zaans",
+              "eind": "r 1 januari 2027 Namens de fractie van: VVD, Casper Davelaar Verworpen, zie besluitenlijst in het raadsinformatiesysteem"
+            },
+            {
+              "bron": "DeOrkaan",
+              "methode": "run",
+              "kop": "Zaans Verzet flyert bij middelbare scholen voor ‘schoolstaking’ tegen dienstplicht 🎥",
+              "tekensVoor": 3571,
+              "tekensNa": 3577,
+              "alineas": 7,
+              "rommelRegelsWeg": 0,
+              "alineasHerleid": true,
+              "begin": "De groep Zaans Verzet, bestaande uit zo’n zeven flyeraars en onderdeel van de landelijke groep Stop de Oorlogskoorts, is de afgelopen weken geregeld te vinden voor Zaanse middelbare scholen. Het doel is het verspreiden v",
+              "eind": " van een gesprek met Mark van der Hout, Michiel van Dijk, woordvoering van Zaanstad en de website stop de oorlogskoorts."
+            },
+            {
+              "bron": "nh-actueel",
+              "methode": "run",
+              "kop": "Provincie betrekt belanghebbenden bij aanpak stikstof en natuurherstel",
+              "tekensVoor": 3191,
+              "tekensNa": 2981,
+              "alineas": 6,
+              "rommelRegelsWeg": 2,
+              "alineasHerleid": true,
+              "begin": "De provincie heeft het participatieplan voor het Programma Natuurherstel en Stikstofvermindering op 10 november vastgesteld. Het plan laat zien hoe we de komende maanden samenwerken met de waterschappen, landbouworganisa",
+              "eind": "k en werken nauw samen met de landbouwsector. Samen met partners werken we aan concrete resultaten in de hele provincie."
+            },
+            {
+              "bron": "zaanstad-kalender",
+              "methode": "artikel",
+              "kop": "Maling Academie Najaar 2026 - Schrijf u in!!",
+              "tekensVoor": 132,
+              "tekensNa": 132,
+              "alineas": 6,
+              "rommelRegelsWeg": 0,
+              "alineasHerleid": false,
+              "begin": "donderdag 26 november 2026\n\n09:00 - 12:30\n\nLocatie\n\nZwolle\n\nAgenda documenten\n\n• Maling Academie Najaar 2026 - Schrijf u in!! 143 KB",
+              "eind": " november 2026\n\n09:00 - 12:30\n\nLocatie\n\nZwolle\n\nAgenda documenten\n\n• Maling Academie Najaar 2026 - Schrijf u in!! 143 KB"
+            }
+          ],
+          "regels": [
+            "Dekking volledige tekst: 331/350 berichten (95%). Laagst: vervoerregio-overzichten 3/6 (50%); ibabs-collegeberichten 9/16 (56%); ibabs-ingekomen-stukken 34/43 (79%)."
+          ]
+        },
+        "jubileum": {
+          "tellers": {
+            "nieuwsRood": 0,
+            "agendaRood": 0,
+            "uitgesloten": 0,
+            "alRoodDoorPrioriteit": 3
+          },
+          "waarden": {},
+          "voorbeelden": [],
+          "regels": []
+        },
+        "run": {
+          "tellers": {},
+          "waarden": {
+            "berichten": 461,
+            "agendaItems": 270,
+            "aiVerzoeken": 2,
+            "geminiDagGebruikt": "2/80",
+            "duurSeconden": 90
+          },
+          "voorbeelden": [],
+          "regels": []
+        }
+      }
     }
   ],
   "dagen": {
@@ -1475,32 +1670,32 @@
       }
     },
     "2026-11-12": {
-      "runs": 2,
+      "runs": 3,
       "tellers": {
         "spelling": {
-          "gecontroleerd": 6,
-          "ok": 6
+          "gecontroleerd": 7,
+          "ok": 7
         },
         "tekst": {
-          "aangeboden": 25,
-          "geschreven": 22,
+          "aangeboden": 50,
+          "geschreven": 44,
           "teOudOvergeslagen": 0,
           "leegOvergeslagen": 0,
-          "rommelRegelsWeg": 1,
-          "alineasHerleid": 7,
+          "rommelRegelsWeg": 3,
+          "alineasHerleid": 18,
           "titelHerhalingWeg": 2,
-          "methode-lijst": 2,
-          "methode-artikel": 11,
+          "methode-lijst": 19,
+          "methode-artikel": 15,
           "oudeBestandenOvergezet": 0,
           "dagbestandenVerwijderd": 0,
           "bytesVerwijderd": 0,
-          "methode-run": 12
+          "methode-run": 16
         },
         "jubileum": {
           "nieuwsRood": 0,
           "agendaRood": 1,
           "uitgesloten": 0,
-          "alRoodDoorPrioriteit": 5
+          "alRoodDoorPrioriteit": 8
         },
         "run": {}
       }

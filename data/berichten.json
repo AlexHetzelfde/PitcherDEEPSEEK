@@ -1,5 +1,5 @@
 {
-  "gegenereerdOp": "2026-11-12T07:50:59.785Z",
+  "gegenereerdOp": "2026-11-12T10:52:59.944Z",
   "promptVersie": "2026-11-11-batch-kop-tag-checklist-agendapunten",
   "alertModus": "log",
   "prioSchaal": "1 = urgent, 2 = belangrijk, 3 = regulier, 4 = routine. De AI geeft nooit prio 1.",
@@ -406,6 +406,1329 @@
   ],
   "berichten": [
     {
+      "id": "e70b2974fb-v1",
+      "groepId": "e70b2974fb",
+      "versie": 1,
+      "url": "https://zaanstad.bestuurlijkeinformatie.nl/Reports/Item/027708f4-7c42-48bf-9eae-3a36d9150dcc",
+      "kop": "Motie verworpen: Beetje tijd om vrij te stellen",
+      "tekst": null,
+      "rubriek": "GEM",
+      "tagBron": "bron",
+      "herkomst": "officieel",
+      "prio": 3,
+      "tijd": "2026-11-12T10:53:01.098Z",
+      "heeftTijd": true,
+      "woorden": 104,
+      "afgekapt": false,
+      "bronId": "zaanstad-moties",
+      "bronNaam": "Gemeente Zaanstad: moties en stemmingen (iBabs)",
+      "ai": false,
+      "controle": "geen-ai",
+      "eerstGezienOp": "2026-11-12T10:52:59.944Z",
+      "gecontroleerdOp": "2026-11-12T10:52:59.944Z",
+      "bronTitel": "Motie verworpen: Beetje tijd om vrij te stellen",
+      "bronLengte": 640,
+      "stemming": {
+        "uitslag": "verworpen",
+        "voorPct": 29,
+        "tegenPct": 71,
+        "fractiesVoor": [
+          "DENK (1)",
+          "Forum voor Democratie (3)",
+          "POV (4)",
+          "VVD (3)"
+        ],
+        "fractiesTegen": [
+          "CDA  (1)",
+          "D66 (3)",
+          "Democratisch Zaanstad (2)",
+          "DENK (1)",
+          "Lokaal Zaans (8)",
+          "Partij voor de Dieren (1)",
+          "PRO (5)",
+          "PVV (3)",
+          "ROSA (2)",
+          "SP (1)"
+        ],
+        "indiener": "Davelaar, Casper",
+        "fracties": [
+          "VVD"
+        ],
+        "medeondertekenaars": [],
+        "vergaderdatum": "2026-11-10",
+        "vergadering": "Raadsvergadering 2026",
+        "agendapunt": "4.1. Begroting 2027-2030",
+        "type": "Motie",
+        "code": "26M92"
+      },
+      "strekking": {
+        "tekst": "Verzoekt het college om: • de busbrug open te stellen voor een duur van vier maanden per 1 januari 2027 Namens de fractie van: VVD, Casper Davelaar Verworpen, zie besluitenlijst in het raadsinformatiesysteem",
+        "aanleiding": "Constaterende dat: • busbrug De Binding tijdens de ochtend- en avondspits gesloten is voor regulier autoverkeer;",
+        "bron": "dictum"
+      }
+    },
+    {
+      "id": "9c47fb9e4c-v1",
+      "groepId": "9c47fb9e4c",
+      "versie": 1,
+      "url": "https://zaanstad.bestuurlijkeinformatie.nl/Reports/Item/5f420318-84a0-45a2-b593-d4f1425a773c",
+      "kop": "Motie verworpen: Eerst kaders, dan extra camera’s",
+      "tekst": null,
+      "rubriek": "GEM",
+      "tagBron": "bron",
+      "herkomst": "officieel",
+      "prio": 3,
+      "tijd": "2026-11-12T10:53:01.098Z",
+      "heeftTijd": true,
+      "woorden": 153,
+      "afgekapt": false,
+      "bronId": "zaanstad-moties",
+      "bronNaam": "Gemeente Zaanstad: moties en stemmingen (iBabs)",
+      "ai": false,
+      "controle": "geen-ai",
+      "eerstGezienOp": "2026-11-12T10:52:59.944Z",
+      "gecontroleerdOp": "2026-11-12T10:52:59.944Z",
+      "bronTitel": "Motie verworpen: Eerst kaders, dan extra camera’s",
+      "bronLengte": 1029,
+      "stemming": {
+        "uitslag": "verworpen",
+        "voorPct": 29,
+        "tegenPct": 71,
+        "fractiesVoor": [
+          "Democratisch Zaanstad (2)",
+          "Forum voor Democratie (3)",
+          "Partij voor de Dieren (1)",
+          "PRO (5)"
+        ],
+        "fractiesTegen": [
+          "CDA  (1)",
+          "D66 (3)",
+          "DENK (2)",
+          "Lokaal Zaans (8)",
+          "POV (4)",
+          "PVV (3)",
+          "ROSA (2)",
+          "SP (1)",
+          "VVD (3)"
+        ],
+        "indiener": "Belkasmi, Abdelhak",
+        "fracties": [
+          "PRO"
+        ],
+        "medeondertekenaars": [],
+        "vergaderdatum": "2026-11-10",
+        "vergadering": "Raadsvergadering 2026",
+        "agendapunt": "4.1. Begroting 2027-2030",
+        "type": "Motie",
+        "code": "26M88"
+      },
+      "strekking": {
+        "tekst": "Verzoekt de burgemeester ● een beleids- en toetsingskader voor de inzet en uitbreiding van cameratoezicht in de openbare ruimte op te stellen, waarin in ieder geval wordt ingegaan op noodzaak, proportionaliteit, subsidiariteit, doel, duur, evaluatie en de afweging ten opzichte van andere veiligheidsmaatregelen; ● dit beleids- en toetsingskader met de gemeenteraad te bespreken voordat wordt overgegaan tot structurele uitbreiding van het cameratoezicht; ● de raad daarbij in de gelegenheid te stellen input mee te geven; PRO Zaanstad Abdelhak Belkasmi Verworpen, zie besluitenlijst in het raadsinformatiesysteem",
+        "aanleiding": "Constaterende dat ● de burgemeester bevoegd is om cameratoezicht in de openbare ruimte in te stellen;",
+        "bron": "dictum"
+      }
+    },
+    {
+      "id": "e35f1ed7ac-v1",
+      "groepId": "e35f1ed7ac",
+      "versie": 1,
+      "url": "https://zaanstad.bestuurlijkeinformatie.nl/Reports/Item/d8df0b25-ec2c-489c-ac4e-929f737e5c02",
+      "kop": "Motie verworpen: Duurzame Schoolgebouwen",
+      "tekst": null,
+      "rubriek": "GEM",
+      "tagBron": "bron",
+      "herkomst": "officieel",
+      "prio": 3,
+      "tijd": "2026-11-12T10:53:01.098Z",
+      "heeftTijd": true,
+      "woorden": 213,
+      "afgekapt": false,
+      "bronId": "zaanstad-moties",
+      "bronNaam": "Gemeente Zaanstad: moties en stemmingen (iBabs)",
+      "ai": false,
+      "controle": "geen-ai",
+      "eerstGezienOp": "2026-11-12T10:52:59.944Z",
+      "gecontroleerdOp": "2026-11-12T10:52:59.944Z",
+      "bronTitel": "Motie verworpen: Duurzame Schoolgebouwen",
+      "bronLengte": 1289,
+      "stemming": {
+        "uitslag": "verworpen",
+        "voorPct": 24,
+        "tegenPct": 76,
+        "fractiesVoor": [
+          "Partij voor de Dieren (1)",
+          "PRO (5)",
+          "ROSA (2)",
+          "SP (1)"
+        ],
+        "fractiesTegen": [
+          "CDA  (1)",
+          "D66 (3)",
+          "Democratisch Zaanstad (2)",
+          "DENK (2)",
+          "Forum voor Democratie (3)",
+          "Lokaal Zaans (8)",
+          "POV (4)",
+          "PVV (3)",
+          "VVD (3)"
+        ],
+        "indiener": "Horst, Liv van der",
+        "fracties": [
+          "PRO",
+          "ROSA",
+          "SP",
+          "PvdD"
+        ],
+        "medeondertekenaars": [
+          "Schuttevaer, Mariska",
+          "Groot, Anna de",
+          "Pieterson, Marijn"
+        ],
+        "vergaderdatum": "2026-11-10",
+        "vergadering": "Raadsvergadering 2026",
+        "agendapunt": "4.1. Begroting 2027-2030",
+        "type": "Motie",
+        "code": "26M91"
+      },
+      "strekking": {
+        "tekst": "Verzoekt het college: - Met schoolbesturen afspraken te maken over het verduurzamen van schoolgebouwen in kader van de ENG-norm - Onderzoek te doen naar de kosten die het bouwen volgens de BENG-norm op de lange termijn zullen meebrengen tav de ENG-norm in 2050. - Onderzoek te doen naar (ook) de financiële en juridische gevolgen van het implementeren van de BENG-norm in het IHP van 2027 - De ENG-norm in plaats van de BENG-norm te te behouden bij het actualiseren van het IHP in 2027 Namens: PRO - Liv van der Horst ROSA - Mariska Schuttevaer SP – Anna de Groot PvdD – Marijn Pieterson Verworpen, zie besluitenlijst in het raadsinformatiesysteem",
+        "aanleiding": "Constaterende dat: - Het college wil bezuinigen door de ENG-norm bij schoolgebouwente verlagen naar de BENG-norm - De besparingen pas in 2031 zichtbaar zullen zijn volgens het college - Er vanaf 1 januari 2030 nieuwe landelijke wet- en regelgeving ingaat over de normen waaraan schoolgebouwen moeten voldoen: Vanaf 2030…",
+        "bron": "dictum"
+      }
+    },
+    {
+      "id": "5cdb3b1c63-v1",
+      "groepId": "5cdb3b1c63",
+      "versie": 1,
+      "url": "https://zaanstad.bestuurlijkeinformatie.nl/Reports/Item/34d3d30e-7411-4b88-891c-71b8d5415863",
+      "kop": "Motie verworpen: Focus op Fluxus bij bezuinigingen Kunst en Cultuur",
+      "tekst": null,
+      "rubriek": "GEM",
+      "tagBron": "bron",
+      "herkomst": "officieel",
+      "prio": 3,
+      "tijd": "2026-11-12T10:53:01.098Z",
+      "heeftTijd": true,
+      "woorden": 125,
+      "afgekapt": false,
+      "bronId": "zaanstad-moties",
+      "bronNaam": "Gemeente Zaanstad: moties en stemmingen (iBabs)",
+      "ai": false,
+      "controle": "geen-ai",
+      "eerstGezienOp": "2026-11-12T10:52:59.944Z",
+      "gecontroleerdOp": "2026-11-12T10:52:59.944Z",
+      "bronTitel": "Motie verworpen: Focus op Fluxus bij bezuinigingen Kunst en Cultuur",
+      "bronLengte": 833,
+      "stemming": {
+        "uitslag": "verworpen",
+        "voorPct": 13,
+        "tegenPct": 87,
+        "fractiesVoor": [
+          "Democratisch Zaanstad (2)",
+          "PVV (3)"
+        ],
+        "fractiesTegen": [
+          "CDA  (1)",
+          "D66 (3)",
+          "DENK (2)",
+          "Forum voor Democratie (3)",
+          "Lokaal Zaans (8)",
+          "Partij voor de Dieren (1)",
+          "POV (4)",
+          "PRO (5)",
+          "ROSA (2)",
+          "SP (1)",
+          "VVD (3)"
+        ],
+        "indiener": "Barends, Menno",
+        "fracties": [],
+        "medeondertekenaars": [],
+        "vergaderdatum": "2026-11-10",
+        "vergadering": "Raadsvergadering 2026",
+        "agendapunt": "4.1. Begroting 2027-2030",
+        "type": "Motie",
+        "code": "26M89"
+      },
+      "strekking": {
+        "tekst": "Verzoekt het college: • bij de verdere uitwerking van de aangekondigde bezuinigingen op kunst en cultuur de subsidie aan Fluxus nadrukkelijk als prioritair aandachtspunt te betrekken; • de subsidie aan Fluxus afzonderlijk te beoordelen op de gesubsidieerde activiteiten, de daarmee behaalde resultaten en de verhouding tussen de verstrekte subsidie en de maatschappelijke meerwaarde voor Zaanstad;",
+        "aanleiding": "Constaterende dat: • de gemeente Zaanstad in de begroting 2027–2030 bezuinigingen aankondigt op kunst en cultuur;",
+        "bron": "dictum"
+      }
+    },
+    {
+      "id": "1bad7c25da-v1",
+      "groepId": "1bad7c25da",
+      "versie": 1,
+      "url": "https://zaanstad.bestuurlijkeinformatie.nl/Reports/Item/4bd2276a-549e-48f8-9adf-08f6f330df2a",
+      "kop": "Motie aangenomen: Energiezekerheid voor Zaanstad: onafhankelijke SMR-verkenning",
+      "tekst": null,
+      "rubriek": "GEM",
+      "tagBron": "bron",
+      "herkomst": "officieel",
+      "prio": 3,
+      "tijd": "2026-11-12T10:53:01.098Z",
+      "heeftTijd": true,
+      "woorden": 147,
+      "afgekapt": false,
+      "bronId": "zaanstad-moties",
+      "bronNaam": "Gemeente Zaanstad: moties en stemmingen (iBabs)",
+      "ai": false,
+      "controle": "geen-ai",
+      "eerstGezienOp": "2026-11-12T10:52:59.944Z",
+      "gecontroleerdOp": "2026-11-12T10:52:59.944Z",
+      "bronTitel": "Motie aangenomen: Energiezekerheid voor Zaanstad: onafhankelijke SMR-verkenning",
+      "bronLengte": 1121,
+      "stemming": {
+        "uitslag": "aangenomen",
+        "voorPct": 58,
+        "tegenPct": 42,
+        "fractiesVoor": [
+          "CDA  (1)",
+          "Forum voor Democratie (3)",
+          "Lokaal Zaans (8)",
+          "POV (4)",
+          "PVV (3)",
+          "VVD (3)"
+        ],
+        "fractiesTegen": [
+          "D66 (3)",
+          "Democratisch Zaanstad (2)",
+          "DENK (2)",
+          "Partij voor de Dieren (1)",
+          "PRO (5)",
+          "ROSA (2)",
+          "SP (1)"
+        ],
+        "indiener": "Boomsma, Boy",
+        "fracties": [
+          "PVV"
+        ],
+        "medeondertekenaars": [],
+        "vergaderdatum": "2026-11-10",
+        "vergadering": "Raadsvergadering 2026",
+        "agendapunt": "4.1. Begroting 2027-2030",
+        "type": "Motie",
+        "code": "26M83"
+      },
+      "strekking": {
+        "tekst": "Draagt het college op: 1. Met inachtneming van de financiële voorwaarden onder punt 5 een onafhankelijke, locatiegerichte haalbaarheidsverkenning op hoofdlijnen te laten uitvoeren naar de (on)mogelijkheden van een Small Modular Reactor (SMR) binnen de gemeentegrenzen van Zaanstad. 2. In deze verkenning ten minste de volgende onderwerpen te behandelen: a. Energie en techniek: mogelijke vermogens, energieopbrengst en toepassingen voor elektriciteit en eventueel warmte voor inwoners, bedrijven en voorzieningen; technische volwassenheid, brandstofvoorziening en aantoonbare beschikbaarheid van verschillende reactortypen; b.",
+        "aanleiding": "Constaterende dat: • betrouwbare en betaalbare energie essentieel is voor inwoners, woningbouw, maatschappelijke voorzieningen en bedrijvigheid in Zaanstad;",
+        "bron": "dictum"
+      }
+    },
+    {
+      "id": "f97633ef6a-v1",
+      "groepId": "f97633ef6a",
+      "versie": 1,
+      "url": "https://zaanstad.bestuurlijkeinformatie.nl/Reports/Item/29433dbc-70bc-4b5e-a92a-2c4c6397b0a6",
+      "kop": "Motie aangenomen: (gewijzigd) Motie Gezonde schoolmaaltijden bereikbaar voor ieder kind in Zaanstad",
+      "tekst": null,
+      "rubriek": "GEM",
+      "tagBron": "bron",
+      "herkomst": "officieel",
+      "prio": 3,
+      "tijd": "2026-11-12T10:53:01.098Z",
+      "heeftTijd": true,
+      "woorden": 170,
+      "afgekapt": false,
+      "bronId": "zaanstad-moties",
+      "bronNaam": "Gemeente Zaanstad: moties en stemmingen (iBabs)",
+      "ai": false,
+      "controle": "geen-ai",
+      "eerstGezienOp": "2026-11-12T10:52:59.944Z",
+      "gecontroleerdOp": "2026-11-12T10:52:59.944Z",
+      "bronTitel": "Motie aangenomen: (gewijzigd) Motie Gezonde schoolmaaltijden bereikbaar voor ieder kind in Zaanstad",
+      "bronLengte": 1142,
+      "stemming": {
+        "uitslag": "aangenomen",
+        "voorPct": 63,
+        "tegenPct": 37,
+        "fractiesVoor": [
+          "CDA  (1)",
+          "D66 (3)",
+          "Democratisch Zaanstad (2)",
+          "DENK (2)",
+          "Lokaal Zaans (8)",
+          "PRO (5)",
+          "ROSA (2)",
+          "SP (1)"
+        ],
+        "fractiesTegen": [
+          "Forum voor Democratie (3)",
+          "Partij voor de Dieren (1)",
+          "POV (4)",
+          "PVV (3)",
+          "VVD (3)"
+        ],
+        "indiener": "Vos, Robbert",
+        "fracties": [
+          "D66",
+          "CDA",
+          "PRO"
+        ],
+        "medeondertekenaars": [
+          "Hendriks, Nick",
+          "Horst, Liv van der"
+        ],
+        "vergaderdatum": "2026-11-10",
+        "vergadering": "Raadsvergadering 2026",
+        "agendapunt": "4.1. Begroting 2027-2030",
+        "type": "Motie",
+        "code": "26M84"
+      },
+      "strekking": {
+        "tekst": "Verzoekt het college 1. gezonde schoolmaaltijden voor Zaanse basisschoolleerlingen expliciet op te nemen als doel in de lobbystrategie 2027, gericht op een structurele Rijksregeling vanaf 2029 die ook scholen met kwetsbare kinderen onder de 30%-drempel bereikt; 2. daarbij op te trekken met andere gemeenten en de VNG; 3. daarbij te onderzoeken hoe de bestaande infrastructuur in Zaandam-Oost kan worden benut voor opschaling, Robbert Vos, namens D66 Zaanstad Nick Hendriks, namens CDA Zaanstad Liv van der Horst, namens PRO Zaanstad",
+        "aanleiding": "Constaterende dat • het Rijk via het Programma Schoolmaaltijden scholen met minimaal 30% leerlingen uit lageinkomensgezinnen financiert en deze regeling naar verwachting vanaf 2029 structureel wordt, met een nog niet vastgestelde doelgroep;",
+        "bron": "dictum"
+      }
+    },
+    {
+      "id": "99ea4322c1-v1",
+      "groepId": "99ea4322c1",
+      "versie": 1,
+      "url": "https://zaanstad.bestuurlijkeinformatie.nl/Reports/Item/e192129c-9f9a-4895-836d-89e17c1f75e0",
+      "kop": "Motie aangenomen: Zaans Preventiemodel",
+      "tekst": null,
+      "rubriek": "GEM",
+      "tagBron": "bron",
+      "herkomst": "officieel",
+      "prio": 3,
+      "tijd": "2026-11-12T10:53:01.098Z",
+      "heeftTijd": true,
+      "woorden": 124,
+      "afgekapt": false,
+      "bronId": "zaanstad-moties",
+      "bronNaam": "Gemeente Zaanstad: moties en stemmingen (iBabs)",
+      "ai": false,
+      "controle": "geen-ai",
+      "eerstGezienOp": "2026-11-12T10:52:59.944Z",
+      "gecontroleerdOp": "2026-11-12T10:52:59.944Z",
+      "bronTitel": "Motie aangenomen: Zaans Preventiemodel",
+      "bronLengte": 861,
+      "stemming": {
+        "uitslag": "aangenomen",
+        "voorPct": 100,
+        "tegenPct": 0,
+        "fractiesVoor": [
+          "CDA  (1)",
+          "D66 (3)",
+          "Democratisch Zaanstad (2)",
+          "DENK (2)",
+          "Forum voor Democratie (3)",
+          "Lokaal Zaans (8)",
+          "Partij voor de Dieren (1)",
+          "POV (4)",
+          "PRO (5)",
+          "PVV (3)",
+          "ROSA (2)",
+          "SP (1)",
+          "VVD (3)"
+        ],
+        "fractiesTegen": [],
+        "indiener": "Hellings, Orlando",
+        "fracties": [
+          "DENK"
+        ],
+        "medeondertekenaars": [],
+        "vergaderdatum": "2026-11-10",
+        "vergadering": "Raadsvergadering 2026",
+        "agendapunt": "4.1. Begroting 2027-2030",
+        "type": "Motie",
+        "code": "26M80"
+      },
+      "strekking": {
+        "tekst": "Draagt het college op: ￿ Zorg te dragen voor de bestuurlijke borging van het ZPM als langdurige, integrale preventieve aanpak; ￿ Eventueel benodigde ondersteuning te bieden, voor zover het binnen de mogelijkheden van de gemeente Zaanstad ligt; ￿ De gemeenteraad op de hoogte te houden van toekomstige belangrijke ontwikkelingen, betreffende het Jeugd/jongeren beleid; Namens, DENK Zaanstad Orlando Ronny Hellings. Aangenomen, zie besluitenlijst in het raadsinformatiesysteem",
+        "aanleiding": "Constaterende dat: ￿ Jeugd/jongeren problematiek in Zaanstad een belangrijk onderwerp is;",
+        "bron": "dictum"
+      }
+    },
+    {
+      "id": "8f24f646b5-v1",
+      "groepId": "8f24f646b5",
+      "versie": 1,
+      "url": "https://zaanstad.bestuurlijkeinformatie.nl/Reports/Item/a564e6c1-9889-4063-8c37-11989d89a5bd",
+      "kop": "Motie aangenomen: Betrek cultuurinstellingen bij de inrichting van bezuinigingsmaatregelen",
+      "tekst": null,
+      "rubriek": "GEM",
+      "tagBron": "bron",
+      "herkomst": "officieel",
+      "prio": 3,
+      "tijd": "2026-11-12T10:53:01.098Z",
+      "heeftTijd": true,
+      "woorden": 167,
+      "afgekapt": false,
+      "bronId": "zaanstad-moties",
+      "bronNaam": "Gemeente Zaanstad: moties en stemmingen (iBabs)",
+      "ai": false,
+      "controle": "geen-ai",
+      "eerstGezienOp": "2026-11-12T10:52:59.944Z",
+      "gecontroleerdOp": "2026-11-12T10:52:59.944Z",
+      "bronTitel": "Motie aangenomen: Betrek cultuurinstellingen bij de inrichting van bezuinigingsmaatregelen",
+      "bronLengte": 1109,
+      "stemming": {
+        "uitslag": "aangenomen",
+        "voorPct": 68,
+        "tegenPct": 32,
+        "fractiesVoor": [
+          "CDA  (1)",
+          "D66 (3)",
+          "Democratisch Zaanstad (2)",
+          "DENK (2)",
+          "Lokaal Zaans (8)",
+          "POV (4)",
+          "PRO (5)",
+          "SP (1)"
+        ],
+        "fractiesTegen": [
+          "Forum voor Democratie (3)",
+          "Partij voor de Dieren (1)",
+          "PVV (3)",
+          "ROSA (2)",
+          "VVD (3)"
+        ],
+        "indiener": "Zeltsburg, Lilit",
+        "fracties": [
+          "PRO",
+          "SP",
+          "D66",
+          "Lokaal Zaans"
+        ],
+        "medeondertekenaars": [
+          "Groot, Anna de",
+          "Haan, Jochem de",
+          "Klos, Peter"
+        ],
+        "vergaderdatum": "2026-11-10",
+        "vergadering": "Raadsvergadering 2026",
+        "agendapunt": "4.1. Begroting 2027-2030",
+        "type": "Motie",
+        "code": "26M85"
+      },
+      "strekking": {
+        "tekst": "Verzoekt het college - bij de invulling van de bezuinigingsopgave nadrukkelijk een plek te geven aan de input van de culturele instellingen, - zich in te spannen om eerst besparingsinitiatieven van de instellingen optimaal te laten verlopen, alvorens verdergaande bezuinigingsmaatregelen te treffen, - de raad telkens te informeren over de input van culturele instellingen bij besluiten die deze instellingen raken",
+        "aanleiding": "Constaterende dat - het college, blijkens de Begroting 2027-2030, voornemens is om vanaf 2028 € 1.363.000 en vanaf 2029 jaarlijks € 2.125.000 aan besparingen te realiseren binnen het programma Economie, kunst en cultuur met ‘Diverse maatregelen kunst en cultuur’, - het college stelt te willen werken aan een beperkte…",
+        "bron": "dictum"
+      }
+    },
+    {
+      "id": "13457016db-v1",
+      "groepId": "13457016db",
+      "versie": 1,
+      "url": "https://zaanstad.bestuurlijkeinformatie.nl/Reports/Item/203e16de-316e-4ed2-b3ff-0c8387ff3e90",
+      "kop": "Motie verworpen: Eerst een visie",
+      "tekst": null,
+      "rubriek": "GEM",
+      "tagBron": "bron",
+      "herkomst": "officieel",
+      "prio": 3,
+      "tijd": "2026-11-12T10:53:01.098Z",
+      "heeftTijd": true,
+      "woorden": 157,
+      "afgekapt": false,
+      "bronId": "zaanstad-moties",
+      "bronNaam": "Gemeente Zaanstad: moties en stemmingen (iBabs)",
+      "ai": false,
+      "controle": "geen-ai",
+      "eerstGezienOp": "2026-11-12T10:52:59.944Z",
+      "gecontroleerdOp": "2026-11-12T10:52:59.944Z",
+      "bronTitel": "Motie verworpen: Eerst een visie",
+      "bronLengte": 1127,
+      "stemming": {
+        "uitslag": "verworpen",
+        "voorPct": 37,
+        "tegenPct": 63,
+        "fractiesVoor": [
+          "Democratisch Zaanstad (2)",
+          "Partij voor de Dieren (1)",
+          "PRO (5)",
+          "PVV (3)",
+          "ROSA (2)",
+          "SP (1)"
+        ],
+        "fractiesTegen": [
+          "CDA  (1)",
+          "D66 (3)",
+          "DENK (2)",
+          "Forum voor Democratie (3)",
+          "Lokaal Zaans (8)",
+          "POV (4)",
+          "VVD (3)"
+        ],
+        "indiener": "Belkasmi, Abdelhak",
+        "fracties": [
+          "PRO",
+          "PvdD",
+          "ROSA",
+          "SP",
+          "PVV"
+        ],
+        "medeondertekenaars": [
+          "Pieterson, Marijn",
+          "Groot, Anna de",
+          "Kuyper, Hans",
+          "Cornelisse, Natasja"
+        ],
+        "vergaderdatum": "2026-11-10",
+        "vergadering": "Raadsvergadering 2026",
+        "agendapunt": "4.1. Begroting 2027-2030",
+        "type": "Motie",
+        "code": "26M78"
+      },
+      "strekking": {
+        "tekst": "Verzoekt het college: 1. Voorafgaand aan de uitvoering van voorgenomen bezuinigingsmaatregelen vanaf 2028 met een structurele omvang van €500.000 of meer per jaar (hierna: grote bezuinigingsmaatregelen) samenhangende inhoudelijke visies en uitvoeringsplannen aan de gemeenteraad voor te leggen; 2. Per grote bezuinigingsmaatregel ten minste inzichtelijk te maken: o Welke beleidsmatige en maatschappelijke doelstellingen worden nagestreefd; o Welke gevolgen de maatregel heeft voor inwoners, in het bijzonder inwoners in een kwetsbare positie; o Welke gevolgen er zijn voor maatschappelijke organisaties en het voorzieningenniveau in Zaanstad;",
+        "aanleiding": "Constaterende dat: ● In de Begroting 2027–2030 verschillende bezuinigingsmaatregelen zijn opgenomen, waarvan een belangrijk deel vanaf 2028 moet worden gerealiseerd;",
+        "bron": "dictum"
+      }
+    },
+    {
+      "id": "8fe78e8911-v1",
+      "groepId": "8fe78e8911",
+      "versie": 1,
+      "url": "https://zaanstad.bestuurlijkeinformatie.nl/Reports/Item/ecbdca8e-8945-4bb4-ab86-4d53e903279b",
+      "kop": "Motie aangenomen: A8-A9 Te groot voor de provincie, te belangrijk om te laten liggen",
+      "tekst": null,
+      "rubriek": "GEM",
+      "tagBron": "bron",
+      "herkomst": "officieel",
+      "prio": 3,
+      "tijd": "2026-11-12T10:53:01.098Z",
+      "heeftTijd": true,
+      "woorden": 181,
+      "afgekapt": false,
+      "bronId": "zaanstad-moties",
+      "bronNaam": "Gemeente Zaanstad: moties en stemmingen (iBabs)",
+      "ai": false,
+      "controle": "geen-ai",
+      "eerstGezienOp": "2026-11-12T10:52:59.944Z",
+      "gecontroleerdOp": "2026-11-12T10:52:59.944Z",
+      "bronTitel": "Motie aangenomen: A8-A9 Te groot voor de provincie, te belangrijk om te laten liggen",
+      "bronLengte": 1089,
+      "stemming": {
+        "uitslag": "aangenomen",
+        "voorPct": 71,
+        "tegenPct": 29,
+        "fractiesVoor": [
+          "CDA  (1)",
+          "D66 (3)",
+          "DENK (2)",
+          "Forum voor Democratie (3)",
+          "Lokaal Zaans (8)",
+          "POV (4)",
+          "PVV (3)",
+          "VVD (3)"
+        ],
+        "fractiesTegen": [
+          "Democratisch Zaanstad (2)",
+          "Partij voor de Dieren (1)",
+          "PRO (5)",
+          "ROSA (2)",
+          "SP (1)"
+        ],
+        "indiener": "Davelaar, Casper",
+        "fracties": [
+          "CDA",
+          "Forum voor democratie",
+          "PVV",
+          "VVD",
+          "Lokaal Zaans"
+        ],
+        "medeondertekenaars": [
+          "Boomsma, Boy",
+          "Hendriks, Nick",
+          "Uitert, Elano van",
+          "Klos, Peter"
+        ],
+        "vergaderdatum": "2026-11-10",
+        "vergadering": "Raadsvergadering 2026",
+        "agendapunt": "4.1. Begroting 2027-2030",
+        "type": "Motie",
+        "code": "26M77"
+      },
+      "strekking": {
+        "tekst": "Verzoekt het college om: • de realisatie van de A8-A9 op te nemen in de Zaanse lobby richting het Rijk; • daarin de op 10 juli 2025 aangenomen motie mbt het strategische belang van de A8-A9 mee te nemen • hiervoor de structureel beschikbare middelen voor lobby en public affairs in te zetten; • samen met de provincie Noord-Holland, de Vervoerregio Amsterdam en andere betrokken partijen te blijven werken aan de realisatie van deze verbinding; Namens de fractie van: VVD, Casper Davelaar PVV, Boy Boomsma CDA, Nick Hendriks FvD, Elano van Uitert Lokaal Zaans, Peter Klos",
+        "aanleiding": "Constaterende dat: • de verbinding A8-A9 al tientallen jaren onderwerp van discussie is, maar nog altijd niet aangelegd is;",
+        "bron": "dictum"
+      }
+    },
+    {
+      "id": "419a6b8b83-v1",
+      "groepId": "419a6b8b83",
+      "versie": 1,
+      "url": "https://zaanstad.bestuurlijkeinformatie.nl/Reports/Item/c27ad020-2d08-4dde-9028-bde24792ba36",
+      "kop": "Motie aangenomen: Niet omrijden, maar vrijstellen",
+      "tekst": null,
+      "rubriek": "GEM",
+      "tagBron": "bron",
+      "herkomst": "officieel",
+      "prio": 3,
+      "tijd": "2026-11-12T10:53:01.098Z",
+      "heeftTijd": true,
+      "woorden": 180,
+      "afgekapt": false,
+      "bronId": "zaanstad-moties",
+      "bronNaam": "Gemeente Zaanstad: moties en stemmingen (iBabs)",
+      "ai": false,
+      "controle": "geen-ai",
+      "eerstGezienOp": "2026-11-12T10:52:59.944Z",
+      "gecontroleerdOp": "2026-11-12T10:52:59.944Z",
+      "bronTitel": "Motie aangenomen: Niet omrijden, maar vrijstellen",
+      "bronLengte": 1173,
+      "stemming": {
+        "uitslag": "aangenomen",
+        "voorPct": 68,
+        "tegenPct": 32,
+        "fractiesVoor": [
+          "CDA  (1)",
+          "Democratisch Zaanstad (2)",
+          "DENK (2)",
+          "Forum voor Democratie (3)",
+          "Lokaal Zaans (8)",
+          "POV (4)",
+          "PVV (3)",
+          "VVD (3)"
+        ],
+        "fractiesTegen": [
+          "D66 (3)",
+          "Partij voor de Dieren (1)",
+          "PRO (5)",
+          "ROSA (2)",
+          "SP (1)"
+        ],
+        "indiener": "Davelaar, Casper",
+        "fracties": [
+          "VVD",
+          "PVV",
+          "Lokaal Zaans",
+          "CDA",
+          "POV",
+          "DZ",
+          "Forum voor democratie"
+        ],
+        "medeondertekenaars": [
+          "Boomsma, Boy",
+          "Amesfoort, Kevin van",
+          "Hendriks, Nick",
+          "Keijser, Nino",
+          "Kerkhoven, Jos",
+          "Uitert, Elano van"
+        ],
+        "vergaderdatum": "2026-11-10",
+        "vergadering": "Raadsvergadering 2026",
+        "agendapunt": "4.1. Begroting 2027-2030",
+        "type": "Motie",
+        "code": "26M76"
+      },
+      "strekking": {
+        "tekst": "Verzoekt het college om: • op de kortst mogelijke termijn een tijdelijke ontheffingsregeling voor het spitsverbod op busbrug De Binding in te voeren voor inwoners van Westerkoog en Westerwatering. • deze regeling vorm te geven binnen de mogelijkheden van artikel 87 RVV en artikel 149, eerste lid, onder d, van de Wegenverkeerswet 1994, • In voorkomende gevallen inwoners uit andere delen van de gemeente ook een ontheffing kunnen krijgen met als uitgangspunt dat uitsluitend inwoners met een direct belang in aanmerking komen; • de regeling te laten gelden totdat de busbrug definitief wordt opengesteld, waarbij het verbod voor vrachtwagens vanwege de verkeersveiligheid gehandhaafd blijft;",
+        "aanleiding": "Constaterende dat: • busbrug De Binding tijdens de ochtend- en avondspits gesloten is voor regulier autoverkeer;",
+        "bron": "dictum"
+      }
+    },
+    {
+      "id": "6f287781dc-v1",
+      "groepId": "6f287781dc",
+      "versie": 1,
+      "url": "https://zaanstad.bestuurlijkeinformatie.nl/Reports/Item/0356b107-1412-4c26-ad74-49af1c01ddd8",
+      "kop": "Motie aangenomen: Wie niets geeft, kan niet terugverwachten",
+      "tekst": null,
+      "rubriek": "GEM",
+      "tagBron": "bron",
+      "herkomst": "officieel",
+      "prio": 3,
+      "tijd": "2026-11-12T10:53:01.098Z",
+      "heeftTijd": true,
+      "woorden": 159,
+      "afgekapt": false,
+      "bronId": "zaanstad-moties",
+      "bronNaam": "Gemeente Zaanstad: moties en stemmingen (iBabs)",
+      "ai": false,
+      "controle": "geen-ai",
+      "eerstGezienOp": "2026-11-12T10:52:59.944Z",
+      "gecontroleerdOp": "2026-11-12T10:52:59.944Z",
+      "bronTitel": "Motie aangenomen: Wie niets geeft, kan niet terugverwachten",
+      "bronLengte": 1010,
+      "stemming": {
+        "uitslag": "aangenomen",
+        "voorPct": 68,
+        "tegenPct": 32,
+        "fractiesVoor": [
+          "CDA  (1)",
+          "Democratisch Zaanstad (2)",
+          "DENK (2)",
+          "Forum voor Democratie (3)",
+          "Lokaal Zaans (8)",
+          "POV (4)",
+          "PVV (3)",
+          "VVD (3)"
+        ],
+        "fractiesTegen": [
+          "D66 (3)",
+          "Partij voor de Dieren (1)",
+          "PRO (5)",
+          "ROSA (2)",
+          "SP (1)"
+        ],
+        "indiener": "Davelaar, Casper",
+        "fracties": [
+          "CDA",
+          "VVD",
+          "PVV",
+          "Lokaal Zaans",
+          "POV",
+          "DZ",
+          "Forum voor democratie"
+        ],
+        "medeondertekenaars": [
+          "Boomsma, Boy",
+          "Amesfoort, Kevin van",
+          "Hendriks, Nick",
+          "Keijser, Nino",
+          "Kerkhoven, Jos",
+          "Uitert, Elano van"
+        ],
+        "vergaderdatum": "2026-11-10",
+        "vergadering": "Raadsvergadering 2026",
+        "agendapunt": "4.1. Begroting 2027-2030",
+        "type": "Motie",
+        "code": "26M75"
+      },
+      "strekking": {
+        "tekst": "Verzoekt het college om: • de inzet van de camera’s bij busbrug De Binding op de kortst mogelijke termijn te beëindigen; • de besparing van €12.500 per jaar, plus de vrijvallende ambtelijke capaciteit, ten goede te laten komen aan andere mobiliteitsopgaven binnen de gemeente; Namens de fractie van: VVD, Casper Davelaar PVV, Boy Boomsma LZ, Kevin van Amesfoort CDA, Nick Hendriks POV, Nino Keijser DZ, Jos Kerkhoven FvD, Elano van Uitert Aangenomen, zie besluitenlijst in het raadsinformatiesysteem",
+        "aanleiding": "Constaterende dat: • bij busbrug De Binding gebruik wordt gemaakt van camera’s voor handhaving van het inrijverbod tijdens de spits;",
+        "bron": "dictum"
+      }
+    },
+    {
+      "id": "32f3a7acfd-v1",
+      "groepId": "32f3a7acfd",
+      "versie": 1,
+      "url": "https://zaanstad.bestuurlijkeinformatie.nl/Reports/Item/2470be28-b1f8-4dd5-8566-56933346c5a7",
+      "kop": "Motie verworpen: Voorkom stapeling van financiële lasten bij kwetsbare inwoners",
+      "tekst": null,
+      "rubriek": "GEM",
+      "tagBron": "bron",
+      "herkomst": "officieel",
+      "prio": 3,
+      "tijd": "2026-11-12T10:53:01.098Z",
+      "heeftTijd": true,
+      "woorden": 163,
+      "afgekapt": false,
+      "bronId": "zaanstad-moties",
+      "bronNaam": "Gemeente Zaanstad: moties en stemmingen (iBabs)",
+      "ai": false,
+      "controle": "geen-ai",
+      "eerstGezienOp": "2026-11-12T10:52:59.944Z",
+      "gecontroleerdOp": "2026-11-12T10:52:59.944Z",
+      "bronTitel": "Motie verworpen: Voorkom stapeling van financiële lasten bij kwetsbare inwoners",
+      "bronLengte": 1193,
+      "stemming": {
+        "uitslag": "verworpen",
+        "voorPct": 29,
+        "tegenPct": 71,
+        "fractiesVoor": [
+          "PRO (5)",
+          "PVV (3)",
+          "ROSA (2)",
+          "SP (1)"
+        ],
+        "fractiesTegen": [
+          "CDA  (1)",
+          "D66 (3)",
+          "Democratisch Zaanstad (2)",
+          "DENK (2)",
+          "Forum voor Democratie (3)",
+          "Lokaal Zaans (8)",
+          "Partij voor de Dieren (1)",
+          "POV (4)",
+          "VVD (3)"
+        ],
+        "indiener": "Cornelisse, Natasja",
+        "fracties": [
+          "PVV"
+        ],
+        "medeondertekenaars": [],
+        "vergaderdatum": "2026-11-10",
+        "vergadering": "Raadsvergadering 2026",
+        "agendapunt": "4.1. Begroting 2027-2030",
+        "type": "Motie",
+        "code": "26M72"
+      },
+      "strekking": {
+        "tekst": "verzoekt het college: 1. Vooraf inzicht te geven in de stapeling: uiterlijk bij de Voorjaarsnota 2027, en eerder wanneer een afzonderlijk uitvoeringsvoorstel al aan de raad wordt voorgelegd, de gezamenlijke financiële gevolgen van de voorgenomen wijzigingen inzichtelijk te maken. Daarbij onderscheid te maken naar huishoudtype en inkomensniveau, met bijzondere aandacht voor gezinnen met kinderen, jongeren met een zelfstandig huishouden, inwoners met hoge noodzakelijke zorgkosten en huishoudens die door gewijzigde voorwaarden buiten regelingen vallen. 2.",
+        "aanleiding": "constaterende dat: • de financiële bijstellingen op de Stadspas/Meedoen Regeling, individuele inkomenstoeslag, collectieve ziektekostenverzekering, bijzondere bijstand en het bredere armoedebudget al in de begroting zijn verwerkt, terwijl de precieze uitvoering nog moet worden uitgewerkt;",
+        "bron": "dictum"
+      }
+    },
+    {
+      "id": "f6aae1041d-v1",
+      "groepId": "f6aae1041d",
+      "versie": 1,
+      "url": "https://zaanstad.bestuurlijkeinformatie.nl/Reports/Item/03776406-a1dc-415a-bcf1-69e4268f7115",
+      "kop": "Motie verworpen: Niet over de Zaan maar onder de Zaan",
+      "tekst": null,
+      "rubriek": "GEM",
+      "tagBron": "bron",
+      "herkomst": "officieel",
+      "prio": 3,
+      "tijd": "2026-11-12T10:53:01.098Z",
+      "heeftTijd": true,
+      "woorden": 166,
+      "afgekapt": false,
+      "bronId": "zaanstad-moties",
+      "bronNaam": "Gemeente Zaanstad: moties en stemmingen (iBabs)",
+      "ai": false,
+      "controle": "geen-ai",
+      "eerstGezienOp": "2026-11-12T10:52:59.944Z",
+      "gecontroleerdOp": "2026-11-12T10:52:59.944Z",
+      "bronTitel": "Motie verworpen: Niet over de Zaan maar onder de Zaan",
+      "bronLengte": 1053,
+      "stemming": {
+        "uitslag": "verworpen",
+        "voorPct": 39,
+        "tegenPct": 61,
+        "fractiesVoor": [
+          "CDA  (1)",
+          "Democratisch Zaanstad (2)",
+          "DENK (2)",
+          "POV (4)",
+          "PVV (3)",
+          "VVD (3)"
+        ],
+        "fractiesTegen": [
+          "D66 (3)",
+          "Forum voor Democratie (3)",
+          "Lokaal Zaans (8)",
+          "Partij voor de Dieren (1)",
+          "PRO (5)",
+          "ROSA (2)",
+          "SP (1)"
+        ],
+        "indiener": "Davelaar, Casper",
+        "fracties": [
+          "VVD",
+          "PVV",
+          "CDA"
+        ],
+        "medeondertekenaars": [
+          "Boomsma, Boy",
+          "Hendriks, Nick"
+        ],
+        "vergaderdatum": "2026-11-10",
+        "vergadering": "Raadsvergadering 2026",
+        "agendapunt": "4.1. Begroting 2027-2030",
+        "type": "Motie",
+        "code": "26M74"
+      },
+      "strekking": {
+        "tekst": "Verzoekt het college om: • de vervanging van de Coenbrug door een aquaduct op te nemen in de Zaanse lobby richting het Rijk; • bij het ministerie van Infrastructuur en Waterstaat aan te dringen op onderzoek naar een aquaduct als alternatief voor renovatie of vervanging van de bestaande Coenbrug, waarbij ook de verbetering van de doorstroming op de A8 en de leefbaarheid van Oud-Koog wordt aangekaart. Namens de fractie van: VVD, Casper Davelaar PVV, Boy Boomsma CDA, Nick Hendriks Verworpen, zie besluitenlijst in het raadsinformatiesysteem",
+        "aanleiding": "Constaterende dat: • de Coenbrug in de A8 al jarenlang technische uitdagingen heeft en ondanks recente herstelwerkzaamheden een storingsgevoelige schakel blijft in onze infrastructuur;",
+        "bron": "dictum"
+      }
+    },
+    {
+      "id": "2b3b18c4d5-v1",
+      "groepId": "2b3b18c4d5",
+      "versie": 1,
+      "url": "https://zaanstad.bestuurlijkeinformatie.nl/Reports/Item/6e2f304e-8f1b-49db-bb05-62cbb97be17d",
+      "kop": "Motie verworpen: Meer groen door minder tuintegels",
+      "tekst": null,
+      "rubriek": "GEM",
+      "tagBron": "bron",
+      "herkomst": "officieel",
+      "prio": 3,
+      "tijd": "2026-11-12T10:53:01.098Z",
+      "heeftTijd": true,
+      "woorden": 149,
+      "afgekapt": false,
+      "bronId": "zaanstad-moties",
+      "bronNaam": "Gemeente Zaanstad: moties en stemmingen (iBabs)",
+      "ai": false,
+      "controle": "geen-ai",
+      "eerstGezienOp": "2026-11-12T10:52:59.944Z",
+      "gecontroleerdOp": "2026-11-12T10:52:59.944Z",
+      "bronTitel": "Motie verworpen: Meer groen door minder tuintegels",
+      "bronLengte": 978,
+      "stemming": {
+        "uitslag": "verworpen",
+        "voorPct": 11,
+        "tegenPct": 89,
+        "fractiesVoor": [
+          "Partij voor de Dieren (1)",
+          "ROSA (2)",
+          "SP (1)"
+        ],
+        "fractiesTegen": [
+          "CDA  (1)",
+          "D66 (3)",
+          "Democratisch Zaanstad (2)",
+          "DENK (2)",
+          "Forum voor Democratie (3)",
+          "Lokaal Zaans (8)",
+          "POV (4)",
+          "PRO (5)",
+          "PVV (3)",
+          "VVD (3)"
+        ],
+        "indiener": "Schuttevaer, Mariska",
+        "fracties": [
+          "ROSA",
+          "PvdD",
+          "SP"
+        ],
+        "medeondertekenaars": [
+          "Groot, Anna de",
+          "Pieterson, Marijn"
+        ],
+        "vergaderdatum": "2026-11-10",
+        "vergadering": "Raadsvergadering 2026",
+        "agendapunt": "4.1. Begroting 2027-2030",
+        "type": "Motie",
+        "code": "26M67"
+      },
+      "strekking": {
+        "tekst": "Besluit: • In gesprek te gaan met de Zaanse woningcorporaties omtrent het bij verhuizing opleveren van woningen met niet meer dan 50% tuintegels (vanaf een vooraf nader te bepalen minimale grootte van de betreffende tuinen) en dit vanaf dat moment voor die woning verplicht te stellen. Namens: ROSA - Mariska Schuttevaer SP - Anna de Groot PvdD - Marijn Pieterson Verworpen, zie besluitenlijst in het raadsinformatiesysteem",
+        "aanleiding": "Constaterende dat: • Betegelde tuinen bij overvloedige regenval bijdragen aan vermindering van de verwerkingscapaciteit van het riool en groenere tuinen juist bijdragen aan vermindering van wateroverlast bij hevige regenbuien;",
+        "bron": "dictum"
+      }
+    },
+    {
+      "id": "c2ccde2f52-v1",
+      "groepId": "c2ccde2f52",
+      "versie": 1,
+      "url": "https://zaanstad.bestuurlijkeinformatie.nl/Reports/Item/22bcc976-148e-44fc-8bb4-86d92b8f1434",
+      "kop": "Motie verworpen: Goed voorbereid op noodsituaties, ongeacht inkomen",
+      "tekst": null,
+      "rubriek": "GEM",
+      "tagBron": "bron",
+      "herkomst": "officieel",
+      "prio": 3,
+      "tijd": "2026-11-12T10:53:01.098Z",
+      "heeftTijd": true,
+      "woorden": 161,
+      "afgekapt": false,
+      "bronId": "zaanstad-moties",
+      "bronNaam": "Gemeente Zaanstad: moties en stemmingen (iBabs)",
+      "ai": false,
+      "controle": "geen-ai",
+      "eerstGezienOp": "2026-11-12T10:52:59.944Z",
+      "gecontroleerdOp": "2026-11-12T10:52:59.944Z",
+      "bronTitel": "Motie verworpen: Goed voorbereid op noodsituaties, ongeacht inkomen",
+      "bronLengte": 1040,
+      "stemming": {
+        "uitslag": "verworpen",
+        "voorPct": 21,
+        "tegenPct": 79,
+        "fractiesVoor": [
+          "PRO (5)",
+          "ROSA (2)",
+          "SP (1)"
+        ],
+        "fractiesTegen": [
+          "CDA  (1)",
+          "D66 (3)",
+          "Democratisch Zaanstad (2)",
+          "DENK (2)",
+          "Forum voor Democratie (3)",
+          "Lokaal Zaans (8)",
+          "Partij voor de Dieren (1)",
+          "POV (4)",
+          "PVV (3)",
+          "VVD (3)"
+        ],
+        "indiener": "Groot, Anna de",
+        "fracties": [
+          "SP"
+        ],
+        "medeondertekenaars": [],
+        "vergaderdatum": "2026-11-10",
+        "vergadering": "Raadsvergadering 2026",
+        "agendapunt": "4.1. Begroting 2027-2030",
+        "type": "Motie",
+        "code": "26M64"
+      },
+      "strekking": {
+        "tekst": "Verzoekt het college van B en W: • in navolging van de gemeente Amsterdam te onderzoeken hoe noodpakketten beschikbaar kunnen worden gesteld voor huishoudens in Zaanstad die leven rond de armoedegrens; • hierbij te kijken naar de mogelijkheden binnen het minimabeleid en veiligheid en de samenwerking te zoeken met maatschappelijke partners; • de gemeenteraad voor de Voorjaarsnota te informeren over het plan van aanpak en de benodigde middelen om dit te realiseren Namens SP – Anna de Groot Namens ROSA – Hans Kuyper Verworpen, zie besluitenlijst in het raadsinformatiesysteem",
+        "aanleiding": "Overwegende dat: • buurgemeente Amsterdam via de Voedselbank 2.000 noodpakketten uitdeelt aan inwoners die rond de armoedegrens leven;",
+        "bron": "dictum"
+      }
+    },
+    {
+      "id": "7428ec404b-v1",
+      "groepId": "7428ec404b",
+      "versie": 1,
+      "url": "https://zaanstad.bestuurlijkeinformatie.nl/Reports/Item/fbc710d3-53b1-4b70-aafa-b87f49e1d465",
+      "kop": "Motie verworpen: Voeding voor de toekomst Gelijke kansen en een gezonde schoollunch voor elk kind",
+      "tekst": null,
+      "rubriek": "GEM",
+      "tagBron": "bron",
+      "herkomst": "officieel",
+      "prio": 3,
+      "tijd": "2026-11-12T10:53:01.098Z",
+      "heeftTijd": true,
+      "woorden": 164,
+      "afgekapt": false,
+      "bronId": "zaanstad-moties",
+      "bronNaam": "Gemeente Zaanstad: moties en stemmingen (iBabs)",
+      "ai": false,
+      "controle": "geen-ai",
+      "eerstGezienOp": "2026-11-12T10:52:59.944Z",
+      "gecontroleerdOp": "2026-11-12T10:52:59.944Z",
+      "bronTitel": "Motie verworpen: Voeding voor de toekomst Gelijke kansen en een gezonde schoollunch voor elk kind",
+      "bronLengte": 1105,
+      "stemming": {
+        "uitslag": "verworpen",
+        "voorPct": 21,
+        "tegenPct": 79,
+        "fractiesVoor": [
+          "PRO (5)",
+          "ROSA (2)",
+          "SP (1)"
+        ],
+        "fractiesTegen": [
+          "CDA  (1)",
+          "D66 (3)",
+          "Democratisch Zaanstad (2)",
+          "DENK (2)",
+          "Forum voor Democratie (3)",
+          "Lokaal Zaans (8)",
+          "Partij voor de Dieren (1)",
+          "POV (4)",
+          "PVV (3)",
+          "VVD (3)"
+        ],
+        "indiener": "Groot, Anna de",
+        "fracties": [
+          "SP"
+        ],
+        "medeondertekenaars": [],
+        "vergaderdatum": "2026-11-10",
+        "vergadering": "Raadsvergadering 2026",
+        "agendapunt": "4.1. Begroting 2027-2030",
+        "type": "Motie",
+        "code": "26M65"
+      },
+      "strekking": {
+        "tekst": "Verzoekt het college: • In 2027 een pilot voor gratis gezonde schoollunches voor leerlingen van 4 tot 17 jaar voor te bereiden, zonder inkomensonderscheid op deelnemende scholen; • Hierbij zowel basisscholen als scholen voor voortgezet onderwijs te betrekken; • Te onderzoeken welke bestaande gemeentelijke budgetten en landelijke subsidies hiervoor kunnen worden ingezet; • De raad uiterlijk bij de Voorjaarsnota 2027 een voorstel voor te leggen met de kosten, dekking, deelnemende scholen en evaluatiecriteria Namens de SP - Anna de Groot Namens ROSA – Mariska Schuttevaer Verworpen, zie besluitenlijst in het raadsinformatiesysteem",
+        "aanleiding": "Constaterende dat: • Circa 13.059 leerlingen buiten de huidige doelgroepgerichte schoolmaaltijdregelingen vallen;",
+        "bron": "dictum"
+      }
+    },
+    {
+      "id": "da03bd076d-v2",
+      "groepId": "da03bd076d",
+      "versie": 2,
+      "url": "https://www.deorkaan.nl/zaans-verzet-flyert-bij-middelbare-scholen-voor-schoolstaking-tegen-dienstplicht/",
+      "kop": "Zaans Verzet flyert bij middelbare scholen voor ‘schoolstaking’ tegen dienstplicht 🎥",
+      "tekst": null,
+      "rubriek": "ONW",
+      "tagBron": "trefwoord",
+      "herkomst": "signaal",
+      "prio": 3,
+      "tijd": "2026-11-12T10:52:59.944Z",
+      "heeftTijd": true,
+      "woorden": 585,
+      "afgekapt": false,
+      "bronId": "DeOrkaan",
+      "bronNaam": "DeOrkaan",
+      "ai": false,
+      "controle": "analyse-ok",
+      "eerstGezienOp": "2026-11-12T10:52:59.944Z",
+      "gecontroleerdOp": "2026-11-12T10:52:59.944Z",
+      "bronTitel": "Zaans Verzet flyert bij middelbare scholen voor ‘schoolstaking’ tegen dienstplicht 🎥",
+      "bronLengte": 3571,
+      "checklist": {
+        "gevaar": false,
+        "evacuatieOfNlAlert": false,
+        "gewondenOfDoden": false,
+        "bestuurlijkeCrisis": false,
+        "besluitMetGrootGevolg": false,
+        "tijdkritisch": false,
+        "betrokkenen": null,
+        "geldbedragEuro": null,
+        "banen": null,
+        "inRegio": true
+      },
+      "checklistBron": "ai",
+      "analyse": true
+    },
+    {
+      "id": "57352072e8-v1",
+      "groepId": "57352072e8",
+      "versie": 1,
+      "url": "https://www.noord-holland.nl/Actueel/Archief/2026/November_2026/Provincie_betrekt_belanghebbenden_bij_aanpak_stikstof_en_natuurherstel",
+      "kop": "Provincie Noord-Holland stelt participatieplan vast voor stikstof en natuurherstel",
+      "tekst": null,
+      "rubriek": "PRV",
+      "tagBron": "ai",
+      "herkomst": "officieel",
+      "prio": 3,
+      "tijd": "2026-11-12T08:04:04.000Z",
+      "heeftTijd": true,
+      "woorden": 449,
+      "afgekapt": false,
+      "bronId": "nh-actueel",
+      "bronNaam": "Provincie Noord-Holland — Actueel",
+      "ai": true,
+      "controle": "cijfers-ok",
+      "eerstGezienOp": "2026-11-12T10:52:59.944Z",
+      "gecontroleerdOp": "2026-11-12T10:52:59.944Z",
+      "bronTitel": "Provincie betrekt belanghebbenden bij aanpak stikstof en natuurherstel",
+      "bronLengte": 3191,
+      "checklist": {
+        "gevaar": false,
+        "evacuatieOfNlAlert": false,
+        "gewondenOfDoden": false,
+        "bestuurlijkeCrisis": false,
+        "besluitMetGrootGevolg": false,
+        "tijdkritisch": false,
+        "betrokkenen": null,
+        "geldbedragEuro": null,
+        "banen": null,
+        "inRegio": false
+      },
+      "checklistBron": "ai"
+    },
+    {
+      "id": "bf7ca88994-v1",
+      "groepId": "bf7ca88994",
+      "versie": 1,
+      "url": "https://www.deorkaan.nl/tuinrangers-helpen-zaankanters-aan-een-groenere-tuin/",
+      "kop": "Tuinrangers helpen Zaankanters aan een groenere tuin",
+      "tekst": null,
+      "rubriek": "PRV",
+      "tagBron": "ai",
+      "herkomst": "signaal",
+      "prio": 3,
+      "tijd": "2026-11-11T23:00:00.000Z",
+      "heeftTijd": false,
+      "woorden": 802,
+      "afgekapt": false,
+      "bronId": "DeOrkaan",
+      "bronNaam": "DeOrkaan",
+      "ai": false,
+      "controle": "analyse-ok",
+      "eerstGezienOp": "2026-11-12T10:52:59.944Z",
+      "gecontroleerdOp": "2026-11-12T10:52:59.944Z",
+      "bronTitel": "Tuinrangers helpen Zaankanters aan een groenere tuin",
+      "bronLengte": 5051,
+      "checklist": {
+        "gevaar": false,
+        "evacuatieOfNlAlert": false,
+        "gewondenOfDoden": false,
+        "bestuurlijkeCrisis": false,
+        "besluitMetGrootGevolg": false,
+        "tijdkritisch": false,
+        "betrokkenen": null,
+        "geldbedragEuro": null,
+        "banen": null,
+        "inRegio": true
+      },
+      "checklistBron": "ai",
+      "analyse": true
+    },
+    {
+      "id": "c35fe6e606-v1",
+      "groepId": "c35fe6e606",
+      "versie": 1,
+      "url": "https://www.deorkaan.nl/wanneer-zijn-de-sinterklaasintochten-van-2026-2/",
+      "kop": "Waar en wanneer zijn de Sinterklaasintochten van 2026?",
+      "tekst": null,
+      "rubriek": "CUL",
+      "tagBron": "ai",
+      "herkomst": "signaal",
+      "prio": 3,
+      "tijd": "2026-11-11T23:00:00.000Z",
+      "heeftTijd": false,
+      "woorden": 1007,
+      "afgekapt": true,
+      "bronId": "DeOrkaan",
+      "bronNaam": "DeOrkaan",
+      "ai": false,
+      "controle": "analyse-ok",
+      "eerstGezienOp": "2026-11-12T10:52:59.944Z",
+      "gecontroleerdOp": "2026-11-12T10:52:59.944Z",
+      "bronTitel": "Waar en wanneer zijn de Sinterklaasintochten van 2026?",
+      "bronLengte": 6000,
+      "checklist": {
+        "gevaar": false,
+        "evacuatieOfNlAlert": false,
+        "gewondenOfDoden": false,
+        "bestuurlijkeCrisis": false,
+        "besluitMetGrootGevolg": false,
+        "tijdkritisch": false,
+        "betrokkenen": null,
+        "geldbedragEuro": 3,
+        "banen": null,
+        "inRegio": true
+      },
+      "checklistBron": "ai",
+      "agendapunten": [
+        {
+          "titel": "Sinterklaasintocht Assendelft",
+          "dag": "2026-11-15",
+          "start": "2026-11-15T12:45:00.000Z",
+          "eind": null,
+          "plaats": "Assendelft",
+          "zekerheid": "afgeleid"
+        },
+        {
+          "titel": "Sinterklaashuis Assendelft",
+          "dag": "2026-11-20",
+          "start": "2026-11-20T14:00:00.000Z",
+          "eind": "2026-11-20T17:00:00.000Z",
+          "plaats": "Dorpsstraat 370",
+          "zekerheid": "afgeleid"
+        },
+        {
+          "titel": "Sinterklaas lichtjesintocht in Waterrijk",
+          "dag": "2026-11-21",
+          "start": "2026-11-21T17:00:00.000Z",
+          "eind": null,
+          "plaats": "Waterrijk, Assendelft",
+          "zekerheid": "afgeleid"
+        }
+      ],
+      "analyse": true
+    },
+    {
+      "id": "7472201709-v1",
+      "groepId": "7472201709",
+      "versie": 1,
+      "url": "https://www.deorkaan.nl/zaan79-in-oude-aldi-zeemansstraat-zaandam-bouwmarathon/",
+      "kop": "Zaan79 in oude Aldi Zeemansstraat Zaandam #bouwmarathon",
+      "tekst": null,
+      "rubriek": "WON",
+      "tagBron": "ai",
+      "herkomst": "signaal",
+      "prio": 3,
+      "tijd": "2026-11-11T23:00:00.000Z",
+      "heeftTijd": false,
+      "woorden": 404,
+      "afgekapt": false,
+      "bronId": "DeOrkaan",
+      "bronNaam": "DeOrkaan",
+      "ai": false,
+      "controle": "analyse-ok",
+      "eerstGezienOp": "2026-11-12T10:52:59.944Z",
+      "gecontroleerdOp": "2026-11-12T10:52:59.944Z",
+      "bronTitel": "Zaan79 in oude Aldi Zeemansstraat Zaandam #bouwmarathon",
+      "bronLengte": 2481,
+      "checklist": {
+        "gevaar": false,
+        "evacuatieOfNlAlert": false,
+        "gewondenOfDoden": false,
+        "bestuurlijkeCrisis": false,
+        "besluitMetGrootGevolg": false,
+        "tijdkritisch": false,
+        "betrokkenen": null,
+        "geldbedragEuro": 465000,
+        "banen": null,
+        "inRegio": true
+      },
+      "checklistBron": "ai",
+      "analyse": true
+    },
+    {
       "id": "bf449969aa-v1",
       "groepId": "bf449969aa",
       "versie": 1,
@@ -441,7 +1764,8 @@
         "inRegio": true
       },
       "checklistBron": "ai",
-      "clusterId": "865efa9234"
+      "clusterId": "865efa9234",
+      "tagVersie": 2
     },
     {
       "id": "da03bd076d-v1",
@@ -479,7 +1803,8 @@
         "inRegio": true
       },
       "checklistBron": "ai",
-      "analyse": true
+      "analyse": true,
+      "tagVersie": 2
     },
     {
       "id": "16f5b94562-v1",
@@ -501,7 +1826,7 @@
       "ai": false,
       "controle": "analyse-ok",
       "eerstGezienOp": "2026-11-12T07:50:59.785Z",
-      "gecontroleerdOp": "2026-11-12T07:50:59.785Z",
+      "gecontroleerdOp": "2026-11-12T10:52:59.944Z",
       "bronTitel": "Laurentine Pels Rijcken nieuwe interim-directeur Zaanse Schans",
       "bronLengte": 2503,
       "checklist": {
@@ -517,7 +1842,8 @@
         "inRegio": true
       },
       "checklistBron": "ai",
-      "analyse": true
+      "analyse": true,
+      "tagVersie": 2
     },
     {
       "id": "1494cd977d-v1",
@@ -539,7 +1865,7 @@
       "ai": false,
       "controle": "geen-ai",
       "eerstGezienOp": "2026-11-12T02:49:37.542Z",
-      "gecontroleerdOp": "2026-11-12T07:50:59.785Z",
+      "gecontroleerdOp": "2026-11-12T10:52:59.944Z",
       "bronTitel": "Vooraankondiging aanbesteding: Bouwteam Herinrichting Dam Damstraat te Zaandam",
       "bronLengte": 141,
       "aanbesteding": {
@@ -587,7 +1913,7 @@
       "ai": true,
       "controle": "cijfers-ok",
       "eerstGezienOp": "2026-11-11T21:14:16.919Z",
-      "gecontroleerdOp": "2026-11-12T07:50:59.785Z",
+      "gecontroleerdOp": "2026-11-12T10:52:59.944Z",
       "bronTitel": "Besluiten Provinciale Staten van Noord-Holland 9 november 2026",
       "bronLengte": 5997,
       "checklist": {
@@ -632,7 +1958,7 @@
       "ai": true,
       "controle": "cijfers-ok",
       "eerstGezienOp": "2026-11-11T21:14:16.919Z",
-      "gecontroleerdOp": "2026-11-12T07:50:59.785Z",
+      "gecontroleerdOp": "2026-11-12T10:52:59.944Z",
       "bronTitel": "€ 300.000 subsidie voor Noord-Hollandse energiecoöperaties vanaf 2027",
       "bronLengte": 2137,
       "checklist": {
@@ -685,7 +2011,8 @@
         "banen": null,
         "inRegio": true
       },
-      "checklistBron": "patroon"
+      "checklistBron": "patroon",
+      "tagVersie": 2
     },
     {
       "id": "32af7794ef-v1",
@@ -707,7 +2034,7 @@
       "ai": true,
       "controle": "cijfers-ok",
       "eerstGezienOp": "2026-11-11T14:01:46.937Z",
-      "gecontroleerdOp": "2026-11-12T07:50:59.785Z",
+      "gecontroleerdOp": "2026-11-12T10:52:59.944Z",
       "bronTitel": "Provincie sponsort ook in 2027 verschillende sportevenementen",
       "bronLengte": 2216,
       "checklist": {
@@ -2230,7 +3557,8 @@
         "banen": null,
         "inRegio": true
       },
-      "checklistBron": "ai"
+      "checklistBron": "ai",
+      "tagVersie": 2
     },
     {
       "id": "865efa9234-v1",
@@ -2268,7 +3596,8 @@
         "inRegio": true
       },
       "checklistBron": "ai",
-      "clusterId": "865efa9234"
+      "clusterId": "865efa9234",
+      "tagVersie": 2
     },
     {
       "id": "b5d64ad054-v1",
@@ -2305,7 +3634,8 @@
         "banen": null,
         "inRegio": true
       },
-      "checklistBron": "ai"
+      "checklistBron": "ai",
+      "tagVersie": 2
     },
     {
       "id": "c997f88972-v1",
@@ -2342,7 +3672,8 @@
         "banen": null,
         "inRegio": true
       },
-      "checklistBron": "ai"
+      "checklistBron": "ai",
+      "tagVersie": 2
     },
     {
       "id": "ce9cb9b3dc-v1",
@@ -2379,7 +3710,8 @@
         "banen": null,
         "inRegio": true
       },
-      "checklistBron": "ai"
+      "checklistBron": "ai",
+      "tagVersie": 2
     },
     {
       "id": "f11f3f9bfa-v1",
@@ -2416,7 +3748,8 @@
         "banen": null,
         "inRegio": true
       },
-      "checklistBron": "patroon"
+      "checklistBron": "patroon",
+      "tagVersie": 2
     },
     {
       "id": "41251bbfa8-v1",
@@ -2453,7 +3786,8 @@
         "banen": null,
         "inRegio": true
       },
-      "checklistBron": "patroon"
+      "checklistBron": "patroon",
+      "tagVersie": 2
     },
     {
       "id": "0bd84ba04e-v1",
@@ -2490,7 +3824,8 @@
         "banen": null,
         "inRegio": true
       },
-      "checklistBron": "patroon"
+      "checklistBron": "patroon",
+      "tagVersie": 2
     },
     {
       "id": "9555b9da16-v1",
@@ -2512,7 +3847,7 @@
       "ai": false,
       "controle": "analyse-ok",
       "eerstGezienOp": "2026-11-12T07:50:59.785Z",
-      "gecontroleerdOp": "2026-11-12T07:50:59.785Z",
+      "gecontroleerdOp": "2026-11-12T10:52:59.944Z",
       "bronTitel": "TikTok-achtige taferelen bij Sint-Maarten in de Burgemeestersbuurt",
       "bronLengte": 1930,
       "checklist": {
@@ -2528,7 +3863,8 @@
         "inRegio": true
       },
       "checklistBron": "ai",
-      "analyse": true
+      "analyse": true,
+      "tagVersie": 2
     },
     {
       "id": "b78bbe1eea-v1",
@@ -2550,7 +3886,7 @@
       "ai": false,
       "controle": "analyse-ok",
       "eerstGezienOp": "2026-11-11T21:14:16.919Z",
-      "gecontroleerdOp": "2026-11-12T07:50:59.785Z",
+      "gecontroleerdOp": "2026-11-12T10:52:59.944Z",
       "bronTitel": "Zes Zaanse tieners aangehouden voor explosies en beschietingen",
       "bronLengte": 5995,
       "checklist": {
@@ -2589,7 +3925,7 @@
       "ai": false,
       "controle": "analyse-ok",
       "eerstGezienOp": "2026-11-11T21:14:16.919Z",
-      "gecontroleerdOp": "2026-11-12T07:50:59.785Z",
+      "gecontroleerdOp": "2026-11-12T10:52:59.944Z",
       "bronTitel": "Hotelontwikkelaar Bakker dreigt schade te verhalen op Wormerland",
       "bronLengte": 5999,
       "checklist": {
@@ -2635,7 +3971,7 @@
       "ai": false,
       "controle": "analyse-ok",
       "eerstGezienOp": "2026-11-11T14:01:46.937Z",
-      "gecontroleerdOp": "2026-11-12T07:50:59.785Z",
+      "gecontroleerdOp": "2026-11-12T10:52:59.944Z",
       "bronTitel": "Wietplantage met 70 planten ontmanteld in appartement Zaandam",
       "bronLengte": 696,
       "checklist": {
@@ -2674,7 +4010,7 @@
       "ai": false,
       "controle": "analyse-ok",
       "eerstGezienOp": "2026-11-11T14:01:46.937Z",
-      "gecontroleerdOp": "2026-11-12T07:50:59.785Z",
+      "gecontroleerdOp": "2026-11-12T10:52:59.944Z",
       "bronTitel": "Kruidvat ziet geen datalek bij zichtbare pincodes, maar vragen blijven",
       "bronLengte": 4901,
       "checklist": {
@@ -2713,7 +4049,7 @@
       "ai": false,
       "controle": "analyse-ok",
       "eerstGezienOp": "2026-11-11T14:01:46.937Z",
-      "gecontroleerdOp": "2026-11-12T07:50:59.785Z",
+      "gecontroleerdOp": "2026-11-12T10:52:59.944Z",
       "bronTitel": "De Orkaan in 2 minuten: 11 november 🎧",
       "bronLengte": 436,
       "checklist": {
@@ -2752,7 +4088,7 @@
       "ai": false,
       "controle": "analyse-ok",
       "eerstGezienOp": "2026-11-11T14:01:46.937Z",
-      "gecontroleerdOp": "2026-11-12T07:50:59.785Z",
+      "gecontroleerdOp": "2026-11-12T10:52:59.944Z",
       "bronTitel": "Sint-Maarten voor Dummies",
       "bronLengte": 2128,
       "checklist": {
