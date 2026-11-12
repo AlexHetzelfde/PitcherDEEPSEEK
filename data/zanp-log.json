@@ -1,5 +1,5 @@
 {
-  "gegenereerdOp": "2026-11-11T21:14:16.919Z",
+  "gegenereerdOp": "2026-11-12T02:49:37.542Z",
   "uitleg": "Per run per onderdeel: tellers (optellend), waarden (meting van die run), voorbeelden en regels. De laatste 24 runs hebben voorbeelden en regels; 'dagen' telt de tellers per dag op.",
   "runs": [
     {
@@ -1031,6 +1031,167 @@
           "regels": []
         }
       }
+    },
+    {
+      "tijd": "2026-11-12T02:49:37.542Z",
+      "duurMs": 61726,
+      "onderdelen": {
+        "spelling": {
+          "tellers": {},
+          "waarden": {},
+          "voorbeelden": [],
+          "regels": [
+            "Nederlands woordenboek geladen."
+          ]
+        },
+        "tekst": {
+          "tellers": {
+            "aangeboden": 7,
+            "geschreven": 7,
+            "teOudOvergeslagen": 0,
+            "leegOvergeslagen": 0,
+            "rommelRegelsWeg": 0,
+            "alineasHerleid": 0,
+            "titelHerhalingWeg": 1,
+            "methode-lijst": 1,
+            "methode-artikel": 6,
+            "oudeBestandenOvergezet": 0,
+            "dagbestandenVerwijderd": 0,
+            "bytesVerwijderd": 0
+          },
+          "waarden": {
+            "oudsteDagbestand": "2026-10-29",
+            "dekkingPct": 94,
+            "berichtenZonderTekst": 19,
+            "dekkingPerBron": {
+              "zaanstad-ted": {
+                "berichten": 2,
+                "metTekst": 2,
+                "pct": 100,
+                "gemTekens": 74
+              },
+              "nh-actueel": {
+                "berichten": 25,
+                "metTekst": 25,
+                "pct": 100,
+                "gemTekens": 2979
+              },
+              "zaanstad-moties": {
+                "berichten": 22,
+                "metTekst": 22,
+                "pct": 100,
+                "gemTekens": 1040
+              },
+              "DeOrkaan": {
+                "berichten": 162,
+                "metTekst": 162,
+                "pct": 100,
+                "gemTekens": 2590
+              },
+              "rechtspraak-noord-holland": {
+                "berichten": 1,
+                "metTekst": 1,
+                "pct": 100,
+                "gemTekens": 6002
+              },
+              "omgevingsdienstnoordzeekanaal": {
+                "berichten": 2,
+                "metTekst": 2,
+                "pct": 100,
+                "gemTekens": 3328
+              },
+              "ibabs-collegeberichten": {
+                "berichten": 15,
+                "metTekst": 8,
+                "pct": 53,
+                "gemTekens": 4519
+              },
+              "ibabs-ingekomen-stukken": {
+                "berichten": 43,
+                "metTekst": 34,
+                "pct": 79,
+                "gemTekens": 1901
+              },
+              "vervoerregio-overzichten": {
+                "berichten": 6,
+                "metTekst": 3,
+                "pct": 50,
+                "gemTekens": 6952
+              },
+              "bekendmakingen": {
+                "berichten": 26,
+                "metTekst": 26,
+                "pct": 100,
+                "gemTekens": 2345
+              },
+              "wetenregelgeving": {
+                "berichten": 7,
+                "metTekst": 7,
+                "pct": 100,
+                "gemTekens": 25177
+              },
+              "vervoerregio-persberichten": {
+                "berichten": 5,
+                "metTekst": 5,
+                "pct": 100,
+                "gemTekens": 1586
+              }
+            }
+          },
+          "voorbeelden": [
+            {
+              "bron": "zaanstad-ted",
+              "methode": "lijst",
+              "kop": "Vooraankondiging aanbesteding: Bouwteam Herinrichting Dam Damstraat te Zaandam",
+              "tekensVoor": 141,
+              "tekensNa": 61,
+              "alineas": 1,
+              "rommelRegelsWeg": 0,
+              "alineasHerleid": false,
+              "begin": "Opdrachtgever: Gemeente Zaanstad. Sluitingsdatum: 2026-11-27.",
+              "eind": "Opdrachtgever: Gemeente Zaanstad. Sluitingsdatum: 2026-11-27."
+            },
+            {
+              "bron": "zaanstad-kalender",
+              "methode": "artikel",
+              "kop": "Maling Academie Najaar 2026 - Schrijf u in!!",
+              "tekensVoor": 132,
+              "tekensNa": 132,
+              "alineas": 6,
+              "rommelRegelsWeg": 0,
+              "alineasHerleid": false,
+              "begin": "donderdag 26 november 2026\n\n09:00 - 12:30\n\nLocatie\n\nZwolle\n\nAgenda documenten\n\n• Maling Academie Najaar 2026 - Schrijf u in!! 143 KB",
+              "eind": " november 2026\n\n09:00 - 12:30\n\nLocatie\n\nZwolle\n\nAgenda documenten\n\n• Maling Academie Najaar 2026 - Schrijf u in!! 143 KB"
+            }
+          ],
+          "regels": [
+            "Dekking volledige tekst: 297/316 berichten (94%). Laagst: vervoerregio-overzichten 3/6 (50%); ibabs-collegeberichten 8/15 (53%); ibabs-ingekomen-stukken 34/43 (79%)."
+          ]
+        },
+        "jubileum": {
+          "tellers": {
+            "nieuwsRood": 0,
+            "agendaRood": 0,
+            "uitgesloten": 0,
+            "alRoodDoorPrioriteit": 3
+          },
+          "waarden": {},
+          "voorbeelden": [],
+          "regels": []
+        },
+        "run": {
+          "tellers": {},
+          "waarden": {
+            "berichten": 426,
+            "agendaItems": 265,
+            "aiVerzoeken": 0,
+            "geminiDagGebruikt": "5/80",
+            "duurSeconden": 62
+          },
+          "voorbeelden": [],
+          "regels": []
+        }
+      }
     }
   ],
   "dagen": {
@@ -1084,6 +1245,33 @@
           "uitgesloten": 0,
           "alRoodDoorPrioriteit": 6
         }
+      }
+    },
+    "2026-11-12": {
+      "runs": 1,
+      "tellers": {
+        "spelling": {},
+        "tekst": {
+          "aangeboden": 7,
+          "geschreven": 7,
+          "teOudOvergeslagen": 0,
+          "leegOvergeslagen": 0,
+          "rommelRegelsWeg": 0,
+          "alineasHerleid": 0,
+          "titelHerhalingWeg": 1,
+          "methode-lijst": 1,
+          "methode-artikel": 6,
+          "oudeBestandenOvergezet": 0,
+          "dagbestandenVerwijderd": 0,
+          "bytesVerwijderd": 0
+        },
+        "jubileum": {
+          "nieuwsRood": 0,
+          "agendaRood": 0,
+          "uitgesloten": 0,
+          "alRoodDoorPrioriteit": 3
+        },
+        "run": {}
       }
     }
   }
