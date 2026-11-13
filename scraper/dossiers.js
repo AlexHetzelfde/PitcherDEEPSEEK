@@ -80,6 +80,7 @@ const STOP = new Set(
   verdachte politie brandweer ambulance gewonden
   januari februari april juni juli augustus september oktober november december
   orkaan noord zaans nieuwsbrief motie moties amendement amendementen ingekomen stukken waarheen stelt voert verlengd
+  verworpen aangenomen ingetrokken stichting stichtingen
   beschikbaar terug burgemeester vrouw vrouwen mannen amsterdam haarlem alkmaar helder utrecht almere hoofddorp vervoerregio`
     .split(/\s+/)
     .filter(Boolean)
