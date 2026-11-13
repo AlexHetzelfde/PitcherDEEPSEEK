@@ -1055,6 +1055,92 @@ a.knop {
   text-decoration: none;
 }
 
+/* Dossiers: de tab en het blok in de pop-up. */
+.dossier-lijst {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 0.75rem;
+}
+
+.dossier-kaart {
+  display: block;
+  width: 100%;
+  text-align: left;
+  padding: 0.85rem 1rem;
+  border: 1px solid #d8d8d8;
+  border-radius: 8px;
+  background: #fff;
+  font: inherit;
+  cursor: pointer;
+}
+
+.dossier-kaart:hover,
+.dossier-kaart:focus-visible {
+  border-color: var(--zanp-primair);
+}
+
+.dossier-naam {
+  font-weight: 600;
+}
+
+.dossier-meta {
+  display: block;
+  margin: 0.2rem 0 0;
+  color: #555;
+  font-size: 0.85rem;
+}
+
+.dossier-items {
+  list-style: none;
+  margin: 0.5rem 0 1rem;
+  padding: 0;
+}
+
+.dossier-item {
+  display: grid;
+  grid-template-columns: 3.6rem 1fr;
+  column-gap: 0.5rem;
+  padding: 0.45rem 0;
+  border-top: 1px solid #eee;
+}
+
+.dossier-datum {
+  grid-row: 1 / span 3;
+  color: #555;
+  font-size: 0.85rem;
+}
+
+.dossier-bron,
+.dossier-oud {
+  grid-column: 2;
+  color: #666;
+  font-size: 0.8rem;
+}
+
+.dossier-oud {
+  font-style: italic;
+}
+
+.dossier-kop {
+  grid-column: 2;
+}
+
+.dossier-knop {
+  text-align: left;
+  background: none;
+  border: 0;
+  padding: 0;
+  font: inherit;
+  color: var(--zanp-primair);
+  cursor: pointer;
+}
+
+.dossier-huidig .dossier-kop {
+  font-weight: 600;
+}
+
 .nieuw-stip {
   display: inline-block;
   font-size: 0.6rem;

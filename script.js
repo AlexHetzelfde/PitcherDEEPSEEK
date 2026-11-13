@@ -4,6 +4,9 @@
 //   data/berichten.json     de nieuwsstroom (ZANP, elk half uur)
 //   data/agenda.json        de weekagenda (ZANP, elk half uur)
 //   data/zanp-status.json   laatste ZANP-run en bronstatus (voor de statusregel)
+//   data/zanp-dossiers.json  de dossiers (onderwerpen waar vaak over is bericht);
+//                           de tab en het dossierblok verschijnen pas als het
+//                           veld "modus" op "aan" staat (ZANP_DOSSIER_MODUS)
 //   data/zanp-teksten/JJJJ-MM-DD.json   de volledige teksten per publicatiedag
 //                           (14 dagen); de pop-up laadt het bestand van de dag
 //                           van het bericht pas als je het bericht opent
@@ -36,7 +39,7 @@
 //  - escapeHtml escapet ook aanhalingstekens; links zijn alleen http(s).
 
 const TIJDZONE = "Europe/Amsterdam";
-const TABS = ["nieuwsdienst", "agenda", "pitches"];
+const TABS = ["nieuwsdienst", "agenda", "dossiers", "pitches"];
 const VERVERS_MS = 5 * 60 * 1000;
 const VEROUDERD_MINUTEN = 90;
 
@@ -102,6 +105,8 @@ const state = {
   weggeklikt: new Set(leesOpslag("zanp-alerts-weg", [])),
   bezoekStart: leesOpslag("zanp-laatst-bezocht", null),
   actieveTab: "nieuwsdienst",
+  dossiers: null, // inhoud van data/zanp-dossiers.json
+  dossierOpen: null, // id van het dossier dat in de tab open staat
   popup: null, // { id, kolom } zolang de pop-up open staat
   cameraReeksen: [], // reeksen van cameratoezicht (uit berichten.json), voor de pop-up
 };
@@ -259,7 +264,7 @@ function pasParamsToe(tab, params) {
 }
 
 function toonTab(naam, opties = {}) {
-  const gekozen = TABS.includes(naam) ? naam : "nieuwsdienst";
+  const gekozen = TABS.includes(naam) && (naam !== "dossiers" || dossiersAan()) ? naam : "nieuwsdienst";
   state.actieveTab = gekozen;
   for (const tab of TABS) {
     const knop = document.getElementById(`tab-${tab}`);
@@ -285,9 +290,12 @@ function koppelTabs() {
       const terug = e.key === "ArrowLeft" || e.key === "ArrowUp";
       if (!vooruit && !terug) return;
       e.preventDefault();
-      const volgende = (index + (vooruit ? 1 : -1) + knoppen.length) % knoppen.length;
-      toonTab(knoppen[volgende].dataset.tab);
-      knoppen[volgende].focus();
+      // De tab Dossiers is verborgen zolang de dossiers niet aan staan.
+      const zichtbaar = knoppen.filter((k) => !k.hidden);
+      const nu = Math.max(0, zichtbaar.indexOf(knop));
+      const volgende = (nu + (vooruit ? 1 : -1) + zichtbaar.length) % zichtbaar.length;
+      toonTab(zichtbaar[volgende].dataset.tab);
+      zichtbaar[volgende].focus();
     });
   });
   window.addEventListener("hashchange", () => {
@@ -493,6 +501,113 @@ function agendaVandaagInfo(rubriekCode) {
     bereik = tijdVan(eerste.start) === eind ? tijdVan(eerste.start) : `${tijdVan(eerste.start)} – ${eind}`;
   }
   return { aantal: items.length, bereik };
+}
+
+// --- Dossiers --------------------------------------------------------------------
+
+// data/zanp-dossiers.json: onderwerpen waar vaak over is bericht. Een dossier bewaart
+// van elk bericht de kop, de link, de bron en de datum; de volledige tekst staat alleen
+// in de pop-up zolang het bericht in berichten.json staat (14 dagen).
+function dossiersAan() {
+  return Boolean(state.dossiers && state.dossiers.modus === "aan" && Array.isArray(state.dossiers.dossiers));
+}
+
+function zetDossiers(data) {
+  state.dossiers = data && typeof data === "object" ? data : null;
+  const knop = document.getElementById("tab-dossiers");
+  if (knop) knop.hidden = !dossiersAan();
+  if (!dossiersAan() && state.actieveTab === "dossiers") toonTab("nieuwsdienst");
+  if (state.dossierOpen && !(dossiersAan() && state.dossiers.dossiers.some((d) => d.id === state.dossierOpen))) state.dossierOpen = null;
+  renderDossiers();
+}
+
+// Het bericht (nieuwste versie) bij een link, als het nog in berichten.json staat.
+function berichtVanUrl(url) {
+  return state.berichten.filter((x) => x.url === url).sort((a, b) => (b.versie || 1) - (a.versie || 1))[0] || null;
+}
+
+function dossiersVan(r) {
+  if (!dossiersAan() || !r || !r.url) return [];
+  return state.dossiers.dossiers.filter((d) => (d.items || []).some((i) => i.u === r.url));
+}
+
+function dossierTagNaam(code) {
+  const rubriek = state.rubrieken.find((x) => x.code === code);
+  return code && code !== "ALG" ? (rubriek ? rubriek.naam : code) : "";
+}
+
+// Eén regel in een dossier. Staat het bericht nog in de app, dan opent het in de
+// pop-up (met volledige tekst); anders is het een link naar het bericht zelf.
+function dossierItemHtml(item, huidigeUrl) {
+  const dag = item.t ? dagVan(item.t) : "";
+  const kop = escapeHtml(item.k || "");
+  const label = `<span class="dossier-datum">${escapeHtml(dag ? datumKort(dag) : "")}</span><span class="dossier-bron">${escapeHtml(item.n || item.b || "")}</span>`;
+  if (huidigeUrl && item.u === huidigeUrl) {
+    return `<li class="dossier-item dossier-huidig" aria-current="true">${label}<span class="dossier-kop">${kop}</span></li>`;
+  }
+  const record = berichtVanUrl(item.u);
+  if (record) {
+    return `<li class="dossier-item">${label}<button type="button" class="dossier-kop dossier-knop" data-actie="open-bericht" data-id="${escapeHtml(record.id)}">${kop}</button></li>`;
+  }
+  return `<li class="dossier-item">${label}<a class="dossier-kop" href="${escapeHtml(veiligeUrl(item.u))}" target="_blank" rel="noopener">${kop} ↗</a><span class="dossier-oud">tekst niet meer bewaard</span></li>`;
+}
+
+// Het blok rechts in de pop-up: het dossier waar dit bericht bij hoort, met de andere verhalen.
+function renderDossierBlok(r) {
+  const MAX = 10;
+  return dossiersVan(r)
+    .map((d) => {
+      const items = d.items || [];
+      const getoond = items.slice(0, MAX);
+      const meer = items.length - getoond.length;
+      return `<section class="modal-blok dossier-blok">
+        <p class="modal-blok-titel">Dossier</p>
+        <p class="dossier-naam">${escapeHtml(d.naam)}</p>
+        <p class="dossier-meta">${items.length} berichten</p>
+        <ul class="dossier-items">${getoond.map((i) => dossierItemHtml(i, r.url)).join("")}</ul>
+        ${meer > 0 ? `<p class="dossier-meta">en nog ${meer} eerdere berichten</p>` : ""}
+        <button type="button" class="knop knop-klein" data-actie="open-dossier" data-id="${escapeHtml(d.id)}">Open dossier</button>
+      </section>`;
+    })
+    .join("");
+}
+
+function renderDossiers() {
+  const vak = document.getElementById("dossiers-inhoud");
+  if (!vak) return;
+  if (!dossiersAan()) {
+    vak.innerHTML = '<p class="laden">Dossiers laden…</p>';
+    return;
+  }
+  const alle = state.dossiers.dossiers;
+  const open = state.dossierOpen ? alle.find((d) => d.id === state.dossierOpen) : null;
+  if (open) {
+    const tag = dossierTagNaam(open.tag);
+    vak.innerHTML = `
+      <button type="button" class="knop knop-klein" data-actie="dossier-terug">‹ Alle dossiers</button>
+      <h2>${escapeHtml(open.naam)}</h2>
+      <p class="dossier-meta">${tag ? `<span class="chip chip-tag">${escapeHtml(tag)}</span> ` : ""}${(open.items || []).length} berichten · zoekt op: ${escapeHtml((open.zoektermen || []).join(", "))}</p>
+      <ul class="dossier-items">${(open.items || []).map((i) => dossierItemHtml(i, null)).join("")}</ul>
+      <p class="uitleg">Na 14 dagen verdwijnt de tekst van een bericht in de app; de kop en de link blijven in het dossier staan.</p>`;
+    return;
+  }
+  if (!alle.length) {
+    vak.innerHTML = '<h2>Dossiers</h2><p class="uitleg">Er zijn nog geen dossiers. Een dossier ontstaat als er vijf keer over hetzelfde onderwerp is bericht.</p>';
+    return;
+  }
+  vak.innerHTML = `
+    <h2>Dossiers</h2>
+    <p class="uitleg">Onderwerpen waar vaak over is bericht, nieuwste bovenaan. Na 14 dagen verdwijnt de tekst van een bericht; de kop en de link blijven.</p>
+    <ul class="dossier-lijst">${alle
+      .map((d) => {
+        const tag = dossierTagNaam(d.tag);
+        const laatst = d.laatsteBericht ? dagVan(d.laatsteBericht) : "";
+        return `<li><button type="button" class="dossier-kaart" data-actie="open-dossier" data-id="${escapeHtml(d.id)}">
+          <span class="dossier-naam">${escapeHtml(d.naam)}</span>${tag ? ` <span class="chip chip-tag">${escapeHtml(tag)}</span>` : ""}
+          <span class="dossier-meta">${(d.items || []).length} berichten${laatst ? ` · laatst ${escapeHtml(datumKort(laatst))}` : ""}</span>
+        </button></li>`;
+      })
+      .join("")}</ul>`;
 }
 
 // --- volledige tekst uit het tekstarchief ----------------------------------------
@@ -1026,6 +1141,7 @@ function renderPopup() {
       <button type="button" class="modal-knop" data-actie="popup-sluit" aria-label="Sluiten" title="Sluiten (Esc)">${SVG_SLUIT}</button>
     </div>
     <div class="modal-zij-inhoud">
+      ${renderDossierBlok(r)}
       <section class="modal-blok">
         <p class="modal-blok-titel">Versies</p>
         <div class="wire-chips">${versieChips}</div>
@@ -1481,6 +1597,19 @@ function koppelKlikken() {
         openPopup(el.dataset.id, inPopup ? undefined : kolom && kolom.dataset.kolom ? kolom.dataset.kolom : "ALL");
         break;
       }
+      case "open-dossier": {
+        state.dossierOpen = el.dataset.id;
+        if (el.closest("#bericht-modal")) sluitPopup(false);
+        toonTab("dossiers");
+        renderDossiers();
+        const paneel = document.getElementById("paneel-dossiers");
+        if (paneel) paneel.scrollTop = 0;
+        break;
+      }
+      case "dossier-terug":
+        state.dossierOpen = null;
+        renderDossiers();
+        break;
       case "popup-sluit":
         sluitPopup();
         break;
@@ -1619,6 +1748,7 @@ function renderAlles() {
   renderWire();
   renderAgenda();
   renderStatusregel();
+  renderDossiers();
 }
 
 let laatsteVerversing = Date.now();
@@ -1630,10 +1760,11 @@ async function ververs() {
   if (verversBezig) return;
   verversBezig = true;
   try {
-    const [berichten, agenda, status] = await Promise.allSettled([
+    const [berichten, agenda, status, dossiersRes] = await Promise.allSettled([
       laadJson("data/berichten.json"),
       laadJson("data/agenda.json"),
       laadJson("data/zanp-status.json"),
+      laadJson("data/zanp-dossiers.json"),
     ]);
     const staat = bewaarUiStaat();
     let veranderd = false;
@@ -1641,6 +1772,7 @@ async function ververs() {
       zetBerichten(berichten.value);
       veranderd = true;
     }
+    if (dossiersRes.status === "fulfilled") zetDossiers(dossiersRes.value);
     if (agenda.status === "fulfilled") {
       zetAgenda(agenda.value && agenda.value.items);
       veranderd = true;
@@ -1683,7 +1815,7 @@ async function initialiseer() {
   koppelPopup();
 
   // Alles tegelijk ophalen; één ontbrekend bestand mag de rest niet blokkeren.
-  const [berichten, agenda, status, pitches, feed, lokaal, landelijk] = await Promise.allSettled([
+  const [berichten, agenda, status, pitches, feed, lokaal, landelijk, dossiersRes] = await Promise.allSettled([
     laadJson("data/berichten.json"),
     laadJson("data/agenda.json"),
     laadJson("data/zanp-status.json"),
@@ -1691,9 +1823,11 @@ async function initialiseer() {
     laadJson("data/feed.json"),
     laadJson("data/nieuws-lokaal.json"),
     laadJson("data/nieuws-landelijk.json"),
+    laadJson("data/zanp-dossiers.json"), // bestaat pas na de eerste run met dossiers; een fout hier is geen probleem
   ]);
 
   if (berichten.status === "fulfilled") zetBerichten(berichten.value);
+  if (dossiersRes.status === "fulfilled") zetDossiers(dossiersRes.value);
   if (agenda.status === "fulfilled") zetAgenda(agenda.value && agenda.value.items);
   if (status.status === "fulfilled") state.status = status.value;
 
