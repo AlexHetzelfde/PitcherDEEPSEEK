@@ -24,6 +24,8 @@
 #                 Gemini-quotum wordt gedeeld met de pitchrun; houd dit getal
 #                 ruim onder je limiet in AI Studio.
 #   ZANP_RUNCAP   AI-aanroepen per run (standaard 25).
+#   ZANP_DOSSIER_MODUS  "log" (standaard: dossiers berekenen en bewaren, maar de
+#                 app toont ze niet), "aan" (tab Dossiers tonen) of "uit".
 #
 # Handmatig starten kan ook (Actions-tab); kies "alles" om ook de rustige
 # bronnen en agendabronnen te scrapen.
@@ -96,6 +98,7 @@ jobs:
           ZANP_RUNCAP: ${{ vars.ZANP_RUNCAP }}
           # Prioriteit (rood kleuren): uit, schaduw of aan. Leeg = schaduw (rekenen en loggen, niets kleuren).
           ZANP_PRIORITEIT_MODUS: ${{ vars.ZANP_PRIORITEIT_MODUS }}
+          ZANP_DOSSIER_MODUS: ${{ vars.ZANP_DOSSIER_MODUS }}
         run: node zanp.js
 
       # Alleen de eigen bestanden van ZANP, nooit data/*.json: de pitchrun
@@ -104,7 +107,7 @@ jobs:
         run: |
           git config user.name "nieuwsaggregator-bot"
           git config user.email "actions@users.noreply.github.com"
-          git add data/berichten.json data/agenda.json data/zanp-status.json data/zanp-log.json data/zanp-prioriteit data/zanp-teksten data/zanp-camera
+          git add data/berichten.json data/agenda.json data/zanp-status.json data/zanp-log.json data/zanp-stubs.json data/zanp-dossiers.json data/zanp-prioriteit data/zanp-teksten data/zanp-camera
           git diff --quiet --cached || git commit -m "ZANP: $(TZ='Europe/Amsterdam' date '+%Y-%m-%d %H:%M')"
           # De dagelijkse run of "Bron toevoegen" kan tussentijds hebben gepusht:
           # eerst rebasen, bij een mislukte push opnieuw proberen.
