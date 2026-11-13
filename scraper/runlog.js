@@ -77,7 +77,8 @@ function maakRunLog({ nu = new Date(), konsole = console } = {}) {
       for (const [naam, o] of Object.entries(onderdelen)) {
         const delen = [
           ...Object.entries(o.tellers).map(([k, v]) => `${k}=${v}`),
-          ...Object.entries(o.waarden).map(([k, v]) => `${k}=${typeof v === "object" ? JSON.stringify(v) : v}`),
+          // Lijsten en overzichten staan volledig in zanp-log.json; hier alleen hoeveel er zijn.
+          ...Object.entries(o.waarden).map(([k, v]) => `${k}=${v && typeof v === "object" ? (Array.isArray(v) ? `[${v.length}]` : `{${Object.keys(v).length}}`) : v}`),
         ];
         if (delen.length) konsole.log(`[log:${naam}] samenvatting: ${delen.join(", ")}`);
       }

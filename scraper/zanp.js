@@ -35,6 +35,9 @@
 //  - Logboek per run (runlog.js): per onderdeel tellers, metingen en voorbeelden,
 //    in data/zanp-log.json en als "[log:onderdeel]"-regels in het Actions-log.
 //  - Een 50-, 75- of 100-jarig jubileum wordt rood op een vaste regel (jubileum.js).
+//  - Dossiers (dossiers.js): onderwerpen waar vaak over is bericht, met stubs van
+//    60 dagen in data/zanp-stubs.json en de dossiers in data/zanp-dossiers.json.
+//    ZANP_DOSSIER_MODUS: uit, log (standaard: berekenen, bewaren, niet tonen) of aan.
 //  - AI-koppen met onbekende woorden worden hersteld of vallen terug op de titel
 //    van de bron (spelling.js).
 //  - Volledige teksten staan in data/zanp-teksten/ (per publicatiedag, 14 dagen;
@@ -57,6 +60,7 @@ const gedeeld = require("./gedeeld");
 const wire = require("./wire");
 const runlog = require("./runlog");
 const jubileum = require("./jubileum");
+const dossiers = require("./dossiers");
 const spelling = require("./spelling");
 
 // ZANP-prioriteit (2026-11-04): agenda-items en berichten rood kleuren als een
@@ -750,6 +754,60 @@ async function draai(deps = {}) {
     samenvatting.jubileum = j.stats;
   } catch (fout) {
     console.error(`Jubileumregel mislukte (ZANP gaat door zonder jubileum-rood): ${fout.stack || fout.message}`);
+  }
+
+  // Dossiers (ZANP 10): onderwerpen waar vaak over is bericht. Een fout hier stopt
+  // de run niet.
+  const dossierModus = ["uit", "log", "aan"].includes(String(env.ZANP_DOSSIER_MODUS || "").trim().toLowerCase())
+    ? String(env.ZANP_DOSSIER_MODUS).trim().toLowerCase()
+    : "log";
+  if (dossierModus === "uit") {
+    // De workflow commit deze bestanden altijd; ze moeten dus bestaan, ook als de dossiers uit staan.
+    try {
+      const bestaand = await leesJson("zanp-dossiers.json", { dossiers: [], afgewezen: {} });
+      await schrijfJson("zanp-dossiers.json", { ...bestaand, modus: "uit" });
+      await schrijfJson("zanp-stubs.json", await leesJson("zanp-stubs.json", { items: {} }));
+    } catch (fout) {
+      console.error(`Dossierbestanden bijwerken mislukte: ${fout.message}`);
+    }
+  } else {
+    logFase(`ZANP 10 — Dossiers (modus ${dossierModus})`);
+    try {
+      const aiRuimte = Math.max(0, inst.dagcap - status.gemini.gebruikt);
+      const aiBeschikbaar = apiKey && aiRuimte > 0 && !(status.gemini.wachtTot && new Date(status.gemini.wachtTot) > nu);
+      // Eén aanroep per kandidaat, met hetzelfde dagquotum en dezelfde tellers als de rest.
+      const vraagAI = aiBeschikbaar
+        ? async (prompt) => {
+            try {
+              const antwoord = await roepGeminiWire(prompt, apiKey, 2048);
+              status.gemini.gebruikt += antwoord.verzoeken || 0;
+              run.verzoeken += antwoord.verzoeken || 0;
+              return antwoord;
+            } catch (fout) {
+              status.gemini.gebruikt += fout.verzoeken || 0;
+              run.verzoeken += fout.verzoeken || 0;
+              if (fout.status === 429) status.gemini.wachtTot = wachtTotNaQuotum(fout.message, nu);
+              throw fout;
+            }
+          }
+        : null;
+      const uit = await dossiers.draaiDossiers({
+        records,
+        nu,
+        modus: dossierModus,
+        stubsBestand: await leesJson("zanp-stubs.json", { items: {} }),
+        dossiersBestand: await leesJson("zanp-dossiers.json", { dossiers: [], afgewezen: {} }),
+        vraagAI,
+        tags: tagsVoorPrompt(RUBRIEKEN),
+        maxControles: aiBeschikbaar ? Math.min(dossiers.INST.maxControlesPerRun, aiRuimte) : 0,
+      });
+      await schrijfJson("zanp-stubs.json", uit.stubsBestand);
+      await schrijfJson("zanp-dossiers.json", uit.dossiersBestand);
+      samenvatting.dossiers = uit.stats;
+      console.log(`Dossiers: ${JSON.stringify(uit.stats)}`);
+    } catch (fout) {
+      console.error(`Dossiers bepalen mislukte (ZANP gaat door zonder dossiers): ${fout.stack || fout.message}`);
+    }
   }
 
   if (kwaliteitRun) {

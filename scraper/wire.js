@@ -64,7 +64,7 @@ const AGENDA_TERUG_DAGEN = 7;
 const AGENDA_VOORUIT_DAGEN = 21;
 const AGENDA_VERDWENEN_NA_DAGEN = 3;
 
-const BERICHTEN_MAX_DAGEN = 30;
+const BERICHTEN_MAX_DAGEN = 14; // gelijk aan de bewaartijd van de volledige teksten (tekstarchief.js); de stubs voor de dossiers (dossiers.js) blijven 60 dagen
 const BERICHTEN_MAX_AANTAL = 1500;
 const SEED_MAX_DAGEN = 7;
 
