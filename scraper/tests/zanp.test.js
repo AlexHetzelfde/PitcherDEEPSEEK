@@ -58,7 +58,7 @@ test("een run zonder API-sleutel levert tags, checklists en alleen de eigen best
   assert.equal(b.bekendmakingen.rubriek, "112");
   assert.equal(b.bekendmakingen.checklist.evacuatieOfNlAlert, true);
   assert.equal(b.DeOrkaan.checklist.bestuurlijkeCrisis, true);
-  assert.deepEqual(fs.readdirSync(map).sort(), ["agenda.json", "berichten.json", "zanp-log.json", "zanp-status.json"]); // geen pitchbestanden
+  assert.deepEqual(fs.readdirSync(map).sort(), ["agenda.json", "berichten.json", "zanp-dossiers.json", "zanp-log.json", "zanp-status.json", "zanp-stubs.json"]); // geen pitchbestanden
   const status = leesData(map, "zanp-status.json");
   assert.equal(status.gemini.gebruikt, 0);
 });
@@ -130,4 +130,57 @@ test("een oud bericht met een oude rubriekcode wordt omgezet naar een tag", () =
   assert.ok(oud.tagBron);
   const agenda = z.migreerAgendaItem({ id: "x", kop: "Concert", rubriek: "BES", bronId: "zaans-museum", relevantie: { zichtbaar: true }, afkomst: "bron" });
   assert.equal(agenda.rubriek, "CUL");
+});
+
+test("dossiers: vijf verhalen over een onderwerp worden een dossier met één AI-controle", async () => {
+  fs.rmSync(map, { recursive: true, force: true }); fs.mkdirSync(map);
+  const vragen = [];
+  global.fetch = async (u, o) => {
+    const prompt = JSON.parse(o.body).contents[0].parts[0].text;
+    vragen.push(prompt);
+    if (prompt.includes("doorlopend onderwerp")) {
+      return geminiAntwoord({ dossier: true, naam: "Busbrug Zaandam", tag: "VER", zoektermen: ["busbrug"], horenErbij: [1, 2, 3, 4, 5] });
+    }
+    const n = (prompt.match(/^BRON \d+:/gm) || []).length;
+    return geminiAntwoord({ resultaten: Array.from({ length: n }, (_, i) => ({ nr: i + 1, onvoldoende: true })) });
+  };
+  const dag = 24 * 3600 * 1000;
+  // De stubs van drie berichten uit eerdere dagen staan al in het bestand van een vorige run.
+  const stub = (g, kop, dagenGeleden, b = "DeOrkaan") => [g, { g, u: `https://voorbeeld.nl/${g}`, k: kop, bt: "", b, n: b, t: new Date(nu.getTime() - dagenGeleden * dag).toISOString(), c: null, r: "VER" }];
+  fs.writeFileSync(`${map}/zanp-stubs.json`, JSON.stringify({ versie: 1, items: Object.fromEntries([
+    stub("oud1", "Busbrug in Zaandam blijft dicht na nieuwe schade", 3),
+    stub("oud2", "Raad wil antwoorden over vertraging van de busbrug", 2, "nh-actueel"),
+    stub("oud3", "Fietsers boos over omleiding rond de busbrug", 2),
+  ]) }));
+  const brug = (nr, titel, bronId = "DeOrkaan") => ruw({ bronId, url: `https://voorbeeld.nl/busbrug-${nr}`, titel, samenvatting: `${titel}. `.repeat(12) });
+  const env = { ZANP_DOSSIER_MODUS: "aan" };
+  await z.draai({
+    nu, apiKey: "sleutel", env, haalTekst: geenTekst, schrijf: g.schrijfMeldingen,
+    scrape: async () => [
+      brug(4, "Aannemer verwacht busbrug pas in het voorjaar open"),
+      brug(5, "Provincie schiet te hulp bij kosten van de busbrug", "nh-actueel"),
+    ],
+  });
+  assert.equal(vragen.filter((v) => v.includes("doorlopend onderwerp")).length, 1);
+  const dossiers = leesData(map, "zanp-dossiers.json");
+  assert.equal(dossiers.modus, "aan");
+  assert.equal(dossiers.dossiers.length, 1);
+  assert.equal(dossiers.dossiers[0].naam, "Busbrug Zaandam");
+  assert.equal(dossiers.dossiers[0].items.length, 5);
+  assert.equal(Object.keys(leesData(map, "zanp-stubs.json").items).length, 5);
+  const log = leesData(map, "zanp-log.json");
+  assert.equal(log.runs.at(-1).onderdelen.dossiers.tellers.nieuweDossiers, 1);
+  assert.ok(leesData(map, "zanp-status.json").gemini.gebruikt >= 1);
+
+  // een volgende run: het dossier blijft, er komt geen tweede AI-controle
+  await z.draai({ nu: new Date(nu.getTime() + 1800000), apiKey: "sleutel", env, haalTekst: geenTekst, schrijf: g.schrijfMeldingen, scrape: async () => [] });
+  assert.equal(vragen.filter((v) => v.includes("doorlopend onderwerp")).length, 1);
+  assert.equal(leesData(map, "zanp-dossiers.json").dossiers[0].items.length, 5);
+});
+
+test("dossiers: ZANP_DOSSIER_MODUS uit rekent niets uit, maar de bestanden bestaan voor de commitstap", async () => {
+  fs.rmSync(map, { recursive: true, force: true }); fs.mkdirSync(map);
+  await z.draai({ nu, apiKey: null, env: { ZANP_DOSSIER_MODUS: "uit" }, scrape, haalTekst: geenTekst });
+  assert.deepEqual(leesData(map, "zanp-dossiers.json"), { dossiers: [], afgewezen: {}, modus: "uit" });
+  assert.deepEqual(leesData(map, "zanp-stubs.json"), { items: {} });
 });
