@@ -1,5 +1,5 @@
 {
-  "gegenereerdOp": "2026-11-13T06:30:43.224Z",
+  "gegenereerdOp": "2026-11-13T07:26:56.769Z",
   "uitleg": "Per run per onderdeel: tellers (optellend), waarden (meting van die run), voorbeelden en regels. De laatste 24 runs hebben voorbeelden en regels; 'dagen' telt de tellers per dag op.",
   "runs": [
     {
@@ -2162,6 +2162,253 @@
           "regels": []
         }
       }
+    },
+    {
+      "tijd": "2026-11-13T07:26:56.769Z",
+      "duurMs": 63510,
+      "onderdelen": {
+        "spelling": {
+          "tellers": {},
+          "waarden": {},
+          "voorbeelden": [],
+          "regels": [
+            "Nederlands woordenboek geladen."
+          ]
+        },
+        "tekst": {
+          "tellers": {
+            "aangeboden": 2,
+            "geschreven": 1,
+            "teOudOvergeslagen": 0,
+            "leegOvergeslagen": 0,
+            "rommelRegelsWeg": 0,
+            "alineasHerleid": 1,
+            "titelHerhalingWeg": 0,
+            "methode-run": 1,
+            "methode-lijst": 1,
+            "oudeBestandenOvergezet": 0,
+            "dagbestandenVerwijderd": 0,
+            "bytesVerwijderd": 0
+          },
+          "waarden": {
+            "oudsteDagbestand": "2026-10-30",
+            "dekkingPct": 97,
+            "berichtenZonderTekst": 9,
+            "dekkingPerBron": {
+              "DeOrkaan": {
+                "berichten": 157,
+                "metTekst": 157,
+                "pct": 100,
+                "gemTekens": 2675
+              },
+              "zaanstad-moties": {
+                "berichten": 43,
+                "metTekst": 43,
+                "pct": 100,
+                "gemTekens": 1054
+              },
+              "nh-actueel": {
+                "berichten": 20,
+                "metTekst": 20,
+                "pct": 100,
+                "gemTekens": 3070
+              },
+              "ibabs-collegeberichten": {
+                "berichten": 18,
+                "metTekst": 17,
+                "pct": 94,
+                "gemTekens": 5817
+              },
+              "ibabs-ingekomen-stukken": {
+                "berichten": 43,
+                "metTekst": 38,
+                "pct": 88,
+                "gemTekens": 2061
+              },
+              "bekendmakingen": {
+                "berichten": 29,
+                "metTekst": 29,
+                "pct": 100,
+                "gemTekens": 1253
+              },
+              "vervoerregio-persberichten": {
+                "berichten": 6,
+                "metTekst": 6,
+                "pct": 100,
+                "gemTekens": 1422
+              },
+              "wetenregelgeving": {
+                "berichten": 5,
+                "metTekst": 5,
+                "pct": 100,
+                "gemTekens": 3889
+              },
+              "zaanstad-ted": {
+                "berichten": 2,
+                "metTekst": 2,
+                "pct": 100,
+                "gemTekens": 74
+              },
+              "zaansche-molen": {
+                "berichten": 1,
+                "metTekst": 1,
+                "pct": 100,
+                "gemTekens": 1620
+              },
+              "rechtspraak-noord-holland": {
+                "berichten": 1,
+                "metTekst": 1,
+                "pct": 100,
+                "gemTekens": 6002
+              },
+              "omgevingsdienstnoordzeekanaal": {
+                "berichten": 2,
+                "metTekst": 2,
+                "pct": 100,
+                "gemTekens": 3328
+              },
+              "vervoerregio-overzichten": {
+                "berichten": 6,
+                "metTekst": 3,
+                "pct": 50,
+                "gemTekens": 6952
+              }
+            }
+          },
+          "voorbeelden": [
+            {
+              "bron": "DeOrkaan",
+              "methode": "run",
+              "kop": "Dit weekend Den Uylbrug afgesloten",
+              "tekensVoor": 1052,
+              "tekensNa": 1054,
+              "alineas": 3,
+              "rommelRegelsWeg": 0,
+              "alineasHerleid": true,
+              "begin": "De Den Uylbrug in Zaandam in de N516 is van vrijdag 13 november 20.00 uur tot maandag 16 november 05.00 uur in beide richtingen afgesloten voor autoverkeer. Fietsers, bromfietsers en voetgangers kunnen wel over de brug. ",
+              "eind": "Bakker op basis langsrijden en -fietsen, website Thorbeckeweg en video Boskalis (screenshot kaartje). Foto’s: De Orkaan."
+            },
+            {
+              "bron": "vervoerregio-persberichten",
+              "methode": "lijst",
+              "kop": "BO MIRT: nieuwe afspraken over bereikbaarheid en infrastructuur",
+              "tekensVoor": 600,
+              "tekensNa": 600,
+              "alineas": 1,
+              "rommelRegelsWeg": 0,
+              "alineasHerleid": false,
+              "begin": "Tijdens het Bestuurlijk Overleg MIRT op 4 november hebben het Rijk en de regio nieuwe afspraken gemaakt over infrastructuur en bereikbaarheid. Voor de Metropoolregio Amsterdam (MRA) - waar de Vervoerregio onderdeel van i",
+              "eind": "en gemaakt over de bereikbaarheid van nieuwe woningbouwlocaties. Hoewel een aantal belangrijke ov- en bereikbaarheidspro"
+            }
+          ],
+          "regels": [
+            "Dekking volledige tekst: 324/333 berichten (97%). Laagst: vervoerregio-overzichten 3/6 (50%)."
+          ]
+        },
+        "jubileum": {
+          "tellers": {
+            "nieuwsRood": 0,
+            "agendaRood": 1,
+            "uitgesloten": 0,
+            "alRoodDoorPrioriteit": 1
+          },
+          "waarden": {},
+          "voorbeelden": [
+            {
+              "soort": "agenda",
+              "rood": true,
+              "jaren": 100,
+              "woorden": "100-jarig",
+              "kop": "Brandweer Oostzaan viert 100-jarig jubileum"
+            }
+          ],
+          "regels": []
+        },
+        "dossiers": {
+          "tellers": {
+            "stubsNieuw": 297,
+            "stubsVerlopen": 0,
+            "aiControles": 3,
+            "aiJa": 0,
+            "aiNee": 3,
+            "aiFout": 0,
+            "nieuweDossiers": 0,
+            "itemsToegevoegd": 0,
+            "dossiersVerlopen": 0
+          },
+          "waarden": {
+            "kandidatenDezeRun": [
+              "verworp (13)",
+              "aangenom (10)",
+              "stichting (6)",
+              "begroting (6)",
+              "cameratoezicht (5)",
+              "erfgoed (5)"
+            ],
+            "stubsTotaal": 297,
+            "verhalen": 270,
+            "kandidaten": 6,
+            "dossiersActief": 0,
+            "modus": "log",
+            "dossiers": []
+          },
+          "voorbeelden": [
+            {
+              "besluit": "geen dossier",
+              "woord": "verworp",
+              "aantal": 13,
+              "reden": "ai-nee",
+              "koppen": [
+                "Motie verworpen: Beetje tijd om vrij te stellen",
+                "Motie verworpen: Eerst kaders, dan extra camera’s",
+                "Motie verworpen: Duurzame Schoolgebouwen",
+                "Motie verworpen: Focus op Fluxus bij bezuinigingen Kunst en Cultuur"
+              ]
+            },
+            {
+              "besluit": "geen dossier",
+              "woord": "aangenom",
+              "aantal": 10,
+              "reden": "ai-nee",
+              "koppen": [
+                "Motie aangenomen: Nachttrein",
+                "Motie aangenomen: (gewijzigd) Motie parkeerenquête betaald parkeren in de Burgemeestersbuurt, Rosmolenbuurt en Zaan-eiland",
+                "Motie aangenomen: Tijdelijk gas om door te bouwen",
+                "Motie aangenomen: A8-A9 Te groot voor de provincie, te belangrijk om te laten liggen"
+              ]
+            },
+            {
+              "besluit": "geen dossier",
+              "woord": "stichting",
+              "aantal": 6,
+              "reden": "ai-nee",
+              "koppen": [
+                "Beheer buurthuizen Poelenburcht, Kleurrijk en Zuidhoek naar Stichting Jeugdteam Zaanstad",
+                "College van Zaanstad verleent goedkeuring aan fusie Stichting Jeugdteam en SMD",
+                "Laurentine Pels Rijcken wordt per 1 januari 2027 interim-directeur-bestuurder Stichting de Zaanse Schans",
+                "Stichting Nysa vraagt aandacht voor flinke stijging legestarieven kinderopvang 2027"
+              ]
+            }
+          ],
+          "regels": [
+            "Kandidaat \"verworp\" (13 verhalen): geen dossier (ai-nee).",
+            "Kandidaat \"aangenom\" (10 verhalen): geen dossier (ai-nee).",
+            "Kandidaat \"stichting\" (6 verhalen): geen dossier (ai-nee)."
+          ]
+        },
+        "run": {
+          "tellers": {},
+          "waarden": {
+            "berichten": 347,
+            "agendaItems": 274,
+            "aiVerzoeken": 4,
+            "geminiDagGebruikt": "14/80",
+            "duurSeconden": 64
+          },
+          "voorbeelden": [],
+          "regels": []
+        }
+      }
     }
   ],
   "dagen": {
@@ -2249,34 +2496,45 @@
       }
     },
     "2026-11-13": {
-      "runs": 2,
+      "runs": 3,
       "tellers": {
         "spelling": {
           "gecontroleerd": 13,
           "ok": 13
         },
         "tekst": {
-          "aangeboden": 20,
-          "geschreven": 20,
+          "aangeboden": 22,
+          "geschreven": 21,
           "teOudOvergeslagen": 0,
           "leegOvergeslagen": 0,
           "rommelRegelsWeg": 0,
-          "alineasHerleid": 12,
+          "alineasHerleid": 13,
           "titelHerhalingWeg": 0,
-          "methode-run": 10,
+          "methode-run": 11,
           "oudeBestandenOvergezet": 0,
           "dagbestandenVerwijderd": 1,
           "bytesVerwijderd": 72751,
-          "methode-lijst": 7,
+          "methode-lijst": 8,
           "methode-artikel": 3
         },
         "jubileum": {
           "nieuwsRood": 0,
-          "agendaRood": 1,
+          "agendaRood": 2,
           "uitgesloten": 0,
-          "alRoodDoorPrioriteit": 5
+          "alRoodDoorPrioriteit": 6
         },
-        "run": {}
+        "run": {},
+        "dossiers": {
+          "stubsNieuw": 297,
+          "stubsVerlopen": 0,
+          "aiControles": 3,
+          "aiJa": 0,
+          "aiNee": 3,
+          "aiFout": 0,
+          "nieuweDossiers": 0,
+          "itemsToegevoegd": 0,
+          "dossiersVerlopen": 0
+        }
       }
     }
   }

@@ -1,5 +1,5 @@
 {
-  "gegenereerdOp": "2026-11-13T06:30:43.224Z",
+  "gegenereerdOp": "2026-11-13T07:26:56.769Z",
   "modus": "schaduw",
   "stempel": "v4-22806000",
   "tau": 0.5,
@@ -8,18 +8,18 @@
     "ai": true,
     "formule": "v4-22806000",
     "tekst": {
-      "werklijst": 19,
-      "lokaal": 15,
-      "opgehaald": 3,
+      "werklijst": 2,
+      "lokaal": 1,
+      "opgehaald": 0,
       "mislukt": 1,
       "uitgesteld": 0
     },
     "vergeten": 0,
     "tekstenOpgeruimd": 0,
     "tekstDekkingPct": 97,
-    "stukken": 537,
-    "kandidaten": 119,
-    "metAnker": 119,
+    "stukken": 538,
+    "kandidaten": 120,
+    "metAnker": 120,
     "zonderAnker": 0,
     "afgelast": 1,
     "dubbel": 1,
@@ -202,8 +202,8 @@
       "key": "n:https://www.deorkaan.nl/zes-zaanse-tieners-aangehouden-voor-explosies-en-beschietingen/",
       "soort": "nieuws",
       "kop": "Zes Zaanse tieners aangehouden voor explosies en beschietingen",
-      "S": 0.33,
-      "Sa": 0.33,
+      "S": 0.32,
+      "Sa": 0.32,
       "Sp": 0,
       "route": "aanhoudend",
       "K": 0.93,
@@ -268,7 +268,7 @@
       "Sp": 0,
       "route": "aanhoudend",
       "K": 0.87,
-      "Kp": 0.62,
+      "Kp": 0.61,
       "n": 1,
       "dagen": 1,
       "bronnen": 1,
@@ -689,6 +689,39 @@
       ]
     },
     {
+      "key": "n:https://www.deorkaan.nl/dit-weekend-den-uylbrug-afgesloten/",
+      "soort": "nieuws",
+      "kop": "Dit weekend Den Uylbrug afgesloten",
+      "S": 0.15,
+      "Sa": 0.15,
+      "Sp": 0,
+      "route": "aanhoudend",
+      "K": 0.56,
+      "Kp": 0.36,
+      "n": 2,
+      "dagen": 2,
+      "bronnen": 1,
+      "ankers": [
+        "uylbrug"
+      ],
+      "bewijs": [
+        {
+          "bron": "DeOrkaan",
+          "datum": "2026-11-06T23:00:00.000Z",
+          "c": 0.72,
+          "plek": "intro",
+          "titel": "Thorbeckeweg: bouwput wordt eindelijk echte tunnel"
+        },
+        {
+          "bron": "DeOrkaan",
+          "datum": "2026-10-24T22:00:00.000Z",
+          "c": 0.63,
+          "plek": "intro",
+          "titel": "Is 70 het nieuwe 50? (of omgekeerd?)"
+        }
+      ]
+    },
+    {
       "key": "n:https://zaanstad.bestuurlijkeinformatie.nl/Reports/Item/07ddd8a4-7fac-47e6-8bf6-1d297be26b62",
       "soort": "nieuws",
       "kop": "Motie aangenomen: A8-A9 Te groot voor de provincie, te belangrijk om te laten liggen",
@@ -764,8 +797,8 @@
       "key": "n:https://zaanstad.bestuurlijkeinformatie.nl/Reports/Item/2470be28-b1f8-4dd5-8566-56933346c5a7",
       "soort": "nieuws",
       "kop": "Motie verworpen: Voorkom stapeling van financiële lasten bij kwetsbare inwoners",
-      "S": 0.14,
-      "Sa": 0.14,
+      "S": 0.13,
+      "Sa": 0.13,
       "Sp": 0,
       "route": "aanhoudend",
       "K": 0.67,
@@ -1303,32 +1336,6 @@
         "masterclasse",
         "andacht",
         "almelo"
-      ],
-      "bewijs": []
-    },
-    {
-      "key": "a:d663617503",
-      "soort": "agenda",
-      "kop": "Uitnodiging Een nieuwe kijk op de Zaanse geschiedenis",
-      "S": 0,
-      "Sa": 0,
-      "Sp": 0,
-      "route": "geen",
-      "K": 0,
-      "Kp": 0,
-      "n": 0,
-      "dagen": 0,
-      "bronnen": 0,
-      "ankers": [
-        "schansend",
-        "geschiedenis",
-        "erfgoedpartij",
-        "kolonial",
-        "zansmuseum",
-        "museum",
-        "nodigt",
-        "verled",
-        "hieronder"
       ],
       "bewijs": []
     }
@@ -2331,6 +2338,14 @@
         "n": 2,
         "bronnen": 2
       },
+      "n:https://www.deorkaan.nl/dit-weekend-den-uylbrug-afgesloten/": {
+        "kop": "Dit weekend Den Uylbrug afgesloten",
+        "S": 0.15,
+        "route": "aanhoudend",
+        "K": 0.56,
+        "n": 2,
+        "bronnen": 1
+      },
       "n:https://zaanstad.bestuurlijkeinformatie.nl/Reports/Item/07ddd8a4-7fac-47e6-8bf6-1d297be26b62": {
         "kop": "Motie aangenomen: A8-A9 Te groot voor de provincie, te belangrijk om te laten liggen",
         "S": 0.14,
@@ -2377,14 +2392,6 @@
         "route": "aanhoudend",
         "K": 0,
         "n": 2,
-        "bronnen": 1
-      },
-      "a:ce4ae67b87": {
-        "kop": "Maling Academie Najaar 2026 - Schrijf u in!!",
-        "S": 0.1,
-        "route": "aanhoudend",
-        "K": 0,
-        "n": 1,
         "bronnen": 1
       }
     }

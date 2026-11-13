@@ -1,0 +1,23 @@
+{
+  "versie": 1,
+  "modus": "log",
+  "bijgewerkt": "2026-11-13T07:26:56.769Z",
+  "dossiers": [],
+  "afgewezen": {
+    "verworp": {
+      "aantal": 13,
+      "tijd": "2026-11-13T07:26:56.769Z",
+      "reden": "ai-nee"
+    },
+    "aangenom": {
+      "aantal": 10,
+      "tijd": "2026-11-13T07:26:56.769Z",
+      "reden": "ai-nee"
+    },
+    "stichting": {
+      "aantal": 6,
+      "tijd": "2026-11-13T07:26:56.769Z",
+      "reden": "ai-nee"
+    }
+  }
+}
