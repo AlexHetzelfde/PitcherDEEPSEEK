@@ -1,5 +1,5 @@
 {
-  "gegenereerdOp": "2026-11-13T00:06:51.442Z",
+  "gegenereerdOp": "2026-11-13T06:30:43.224Z",
   "uitleg": "Per run per onderdeel: tellers (optellend), waarden (meting van die run), voorbeelden en regels. De laatste 24 runs hebben voorbeelden en regels; 'dagen' telt de tellers per dag op.",
   "runs": [
     {
@@ -1935,6 +1935,233 @@
           "regels": []
         }
       }
+    },
+    {
+      "tijd": "2026-11-13T06:30:43.224Z",
+      "duurMs": 139294,
+      "onderdelen": {
+        "spelling": {
+          "tellers": {
+            "gecontroleerd": 13,
+            "ok": 13
+          },
+          "waarden": {},
+          "voorbeelden": [],
+          "regels": [
+            "Nederlands woordenboek geladen."
+          ]
+        },
+        "tekst": {
+          "tellers": {
+            "aangeboden": 19,
+            "geschreven": 19,
+            "teOudOvergeslagen": 0,
+            "leegOvergeslagen": 0,
+            "rommelRegelsWeg": 0,
+            "alineasHerleid": 11,
+            "titelHerhalingWeg": 0,
+            "methode-run": 9,
+            "methode-lijst": 7,
+            "methode-artikel": 3,
+            "oudeBestandenOvergezet": 0,
+            "dagbestandenVerwijderd": 0,
+            "bytesVerwijderd": 0
+          },
+          "waarden": {
+            "oudsteDagbestand": "2026-10-30",
+            "dekkingPct": 97,
+            "berichtenZonderTekst": 11,
+            "dekkingPerBron": {
+              "DeOrkaan": {
+                "berichten": 169,
+                "metTekst": 169,
+                "pct": 100,
+                "gemTekens": 2661
+              },
+              "zaanstad-moties": {
+                "berichten": 43,
+                "metTekst": 43,
+                "pct": 100,
+                "gemTekens": 1054
+              },
+              "nh-actueel": {
+                "berichten": 20,
+                "metTekst": 20,
+                "pct": 100,
+                "gemTekens": 3070
+              },
+              "ibabs-collegeberichten": {
+                "berichten": 19,
+                "metTekst": 17,
+                "pct": 89,
+                "gemTekens": 5817
+              },
+              "ibabs-ingekomen-stukken": {
+                "berichten": 44,
+                "metTekst": 38,
+                "pct": 86,
+                "gemTekens": 2061
+              },
+              "bekendmakingen": {
+                "berichten": 31,
+                "metTekst": 31,
+                "pct": 100,
+                "gemTekens": 1200
+              },
+              "vervoerregio-persberichten": {
+                "berichten": 6,
+                "metTekst": 6,
+                "pct": 100,
+                "gemTekens": 1422
+              },
+              "wetenregelgeving": {
+                "berichten": 8,
+                "metTekst": 8,
+                "pct": 100,
+                "gemTekens": 22400
+              },
+              "zaanstad-ted": {
+                "berichten": 2,
+                "metTekst": 2,
+                "pct": 100,
+                "gemTekens": 74
+              },
+              "zaansche-molen": {
+                "berichten": 1,
+                "metTekst": 1,
+                "pct": 100,
+                "gemTekens": 1620
+              },
+              "rechtspraak-noord-holland": {
+                "berichten": 1,
+                "metTekst": 1,
+                "pct": 100,
+                "gemTekens": 6002
+              },
+              "omgevingsdienstnoordzeekanaal": {
+                "berichten": 2,
+                "metTekst": 2,
+                "pct": 100,
+                "gemTekens": 3328
+              },
+              "vervoerregio-overzichten": {
+                "berichten": 6,
+                "metTekst": 3,
+                "pct": 50,
+                "gemTekens": 6952
+              }
+            }
+          },
+          "voorbeelden": [
+            {
+              "bron": "DeOrkaan",
+              "methode": "run",
+              "kop": "Drie auto’s verwoest door felle brand in Zaandam",
+              "tekensVoor": 1000,
+              "tekensNa": 1001,
+              "alineas": 2,
+              "rommelRegelsWeg": 0,
+              "alineasHerleid": true,
+              "begin": "De brandweer is donderdagavond – 12 november – rond 22.40 uur uitgerukt voor een felle autobrand aan de Gerrit Kiststraat in de Zaandamse buurt Zuiderhout. Bij aankomst van de brandweer stonden drie auto’s in brand. Een ",
+              "eind": "ar de oorzaak van de brand. Onder een slideshow met dertien foto’s (klik op de pijltjes of swipe): Door Michel Schermer."
+            },
+            {
+              "bron": "ibabs-collegeberichten",
+              "methode": "lijst",
+              "kop": "Overdracht buurthuizen Zaandam oost",
+              "tekensVoor": 7485,
+              "tekensNa": 7495,
+              "alineas": 18,
+              "rommelRegelsWeg": 0,
+              "alineasHerleid": true,
+              "begin": "Raadsinformatiebrief\n\nKarst, R.\n\nActieve informatievoorziening\n\nMOZARD ZAAKNUMMER PAGINA gemeente Zaanstad 10726707 1/3 Raadsinformatiebrief 1 Onderwerp Overdracht buurthuizen Zaandam Oost Portefeuillehouder R. Karst Por",
+              "eind": "an Zaanstad, drs J. Hamming, burgemeester mr. L. Graaff, gemeentesecretaris Transactiebewijs iBabs digitale handtekening"
+            },
+            {
+              "bron": "ibabs-ingekomen-stukken",
+              "methode": "run",
+              "kop": "Nieuwsbrief november 2026",
+              "tekensVoor": 194,
+              "tekensNa": 188,
+              "alineas": 6,
+              "rommelRegelsWeg": 0,
+              "alineasHerleid": false,
+              "begin": "De Corner\n\nTer kennisname\n\nOnderwerp: Nieuwsbrief november 2026\n\nToelichting: https://mailchi.mp/229526a14944/27-februari-13921754?e=f2f9cb9628\n\nAfzender: De Corner\n\nAdvies: Ter kennisname",
+              "eind": "lichting: https://mailchi.mp/229526a14944/27-februari-13921754?e=f2f9cb9628\n\nAfzender: De Corner\n\nAdvies: Ter kennisname"
+            },
+            {
+              "bron": "bekendmakingen",
+              "methode": "run",
+              "kop": "Machtiging VNG voor het ontwerpen en actualiseren van het ‘Selectiebesluit gemeenten 2027’",
+              "tekensVoor": 989,
+              "tekensNa": 989,
+              "alineas": 1,
+              "rommelRegelsWeg": 0,
+              "alineasHerleid": false,
+              "begin": "Besluit: 1. Akkoord te gaan om de Vereniging van Nederlandse Gemeenten (hierna VNG) te machtigen om namens het college van burgemeester en wethouders van de gemeente Zaanstad deel te nemen aan de procedure voor het ontwe",
+              "eind": " college voor te leggen en vervolgens ter vaststelling aan de algemene rijksarchivaris aan te bieden namens de minister."
+            },
+            {
+              "bron": "vervoerregio-persberichten",
+              "methode": "lijst",
+              "kop": "BO MIRT: nieuwe afspraken over bereikbaarheid en infrastructuur",
+              "tekensVoor": 600,
+              "tekensNa": 600,
+              "alineas": 1,
+              "rommelRegelsWeg": 0,
+              "alineasHerleid": false,
+              "begin": "Tijdens het Bestuurlijk Overleg MIRT op 4 november hebben het Rijk en de regio nieuwe afspraken gemaakt over infrastructuur en bereikbaarheid. Voor de Metropoolregio Amsterdam (MRA) - waar de Vervoerregio onderdeel van i",
+              "eind": "en gemaakt over de bereikbaarheid van nieuwe woningbouwlocaties. Hoewel een aantal belangrijke ov- en bereikbaarheidspro"
+            },
+            {
+              "bron": "zaanstad-kalender",
+              "methode": "artikel",
+              "kop": "Groot Dictee der Nederlandse Taal",
+              "tekensVoor": 242,
+              "tekensNa": 242,
+              "alineas": 8,
+              "rommelRegelsWeg": 0,
+              "alineasHerleid": false,
+              "begin": "zaterdag 21 november 2026\n\n10:00\n\nLocatie\n\n't Reghthuys Westzaan\n\nToelichting\n\n21 november: Samen aan het Groot Dictee der Nederlandse Taal – 't Reghthuys Westzaan\n\nAgenda documenten\n\n• Tekst publicatie Groot Dictee der ",
+              "eind": " Nederlandse Taal – 't Reghthuys Westzaan\n\nAgenda documenten\n\n• Tekst publicatie Groot Dictee der Nederlandse Taal 39 KB"
+            }
+          ],
+          "regels": [
+            "Dekking volledige tekst: 341/352 berichten (97%). Laagst: vervoerregio-overzichten 3/6 (50%)."
+          ]
+        },
+        "jubileum": {
+          "tellers": {
+            "nieuwsRood": 0,
+            "agendaRood": 1,
+            "uitgesloten": 0,
+            "alRoodDoorPrioriteit": 2
+          },
+          "waarden": {},
+          "voorbeelden": [
+            {
+              "soort": "agenda",
+              "rood": true,
+              "jaren": 100,
+              "woorden": "100-jarig",
+              "kop": "Brandweer Oostzaan viert 100-jarig jubileum"
+            }
+          ],
+          "regels": []
+        },
+        "run": {
+          "tellers": {},
+          "waarden": {
+            "berichten": 490,
+            "agendaItems": 275,
+            "aiVerzoeken": 4,
+            "geminiDagGebruikt": "10/80",
+            "duurSeconden": 139
+          },
+          "voorbeelden": [],
+          "regels": []
+        }
+      }
     }
   ],
   "dagen": {
@@ -2022,27 +2249,32 @@
       }
     },
     "2026-11-13": {
-      "runs": 1,
+      "runs": 2,
       "tellers": {
-        "spelling": {},
+        "spelling": {
+          "gecontroleerd": 13,
+          "ok": 13
+        },
         "tekst": {
-          "aangeboden": 1,
-          "geschreven": 1,
+          "aangeboden": 20,
+          "geschreven": 20,
           "teOudOvergeslagen": 0,
           "leegOvergeslagen": 0,
           "rommelRegelsWeg": 0,
-          "alineasHerleid": 1,
+          "alineasHerleid": 12,
           "titelHerhalingWeg": 0,
-          "methode-run": 1,
+          "methode-run": 10,
           "oudeBestandenOvergezet": 0,
           "dagbestandenVerwijderd": 1,
-          "bytesVerwijderd": 72751
+          "bytesVerwijderd": 72751,
+          "methode-lijst": 7,
+          "methode-artikel": 3
         },
         "jubileum": {
           "nieuwsRood": 0,
-          "agendaRood": 0,
+          "agendaRood": 1,
           "uitgesloten": 0,
-          "alRoodDoorPrioriteit": 3
+          "alRoodDoorPrioriteit": 5
         },
         "run": {}
       }
