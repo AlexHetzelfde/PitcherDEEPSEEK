@@ -1,5 +1,5 @@
 {
-  "gegenereerdOp": "2026-11-12T18:48:17.455Z",
+  "gegenereerdOp": "2026-11-13T00:06:51.442Z",
   "uitleg": "Per run per onderdeel: tellers (optellend), waarden (meting van die run), voorbeelden en regels. De laatste 24 runs hebben voorbeelden en regels; 'dagen' telt de tellers per dag op.",
   "runs": [
     {
@@ -1781,6 +1781,160 @@
           "regels": []
         }
       }
+    },
+    {
+      "tijd": "2026-11-13T00:06:51.442Z",
+      "duurMs": 75897,
+      "onderdelen": {
+        "spelling": {
+          "tellers": {},
+          "waarden": {},
+          "voorbeelden": [],
+          "regels": [
+            "Nederlands woordenboek geladen."
+          ]
+        },
+        "tekst": {
+          "tellers": {
+            "aangeboden": 1,
+            "geschreven": 1,
+            "teOudOvergeslagen": 0,
+            "leegOvergeslagen": 0,
+            "rommelRegelsWeg": 0,
+            "alineasHerleid": 1,
+            "titelHerhalingWeg": 0,
+            "methode-run": 1,
+            "oudeBestandenOvergezet": 0,
+            "dagbestandenVerwijderd": 1,
+            "bytesVerwijderd": 72751
+          },
+          "waarden": {
+            "oudsteDagbestand": "2026-10-30",
+            "dekkingPct": 97,
+            "berichtenZonderTekst": 11,
+            "dekkingPerBron": {
+              "zaanstad-moties": {
+                "berichten": 43,
+                "metTekst": 43,
+                "pct": 100,
+                "gemTekens": 1054
+              },
+              "DeOrkaan": {
+                "berichten": 168,
+                "metTekst": 168,
+                "pct": 100,
+                "gemTekens": 2671
+              },
+              "nh-actueel": {
+                "berichten": 20,
+                "metTekst": 20,
+                "pct": 100,
+                "gemTekens": 3070
+              },
+              "wetenregelgeving": {
+                "berichten": 8,
+                "metTekst": 8,
+                "pct": 100,
+                "gemTekens": 22400
+              },
+              "zaanstad-ted": {
+                "berichten": 2,
+                "metTekst": 2,
+                "pct": 100,
+                "gemTekens": 74
+              },
+              "zaansche-molen": {
+                "berichten": 1,
+                "metTekst": 1,
+                "pct": 100,
+                "gemTekens": 1620
+              },
+              "ibabs-collegeberichten": {
+                "berichten": 11,
+                "metTekst": 9,
+                "pct": 82,
+                "gemTekens": 4965
+              },
+              "bekendmakingen": {
+                "berichten": 29,
+                "metTekst": 29,
+                "pct": 100,
+                "gemTekens": 1234
+              },
+              "rechtspraak-noord-holland": {
+                "berichten": 1,
+                "metTekst": 1,
+                "pct": 100,
+                "gemTekens": 6002
+              },
+              "omgevingsdienstnoordzeekanaal": {
+                "berichten": 2,
+                "metTekst": 2,
+                "pct": 100,
+                "gemTekens": 3328
+              },
+              "ibabs-ingekomen-stukken": {
+                "berichten": 40,
+                "metTekst": 34,
+                "pct": 85,
+                "gemTekens": 1901
+              },
+              "vervoerregio-overzichten": {
+                "berichten": 6,
+                "metTekst": 3,
+                "pct": 50,
+                "gemTekens": 6952
+              },
+              "vervoerregio-persberichten": {
+                "berichten": 5,
+                "metTekst": 5,
+                "pct": 100,
+                "gemTekens": 1586
+              }
+            }
+          },
+          "voorbeelden": [
+            {
+              "bron": "DeOrkaan",
+              "methode": "run",
+              "kop": "Vertrekt Meyn na bijna zeventig jaar uit Oostzaan? Miljoenenpand in Amsterdam gekocht",
+              "tekensVoor": 2874,
+              "tekensNa": 2879,
+              "alineas": 6,
+              "rommelRegelsWeg": 0,
+              "alineasHerleid": true,
+              "begin": "Gaat Oostzaan een van zijn bekendste bedrijven verliezen? Machinefabrikant Meyn heeft voor 18 miljoen euro een enorm bedrijfspand gekocht in Amsterdam-Westpoort. Daarmee krijgen de geruchten over een mogelijk vertrek uit",
+              "eind": "t Bakker, foto’s Rens Kamminga. Informatie van de website van Meyn, uit het Kadaster en van vastgoedplatform PropertyNL."
+            }
+          ],
+          "regels": [
+            "Dekking volledige tekst: 325/336 berichten (97%). Laagst: vervoerregio-overzichten 3/6 (50%)."
+          ]
+        },
+        "jubileum": {
+          "tellers": {
+            "nieuwsRood": 0,
+            "agendaRood": 0,
+            "uitgesloten": 0,
+            "alRoodDoorPrioriteit": 3
+          },
+          "waarden": {},
+          "voorbeelden": [],
+          "regels": []
+        },
+        "run": {
+          "tellers": {},
+          "waarden": {
+            "berichten": 474,
+            "agendaItems": 262,
+            "aiVerzoeken": 2,
+            "geminiDagGebruikt": "6/80",
+            "duurSeconden": 76
+          },
+          "voorbeelden": [],
+          "regels": []
+        }
+      }
     }
   ],
   "dagen": {
@@ -1863,6 +2017,32 @@
           "agendaRood": 1,
           "uitgesloten": 0,
           "alRoodDoorPrioriteit": 11
+        },
+        "run": {}
+      }
+    },
+    "2026-11-13": {
+      "runs": 1,
+      "tellers": {
+        "spelling": {},
+        "tekst": {
+          "aangeboden": 1,
+          "geschreven": 1,
+          "teOudOvergeslagen": 0,
+          "leegOvergeslagen": 0,
+          "rommelRegelsWeg": 0,
+          "alineasHerleid": 1,
+          "titelHerhalingWeg": 0,
+          "methode-run": 1,
+          "oudeBestandenOvergezet": 0,
+          "dagbestandenVerwijderd": 1,
+          "bytesVerwijderd": 72751
+        },
+        "jubileum": {
+          "nieuwsRood": 0,
+          "agendaRood": 0,
+          "uitgesloten": 0,
+          "alRoodDoorPrioriteit": 3
         },
         "run": {}
       }

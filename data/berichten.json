@@ -1,5 +1,5 @@
 {
-  "gegenereerdOp": "2026-11-12T18:48:17.455Z",
+  "gegenereerdOp": "2026-11-13T00:06:51.442Z",
   "promptVersie": "2026-11-11-batch-kop-tag-checklist-agendapunten",
   "alertModus": "log",
   "prioSchaal": "1 = urgent, 2 = belangrijk, 3 = regulier, 4 = routine. De AI geeft nooit prio 1.",
@@ -471,7 +471,8 @@
         "tekst": "Draagt het college op: ● Met een bestuurlijk gesprek met de NS en de gemeente Alkmaar in contact te blijven over deelname van Zaanstad aan deze proef ● De besluitvorming in Castricum nauwgezet te volgen ● Vóór de behandeling van de Voorjaarsnota 2027 bij de raad terug te komen met de uitkomsten van deze gesprekken bestuurlijke gesprekken Namens: D66 Zaanstad Jochem de Haan 1 https://zaanstad.bestuurlijkeinformatie.nl/Reports/Item/9bea3640-1477-4b8b-97c8-3f42849853bf Aangenomen, zie besluitenlijst in het raadsinformatiesysteem PRO Zoran Ejder POV Perry van de Velden PVV Natascha Cornelisse",
         "aanleiding": "Constaterende dat: ● De pilot met de nachttrein tussen Amsterdam en Alkmaar ook in 2027 blijft rijden ● Gemeente Uitgeest heeft besloten aan te haken bij deze pilot ● Gemeente Castricum nog twijfelt over deelname, waarbij eventuele deelname van Castricum betekent dat een tussenstop in Zaanstad technisch waarschijnlijk…",
         "bron": "dictum"
-      }
+      },
+      "tagVersie": 2
     },
     {
       "id": "eb9260d1be-v1",
@@ -540,7 +541,8 @@
         "tekst": "Verzoekt het college: - De eerder gemaakte afspraak over de invoering van betaald parkeren op het Zaaneiland te respecteren en conform eerder gemaakte afspraken na te komen; - De raad en bewoners op korte termijn te informeren over de concrete planning en het tijdspad voor de invoering van betaald parkeren in deze buurt; Nick Hendriks Jaap Keijser CDA Partij voor Ouderen en Veiligheid Hans Kuyper Zozan Ejder ROSA. PRO Aangenomen, zie besluitenlijst in het raadsinformatiesysteem",
         "aanleiding": "Constaterende dat: - Op het Zaaneiland een draagvlak onderzoek heeft plaatsgevonden over de invoering van het betaald parkeren ( met vergunningen voor bewoners) - Bij dit draagvlak onderzoek in de betreffende buurt een meerderheid van de bewoners volgens de vooraf gestelde spelregels heeft uitgesproken voor de…",
         "bron": "dictum"
-      }
+      },
+      "tagVersie": 2
     },
     {
       "id": "b02e721486-v1",
@@ -614,7 +616,8 @@
         "tekst": "Verzoekt het college: • Bij nieuwbouwprojecten en concrete ontwikkellocaties waar netcongestie de realisatie of ingebruikname aantoonbaar belemmert, per locatie te beoordelen of een kleine gasaansluiting strikt noodzakelijk is om zwaarwegende redenen van algemeen belang en, waar aan de wettelijke voorwaarden wordt voldaan, op grond van artikel 3.40, derde lid, onderdeel a, van de Energiewet de benodigde gebiedsaanwijzing vast te stellen. Daarbij gas te benutten als overbrugging totdat voldoende elektriciteitsnetcapaciteit beschikbaar is, met de aansluit- en eventuele omschakelkosten voor rekening van de aanvrager.",
         "aanleiding": "Constaterende dat: • netcongestie de bouw van woningen, bedrijfsgebouwen en voorzieningen belemmert;",
         "bron": "dictum"
-      }
+      },
+      "tagVersie": 2
     },
     {
       "id": "6a7c9d10b6-v1",
@@ -684,7 +687,8 @@
         "tekst": "Verzoekt het college om: • de realisatie van de A8-A9 op te nemen in de Zaanse lobby richting het Rijk; • daarin de op 10 juli 2025 aangenomen motie mbt het strategische belang van de A8-A9 mee te nemen • hiervoor de structureel beschikbare middelen voor lobby en public affairs in te zetten; • samen met de provincie Noord-Holland, de Vervoerregio Amsterdam en andere betrokken partijen te blijven werken aan de realisatie van deze verbinding; Namens de fractie van: VVD, Casper Davelaar PVV, Boy Boomsma CDA, Nick Hendriks FvD, Elano van Uitert Lokaal Zaans, Peter Klos Aangenomen, zie besluitenlijst in het raadsinformatiesysteem",
         "aanleiding": "Constaterende dat: • de verbinding A8-A9 al tientallen jaren onderwerp van discussie is, maar nog altijd niet aangelegd is;",
         "bron": "dictum"
-      }
+      },
+      "tagVersie": 2
     },
     {
       "id": "e70b2974fb-v1",
@@ -1870,7 +1874,7 @@
       "ai": true,
       "controle": "cijfers-ok",
       "eerstGezienOp": "2026-11-12T10:52:59.944Z",
-      "gecontroleerdOp": "2026-11-12T18:48:17.455Z",
+      "gecontroleerdOp": "2026-11-13T00:06:51.442Z",
       "bronTitel": "Provincie betrekt belanghebbenden bij aanpak stikstof en natuurherstel",
       "bronLengte": 3191,
       "checklist": {
@@ -1887,6 +1891,51 @@
       },
       "checklistBron": "ai",
       "tagVersie": 2
+    },
+    {
+      "id": "ce8d354fdf-v1",
+      "groepId": "ce8d354fdf",
+      "versie": 1,
+      "url": "https://www.deorkaan.nl/vertrekt-meyn-na-bijna-zeventig-jaar-uit-oostzaan-miljoenenpand-in-amsterdam-gekocht/",
+      "kop": "Vertrekt Meyn na bijna zeventig jaar uit Oostzaan? Miljoenenpand in Amsterdam gekocht",
+      "tekst": null,
+      "rubriek": "BED",
+      "tagBron": "ai",
+      "herkomst": "signaal",
+      "prio": 3,
+      "tijd": "2026-11-11T23:00:00.000Z",
+      "heeftTijd": false,
+      "woorden": 436,
+      "afgekapt": false,
+      "bronId": "DeOrkaan",
+      "bronNaam": "DeOrkaan",
+      "ai": false,
+      "controle": "analyse-ok",
+      "eerstGezienOp": "2026-11-13T00:06:51.442Z",
+      "gecontroleerdOp": "2026-11-13T00:06:51.442Z",
+      "bronTitel": "Vertrekt Meyn na bijna zeventig jaar uit Oostzaan? Miljoenenpand in Amsterdam gekocht",
+      "bronLengte": 2874,
+      "checklist": {
+        "gevaar": false,
+        "evacuatieOfNlAlert": false,
+        "gewondenOfDoden": false,
+        "bestuurlijkeCrisis": false,
+        "besluitMetGrootGevolg": true,
+        "tijdkritisch": false,
+        "betrokkenen": 450,
+        "geldbedragEuro": 18000000,
+        "banen": null,
+        "inRegio": true
+      },
+      "checklistBron": "ai",
+      "analyse": true,
+      "alertKandidaat": {
+        "niveau": "oranje",
+        "categorie": "bestuur",
+        "reden": "besluit met groot gevolg (één bron)",
+        "aangemaaktOp": "2026-11-13T00:06:51.442Z",
+        "tot": "2026-11-14T00:06:51.442Z"
+      }
     },
     {
       "id": "7afe092cf3-v1",
@@ -1908,7 +1957,7 @@
       "ai": false,
       "controle": "analyse-ok",
       "eerstGezienOp": "2026-11-12T18:48:17.455Z",
-      "gecontroleerdOp": "2026-11-12T18:48:17.455Z",
+      "gecontroleerdOp": "2026-11-13T00:06:51.442Z",
       "bronTitel": "Twee bewoners naar ziekenhuis na uitslaande woningbrand in Zaandam 📸",
       "bronLengte": 769,
       "checklist": {
@@ -1924,7 +1973,8 @@
         "inRegio": true
       },
       "checklistBron": "ai",
-      "analyse": true
+      "analyse": true,
+      "tagVersie": 2
     },
     {
       "id": "aedc880bb8-v1",
@@ -1946,7 +1996,7 @@
       "ai": false,
       "controle": "analyse-ok",
       "eerstGezienOp": "2026-11-12T18:48:17.455Z",
-      "gecontroleerdOp": "2026-11-12T18:48:17.455Z",
+      "gecontroleerdOp": "2026-11-13T00:06:51.442Z",
       "bronTitel": "Peperstraat voor de Raad van State: bewoners blijven strijden",
       "bronLengte": 3850,
       "checklist": {
@@ -1973,16 +2023,17 @@
         }
       ],
       "analyse": true,
+      "agendaIds": [
+        "3c30cbc46c"
+      ],
+      "tagVersie": 2,
       "alertKandidaat": {
         "niveau": "oranje",
         "categorie": "bestuur",
         "reden": "besluit met groot gevolg (één bron)",
         "aangemaaktOp": "2026-11-12T18:48:17.455Z",
         "tot": "2026-11-13T18:48:17.455Z"
-      },
-      "agendaIds": [
-        "3c30cbc46c"
-      ]
+      }
     },
     {
       "id": "32902bd5ab-v1",
@@ -2004,7 +2055,7 @@
       "ai": false,
       "controle": "analyse-ok",
       "eerstGezienOp": "2026-11-12T18:48:17.455Z",
-      "gecontroleerdOp": "2026-11-12T18:48:17.455Z",
+      "gecontroleerdOp": "2026-11-13T00:06:51.442Z",
       "bronTitel": "Waarheen: Sinterklaas, Zaan-Gezichten, Zwanenkoor",
       "bronLengte": 1317,
       "checklist": {
@@ -2020,7 +2071,8 @@
         "inRegio": true
       },
       "checklistBron": "ai",
-      "analyse": true
+      "analyse": true,
+      "tagVersie": 2
     },
     {
       "id": "74f71e24f8-v1",
@@ -2042,7 +2094,7 @@
       "ai": false,
       "controle": "analyse-ok",
       "eerstGezienOp": "2026-11-12T18:48:17.455Z",
-      "gecontroleerdOp": "2026-11-12T18:48:17.455Z",
+      "gecontroleerdOp": "2026-11-13T00:06:51.442Z",
       "bronTitel": "Krommeniedijk in actie tegen hoogspanningsmasten boven het dorp 🎧",
       "bronLengte": 1689,
       "checklist": {
@@ -2059,6 +2111,7 @@
       },
       "checklistBron": "ai",
       "analyse": true,
+      "tagVersie": 2,
       "alertKandidaat": {
         "niveau": "oranje",
         "categorie": "bestuur",
@@ -2087,7 +2140,7 @@
       "ai": false,
       "controle": "analyse-ok",
       "eerstGezienOp": "2026-11-12T18:48:17.455Z",
-      "gecontroleerdOp": "2026-11-12T18:48:17.455Z",
+      "gecontroleerdOp": "2026-11-13T00:06:51.442Z",
       "bronTitel": "Verblijfsontzegging voor overlast gevende jongeren bij De Tref en Gibraltar",
       "bronLengte": 2934,
       "checklist": {
@@ -2104,6 +2157,7 @@
       },
       "checklistBron": "ai",
       "analyse": true,
+      "tagVersie": 2,
       "alertKandidaat": {
         "niveau": "oranje",
         "categorie": "bestuur",
@@ -2132,7 +2186,7 @@
       "ai": false,
       "controle": "analyse-ok",
       "eerstGezienOp": "2026-11-12T18:48:17.455Z",
-      "gecontroleerdOp": "2026-11-12T18:48:17.455Z",
+      "gecontroleerdOp": "2026-11-13T00:06:51.442Z",
       "bronTitel": "Binnen praten over duurzaamheid, buiten klimaatprotest bij Taets",
       "bronLengte": 2174,
       "checklist": {
@@ -2148,7 +2202,8 @@
         "inRegio": true
       },
       "checklistBron": "ai",
-      "analyse": true
+      "analyse": true,
+      "tagVersie": 2
     },
     {
       "id": "e481e88eec-v1",
@@ -2170,7 +2225,7 @@
       "ai": false,
       "controle": "analyse-ok",
       "eerstGezienOp": "2026-11-12T18:48:17.455Z",
-      "gecontroleerdOp": "2026-11-12T18:48:17.455Z",
+      "gecontroleerdOp": "2026-11-13T00:06:51.442Z",
       "bronTitel": "De Orkaan in 2 minuten: 12 november 🎧",
       "bronLengte": 356,
       "checklist": {
@@ -2186,7 +2241,8 @@
         "inRegio": true
       },
       "checklistBron": "ai",
-      "analyse": true
+      "analyse": true,
+      "tagVersie": 2
     },
     {
       "id": "131b76a06d-v1",
@@ -2208,7 +2264,7 @@
       "ai": false,
       "controle": "analyse-ok",
       "eerstGezienOp": "2026-11-12T18:48:17.455Z",
-      "gecontroleerdOp": "2026-11-12T18:48:17.455Z",
+      "gecontroleerdOp": "2026-11-13T00:06:51.442Z",
       "bronTitel": "Expositie ‘Krommenie in zwart-wit’ extra weekend open",
       "bronLengte": 4767,
       "checklist": {
@@ -2237,7 +2293,8 @@
       "analyse": true,
       "agendaIds": [
         "4e46a9609e"
-      ]
+      ],
+      "tagVersie": 2
     },
     {
       "id": "bf7ca88994-v1",
@@ -2259,7 +2316,7 @@
       "ai": false,
       "controle": "analyse-ok",
       "eerstGezienOp": "2026-11-12T10:52:59.944Z",
-      "gecontroleerdOp": "2026-11-12T18:48:17.455Z",
+      "gecontroleerdOp": "2026-11-13T00:06:51.442Z",
       "bronTitel": "Tuinrangers helpen Zaankanters aan een groenere tuin",
       "bronLengte": 5051,
       "checklist": {
@@ -2298,7 +2355,7 @@
       "ai": false,
       "controle": "analyse-ok",
       "eerstGezienOp": "2026-11-12T10:52:59.944Z",
-      "gecontroleerdOp": "2026-11-12T18:48:17.455Z",
+      "gecontroleerdOp": "2026-11-13T00:06:51.442Z",
       "bronTitel": "Waar en wanneer zijn de Sinterklaasintochten van 2026?",
       "bronLengte": 6000,
       "checklist": {
@@ -2363,7 +2420,7 @@
       "ai": false,
       "controle": "analyse-ok",
       "eerstGezienOp": "2026-11-12T10:52:59.944Z",
-      "gecontroleerdOp": "2026-11-12T18:48:17.455Z",
+      "gecontroleerdOp": "2026-11-13T00:06:51.442Z",
       "bronTitel": "Zaan79 in oude Aldi Zeemansstraat Zaandam #bouwmarathon",
       "bronLengte": 2481,
       "checklist": {
@@ -2519,7 +2576,7 @@
       "ai": false,
       "controle": "geen-ai",
       "eerstGezienOp": "2026-11-12T02:49:37.542Z",
-      "gecontroleerdOp": "2026-11-12T18:48:17.455Z",
+      "gecontroleerdOp": "2026-11-13T00:06:51.442Z",
       "bronTitel": "Vooraankondiging aanbesteding: Bouwteam Herinrichting Dam Damstraat te Zaandam",
       "bronLengte": 141,
       "aanbesteding": {
@@ -2583,14 +2640,7 @@
         "inRegio": true
       },
       "checklistBron": "ai",
-      "tagVersie": 2,
-      "alertKandidaat": {
-        "niveau": "oranje",
-        "categorie": "bestuur",
-        "reden": "besluit met groot gevolg (officiële bron)",
-        "aangemaaktOp": "2026-11-11T21:14:16.919Z",
-        "tot": "2026-11-12T21:14:16.919Z"
-      }
+      "tagVersie": 2
     },
     {
       "id": "122c8e9bd7-v1",
@@ -4596,14 +4646,7 @@
       },
       "checklistBron": "ai",
       "analyse": true,
-      "tagVersie": 2,
-      "alertKandidaat": {
-        "niveau": "oranje",
-        "categorie": "bestuur",
-        "reden": "besluit met groot gevolg (één bron)",
-        "aangemaaktOp": "2026-11-11T21:14:16.919Z",
-        "tot": "2026-11-12T21:14:16.919Z"
-      }
+      "tagVersie": 2
     },
     {
       "id": "c92229dfb1-v1",
@@ -9599,9 +9642,6 @@
         }
       ],
       "analyse": true,
-      "agendaIds": [
-        "b729fa1da4"
-      ],
       "tagVersie": 2
     },
     {
@@ -10605,9 +10645,6 @@
         }
       ],
       "analyse": true,
-      "agendaIds": [
-        "c4b4eeafc4"
-      ],
       "tagVersie": 2
     },
     {
@@ -14582,9 +14619,6 @@
         }
       ],
       "analyse": true,
-      "agendaIds": [
-        "d5cb4b3e08"
-      ],
       "tagVersie": 2
     },
     {
@@ -14797,7 +14831,6 @@
         }
       ],
       "agendaIds": [
-        "d37bf6192d",
         "8a3eecffee"
       ],
       "tagVersie": 2
