@@ -1,7 +1,7 @@
 {
   "versie": 1,
   "modus": "log",
-  "bijgewerkt": "2026-11-13T07:26:56.769Z",
+  "bijgewerkt": "2026-11-13T15:17:06.529Z",
   "dossiers": [],
   "afgewezen": {
     "verworp": {
@@ -17,6 +17,21 @@
     "stichting": {
       "aantal": 6,
       "tijd": "2026-11-13T07:26:56.769Z",
+      "reden": "ai-nee"
+    },
+    "begroting": {
+      "aantal": 6,
+      "tijd": "2026-11-13T15:17:06.529Z",
+      "reden": "ai-nee"
+    },
+    "cameratoezicht": {
+      "aantal": 5,
+      "tijd": "2026-11-13T15:17:06.529Z",
+      "reden": "te-weinig-bij-elkaar"
+    },
+    "erfgoed": {
+      "aantal": 5,
+      "tijd": "2026-11-13T15:17:06.529Z",
       "reden": "ai-nee"
     }
   }

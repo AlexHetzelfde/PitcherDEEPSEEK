@@ -1,6 +1,6 @@
 {
   "versie": 1,
-  "bijgewerkt": "2026-11-13T07:26:56.769Z",
+  "bijgewerkt": "2026-11-13T15:17:06.529Z",
   "items": {
     "d0a0aa7b4e": {
       "g": "d0a0aa7b4e",
@@ -20,7 +20,7 @@
       "bt": "",
       "b": "DeOrkaan",
       "n": "DeOrkaan",
-      "t": "2026-11-12T23:00:00.000Z",
+      "t": "2026-11-13T15:17:06.529Z",
       "c": null,
       "r": "112"
     },
@@ -3266,6 +3266,138 @@
       "b": "nh-actueel",
       "n": "Provincie Noord-Holland — Actueel",
       "t": "2026-10-30T09:24:23.000Z",
+      "c": null,
+      "r": "VER"
+    },
+    "8716c120d4": {
+      "g": "8716c120d4",
+      "u": "https://www.noord-holland.nl/Actueel/Archief/2026/November_2026/Meertje_van_Vogelenzang_feestelijk_geopend_na_natuurherstel",
+      "k": "Meertje van Vogelenzang feestelijk geopend na natuurherstel",
+      "bt": "",
+      "b": "nh-actueel",
+      "n": "Provincie Noord-Holland — Actueel",
+      "t": "2026-11-13T12:28:17.000Z",
+      "c": null,
+      "r": "PRV"
+    },
+    "59c2eb1a43": {
+      "g": "59c2eb1a43",
+      "u": "https://www.noord-holland.nl/Actueel/Archief/2026/November_2026/Provincie_minder_goed_bereikbaar_via_e_mail",
+      "k": "Provincie minder goed bereikbaar via e-mail",
+      "bt": "",
+      "b": "nh-actueel",
+      "n": "Provincie Noord-Holland — Actueel",
+      "t": "2026-11-13T09:02:11.000Z",
+      "c": null,
+      "r": "PRV"
+    },
+    "2b16e2398f": {
+      "g": "2b16e2398f",
+      "u": "https://www.deorkaan.nl/noorderveenweg-drie-weken-dicht-voor-nieuwe-fietsoversteek/",
+      "k": "Noorderveenweg drie weken dicht voor nieuwe fietsoversteek",
+      "bt": "",
+      "b": "DeOrkaan",
+      "n": "DeOrkaan",
+      "t": "2026-11-12T23:00:00.000Z",
+      "c": null,
+      "r": "VER"
+    },
+    "99e71d8e00": {
+      "g": "99e71d8e00",
+      "u": "https://www.deorkaan.nl/bewoners-russische-buurt-starten-petitie-om-poller-te-behouden/",
+      "k": "Bewoners Russische Buurt starten petitie om poller te behouden",
+      "bt": "",
+      "b": "DeOrkaan",
+      "n": "DeOrkaan",
+      "t": "2026-11-12T23:00:00.000Z",
+      "c": null,
+      "r": "VER"
+    },
+    "11956bb3dd": {
+      "g": "11956bb3dd",
+      "u": "https://www.deorkaan.nl/grote-zoekactie-naar-vermiste-schipper-bij-jachthaven-de-remming-in-zaandam/",
+      "k": "Grote zoekactie naar vermiste schipper bij jachthaven De Remming in Zaandam (Update: terecht!)",
+      "bt": "",
+      "b": "DeOrkaan",
+      "n": "DeOrkaan",
+      "t": "2026-11-12T23:00:00.000Z",
+      "c": null,
+      "r": "112"
+    },
+    "004a132449": {
+      "g": "004a132449",
+      "u": "https://www.deorkaan.nl/de-orkaan-in-2-minuten-13-november-%f0%9f%8e%a7/",
+      "k": "De Orkaan in 2 minuten: 13 november 🎧",
+      "bt": "",
+      "b": "DeOrkaan",
+      "n": "DeOrkaan",
+      "t": "2026-11-12T23:00:00.000Z",
+      "c": null,
+      "r": "ALG"
+    },
+    "49e2daabbf": {
+      "g": "49e2daabbf",
+      "u": "https://www.deorkaan.nl/martin-rep-the-beatles-op-het-vissershop/",
+      "k": "Martin Rep: The Beatles op het Vissershop",
+      "bt": "",
+      "b": "DeOrkaan",
+      "n": "DeOrkaan",
+      "t": "2026-11-12T23:00:00.000Z",
+      "c": null,
+      "r": "CUL"
+    },
+    "70fe2c68a0": {
+      "g": "70fe2c68a0",
+      "u": "https://www.deorkaan.nl/automobiliste-naar-ziekenhuis-na-harde-botsing-op-leeghwaterweg-%f0%9f%93%b8/",
+      "k": "Automobiliste naar ziekenhuis na harde botsing op Leeghwaterweg 📸",
+      "bt": "",
+      "b": "DeOrkaan",
+      "n": "DeOrkaan",
+      "t": "2026-11-12T23:00:00.000Z",
+      "c": null,
+      "r": "112"
+    },
+    "87935b8d17": {
+      "g": "87935b8d17",
+      "u": "https://www.deorkaan.nl/waarheen-ricky-koole-boiler-room-india-light-festival%f0%9f%8e%99/",
+      "k": "Waarheen: Ricky Koole, Boiler Room, India Light Festival 🎙",
+      "bt": "",
+      "b": "DeOrkaan",
+      "n": "DeOrkaan",
+      "t": "2026-11-12T23:00:00.000Z",
+      "c": null,
+      "r": "CUL"
+    },
+    "e2523ab0bb": {
+      "g": "e2523ab0bb",
+      "u": "https://www.deorkaan.nl/de-duinkaart-is-terug-vanaf-maart-2027-vrijwillige-bijdrage-voor-zaanse-schans/",
+      "k": "De Duinkaart is terug! Vanaf maart 2027 ‘vrijwillige bijdrage’ voor Zaanse Schans",
+      "bt": "",
+      "b": "DeOrkaan",
+      "n": "DeOrkaan",
+      "t": "2026-11-12T23:00:00.000Z",
+      "c": null,
+      "r": "GEM"
+    },
+    "2380a746f9": {
+      "g": "2380a746f9",
+      "u": "https://www.deorkaan.nl/besluit-sportcomplex-wormer-weer-uitgesteld/",
+      "k": "Besluit sportcomplex Wormer weer uitgesteld",
+      "bt": "",
+      "b": "DeOrkaan",
+      "n": "DeOrkaan",
+      "t": "2026-11-12T23:00:00.000Z",
+      "c": null,
+      "r": "GEM"
+    },
+    "2e4b0cb167": {
+      "g": "2e4b0cb167",
+      "u": "https://vervoerregio.bestuurlijkeinformatie.nl/Reports/Item/91502965-fd95-4058-87c7-621e991401f8",
+      "k": "Proefweekend nieuw metronetwerk en onveiligheid Van der Madeweg",
+      "bt": "",
+      "b": "vervoerregio-overzichten",
+      "n": "Vervoerregio: Overzichten (iBabs)",
+      "t": "2026-11-12T23:00:00.000Z",
       "c": null,
       "r": "VER"
     }
