@@ -1,5 +1,5 @@
 {
-  "gegenereerdOp": "2026-11-13T15:17:06.529Z",
+  "gegenereerdOp": "2026-11-13T21:54:23.050Z",
   "promptVersie": "2026-11-11-batch-kop-tag-checklist-agendapunten",
   "alertModus": "log",
   "prioSchaal": "1 = urgent, 2 = belangrijk, 3 = regulier, 4 = routine. De AI geeft nooit prio 1.",
@@ -441,29 +441,30 @@
         "inRegio": true
       },
       "checklistBron": "ai",
-      "analyse": true
+      "analyse": true,
+      "tagVersie": 2
     },
     {
       "id": "8716c120d4-v1",
       "groepId": "8716c120d4",
       "versie": 1,
       "url": "https://www.noord-holland.nl/Actueel/Archief/2026/November_2026/Meertje_van_Vogelenzang_feestelijk_geopend_na_natuurherstel",
-      "kop": "Meertje van Vogelenzang feestelijk geopend na natuurherstel",
+      "kop": "Meertje van Vogelenzang in Bakkum-Noord feestelijk geopend na natuurherstel",
       "tekst": null,
-      "rubriek": "PRV",
-      "tagBron": "trefwoord",
+      "rubriek": "CUL",
+      "tagBron": "ai",
       "herkomst": "officieel",
-      "prio": 3,
+      "prio": 4,
       "tijd": "2026-11-13T12:28:17.000Z",
       "heeftTijd": true,
       "woorden": 520,
       "afgekapt": false,
       "bronId": "nh-actueel",
       "bronNaam": "Provincie Noord-Holland — Actueel",
-      "ai": false,
-      "controle": "ai-fout",
+      "ai": true,
+      "controle": "cijfers-ok",
       "eerstGezienOp": "2026-11-13T15:17:06.529Z",
-      "gecontroleerdOp": "2026-11-13T15:17:06.529Z",
+      "gecontroleerdOp": "2026-11-13T21:54:23.050Z",
       "bronTitel": "Meertje van Vogelenzang feestelijk geopend na natuurherstel",
       "bronLengte": 3329,
       "checklist": {
@@ -478,17 +479,18 @@
         "banen": null,
         "inRegio": false
       },
-      "checklistBron": "patroon"
+      "checklistBron": "ai",
+      "tagVersie": 2
     },
     {
       "id": "59c2eb1a43-v1",
       "groepId": "59c2eb1a43",
       "versie": 1,
       "url": "https://www.noord-holland.nl/Actueel/Archief/2026/November_2026/Provincie_minder_goed_bereikbaar_via_e_mail",
-      "kop": "Provincie minder goed bereikbaar via e-mail",
+      "kop": "Provincie Noord-Holland minder goed bereikbaar via e-mail door storing",
       "tekst": null,
       "rubriek": "PRV",
-      "tagBron": "trefwoord",
+      "tagBron": "ai",
       "herkomst": "officieel",
       "prio": 3,
       "tijd": "2026-11-13T09:02:11.000Z",
@@ -497,10 +499,10 @@
       "afgekapt": false,
       "bronId": "nh-actueel",
       "bronNaam": "Provincie Noord-Holland — Actueel",
-      "ai": false,
-      "controle": "ai-fout",
+      "ai": true,
+      "controle": "cijfers-ok",
       "eerstGezienOp": "2026-11-13T15:17:06.529Z",
-      "gecontroleerdOp": "2026-11-13T15:17:06.529Z",
+      "gecontroleerdOp": "2026-11-13T21:54:23.050Z",
       "bronTitel": "Provincie minder goed bereikbaar via e-mail",
       "bronLengte": 485,
       "checklist": {
@@ -515,7 +517,84 @@
         "banen": null,
         "inRegio": false
       },
-      "checklistBron": "patroon"
+      "checklistBron": "ai",
+      "tagVersie": 2
+    },
+    {
+      "id": "eb2f32923f-v1",
+      "groepId": "eb2f32923f",
+      "versie": 1,
+      "url": "https://www.deorkaan.nl/honderden-drugspillen-softdrugs-en-patronen-bij-huiszoekingen-zaanse-verdachten/",
+      "kop": "Honderden drugspillen, softdrugs en patronen bij huiszoekingen Zaanse verdachten",
+      "tekst": null,
+      "rubriek": "112",
+      "tagBron": "ai",
+      "herkomst": "signaal",
+      "prio": 3,
+      "tijd": "2026-11-12T23:00:00.000Z",
+      "heeftTijd": false,
+      "woorden": 207,
+      "afgekapt": false,
+      "bronId": "DeOrkaan",
+      "bronNaam": "DeOrkaan",
+      "ai": false,
+      "controle": "analyse-ok",
+      "eerstGezienOp": "2026-11-13T21:54:23.050Z",
+      "gecontroleerdOp": "2026-11-13T21:54:23.050Z",
+      "bronTitel": "Honderden drugspillen, softdrugs en patronen bij huiszoekingen Zaanse verdachten",
+      "bronLengte": 1419,
+      "checklist": {
+        "gevaar": false,
+        "evacuatieOfNlAlert": false,
+        "gewondenOfDoden": false,
+        "bestuurlijkeCrisis": false,
+        "besluitMetGrootGevolg": false,
+        "tijdkritisch": false,
+        "betrokkenen": null,
+        "geldbedragEuro": null,
+        "banen": null,
+        "inRegio": true
+      },
+      "checklistBron": "ai",
+      "analyse": true
+    },
+    {
+      "id": "2bc5033876-v1",
+      "groepId": "2bc5033876",
+      "versie": 1,
+      "url": "https://www.deorkaan.nl/zomaar-een-zaans-minuutje-spoorbrug-krommenie-%f0%9f%8e%a5/",
+      "kop": "Zomaar een Zaans minuutje: spoorbrug Krommenie… 🎥",
+      "tekst": null,
+      "rubriek": "VER",
+      "tagBron": "trefwoord",
+      "herkomst": "signaal",
+      "prio": 3,
+      "tijd": "2026-11-12T23:00:00.000Z",
+      "heeftTijd": false,
+      "woorden": 473,
+      "afgekapt": false,
+      "bronId": "DeOrkaan",
+      "bronNaam": "DeOrkaan",
+      "ai": false,
+      "controle": "analyse-ok",
+      "eerstGezienOp": "2026-11-13T21:54:23.050Z",
+      "gecontroleerdOp": "2026-11-13T21:54:23.050Z",
+      "bronTitel": "Zomaar een Zaans minuutje: spoorbrug Krommenie… 🎥",
+      "bronLengte": 3313,
+      "checklist": {
+        "gevaar": false,
+        "evacuatieOfNlAlert": false,
+        "gewondenOfDoden": false,
+        "bestuurlijkeCrisis": false,
+        "besluitMetGrootGevolg": false,
+        "tijdkritisch": false,
+        "betrokkenen": null,
+        "geldbedragEuro": null,
+        "banen": null,
+        "inRegio": true
+      },
+      "checklistBron": "ai",
+      "analyse": true
     },
     {
       "id": "2b16e2398f-v1",
@@ -537,7 +616,7 @@
       "ai": false,
       "controle": "analyse-ok",
       "eerstGezienOp": "2026-11-13T15:17:06.529Z",
-      "gecontroleerdOp": "2026-11-13T15:17:06.529Z",
+      "gecontroleerdOp": "2026-11-13T21:54:23.050Z",
       "bronTitel": "Noorderveenweg drie weken dicht voor nieuwe fietsoversteek",
       "bronLengte": 1984,
       "checklist": {
@@ -554,6 +633,7 @@
       },
       "checklistBron": "ai",
       "analyse": true,
+      "tagVersie": 2,
       "alertKandidaat": {
         "niveau": "oranje",
         "categorie": "bestuur",
@@ -582,7 +662,7 @@
       "ai": false,
       "controle": "analyse-ok",
       "eerstGezienOp": "2026-11-13T15:17:06.529Z",
-      "gecontroleerdOp": "2026-11-13T15:17:06.529Z",
+      "gecontroleerdOp": "2026-11-13T21:54:23.050Z",
       "bronTitel": "Bewoners Russische Buurt starten petitie om poller te behouden",
       "bronLengte": 2728,
       "checklist": {
@@ -599,6 +679,7 @@
       },
       "checklistBron": "ai",
       "analyse": true,
+      "tagVersie": 2,
       "alertKandidaat": {
         "niveau": "oranje",
         "categorie": "bestuur",
@@ -627,7 +708,7 @@
       "ai": false,
       "controle": "analyse-ok",
       "eerstGezienOp": "2026-11-13T15:17:06.529Z",
-      "gecontroleerdOp": "2026-11-13T15:17:06.529Z",
+      "gecontroleerdOp": "2026-11-13T21:54:23.050Z",
       "bronTitel": "Grote zoekactie naar vermiste schipper bij jachthaven De Remming in Zaandam (Update: terecht!)",
       "bronLengte": 1941,
       "checklist": {
@@ -643,7 +724,8 @@
         "inRegio": true
       },
       "checklistBron": "ai",
-      "analyse": true
+      "analyse": true,
+      "tagVersie": 2
     },
     {
       "id": "004a132449-v1",
@@ -665,7 +747,7 @@
       "ai": false,
       "controle": "analyse-ok",
       "eerstGezienOp": "2026-11-13T15:17:06.529Z",
-      "gecontroleerdOp": "2026-11-13T15:17:06.529Z",
+      "gecontroleerdOp": "2026-11-13T21:54:23.050Z",
       "bronTitel": "De Orkaan in 2 minuten: 13 november 🎧",
       "bronLengte": 343,
       "checklist": {
@@ -681,7 +763,8 @@
         "inRegio": true
       },
       "checklistBron": "ai",
-      "analyse": true
+      "analyse": true,
+      "tagVersie": 2
     },
     {
       "id": "49e2daabbf-v1",
@@ -703,7 +786,7 @@
       "ai": false,
       "controle": "analyse-ok",
       "eerstGezienOp": "2026-11-13T15:17:06.529Z",
-      "gecontroleerdOp": "2026-11-13T15:17:06.529Z",
+      "gecontroleerdOp": "2026-11-13T21:54:23.050Z",
       "bronTitel": "Martin Rep: The Beatles op het Vissershop",
       "bronLengte": 5993,
       "checklist": {
@@ -719,7 +802,8 @@
         "inRegio": true
       },
       "checklistBron": "ai",
-      "analyse": true
+      "analyse": true,
+      "tagVersie": 2
     },
     {
       "id": "70fe2c68a0-v1",
@@ -741,7 +825,7 @@
       "ai": false,
       "controle": "analyse-ok",
       "eerstGezienOp": "2026-11-13T15:17:06.529Z",
-      "gecontroleerdOp": "2026-11-13T15:17:06.529Z",
+      "gecontroleerdOp": "2026-11-13T21:54:23.050Z",
       "bronTitel": "Automobiliste naar ziekenhuis na harde botsing op Leeghwaterweg 📸",
       "bronLengte": 1241,
       "checklist": {
@@ -757,7 +841,8 @@
         "inRegio": true
       },
       "checklistBron": "ai",
-      "analyse": true
+      "analyse": true,
+      "tagVersie": 2
     },
     {
       "id": "87935b8d17-v1",
@@ -779,7 +864,7 @@
       "ai": false,
       "controle": "analyse-ok",
       "eerstGezienOp": "2026-11-13T15:17:06.529Z",
-      "gecontroleerdOp": "2026-11-13T15:17:06.529Z",
+      "gecontroleerdOp": "2026-11-13T21:54:23.050Z",
       "bronTitel": "Waarheen: Ricky Koole, Boiler Room, India Light Festival 🎙",
       "bronLengte": 1096,
       "checklist": {
@@ -795,7 +880,8 @@
         "inRegio": true
       },
       "checklistBron": "ai",
-      "analyse": true
+      "analyse": true,
+      "tagVersie": 2
     },
     {
       "id": "e2523ab0bb-v1",
@@ -817,7 +903,7 @@
       "ai": false,
       "controle": "analyse-ok",
       "eerstGezienOp": "2026-11-13T15:17:06.529Z",
-      "gecontroleerdOp": "2026-11-13T15:17:06.529Z",
+      "gecontroleerdOp": "2026-11-13T21:54:23.050Z",
       "bronTitel": "De Duinkaart is terug! Vanaf maart 2027 ‘vrijwillige bijdrage’ voor Zaanse Schans",
       "bronLengte": 5271,
       "checklist": {
@@ -834,6 +920,7 @@
       },
       "checklistBron": "ai",
       "analyse": true,
+      "tagVersie": 2,
       "alertKandidaat": {
         "niveau": "oranje",
         "categorie": "bestuur",
@@ -862,7 +949,7 @@
       "ai": false,
       "controle": "analyse-ok",
       "eerstGezienOp": "2026-11-13T15:17:06.529Z",
-      "gecontroleerdOp": "2026-11-13T15:17:06.529Z",
+      "gecontroleerdOp": "2026-11-13T21:54:23.050Z",
       "bronTitel": "Besluit sportcomplex Wormer weer uitgesteld",
       "bronLengte": 2283,
       "checklist": {
@@ -879,6 +966,7 @@
       },
       "checklistBron": "ai",
       "analyse": true,
+      "tagVersie": 2,
       "alertKandidaat": {
         "niveau": "oranje",
         "categorie": "bestuur",
@@ -892,22 +980,22 @@
       "groepId": "2e4b0cb167",
       "versie": 1,
       "url": "https://vervoerregio.bestuurlijkeinformatie.nl/Reports/Item/91502965-fd95-4058-87c7-621e991401f8",
-      "kop": "Proefweekend nieuw metronetwerk en onveiligheid Van der Madeweg",
+      "kop": "Regioraadsleden stellen vragen over proefweekend metronetwerk en onveiligheid Van der Madeweg",
       "tekst": null,
       "rubriek": "VER",
-      "tagBron": "bron",
+      "tagBron": "ai",
       "herkomst": "officieel",
-      "prio": 4,
+      "prio": 3,
       "tijd": "2026-11-12T23:00:00.000Z",
       "heeftTijd": false,
       "woorden": 1973,
       "afgekapt": true,
       "bronId": "vervoerregio-overzichten",
       "bronNaam": "Vervoerregio: Overzichten (iBabs)",
-      "ai": false,
-      "controle": "ai-fout",
+      "ai": true,
+      "controle": "cijfers-ok",
       "eerstGezienOp": "2026-11-13T15:17:06.529Z",
-      "gecontroleerdOp": "2026-11-13T15:17:06.529Z",
+      "gecontroleerdOp": "2026-11-13T21:54:23.050Z",
       "bronTitel": "Proefweekend nieuw metronetwerk en onveiligheid Van der Madeweg",
       "bronLengte": 13510,
       "checklist": {
@@ -922,7 +1010,8 @@
         "banen": null,
         "inRegio": false
       },
-      "checklistBron": "patroon"
+      "checklistBron": "ai",
+      "tagVersie": 2
     },
     {
       "id": "d0a0aa7b4e-v1",
@@ -944,7 +1033,7 @@
       "ai": false,
       "controle": "analyse-ok",
       "eerstGezienOp": "2026-11-13T07:26:56.769Z",
-      "gecontroleerdOp": "2026-11-13T15:17:06.529Z",
+      "gecontroleerdOp": "2026-11-13T21:54:23.050Z",
       "bronTitel": "Dit weekend Den Uylbrug afgesloten",
       "bronLengte": 1052,
       "checklist": {
@@ -3219,14 +3308,7 @@
       "agendaIds": [
         "3c30cbc46c"
       ],
-      "tagVersie": 2,
-      "alertKandidaat": {
-        "niveau": "oranje",
-        "categorie": "bestuur",
-        "reden": "besluit met groot gevolg (één bron)",
-        "aangemaaktOp": "2026-11-12T18:48:17.455Z",
-        "tot": "2026-11-13T18:48:17.455Z"
-      }
+      "tagVersie": 2
     },
     {
       "id": "32902bd5ab-v1",
@@ -3304,14 +3386,7 @@
       },
       "checklistBron": "ai",
       "analyse": true,
-      "tagVersie": 2,
-      "alertKandidaat": {
-        "niveau": "oranje",
-        "categorie": "bestuur",
-        "reden": "besluit met groot gevolg (één bron)",
-        "aangemaaktOp": "2026-11-12T18:48:17.455Z",
-        "tot": "2026-11-13T18:48:17.455Z"
-      }
+      "tagVersie": 2
     },
     {
       "id": "9b19abc714-v1",
@@ -3350,14 +3425,7 @@
       },
       "checklistBron": "ai",
       "analyse": true,
-      "tagVersie": 2,
-      "alertKandidaat": {
-        "niveau": "oranje",
-        "categorie": "bestuur",
-        "reden": "besluit met groot gevolg (één bron)",
-        "aangemaaktOp": "2026-11-12T18:48:17.455Z",
-        "tot": "2026-11-13T18:48:17.455Z"
-      }
+      "tagVersie": 2
     },
     {
       "id": "b690ce747a-v1",
@@ -3839,14 +3907,7 @@
         "inRegio": true
       },
       "checklistBron": "ai",
-      "tagVersie": 2,
-      "alertKandidaat": {
-        "niveau": "oranje",
-        "categorie": "bestuur",
-        "reden": "besluit met groot gevolg (officiële bron)",
-        "aangemaaktOp": "2026-11-13T06:30:43.224Z",
-        "tot": "2026-11-14T06:30:43.224Z"
-      }
+      "tagVersie": 2
     },
     {
       "id": "122c8e9bd7-v1",
@@ -15898,44 +15959,6 @@
       },
       "checklistBron": "ai",
       "analyse": true,
-      "tagVersie": 2
-    },
-    {
-      "id": "0a7f7cfbe8-v1",
-      "groepId": "0a7f7cfbe8",
-      "versie": 1,
-      "url": "https://www.noord-holland.nl/Actueel/Archief/2026/Oktober_2026/Stichting_Centraal_Bureau_Fondsenwerving_ontvangt_predicaat_Koninklijk",
-      "kop": "Stichting Centraal Bureau Fondsenwerving ontvangt predicaat Koninklijk",
-      "tekst": "Commissaris van de Koning Arthur van Dijk reikte vrijdag 30 oktober het predicaat Koninklijk uit aan Stichting Centraal Bureau Fondsenwerving. Het CBF is de onafhankelijke organisatie die toezicht houdt op erkende goede doelen in Nederland en bestaat inmiddels meer dan 100 jaar.",
-      "rubriek": "PRV",
-      "tagBron": "bron",
-      "herkomst": "officieel",
-      "prio": 4,
-      "tijd": "2026-10-30T16:54:29.000Z",
-      "heeftTijd": true,
-      "woorden": 323,
-      "afgekapt": false,
-      "bronId": "nh-actueel",
-      "bronNaam": "Provincie Noord-Holland — Actueel",
-      "ai": true,
-      "controle": "cijfers-ok",
-      "eerstGezienOp": "2026-10-30T18:47:38.315Z",
-      "gecontroleerdOp": "2026-10-31T15:14:18.073Z",
-      "bronTitel": "Stichting Centraal Bureau Fondsenwerving ontvangt predicaat Koninklijk",
-      "bronLengte": 2104,
-      "checklist": {
-        "gevaar": false,
-        "evacuatieOfNlAlert": false,
-        "gewondenOfDoden": false,
-        "bestuurlijkeCrisis": false,
-        "besluitMetGrootGevolg": false,
-        "tijdkritisch": false,
-        "betrokkenen": null,
-        "geldbedragEuro": null,
-        "banen": null,
-        "inRegio": false
-      },
-      "checklistBron": "ai",
       "tagVersie": 2
     }
   ]

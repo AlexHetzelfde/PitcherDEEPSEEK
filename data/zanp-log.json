@@ -1,5 +1,5 @@
 {
-  "gegenereerdOp": "2026-11-13T15:17:06.529Z",
+  "gegenereerdOp": "2026-11-13T21:54:23.050Z",
   "uitleg": "Per run per onderdeel: tellers (optellend), waarden (meting van die run), voorbeelden en regels. De laatste 24 runs hebben voorbeelden en regels; 'dagen' telt de tellers per dag op.",
   "runs": [
     {
@@ -2670,6 +2670,204 @@
           "regels": []
         }
       }
+    },
+    {
+      "tijd": "2026-11-13T21:54:23.050Z",
+      "duurMs": 85347,
+      "onderdelen": {
+        "spelling": {
+          "tellers": {
+            "gecontroleerd": 3,
+            "ok": 3
+          },
+          "waarden": {},
+          "voorbeelden": [],
+          "regels": [
+            "Nederlands woordenboek geladen."
+          ]
+        },
+        "tekst": {
+          "tellers": {
+            "aangeboden": 2,
+            "geschreven": 2,
+            "teOudOvergeslagen": 0,
+            "leegOvergeslagen": 0,
+            "rommelRegelsWeg": 0,
+            "alineasHerleid": 2,
+            "titelHerhalingWeg": 0,
+            "methode-run": 2,
+            "oudeBestandenOvergezet": 0,
+            "dagbestandenVerwijderd": 0,
+            "bytesVerwijderd": 0
+          },
+          "waarden": {
+            "oudsteDagbestand": "2026-10-30",
+            "dekkingPct": 97,
+            "berichtenZonderTekst": 9,
+            "dekkingPerBron": {
+              "DeOrkaan": {
+                "berichten": 167,
+                "metTekst": 167,
+                "pct": 100,
+                "gemTekens": 2662
+              },
+              "nh-actueel": {
+                "berichten": 20,
+                "metTekst": 20,
+                "pct": 100,
+                "gemTekens": 3052
+              },
+              "vervoerregio-overzichten": {
+                "berichten": 7,
+                "metTekst": 4,
+                "pct": 57,
+                "gemTekens": 8599
+              },
+              "zaanstad-moties": {
+                "berichten": 43,
+                "metTekst": 43,
+                "pct": 100,
+                "gemTekens": 1054
+              },
+              "ibabs-collegeberichten": {
+                "berichten": 18,
+                "metTekst": 17,
+                "pct": 94,
+                "gemTekens": 5817
+              },
+              "ibabs-ingekomen-stukken": {
+                "berichten": 43,
+                "metTekst": 38,
+                "pct": 88,
+                "gemTekens": 2061
+              },
+              "bekendmakingen": {
+                "berichten": 29,
+                "metTekst": 29,
+                "pct": 100,
+                "gemTekens": 1253
+              },
+              "vervoerregio-persberichten": {
+                "berichten": 6,
+                "metTekst": 6,
+                "pct": 100,
+                "gemTekens": 1354
+              },
+              "wetenregelgeving": {
+                "berichten": 5,
+                "metTekst": 5,
+                "pct": 100,
+                "gemTekens": 3889
+              },
+              "zaanstad-ted": {
+                "berichten": 2,
+                "metTekst": 2,
+                "pct": 100,
+                "gemTekens": 74
+              },
+              "zaansche-molen": {
+                "berichten": 1,
+                "metTekst": 1,
+                "pct": 100,
+                "gemTekens": 1620
+              },
+              "rechtspraak-noord-holland": {
+                "berichten": 1,
+                "metTekst": 1,
+                "pct": 100,
+                "gemTekens": 6002
+              },
+              "omgevingsdienstnoordzeekanaal": {
+                "berichten": 2,
+                "metTekst": 2,
+                "pct": 100,
+                "gemTekens": 3328
+              }
+            }
+          },
+          "voorbeelden": [
+            {
+              "bron": "DeOrkaan",
+              "methode": "run",
+              "kop": "Honderden drugspillen, softdrugs en patronen bij huiszoekingen Zaanse verdachten",
+              "tekensVoor": 1419,
+              "tekensNa": 1421,
+              "alineas": 3,
+              "rommelRegelsWeg": 0,
+              "alineasHerleid": true,
+              "begin": "De politie hield eerder deze week zes Zaanse tieners aan op verdenking van betrokkenheid bij ernstige geweldsincidenten in Wormer en Wormerveer afgelopen juli. De aanhoudingen maken deel uit van een onderzoek naar een re",
+              "eind": "n worden niet uitgesloten. Door Michel Schermer, met informatie van politie Noord-Holland en eerder nieuws op De Orkaan."
+            }
+          ],
+          "regels": [
+            "Dekking volledige tekst: 335/344 berichten (97%). Laagst: vervoerregio-overzichten 4/7 (57%)."
+          ]
+        },
+        "jubileum": {
+          "tellers": {
+            "nieuwsRood": 0,
+            "agendaRood": 0,
+            "uitgesloten": 0,
+            "alRoodDoorPrioriteit": 2
+          },
+          "waarden": {},
+          "voorbeelden": [],
+          "regels": []
+        },
+        "dossiers": {
+          "tellers": {
+            "stubsNieuw": 2,
+            "stubsVerlopen": 0,
+            "aiControles": 1,
+            "aiJa": 0,
+            "aiNee": 1,
+            "aiFout": 0,
+            "nieuweDossiers": 0,
+            "itemsToegevoegd": 0,
+            "dossiersVerlopen": 0
+          },
+          "waarden": {
+            "kandidatenDezeRun": [
+              "vragen (5)"
+            ],
+            "stubsTotaal": 311,
+            "verhalen": 287,
+            "kandidaten": 1,
+            "dossiersActief": 0,
+            "modus": "log",
+            "dossiers": []
+          },
+          "voorbeelden": [
+            {
+              "besluit": "geen dossier",
+              "woord": "vragen",
+              "aantal": 5,
+              "reden": "te-weinig-bij-elkaar",
+              "koppen": [
+                "Regioraadsleden stellen vragen over proefweekend metronetwerk en onveiligheid Van der Madeweg",
+                "Kruidvat ziet geen datalek bij zichtbare pincodes, maar vragen blijven",
+                "Begroting voor de deur: wat vragen we van onze ambtenaren?",
+                "Regioraadsleden stellen schriftelijke vragen over rituitval bij busvervoerder EBS"
+              ]
+            }
+          ],
+          "regels": [
+            "Kandidaat \"vragen\" (5 verhalen): geen dossier (te-weinig-bij-elkaar)."
+          ]
+        },
+        "run": {
+          "tellers": {},
+          "waarden": {
+            "berichten": 359,
+            "agendaItems": 273,
+            "aiVerzoeken": 3,
+            "geminiDagGebruikt": "8/80",
+            "duurSeconden": 85
+          },
+          "voorbeelden": [],
+          "regels": []
+        }
+      }
     }
   ],
   "dagen": {
@@ -2757,21 +2955,21 @@
       }
     },
     "2026-11-13": {
-      "runs": 4,
+      "runs": 5,
       "tellers": {
         "spelling": {
-          "gecontroleerd": 13,
-          "ok": 13
+          "gecontroleerd": 16,
+          "ok": 16
         },
         "tekst": {
-          "aangeboden": 36,
-          "geschreven": 35,
+          "aangeboden": 38,
+          "geschreven": 37,
           "teOudOvergeslagen": 0,
           "leegOvergeslagen": 0,
           "rommelRegelsWeg": 4,
-          "alineasHerleid": 23,
+          "alineasHerleid": 25,
           "titelHerhalingWeg": 0,
-          "methode-run": 22,
+          "methode-run": 24,
           "oudeBestandenOvergezet": 0,
           "dagbestandenVerwijderd": 1,
           "bytesVerwijderd": 72751,
@@ -2782,15 +2980,15 @@
           "nieuwsRood": 0,
           "agendaRood": 2,
           "uitgesloten": 0,
-          "alRoodDoorPrioriteit": 8
+          "alRoodDoorPrioriteit": 10
         },
         "run": {},
         "dossiers": {
-          "stubsNieuw": 309,
+          "stubsNieuw": 311,
           "stubsVerlopen": 0,
-          "aiControles": 6,
+          "aiControles": 7,
           "aiJa": 0,
-          "aiNee": 6,
+          "aiNee": 7,
           "aiFout": 0,
           "nieuweDossiers": 0,
           "itemsToegevoegd": 0,

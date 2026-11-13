@@ -1,6 +1,6 @@
 {
   "versie": 1,
-  "bijgewerkt": "2026-11-13T15:17:06.529Z",
+  "bijgewerkt": "2026-11-13T21:54:23.050Z",
   "items": {
     "d0a0aa7b4e": {
       "g": "d0a0aa7b4e",
@@ -3272,19 +3272,19 @@
     "8716c120d4": {
       "g": "8716c120d4",
       "u": "https://www.noord-holland.nl/Actueel/Archief/2026/November_2026/Meertje_van_Vogelenzang_feestelijk_geopend_na_natuurherstel",
-      "k": "Meertje van Vogelenzang feestelijk geopend na natuurherstel",
-      "bt": "",
+      "k": "Meertje van Vogelenzang in Bakkum-Noord feestelijk geopend na natuurherstel",
+      "bt": "Meertje van Vogelenzang feestelijk geopend na natuurherstel",
       "b": "nh-actueel",
       "n": "Provincie Noord-Holland — Actueel",
       "t": "2026-11-13T12:28:17.000Z",
       "c": null,
-      "r": "PRV"
+      "r": "CUL"
     },
     "59c2eb1a43": {
       "g": "59c2eb1a43",
       "u": "https://www.noord-holland.nl/Actueel/Archief/2026/November_2026/Provincie_minder_goed_bereikbaar_via_e_mail",
-      "k": "Provincie minder goed bereikbaar via e-mail",
-      "bt": "",
+      "k": "Provincie Noord-Holland minder goed bereikbaar via e-mail door storing",
+      "bt": "Provincie minder goed bereikbaar via e-mail",
       "b": "nh-actueel",
       "n": "Provincie Noord-Holland — Actueel",
       "t": "2026-11-13T09:02:11.000Z",
@@ -3393,10 +3393,32 @@
     "2e4b0cb167": {
       "g": "2e4b0cb167",
       "u": "https://vervoerregio.bestuurlijkeinformatie.nl/Reports/Item/91502965-fd95-4058-87c7-621e991401f8",
-      "k": "Proefweekend nieuw metronetwerk en onveiligheid Van der Madeweg",
-      "bt": "",
+      "k": "Regioraadsleden stellen vragen over proefweekend metronetwerk en onveiligheid Van der Madeweg",
+      "bt": "Proefweekend nieuw metronetwerk en onveiligheid Van der Madeweg",
       "b": "vervoerregio-overzichten",
       "n": "Vervoerregio: Overzichten (iBabs)",
+      "t": "2026-11-12T23:00:00.000Z",
+      "c": null,
+      "r": "VER"
+    },
+    "eb2f32923f": {
+      "g": "eb2f32923f",
+      "u": "https://www.deorkaan.nl/honderden-drugspillen-softdrugs-en-patronen-bij-huiszoekingen-zaanse-verdachten/",
+      "k": "Honderden drugspillen, softdrugs en patronen bij huiszoekingen Zaanse verdachten",
+      "bt": "",
+      "b": "DeOrkaan",
+      "n": "DeOrkaan",
+      "t": "2026-11-12T23:00:00.000Z",
+      "c": null,
+      "r": "112"
+    },
+    "2bc5033876": {
+      "g": "2bc5033876",
+      "u": "https://www.deorkaan.nl/zomaar-een-zaans-minuutje-spoorbrug-krommenie-%f0%9f%8e%a5/",
+      "k": "Zomaar een Zaans minuutje: spoorbrug Krommenie… 🎥",
+      "bt": "",
+      "b": "DeOrkaan",
+      "n": "DeOrkaan",
       "t": "2026-11-12T23:00:00.000Z",
       "c": null,
       "r": "VER"

@@ -1,7 +1,7 @@
 {
   "versie": 1,
   "modus": "log",
-  "bijgewerkt": "2026-11-13T15:17:06.529Z",
+  "bijgewerkt": "2026-11-13T21:54:23.050Z",
   "dossiers": [],
   "afgewezen": {
     "verworp": {
@@ -33,6 +33,11 @@
       "aantal": 5,
       "tijd": "2026-11-13T15:17:06.529Z",
       "reden": "ai-nee"
+    },
+    "vragen": {
+      "aantal": 5,
+      "tijd": "2026-11-13T21:54:23.050Z",
+      "reden": "te-weinig-bij-elkaar"
     }
   }
 }
