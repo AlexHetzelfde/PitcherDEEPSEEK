@@ -39,8 +39,8 @@ const WETHOUDER = ruw({
     "De Zaanse wethouder stapt op na een integriteitsonderzoek naar het bestuur van de gemeente Zaanstad. De raad komt donderdag bijeen om erover te praten.",
 });
 const HHNK_BERICHT = ruw({
-  bronId: "hhnk",
-  url: "https://voorbeeld.nl/hhnk",
+  bronId: "nh-cultuur",
+  url: "https://voorbeeld.nl/nh-cultuur",
   titel: "Hoogheemraadschap legt nieuwe dijkwacht aan",
   samenvatting: "Het hoogheemraadschap legt een nieuwe dijkwacht aan langs de Zaan, melden de bestuurders.",
 });
@@ -99,20 +99,20 @@ test("scrapeAlleBronnen meldt een mislukte bron via opFout; zonder die optie ver
 test("een bron met een fout is in status en logboek te onderscheiden van een bron zonder nieuws", async () => {
   schoneMap();
   const mislukt = async (lijst, opties) => {
-    const kapot = lijst.find((b) => b.id === "hhnk");
-    assert.ok(kapot, "hhnk hoort aan de beurt te zijn");
-    opties.opFout(kapot, new Error("time-out na 45.0s bij hhnk"), 45);
+    const kapot = lijst.find((b) => b.id === "nh-cultuur");
+    assert.ok(kapot, "nh-cultuur hoort aan de beurt te zijn");
+    opties.opFout(kapot, new Error("time-out na 45.0s bij nh-cultuur"), 45);
     return [BRAND];
   };
   const env = { ZANP_ALLES: "1" };
 
   await z.draai({ nu, apiKey: null, env, scrape: mislukt, haalTekst: geenTekst });
   let status = leesData(map, "zanp-status.json");
-  assert.equal(status.bronnen.hhnk.gevonden, 0);
-  assert.equal(status.bronnen.hhnk.opeenvolgendLeeg, 1);
-  assert.equal(status.bronnen.hhnk.opeenvolgendFout, 1);
-  assert.match(status.bronnen.hhnk.laatsteFout.bericht, /time-out/);
-  assert.equal(status.bronnen.hhnk.laatsteFout.duurSec, 45);
+  assert.equal(status.bronnen["nh-cultuur"].gevonden, 0);
+  assert.equal(status.bronnen["nh-cultuur"].opeenvolgendLeeg, 1);
+  assert.equal(status.bronnen["nh-cultuur"].opeenvolgendFout, 1);
+  assert.match(status.bronnen["nh-cultuur"].laatsteFout.bericht, /time-out/);
+  assert.equal(status.bronnen["nh-cultuur"].laatsteFout.duurSec, 45);
   assert.equal(status.bronnen.bekendmakingen.opeenvolgendFout, 0, "een bron die werkt heeft geen fouten");
   assert.equal(status.bronnen.bekendmakingen.laatsteFout, undefined);
   assert.equal(status.bronnen["zaans-museum"].opeenvolgendLeeg, 1, "een rustige bron is wel leeg");
@@ -122,24 +122,24 @@ test("een bron met een fout is in status en logboek te onderscheiden van een bro
   assert.equal(bronnenLog.tellers.fout, 1);
   assert.equal(bronnenLog.tellers.timeOut, 1);
   assert.ok(bronnenLog.waarden.leegZonderFoutLijst.includes("zaans-museum"));
-  assert.ok(!bronnenLog.waarden.leegZonderFoutLijst.includes("hhnk"), "een bron met een fout is niet 'gewoon leeg'");
+  assert.ok(!bronnenLog.waarden.leegZonderFoutLijst.includes("nh-cultuur"), "een bron met een fout is niet 'gewoon leeg'");
   assert.ok(!bronnenLog.waarden.leegZonderFoutLijst.includes("bekendmakingen"));
-  assert.ok(bronnenLog.regels.some((r) => r.includes("[hhnk]") && r.includes("time-out")));
-  assert.equal(bronnenLog.voorbeelden[0].bron, "hhnk");
+  assert.ok(bronnenLog.regels.some((r) => r.includes("[nh-cultuur]") && r.includes("time-out")));
+  assert.equal(bronnenLog.voorbeelden[0].bron, "nh-cultuur");
 
   // Dezelfde fout een uur later: de teller loopt door.
   await z.draai({ nu: new Date(nu.getTime() + 3600e3), apiKey: null, env, scrape: mislukt, haalTekst: geenTekst });
   status = leesData(map, "zanp-status.json");
-  assert.equal(status.bronnen.hhnk.opeenvolgendFout, 2);
-  assert.equal(status.bronnen.hhnk.opeenvolgendLeeg, 2);
+  assert.equal(status.bronnen["nh-cultuur"].opeenvolgendFout, 2);
+  assert.equal(status.bronnen["nh-cultuur"].opeenvolgendLeeg, 2);
 
   // Daarna werkt de bron weer: de foutenreeks stopt, de laatste fout blijft zichtbaar.
   const hersteld = async () => [BRAND, HHNK_BERICHT];
   await z.draai({ nu: new Date(nu.getTime() + 2 * 3600e3), apiKey: null, env, scrape: hersteld, haalTekst: geenTekst });
   status = leesData(map, "zanp-status.json");
-  assert.equal(status.bronnen.hhnk.opeenvolgendFout, 0);
-  assert.equal(status.bronnen.hhnk.opeenvolgendLeeg, 0);
-  assert.match(status.bronnen.hhnk.laatsteFout.bericht, /time-out/, "de laatste fout blijft staan als geschiedenis");
+  assert.equal(status.bronnen["nh-cultuur"].opeenvolgendFout, 0);
+  assert.equal(status.bronnen["nh-cultuur"].opeenvolgendLeeg, 0);
+  assert.match(status.bronnen["nh-cultuur"].laatsteFout.bericht, /time-out/, "de laatste fout blijft staan als geschiedenis");
   bronnenLog = laatsteLog("bronnen");
   assert.equal(bronnenLog.tellers.fout, 0);
 });
@@ -150,7 +150,7 @@ test("een scraper die zijn eigen fout opvangt (console.error, lege lijst) telt a
   const stil = [];
   const scrapeMetEigenFout = async () => {
     // Zoals generieke-lijst.js: fout opvangen, loggen, lege lijst teruggeven.
-    console.error("[hhnk] Generieke lijst-scraper mislukt: fetch failed — oorzaak: getaddrinfo ENOTFOUND www.hhnk.nl [ENOTFOUND]");
+    console.error("[nh-cultuur] Generieke lijst-scraper mislukt: fetch failed — oorzaak: getaddrinfo ENOTFOUND www.nh-cultuur.nl [ENOTFOUND]");
     // Een foutregel naast gevonden berichten is een melding, geen mislukte bron.
     console.error("[bekendmakingen] Detailpagina niet op te halen: 500");
     // Waarschuwingen en gewone regels tellen niet mee.
@@ -164,12 +164,12 @@ test("een scraper die zijn eigen fout opvangt (console.error, lege lijst) telt a
   } finally {
     console.error = echteConsoleError;
   }
-  assert.ok(stil.some((r) => r.includes("[hhnk]")), "de regel gaat ook gewoon naar de echte console");
+  assert.ok(stil.some((r) => r.includes("[nh-cultuur]")), "de regel gaat ook gewoon naar de echte console");
 
   const status = leesData(map, "zanp-status.json");
-  assert.equal(status.bronnen.hhnk.opeenvolgendFout, 1);
-  assert.match(status.bronnen.hhnk.laatsteFout.bericht, /^Generieke lijst-scraper mislukt: fetch failed/);
-  assert.equal(status.bronnen.hhnk.laatsteFout.duurSec, null);
+  assert.equal(status.bronnen["nh-cultuur"].opeenvolgendFout, 1);
+  assert.match(status.bronnen["nh-cultuur"].laatsteFout.bericht, /^Generieke lijst-scraper mislukt: fetch failed/);
+  assert.equal(status.bronnen["nh-cultuur"].laatsteFout.duurSec, null);
   assert.equal(status.bronnen.bekendmakingen.opeenvolgendFout, 0, "met berichten is het geen mislukte bron");
   assert.equal(status.bronnen["zaans-museum"].opeenvolgendFout, 0, "een waarschuwing is geen fout");
 
@@ -177,8 +177,8 @@ test("een scraper die zijn eigen fout opvangt (console.error, lege lijst) telt a
   assert.equal(log.tellers.fout, 1);
   assert.equal(log.tellers.meldingMetBerichten, 1);
   assert.ok(log.waarden.leegZonderFoutLijst.includes("zaans-museum"));
-  assert.ok(!log.waarden.leegZonderFoutLijst.includes("hhnk"));
-  assert.ok(log.regels.some((r) => r.startsWith("[hhnk] scrapen mislukt") && r.includes("ENOTFOUND")));
+  assert.ok(!log.waarden.leegZonderFoutLijst.includes("nh-cultuur"));
+  assert.ok(log.regels.some((r) => r.startsWith("[nh-cultuur] scrapen mislukt") && r.includes("ENOTFOUND")));
 });
 
 test("vangBronFouten zet console.error altijd terug, ook als het werk een fout gooit", async () => {
