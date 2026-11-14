@@ -1,5 +1,5 @@
 {
-  "gegenereerdOp": "2026-11-13T21:54:23.050Z",
+  "gegenereerdOp": "2026-11-14T02:12:59.463Z",
   "uitleg": "Per run per onderdeel: tellers (optellend), waarden (meting van die run), voorbeelden en regels. De laatste 24 runs hebben voorbeelden en regels; 'dagen' telt de tellers per dag op.",
   "runs": [
     {
@@ -2868,6 +2868,184 @@
           "regels": []
         }
       }
+    },
+    {
+      "tijd": "2026-11-14T02:12:59.463Z",
+      "duurMs": 60654,
+      "onderdelen": {
+        "spelling": {
+          "tellers": {},
+          "waarden": {},
+          "voorbeelden": [],
+          "regels": [
+            "Nederlands woordenboek geladen."
+          ]
+        },
+        "tekst": {
+          "tellers": {
+            "aangeboden": 1,
+            "geschreven": 1,
+            "teOudOvergeslagen": 0,
+            "leegOvergeslagen": 0,
+            "rommelRegelsWeg": 0,
+            "alineasHerleid": 0,
+            "titelHerhalingWeg": 0,
+            "methode-artikel": 1,
+            "oudeBestandenOvergezet": 0,
+            "dagbestandenVerwijderd": 1,
+            "bytesVerwijderd": 215843
+          },
+          "waarden": {
+            "oudsteDagbestand": "2026-10-31",
+            "dekkingPct": 97,
+            "berichtenZonderTekst": 9,
+            "dekkingPerBron": {
+              "DeOrkaan": {
+                "berichten": 155,
+                "metTekst": 155,
+                "pct": 100,
+                "gemTekens": 2663
+              },
+              "nh-actueel": {
+                "berichten": 20,
+                "metTekst": 20,
+                "pct": 100,
+                "gemTekens": 3052
+              },
+              "vervoerregio-overzichten": {
+                "berichten": 7,
+                "metTekst": 4,
+                "pct": 57,
+                "gemTekens": 8599
+              },
+              "zaanstad-moties": {
+                "berichten": 43,
+                "metTekst": 43,
+                "pct": 100,
+                "gemTekens": 1054
+              },
+              "ibabs-collegeberichten": {
+                "berichten": 18,
+                "metTekst": 17,
+                "pct": 94,
+                "gemTekens": 5817
+              },
+              "ibabs-ingekomen-stukken": {
+                "berichten": 43,
+                "metTekst": 38,
+                "pct": 88,
+                "gemTekens": 2061
+              },
+              "bekendmakingen": {
+                "berichten": 29,
+                "metTekst": 29,
+                "pct": 100,
+                "gemTekens": 1253
+              },
+              "vervoerregio-persberichten": {
+                "berichten": 6,
+                "metTekst": 6,
+                "pct": 100,
+                "gemTekens": 1354
+              },
+              "wetenregelgeving": {
+                "berichten": 5,
+                "metTekst": 5,
+                "pct": 100,
+                "gemTekens": 3889
+              },
+              "zaanstad-ted": {
+                "berichten": 2,
+                "metTekst": 2,
+                "pct": 100,
+                "gemTekens": 74
+              },
+              "zaansche-molen": {
+                "berichten": 1,
+                "metTekst": 1,
+                "pct": 100,
+                "gemTekens": 1620
+              },
+              "rechtspraak-noord-holland": {
+                "berichten": 1,
+                "metTekst": 1,
+                "pct": 100,
+                "gemTekens": 6002
+              },
+              "omgevingsdienstnoordzeekanaal": {
+                "berichten": 2,
+                "metTekst": 2,
+                "pct": 100,
+                "gemTekens": 3328
+              }
+            }
+          },
+          "voorbeelden": [
+            {
+              "bron": "zaanstad-kalender",
+              "methode": "artikel",
+              "kop": "Mini-conferentie Nieuwe Normen, Oude Inzichten",
+              "tekensVoor": 240,
+              "tekensNa": 240,
+              "alineas": 8,
+              "rommelRegelsWeg": 0,
+              "alineasHerleid": false,
+              "begin": "zaterdag 28 november 2026\n\n12:00\n\nLocatie\n\nDe Landgoederij, Camminghalaan 30, 3981 GH Bunnik.\n\nToelichting\n\nProgramma Mini-conferentie Nieuwe Normen, Oude Inzichten\n\nAgenda documenten\n\n• Mini-conferentie Nieuwe Normen_ O",
+              "eind": "ni-conferentie Nieuwe Normen, Oude Inzichten\n\nAgenda documenten\n\n• Mini-conferentie Nieuwe Normen_ Oude Inzichten 118 KB"
+            }
+          ],
+          "regels": [
+            "Dekking volledige tekst: 323/332 berichten (97%). Laagst: vervoerregio-overzichten 4/7 (57%)."
+          ]
+        },
+        "jubileum": {
+          "tellers": {
+            "nieuwsRood": 0,
+            "agendaRood": 0,
+            "uitgesloten": 0,
+            "alRoodDoorPrioriteit": 1
+          },
+          "waarden": {},
+          "voorbeelden": [],
+          "regels": []
+        },
+        "dossiers": {
+          "tellers": {
+            "stubsNieuw": 0,
+            "stubsVerlopen": 0,
+            "aiControles": 0,
+            "aiJa": 0,
+            "aiNee": 0,
+            "aiFout": 0,
+            "nieuweDossiers": 0,
+            "itemsToegevoegd": 0,
+            "dossiersVerlopen": 0
+          },
+          "waarden": {
+            "kandidatenDezeRun": [],
+            "stubsTotaal": 311,
+            "verhalen": 287,
+            "kandidaten": 0,
+            "dossiersActief": 0,
+            "modus": "log",
+            "dossiers": []
+          },
+          "voorbeelden": [],
+          "regels": []
+        },
+        "run": {
+          "tellers": {},
+          "waarden": {
+            "berichten": 347,
+            "agendaItems": 260,
+            "aiVerzoeken": 0,
+            "geminiDagGebruikt": "8/80",
+            "duurSeconden": 61
+          },
+          "voorbeelden": [],
+          "regels": []
+        }
+      }
     }
   ],
   "dagen": {
@@ -2994,6 +3172,43 @@
           "itemsToegevoegd": 0,
           "dossiersVerlopen": 0
         }
+      }
+    },
+    "2026-11-14": {
+      "runs": 1,
+      "tellers": {
+        "spelling": {},
+        "tekst": {
+          "aangeboden": 1,
+          "geschreven": 1,
+          "teOudOvergeslagen": 0,
+          "leegOvergeslagen": 0,
+          "rommelRegelsWeg": 0,
+          "alineasHerleid": 0,
+          "titelHerhalingWeg": 0,
+          "methode-artikel": 1,
+          "oudeBestandenOvergezet": 0,
+          "dagbestandenVerwijderd": 1,
+          "bytesVerwijderd": 215843
+        },
+        "jubileum": {
+          "nieuwsRood": 0,
+          "agendaRood": 0,
+          "uitgesloten": 0,
+          "alRoodDoorPrioriteit": 1
+        },
+        "dossiers": {
+          "stubsNieuw": 0,
+          "stubsVerlopen": 0,
+          "aiControles": 0,
+          "aiJa": 0,
+          "aiNee": 0,
+          "aiFout": 0,
+          "nieuweDossiers": 0,
+          "itemsToegevoegd": 0,
+          "dossiersVerlopen": 0
+        },
+        "run": {}
       }
     }
   }
