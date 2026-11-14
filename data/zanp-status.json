@@ -1,5 +1,5 @@
 {
-  "gegenereerdOp": "2026-11-14T16:33:37.019Z",
+  "gegenereerdOp": "2026-11-14T17:00:59.816Z",
   "alertModus": "log",
   "bronnen": {
     "zaansche-molen": {
@@ -33,14 +33,14 @@
       "opeenvolgendLeeg": 0
     },
     "nh-actueel": {
-      "laatsteScrape": "2026-11-14T16:33:37.019Z",
+      "laatsteScrape": "2026-11-14T17:00:59.816Z",
       "gevonden": 15,
       "opeenvolgendLeeg": 0,
       "opeenvolgendFout": 0
     },
     "nh-cultuur": {
-      "laatsteScrape": "2026-11-14T16:33:37.019Z",
-      "gevonden": 3,
+      "laatsteScrape": "2026-11-14T17:00:59.816Z",
+      "gevonden": 15,
       "opeenvolgendLeeg": 0,
       "opeenvolgendFout": 0
     },
@@ -100,25 +100,25 @@
       "opeenvolgendLeeg": 0
     },
     "vervoerregio-overzichten": {
-      "laatsteScrape": "2026-11-14T16:33:37.019Z",
+      "laatsteScrape": "2026-11-14T17:00:59.816Z",
       "gevonden": 1,
       "opeenvolgendLeeg": 0,
       "opeenvolgendFout": 0
     },
     "zaanstad-moties": {
-      "laatsteScrape": "2026-11-14T16:33:37.019Z",
+      "laatsteScrape": "2026-11-14T17:00:59.816Z",
       "gevonden": 0,
-      "opeenvolgendLeeg": 9,
+      "opeenvolgendLeeg": 10,
       "opeenvolgendFout": 0
     },
     "zaanstad-camera": {
-      "laatsteScrape": "2026-11-14T16:33:37.019Z",
+      "laatsteScrape": "2026-11-14T17:00:59.816Z",
       "gevonden": 0,
-      "opeenvolgendLeeg": 54,
+      "opeenvolgendLeeg": 55,
       "opeenvolgendFout": 0
     },
     "zaanstad-ted": {
-      "laatsteScrape": "2026-11-14T16:33:37.019Z",
+      "laatsteScrape": "2026-11-14T17:00:59.816Z",
       "gevonden": 1,
       "opeenvolgendLeeg": 0,
       "opeenvolgendFout": 0
