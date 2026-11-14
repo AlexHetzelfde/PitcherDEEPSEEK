@@ -1,13 +1,33 @@
 {
-  "gegenereerdOp": "2026-11-13T07:59:42.503Z",
+  "gegenereerdOp": "2026-11-14T08:10:31.260Z",
   "promptVersie": "2026-10-22-pitch-vier-velden",
   "sorteerwijze": "datum",
-  "aantalBerichtenTotaal": 47,
+  "aantalBerichtenTotaal": 45,
   "drempels": {
     "lokaal": 6,
     "landelijk": 8,
     "maxLokaal": 34.5,
     "maxLandelijk": 40.5
   },
-  "topPitches": []
+  "topPitches": [
+    {
+      "bronId": "DeOrkaan",
+      "bronNaam": "DeOrkaan",
+      "categorie": "lokaal",
+      "titel": "Fietser geschept door auto op Ned Benedictweg in Wormerveer",
+      "url": "https://www.deorkaan.nl/fietser-geschept-door-auto-op-ned-benedictweg-in-wormerveer/",
+      "samenvatting": "Op de Ned Benedictweg in Wormerveer is vrijdagmiddag – 13 november – rond 16.00 uur een fietser geschept door een auto. Het ongeluk gebeurde bij de fietsoversteek ter hoogte van de Witte Bijlweg. De fietser kwam van de Witte Bijlweg en stak de Ned Benedictweg over. Volgens getuigen fietste hij daarbij door rood licht. Voor het verkeer op de Ned Benedictweg stond het verkeerslicht voor linksaf slaan op rood, maar voor rechtdoorgaand verkeer richting Wormer stond het licht op groen. De bestuurder van de Suzuki Swift die rechtdoor reed, zag de fietser vermoedelijk pas op het laatste moment. Hij kon een aanrijding niet meer voorkomen. Volgens getuigen vloog de fietser door de lucht en kwam hij met een harde klap op het wegdek terecht. De fietser is nagekeken in een ambulance en vervolgens met spoed naar het ziekenhuis gebracht. Tijdens de afhandeling van het ongeval waren de rijstroken richting de Witte Bijlweg en Wormer afgesloten. Ondanks de afzetting reden meerdere automobilisten om de verkeerspionnen heen. De bestuurder van de betrokken auto kon uiteindelijk zijn weg vervolgen. De fiets van het slachtoffer is door collega’s opgehaald. Onder een slideshow met zeven foto’s (klik op de pijltjes of swipe): Door Michel Schermer.",
+      "foto": "https://www.deorkaan.nl/wp-content/uploads/2026/11/Ongeluk-Ned-Benedictweg-N514-Wormerveer-13-11-2026-Michel-Schermer-1-275x190.jpg",
+      "gepubliceerdOp": "2026-11-12T23:00:00.000Z",
+      "opgehaaldOp": "2026-11-14T07:32:37.705Z",
+      "tekstBron": "artikel",
+      "aiBeoordeling": {
+        "werktitel": "Ernstig ongeluk op Ned Benedictweg in Wormerveer: fietser met spoed naar ziekenhuis",
+        "samenvatting": "Op de Ned Benedictweg in Wormerveer is vrijdagmiddag een fietser geschept door een auto ter hoogte van de oversteek bij de Witte Bijlweg. Volgens getuigen reed het slachtoffer door rood licht, waarna een rechtdoorrijdende automobilist een aanrijding niet meer kon voorkomen. De fietser is vervolgens met spoed per ambulance naar het ziekenhuis gebracht.",
+        "invalshoek": "Lokaal: vanuit de verkeersveiligheid op de oversteekplaats tussen de Ned Benedictweg en de Witte Bijlweg in Wormerveer.",
+        "vraag": "Hoe staat het met de toestand van de fietser die na de aanrijding op de Ned Benedictweg met spoed naar het ziekenhuis is gebracht?",
+        "centraleVraag": "Hoe staat het met de toestand van de fietser die na de aanrijding op de Ned Benedictweg met spoed naar het ziekenhuis is gebracht?"
+      }
+    }
+  ]
 }
