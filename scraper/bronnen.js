@@ -5,6 +5,10 @@
 // Sinds 2026-10-26:
 //  - blaise-pascal-college en OmgevingsdienstNHN verwijderd (leverden
 //    onvoldoende op en kostten te veel tijd).
+//
+// Sinds 2026-11-14:
+//  - politie-zaanstad verwijderd (de pitchrun vond er 14 nachten achter elkaar
+//    niets, ZANP 52 runs achter elkaar; de selectors van politie.nl werken niet meer).
 
 module.exports = [
   {
@@ -237,27 +241,9 @@ module.exports = [
     },
   },
   // ---------------------------------------------------------------------------
-  // Vier bronnen die op 2026-10-31 aan ZANP zijn toegevoegd.
+  // Bronnen die op 2026-10-31 aan ZANP zijn toegevoegd (politie-zaanstad is op
+  // 2026-11-14 weer verwijderd, zie hierboven).
   // ---------------------------------------------------------------------------
-  {
-    id: "politie-zaanstad",
-    naam: "Politie — Nieuws Zaandam/Zaanstad",
-    categorie: "lokaal",
-    type: "gemini-recept",
-    // Het locatiefilter van politie.nl neemt ook enkele plaatsen eromheen mee.
-    url: "https://www.politie.nl/nieuws?order=datum-desc&subject=&location=Zaandam,+Zaanstad,+Noord-Holland",
-    paginering: { soort: "geen" },
-    selectors: {
-      itemSelector: "li.overview-item",
-      titelSelector: "h3",
-      linkSelector: "self",
-      datumSelector: "time",
-      datumAttribuut: "datetime",
-      samenvattingSelector: "p",
-      fotoSelector: null,
-      fotoAttribuut: null,
-    },
-  },
   {
     id: "zaanstad-kalender",
     naam: "Zaanstad — Vergaderkalender (iBabs)",

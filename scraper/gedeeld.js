@@ -66,6 +66,12 @@ async function metTijdslimiet(belofte, ms, melding) {
   return Promise.race([belofte, limiet]).finally(() => clearTimeout(timer));
 }
 
+// opties (allemaal optioneel; de pitchrun geeft er geen mee en gedraagt zich dus als vanouds):
+//   parallel   hoeveel bronnen tegelijk
+//   timeoutMs  maximumtijd per bron
+//   opFout     (bron, fout, duurSec) => void, alleen ZANP: wordt aangeroepen als scrapen van
+//              een bron mislukt, zodat de fout in het logboek kan. Zonder dit verdwijnt de
+//              fout in de console en lijkt de bron gewoon leeg.
 async function scrapeAlleBronnen(bronnenLijst = bronnen, opties = {}) {
   const alleBerichten = [];
   const parallel = Math.max(1, opties.parallel || 1);
@@ -118,6 +124,13 @@ async function scrapeAlleBronnen(bronnenLijst = bronnen, opties = {}) {
       const duurSec = ((Date.now() - startBron) / 1000).toFixed(1);
       console.error(`[${bron.id}] Scrapen mislukt na ${duurSec}s: ${fout.message}${oorzaakTekst(fout)}`);
       resultaten.set(index, []);
+      if (typeof opties.opFout === "function") {
+        try {
+          opties.opFout(bron, fout, Number(duurSec));
+        } catch {
+          // een fout in het logboek stopt het scrapen nooit
+        }
+      }
     }
   }
 

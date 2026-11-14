@@ -7,6 +7,10 @@
 //
 // Dit bestand wordt niet door "Bron toevoegen" of "Bron herstellen"
 // herschreven: die workflows werken alleen op bronnen.js.
+//
+// Sinds 2026-11-14: zaanstad-tenderned verwijderd (50 runs achter elkaar niets).
+// De Europese aanbestedingen blijven binnenkomen via zaanstad-ted. De scraper
+// zelf (scrapers/tenderned.js) blijft staan, mocht de bron terugkomen.
 
 module.exports = [
   {
@@ -59,16 +63,6 @@ module.exports = [
     categorie: "lokaal",
     type: "ted",
     url: "https://api.ted.europa.eu/v3/notices/search",
-    zoeknaam: "Zaanstad",
-    nooitVertragen: true,
-  },
-  {
-    // Aanbestedingen uit TenderNed, ook nationaal en onder de drempel. Zie scrapers/tenderned.js.
-    id: "zaanstad-tenderned",
-    naam: "Gemeente Zaanstad: aanbestedingen (TenderNed)",
-    categorie: "lokaal",
-    type: "tenderned",
-    url: "https://www.tenderned.nl/papi/tenderned-rs-tns/v2",
     zoeknaam: "Zaanstad",
     nooitVertragen: true,
   },

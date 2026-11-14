@@ -367,6 +367,16 @@ async function draai(deps = {}) {
 
   logFase("ZANP 1 — Bronnen kiezen");
   const status = await leesStatus();
+  // Een bron die uit bronnen.js of zanp-bronnen.js is gehaald, mag geen statusregel houden:
+  // de site telt "bronnen die niets opleveren" uit dit bestand, dus een achtergebleven regel
+  // blijft die melding eeuwig veroorzaken.
+  const bekendeBronIds = new Set(bronnen.map((b) => b.id));
+  const verwijderdeBronnen = Object.keys(status.bronnen).filter((id) => !bekendeBronIds.has(id));
+  for (const id of verwijderdeBronnen) delete status.bronnen[id];
+  if (verwijderdeBronnen.length) {
+    runLog.tel("bronnen", "statusOpgeruimd", verwijderdeBronnen.length);
+    runLog.regel("bronnen", `Statusregel opgeruimd van bron(nen) die niet meer in de lijsten staan: ${verwijderdeBronnen.join(", ")}.`);
+  }
   const quotaDag = quotumDag(nu);
   if (status.gemini.dag !== quotaDag) {
     // Nieuwe quotumdag: de teller begint opnieuw. Een wachttijd die nog loopt
@@ -401,9 +411,21 @@ async function draai(deps = {}) {
     return effectief;
   });
 
-  const ruwe = teScrapen.length
-    ? await scrape(teScrapenEffectief, { parallel: SCRAPE_PARALLEL, timeoutMs: SCRAPE_TIMEOUT_MS })
-    : [];
+  // Een bron die een fout geeft, levert een lege lijst op en lijkt dan op een bron zonder
+  // nieuws. Hier houden we de fouten apart, zodat de status en het logboek ze kunnen noemen.
+  // Twee bronnen van informatie: opFout (scrapen gooide een fout of liep op de tijdslimiet)
+  // en de console.error-regels van de scrapers zelf (die vangen hun eigen fout vaak op).
+  const scrapeFouten = new Map(); // bron-id -> { bericht, duurSec }
+  const { resultaat: ruwe, regelsPerBron: scraperFouten } = teScrapen.length
+    ? await vangBronFouten(new Set(teScrapen.map((b) => b.id)), () =>
+        scrape(teScrapenEffectief, {
+          parallel: SCRAPE_PARALLEL,
+          timeoutMs: SCRAPE_TIMEOUT_MS,
+          opFout: (bron, fout, duurSec) =>
+            scrapeFouten.set(bron.id, { bericht: kortTekst(`${fout.message}${oorzaakTekst(fout)}`, 250), duurSec }),
+        })
+      )
+    : { resultaat: [], regelsPerBron: new Map() };
   logDuur(startScrapen, `Scrapen van ${teScrapen.length} bronnen`);
 
   const bronPerId = Object.fromEntries(
@@ -416,14 +438,54 @@ async function draai(deps = {}) {
 
   const gevondenPerBron = {};
   for (const b of ruwe) gevondenPerBron[b.bronId] = (gevondenPerBron[b.bronId] || 0) + 1;
+  // Een bron telt als "mislukt" als scrapen een fout gaf, of als hij niets opleverde en de
+  // scraper zelf een foutregel schreef. Een foutregel naast gevonden berichten (bijvoorbeeld
+  // een detailpagina die niet lukte) is een melding, geen mislukte bron.
+  const foutPerBron = new Map();
+  const meldingenMetBerichten = [];
+  for (const bron of teScrapen) {
+    const gevonden = gevondenPerBron[bron.id] || 0;
+    const eigen = scraperFouten.get(bron.id);
+    if (scrapeFouten.has(bron.id)) foutPerBron.set(bron.id, scrapeFouten.get(bron.id));
+    else if (gevonden === 0 && eigen && eigen.length) foutPerBron.set(bron.id, { bericht: eigen[0], duurSec: null });
+    else if (gevonden > 0 && eigen && eigen.length) meldingenMetBerichten.push({ id: bron.id, gevonden, bericht: eigen[0] });
+  }
+
   for (const bron of teScrapen) {
     const vorig = status.bronnen[bron.id] || {};
     const gevonden = gevondenPerBron[bron.id] || 0;
+    const fout = foutPerBron.get(bron.id);
     status.bronnen[bron.id] = {
       laatsteScrape: nu.toISOString(),
       gevonden,
       opeenvolgendLeeg: gevonden === 0 ? (vorig.opeenvolgendLeeg || 0) + 1 : 0,
+      // opeenvolgendLeeg telt ook bronnen die stuk zijn. opeenvolgendFout telt alleen echte
+      // fouten; laatsteFout blijft staan tot er een nieuwe fout komt.
+      opeenvolgendFout: fout ? (vorig.opeenvolgendFout || 0) + 1 : 0,
+      ...(fout
+        ? { laatsteFout: { tijd: nu.toISOString(), bericht: fout.bericht, duurSec: fout.duurSec } }
+        : vorig.laatsteFout
+          ? { laatsteFout: vorig.laatsteFout }
+          : {}),
     };
+  }
+  // Logboek: welke bronnen gaven een fout, en welke waren gewoon leeg?
+  const leegZonderFout = teScrapen
+    .filter((b) => !(gevondenPerBron[b.id] > 0) && !foutPerBron.has(b.id))
+    .map((b) => b.id);
+  runLog.tel("bronnen", "gescrapet", teScrapen.length);
+  runLog.tel("bronnen", "fout", foutPerBron.size);
+  runLog.tel("bronnen", "leegZonderFout", leegZonderFout.length);
+  runLog.zet("bronnen", "leegZonderFoutLijst", leegZonderFout);
+  for (const [id, f] of foutPerBron) {
+    if (/^time-?out/i.test(f.bericht)) runLog.tel("bronnen", "timeOut");
+    const duur = f.duurSec != null ? ` na ${f.duurSec}s` : "";
+    runLog.regel("bronnen", `[${id}] scrapen mislukt${duur} (${status.bronnen[id].opeenvolgendFout}x achter elkaar): ${f.bericht}`);
+    runLog.voorbeeld("bronnen", { bron: id, bericht: f.bericht, duurSec: f.duurSec, opeenvolgendFout: status.bronnen[id].opeenvolgendFout });
+  }
+  for (const m of meldingenMetBerichten) {
+    runLog.tel("bronnen", "meldingMetBerichten");
+    runLog.regel("bronnen", `[${m.id}] foutmelding van de scraper, maar wel ${m.gevonden} bericht(en) gevonden: ${m.bericht}`);
   }
 
   const opties = {
@@ -601,6 +663,7 @@ async function draai(deps = {}) {
       console.log(`Controle-uitkomsten: ${JSON.stringify(telling)}`);
 
       kwaliteitRun = kwaliteitVan(nieuwe, verwerkt, resultaten);
+      logAiFouten(nieuwe, resultaten, runLog);
     }
   }
   const tagTelling = {};
@@ -857,6 +920,79 @@ async function draai(deps = {}) {
   return { records, agenda: agendaItems, status, samenvatting };
 }
 
+// Voert "werk" uit en schrijft ondertussen mee welke console.error-regels met "[bron-id]"
+// beginnen. Veel scrapers vangen hun eigen fout op, melden die alleen zo en geven een lege
+// lijst terug; zonder dit lijkt zo'n bron op een bron zonder nieuws. De regels worden
+// gewoon doorgegeven aan de echte console, en luisteren mag nooit iets stoppen.
+async function vangBronFouten(bronIds, werk) {
+  const regelsPerBron = new Map(); // bron-id -> eerste foutregels (zonder [id]-voorvoegsel)
+  const origineel = console.error;
+  console.error = (...args) => {
+    try {
+      const tekst = args.map((a) => (typeof a === "string" ? a : String(a))).join(" ");
+      const m = /^\[([^\]]+)\]\s*/.exec(tekst);
+      if (m && bronIds.has(m[1])) {
+        const lijst = regelsPerBron.get(m[1]) || [];
+        if (lijst.length < 3) lijst.push(kortTekst(tekst.slice(m[0].length), 250));
+        regelsPerBron.set(m[1], lijst);
+      }
+    } catch {
+      // meeluisteren mag nooit het scrapen stoppen
+    }
+    return origineel.apply(console, args);
+  };
+  try {
+    return { resultaat: await werk(), regelsPerBron };
+  } finally {
+    console.error = origineel;
+  }
+}
+
+function kortTekst(tekst, max = 200) {
+  const t = String(tekst == null ? "" : tekst).replace(/\s+/g, " ").trim();
+  return t.length > max ? `${t.slice(0, max - 1)}…` : t;
+}
+
+// Waarom mislukte de AI voor een bericht? De reden staat in het antwoord van gemini.js,
+// maar in het bericht zelf komt alleen "ai-fout". Deze indeling brengt de reden terug.
+function aiFoutCategorie(res) {
+  const tekst = String((res && res.fout) || "");
+  if (res && Number.isInteger(res.status)) return `http-${res.status}`;
+  if (/^leeg antwoord/.test(tekst)) return "leeg-antwoord";
+  if (/geen geldige JSON/.test(tekst)) return "ongeldig-json";
+  if (/^ontbreekt in het antwoord/.test(tekst)) return "ontbreekt-in-antwoord";
+  if (/^onvolledig/.test(tekst)) return "onvolledig";
+  if (/alle modellen faalden/.test(tekst)) return "alle-modellen-faalden";
+  if (/time-?out|timed out|abort/i.test(tekst)) return "time-out";
+  return "overig";
+}
+
+// Zet per soort AI-fout een regel in het logboek (met de volledige reden), plus een paar
+// voorbeelden. Overgeslagen berichten (cap of quotum) zijn geen fout en worden alleen geteld.
+function logAiFouten(nieuwe, resultaten, log) {
+  const perReden = new Map(); // reden -> { categorie, aantal, bronnen }
+  for (const n of nieuwe) {
+    if (!n.invoer) continue;
+    const res = resultaten.get(n.invoer.id);
+    if (!res || !res.fout) continue;
+    if (/^overgeslagen/.test(res.fout)) {
+      log.tel("ai", "overgeslagen");
+      continue;
+    }
+    const categorie = aiFoutCategorie(res);
+    log.tel("ai", `fout-${categorie}`);
+    const reden = kortTekst(res.fout, 200);
+    const rij = perReden.get(reden) || { categorie, aantal: 0, bronnen: new Set() };
+    rij.aantal++;
+    rij.bronnen.add(n.record.bronId);
+    perReden.set(reden, rij);
+    log.voorbeeld("ai", { bron: n.record.bronId, kop: kortTekst(n.record.kop, 90), modus: n.invoer.modus, categorie, reden, status: res.status ?? null }, 8);
+  }
+  for (const [reden, rij] of perReden) {
+    log.regel("ai", `${rij.aantal}x ${rij.categorie}: ${reden} (bronnen: ${[...rij.bronnen].join(", ")})`);
+  }
+}
+
 // Wat de AI deze run deed, in getallen: de kwaliteitslog. Zo zie je over de
 // dagen heen hoe vaak de cijfercontrole een melding afkeurt of een antwoord
 // ontbreekt, en kun je de prompt daarop bijsturen.
@@ -928,6 +1064,9 @@ module.exports = {
   wachtTotNaQuotum,
   kwaliteitVan,
   bewaarKwaliteit,
+  aiFoutCategorie,
+  logAiFouten,
+  vangBronFouten,
 };
 
 if (require.main === module) {

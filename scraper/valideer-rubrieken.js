@@ -8,7 +8,8 @@
 //
 // Fouten (exit 1): kapot JSON, onbekende rubriek of herkomst, ongeldige prio,
 //   herschrijven bij een bron die we niet mogen herschrijven.
-// Waarschuwingen (exit 0): een bron zonder regel, of een regel zonder bron.
+// Waarschuwingen (exit 0): een bron zonder regel, of een regel zonder bron
+// (bronnen.js en zanp-bronnen.js samen).
 //
 // Gebruik: node valideer-rubrieken.js [pad naar rubrieken.json]
 
@@ -82,10 +83,19 @@ function main() {
     console.error(`::error file=${pad}::rubrieken.json is geen geldig JSON: ${fout.message}`);
     process.exit(1);
   }
+  // Dezelfde lijst als zanp.js gebruikt: bronnen.js plus de bronnen die alleen
+  // ZANP scrapet (zanp-bronnen.js). Zonder de tweede lijst meldt de controle
+  // ten onrechte dat die bronnen "niet (meer) in bronnen.js" staan.
   let bronnen = null;
   try {
-    bronnen = require("./bronnen");
+    bronnen = [...require("./bronnen")];
+    try {
+      bronnen.push(...require("./zanp-bronnen"));
+    } catch (fout) {
+      console.warn(`zanp-bronnen.js kon niet geladen worden (${fout.message}); bronnen die alleen ZANP scrapet kunnen ten onrechte als onbekend gemeld worden.`);
+    }
   } catch (fout) {
+    bronnen = null;
     console.warn(`bronnen.js kon niet geladen worden (${fout.message}); de kruiscontrole wordt overgeslagen.`);
   }
   const { fouten, waarschuwingen } = valideer(data, bronnen);

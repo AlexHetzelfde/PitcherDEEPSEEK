@@ -77,12 +77,6 @@
       "prio": 3,
       "herschrijf": false
     },
-    "zaanstad-tenderned": {
-      "rubriek": "GEM",
-      "herkomst": "officieel",
-      "prio": 3,
-      "herschrijf": false
-    },
     "zaanstad-moties": {
       "rubriek": "GEM",
       "herkomst": "officieel",
@@ -187,12 +181,6 @@
       "herkomst": "signaal",
       "prio": 3,
       "herschrijf": false
-    },
-    "politie-zaanstad": {
-      "rubriek": "112",
-      "herkomst": "officieel",
-      "prio": 2,
-      "herschrijf": true
     },
     "zaanstad-kalender": {
       "rubriek": "GEM",
