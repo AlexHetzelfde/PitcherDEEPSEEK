@@ -3,6 +3,19 @@ const assert = require("node:assert/strict");
 const wire = require("../wire");
 
 const nu = new Date();
+
+// Een datum in het Nederlands, een paar dagen na "nu" ("dinsdag 17 november"), zodat de test
+// niet verloopt zodra een vaste datum in het verleden ligt. Eigen namenlijsten, dus
+// onafhankelijk van de taalinstellingen van de machine.
+const WEEKDAGEN = ["zondag", "maandag", "dinsdag", "woensdag", "donderdag", "vrijdag", "zaterdag"];
+const MAANDEN = ["januari", "februari", "maart", "april", "mei", "juni", "juli", "augustus", "september", "oktober", "november", "december"];
+function datumOverDagen(dagen) {
+  const doel = new Date(nu.getTime() + dagen * 24 * 60 * 60 * 1000);
+  const [j, m, d] = doel.toLocaleDateString("en-CA", { timeZone: "Europe/Amsterdam" }).split("-").map(Number);
+  const weekdag = new Date(Date.UTC(j, m - 1, d)).getUTCDay();
+  return `${WEEKDAGEN[weekdag]} ${d} ${MAANDEN[m - 1]}`;
+}
+
 const bron = (extra = {}) => ({
   bronId: "bekendmakingen",
   bronNaam: "Bekendmakingen",
@@ -32,7 +45,7 @@ test("zonder AI krijgt een nieuw bericht een tag, checklist en agendapunt uit pa
     titel: "Uitslaande brand aan de Annemoonstraat 30",
     samenvatting:
       "Bij een uitslaande brand aan de Annemoonstraat 30 in Zaandam zijn 3 gewonden gevallen en zijn 12 bewoners geëvacueerd. " +
-      "Er is een inloopavond op dinsdag 3 november om 19.30 uur in het buurthuis.",
+      `Er is een inloopavond op ${datumOverDagen(5)} om 19.30 uur in het buurthuis.`,
   });
   const { nieuwe } = wire.planBerichten({ vensterBerichten: [b], nu });
   const r = nieuwe[0].record;
