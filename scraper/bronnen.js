@@ -7,6 +7,10 @@
 //    onvoldoende op en kostten te veel tijd).
 //
 // Sinds 2026-11-14:
+//  - DeOrkaan (deorkaan.nl) verwijderd op verzoek. WaarheenAgenda (de agenda van
+//    De Orkaan) blijft staan.
+//  - hhnk (Hoogheemraadschap Hollands Noorderkwartier) verwijderd op verzoek
+//    (58 runs achter elkaar niets in ZANP).
 //  - politie-zaanstad verwijderd (de pitchrun vond er 14 nachten achter elkaar
 //    niets, ZANP 52 runs achter elkaar; de selectors van politie.nl werken niet meer).
 
@@ -170,13 +174,6 @@ module.exports = [
     },
   },
   {
-    id: "hhnk",
-    naam: "Hoogheemraadschap Hollands Noorderkwartier — Nieuws",
-    categorie: "lokaal",
-    type: "generieke-lijst",
-    url: "https://www.hhnk.nl/nieuws",
-  },
-  {
     id: "rechtspraak-noord-holland",
     naam: "Rechtspraak — Rechtbank Noord-Holland",
     categorie: "lokaal",
@@ -217,27 +214,6 @@ module.exports = [
       samenvattingSelector: null,
       fotoSelector: null,
       fotoAttribuut: null,
-    },
-  },
-  {
-    id: "DeOrkaan",
-    naam: "DeOrkaan",
-    categorie: "lokaal",
-    type: "gemini-recept",
-    url: "https://www.deorkaan.nl/",
-    selectors: {
-      itemSelector: ".home-article-grid > div",
-      titelSelector: "h3 a",
-      linkSelector: "h3 a",
-      datumSelector: ".text-gray-500",
-      datumAttribuut: null,
-      samenvattingSelector: "p.text-sm",
-      fotoSelector: "img.post-thumb",
-      fotoAttribuut: "src",
-    },
-    paginering: {
-      soort: "patroon",
-      patroon: "https://www.deorkaan.nl/page/{n}/",
     },
   },
   // ---------------------------------------------------------------------------

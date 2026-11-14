@@ -120,12 +120,6 @@
       "prio": 4,
       "herschrijf": true
     },
-    "hhnk": {
-      "rubriek": "PRV",
-      "herkomst": "officieel",
-      "prio": 3,
-      "herschrijf": true
-    },
     "omgevingsdienstnoordzeekanaal": {
       "rubriek": "PRV",
       "herkomst": "officieel",
@@ -169,12 +163,6 @@
       "herkomst": "organisatie",
       "prio": 4,
       "herschrijf": true
-    },
-    "DeOrkaan": {
-      "rubriek": "ALG",
-      "herkomst": "signaal",
-      "prio": 3,
-      "herschrijf": false
     },
     "zaandijk-leeft": {
       "rubriek": "ALG",
