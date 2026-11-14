@@ -1,5 +1,5 @@
 {
-  "gegenereerdOp": "2026-11-14T16:05:59.095Z",
+  "gegenereerdOp": "2026-11-14T16:33:37.019Z",
   "modus": "schaduw",
   "stempel": "v4-22806000",
   "tau": 0.5,
@@ -8,8 +8,8 @@
     "ai": true,
     "formule": "v4-22806000",
     "tekst": {
-      "werklijst": 4,
-      "lokaal": 4,
+      "werklijst": 0,
+      "lokaal": 0,
       "opgehaald": 0,
       "mislukt": 0,
       "uitgesteld": 0
